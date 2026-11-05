@@ -1,0 +1,155 @@
+{
+  "id": "metro_baquedano",
+  "name": "Estación Baquedano",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 24,
+  "height": 23,
+  "background": "#14141c",
+  "legend": {
+    "^": "muro_techo",
+    "W": "muro",
+    ".": "piso",
+    "E": "escalera",
+    "T": "torniquete",
+    "y": "piso_linea",
+    "g": "puerta_anden",
+    "v": "via",
+    "[": "mural_ini",
+    "m": "mural_linea",
+    "]": "mural_fin"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^^^^^",
+    "^^^^^^^^^^^^^^^^^^^^^^^^",
+    "^^^^^^^^^^^E^^^^^^^^^^^^",
+    "WWWWWWWWWWW.WWW[mmmm]WWW",
+    "........................",
+    "........................",
+    "........................",
+    "^^^^^^^^^TT.TT^^^^^^^^^^",
+    "........................",
+    "....E..............E....",
+    "^^^^^^^^^^^^^^^^^^^^^^^^",
+    "vvvvvvvvvvvvvvvvvvvvvvvv",
+    "vvvvvvvvvvvvvvvvvvvvvvvv",
+    "gggggggggggggggggggggggg",
+    "........................",
+    "........................",
+    "^^^^E^^^^^^^^^^^^^^^^^^^",
+    "vvvvvvvvvvvvvvvvvvvvvvvv",
+    "vvvvvvvvvvvvvvvvvvvvvvvv",
+    "gggggggggggggggggggggggg",
+    "........................",
+    "........................",
+    "^^^^^^^^^^^^^^^^^^^E^^^^"
+  ],
+  "zones": [
+    {
+      "name": "Estación Baquedano",
+      "subtitle": "Línea 1",
+      "x": 0,
+      "y": 2,
+      "w": 24,
+      "h": 9
+    },
+    {
+      "name": "Andén dir. San Pablo",
+      "subtitle": "Hacia el poniente",
+      "x": 0,
+      "y": 11,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "name": "Andén dir. Los Dominicos",
+      "subtitle": "Hacia el oriente",
+      "x": 0,
+      "y": 17,
+      "w": 24,
+      "h": 6
+    }
+  ],
+  "spawns": {
+    "entrada": { "x": 11, "y": 4, "dir": "down" },
+    "post_torniquete": { "x": 11, "y": 8, "dir": "down" },
+    "desde_anden_a": { "x": 4, "y": 8, "dir": "up" },
+    "desde_anden_b": { "x": 19, "y": 8, "dir": "up" },
+    "anden_a": { "x": 4, "y": 15, "dir": "up" },
+    "anden_b": { "x": 19, "y": 21, "dir": "up" }
+  },
+  "warps": [
+    {
+      "x": 11,
+      "y": 2,
+      "to": "providencia",
+      "spawn": "metro_baquedano"
+    },
+    {
+      "x": 4,
+      "y": 9,
+      "to": "metro_baquedano",
+      "spawn": "anden_a"
+    },
+    {
+      "x": 19,
+      "y": 9,
+      "to": "metro_baquedano",
+      "spawn": "anden_b"
+    },
+    {
+      "x": 4,
+      "y": 16,
+      "to": "metro_baquedano",
+      "spawn": "desde_anden_a"
+    },
+    {
+      "x": 19,
+      "y": 22,
+      "to": "metro_baquedano",
+      "spawn": "desde_anden_b"
+    }
+  ],
+  "labels": [
+    {
+      "x": 6,
+      "y": 3.5,
+      "text": "BAQUEDANO"
+    },
+    {
+      "x": 18,
+      "y": 2.55,
+      "text": "LÍNEA 1",
+      "color": "#ffd0d2"
+    },
+    {
+      "x": 4.5,
+      "y": 8.5,
+      "text": "A SAN PABLO"
+    },
+    {
+      "x": 19.5,
+      "y": 8.5,
+      "text": "A LOS DOMINICOS"
+    },
+    {
+      "x": 12,
+      "y": 10.5,
+      "text": "DIRECCIÓN SAN PABLO"
+    },
+    {
+      "x": 12,
+      "y": 16.5,
+      "text": "DIRECCIÓN LOS DOMINICOS"
+    }
+  ],
+  "crowd": {
+    "lines": "estacion",
+    "areas": [
+      { "x": 0, "y": 4, "w": 24, "h": 3, "count": 4 },
+      { "x": 0, "y": 8, "w": 24, "h": 2, "count": 2 },
+      { "x": 0, "y": 14, "w": 24, "h": 2, "count": 4, "dir": "up" },
+      { "x": 0, "y": 20, "w": 24, "h": 2, "count": 5, "dir": "up" }
+    ]
+  }
+}

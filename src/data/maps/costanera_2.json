@@ -1,0 +1,117 @@
+{
+  "id": "costanera_2",
+  "name": "Costanera Center · Piso 2",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 28,
+  "height": 16,
+  "background": "#1a1a22",
+  "legend": {
+    "0": "tienda_0",
+    "1": "tienda_1",
+    "2": "tienda_2",
+    "3": "tienda_3",
+    "4": "tienda_4",
+    "^": "muro_techo",
+    "W": "mall_muro",
+    ".": "mall_piso",
+    "=": "mall_piso_b",
+    "O": "atrio",
+    "R": "baranda_mall",
+    "U": "escalera_sube",
+    "D": "escalera_baja",
+    "L": "ascensor",
+    "p": "planta",
+    "B": "banca_mall",
+    "m": "mesa",
+    "e": "estante",
+    "c": "caja",
+    "k": "meson",
+    "C": "pantalla_cine",
+    "P": "puerta"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "W22222W33333WLLW44444W00000W",
+    "============================",
+    ".p........................p.",
+    "............................",
+    ".........RRRRRRRRRR.........",
+    ".........ROOOOOOOOR.........",
+    ".........ROOOOOOOOR.........",
+    "....U....ROOOOOOOOR....D....",
+    ".........ROOOOOOOOR.........",
+    ".........RRRRRRRRRR.........",
+    "............................",
+    ".......B............B.......",
+    ".p........................p.",
+    "WWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {
+      "name": "Costanera · Piso 2",
+      "subtitle": "Moda",
+      "x": 0,
+      "y": 0,
+      "w": 28,
+      "h": 16
+    }
+  ],
+  "spawns": {
+    "ascensor": { "x": 13, "y": 2, "dir": "down" },
+    "desde_abajo": { "x": 4, "y": 9, "dir": "down" },
+    "desde_arriba": { "x": 23, "y": 9, "dir": "down" }
+  },
+  "warps": [
+    {
+      "x": 4,
+      "y": 8,
+      "to": "costanera_3",
+      "spawn": "desde_abajo"
+    },
+    {
+      "x": 23,
+      "y": 8,
+      "to": "costanera_1",
+      "spawn": "desde_arriba"
+    }
+  ],
+  "labels": [
+    {
+      "x": 3.5,
+      "y": 0.5,
+      "text": "ROPA"
+    },
+    {
+      "x": 9.5,
+      "y": 0.5,
+      "text": "ZAPATOS"
+    },
+    {
+      "x": 18.5,
+      "y": 0.5,
+      "text": "JEANS"
+    },
+    {
+      "x": 24.5,
+      "y": 0.5,
+      "text": "ACCESORIOS"
+    },
+    {
+      "x": 14,
+      "y": 0.5,
+      "text": "PISO 2"
+    },
+    {
+      "x": 4.5,
+      "y": 7.6,
+      "text": "SUBE"
+    },
+    {
+      "x": 23.5,
+      "y": 7.6,
+      "text": "BAJA"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "id": "paine",
+  "name": "Paine",
+  "kind": "overworld",
+  "tileSize": 16,
+  "width": 44,
+  "height": 16,
+  "background": "#78c060",
+  "legend": {"H": "edificio:teja", "C": "edificio:crema", "\"": "pasto", "*": "pasto_flor", "T": "arbol", ".": "vereda", "=": "calle", "-": "calle_linea_h", "z": "cebra_h", "D": "puerta_casa", "P": "puerta", "f": "farol", "t": "arbol_vereda", "b": "banca", "k": "basurero", "B": "banca"},
+  "rows": [
+    "HHHHHHHHHH\"\"HHHHHHHHHH\"\"HHHHHHHH\"\"CCCCCCCCCC",
+    "HHHHHHHHHH\"\"HHHHHHHHHH\"\"HHHHHHHH\"\"CCCCCCCCCC",
+    "HHHHHHHHHH\"\"HHHHHHHHHH\"\"HHHHHHHH\"\"CCCCCCCCCC",
+    "HHHHHHDHHH\"\"HHHHDHHHHH\"\"HHHHHHHH\"\"CCCCPCCCCC",
+    "...f.......t.....f.....t.....f...t..........",
+    "............................................",
+    "=========================zz=================",
+    "-------------------------zz-----------------",
+    "=========================zz=================",
+    "............................................",
+    "........b.....k...................b.........",
+    "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"HHHHHHHHHHHHHHHHHHHHHHHH",
+    "\"\"\"\"T\"\"\"\"\"T\"\"\"\"T\"\"\"\"HHHHHHHHHHHHHHHHHHHHHHHH",
+    "\"\"***\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"HHHHHHHHHHHHHHHHHHHHHHHH",
+    "\"\"\"\"\"\"\"\"\"B\"\"\"\"\"\"\"\"\"\"HHHHHHHHHHHHHHHHHHHHHHHH",
+    "T\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"THHHHHHHHHHHHHHHHHHHHHHHH"
+  ],
+  "zones": [
+    {"name": "Estación Paine", "subtitle": "Trenes a Estación Central", "x": 34, "y": 0, "w": 10, "h": 6},
+    {"name": "Plaza", "subtitle": "Paine", "x": 0, "y": 11, "w": 20, "h": 5},
+    {"name": "Inés de Suárez", "subtitle": "Paine", "x": 0, "y": 0, "w": 44, "h": 16}
+  ],
+  "spawns": {
+    "casa": {"x": 6, "y": 4, "dir": "down"},
+    "estacion": {"x": 38, "y": 4, "dir": "down"},
+    "restaurante": {"x": 16, "y": 4, "dir": "down"}
+  },
+  "warps": [
+    {"x": 6, "y": 3, "to": "casa_piso1", "spawn": "puerta"},
+    {"x": 38, "y": 3, "to": "estacion_paine", "spawn": "entrada"},
+    {"x": 16, "y": 3, "to": "restaurante_paine", "spawn": "puerta", "if": {"flag": "mision3_iniciada"}, "blockedDialogue": "resto_cerrado"}
+  ],
+  "labels": [
+    {"x": 6, "y": 2.4, "text": "N° 122"},
+    {"x": 38.5, "y": 1.4, "text": "ESTACIÓN PAINE"},
+    {"x": 16.5, "y": 2.4, "text": "RESTORÁN"}
+  ],
+  "enter": [
+    {"id": "salida", "dialogue": "paine_salida", "if": {"flag": "despierto"}, "once": true},
+    {"id": "auto", "dialogue": "auto_llega", "if": {"all": [{"flag": "maleta_cerrada"}, {"notFlag": "llego_scl"}]}}
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "people": {
+    "senora": "Señora",
+    "turista": "Turista",
+    "vendedor": "Vendedor",
+    "oficinista": "Oficinista",
+    "estudiante": "Estudiante",
+    "abuelo": "Caballero",
+    "pasajera": "Pasajera",
+    "pasajero": "Pasajero",
+    "nino": "Niño",
+    "transeunte_joven": "Joven",
+    "transeunte_runner": "Deportista",
+    "transeunte_ejecutiva": "Ejecutiva",
+    "transeunte_abuelita": "Abuelita",
+    "transeunte_skater": "Skater",
+    "escolar": "Escolar",
+    "trabajador": "Trabajador",
+    "universitaria": "Universitaria",
+    "viajero": "Viajero",
+    "viajera": "Viajera"
+  },
+  "lines": {
+    "metro": [
+      "Permiso, me bajo en la que viene...",
+      "A esta hora el metro va repleto. ¡Ni un alfiler cabe!",
+      "No se apoye en las puertas, que se abren de repente.",
+      "El letrero de arriba te va marcando las estaciones, ¿cachaste?",
+      "Voy a Los Leones a una entrevista de pega. Deséame suerte.",
+      "Uf, llevo como una hora de viaje. Vengo desde el otro lado de Santiago.",
+      "Si quiere sentarse, ahí quedó un asiento libre.",
+      "Una vez me quedé dormido y desperté en Los Dominicos, jaja.",
+      "Hay que dejar bajar antes de subir, pero nadie respeta eso.",
+      "¿Tobalaba? Faltan un par de estaciones todavía."
+    ],
+    "micro": [
+      "Hay que tocar el timbre con tiempo, si no el chofer sigue de largo.",
+      "Esta micro se llena en Pedro de Valdivia, ya va a ver.",
+      "¡Córranse pa' atrás, que hay espacio!",
+      "Prefiero la micro: uno va mirando Providencia por la ventana.",
+      "Aquí sentadito voy de lo más bien.",
+      "Me bajo en Los Leones, ¿usted también?",
+      "Agárrese bien, que en las frenadas esto se mueve harto.",
+      "¿Pasó la tarjeta? Mire que a veces suben a controlar.",
+      "La 411 te deja al ladito del Costanera, buena elección."
+    ],
+    "estacion": [
+      "¿Sabe si el tren a Los Dominicos viene muy lleno?",
+      "Siempre me equivoco de andén... ¿este va pa' arriba o pa' abajo?",
+      "Detrás de la línea amarilla, que el tren llega rapidito.",
+      "Ya pasaron dos trenes llenos. Al tercero me subo sí o sí.",
+      "Una de las máquinas de carga está mala, use la otra.",
+      "Los Dominicos es hacia el oriente, para el lado de la cordillera.",
+      "Voy al centro a hacer trámites. ¡Qué lata!",
+      "En hora punta esto es una locura. Ahora está tranquilo."
+    ],
+    "paradero": [
+      "¿La 411? Debería pasar pronto, dicen.",
+      "Ojo con la 210, que dobla en Vicuña Mackenna.",
+      "Lo peor es cuando pasan llenas y no paran.",
+      "Llevo un rato aquí, pero ya debe venir.",
+      "Hay que hacerle señas al chofer, si no sigue de largo.",
+      "Aquí esperando la micro, como todos los días."
+    ],
+    "tren": [
+      "¿Usted va hasta Estación Central? Yo también, como todos los días.",
+      "En hora punta este tren se llena. Menos mal que pillamos asiento.",
+      "Este tren es puntual: 7:30 y ni un minuto más.",
+      "Antes me iba en bus y me demoraba el doble.",
+      "Aprovecho de dormir un ratito hasta San Bernardo.",
+      "Mire por la ventana: los cerros se ven preciosos a esta hora.",
+      "Uf, lunes. Ojalá el fin de semana durara una semana."
+    ],
+    "universidad": [
+      "¿Supiste? El Cuervo cambió la sala de la prueba de Opti.",
+      "Voy tarde a Cálculo, ¡permiso!",
+      "En el casino hay café a $700. Un robo, pero lo pago igual.",
+      "El ascensor del A2 se demora una eternidad. Yo subo por la escalera.",
+      "¿Tení los apuntes de Opti? Te los cambio por los de Estadística.",
+      "Dicen que el profe Cuervo escucha metal en su oficina.",
+      "Me quedé dormido en la biblioteca. Otra vez.",
+      "¿Quién inventó las clases a las 8:30? Que lo metan preso.",
+      "El profe Cuervo me preguntó si había visto su lápiz. Tres veces. Hoy.",
+      "Le dije «lo más óptimo» al Cuervo y se rió de mí diez minutos."
+    ],
+    "aula": [
+      "Estudié toda la noche. Bueno, vi un video de diez minutos.",
+      "Shh, que el profe ya va a empezar.",
+      "¿Trajiste calculadora? Préstamela después.",
+      "Si sale la mochila fraccionaria, estoy salvado.",
+      "El Cuervo se ríe de todo, pero explica bien.",
+      "Dicen que si respondes todo bien, te llama a su oficina. Da susto."
+    ],
+    "restaurante": [
+      "Aquí el pastel de choclo es el mejor de Paine. Bueno, el único que he probado.",
+      "¿Sandía de postre? Obvio. Estamos en Paine.",
+      "Mi señora quería ir a Buin, pero yo dije: Las Sandías o nada.",
+      "Uf, comí demasiado. Me van a tener que sacar rodando.",
+      "¿Usted es el que se va a Colombia? Todo Paine sabe ya.",
+      "El garzón es mi primo. No le digan que lo dije."
+    ],
+    "aeropuerto": [
+      "¿Sabe dónde está la isla C? Llevo veinte minutos dando vueltas.",
+      "Mi vuelo sale en cinco horas. Llegué con harto tiempo, por si acaso.",
+      "Me voy a Madrid a ver a mi hija. Primera vez que viajo en avión.",
+      "El café aquí cuesta lo mismo que un almuerzo en Santiago.",
+      "¿Usted escuchó lo que dijo el altoparlante? Yo tampoco.",
+      "Siempre reviso tres veces que tengo el pasaporte. Ahí está. Ahí está. Ahí está.",
+      "Volví de vacaciones y ya quiero irme de nuevo.",
+      "Dicen que el espigón E es tan largo que hay que llevar colación.",
+      "En la pantalla dice «a tiempo». Eso dicen todas al principio."
+    ],
+    "avion": [
+      "Permiso... no, este es el 22C. El suyo es más adelante.",
+      "Yo siempre pido pasillo. Ventana es para los valientes.",
+      "¿Me presta el apoyabrazos? ...¿Los dos? Bueno, no.",
+      "Seis horas de vuelo. Me traje tres películas descargadas y un libro.",
+      "Voy a Cali a un matrimonio. Llevo los zapatos de baile en la cartera.",
+      "Ojalá no me toque al lado de un niño. ...Hola, niño.",
+      "Ya me tomé la pastilla para dormir. Despiértenme en Colombia."
+    ],
+    "cali": [
+      "¡Bienvenido! ¿Primera vez en Cali? Se le nota, parce.",
+      "¿Sí o qué? Acá hace calorcito desde temprano.",
+      "Mi maleta siempre sale de última. Siempre. Es una maldición.",
+      "Allá afuera venden pandebono y avena. Desayuno caleño.",
+      "Si va pa' Pance, prepárese: queda lejísimos del aeropuerto.",
+      "A la orden, a la orden. ¿Taxi? ¿No? Bueno, a la orden igual."
+    ],
+    "pucc": [
+      "¿Usted es el de intercambio? Bienvenido, ¿qué más pues?",
+      "Voy tarde a Cálculo. Siempre voy tarde a Cálculo.",
+      "¿Sabe dónde queda el Samán? Llevo media hora dando vueltas.",
+      "Hoy almuerzo en la Cafetería Central, el buñuelo de allá es otra cosa.",
+      "¡Uy, se nubló! A mediodía siempre se larga el aguacero.",
+      "Mire, por ahí hay iguanas. No se asuste, no hacen nada.",
+      "Esta U es grandísima. En primer semestre me perdí tres veces.",
+      "¿Va pa'l partido de las 4:30? Dicen que los de Ingeniería son buenísimos.",
+      "Parcero, ¿me presta un lapicero? Ya se lo devuelvo... ahorita.",
+      "¡Qué chimba de día! Bueno, hasta que llueva."
+    ],
+    "cafeteria": [
+      "El pandebono de aquí es el mejor de Pance. Bueno, de Cali. Bueno, del mundo.",
+      "¿Me pasa la salsa? La de ají, la verde.",
+      "Siempre pido lo mismo: buñuelo y tinto. Siempre.",
+      "Hay que hacer fila, pero vale la pena.",
+      "¿Usted no es de acá, cierto? Se le nota en la cara de felicidad con la empanada."
+    ],
+    "bus_cali": [
+      "¿Va pa' la U? Bájese en la Calle 18, frente a la portería.",
+      "Este bus se llena a las siete, ¡agárrese!",
+      "¿Sí va a llover hoy? Yo creo que sí.",
+      "El chofer pone la misma salsa todos los días. Ya me la sé.",
+      "Permiso, permiso, me bajo en la que sigue."
+    ],
+    "aula_pucc": [
+      "¿Usted entiende algo? Yo solo copio.",
+      "La profe Gloria es exigente, pero explica bacano.",
+      "Shhh, que la profe está mirando.",
+      "¿Hiciste la tarea? ¿Había tarea?"
+    ],
+    "burger": [
+      "¿Ustedes también vienen por las papas criollas? Son adictivas.",
+      "Yo pido siempre la Caleña. Mi esposo, la Clásica. Llevamos veinte años discutiendo.",
+      "¡Qué rico ese olor a carbón, por Dios!",
+      "Shhh, que estoy en una cita. Bueno, eso creo.",
+      "Mañana empiezo la dieta. Lo digo todos los martes."
+    ],
+    "barberia": [
+      "Yo vengo por el corte y me quedo por las historias.",
+      "¿Ya le contó lo de Dubái? A mí tres veces."
+    ],
+    "feria": [
+      "Yo vengo todos los años. Compro un libro y me leo la contraportada. Es mi tradición.",
+      "¿Usted sabe dónde firma la autora? La fila llega hasta el puente, mijo.",
+      "Este año hay más toldos que el año pasado. Y más gente. Y más calor.",
+      "Mi hijo quiere uno de dinosaurios y yo uno de poesía. Vamos a terminar comprando el de dinosaurios.",
+      "¡Qué tal el Bulevar a esta hora! Ya empieza a soplar la brisa del río.",
+      "Me dijeron que el poeta de la máquina de escribir te hace un poema con tres palabras. Le dije «pandebono, lunes, ex». Lloré.",
+      "No compro libros, solo los huelo. El olor a libro viejo es lo mejor de la feria.",
+      "¿Ya pasó por el puente? Ahí están los de segunda, a cinco mil.",
+      "Vengo de Palmira solo por la feria. Y por el champús de la esquina.",
+      "Shh, que estoy leyendo. Bueno, no. Pero me gusta que la gente crea que sí."
+    ],
+    "san_antonio": [
+      "San Antonio de noche es otra cosa: velitas, guitarras y gente contando cuentos.",
+      "Esta casa tiene más de cien años. Las tejas también. La gotera es nueva.",
+      "¿Subieron a la loma? Desde arriba se ve toda Cali prendida.",
+      "Dicen que los domingos los cuenteros hacen llorar hasta a los policías.",
+      "Cuidado con las escaleras, que de noche se ven todas iguales.",
+      "Aquí todo el mundo se conoce. Bueno, todos conocen al perro de doña Fanny.",
+      "El Buziraco no existe. Pero yo no subo solo después de las diez."
+    ]
+  }
+}

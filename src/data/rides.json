@@ -1,0 +1,547 @@
+{
+  "metro_oriente": {
+    "type": "metro",
+    "map": "vagon",
+    "spawn": "inicio",
+    "line": "Línea 1 · Dir. Los Dominicos",
+    "endStop": "El Golf",
+    "startDialogue": "vagon_inicio",
+    "travelMs": 4500,
+    "doorsMs": 6500,
+    "stops": [
+      {
+        "name": "Salvador",
+        "exit": {
+          "map": "providencia",
+          "spawn": "metro_salvador"
+        }
+      },
+      {
+        "name": "Manuel Montt",
+        "exit": {
+          "map": "providencia",
+          "spawn": "metro_manuelmontt"
+        }
+      },
+      {
+        "name": "Pedro de Valdivia",
+        "exit": {
+          "map": "providencia",
+          "spawn": "metro_pedrodevaldivia"
+        }
+      },
+      {
+        "name": "Los Leones",
+        "exit": {
+          "map": "providencia",
+          "spawn": "metro_losleones"
+        }
+      },
+      {
+        "name": "Tobalaba",
+        "exit": {
+          "map": "providencia",
+          "spawn": "metro_tobalaba"
+        },
+        "final": true
+      }
+    ],
+    "end": {
+      "banner": "Próxima estación: El Golf",
+      "dialogue": "metro_te_pasaste",
+      "exit": {
+        "map": "providencia",
+        "spawn": "metro_tobalaba"
+      }
+    }
+  },
+  "metro_poniente": {
+    "type": "metro",
+    "map": "vagon",
+    "spawn": "inicio",
+    "line": "Línea 1 · Dir. San Pablo",
+    "endStop": "Universidad Católica",
+    "startDialogue": "vagon_inicio_poniente",
+    "travelMs": 4000,
+    "stops": [],
+    "end": {
+      "banner": "Próxima estación: Universidad Católica",
+      "dialogue": "metro_direccion_equivocada",
+      "exit": {
+        "map": "metro_baquedano",
+        "spawn": "anden_b"
+      }
+    }
+  },
+  "micro_411": {
+    "type": "micro",
+    "map": "micro",
+    "spawn": "inicio",
+    "line": "Recorrido 411 · Av. Providencia",
+    "startDialogue": "micro_411_inicio",
+    "travelMs": 4000,
+    "stops": [
+      {
+        "name": "Salvador",
+        "exit": {
+          "map": "providencia",
+          "spawn": "paradero_salvador"
+        }
+      },
+      {
+        "name": "Manuel Montt",
+        "exit": {
+          "map": "providencia",
+          "spawn": "paradero_manuelmontt"
+        }
+      },
+      {
+        "name": "Pedro de Valdivia",
+        "exit": {
+          "map": "providencia",
+          "spawn": "paradero_pedrodevaldivia"
+        }
+      },
+      {
+        "name": "Los Leones",
+        "exit": {
+          "map": "providencia",
+          "spawn": "paradero_losleones"
+        }
+      },
+      {
+        "name": "Tobalaba",
+        "exit": {
+          "map": "providencia",
+          "spawn": "paradero_tobalaba"
+        },
+        "final": true
+      }
+    ],
+    "end": {
+      "banner": "La micro sigue de largo",
+      "dialogue": "micro_te_pasaste",
+      "exit": {
+        "map": "providencia",
+        "spawn": "paradero_tobalaba"
+      },
+      "walked": true
+    }
+  },
+  "micro_210": {
+    "type": "micro",
+    "map": "micro",
+    "spawn": "inicio",
+    "line": "Recorrido 210 · Vicuña Mackenna",
+    "startDialogue": "micro_210_inicio",
+    "travelMs": 4000,
+    "stops": [],
+    "end": {
+      "banner": "La micro pone el intermitente...",
+      "dialogue": "micro_210_dobla",
+      "exit": {
+        "map": "providencia",
+        "spawn": "paradero_baquedano"
+      },
+      "walked": true
+    }
+  },
+  "tren_paine": {
+    "type": "metro",
+    "map": "tren_vagon",
+    "spawn": "inicio",
+    "line": "Tren Rancagua – Estación Central",
+    "origin": "Paine",
+    "color": "#d8232a",
+    "announce": true,
+    "departAt": "lun 07:30",
+    "startDialogue": "tren_inicio",
+    "travelMs": 3200,
+    "doorsMs": 2600,
+    "stops": [
+      {
+        "name": "Linderos",
+        "exit": {
+          "map": "estacion_central",
+          "spawn": "desde_tren"
+        },
+        "clock": "lun 07:37"
+      },
+      {
+        "name": "Buin",
+        "exit": {
+          "map": "estacion_central",
+          "spawn": "desde_tren"
+        },
+        "clock": "lun 07:44"
+      },
+      {
+        "name": "Buin Zoo",
+        "exit": {
+          "map": "estacion_central",
+          "spawn": "desde_tren"
+        },
+        "clock": "lun 07:49"
+      },
+      {
+        "name": "San Bernardo",
+        "exit": {
+          "map": "estacion_central",
+          "spawn": "desde_tren"
+        },
+        "clock": "lun 07:58"
+      },
+      {
+        "name": "Estación Central",
+        "exit": {
+          "map": "estacion_central",
+          "spawn": "desde_tren"
+        },
+        "final": true,
+        "doorsMs": 9000,
+        "clock": "lun 08:10"
+      }
+    ],
+    "end": {
+      "banner": "Fin del recorrido",
+      "dialogue": "tren_terminal",
+      "exit": {
+        "map": "estacion_central",
+        "spawn": "desde_tren"
+      }
+    }
+  },
+  "metro_l1_m2": {
+    "type": "metro",
+    "map": "vagon_m2",
+    "spawn": "inicio",
+    "line": "Línea 1 · Dir. Los Dominicos",
+    "origin": "Estación Central",
+    "endStop": "Pedro de Valdivia",
+    "startDialogue": "metro_m2_inicio",
+    "travelMs": 2200,
+    "doorsMs": 2400,
+    "stops": [
+      {
+        "name": "Unión Latinoamericana",
+        "exit": {
+          "map": "antonio_varas",
+          "spawn": "metro"
+        },
+        "clock": "lun 08:14"
+      },
+      {
+        "name": "República",
+        "exit": {
+          "map": "antonio_varas",
+          "spawn": "metro"
+        },
+        "clock": "lun 08:15"
+      },
+      {
+        "name": "Los Héroes",
+        "exit": {
+          "map": "antonio_varas",
+          "spawn": "metro"
+        },
+        "clock": "lun 08:16"
+      },
+      {
+        "name": "La Moneda",
+        "exit": {
+          "map": "antonio_varas",
+          "spawn": "metro"
+        },
+        "clock": "lun 08:17"
+      },
+      {
+        "name": "Universidad de Chile",
+        "exit": {
+          "map": "antonio_varas",
+          "spawn": "metro"
+        },
+        "clock": "lun 08:18"
+      },
+      {
+        "name": "Santa Lucía",
+        "exit": {
+          "map": "antonio_varas",
+          "spawn": "metro"
+        },
+        "clock": "lun 08:19"
+      },
+      {
+        "name": "Universidad Católica",
+        "exit": {
+          "map": "antonio_varas",
+          "spawn": "metro"
+        },
+        "clock": "lun 08:20"
+      },
+      {
+        "name": "Baquedano",
+        "exit": {
+          "map": "antonio_varas",
+          "spawn": "metro"
+        },
+        "clock": "lun 08:22"
+      },
+      {
+        "name": "Salvador",
+        "exit": {
+          "map": "antonio_varas",
+          "spawn": "metro"
+        },
+        "clock": "lun 08:23"
+      },
+      {
+        "name": "Manuel Montt",
+        "exit": {
+          "map": "antonio_varas",
+          "spawn": "metro"
+        },
+        "final": true,
+        "doorsMs": 9000,
+        "clock": "lun 08:25"
+      }
+    ],
+    "end": {
+      "banner": "Próxima estación: Pedro de Valdivia",
+      "dialogue": "metro_m2_te_pasaste",
+      "exit": {
+        "map": "antonio_varas",
+        "spawn": "metro"
+      }
+    }
+  },
+  "metro_l1_m2_poniente": {
+    "type": "metro",
+    "map": "vagon_m2",
+    "spawn": "inicio",
+    "line": "Línea 1 · Dir. San Pablo",
+    "origin": "Estación Central",
+    "endStop": "Universidad de Santiago",
+    "travelMs": 3500,
+    "stops": [],
+    "end": {
+      "banner": "Próxima estación: Universidad de Santiago",
+      "dialogue": "metro_m2_direccion_equivocada",
+      "exit": {
+        "map": "estacion_central",
+        "spawn": "anden_b"
+      }
+    }
+  },
+  "t31_centro": {
+    "type": "metro",
+    "map": "articulado",
+    "spawn": "inicio",
+    "line": "T31 · Universidades → Chiminangos",
+    "origin": "Universidades",
+    "color": "#2c8c5c",
+    "announce": true,
+    "startDialogue": "m6_t31_inicio",
+    "endStop": "La Ermita",
+    "travelMs": 1700,
+    "doorsMs": 1500,
+    "stops": [
+      {
+        "name": "Univalle",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Buitrera",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Meléndez",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500,
+        "dialogue": "m6_t31_melendez"
+      },
+      {
+        "name": "Capri",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Caldas",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Refugio",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Pampalinda",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500,
+        "dialogue": "m6_t31_pampalinda"
+      },
+      {
+        "name": "Guadalupe",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Unidad Deportiva",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Lido",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500,
+        "dialogue": "m6_t31_varado"
+      },
+      {
+        "name": "Tequendama",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Estadio",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500,
+        "dialogue": "m6_t31_estadio"
+      },
+      {
+        "name": "Manzana del Saber",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Santa Librada",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500,
+        "dialogue": "m6_t31_santa_librada"
+      },
+      {
+        "name": "San Bosco",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "San Pascual",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Sucre",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "Petecuy",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500
+      },
+      {
+        "name": "San Pedro",
+        "exit": {
+          "map": "universidades",
+          "spawn": "alimentador"
+        },
+        "minutes": 2,
+        "doorsMs": 1500,
+        "dialogue": "m6_t31_san_pedro"
+      },
+      {
+        "name": "Torre de Cali",
+        "exit": {
+          "map": "centro_cali",
+          "spawn": "torre_cali"
+        },
+        "minutes": 2,
+        "doorsMs": 12000,
+        "dialogue": "m6_t31_torre",
+        "final": true
+      }
+    ],
+    "end": {
+      "banner": "Próxima estación: La Ermita",
+      "dialogue": "m6_t31_te_pasaste",
+      "exit": {
+        "map": "centro_cali",
+        "spawn": "la_ermita"
+      }
+    },
+    "place": "En el T31"
+  }
+}

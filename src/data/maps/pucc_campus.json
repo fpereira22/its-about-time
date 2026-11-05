@@ -1,0 +1,783 @@
+{
+ "id": "pucc_campus",
+ "name": "Universidad Cristiana-Caleña",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 80,
+ "height": 88,
+ "background": "#3c7c40",
+ "music": "campus",
+ "legend": {
+  "\"": "pasto",
+  "*": "pasto_flor",
+  "T": "arbol",
+  "y": "palmera",
+  "a": "adoquin",
+  ".": "vereda",
+  "=": "calle",
+  "|": "calle_linea_v",
+  "Z": "cebra_v",
+  "t": "arbol_vereda",
+  "r": "reja",
+  "K": "caseta",
+  "#": "edificio:pucc",
+  "D": "puerta",
+  "p": "parqueadero",
+  "q": "parqueadero_auto",
+  "Q": "parqueadero_auto_b",
+  "~": "agua",
+  "c": "cancha",
+  "h": "cancha_linea_h",
+  "v": "cancha_linea_v",
+  "o": "cancha_centro",
+  "G": "arco_n_i",
+  "J": "arco_n_d",
+  "g": "arco_s_i",
+  "j": "arco_s_d",
+  "n": "cancha_tenis",
+  "e": "arena",
+  "w": "piscina",
+  "b": "cancha_dura",
+  "P": "arbol_plaza",
+  "B": "banca_plaza",
+  "f": "farol_plaza",
+  "F": "pileta",
+  "L": "p_letrero"
+ },
+ "rows": [
+  "T\"\"\"\"\"\"\"\"\"\"T\"T\"TT\"T\"T\"\"y\"\"\"TT\"pqpQQpqQpqpqqpQpQpQpppQqQpqqQppqQqpppppr..==|==...",
+  "\"\"\"TT\"y\"\"\"*\"\"\"TT\"\"\"T\"\"y\"\"\"T\"\"\"pppppppppppppppppppppppppppppppppppppppr..==|==...",
+  "T\"\"*\"T\"T\"\"*\"\"\"T\"**\"\"TT\"y\"\"TTT\"ppppppppppppppppppppppppppppppppppppppprt.==|==...",
+  "\"\"\"yTT\"TT\"\"y\"\"\"TT\"\"\"TT\"\"*\"\"T\"\"\"\"\"\"\"\"\"\"\"\"*\"\"\"\"\"*\"\"\"\"\"aa\"######\"\"pppqppr..==|==...",
+  "\"\"\"\"TT\"T\"\"\"y\"\"\"\"yT\"\"T\"\"\"\"\"yy\"T\"T\"T\"\"y\"T\"##########\"\"aa\"######\"\"ppppppr..==|==...",
+  "\"\"\"\"y*\"\"T\"\"\"\"\"\"y\"\"\"\"\"\"\"\"\"\"\"\"\"T*\"*\"\"\"\"\"TT##########\"*aa\"######\"\"ppppppr..==|==..t",
+  "yT\"\"y\"\"\"TT\"\"\"\"\"\"T\"\"\"\"\"\"*\"\"\"\"\"\"\"\"\"T\"\"TT\"\"##########\"\"aa\"######\"\"QpqqQqr..==|==...",
+  "T\"\"\"T\"\"\"\"\"\"*\"\"\"\"T\"*y\"\"T\"TTT\"\"\"\"yT\"*\"\"\"T\"##########\"\"aa\"######\"\"ppppppr..==|==...",
+  "\"T\"*\"\"TT\"T\"T\"TTT\"*\"\"\"\"T\"\"\"*T\"\"T\"\"\"\"T\"\"T\"##########*\"aa\"######y\"pppppprt.==|==...",
+  "\"yT\"\"\"y\"\"*T\"\"T\"*TT\"*\"\"\"\"\"\"~~~~~~\"\"TT*\"\"\"#####D####\"\"aa*###D##*\"ppQppQr..==|==...",
+  "\"\"T\"\"\"\"TTT\"\"\"\"\"T\"\"TT\"T\"T\"T~~~~~~\"\"\"\"\"\"aaaaaaaaaaaaaaaaaaaaaaaaappppppr..==|==...",
+  "T\"\"\"\"\"Ty\"TT\"\"\"T\"y\"\"\"\"\"\"*\"T~~~~~~**\"\"\"\"aaaaaaaaaaaaaaaaaaaaaaaaappppppr..==|==..t",
+  "\"\"\"\"T\"\"T\"T\"TT\"\"\"*\"T\"\"\"T\"TT~~~~~~T\"\"\"y\"\"\"\"\"\"\"\"#######aa\"\"\"\"\"\"\"\"\"Qqqqppr..==|==...",
+  "T\"*T\"y*\"yT\"*T\"\"T\"\"\"\"*\"\"\"TT~~~~~~T\"T\"\"\"######\"#######aa*\"\"######ppppppr..==|==...",
+  "y*T\"\"\"\"T\"TTT*\"\"\"yTTT\"\"\"\"\"\"~~~~~~Ty\"T\"T######\"#######aa\"**######pppppprt.==|==...",
+  "\"\"Ty\"\"\"T\"\"T\"\"\"\"\"\"\"\"\"\"\"\"T\"\"\"\"yTT\"\"\"\"*\"T######T#######aa\"\"\"######qqpqQQr..==|==...",
+  "\"\"T\"\"\"\"\"\"\"\"\"*\"y\"T\"*TT\"TT\"\"\"##########*######\"#######aa\"\"\"######ppppppr..==|==...",
+  "TT\"\"\"*T*\"\"T\"\"\"\"*T\"\"*T\"\"\"*\"\"##########\"###D##\"###D###aa\"\"T###D##ppppppr..==|==..t",
+  "\"\"\"\"\"TT\"\"*\"\"\"\"\"yT\"\"\"\"T\"\"\"\"\"##########T\"\"\"a\"\"\"\"*\"a\"\"\"aa\"\"\"\"\"\"a\"\"Qpqqqpr..==|==...",
+  "\"\"T\"\"\"***\"\"T\"\"y\"\"\"\"\"\"\"\"TT\"T##########\"\"faPaaaPaaaPaaaPaaf\"\"\"a\"\"ppppppr..==|==...",
+  "\"\"\"\"y\"\"\"\"T\"\"y\"\"\"y\"T\"\"\"\"\"\"\"T##########y\"aaaaaaaaaaaaaaaaaa\"\"\"a\"\"pppppprt.==|==...",
+  "\"T\"\"TTTT\"T\"\"\"\"\"\"\"T\"*\"\"\"\"\"\"\"#####D####\"\"aaaaaaaaaFaaaaaaaa\"\"\"a\"\"aaaaaar..==|==...",
+  "y\"\"\"T*T*T*\"\"\"\"\"T*\"*T\"\"\"\"\"\"\"\"\"\"\"\"a\"\"\"\"\"\"aaaaBaaaBaaaBaaaBa\"\"\"a\"\"aaaaaaK..==|==...",
+  "TT\"\"\"y\"T\"\"Ty\"\"\"\"\"\"T\"\"\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa..==|==..t",
+  "\"\"y\"\"T\"\"Ty\"*\"\"Ty\"y\"\"\"\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa..==|==...",
+  "\"\"\"\"T\"\"\"T*T*\"\"\"\"\"\"\"\"\"*aa\"\"*\"\"\"\"\"\"\"\"\"\"*\"\"\"*\"\"\"\"\"\"*\"\"\"\"\"\"aa\"\"\"\"\"LLL\"\"\"\"r..==|==...",
+  "TT\"\"\"\"T\"T\"\"\"\"\"\"\"\"\"\"\"\"\"aa\"\"\"\"T\"T\"\"#######\"###########*T\"aa####y\"\"\"\"\"T\"rt.ZZZZZ...",
+  "\"T\"\"\"\"\"\"\"\"T\"\"\"\"*T\"\"yT\"aa\"\"\"\"\"\"\"\"y#######T###########T\"*aa####*\"\"\"\"y\"Tr..==|==...",
+  "yT\"*\"######T\"\"\"TT\"*T\"\"aa\"\"\"\"\"T\"\"\"#######\"###########TT\"aa##D#\"yT\"\"\"\"\"r..==|==...",
+  "\"T\"\"T######yTy\"\"\"\"\"\"T\"aa\"\"T\"\"\"\"\"\"#######\"###########\"T\"aa\"\"a\"\"\"\"*\"Ty\"r..==|==..t",
+  "\"\"\"\"\"######\"\"\"\"*\"y\"T\"\"aa\"\"\"\"y\"\"*\"###D###\"###########\"\"\"aa\"\"a\"\"\"yTT\"\"\"r..==|==...",
+  "\"\"\"\"\"######TTT\"\"\"yT\"\"\"aa\"\"T\"\"\"\"TT*\"\"a*\"T\"#####D#####\"\"\"aa\"\"a\"\"\"\"\"\"\"\"*r..==|==...",
+  "\"T\"\"\"######\"\"\"\"\"\"\"\"\"\"\"aa\"\"\"Ty\"\"T\"\"\"\"a\"\"*\"\"\"\"\"\"a\"*\"*\"\"\"\"aa*\"a\"\"\"T\"\"y\"\"rt.==|==...",
+  "\"\"T\"T###D##aaaaaaaaaaaaa\"\"\"\"\"*\"\"\"aaaaaaaaaaaaaaaaaaaaaaaaaaaa*\"\"\"\"T\"\"r..==|==...",
+  "\"\"TTy\"\"\"aaaaaaaaaaaaaaaa\"\"\"\"\"\"T\"*aaaaaaaaaaaaaaaaaaaaaaaaaaaa\"T\"\"\"T\"\"r..==|==...",
+  "T*\"\"\"T\"\"aaaaa\"\"*\"\"\"*\"\"aa\"T\"T\"T\"\"\"\"\"\"\"\"*\"\"\"\"\"\"*\"\"\"\"\"\"\"\"\"aa\"\"\"\"\"\"T\"\"y\"\"r..==|==..t",
+  "\"T\"y\"\"\"\"\"\"\"aa\"\"\"T\"T\"*\"aa\"######\"*\"\"\"\"\"#########T*T\"\"\"\"\"aa\"\"\"\"TT\"\"\"\"\"yr..==|==...",
+  "\"\"\"\"\"T\"T\"\"\"aa\"T~~~~~\"\"aa\"######\"\"\"\"TT\"#########\"######\"aa\"\"\"\"T\"T\"\"\"\"*r..==|==...",
+  "\"*\"\"\"\"T\"T\"\"aa\"y~~~~~\"\"aa\"######\"\"T\"\"T\"#########\"######\"aa\"\"T\"\"y\"\"\"T\"\"rt.==|==...",
+  "\"\"\"\"\"*Ty\"\"\"aa\"T~~~~~\"*aa\"######\"\"yT\"T\"####D####\"######\"aa\"\"\"\"\"T\"\"\"\"\"\"r..==|==...",
+  "\"*\"\"T\"\"\"*y\"aa\"\"\"\"\"T\"\"\"aa\"######T\"\"\"\"\"TTT\"\"a\"\"\"T*######\"aa\"\"\"\"\"\"\"\"\"T\"*r..==|==...",
+  "\"\"\"\"TT\"*\"*\"aa\"\"\"*T\"\"\"\"aa\"###D##\"T\"T\"\"\"T\"\"\"a\"\"\"\"\"###D##\"aa\"Ty\"\"\"\"*\"\"T\"r..==|==..t",
+  "T\"TT\"\"\"\"\"T\"aa\"\"\"\"yT\"\"\"aa\"\"\"\"a\"\"\"\"\"\"\"\"\"\"\"\"\"a\"\"\"\"\"\"\"\"a\"\"\"aa*\"T\"\"\"\"\"*yTTr..==|==...",
+  "\"T\"\"\"\"\"\"\"\"\"aa\"\"\"T\"\"Ty\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"T\"T\"T\"*T\"T*r..==|==...",
+  "\"\"\"\"\"T\"\"T*\"aa\"TT\"\"yTT\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"T\"\"TTT\"\"\"T\"rt.==|==...",
+  "y\"T\"*\"\"T\"\"\"aa\"T\"\"y\"\"\"*aabbbbbbb\"\"*\"\"\"\"\"\"\"\"\"\"\"\"*\"\"\"\"\"\"\"\"aa\"\"\"\"\"TTT\"*\"\"r..==|==...",
+  "T\"\"\"*\"*\"\"\"\"aa\"T\"\"\"yT\"\"aabbbbbbb##########\"*##########*\"aa\"\"\"T*T\"\"TT\"\"r..==|==...",
+  "\"*\"T\"TT\"y\"\"aa\"T\"*\"T\"\"\"aabbbbbbb##########\"\"##########\"\"aa\"T\"\"\"\"T\"\"\"T\"r..==|==..t",
+  "TT\"\"\"\"T\"T*\"aa\"\"\"\"\"\"\"\"\"aa\"\"*\"\"\"\"##########\"\"##########\"\"aa\"\"\"\"\"TT\"\"\"\"\"r..==|==...",
+  "T\"\"T\"\"\"\"\"\"\"aa\"\"T\"\"T\"\"\"aa\"\"\"\"\"\"\"##########\"T##########\"\"aa\"\"T\"T\"T\"*y\"\"r..==|==...",
+  "\"T\"\"\"\"\"\"\"\"\"aa\"\"\"\"TT*T\"aa\"\"\"\"\"\"*##########\"\"##########*\"aa*\"\"\"\"T*\"*\"\"\"rt.==|==...",
+  "\"yT\"\"\"\"T\"\"\"aa\"\"T\"T\"TT*aa\"\"\"*y\"\"##########\"*##########T\"aa\"\"\"\"T\"*\"\"\"y\"r..==|==...",
+  "\"y\"\"\"\"\"\"\"\"\"aa\"TTT\"y\"\"\"aa\"T\"T\"TT#####D####\"\"#####D####T\"aa\"\"*\"\"*\"\"*\"\"\"r..==|==...",
+  "\"\"T\"\"T\"\"TT\"aa*\"\"\"\"\"*\"\"aa*\"\"T\"\"\"TT\"\"\"a\"\"yy\"\"T\"*\"\"a\"T\"*T\"aa\"\"\"\"\"\"\"y\"\"\"\"r..==|==..t",
+  "*TT\"T\"\"y\"\"\"aa\"\"\"\"\"\"\"\"\"aa\"\"\"\"\"\"\"\"\"\"\"\"a\"\"\"*\"\"\"\"\"\"\"a\"\"\"\"\"\"aa\"\"\"\"*\"\"TT\"\"\"r..==|==...",
+  "\"\"\"T\"\"\"\"y\"\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\"T\"\"\"\"\"\"\"\"*r..==|==...",
+  "\"\"\"TTT\"Ty\"\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\"TT\"T*\"\"\"\"\"rt.==|==...",
+  "\"\"\"\"T\"\"\"\"\"\"aa\"\"*\"\"\"\"\"\"\"\"\"\"aavhhhGJhhhvaa\"*\"\"\"\"\"*\"\"***\"\"aa\"\"\"T\"\"\"\"\"\"*Tr..==|==...",
+  "\"\"\"*\"\"\"\"\"\"\"aa\"\"\"T\"\"\"\"###\"\"aavccccccccvaa\"\"\"\"\"TTT\"T\"\"y*\"aa\"*TT\"\"yT\"\"\"Tr..==|==...",
+  "\"T\"\"\"\"\"\"\"*\"aa\"######T###y\"aavccccccccvaa\"\"\"\"\"\"\"\"*\"\"TT\"\"aa\"*\"\"\"TTT\"*\"\"r..==|==..t",
+  "T\"\"*\"T\"\"T\"*aa\"######T###*\"aavccccccccvaa\"\"qpqqpQqQq\"T*\"aa\"\"*\"yT\"\"T\"\"Tr..==|==...",
+  "Ty\"\"T\"yT\"y\"aa\"######\"y\"\"\"\"aavccccccccvaa\"\"ppppppppp\"\"\"\"aa\"\"\"T\"*\"\"T*\"\"r..==|==...",
+  "*T\"\"\"*\"yT\"\"aa\"######\"\"y\"\"\"aavccccccccvaa\"\"ppppppppp\"*\"\"aa\"\"\"\"\"\"\"\"\"\"\"\"rt.==|==...",
+  "\"\"*\"\"T\"yT\"\"aa\"######TyTy\"\"aavccccccccvaa\"\"QpQpppqpp\"\"\"\"aa\"\"TT\"\"\"y\"\"\"\"r..==|==...",
+  "\"T\"\"\"TT\"T\"\"aa\"###D##\"\"TyT\"aavccccccccvaa*\"ppppppppp\"\"\"\"aa\"\"\"TT\"\"\"T\"*\"r..==|==...",
+  "y\"\"T\"T\"T\"\"\"aaaaaaa\"\"\"\"\"\"\"\"aahhhhohhhhhaa\"\"ppppppppp\"\"\"\"aa\"*\"y\"T\"T*\"\"\"r..==|==..t",
+  "\"T\"\"\"\"\"\"\"\"\"aaaaaaa\"\"\"T\"T*\"aavccccccccvaa\"\"pppqqpQpq\"\"\"\"aa\"\"\"\"\"\"\"\"\"\"\"\"r..==|==...",
+  "T\"qqppppQp\"aa\"\"\"\"\"\"\"\"T\"\"T\"aavccccccccvaa\"\"ppppppppp\"\"ccccc\"nnn\"eeee*\"r..==|==...",
+  "\"\"pppppppp\"aa\"\"T\"\"\"\"\"\"\"\"T\"aavccccccccvaa*\"ppppppppp\"\"ccccc\"nnn*eeee\"Trt.==|==...",
+  "\"\"pppppppp\"aa\"*\"\"y\"*\"y\"T\"\"aavccccccccvaa\"\"qppQpppqp\"\"ccccc\"nnn\"eeee\"\"r..==|==...",
+  "\"\"qppqppQq\"aa\"\"T\"y*\"\"y\"\"\"\"aavccccccccvaa\"\"\"\"\"\"\"\"\"\"\"*\"ccccc\"nnn\"eeee\"\"r..==|==...",
+  "\"\"pppppppp\"aa\"\"T\"T\"\"\"TT\"\"*aavccccccccvaa\"T\"\"T\"\"\"\"\"T\"\"ccccc\"nnn\"eeee\"Tr..==|==..t",
+  "*\"pppppppp\"aa\"*\"T\"\"\"T\"y*\"\"aavhhhgjhhhvaa\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"aa\"\"\"\"\"\"\"\"\"\"\"\"r..==|==...",
+  "\"\"**\"\"\"\"\"\"\"aa\"\"\"\"\"\"T\"\"\"\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\"\"\"\"*y\"yTr..==|==...",
+  "*\"\"\"T\"\"\"y\"\"aa\"\"\"\"\"\"T\"\"\"\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\"*\"\"\"\"\"rt.==|==...",
+  "\"\"y\"\"\"\"\"\"T*aa\"\"TT\"\"\"\"Ty\"*\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"wwww*bbbb\"r..==|==...",
+  "\"\"#######y\"aa\"T\"\"\"T\"TT\"Ty\"*TT\"\"T\"*\"\"\"\"y\"\"\"T\"y\"\"\"\"\"\"TT\"T\"T\"\"wwww\"bbbb\"r..==|==...",
+  "\"\"#######\"*aa*y*T\"y\"T\"TT\"\"\"\"T\"*\"\"\"yT\"\"\"\"*TT*\"\"\"\"yT\"#######\"wwww\"bbbb\"r..==|==..t",
+  "T\"#######T\"aa\"\"T\"*\"T\"\"**TTT\"yy\"y\"\"\"y\"\"T*\"T\"\"\"\"TT\"T\"#######\"wwww\"bbbb\"r..==|==...",
+  "\"\"#######\"\"aa\"\"\"########\"\"TT\"T\"\"*T\"\"\"\"\"TTT\"\"\"\"T\"*\"T#######\"wwww\"bbbb\"r..==|==...",
+  "*\"#######\"\"aa\"Ty########T\"\"\"y*\"\"\"\"T\"\"\"*\"T\"\"\"TT\"T\"\"y#######\"\"*\"\"\"\"\"\"\"\"rt.==|==...",
+  "\"*###D###*\"aa\"\"\"########\"\"\"\"\"\"\"*\"\"\"\"\"\"\"\"T\"T\"T\"\"\"T\"\"#######\"\"\"\"T\"T\"*\"\"r..==|==...",
+  "T\"\"y\"a\"\"\"\"\"aa\"*T########TT\"\"T\"T\"\"TT\"\"\"\"yT\"\"\"TT\"\"TT\"###D###y\"Tyy\"\"\"\"\"\"r..==|==...",
+  "\"\"\"T*a\"\"\"*\"aa\"\"\"####D###\"\"\"T\"\"T\"y\"\"\"T\"\"y\"\"T\"\"\"\"T\"\"T\"T\"a\"T\"T**TT\"\"\"\"\"\"r..==|==..t",
+  "T\"\"\"\"a\"\"\"\"\"aa\"*\"\"\"\"\"a\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"*\"\"\"\"\"\"a\"\"\"\"*\"\"\"\"\"\"\"\"\"r..==|==...",
+  "\"\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa..==|==...",
+  "\"\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaat.==|==...",
+  "\"\"\"\"\"\"\"*\"\"\"\"\"\"\"\"\"\"\"\"\"\"*\"\"*\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"*\"\"\"\"\"\"\"\"\"\"*\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"r..==|==..."
+ ],
+ "zones": [
+  {
+   "name": "Portería principal",
+   "subtitle": "Calle 18 · Pance",
+   "x": 64,
+   "y": 21,
+   "w": 5,
+   "h": 5
+  },
+  {
+   "name": "Calle 18",
+   "subtitle": "Av. Cañasgordas · Pance",
+   "x": 69,
+   "y": 0,
+   "w": 11,
+   "h": 88
+  },
+  {
+   "name": "Plaza Central",
+   "subtitle": "Universidad Cristiana-Caleña",
+   "x": 39,
+   "y": 19,
+   "w": 18,
+   "h": 6
+  },
+  {
+   "name": "El Lago",
+   "subtitle": "Universidad Cristiana-Caleña",
+   "x": 24,
+   "y": 8,
+   "w": 10,
+   "h": 8
+  },
+  {
+   "name": "Cancha de fútbol",
+   "subtitle": "Junto al Cedro Rosado",
+   "x": 26,
+   "y": 55,
+   "w": 14,
+   "h": 20
+  },
+  {
+   "name": "Centro Deportivo",
+   "subtitle": "Gimnasio, piscina y canchas",
+   "x": 50,
+   "y": 64,
+   "w": 19,
+   "h": 22
+  },
+  {
+   "name": "Parqueadero principal",
+   "subtitle": "Universidad Cristiana-Caleña",
+   "x": 30,
+   "y": 0,
+   "w": 39,
+   "h": 3
+  },
+  {
+   "name": "Universidad Cristiana-Caleña",
+   "subtitle": "Pance · Cali",
+   "x": 0,
+   "y": 0,
+   "w": 69,
+   "h": 88
+  }
+ ],
+ "spawns": {
+  "paradero": {
+   "x": 70,
+   "y": 18,
+   "dir": "right"
+  },
+  "porteria": {
+   "x": 68,
+   "y": 23,
+   "dir": "left"
+  },
+  "plaza": {
+   "x": 48,
+   "y": 23,
+   "dir": "up"
+  },
+  "cancha": {
+   "x": 33,
+   "y": 56,
+   "dir": "down"
+  },
+  "post_partido": {
+   "x": 31,
+   "y": 63,
+   "dir": "right"
+  },
+  "palmas": {
+   "x": 58,
+   "y": 10,
+   "dir": "down"
+  },
+  "guayacanes": {
+   "x": 45,
+   "y": 10,
+   "dir": "down"
+  },
+  "cafeteria": {
+   "x": 48,
+   "y": 18,
+   "dir": "down"
+  },
+  "teatrino": {
+   "x": 41,
+   "y": 18,
+   "dir": "down"
+  },
+  "auditorio": {
+   "x": 60,
+   "y": 18,
+   "dir": "down"
+  },
+  "lago": {
+   "x": 32,
+   "y": 22,
+   "dir": "down"
+  },
+  "economia": {
+   "x": 36,
+   "y": 31,
+   "dir": "down"
+  },
+  "biblioteca": {
+   "x": 46,
+   "y": 32,
+   "dir": "down"
+  },
+  "capilla": {
+   "x": 59,
+   "y": 29,
+   "dir": "down"
+  },
+  "administrativo": {
+   "x": 42,
+   "y": 40,
+   "dir": "down"
+  },
+  "educon": {
+   "x": 51,
+   "y": 42,
+   "dir": "down"
+  },
+  "bienestar": {
+   "x": 28,
+   "y": 42,
+   "dir": "down"
+  },
+  "acacias": {
+   "x": 8,
+   "y": 34,
+   "dir": "down"
+  },
+  "saman": {
+   "x": 36,
+   "y": 53,
+   "dir": "down"
+  },
+  "almendros": {
+   "x": 48,
+   "y": 53,
+   "dir": "down"
+  },
+  "cedro": {
+   "x": 17,
+   "y": 65,
+   "dir": "down"
+  },
+  "salud": {
+   "x": 5,
+   "y": 82,
+   "dir": "down"
+  },
+  "villa": {
+   "x": 20,
+   "y": 84,
+   "dir": "down"
+  },
+  "gimnasio": {
+   "x": 54,
+   "y": 83,
+   "dir": "down"
+  },
+  "calle18_sur": {
+   "x": 71,
+   "y": 86,
+   "dir": "up"
+  },
+  "parqueadero": {
+   "x": 47,
+   "y": 3,
+   "dir": "up"
+  },
+  "deportivo": {
+   "x": 59,
+   "y": 74,
+   "dir": "left"
+  }
+ },
+ "warps": [
+  {
+   "x": 58,
+   "y": 9,
+   "to": "pucc_palmas_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 45,
+   "y": 9,
+   "to": "pucc_guayacanes_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 48,
+   "y": 17,
+   "to": "pucc_cafeteria",
+   "spawn": "puerta"
+  },
+  {
+   "x": 32,
+   "y": 21,
+   "to": "pucc_lago_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 36,
+   "y": 30,
+   "to": "pucc_economia_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 46,
+   "y": 31,
+   "to": "pucc_biblioteca_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 42,
+   "y": 39,
+   "to": "pucc_administrativo_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 51,
+   "y": 41,
+   "to": "pucc_educon_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 28,
+   "y": 41,
+   "to": "pucc_bienestar_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 8,
+   "y": 33,
+   "to": "pucc_acacias_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 36,
+   "y": 52,
+   "to": "pucc_saman_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 48,
+   "y": 52,
+   "to": "pucc_almendros_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 17,
+   "y": 64,
+   "to": "pucc_cedro_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 5,
+   "y": 81,
+   "to": "pucc_salud_p1",
+   "spawn": "entrada"
+  },
+  {
+   "x": 70,
+   "y": 87,
+   "to": "ruta_barberia",
+   "spawn": "desde_u",
+   "if": {
+    "mission": "mission05",
+    "flag": "m5_estudio"
+   },
+   "blockedDialogue": "m5_calle18_sur"
+  },
+  {
+   "x": 71,
+   "y": 87,
+   "to": "ruta_barberia",
+   "spawn": "desde_u",
+   "if": {
+    "mission": "mission05",
+    "flag": "m5_estudio"
+   },
+   "blockedDialogue": "m5_calle18_sur"
+  },
+  {
+   "x": 60,
+   "y": 74,
+   "to": "pucc_piscina",
+   "spawn": "entrada",
+   "if": {
+    "mission": "mission05"
+   },
+   "blockedDialogue": "m5_piscina_cerrada"
+  }
+ ],
+ "labels": [
+  {
+   "x": 58.0,
+   "y": 3.5,
+   "text": "PALMAS"
+  },
+  {
+   "x": 45.0,
+   "y": 4.5,
+   "text": "GUAYACANES"
+  },
+  {
+   "x": 48.5,
+   "y": 12.5,
+   "text": "CAFETERÍA CENTRAL"
+  },
+  {
+   "x": 41.0,
+   "y": 13.5,
+   "text": "TEATRINO"
+  },
+  {
+   "x": 60.0,
+   "y": 13.5,
+   "text": "AUDITORIO"
+  },
+  {
+   "x": 32.0,
+   "y": 16.5,
+   "text": "EL LAGO"
+  },
+  {
+   "x": 36.5,
+   "y": 26.5,
+   "text": "CC. ECONÓMICAS"
+  },
+  {
+   "x": 46.5,
+   "y": 26.5,
+   "text": "BIBLIOTECA"
+  },
+  {
+   "x": 59.0,
+   "y": 26.5,
+   "text": "CAPILLA"
+  },
+  {
+   "x": 42.5,
+   "y": 36.5,
+   "text": "ADMINISTRATIVO"
+  },
+  {
+   "x": 51.0,
+   "y": 37.5,
+   "text": "EDUCACIÓN CONTINUA"
+  },
+  {
+   "x": 28.0,
+   "y": 36.5,
+   "text": "BIENESTAR"
+  },
+  {
+   "x": 8.0,
+   "y": 28.5,
+   "text": "ACACIAS"
+  },
+  {
+   "x": 36.0,
+   "y": 46.5,
+   "text": "SAMÁN"
+  },
+  {
+   "x": 48.0,
+   "y": 46.5,
+   "text": "ALMENDROS"
+  },
+  {
+   "x": 17.0,
+   "y": 59.5,
+   "text": "CEDRO ROSADO"
+  },
+  {
+   "x": 5.5,
+   "y": 76.5,
+   "text": "CC. SALUD"
+  },
+  {
+   "x": 20.0,
+   "y": 79.5,
+   "text": "VILLA JAVIER"
+  },
+  {
+   "x": 54.5,
+   "y": 77.5,
+   "text": "GIMNASIO"
+  },
+  {
+   "x": 48,
+   "y": 18.4,
+   "text": "PLAZA CENTRAL"
+  },
+  {
+   "x": 33,
+   "y": 58.6,
+   "text": "CANCHA DE FÚTBOL"
+  },
+  {
+   "x": 60,
+   "y": 65.6,
+   "text": "CENTRO DEPORTIVO"
+  },
+  {
+   "x": 29,
+   "y": 8.4,
+   "text": "LAGO"
+  },
+  {
+   "x": 74.5,
+   "y": 12,
+   "text": "CALLE 18"
+  },
+  {
+   "x": 74.5,
+   "y": 60,
+   "text": "CALLE 18"
+  },
+  {
+   "x": 63.5,
+   "y": 26.6,
+   "text": "UNIVERSIDAD CRISTIANA-CALEÑA",
+   "color": "#f0d048"
+  },
+  {
+   "x": 66,
+   "y": 1.4,
+   "text": "PARQUEADERO"
+  },
+  {
+   "x": 71,
+   "y": 15.6,
+   "text": "PARADERO"
+  },
+  {
+   "x": 60.5,
+   "y": 73.4,
+   "text": "PISCINA · GLD"
+  }
+ ],
+ "crowd": {
+  "lines": "pucc",
+  "areas": [
+   {
+    "x": 40,
+    "y": 20,
+    "w": 16,
+    "h": 4,
+    "count": 7
+   },
+   {
+    "x": 22,
+    "y": 43,
+    "w": 34,
+    "h": 2,
+    "count": 4
+   },
+   {
+    "x": 11,
+    "y": 55,
+    "w": 45,
+    "h": 2,
+    "count": 4
+   },
+   {
+    "x": 55,
+    "y": 26,
+    "w": 2,
+    "h": 40,
+    "count": 4
+   },
+   {
+    "x": 38,
+    "y": 10,
+    "w": 24,
+    "h": 2,
+    "count": 3
+   }
+  ]
+ },
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "campus_llegada",
+   "if": {
+    "all": [
+     {
+      "mission": "mission04"
+     },
+     {
+      "notFlag": "llego_u"
+     }
+    ]
+   }
+  },
+  {
+   "id": "tormenta",
+   "dialogue": "tormenta_inicio",
+   "once": true,
+   "if": {
+    "all": [
+     {
+      "mission": "mission04"
+     },
+     {
+      "flag": [
+       "comio_u",
+       "reunion_ok"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "tarde",
+   "dialogue": "campus_tarde",
+   "once": true,
+   "if": {
+    "all": [
+     {
+      "mission": "mission04"
+     },
+     {
+      "flag": "almorzo"
+     }
+    ]
+   }
+  },
+  {
+   "id": "m5_llegada",
+   "dialogue": "m5_campus_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission05"
+   }
+  },
+  {
+   "id": "m5_vuelta",
+   "dialogue": "m5_campus_vuelta",
+   "once": true,
+   "if": {
+    "mission": "mission05",
+    "flag": "m5_corte"
+   }
+  },
+  {
+   "id": "m5_carro",
+   "dialogue": "m5_carro_estacionado",
+   "if": {
+    "mission": "mission05",
+    "flag": "m5_grover_visto",
+    "notFlag": "m5_en_deportivo"
+   }
+  }
+ ],
+ "triggers": [
+  {
+   "id": "reunion",
+   "x": 39,
+   "y": 19,
+   "w": 18,
+   "h": 6,
+   "event": "reunion_intercambio",
+   "if": {
+    "all": [
+     {
+      "mission": "mission04"
+     },
+     {
+      "flag": "llego_u",
+      "notFlag": "reunion_ok"
+     }
+    ]
+   }
+  },
+  {
+   "id": "previa",
+   "x": 26,
+   "y": 55,
+   "w": 14,
+   "h": 2,
+   "event": "dialogo:previa_partido",
+   "if": {
+    "all": [
+     {
+      "mission": "mission04"
+     },
+     {
+      "flag": "clase_ok",
+      "notFlag": "partido_jugado"
+     }
+    ]
+   }
+  }
+ ],
+ "fauna": [
+  {
+   "sprite": "pavo_real",
+   "display": "pavo_real_cola",
+   "count": 2,
+   "dialogue": "pavo_real",
+   "area": {
+    "x": 2,
+    "y": 4,
+    "w": 66,
+    "h": 82
+   },
+   "tiles": [
+    "pasto",
+    "pasto_flor",
+    "adoquin"
+   ],
+   "wander": 6,
+   "sfx": "pavo"
+  }
+ ],
+ "region": "cali"
+}

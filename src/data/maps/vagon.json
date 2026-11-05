@@ -1,0 +1,35 @@
+{
+  "id": "vagon",
+  "name": "Vagón Línea 1",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 22,
+  "height": 7,
+  "background": "#0c0c14",
+  "legend": {
+    "^": "muro_techo",
+    "V": "vagon_ventana",
+    "P": "vagon_puerta",
+    "s": "vagon_asiento",
+    "S": "vagon_asiento_s",
+    ".": "vagon_piso",
+    "b": "barra"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^^^",
+    "VVVPVVVVVVVPVVVVVVPVVV",
+    "sss.sssssss.ssssss.sss",
+    ".......b..............",
+    "...............b......",
+    "SSS.SSSSSSS.SSSSSS.SSS",
+    "VVVPVVVVVVVPVVVVVVPVVV"
+  ],
+  "spawns": {
+    "inicio": { "x": 11, "y": 2, "dir": "down" }
+  },
+  "crowd": {
+    "lines": "metro",
+    "seats": 0.65,
+    "areas": [{ "x": 0, "y": 3, "w": 22, "h": 2, "count": 6 }]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "id": "pucc_aula_logistica",
+  "name": "Sala EC 203",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 14,
+  "height": 10,
+  "background": "#1a1a22",
+  "music": "credits",
+  "legend": {
+    "^": "muro_techo",
+    "W": "p_muro",
+    "v": "p_ventana",
+    "p": "p_pizarra",
+    ".": "u_piso",
+    "X": "escritorio",
+    "u": "pupitre",
+    "D": "p_puerta_abierta"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^",
+    "WvWWppppppWWvW",
+    ".........X....",
+    "..............",
+    ".uu.uu..uu.uu.",
+    "..............",
+    ".uu.uu..uu.uu.",
+    "..............",
+    "WWWWWWWWWWWWDW",
+    "^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {
+      "name": "Sala EC 203",
+      "subtitle": "Modelación Logística · Prof. Gloria Arboleda",
+      "x": 0,
+      "y": 0,
+      "w": 14,
+      "h": 10
+    }
+  ],
+  "spawns": {
+    "puerta": {
+      "x": 12,
+      "y": 7,
+      "dir": "up"
+    },
+    "pupitre": {
+      "x": 9,
+      "y": 4,
+      "dir": "up"
+    }
+  },
+  "warps": [
+    {
+      "x": 12,
+      "y": 8,
+      "to": "pucc_educon_p2",
+      "spawn": "sala_3"
+    }
+  ],
+  "labels": [
+    {
+      "x": 7,
+      "y": 0.5,
+      "text": "MODELACIÓN LOGÍSTICA"
+    }
+  ],
+  "crowd": {
+    "lines": "aula_pucc",
+    "seats": 0.6
+  },
+  "triggers": [
+    {
+      "id": "clase",
+      "x": 9,
+      "y": 4,
+      "w": 1,
+      "h": 1,
+      "event": "dialogo:clase_logistica",
+      "if": {
+        "notFlag": "clase_ok"
+      }
+    }
+  ]
+}

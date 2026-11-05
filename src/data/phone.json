@@ -1,0 +1,915 @@
+{
+  "contacts": {
+    "mama": {
+      "name": "Mamá",
+      "color": "#e8789a",
+      "callable": true
+    },
+    "papa": {
+      "name": "Papá",
+      "color": "#5a8ad8",
+      "callable": true
+    },
+    "benja": {
+      "name": "Benja (U)",
+      "color": "#3c8c5c",
+      "callable": true
+    },
+    "u": {
+      "name": "Mi U",
+      "color": "#7a4cc8"
+    },
+    "desconocido": {
+      "name": "+56 9 ???? ????",
+      "color": "#8a8a96"
+    },
+    "bip": {
+      "name": "Bip! App",
+      "color": "#2aa8bc"
+    },
+    "aerolinea": {
+      "name": "Cordillera Air",
+      "color": "#2f6fd0"
+    },
+    "grupo": {
+      "name": "Intercambio PUCC",
+      "color": "#2050a8"
+    },
+    "mery": {
+      "name": "Doña Mery",
+      "color": "#3c8c5c",
+      "callable": true,
+      "if": {
+        "any": [
+          {
+            "flag": "mision4_iniciada"
+          },
+          {
+            "mission": [
+              "mission05",
+              "mission06"
+            ]
+          }
+        ]
+      }
+    },
+    "grover": {
+      "name": "Grover",
+      "color": "#2c9c4c",
+      "callable": true,
+      "if": {
+        "mission": [
+          "mission05",
+          "mission06"
+        ]
+      }
+    },
+    "equipo": {
+      "name": "Equipo 5 · Proyecto",
+      "color": "#f0a030"
+    },
+    "sira": {
+      "name": "Sira",
+      "color": "#e8a0b8",
+      "callable": false
+    }
+  },
+  "messages": {
+    "mama_intro": {
+      "from": "mama",
+      "text": "Hijo, te espero a las 6 en el Costanera Center. ¡No te vayas a perder! Y cárgale la Bip!, que el otro día andabai sin saldo."
+    },
+    "mama_app_bip": {
+      "from": "mama",
+      "text": "Acuérdate que la Bip! se puede cargar desde la app del celu. Así no hací fila en la máquina (que siempre está mala)."
+    },
+    "mama_metro": {
+      "from": "mama",
+      "text": "¿Vai en metro? Córrete pa' dentro del vagón, no te quedes en la puerta."
+    },
+    "mama_micro": {
+      "from": "mama",
+      "text": "¿Vai en micro? Toca el timbre a tiempo, no como la otra vez que terminaste en Puente Alto."
+    },
+    "mama_quiltro": {
+      "from": "mama",
+      "text": "¿Cómo que andai con un perro? La vecina te vio. ¡En la casa no cabe otro!"
+    },
+    "mama_tarde_1": {
+      "from": "mama",
+      "text": "¿Vai llegando? Ya me tomé dos cafés y me comí un alfajor."
+    },
+    "mama_tarde_2": {
+      "from": "mama",
+      "text": "Hijo, si te perdiste pregúntale a alguien. Pero no a cualquiera, ¿ah?"
+    },
+    "papa_tornillos": {
+      "from": "papa",
+      "text": "Tu mamá dice que vai pa'l Costanera. Si pasai por una ferretería tráeme tornillos de 3/4. No, mentira, ahí no hay ferretería."
+    },
+    "spam": {
+      "from": "desconocido",
+      "text": "FELICIDADES!!! Ganaste un viaje a Pichidangui. Para cobrar envía tu clave Bip! y el nombre de tu primera mascota."
+    },
+    "bip_carga": {
+      "from": "bip",
+      "text": "Recarga exitosa. ¡Buen viaje! Recuerda validar al subir."
+    },
+    "mama_piso_2": {
+      "from": "mama",
+      "text": "Estoy viendo ropa pa' tu tía. El piso de la moda, ¿cachai? Toma el ascensor o la escalera mecánica."
+    },
+    "mama_piso_3": {
+      "from": "mama",
+      "text": "Estoy en el piso de los celulares viendo uno nuevo pa' mí. No le digai a tu papá."
+    },
+    "mama_piso_5": {
+      "from": "mama",
+      "text": "Me dio hambre. Estoy en el patio de comidas, guárdate espacio pa' unas papas fritas."
+    },
+    "mama_piso_6": {
+      "from": "mama",
+      "text": "Estoy en el último piso, al lado del cine. Hay una película que quiero ver contigo."
+    },
+    "mama_cortaste": {
+      "from": "mama",
+      "text": "¿Me cortaste? Ya, te mando el piso por mensaje. ¡Búscame!"
+    },
+    "benja_noche": {
+      "from": "benja",
+      "text": "Oe, ¿estudiaste pa' la prueba de Opti de mañana? Dicen que el Cuervo la va a hacer de la mochila. Duérmete temprano, bro."
+    },
+    "mama_manana": {
+      "from": "mama",
+      "text": "Hijo, salí temprano a la pega. Te dejé una marraqueta con palta en el refri. ¡Mucho éxito en la prueba! Te quiero."
+    },
+    "u_aviso": {
+      "from": "u",
+      "text": "Tienes 1 correo nuevo: «Optimización: cambio de sala». Ábrelo en la app Mi U."
+    },
+    "benja_sala": {
+      "from": "benja",
+      "text": "¡Oe! ¿Viste el correo? Cambiaron la sala de la prueba. Revisa Mi U, no te vayai a perder."
+    },
+    "benja_viaje": {
+      "from": "benja",
+      "text": "Bro, ¿hoy te vai a Cali? ¡Qué envidia! Tráeme una camiseta de allá. Y aprende salsa, que en el carrete de vuelta te quiero ver."
+    },
+    "aero_pase": {
+      "from": "aerolinea",
+      "text": "Tu tarjeta de embarque: CA 742 Santiago → Cali. Embarque 01:10 · Puerta E4 · Asiento 18A. ¡Buen viaje!"
+    },
+    "aero_cambio": {
+      "from": "aerolinea",
+      "text": "Aviso: tu vuelo CA 742 a Cali embarca ahora por la puerta D6. Disculpa las molestias."
+    },
+    "mama_despedida": {
+      "from": "mama",
+      "text": "Ya te estoy extrañando. Pórtate bien, come bien y abrígate (aunque allá hace calor, ya sé). Te quiero, mi niño."
+    },
+    "papa_despedida": {
+      "from": "papa",
+      "text": "Campeón: tu hermano no para de mirar los aviones por la ventana. Yo estoy bien, es que me entró una basurita en el ojo."
+    },
+    "mama_aterrizaje": {
+      "from": "mama",
+      "text": "¿Llegaste? ¡Avísame apenas aterrices! No he dormido nada."
+    },
+    "papa_tren": {
+      "from": "papa",
+      "text": "Tu mamá dice que vai en el tren. Mándame una foto de los cerros. Suerte en la prueba, campeón."
+    },
+    "mama_m4": {
+      "from": "mama",
+      "text": "Hijo, acá ya son las 8. ¿Te levantaste? Mándame foto del desayuno. Y de la señora, para conocerla."
+    },
+    "grupo_bienvenida": {
+      "from": "grupo",
+      "text": "Álvaro: Partido HOY 4:30 vs Ingeniería, cancha principal. NADIE FALTA. — Nacho: confirmo. — Diego: confirmo, causa. — Lucas: ¿qué es «causa»?"
+    },
+    "grupo_tormenta": {
+      "from": "grupo",
+      "text": "Lucas: ¿¿ESTO ES NORMAL?? — Diego: aguacero de mediodía, en una hora pasa. — Pau: tengo los zapatos llenos de agua. — Sergio: yo estoy en la biblioteca, sequito."
+    },
+    "grupo_polera": {
+      "from": "grupo",
+      "text": "Álvaro: Poleras azules en Bienestar (Deportes, 1er piso). Partido 4:30, cancha principal junto al Cedro Rosado. ¡Vamos que se puede!"
+    },
+    "grupo_rooftop": {
+      "from": "grupo",
+      "text": "Antoine: ROOFTOP 7:30. Piso 21, Ciudad Jardín. Traigan hambre. — Iker: ¿hay que llevar algo? — Antoine: alegría."
+    },
+    "mery_m4": {
+      "from": "mery",
+      "text": "Mijo ya volví del médico. ¿Se comió los fideos? ¿No me quemó la olla? Juicioso."
+    },
+    "u_correo_equipo": {
+      "from": "u",
+      "text": "Tienes 1 correo nuevo de Prof. Julián Caicedo: «Proyecto de Diseño Logístico: equipos». Revísalo en Mi U."
+    },
+    "grover_piscina": {
+      "from": "grover",
+      "text": "Cumpa!! Soy Grover, el de Simulación (el feo, no el otro). Hoy piscina en el GLD (el Centro Deportivo de la U) a las 7, vamos? Te espero 4 y media en el parqueadero principal. Traje de baño te presto. Tiene llamas."
+    },
+    "grover_parqueadero": {
+      "from": "grover",
+      "text": "Cumpa dónde estás?? Ya estoy en el parqueadero principal. Tengo un problemita. Vení rápido. No es grave. Bueno, un poco."
+    },
+    "mama_m5": {
+      "from": "mama",
+      "text": "Hijo, doña Mery me mandó una foto tuya de anoche. CÓRTATE ESE PELO. Te quiero."
+    },
+    "mery_m5": {
+      "from": "mery",
+      "text": "Mijo, ¿ya se motiló? Dígale al Fredy que la comadre Gladys sigue esperando lo del 2019. Él sabe."
+    },
+    "equipo_hamburguesas": {
+      "from": "equipo",
+      "text": "Vale: Equipo 5!! Hoy 9pm en Pance Burger (Pance, a dos casas de la casa del chileno según Google Maps). — Camilo: llevo el Cinco. — Profe Julián: yo invito las papas. — S. Martínez: llego un poquito tarde, salgo de entrenar."
+    },
+    "sira_buenas_noches": {
+      "from": "sira",
+      "text": "Llegaste bien? Jueves 7pm en la piscina de la U. Sin Marco Polo. Bueno, un poquito de Marco Polo. Pd: lindo el corte (no le digas a Fredy que te dije)."
+    },
+    "grover_m6_jueves": {
+      "from": "grover",
+      "text": "Cumpa hoy no voy a la piscina, tengo ensayo de salsa 💃 Suerte con la \"clase\" 😏😏 (las comillas son a propósito)"
+    },
+    "sira_m6_manana": {
+      "from": "sira",
+      "text": "Buenos días, nadador. ¿Te duelen los brazos? A mí sí, de cargarte 😂 Hoy 4 en punto afuera de La Ermita. No me dejes plantada."
+    },
+    "sira_m6_manana_2": {
+      "from": "sira",
+      "text": "Pd: me provoca un helado de maracuyá desde que me levanté. No sé por qué te cuento esto."
+    },
+    "yo_m6_manana_a": {
+      "from": "sira",
+      "text": "Me duele hasta el pelo. Ahí estaré, 4 en punto 🫡",
+      "mine": true
+    },
+    "yo_m6_manana_b": {
+      "from": "sira",
+      "text": "¿Plantarte? Jamás. Llego a las 3:55 para no perder la costumbre de llegar temprano.",
+      "mine": true
+    },
+    "yo_m6_manana_c": {
+      "from": "sira",
+      "text": "ok",
+      "mine": true
+    },
+    "sira_m6_regalos": {
+      "from": "sira",
+      "text": "Otra cosa random: odio que me regalen flores cortadas, se mueren en dos días 🥀 Prefiero cosas que duran. Libros. Piedras bonitas. Esas cosas."
+    },
+    "sira_m6_libro": {
+      "from": "sira",
+      "text": "Y si ves en algún lado la novela de Caicedo, «¡Que viva la música!», avísame. La mía se la presté a mi prima en 2019 y nunca volvió."
+    },
+    "sira_m6_saliendo": {
+      "from": "sira",
+      "text": "Voy saliendo de mi casa 🚶‍♀️ ¿Tú por dónde vas?"
+    },
+    "yo_m6_universidades": {
+      "from": "sira",
+      "text": "En Universidades, a punto de tomar el T31 🚌",
+      "mine": true
+    },
+    "yo_m6_universidades_b": {
+      "from": "sira",
+      "text": "Perdido en un centro comercial. Mentira. Más o menos.",
+      "mine": true
+    },
+    "sira_m6_ok": {
+      "from": "sira",
+      "text": "Perfecto. El T31 te deja en Torre de Cali, de ahí caminas dos cuadras al río. Yo te espero afuera de La Ermita 💒"
+    },
+    "sira_m6_donde": {
+      "from": "sira",
+      "text": "¿Por dónde vas? 👀"
+    },
+    "yo_m6_melendez": {
+      "from": "sira",
+      "text": "Pasando por Meléndez. Faltan como mil estaciones.",
+      "mine": true
+    },
+    "yo_m6_melendez_b": {
+      "from": "sira",
+      "text": "Voy bien, voy bien. El bus va lleno de gente con más prisa que yo.",
+      "mine": true
+    },
+    "sira_m6_varado": {
+      "from": "sira",
+      "text": "¿Te comieron? 😅"
+    },
+    "yo_m6_varado": {
+      "from": "sira",
+      "text": "El bus se varó en Lido 😩 Ya arrancó. Llego en nada.",
+      "mine": true
+    },
+    "yo_m6_varado_b": {
+      "from": "sira",
+      "text": "Si no llego, que conste que fue culpa del bus.",
+      "mine": true
+    },
+    "sira_m6_ermita": {
+      "from": "sira",
+      "text": "Ya estoy en La Ermita. Hay un señor vendiendo cometas y otro tocando violín. Apúrate que el señor del violín ya va por la cuarta canción triste."
+    },
+    "yo_m6_casi": {
+      "from": "sira",
+      "text": "¡Ya me bajo en Torre de Cali! Dos cuadras y llego 🏃",
+      "mine": true
+    },
+    "grover_m6_noche": {
+      "from": "grover",
+      "text": "Cumpa ya te llamé tres veces. ¿Estás vivo? ¿Estás con la nadadora? Respondé con un emoji: 🐟 = sí, 🦙 = no"
+    },
+    "sira_m6_llegue": {
+      "from": "sira",
+      "text": "Llegué. Hoy fue... raro bonito. Gracias por perseguir a un ladrón por mí (y por el helado). Pd: el jueves que viene me toca enseñarte mariposa. 🦋"
+    },
+    "yo_m6_llegue_a": {
+      "from": "sira",
+      "text": "Raro bonito es mi género favorito. Buenas noches, profe 🦋",
+      "mine": true
+    },
+    "yo_m6_llegue_b": {
+      "from": "sira",
+      "text": "Gracias a ti. Por todo. Hasta por el Buziraco.",
+      "mine": true
+    },
+    "yo_m6_p47": {
+      "from": "sira",
+      "text": "Voy en el P47, pasando por fuera de la U. Un pavo real me miró feo.",
+      "mine": true
+    },
+    "yo_m6_p47_b": {
+      "from": "sira",
+      "text": "Ya voy, ya voy",
+      "mine": true
+    }
+  },
+  "calls": {
+    "mama_inicio": {
+      "from": "mama",
+      "dialogue": "llamada_mama_inicio",
+      "missed": "mama_app_bip"
+    },
+    "mama_costanera": {
+      "from": "mama",
+      "dialogue": "llamada_mama_costanera",
+      "missed": "mama_cortaste"
+    },
+    "grover_m6_sabado": {
+      "from": "grover",
+      "dialogue": "m6_llamada_grover",
+      "missed": "grover_m6_noche"
+    }
+  },
+  "triggers": [
+    {
+      "mission": "mission01",
+      "id": "intro",
+      "if": {
+        "flag": "mision_iniciada"
+      },
+      "message": "mama_intro"
+    },
+    {
+      "mission": "mission01",
+      "id": "llamada_inicio",
+      "if": {
+        "all": [
+          {
+            "flag": "mision_iniciada"
+          },
+          {
+            "not": {
+              "minBip": 800
+            }
+          },
+          {
+            "notFlag": "ruta_metro"
+          }
+        ]
+      },
+      "afterMs": 40000,
+      "call": "mama_inicio"
+    },
+    {
+      "mission": "mission01",
+      "id": "metro",
+      "if": {
+        "flag": "ruta_metro"
+      },
+      "message": "mama_metro"
+    },
+    {
+      "mission": "mission01",
+      "id": "micro",
+      "if": {
+        "flag": "ruta_micro"
+      },
+      "message": "mama_micro"
+    },
+    {
+      "mission": "mission01",
+      "id": "quiltro",
+      "if": {
+        "flag": "quiltro_sigue"
+      },
+      "message": "mama_quiltro"
+    },
+    {
+      "mission": "mission01",
+      "id": "spam",
+      "if": {
+        "flag": "mision_iniciada"
+      },
+      "afterMs": 95000,
+      "message": "spam"
+    },
+    {
+      "mission": "mission01",
+      "id": "papa",
+      "if": {
+        "flag": "mision_iniciada"
+      },
+      "afterMs": 150000,
+      "message": "papa_tornillos"
+    },
+    {
+      "mission": "mission01",
+      "id": "tarde_1",
+      "if": {
+        "notFlag": "entro_costanera"
+      },
+      "afterMs": 200000,
+      "message": "mama_tarde_1"
+    },
+    {
+      "mission": "mission01",
+      "id": "tarde_2",
+      "if": {
+        "notFlag": "entro_costanera"
+      },
+      "afterMs": 380000,
+      "message": "mama_tarde_2"
+    },
+    {
+      "mission": "mission01",
+      "id": "costanera",
+      "if": {
+        "flag": "entro_costanera"
+      },
+      "call": "mama_costanera"
+    },
+    {
+      "mission": "mission01",
+      "id": "piso_2",
+      "if": {
+        "all": [
+          {
+            "flag": "mama_piso_2"
+          },
+          {
+            "flag": "llamada_mama_costanera"
+          }
+        ]
+      },
+      "message": "mama_piso_2"
+    },
+    {
+      "mission": "mission01",
+      "id": "piso_3",
+      "if": {
+        "all": [
+          {
+            "flag": "mama_piso_3"
+          },
+          {
+            "flag": "llamada_mama_costanera"
+          }
+        ]
+      },
+      "message": "mama_piso_3"
+    },
+    {
+      "mission": "mission01",
+      "id": "piso_5",
+      "if": {
+        "all": [
+          {
+            "flag": "mama_piso_5"
+          },
+          {
+            "flag": "llamada_mama_costanera"
+          }
+        ]
+      },
+      "message": "mama_piso_5"
+    },
+    {
+      "mission": "mission01",
+      "id": "piso_6",
+      "if": {
+        "all": [
+          {
+            "flag": "mama_piso_6"
+          },
+          {
+            "flag": "llamada_mama_costanera"
+          }
+        ]
+      },
+      "message": "mama_piso_6"
+    },
+    {
+      "mission": "mission02",
+      "id": "m2_benja_noche",
+      "if": {
+        "flag": "platos_lavados"
+      },
+      "message": "benja_noche"
+    },
+    {
+      "mission": "mission02",
+      "id": "m2_mama_manana",
+      "if": {
+        "flag": "despierto"
+      },
+      "message": "mama_manana"
+    },
+    {
+      "mission": "mission02",
+      "id": "m2_u_aviso",
+      "if": {
+        "all": [
+          {
+            "flag": "despierto"
+          },
+          {
+            "notFlag": "correo_cambio_sala"
+          }
+        ]
+      },
+      "message": "u_aviso"
+    },
+    {
+      "mission": "mission02",
+      "id": "m2_papa",
+      "if": {
+        "flag": "tomo_tren"
+      },
+      "message": "papa_tren"
+    },
+    {
+      "mission": "mission03",
+      "id": "m3_benja",
+      "if": {
+        "flag": "mision3_iniciada"
+      },
+      "afterMs": 60000,
+      "message": "benja_viaje"
+    },
+    {
+      "mission": "mission03",
+      "id": "m3_mama_despedida",
+      "if": {
+        "flag": "despedida"
+      },
+      "afterMs": 0,
+      "message": "mama_despedida"
+    },
+    {
+      "mission": "mission03",
+      "id": "m3_papa_despedida",
+      "if": {
+        "flag": "pdi_ok"
+      },
+      "message": "papa_despedida"
+    },
+    {
+      "mission": "mission03",
+      "id": "m3_mama_aterrizaje",
+      "if": {
+        "flag": "migracion_ok"
+      },
+      "message": "mama_aterrizaje"
+    },
+    {
+      "mission": "mission02",
+      "id": "m2_benja_sala",
+      "if": {
+        "all": [
+          {
+            "flag": "tomo_metro"
+          },
+          {
+            "notFlag": "correo_cambio_sala"
+          }
+        ]
+      },
+      "message": "benja_sala"
+    },
+    {
+      "mission": "mission04",
+      "id": "m4_mama",
+      "if": {
+        "flag": "despierto"
+      },
+      "afterMs": 25000,
+      "message": "mama_m4"
+    },
+    {
+      "mission": "mission04",
+      "id": "m4_mery",
+      "if": {
+        "flag": "almorzo"
+      },
+      "afterMs": 60000,
+      "message": "mery_m4"
+    },
+    {
+      "mission": "mission05",
+      "id": "m5_mama",
+      "if": {
+        "flag": "m5_desayuno"
+      },
+      "afterMs": 20000,
+      "message": "mama_m5"
+    },
+    {
+      "mission": "mission05",
+      "id": "m5_mery",
+      "if": {
+        "flag": "m5_grover_visto"
+      },
+      "afterMs": 1000,
+      "message": "mery_m5"
+    },
+    {
+      "mission": "mission06",
+      "id": "m6_grover_jueves",
+      "if": {
+        "flag": "m6_jueves_visto"
+      },
+      "afterMs": 1500,
+      "message": "grover_m6_jueves"
+    },
+    {
+      "mission": "mission06",
+      "id": "m6_grover_sabado",
+      "if": {
+        "flag": "m6_sabado",
+        "notFlag": "m6_salio_casa"
+      },
+      "afterMs": 60000,
+      "call": "grover_m6_sabado"
+    }
+  ],
+  "outgoing": [
+    {
+      "to": "mery",
+      "if": {
+        "mission": "mission06"
+      },
+      "dialogue": "m6_llamar_mery"
+    },
+    {
+      "to": "grover",
+      "if": {
+        "mission": "mission06"
+      },
+      "dialogue": "m6_llamar_grover"
+    },
+    {
+      "to": "grover",
+      "if": {
+        "mission": "mission05"
+      },
+      "dialogue": "llamada_grover_m5"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "mission": "mission05"
+      },
+      "dialogue": "llamada_mama_m5"
+    },
+    {
+      "to": "mery",
+      "if": {
+        "mission": "mission05"
+      },
+      "dialogue": "llamada_mery_m5"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "flag": "mision4_iniciada"
+      },
+      "dialogue": "llamada_mama_m4"
+    },
+    {
+      "to": "mery",
+      "if": {
+        "flag": "mision4_iniciada"
+      },
+      "dialogue": "llamada_mery_m4"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "flag": "toco_puerta"
+      },
+      "dialogue": "llamada_mama_cali"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "all": [
+          {
+            "flag": "en_vuelo"
+          },
+          {
+            "notFlag": "aterrizo"
+          }
+        ]
+      },
+      "dialogue": "modo_avion"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "flag": "aterrizo"
+      },
+      "dialogue": "llamada_mama_aterrizo"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "flag": "despedida"
+      },
+      "dialogue": "llamada_mama_despedida"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "flag": "mision3_iniciada"
+      },
+      "dialogue": "llamada_mama_m3"
+    },
+    {
+      "to": "papa",
+      "if": {
+        "all": [
+          {
+            "flag": "en_vuelo"
+          },
+          {
+            "notFlag": "aterrizo"
+          }
+        ]
+      },
+      "dialogue": "modo_avion"
+    },
+    {
+      "to": "papa",
+      "if": {
+        "flag": "mision3_iniciada"
+      },
+      "dialogue": "llamada_papa_m3"
+    },
+    {
+      "to": "benja",
+      "if": {
+        "all": [
+          {
+            "flag": "en_vuelo"
+          },
+          {
+            "notFlag": "aterrizo"
+          }
+        ]
+      },
+      "dialogue": "modo_avion"
+    },
+    {
+      "to": "benja",
+      "if": {
+        "flag": "mision3_iniciada"
+      },
+      "dialogue": "llamada_benja_m3"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "flag": "mision_iniciada"
+      },
+      "dialogue": "llamada_mama_m1"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "flag": "intercambio"
+      },
+      "dialogue": "llamada_mama_intercambio"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "all": [
+          {
+            "flag": "mision2_iniciada"
+          },
+          {
+            "notFlag": "manana"
+          }
+        ]
+      },
+      "dialogue": "llamada_mama_noche"
+    },
+    {
+      "to": "mama",
+      "if": {
+        "flag": "mision2_iniciada"
+      },
+      "dialogue": "llamada_mama_manana"
+    },
+    {
+      "to": "benja",
+      "if": {
+        "flag": "mision2_iniciada"
+      },
+      "dialogue": "llamada_benja"
+    }
+  ],
+  "mail": {
+    "biblioteca": {
+      "from": "Biblioteca UAV",
+      "subject": "Recordatorio de devolución",
+      "text": "Estimado estudiante: el libro «Introducción a la Investigación de Operaciones» vence hoy. Devuélvelo en la Biblioteca (Edificio A1, piso 1). Multa por atraso: $300 diarios.",
+      "if": {
+        "flag": "mision2_iniciada"
+      }
+    },
+    "cambio_sala": {
+      "from": "Coordinación Docente UAV",
+      "subject": "Optimización: cambio de sala",
+      "text": "Estimados estudiantes de Optimización: la prueba de HOY LUNES a las 8:30 NO se rendirá en la sala A1-201. Nueva sala: EDIFICIO A2, SALA 403 (piso 4). Traer calculadora y lápiz (si alguien encuentra uno rojo, es mío). Atte., Prof. R. Cuervo.",
+      "if": {
+        "flag": "mision2_iniciada"
+      }
+    },
+    "cuervo_viaje": {
+      "from": "Prof. R. Cuervo",
+      "subject": "Buen viaje, mijo",
+      "text": "Estimado: que le vaya muy bien en Cali. Allá optimice todo menos la salsa: la salsa se baila, no se calcula. PD: si encuentra un lápiz rojo, es mío. Lo perdí... en algún aeropuerto, creo. Atte., R. Cuervo.",
+      "if": {
+        "flag": "mision3_iniciada"
+      }
+    },
+    "intercambio": {
+      "from": "Relaciones Internacionales UAV",
+      "subject": "¡Felicitaciones! Intercambio en Cali",
+      "text": "Te informamos que fuiste seleccionado para el programa de intercambio estudiantil en la Pontificia Universidad Cristiana-Caleña (Cali, Colombia). Viajas en un par de meses: pronto te contactaremos con los detalles. ¡Felicitaciones!",
+      "if": {
+        "flag": "intercambio"
+      }
+    },
+    "pucc_bienvenida": {
+      "from": "Relaciones Internacionales PUCC",
+      "subject": "Bienvenida estudiantes de intercambio",
+      "text": "¡Bienvenidos a la Universidad Cristiana-Caleña! Los esperamos HOY LUNES a las 9:00 a.m. en la Plaza Central (de frente desde la portería de la Calle 18). Les entregaremos su carnet. Atte., Mónica, Oficina de Relaciones Internacionales.",
+      "if": {
+        "flag": "mision4_iniciada"
+      }
+    },
+    "pucc_horario": {
+      "from": "Registro Académico PUCC",
+      "subject": "Tu horario 2026-2",
+      "text": "Modelación Logística · Lunes y miércoles 2:00 a 4:00 p.m. · Edificio de Educación Continua, salón EC 203 (2º piso) · Prof. Gloria Arboleda.",
+      "if": {
+        "flag": "mision4_iniciada"
+      }
+    },
+    "pucc_bienestar": {
+      "from": "Bienestar Universitario PUCC",
+      "subject": "Equipo de intercambio: poleras",
+      "text": "Las poleras azules del equipo de intercambio se retiran en el Centro de Bienestar, oficina de Deportes (1er piso), desde la 1:00 p.m. ¡Mucha suerte en el partido!",
+      "if": {
+        "flag": "reunion_ok"
+      }
+    },
+    "equipos_proyecto": {
+      "from": "Prof. Julián Caicedo",
+      "subject": "Proyecto de Diseño Logístico: equipos",
+      "text": "Estimados: les comparto los equipos del semestre. EQUIPO 5: Feli P. (intercambio, Chile), Valentina R., Camilo O. y S. Martínez. Tema: rutas de los buses alimentadores de Pance. Para conocernos, HOY a las 9:00 p.m. en Pance Burger (Pance). Yo invito la primera ronda de papas. Atte., Julián Caicedo.",
+      "if": {
+        "flag": "m5_correo_equipo"
+      }
+    }
+  }
+}

@@ -1,0 +1,1279 @@
+[
+  {
+    "id": "m6_sira_profe",
+    "map": "pucc_piscina",
+    "x": 12,
+    "y": 22,
+    "dir": "left",
+    "sprite": "sira_bano",
+    "dialogue": "m6_sira_clase",
+    "if": {
+      "mission": "mission06",
+      "notFlag": "m6_clase"
+    }
+  },
+  {
+    "id": "m6_salvavidas",
+    "map": "pucc_piscina",
+    "x": 16,
+    "y": 22,
+    "dir": "down",
+    "sprite": "salvavidas",
+    "dialogue": "m6_salvavidas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_mery",
+    "map": "pance_casa",
+    "x": 16,
+    "y": 3,
+    "dir": "down",
+    "sprite": "anfitriona",
+    "dialogue": "m6_mery",
+    "if": {
+      "mission": "mission06",
+      "notFlag": "m6_almorzo"
+    }
+  },
+  {
+    "id": "m6_mery_tarde",
+    "map": "pance_casa",
+    "x": 5,
+    "y": 8,
+    "dir": "right",
+    "sprite": "anfitriona",
+    "dialogue": "m6_mery_tarde",
+    "if": {
+      "mission": "mission06",
+      "flag": "m6_almorzo",
+      "notFlag": "m6_taxi_casa"
+    }
+  },
+  {
+    "id": "m6_mery_noche",
+    "map": "pance_casa",
+    "x": 4,
+    "y": 7,
+    "dir": "right",
+    "sprite": "anfitriona",
+    "dialogue": "m6_mery_noche",
+    "if": {
+      "mission": "mission06",
+      "flag": "m6_taxi_casa"
+    }
+  },
+  {
+    "id": "m6_matera_1",
+    "map": "pance_casa",
+    "x": 1,
+    "y": 6,
+    "dialogue": "m6_matera",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_matera_2",
+    "map": "pance_casa",
+    "x": 20,
+    "y": 7,
+    "dialogue": "m6_matera",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_paradero_pance",
+    "map": "pance",
+    "x": 31,
+    "y": 6,
+    "object": "paradero_cali",
+    "dialogue": "m6_paradero_pance",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_don_arcesio",
+    "map": "pance",
+    "x": 13,
+    "y": 10,
+    "dir": "up",
+    "sprite": "don_arcesio",
+    "dialogue": "m6_tienda",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_vecina",
+    "map": "pance",
+    "x": 25,
+    "y": 10,
+    "dir": "down",
+    "sprite": "calena",
+    "dialogue": "m6_vecina",
+    "if": {
+      "mission": "mission06"
+    },
+    "wander": 2
+  },
+  {
+    "id": "m6_orientadora",
+    "map": "universidades",
+    "x": 46,
+    "y": 37,
+    "dir": "down",
+    "sprite": "orientadora",
+    "dialogue": "m6_orientadora",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_tablero",
+    "map": "universidades",
+    "x": 44,
+    "y": 35,
+    "object": "tablero_rutas",
+    "dialogue": "m6_tablero_rutas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_obleero",
+    "map": "universidades",
+    "x": 62,
+    "y": 37,
+    "dir": "down",
+    "sprite": "obleero",
+    "dialogue": "m6_obleas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_rec",
+    "map": "universidades",
+    "x": 38,
+    "y": 35,
+    "dialogue": "m6_recargadora",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_taquilla",
+    "map": "universidades",
+    "x": 38,
+    "y": 36,
+    "dialogue": "m6_taquilla",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_torniquete_35",
+    "map": "universidades",
+    "x": 42,
+    "y": 35,
+    "dialogue": "m6_torniquete",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_torniquete_36",
+    "map": "universidades",
+    "x": 42,
+    "y": 36,
+    "dialogue": "m6_torniquete",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_torniquete_37",
+    "map": "universidades",
+    "x": 42,
+    "y": 37,
+    "dialogue": "m6_torniquete",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_torniquete_38",
+    "map": "universidades",
+    "x": 42,
+    "y": 38,
+    "dialogue": "m6_torniquete",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puerta_t31",
+    "map": "universidades",
+    "x": 47,
+    "y": 34,
+    "dialogue": "m6_puerta_t31",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puerta_e31",
+    "map": "universidades",
+    "x": 53,
+    "y": 34,
+    "dialogue": "m6_puerta_e31",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puerta_t42",
+    "map": "universidades",
+    "x": 59,
+    "y": 34,
+    "dialogue": "m6_puerta_t42",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puerta_t47",
+    "map": "universidades",
+    "x": 65,
+    "y": 34,
+    "dialogue": "m6_puerta_t47",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puerta_e27",
+    "map": "universidades",
+    "x": 71,
+    "y": 34,
+    "dialogue": "m6_puerta_e27",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puerta_alim_49",
+    "map": "universidades",
+    "x": 49,
+    "y": 39,
+    "dialogue": "m6_puerta_alimentadores",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puerta_alim_57",
+    "map": "universidades",
+    "x": 57,
+    "y": 39,
+    "dialogue": "m6_puerta_alimentadores",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puerta_alim_67",
+    "map": "universidades",
+    "x": 67,
+    "y": 39,
+    "dialogue": "m6_puerta_alimentadores",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_lustrabotas",
+    "map": "universidades",
+    "x": 46,
+    "y": 28,
+    "dir": "down",
+    "sprite": "lustrabotas",
+    "dialogue": "m6_lustrabotas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_mango",
+    "map": "universidades",
+    "x": 64,
+    "y": 27,
+    "dir": "down",
+    "sprite": "vendedor_mango",
+    "dialogue": "m6_mango_universidades",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_policia",
+    "map": "universidades",
+    "x": 44,
+    "y": 45,
+    "dir": "up",
+    "sprite": "vigilante",
+    "dialogue": "m6_policia",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_estudiante_upv",
+    "map": "universidades",
+    "x": 20,
+    "y": 27,
+    "dir": "down",
+    "sprite": "estudiante",
+    "dialogue": "m6_estudiante_upv",
+    "if": {
+      "mission": "mission06"
+    },
+    "wander": 3
+  },
+  {
+    "id": "m6_librera",
+    "map": "guayacan_plaza",
+    "x": 3,
+    "y": 2,
+    "dir": "down",
+    "sprite": "librero",
+    "dialogue": "m6_libreria",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_florista",
+    "map": "guayacan_plaza",
+    "x": 9,
+    "y": 2,
+    "dir": "down",
+    "sprite": "calena",
+    "dialogue": "m6_floreria",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_cine",
+    "map": "guayacan_plaza",
+    "x": 14,
+    "y": 1,
+    "dialogue": "m6_cine",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_perfume",
+    "map": "guayacan_plaza",
+    "x": 19,
+    "y": 2,
+    "dir": "down",
+    "sprite": "universitaria",
+    "dialogue": "m6_perfumeria",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_papeleria",
+    "map": "guayacan_plaza",
+    "x": 25,
+    "y": 2,
+    "dir": "down",
+    "sprite": "oficinista",
+    "dialogue": "m6_papeleria",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_guardia_mall",
+    "map": "guayacan_plaza",
+    "x": 15,
+    "y": 10,
+    "dir": "left",
+    "sprite": "guardia_mall",
+    "dialogue": "m6_guardia_mall",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_art_puerta_4",
+    "map": "articulado",
+    "x": 4,
+    "y": 1,
+    "dialogue": "m6_art_puerta",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_art_puerta_12",
+    "map": "articulado",
+    "x": 12,
+    "y": 1,
+    "dialogue": "m6_art_puerta",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_art_puerta_20",
+    "map": "articulado",
+    "x": 20,
+    "y": 1,
+    "dialogue": "m6_art_puerta",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_art_puerta_27",
+    "map": "articulado",
+    "x": 27,
+    "y": 1,
+    "dialogue": "m6_art_puerta",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_art_senora",
+    "map": "articulado",
+    "x": 8,
+    "y": 4,
+    "dir": "up",
+    "sprite": "transeunte_abuelita",
+    "dialogue": "m6_art_senora",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_sira_ermita",
+    "map": "centro_cali",
+    "x": 65,
+    "y": 27,
+    "dir": "down",
+    "sprite": "sira_feria",
+    "dialogue": "m6_sira_espera",
+    "if": {
+      "mission": "mission06",
+      "notFlag": "m6_con_sira"
+    }
+  },
+  {
+    "id": "m6_ermita_puerta_1",
+    "map": "centro_cali",
+    "x": 65,
+    "y": 25,
+    "dialogue": "m6_ermita_puerta",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_ermita_puerta_2",
+    "map": "centro_cali",
+    "x": 66,
+    "y": 25,
+    "dialogue": "m6_ermita_puerta",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_violinista",
+    "map": "centro_cali",
+    "x": 59,
+    "y": 27,
+    "dir": "down",
+    "sprite": "abuelo",
+    "dialogue": "m6_violinista",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_cometas",
+    "map": "centro_cali",
+    "x": 71,
+    "y": 27,
+    "dir": "down",
+    "sprite": "vendedor",
+    "dialogue": "m6_cometas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_vigilante_torre",
+    "map": "centro_cali",
+    "x": 22,
+    "y": 13,
+    "dir": "left",
+    "sprite": "vigilante",
+    "dialogue": "m6_vigilante_estacion",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_isaacs",
+    "map": "centro_cali",
+    "x": 66,
+    "y": 41,
+    "object": "estatua",
+    "dialogue": "m6_isaacs",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_poeta_1",
+    "map": "centro_cali",
+    "x": 90,
+    "y": 4,
+    "object": "estatua",
+    "dialogue": "m6_poetas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_poeta_2",
+    "map": "centro_cali",
+    "x": 94,
+    "y": 4,
+    "object": "estatua",
+    "dialogue": "m6_poetas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_poeta",
+    "map": "centro_cali",
+    "x": 91,
+    "y": 32,
+    "dir": "down",
+    "sprite": "poeta",
+    "dialogue": "m6_poeta",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_maquina",
+    "map": "centro_cali",
+    "x": 90,
+    "y": 32,
+    "dialogue": "m6_poeta",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_estatua_humana",
+    "map": "centro_cali",
+    "x": 102,
+    "y": 32,
+    "dir": "down",
+    "sprite": "estatua_humana",
+    "dialogue": "m6_estatua",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_nino_feria",
+    "map": "centro_cali",
+    "x": 40,
+    "y": 31,
+    "dir": "down",
+    "sprite": "nino_feria",
+    "dialogue": "m6_nino_feria",
+    "if": {
+      "mission": "mission06"
+    },
+    "wander": 2
+  },
+  {
+    "id": "m6_fila_1",
+    "map": "centro_cali",
+    "x": 80,
+    "y": 31,
+    "dir": "up",
+    "sprite": "universitaria",
+    "dialogue": "m6_fila_gente",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_fila_2",
+    "map": "centro_cali",
+    "x": 81,
+    "y": 31,
+    "dir": "left",
+    "sprite": "estudiante",
+    "dialogue": "m6_fila_gente",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_maria_v",
+    "map": "centro_cali",
+    "x": 28,
+    "y": 29,
+    "dir": "down",
+    "sprite": "librero",
+    "dialogue": "m6_puesto_maria",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_maria_m1",
+    "map": "centro_cali",
+    "x": 27,
+    "y": 30,
+    "dialogue": "m6_puesto_maria",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_maria_m2",
+    "map": "centro_cali",
+    "x": 28,
+    "y": 30,
+    "dialogue": "m6_puesto_maria",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_maria_m3",
+    "map": "centro_cali",
+    "x": 29,
+    "y": 30,
+    "dialogue": "m6_puesto_maria",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_fanzines_v",
+    "map": "centro_cali",
+    "x": 34,
+    "y": 29,
+    "dir": "down",
+    "sprite": "estudiante",
+    "dialogue": "m6_puesto_fanzines",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_fanzines_m1",
+    "map": "centro_cali",
+    "x": 33,
+    "y": 30,
+    "dialogue": "m6_puesto_fanzines",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_fanzines_m2",
+    "map": "centro_cali",
+    "x": 34,
+    "y": 30,
+    "dialogue": "m6_puesto_fanzines",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_fanzines_m3",
+    "map": "centro_cali",
+    "x": 35,
+    "y": 30,
+    "dialogue": "m6_puesto_fanzines",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_infantil_v",
+    "map": "centro_cali",
+    "x": 40,
+    "y": 29,
+    "dir": "down",
+    "sprite": "universitaria",
+    "dialogue": "m6_puesto_infantil",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_infantil_m1",
+    "map": "centro_cali",
+    "x": 39,
+    "y": 30,
+    "dialogue": "m6_puesto_infantil",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_infantil_m2",
+    "map": "centro_cali",
+    "x": 40,
+    "y": 30,
+    "dialogue": "m6_puesto_infantil",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_infantil_m3",
+    "map": "centro_cali",
+    "x": 41,
+    "y": 30,
+    "dialogue": "m6_puesto_infantil",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_ciegas_v",
+    "map": "centro_cali",
+    "x": 46,
+    "y": 29,
+    "dir": "down",
+    "sprite": "calena",
+    "dialogue": "m6_puesto_ciegas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_ciegas_m1",
+    "map": "centro_cali",
+    "x": 45,
+    "y": 30,
+    "dialogue": "m6_puesto_ciegas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_ciegas_m2",
+    "map": "centro_cali",
+    "x": 46,
+    "y": 30,
+    "dialogue": "m6_puesto_ciegas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_ciegas_m3",
+    "map": "centro_cali",
+    "x": 47,
+    "y": 30,
+    "dialogue": "m6_puesto_ciegas",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_trueque_v",
+    "map": "centro_cali",
+    "x": 52,
+    "y": 29,
+    "dir": "down",
+    "sprite": "abuelo",
+    "dialogue": "m6_puesto_trueque",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_trueque_m1",
+    "map": "centro_cali",
+    "x": 51,
+    "y": 30,
+    "dialogue": "m6_puesto_trueque",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_trueque_m2",
+    "map": "centro_cali",
+    "x": 52,
+    "y": 30,
+    "dialogue": "m6_puesto_trueque",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_trueque_m3",
+    "map": "centro_cali",
+    "x": 53,
+    "y": 30,
+    "dialogue": "m6_puesto_trueque",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_firma_v",
+    "map": "centro_cali",
+    "x": 78,
+    "y": 29,
+    "dir": "down",
+    "sprite": "autora",
+    "dialogue": "m6_puesto_firma",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_firma_m1",
+    "map": "centro_cali",
+    "x": 77,
+    "y": 30,
+    "dialogue": "m6_puesto_firma",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_firma_m2",
+    "map": "centro_cali",
+    "x": 78,
+    "y": 30,
+    "dialogue": "m6_puesto_firma",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_firma_m3",
+    "map": "centro_cali",
+    "x": 79,
+    "y": 30,
+    "dialogue": "m6_puesto_firma",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_pucc_v",
+    "map": "centro_cali",
+    "x": 84,
+    "y": 29,
+    "dir": "down",
+    "sprite": "profe_julian",
+    "dialogue": "m6_puesto_pucc",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_pucc_m1",
+    "map": "centro_cali",
+    "x": 83,
+    "y": 30,
+    "dialogue": "m6_puesto_pucc",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_pucc_m2",
+    "map": "centro_cali",
+    "x": 84,
+    "y": 30,
+    "dialogue": "m6_puesto_pucc",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_pucc_m3",
+    "map": "centro_cali",
+    "x": 85,
+    "y": 30,
+    "dialogue": "m6_puesto_pucc",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_frances_v",
+    "map": "centro_cali",
+    "x": 90,
+    "y": 29,
+    "dir": "down",
+    "sprite": "antoine_u",
+    "dialogue": "m6_puesto_frances",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_frances_m1",
+    "map": "centro_cali",
+    "x": 89,
+    "y": 30,
+    "dialogue": "m6_puesto_frances",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_frances_m2",
+    "map": "centro_cali",
+    "x": 90,
+    "y": 30,
+    "dialogue": "m6_puesto_frances",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_frances_m3",
+    "map": "centro_cali",
+    "x": 91,
+    "y": 30,
+    "dialogue": "m6_puesto_frances",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_tinto_v",
+    "map": "centro_cali",
+    "x": 96,
+    "y": 29,
+    "dir": "down",
+    "sprite": "senora_tinto",
+    "dialogue": "m6_puesto_tinto",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_tinto_m1",
+    "map": "centro_cali",
+    "x": 95,
+    "y": 30,
+    "dialogue": "m6_puesto_tinto",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_tinto_m2",
+    "map": "centro_cali",
+    "x": 96,
+    "y": 30,
+    "dialogue": "m6_puesto_tinto",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_tinto_m3",
+    "map": "centro_cali",
+    "x": 97,
+    "y": 30,
+    "dialogue": "m6_puesto_tinto",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_discos_v",
+    "map": "centro_cali",
+    "x": 102,
+    "y": 29,
+    "dir": "down",
+    "sprite": "caleno_u",
+    "dialogue": "m6_puesto_discos",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_discos_m1",
+    "map": "centro_cali",
+    "x": 101,
+    "y": 30,
+    "dialogue": "m6_puesto_discos",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_discos_m2",
+    "map": "centro_cali",
+    "x": 102,
+    "y": 30,
+    "dialogue": "m6_puesto_discos",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_discos_m3",
+    "map": "centro_cali",
+    "x": 103,
+    "y": 30,
+    "dialogue": "m6_puesto_discos",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_chile_v",
+    "map": "centro_cali",
+    "x": 108,
+    "y": 29,
+    "dir": "down",
+    "sprite": "viajero",
+    "dialogue": "m6_puesto_chile",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_chile_m1",
+    "map": "centro_cali",
+    "x": 107,
+    "y": 30,
+    "dialogue": "m6_puesto_chile",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_chile_m2",
+    "map": "centro_cali",
+    "x": 108,
+    "y": 30,
+    "dialogue": "m6_puesto_chile",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_puesto_chile_m3",
+    "map": "centro_cali",
+    "x": 109,
+    "y": 30,
+    "dialogue": "m6_puesto_chile",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_cuentero",
+    "map": "san_antonio",
+    "x": 26,
+    "y": 6,
+    "dir": "down",
+    "sprite": "cuentero",
+    "dialogue": "m6_cuentero_npc",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_capilla_1",
+    "map": "san_antonio",
+    "x": 13,
+    "y": 9,
+    "dialogue": "m6_capilla",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_capilla_2",
+    "map": "san_antonio",
+    "x": 14,
+    "y": 9,
+    "dialogue": "m6_capilla",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_vecino_sa",
+    "map": "san_antonio",
+    "x": 32,
+    "y": 25,
+    "dir": "down",
+    "sprite": "abuelo",
+    "dialogue": "m6_vecino_sa",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_guitarrista",
+    "map": "san_antonio",
+    "x": 36,
+    "y": 34,
+    "dir": "down",
+    "sprite": "transeunte_joven",
+    "dialogue": "m6_guitarrista",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_mirador_cartel",
+    "map": "san_antonio",
+    "x": 20,
+    "y": 4,
+    "object": "cartel",
+    "dialogue": "m6_mirador_cartel",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_heladera",
+    "map": "heladeria_corazones",
+    "x": 2,
+    "y": 2,
+    "dir": "down",
+    "sprite": "heladera",
+    "dialogue": "m6_heladera",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_vitrina_0",
+    "map": "heladeria_corazones",
+    "x": 0,
+    "y": 3,
+    "dialogue": "m6_heladera",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_vitrina_1",
+    "map": "heladeria_corazones",
+    "x": 1,
+    "y": 3,
+    "dialogue": "m6_heladera",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_vitrina_2",
+    "map": "heladeria_corazones",
+    "x": 2,
+    "y": 3,
+    "dialogue": "m6_heladera",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_vitrina_3",
+    "map": "heladeria_corazones",
+    "x": 3,
+    "y": 3,
+    "dialogue": "m6_heladera",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_vitrina_4",
+    "map": "heladeria_corazones",
+    "x": 4,
+    "y": 3,
+    "dialogue": "m6_heladera",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_vitrina_5",
+    "map": "heladeria_corazones",
+    "x": 5,
+    "y": 3,
+    "dialogue": "m6_heladera",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_vitrina_6",
+    "map": "heladeria_corazones",
+    "x": 6,
+    "y": 3,
+    "dialogue": "m6_heladera",
+    "if": {
+      "mission": "mission06"
+    }
+  },
+  {
+    "id": "m6_sira_mostrador",
+    "map": "heladeria_corazones",
+    "x": 7,
+    "y": 4,
+    "dir": "left",
+    "sprite": "sira_feria",
+    "dialogue": "m6_sira_mostrador",
+    "if": {
+      "mission": "mission06",
+      "notFlag": "m6_helados_listos"
+    }
+  },
+  {
+    "id": "m6_sira_helado",
+    "map": "heladeria_corazones",
+    "x": 9,
+    "y": 4,
+    "dir": "down",
+    "sprite": "sira_feria",
+    "dialogue": "m6_sira_helado_npc",
+    "if": {
+      "mission": "mission06",
+      "flag": "m6_helados_listos"
+    }
+  }
+]

@@ -1,0 +1,108 @@
+{
+  "id": "mission02",
+  "number": 2,
+  "title": "La prueba de Optimización",
+  "start": {
+    "map": "casa_piso1",
+    "spawn": "comedor"
+  },
+  "introDialogue": "mision2_intro",
+  "objective": "Lleva los platos al lavaplatos (cocina)",
+  "startMoney": 5000,
+  "startFlags": [
+    "mision2_iniciada",
+    "sin_mochila"
+  ],
+  "clock": "dom 21:00",
+  "destinations": [
+    {
+      "if": {
+        "flag": "tomo_metro"
+      },
+      "map": "antonio_varas",
+      "x": 24,
+      "y": 23,
+      "name": "Edificio A2"
+    },
+    {
+      "map": "paine",
+      "x": 38,
+      "y": 3,
+      "name": "Estación Paine"
+    }
+  ],
+  "victoryEvent": "mision2_final",
+  "routes": [
+    {
+      "id": "tren",
+      "name": "Tren",
+      "if": {
+        "flag": "tomo_tren"
+      }
+    },
+    {
+      "id": "metro",
+      "name": "Metro",
+      "if": {
+        "flag": "tomo_metro"
+      }
+    }
+  ],
+  "defaultRoute": "A pie",
+  "walkedSuffix": {
+    "if": {
+      "flag": "bajo_antes"
+    },
+    "text": " + a pie"
+  },
+  "collectibles": [
+    "marraqueta",
+    "apuntes",
+    "cafe",
+    "sopaipilla"
+  ],
+  "bonuses": [
+    {
+      "text": "Te levantaste a la primera",
+      "if": {
+        "notFlag": "pospuso"
+      }
+    },
+    {
+      "text": "Lavaste, secaste y guardaste",
+      "if": {
+        "flag": "seco_platos"
+      }
+    },
+    {
+      "text": "Repasaste antes de dormir",
+      "if": {
+        "flag": "repaso"
+      }
+    },
+    {
+      "text": "Prueba perfecta al primer intento",
+      "if": {
+        "notFlag": "examen_reintento"
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "flag": "secreto_dormido",
+      "name": "Cinco minutitos más"
+    },
+    {
+      "flag": "secreto_piso7",
+      "name": "El piso 7"
+    },
+    {
+      "flag": "secreto_radio",
+      "name": "La radio del profe"
+    },
+    {
+      "flag": "secreto_konami",
+      "name": "Arriba, arriba, abajo, abajo..."
+    }
+  ]
+}

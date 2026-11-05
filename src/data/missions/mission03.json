@@ -1,0 +1,153 @@
+{
+  "id": "mission03",
+  "number": 3,
+  "title": "Rumbo a Cali",
+  "start": {
+    "map": "restaurante_paine",
+    "spawn": "mesa"
+  },
+  "introDialogue": "mision3_intro",
+  "objective": "Cena con tu familia: conversa y pide (E en la mesa)",
+  "startMoney": 20000,
+  "startFlags": [
+    "mision3_iniciada"
+  ],
+  "clock": "vie 20:30",
+  "destinations": [
+    {
+      "if": {
+        "flag": "llego_pance"
+      },
+      "map": "pance",
+      "x": 21,
+      "y": 6,
+      "name": "Casa Pance"
+    },
+    {
+      "if": {
+        "all": [
+          {
+            "flag": "cena_terminada"
+          },
+          {
+            "notFlag": "en_casa"
+          }
+        ]
+      },
+      "map": "paine",
+      "x": 6,
+      "y": 4,
+      "name": "Tu casa"
+    },
+    {
+      "if": {
+        "flag": "maleta_cerrada"
+      },
+      "map": "paine",
+      "x": 6,
+      "y": 4,
+      "name": "Tu casa"
+    }
+  ],
+  "victoryEvent": "mision3_final",
+  "routes": [
+    {
+      "id": "auto",
+      "name": "Auto",
+      "if": {
+        "flag": "llego_scl"
+      }
+    },
+    {
+      "id": "avion",
+      "name": "Avión",
+      "if": {
+        "flag": "aterrizo"
+      }
+    },
+    {
+      "id": "furgon",
+      "name": "Furgón",
+      "if": {
+        "flag": "llego_pance"
+      }
+    }
+  ],
+  "defaultRoute": "A pie",
+  "walkedSuffix": {
+    "if": {
+      "flag": "nunca"
+    },
+    "text": ""
+  },
+  "collectibles": [
+    "dibujo",
+    "alfajor",
+    "pandebono",
+    "chontaduro"
+  ],
+  "bonuses": [
+    {
+      "text": "Maleta de 23 kg exactos",
+      "if": {
+        "flag": "maleta_optima"
+      }
+    },
+    {
+      "text": "Puerta D6 a la primera",
+      "if": {
+        "notFlag": "puerta_equivocada"
+      }
+    },
+    {
+      "text": "Abrazos para todos",
+      "if": {
+        "flag": [
+          "abrazo_papa",
+          "abrazo_hermano"
+        ]
+      }
+    },
+    {
+      "text": "Sin decomisos en Cali",
+      "if": {
+        "notFlag": "decomiso_ica"
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "flag": "secreto_beagle",
+      "name": "Pisco, el beagle del SAG"
+    },
+    {
+      "flag": "secreto_perfume",
+      "name": "Eau de Paine"
+    },
+    {
+      "flag": "secreto_lapiz",
+      "name": "El lápiz rojo"
+    },
+    {
+      "flag": "secreto_bano",
+      "name": "El baño ocupado"
+    },
+    {
+      "flag": "secreto_konami",
+      "name": "Arriba, arriba, abajo, abajo..."
+    }
+  ],
+  "endings": [
+    {
+      "id": "peluche",
+      "name": "Te llevaste la almohada",
+      "if": {
+        "flag": "maleta_almohada"
+      }
+    },
+    {
+      "id": "almohada",
+      "name": "La almohada se quedó en casa"
+    }
+  ]
+}

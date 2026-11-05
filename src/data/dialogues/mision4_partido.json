@@ -1,0 +1,1224 @@
+{
+ "previa_partido": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "notFlag": "polera"
+      },
+      "goto": "sin_polera"
+     },
+     {
+      "goto": "previa"
+     }
+    ]
+   },
+   "sin_polera": {
+    "speaker": "Álvaro",
+    "text": "¡Eh, chileno! ¿Y la polera azul? Ve a Bienestar, a Deportes, que sin polera no juegas."
+   },
+   "previa": {
+    "speaker": "Álvaro",
+    "text": [
+     "¡Aquí está el delantero! Venga, que empezamos.",
+     "Cuatro atrás, cuatro en el medio, y arriba tú y yo. Mathieu al arco. ¡Vamos, equipo!"
+    ],
+    "next": "johan"
+   },
+   "johan": {
+    "speaker": "Johan",
+    "text": [
+     "¿Ustedes son los de intercambio? Bienvenidos, parceros. Les vamos a dar una clase.",
+     "Una clase de fútbol, ¿sí o qué?"
+    ],
+    "choices": [
+     {
+      "label": "¿Sí o qué?",
+      "goto": "johan_si"
+     },
+     {
+      "label": "Ya veremos, compadre",
+      "goto": "johan_no"
+     }
+    ]
+   },
+   "johan_si": {
+    "speaker": "Johan",
+    "text": "¡Jajaja! ¡El chileno ya habla caleño! Igual les vamos a ganar.",
+    "next": "arbitro"
+   },
+   "johan_no": {
+    "speaker": "Johan",
+    "text": "Eso, eso. Que gane el mejor. O sea, nosotros.",
+    "next": "arbitro"
+   },
+   "arbitro": {
+    "text": [
+     "El árbitro, un profe de Educación Física con silbato y chanclas, mira el reloj: «Cinco minutos y arrancamos».",
+     "Álvaro junta al equipo: «¿Calentamos un poco? Así repasamos los pases y las filigranas»."
+    ],
+    "choices": [
+     {
+      "label": "Calentar con el equipo (tutorial)",
+      "effects": [
+       {
+        "event": "partido",
+        "data": {
+         "tutorial": true
+        }
+       }
+      ],
+      "goto": "calentar"
+     },
+     {
+      "label": "¡Directo al partido!",
+      "effects": [
+       {
+        "event": "partido"
+       }
+      ],
+      "goto": "directo"
+     },
+     {
+      "label": "Un momento",
+      "goto": "espera"
+     }
+    ]
+   },
+   "calentar": {
+    "speaker": "Álvaro",
+    "text": "¡Eso! Trote, pases y un par de remates. Mathieu, al arco."
+   },
+   "directo": {
+    "speaker": "Nacho",
+    "text": "¡Así me gusta! Al que calienta mucho después le duele todo."
+   },
+   "espera": {
+    "speaker": "Álvaro",
+    "text": "¡Rápido, que se nos va la luz!"
+   }
+  }
+ },
+ "pre_johan": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Johan",
+    "text": "Calentando, parcero. Ustedes también deberían. Ah, no, ya están calientes: es Cali."
+   }
+  }
+ },
+ "pre_rival": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Jugador de Ingeniería",
+    "text": "Nosotros jugamos todos los días a mediodía. Bueno, cuando no llueve."
+   }
+  }
+ },
+ "pre_alvaro": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Álvaro",
+    "text": "Cuando tengas la pelota, mira arriba. Y si no ves a nadie, tira. Siempre tira."
+   }
+  }
+ },
+ "pre_nacho": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Nacho",
+    "text": "Compadre, si metemos un gol lo celebramos con el baile del chino. Ensayémoslo... no, mejor no."
+   }
+  }
+ },
+ "pre_diego": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Diego",
+    "text": "Yo juego en el medio. Pídemela y te la pongo, causa."
+   }
+  }
+ },
+ "pre_mathieu": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Mathieu",
+    "text": "Yo al arco. Si nos hacen un gol, no me miren. Miren a la defensa."
+   }
+  }
+ },
+ "post_victoria": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "¡Pitazo final! Intercambio {marcador} Ingeniería. ¡GANARON!",
+    "effects": [
+     {
+      "vineta": "cali_festejo"
+     }
+    ],
+    "next": "festejo"
+   },
+   "festejo": {
+    "text": "Se abrazan todos al medio de la cancha, saltando como locos. Desde la tribuna, los de Bienestar aplauden.",
+    "next": "gol"
+   },
+   "gol": {
+    "branches": [
+     {
+      "if": {
+       "flag": "hat_trick"
+      },
+      "goto": "hat"
+     },
+     {
+      "if": {
+       "flag": "figura_partido"
+      },
+      "goto": "figura"
+     },
+     {
+      "if": {
+       "flag": "gol_propio"
+      },
+      "goto": "gol_si"
+     },
+     {
+      "goto": "gol_no"
+     }
+    ]
+   },
+   "hat": {
+    "speaker": "Álvaro",
+    "text": [
+     "¡TRES GOLES! ¡Hat-trick! ¡Que alguien llame a la selección chilena!",
+     "¡A los hombros con el chileno!"
+    ],
+    "effects": [
+     {
+      "vineta": "cali_hombros"
+     }
+    ],
+    "next": "hat_figura"
+   },
+   "hat_figura": {
+    "text": "Mónica, desde la reja, saca una foto: «¡Esta va para la página de la universidad! La figura del partido».",
+    "effects": [
+     {
+      "vineta": "cali_figura"
+     }
+    ],
+    "next": "autogol"
+   },
+   "figura": {
+    "speaker": "Nacho",
+    "text": [
+     "¡Dos goles, compadre! ¡Doblete!",
+     "Mónica te saca una foto: «La figura del partido, para la página de la U»."
+    ],
+    "effects": [
+     {
+      "vineta": "cali_figura"
+     }
+    ],
+    "next": "autogol"
+   },
+   "gol_si": {
+    "speaker": "Nacho",
+    "text": "¡Golazo, compadre! ¡Paine en lo más alto del mundo!",
+    "next": "autogol"
+   },
+   "gol_no": {
+    "speaker": "Diego",
+    "text": "Sin goles, pero corriste como loco, causa. Eso también gana partidos.",
+    "next": "autogol"
+   },
+   "autogol": {
+    "branches": [
+     {
+      "if": {
+       "flag": "autogol_propio"
+      },
+      "goto": "autogol_si"
+     },
+     {
+      "goto": "goleada"
+     }
+    ]
+   },
+   "autogol_si": {
+    "speaker": "Mathieu",
+    "text": [
+     "Igual ganamos. Pero ese autogol tuyo... lo vamos a contar en el asado. Varias veces.",
+     "Tranquilo, chaval. Yo una vez me metí dos. En el mismo partido."
+    ],
+    "effects": [
+     {
+      "vineta": "futbol_autogol"
+     }
+    ],
+    "next": "goleada"
+   },
+   "goleada": {
+    "branches": [
+     {
+      "if": {
+       "flag": "goleada"
+      },
+      "goto": "goleada_si"
+     },
+     {
+      "goto": "johan"
+     }
+    ]
+   },
+   "goleada_si": {
+    "speaker": "Johan",
+    "text": "¿Y eso? ¿Una goleada? Uy, parceros, nos vinieron a dar clases ustedes a nosotros.",
+    "next": "johan"
+   },
+   "johan": {
+    "speaker": "Johan",
+    "text": "Buen partido, parceros. La revancha el otro lunes, ¿sí o qué?",
+    "effects": [
+     {
+      "vineta": ""
+     }
+    ],
+    "next": "antoine"
+   },
+   "antoine": {
+    "speaker": "Antoine",
+    "text": [
+     "¡Esto hay que celebrarlo! Esta noche, en mi edificio: rooftop, piso veintiuno, Ciudad Jardín.",
+     "Aborrajados, empanadas y la mejor vista de Cali. A las siete y media. ¡Nadie falta!"
+    ],
+    "effects": [
+     {
+      "objective": "Celebra en el rooftop de Antoine"
+     },
+     {
+      "message": "grupo_rooftop"
+     }
+    ]
+   }
+  }
+ },
+ "taxi_rooftop": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": [
+     "Pasas a la casa a bañarte (agua fría, otra vez) y doña Mery te presta un perfume «para que huela a caleño».",
+     "A las siete y cuarto, un taxi amarillo por la Calle 18. El taxista pone salsa, baja las ventanas y Cali entra por todas partes: luces, motos, olor a fritanga.",
+     "Ciudad Jardín. Un edificio altísimo. El ascensor sube... y sube... piso 21."
+    ],
+    "effects": [
+     {
+      "clock": "lun 19:30",
+      "max": "lun 23:50"
+     },
+     {
+      "weather": "despejado"
+     }
+    ]
+   }
+  }
+ },
+ "post_derrota": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "empato_partido"
+      },
+      "goto": "empate"
+     },
+     {
+      "goto": "derrota"
+     }
+    ]
+   },
+   "derrota": {
+    "text": "Pitazo final. Intercambio {marcador} Ingeniería. Perdieron.",
+    "next": "autogol"
+   },
+   "empate": {
+    "text": "Pitazo final. Intercambio {marcador} Ingeniería. Empate... con sabor a derrota: ellos se van cantando.",
+    "next": "autogol"
+   },
+   "autogol": {
+    "branches": [
+     {
+      "if": {
+       "flag": "autogol_propio"
+      },
+      "goto": "autogol_si"
+     },
+     {
+      "if": {
+       "flag": "gol_propio"
+      },
+      "goto": "golcito"
+     },
+     {
+      "goto": "charla"
+     }
+    ]
+   },
+   "autogol_si": {
+    "text": [
+     "El autogol duele. Te sientas en el pasto con las manos en la cabeza.",
+     "Mathieu se sienta al lado: «Pardon por la parte que me toca. La pelota igual iba para adentro, ¿eh?»."
+    ],
+    "effects": [
+     {
+      "vineta": "futbol_autogol"
+     }
+    ],
+    "next": "charla"
+   },
+   "golcito": {
+    "speaker": "Nacho",
+    "text": "Por lo menos hiciste tu gol. Eso nadie te lo quita, compadre.",
+    "effects": [
+     {
+      "vineta": "futbol_gol"
+     }
+    ],
+    "next": "charla"
+   },
+   "charla": {
+    "text": [
+     "Se tiran en el pasto, al borde de la cancha. Nadie habla. Se oyen las chicharras, los aspersores y la respiración de once personas molidas.",
+     "El sol se esconde detrás de los Farallones y lo tiñe todo de naranja."
+    ],
+    "effects": [
+     {
+      "vineta": "cali_derrota"
+     },
+     {
+      "clockMax": "lun 18:50"
+     },
+     {
+      "objective": "Habla con el equipo y vuelve a casa (paradero P27)"
+     }
+    ]
+   }
+  }
+ },
+ "derrota_johan": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Johan",
+    "text": "Buen partido, parceros. En serio. Si quieren, mañana entrenamos juntos a mediodía... si no llueve."
+   }
+  }
+ },
+ "rooftop_llegada": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": [
+     "Se abren las puertas del ascensor y el aire tibio de la noche te pega en la cara.",
+     "Abajo, Cali entera: un mar de lucecitas naranjas hasta los cerros, el Cristo Rey iluminado en la punta y, más allá, las Tres Cruces.",
+     "Antoine pone salsa. Alguien prende la parrilla. Ya llegaron todos."
+    ],
+    "effects": [
+     {
+      "event": "rooftop"
+     },
+     {
+      "objective": "Celebra: conversa con todos (Álvaro, Diego y Nacho te andan buscando)"
+     }
+    ]
+   }
+  }
+ },
+ "rooftop_mesa": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "tomo_aborrajado"
+      },
+      "goto": "ya"
+     },
+     {
+      "goto": "comer"
+     }
+    ]
+   },
+   "comer": {
+    "text": "Aborrajados recién fritos, empanadas con ají y una montaña de patacones. Agarras un aborrajado.",
+    "effects": [
+     {
+      "giveItem": "aborrajado"
+     },
+     {
+      "setFlag": "tomo_aborrajado"
+     }
+    ]
+   },
+   "ya": {
+    "text": "La mesa: quedan patacones y una empanada solitaria que nadie se atreve a tomar."
+   }
+  }
+ },
+ "rooftop_parrilla": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La parrilla: chorizos santarrosanos y mazorcas asadas. El humo sube derechito hacia las estrellas."
+   }
+  }
+ },
+ "rooftop_llovizna": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": [
+     "De repente, unas gotas. Después más. Una llovizna tibia que baja de los Farallones.",
+     "Todos corren con los platos a cubrirse bajo el alero. Lucas grita «¡se los dije!». Nadie le hace caso."
+    ]
+   }
+  }
+ },
+ "rooftop_escampa": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": [
+     "Tan rápido como llegó, la llovizna se va. El aire queda fresquito y limpio.",
+     "Ahora se ven las estrellas y, abajo, la ciudad brilla más que antes, como recién lavada."
+    ]
+   }
+  }
+ },
+ "rooftop_antoine": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": [
+        "rt_alvaro",
+        "rt_diego",
+        "rt_nacho"
+       ]
+      },
+      "goto": "brindis"
+     },
+     {
+      "if": {
+       "flag": "rt_antoine"
+      },
+      "goto": "otra"
+     },
+     {
+      "goto": "primera"
+     }
+    ]
+   },
+   "primera": {
+    "speaker": "Antoine",
+    "text": [
+     "Bienvenue, bienvenue! ¿Viste la vista? Por eso pago lo que pago de arriendo.",
+     "Come algo, toma algo. Cuando hayas hablado con todos, hacemos el brindis en la baranda."
+    ],
+    "effects": [
+     {
+      "setFlag": "rt_antoine"
+     },
+     {
+      "clockAdd": 15
+     }
+    ]
+   },
+   "otra": {
+    "speaker": "Antoine",
+    "text": "Álvaro, Diego y Nacho te andan buscando. Habla con ellos y hacemos el brindis."
+   },
+   "brindis": {
+    "speaker": "Antoine",
+    "text": "¿Ya? ¿Estamos todos? ¡Vengan a la baranda, que esto hay que hacerlo con la ciudad de testigo!",
+    "choices": [
+     {
+      "label": "¡Brindis!",
+      "goto": "salud"
+     },
+     {
+      "label": "Un ratito más",
+      "goto": "espera"
+     }
+    ]
+   },
+   "espera": {
+    "speaker": "Antoine",
+    "text": "Bon, cuando quieras. La noche es larga."
+   },
+   "salud": {
+    "text": [
+     "Se juntan todos en la baranda: once personas de cinco países, con los vasos en alto y Cali brillando abajo.",
+     "Álvaro: «¡Por el primer día!». Nacho: «¡Por Paine y Valparaíso!». Diego: «¡Por Lima, causa!». Antoine: «¡Por la vista!». Lucas: «¡Por la chimba!».",
+     "Y tú: por tu mamá, por el profe Cuervo, por doña Mery, por el aguacero y por los fideos.",
+     "¡SALUD!"
+    ],
+    "effects": [
+     {
+      "vineta": "cali_rooftop"
+     },
+     {
+      "clock": "lun 23:40",
+      "max": "lun 23:50"
+     }
+    ],
+    "next": "final"
+   },
+   "final": {
+    "text": [
+     "Primer día en Cali: te levantaste mareado a las seis, gritaste en la ducha, te mojaste hasta los huesos, cocinaste, ruteaste pandebonos y le ganaste a Ingeniería.",
+     "Mañana tienes clase a las siete. Pero eso es mañana."
+    ],
+    "effects": [
+     {
+      "event": "mision4_final"
+     }
+    ]
+   }
+  }
+ },
+ "derrota_alvaro": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Álvaro",
+    "text": "Jugamos bien, ¿eh? Bueno, jugamos. Estoy reventado, tío. Me duelen hasta las pestañas."
+   }
+  }
+ },
+ "derrota_nacho": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Nacho",
+    "text": "Compadre, en Valpo esto no pasa. Bueno, sí pasa. Siempre pasa. Pero allá por lo menos hay vista al mar pa' consolarse."
+   }
+  }
+ },
+ "derrota_diego": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Diego",
+    "text": "Revancha el otro lunes, causa. Y entrenamos: miércoles en la mañana. Bueno, en la tarde. Bueno, si no llueve."
+   }
+  }
+ },
+ "derrota_mathieu": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Mathieu",
+    "text": "Pardon, pardon. La pelota aquí va más rápido. Debe ser el calor. O yo."
+   }
+  }
+ },
+ "derrota_sergio": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sergio",
+    "text": "Yo me voy a casa a llorar a gusto. Y después me como un cholado. En ese orden."
+   }
+  }
+ },
+ "derrota_hugo": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Hugo",
+    "text": "En Marsella perdemos todo el tiempo. Estoy acostumbrado. Allez, ¡a la próxima!"
+   }
+  }
+ },
+ "rooftop_alvaro": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "rt_alvaro"
+      },
+      "goto": "otra"
+     },
+     {
+      "goto": "primera"
+     }
+    ]
+   },
+   "primera": {
+    "speaker": "Álvaro",
+    "text": "¡El delantero! Para el próximo partido te quiero de capitán. Bueno, de subcapitán. El capitán soy yo.",
+    "effects": [
+     {
+      "setFlag": "rt_alvaro"
+     },
+     {
+      "clockAdd": 20
+     }
+    ]
+   },
+   "otra": {
+    "speaker": "Álvaro",
+    "text": "¿Sabes qué echo de menos de Madrid? Nada. Bueno, el jamón. Pero nada más."
+   }
+  }
+ },
+ "rooftop_iker": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "rt_iker"
+      },
+      "goto": "otra"
+     },
+     {
+      "goto": "primera"
+     }
+    ]
+   },
+   "primera": {
+    "speaker": "Iker",
+    "text": "Mi maleta llega el miércoles. Llevo tres días con la misma camiseta. Por lo menos ahora es la azul de la U.",
+    "effects": [
+     {
+      "setFlag": "rt_iker"
+     },
+     {
+      "clockAdd": 20
+     }
+    ]
+   },
+   "otra": {
+    "speaker": "Iker",
+    "text": "¡Salud por eso!"
+   }
+  }
+ },
+ "rooftop_pau": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "rt_pau"
+      },
+      "goto": "otra"
+     },
+     {
+      "goto": "primera"
+     }
+    ]
+   },
+   "primera": {
+    "speaker": "Pau",
+    "text": "¡Prueba el aborrajado! Plátano maduro con queso, apanado y frito. Es lo mejor que he comido en mi vida. Y he comido en Barcelona.",
+    "effects": [
+     {
+      "setFlag": "rt_pau"
+     },
+     {
+      "clockAdd": 20
+     }
+    ]
+   },
+   "otra": {
+    "speaker": "Pau",
+    "text": "¡Salud por eso!"
+   }
+  }
+ },
+ "rooftop_sergio": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "rt_sergio"
+      },
+      "goto": "otra"
+     },
+     {
+      "goto": "primera"
+     }
+    ]
+   },
+   "primera": {
+    "speaker": "Sergio",
+    "text": "Esto es como Sevilla en verano, pero con montañas y menos turistas. Yo me quedo, chaval. Me quedo a vivir.",
+    "effects": [
+     {
+      "setFlag": "rt_sergio"
+     },
+     {
+      "clockAdd": 20
+     }
+    ]
+   },
+   "otra": {
+    "speaker": "Sergio",
+    "text": "¡Salud por eso!"
+   }
+  }
+ },
+ "rooftop_lucas": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "rt_lucas"
+      },
+      "goto": "otra"
+     },
+     {
+      "goto": "primera"
+     }
+    ]
+   },
+   "primera": {
+    "speaker": "Lucas",
+    "text": "Mira las nubes sobre los Farallones... va a llover, seguro. En París también llueve, pero sin truenos que avisen.",
+    "effects": [
+     {
+      "setFlag": "rt_lucas"
+     },
+     {
+      "clockAdd": 20
+     }
+    ]
+   },
+   "otra": {
+    "speaker": "Lucas",
+    "text": "¡Salud por eso!"
+   }
+  }
+ },
+ "rooftop_mathieu": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "rt_mathieu"
+      },
+      "goto": "otra"
+     },
+     {
+      "goto": "primera"
+     }
+    ]
+   },
+   "primera": {
+    "speaker": "Mathieu",
+    "text": "Perdona por los goles que me hicieron. Pero ganamos, ¿no? Entonces no pasó nada. Las matemáticas son así.",
+    "effects": [
+     {
+      "setFlag": "rt_mathieu"
+     },
+     {
+      "clockAdd": 20
+     }
+    ]
+   },
+   "otra": {
+    "speaker": "Mathieu",
+    "text": "¡Salud por eso!"
+   }
+  }
+ },
+ "rooftop_hugo": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "rt_hugo"
+      },
+      "goto": "otra"
+     },
+     {
+      "goto": "primera"
+     }
+    ]
+   },
+   "primera": {
+    "speaker": "Hugo",
+    "text": "Dicen que en Juanchito se baila hasta que sale el sol. Hoy no, que mañana hay clase a las siete... ¿o sí?",
+    "effects": [
+     {
+      "setFlag": "rt_hugo"
+     },
+     {
+      "clockAdd": 20
+     }
+    ]
+   },
+   "otra": {
+    "speaker": "Hugo",
+    "text": "¡Salud por eso!"
+   }
+  }
+ },
+ "rooftop_diego": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "rt_diego"
+      },
+      "goto": "otra"
+     },
+     {
+      "goto": "primera"
+     }
+    ]
+   },
+   "primera": {
+    "speaker": "Diego",
+    "text": "Causa, ¿te digo algo? En Lima nunca hace este calorcito de noche. Aquí me quedaría para siempre... si me enseñan a bailar.",
+    "effects": [
+     {
+      "setFlag": "rt_diego"
+     },
+     {
+      "clockAdd": 20
+     }
+    ]
+   },
+   "otra": {
+    "speaker": "Diego",
+    "text": "Brindemos por los que no ganamos nada en la vida y hoy ganamos un partido. Por nosotros, pe."
+   }
+  }
+ },
+ "rooftop_nacho": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "rt_nacho"
+      },
+      "goto": "otra"
+     },
+     {
+      "goto": "primera"
+     }
+    ]
+   },
+   "primera": {
+    "speaker": "Nacho",
+    "text": "Compadre... estamos en Cali. CALI. Hace un año estaba en Valpo pensando que no me iban a aceptar.",
+    "effects": [
+     {
+      "setFlag": "rt_nacho"
+     },
+     {
+      "clockAdd": 20
+     }
+    ]
+   },
+   "otra": {
+    "speaker": "Nacho",
+    "text": "Mañana llamemos a nuestras mamás, que la mía ya me mandó catorce audios. Catorce."
+   }
+  }
+ },
+ "usar_paraguas": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "El paraguas de don Hernando: negro, grande y con una varilla chueca. Huele a armario."
+   }
+  }
+ },
+ "usar_carnet_pucc": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Tu carnet de la PUCC. Saliste con cara de recién llegado. Porque lo eres.",
+    "effects": [
+     {
+      "sign": "carnet_pucc"
+     }
+    ]
+   }
+  }
+ },
+ "usar_polera": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La polera azul de la U, con el 14 en la espalda.",
+    "effects": [
+     {
+      "vineta": "cali_polera"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Ponérsela",
+      "effects": [
+       {
+        "outfit": {
+         "shirt": "#2050a8"
+        }
+       }
+      ],
+      "goto": "puesta"
+     },
+     {
+      "label": "Guardarla"
+     }
+    ]
+   },
+   "puesta": {
+    "text": "Azul. Ya eres de la U."
+   }
+  }
+ },
+ "usar_bunuelo": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "¿Te comes el buñuelo? Si te lo comes, ya no cuenta como coleccionable.",
+    "choices": [
+     {
+      "label": "Sí, comer",
+      "effects": [
+       {
+        "takeItem": "bunuelo"
+       }
+      ],
+      "goto": "comer"
+     },
+     {
+      "label": "Mejor no"
+     }
+    ]
+   },
+   "comer": {
+    "text": "Crujiente por fuera, esponjoso y con queso por dentro. Te quemas un poquito la lengua. Vale la pena.",
+    "effects": [
+     {
+      "vineta": "comer_bunuelo"
+     }
+    ]
+   }
+  }
+ },
+ "usar_lulada": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "¿Te tomas la lulada de doña Mery? Si te la tomas, ya no cuenta como coleccionable.",
+    "choices": [
+     {
+      "label": "Sí, tomar",
+      "effects": [
+       {
+        "takeItem": "lulada"
+       }
+      ],
+      "goto": "comer"
+     },
+     {
+      "label": "Mejor no"
+     }
+    ]
+   },
+   "comer": {
+    "text": "Ácida, fría y con pedacitos de lulo. Se te arruga la cara. Otro sorbo.",
+    "effects": [
+     {
+      "vineta": "tomar_lulada"
+     }
+    ]
+   }
+  }
+ },
+ "usar_cholado": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "¿Te comes el cholado? Si te lo comes, ya no cuenta como coleccionable.",
+    "choices": [
+     {
+      "label": "Sí, comer",
+      "effects": [
+       {
+        "takeItem": "cholado"
+       }
+      ],
+      "goto": "comer"
+     },
+     {
+      "label": "Mejor no"
+     }
+    ]
+   },
+   "comer": {
+    "text": "Hielo, mango, piña, lechera y una galleta encima. Te da un dolor de cabeza de frío. Feliz.",
+    "effects": [
+     {
+      "vineta": "comer_cholado"
+     }
+    ]
+   }
+  }
+ },
+ "usar_aborrajado": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "¿Te comes el aborrajado? Si te lo comes, ya no cuenta como coleccionable.",
+    "choices": [
+     {
+      "label": "Sí, comer",
+      "effects": [
+       {
+        "takeItem": "aborrajado"
+       }
+      ],
+      "goto": "comer"
+     },
+     {
+      "label": "Mejor no"
+     }
+    ]
+   },
+   "comer": {
+    "text": "Plátano maduro dulce, queso derretido, la masa crujiente. Pau tenía razón.",
+    "effects": [
+     {
+      "vineta": "comer_aborrajado"
+     }
+    ]
+   }
+  }
+ },
+ "llamada_mama_m4": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "gano_partido"
+      },
+      "goto": "rooftop"
+     },
+     {
+      "if": {
+       "flag": "partido_jugado"
+      },
+      "goto": "perdio"
+     },
+     {
+      "if": {
+       "flag": "tormenta_vista",
+       "notFlag": "almorzo"
+      },
+      "goto": "lluvia"
+     },
+     {
+      "if": {
+       "flag": "almorzo"
+      },
+      "goto": "tarde"
+     },
+     {
+      "goto": "manana"
+     }
+    ]
+   },
+   "manana": {
+    "speaker": "Mamá (llamada)",
+    "text": [
+     "¿Hijo? ¿Me llamai tan temprano? ...Ah, verdad que allá son dos horas menos. ¡Acá ya son las {hora}... no, más!",
+     "¿Desayunaste? ¿La señora te trata bien? Mándame foto de la universidad. Y abrígate. ...¿Treinta grados? Ya, no te abrigues."
+    ]
+   },
+   "lluvia": {
+    "speaker": "Mamá (llamada)",
+    "text": "¿Cómo que te mojaste entero? ¡Te dije que llevaras chaqueta! ...¿Paraguas? Bueno, eso. ¡Sécate bien el pelo!"
+   },
+   "tarde": {
+    "speaker": "Mamá (llamada)",
+    "text": "¿Cocinaste? ¿Tú? ¿Fideos? Hijo, estoy orgullosa. Y un poquito preocupada por la olla de la señora."
+   },
+   "perdio": {
+    "speaker": "Mamá (llamada)",
+    "text": "¿Perdieron? Ay, mi amor. Pero jugaste, que es lo importante. Tu hermano dice que la próxima la ganan. Ya, a dormir temprano."
+   },
+   "rooftop": {
+    "speaker": "Mamá (llamada)",
+    "text": "¿Ganaron? ¡Ese es mi hijo! ¿Y qué es ese ruido? ¿Salsa? ...Ya, ya, pásalo bien. Pero acuéstate temprano. ¡Te quiero!"
+   }
+  }
+ },
+ "llamada_mery_m4": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "volvio_casa"
+      },
+      "goto": "tarde"
+     },
+     {
+      "goto": "manana"
+     }
+    ]
+   },
+   "manana": {
+    "speaker": "Doña Mery",
+    "text": "¿Aló? ¿Mijo? ¿Se perdió? Pregunte, que aquí todo el mundo ayuda. ¡Y coma algo!"
+   },
+   "tarde": {
+    "speaker": "Doña Mery",
+    "text": "¡Mijo! Ya salí del médico. ¿Se comió los fideos? ¿No me quemó la olla? Bueno, bueno. Juicioso."
+   }
+  }
+ }
+}

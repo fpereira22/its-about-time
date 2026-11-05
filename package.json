@@ -1,0 +1,20 @@
+{
+  "name": "its-about-time",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Juego 2D top-down en pixel art ambientado en Santiago de Chile.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "phaser": "3.90.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vite": "~7.3.0"
+  }
+}

@@ -1,0 +1,359 @@
+{
+  "id": "mission06",
+  "number": 6,
+  "title": "Letras sobre el río",
+  "start": {
+    "map": "pucc_piscina",
+    "spawn": "borde"
+  },
+  "objective": "Busca a Sira en el borde de la piscina",
+  "startMoney": 120000,
+  "startFlags": [
+    "mision6_iniciada",
+    "despierto",
+    "banado",
+    "vestido",
+    "tiene_mochila",
+    "en_bano",
+    "sin_mochila",
+    "m6_quimica_visible"
+  ],
+  "clock": "jue 18:52",
+  "weather": "despejado",
+  "destinations": [
+    {
+      "if": {
+        "flag": "m6_taxi_casa"
+      },
+      "map": "pance",
+      "x": 21,
+      "y": 6,
+      "name": "Casa de doña Mery"
+    },
+    {
+      "if": {
+        "flag": "m6_buziraco"
+      },
+      "map": "san_antonio",
+      "x": 18,
+      "y": 4,
+      "name": "El mirador"
+    },
+    {
+      "if": {
+        "flag": "m6_apagon_visto"
+      },
+      "map": "san_antonio",
+      "x": 26,
+      "y": 10,
+      "name": "Los cuenteros (con velas)"
+    },
+    {
+      "if": {
+        "flag": "m6_helado",
+        "map": "san_antonio"
+      },
+      "map": "san_antonio",
+      "x": 27,
+      "y": 21,
+      "name": "La escalinata (Carrera 10)"
+    },
+    {
+      "if": {
+        "flag": "m6_helados_listos"
+      },
+      "map": "heladeria_corazones",
+      "x": 9,
+      "y": 5,
+      "name": "La mesa"
+    },
+    {
+      "if": {
+        "flag": "m6_rumbo_helado",
+        "map": "heladeria_corazones"
+      },
+      "map": "heladeria_corazones",
+      "x": 3,
+      "y": 4,
+      "name": "El mostrador"
+    },
+    {
+      "if": {
+        "flag": "m6_rumbo_helado",
+        "map": "san_antonio"
+      },
+      "map": "san_antonio",
+      "x": 46,
+      "y": 33,
+      "name": "Heladería Corazones"
+    },
+    {
+      "if": {
+        "flag": "m6_rumbo_helado"
+      },
+      "map": "centro_cali",
+      "x": 123,
+      "y": 31,
+      "name": "Hacia San Antonio"
+    },
+    {
+      "if": {
+        "flag": "m6_firmado"
+      },
+      "map": "centro_cali",
+      "x": 65,
+      "y": 33,
+      "name": "Puente Ortiz"
+    },
+    {
+      "if": {
+        "flag": "m6_con_sira"
+      },
+      "map": "centro_cali",
+      "x": 78,
+      "y": 31,
+      "name": "La firma de Amparo Ledesma"
+    },
+    {
+      "if": {
+        "flag": "m6_llego_centro"
+      },
+      "map": "centro_cali",
+      "x": 65,
+      "y": 27,
+      "name": "Sira (afuera de La Ermita)"
+    },
+    {
+      "if": {
+        "flag": "m6_tomo_t31"
+      },
+      "map": "centro_cali",
+      "x": 13,
+      "y": 12,
+      "name": "Estación Torre de Cali"
+    },
+    {
+      "if": {
+        "flag": "m6_llego_universidades",
+        "map": "guayacan_plaza"
+      },
+      "map": "guayacan_plaza",
+      "x": 12,
+      "y": 11,
+      "name": "Salida a la estación"
+    },
+    {
+      "if": {
+        "flag": [
+          "m6_llego_universidades",
+          "m6_afuera"
+        ],
+        "map": "universidades"
+      },
+      "map": "universidades",
+      "x": 41,
+      "y": 37,
+      "name": "Torniquetes de la estación"
+    },
+    {
+      "if": {
+        "flag": "m6_llego_universidades"
+      },
+      "map": "universidades",
+      "x": 47,
+      "y": 35,
+      "name": "Andén del T31"
+    },
+    {
+      "if": {
+        "flag": "m6_almorzo",
+        "map": "pance_casa"
+      },
+      "map": "pance_casa",
+      "x": 10,
+      "y": 10,
+      "name": "Salida"
+    },
+    {
+      "if": {
+        "flag": "m6_almorzo"
+      },
+      "map": "pance",
+      "x": 30,
+      "y": 6,
+      "name": "Paradero del P47"
+    },
+    {
+      "if": {
+        "flag": "m6_mandado",
+        "notFlag": "m6_mandado_ok",
+        "map": "pance_casa"
+      },
+      "map": "pance_casa",
+      "x": 10,
+      "y": 10,
+      "name": "Salida (a la tienda)"
+    },
+    {
+      "if": {
+        "flag": "m6_mandado",
+        "notFlag": "m6_mandado_ok"
+      },
+      "map": "pance",
+      "x": 13,
+      "y": 11,
+      "name": "Tienda de don Arcesio"
+    },
+    {
+      "if": {
+        "flag": "m6_sabado",
+        "map": "pance"
+      },
+      "map": "pance",
+      "x": 21,
+      "y": 6,
+      "name": "Casa de doña Mery"
+    },
+    {
+      "if": {
+        "flag": "m6_sabado"
+      },
+      "map": "pance_casa",
+      "x": 16,
+      "y": 4,
+      "name": "Doña Mery (en la cocina)"
+    },
+    {
+      "map": "pucc_piscina",
+      "x": 12,
+      "y": 22,
+      "name": "Sira (borde de la piscina)"
+    }
+  ],
+  "victoryEvent": "mision6_final",
+  "routes": [
+    {
+      "id": "t31",
+      "name": "P47 + T31",
+      "if": {
+        "flag": "m6_tomo_t31"
+      }
+    },
+    {
+      "id": "pie",
+      "name": "a pie hasta San Antonio",
+      "if": {
+        "flag": "m6_helado"
+      }
+    }
+  ],
+  "defaultRoute": "Bus",
+  "walkedSuffix": {
+    "if": {
+      "flag": "nunca"
+    },
+    "text": ""
+  },
+  "collectibles": [
+    "oblea",
+    "bombombun",
+    "fanzine_buziraco",
+    "tinto_feria"
+  ],
+  "bonuses": [
+    {
+      "text": "Cinco ejercicios aprendidos",
+      "if": {
+        "flag": "m6_clase_completa"
+      }
+    },
+    {
+      "text": "Le ganaste a Sira (con un brazo)",
+      "if": {
+        "flag": "m6_gano_carrera"
+      }
+    },
+    {
+      "text": "Puntual en La Ermita",
+      "if": {
+        "flag": "m6_puntual"
+      }
+    },
+    {
+      "text": "Alcanzaste al raponero",
+      "if": {
+        "flag": "m6_atrapo"
+      }
+    },
+    {
+      "text": "Adivinaste su helado",
+      "if": {
+        "flag": "m6_helado_acertado"
+      }
+    },
+    {
+      "text": "Libro a ciegas: el suyo",
+      "if": {
+        "flag": "m6_ciegas_ok"
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "flag": "secreto_profe_feria",
+      "name": "El profe Julián en la feria (no vio nada)"
+    },
+    {
+      "flag": "secreto_franceses",
+      "name": "Oh là là"
+    },
+    {
+      "flag": "secreto_buziraco",
+      "name": "Sobreviviste al Buziraco"
+    },
+    {
+      "flag": "secreto_lustrabotas",
+      "name": "Zapatos de cita"
+    },
+    {
+      "flag": "secreto_perfume",
+      "name": "Demasiado perfume"
+    },
+    {
+      "flag": "secreto_chile_feria",
+      "name": "El stand de Chile"
+    },
+    {
+      "flag": "m6_poema",
+      "name": "Poema express"
+    },
+    {
+      "flag": "m6_persecucion_limpia",
+      "name": "Persecución sin un tropezón"
+    },
+    {
+      "flag": "m6_grover_sabe",
+      "name": "Le dijiste la verdad a Grover"
+    }
+  ],
+  "endings": [
+    {
+      "id": "pura",
+      "name": "Química pura (y nada hasta ahí)",
+      "if": {
+        "flag": "m6_final_pura"
+      }
+    },
+    {
+      "id": "casi",
+      "name": "Casi, casi",
+      "if": {
+        "flag": "m6_final_casi"
+      }
+    },
+    {
+      "id": "amigos",
+      "name": "Amigos que se miran mucho"
+    }
+  ]
+}

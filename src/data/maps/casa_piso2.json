@@ -1,0 +1,36 @@
+{
+  "id": "casa_piso2",
+  "name": "Casa · Segundo piso",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 18,
+  "height": 9,
+  "background": "#14121a",
+  "music": "credits",
+  "legend": {"^": "muro_techo", "W": "casa_muro", "w": "casa_ventana", ".": "casa_piso", ",": "casa_baldosa", "T": "mesa_comedor", "h": "silla", "R": "refri", "K": "cocina", "M": "mueble_cocina", "L": "lavaplatos", "E": "casa_escalera", "D": "puerta_casa", "a": "alfombra", "s": "sofa", "v": "tele", "O": "ropero", "X": "escritorio_casa", "n": "velador", "b": "cama", "f": "cama_pies", "U": "wc", "Y": "ducha", "l": "lavamanos"},
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^",
+    "^WOWwWXnW^WlWUWYW^",
+    "^.......b^,,,,,,,^",
+    "^.......f^,,,,,,,^",
+    "^..aaa...^,,,,,,,^",
+    "^.........,,,,,,,^",
+    "^E........,,,,,,,^",
+    "^WWWWWWWWWWWWWWWW^",
+    "^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {"name": "Tu pieza", "subtitle": "Segundo piso", "x": 0, "y": 0, "w": 10, "h": 9},
+    {"name": "Baño", "subtitle": "Segundo piso", "x": 10, "y": 0, "w": 8, "h": 9}
+  ],
+  "spawns": {
+    "escalera": {"x": 2, "y": 6, "dir": "right"},
+    "cama": {"x": 8, "y": 2, "dir": "down"}
+  },
+  "warps": [
+    {"x": 1, "y": 6, "to": "casa_piso1", "spawn": "escalera"}
+  ],
+  "labels": [
+    {"x": 1, "y": 7.5, "text": "BAJA"}
+  ]
+}

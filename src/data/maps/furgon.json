@@ -1,0 +1,25 @@
+{
+  "id": "furgon",
+  "name": "Furgón a Pance",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 10,
+  "height": 6,
+  "background": "#0c0c14",
+  "music": "salsa",
+  "legend": {"k":"auto_carroceria","V":"furgon_ventana","T":"micro_tablero","s":"furgon_asiento",".":"micro_piso"},
+  "rows": [
+    "kkkkkkkkkk",
+    "kVVVVVVVVk",
+    "kTs.s.s..k",
+    "kTs.s.s..k",
+    "kVVVVVVVVk",
+    "kkkkkkkkkk"
+  ],
+  "spawns": {
+    "asiento": {"x":4,"y":2,"dir":"left"}
+  },
+  "enter": [
+    {"id":"viaje","dialogue":"furgon_inicio","if":{"notFlag":"llego_pance"}}
+  ]
+}

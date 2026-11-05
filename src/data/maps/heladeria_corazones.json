@@ -1,0 +1,93 @@
+{
+ "id": "heladeria_corazones",
+ "name": "Heladería Corazones",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 16,
+ "height": 10,
+ "music": "sira",
+ "background": "#2a1820",
+ "legend": {
+  "^": "muro_techo",
+  "M": "helado_muro",
+  "L": "helado_letrero",
+  "w": "helado_ventana",
+  ",": "helado_piso",
+  "V": "helado_vitrina",
+  "k": "helado_mostrador",
+  "t": "helado_mesa",
+  "s": "helado_silla",
+  "n": "helado_silla_n",
+  "D": "helado_puerta"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^",
+  "MMMLLMMwMMMMwMMM",
+  ",,,,,,,,,,,,,,,,",
+  "VVVVVkk,,,,,,,,,",
+  ",,,,,,,,,n,,,n,,",
+  ",,,,,,,,,t,,,t,,",
+  ",,,,,,,,,s,,,s,,",
+  ",,,,,,,,,,,,,,,,",
+  ",,,,,,,,,,,,,,,,",
+  "MMMMMMMDMMMMMMMM"
+ ],
+ "spawns": {
+  "puerta": {
+   "x": 7,
+   "y": 8,
+   "dir": "up"
+  },
+  "mesa": {
+   "x": 9,
+   "y": 6,
+   "dir": "up"
+  }
+ },
+ "warps": [
+  {
+   "x": 7,
+   "y": 9,
+   "to": "san_antonio",
+   "spawn": "heladeria",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     },
+     {
+      "flag": "m6_helado"
+     }
+    ]
+   },
+   "blockedDialogue": "m6_helado_no_salir"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "mesa",
+   "x": 8,
+   "y": 4,
+   "w": 7,
+   "h": 4,
+   "event": "helado_mesa",
+   "if": {
+    "mission": "mission06",
+    "flag": "m6_helados_listos",
+    "notFlag": "m6_helado"
+   }
+  }
+ ],
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m6_heladeria_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission06"
+   }
+  }
+ ]
+}

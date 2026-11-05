@@ -1,0 +1,65 @@
+{
+  "id": "scl_controles",
+  "name": "Aeropuerto de Santiago · Controles",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 40,
+  "height": 25,
+  "background": "#101422",
+  "music": "aeropuerto",
+  "legend": {"^":"muro_techo","W":"aero_muro","P":"puerta",".":"aero_piso","v":"aero_valla","K":"aero_caseta","M":"aero_meson","R":"aero_rayos","C":"aero_cinta","A":"aero_arco","D":"aero_estante","p":"aero_planta"},
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "^WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW^",
+    "^p................pW..................D^",
+    "^.....................................D^",
+    "^.....................................D^",
+    "^..................W...................^",
+    "^p................pWDDDDDDDDDDDDDDDD...^",
+    "^..................W...................^",
+    "^..................W...................^",
+    "^vRRRAvvRRRAvvRRRAvW...................^",
+    "^.CCC...CCC...CCC..W...................^",
+    "^..................W...DDDDDDDDDDDDDDDD^",
+    "^..................W...................^",
+    "^MMMMMMMM.MMMMMMMMMW...................^",
+    "^..................W...................^",
+    "^..................W...................^",
+    "^..................WDDDDDDDDDDDDDDDD...^",
+    "^vvK.vK.vK.vK.vK.vvW...................^",
+    "^..................W...................^",
+    "^..................W...................^",
+    "^vvvvvvvvvvvvvv....W...DDDDDDDDDDDDDDDD^",
+    "^..................W...................^",
+    "^..................W...................^",
+    "^WWPWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWPW^",
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {"name":"Control migratorio","subtitle":"PDI · Policía de Investigaciones","x":0,"y":17,"w":19,"h":8},
+    {"name":"Control SAG","subtitle":"Servicio Agrícola y Ganadero","x":0,"y":12,"w":19,"h":5},
+    {"name":"Control de seguridad","subtitle":"Rayos X y arcos detectores","x":0,"y":7,"w":19,"h":5},
+    {"name":"Duty Free","subtitle":"Libre de impuestos (no de precios)","x":19,"y":0,"w":21,"h":25},
+    {"name":"Zona de embarque","subtitle":"Sigue hacia el duty free y los espigones","x":0,"y":0,"w":19,"h":7}
+  ],
+  "spawns": {
+    "entrada": {"x":3,"y":22,"dir":"up"}
+  },
+  "warps": [
+    {"x":3,"y":23,"to":"scl_controles","spawn":"entrada","if":{"flag":"nunca"},"blockedDialogue":"no_volver"},
+    {"x":37,"y":23,"to":"scl_espigones","spawn":"llegada"}
+  ],
+  "labels": [
+    {"x":4.5,"y":16.5,"text":"CHILE"},
+    {"x":7.5,"y":16.5,"text":"CHILE"},
+    {"x":10.5,"y":16.5,"text":"EXTRANJ."},
+    {"x":13.5,"y":16.5,"text":"EXTRANJ."},
+    {"x":16.5,"y":16.5,"text":"TRIPUL."},
+    {"x":9.5,"y":23.5,"text":"PDI · CONTROL MIGRATORIO","color":"#f0d048"},
+    {"x":4.5,"y":14.5,"text":"SAG","color":"#f0d048"},
+    {"x":9.5,"y":7.5,"text":"CONTROL DE SEGURIDAD","color":"#f0d048"},
+    {"x":29,"y":1.5,"text":"DUTY FREE","color":"#f0d048"},
+    {"x":37.5,"y":22.5,"text":"ESPIGONES"}
+  ],
+  "crowd": {"lines":"aeropuerto","areas":[{"x":1,"y":18,"w":18,"h":2,"count":5,"dir":"up"},{"x":1,"y":21,"w":18,"h":2,"count":3,"dir":"up"},{"x":1,"y":14,"w":18,"h":2,"count":2,"dir":"up"},{"x":1,"y":11,"w":18,"h":1,"count":2,"dir":"up"},{"x":21,"y":7,"w":17,"h":3,"count":3},{"x":21,"y":17,"w":15,"h":3,"count":3}]}
+}

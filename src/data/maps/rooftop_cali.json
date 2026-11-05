@@ -1,0 +1,86 @@
+{
+  "id": "rooftop_cali",
+  "name": "Rooftop de Antoine",
+  "kind": "overworld",
+  "tileSize": 16,
+  "width": 22,
+  "height": 14,
+  "background": "#10142a",
+  "music": "rooftop",
+  "skyline": true,
+  "legend": {
+    "#": "vista_ciudad",
+    "-": "baranda_vidrio",
+    "[": "baranda_vidrio_o",
+    "]": "baranda_vidrio_e",
+    "W": "terraza_muro",
+    "D": "terraza_puerta",
+    ".": "deck",
+    "G": "parrilla",
+    "T": "mesa_terraza",
+    "h": "silla_terraza",
+    "N": "nevera_portatil",
+    "p": "planta_terraza",
+    "s": "sofa_terraza"
+  },
+  "rows": [
+    "######################",
+    "##WWWWWWWWDWWWWWWWWW##",
+    "##[p..........G.N.p]##",
+    "##[................]##",
+    "##[..TTTT.....sss..]##",
+    "##[..hhhh..........]##",
+    "##[................]##",
+    "##[...........TTT..]##",
+    "##[...........hhh..]##",
+    "##[p..............p]##",
+    "##------------------##",
+    "######################",
+    "######################",
+    "######################"
+  ],
+  "zones": [
+    {
+      "name": "Rooftop · Piso 21",
+      "subtitle": "Ciudad Jardín, sur de Cali",
+      "x": 0,
+      "y": 0,
+      "w": 22,
+      "h": 14
+    }
+  ],
+  "spawns": {
+    "llegada": {
+      "x": 10,
+      "y": 2,
+      "dir": "down"
+    }
+  },
+  "lights": [
+    {
+      "x": 3,
+      "y": 2.3,
+      "w": 16
+    },
+    {
+      "x": 3,
+      "y": 6.2,
+      "w": 16
+    }
+  ],
+  "labels": [
+    {
+      "x": 11,
+      "y": 12.5,
+      "text": "CALI DE NOCHE",
+      "color": "#f0d048"
+    }
+  ],
+  "enter": [
+    {
+      "id": "llegada",
+      "dialogue": "rooftop_llegada",
+      "once": true
+    }
+  ]
+}

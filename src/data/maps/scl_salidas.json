@@ -1,0 +1,70 @@
+{
+  "id": "scl_salidas",
+  "name": "Aeropuerto de Santiago · Salidas",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 46,
+  "height": 28,
+  "background": "#101422",
+  "music": "aeropuerto",
+  "legend": {"^":"muro_techo","W":"aero_muro","S":"aero_pantalla","P":"puerta",".":"aero_piso","C":"aero_cinta","M":"aero_meson","K":"aero_balanza","v":"aero_valla","k":"aero_kiosko","p":"aero_planta","G":"aero_ventanal","w":"vereda","=":"calle","-":"calle_linea_h","b":"banca"},
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "^WWWWWWWWWSWWWSWWWWWWPPPPWWWWWWSWWWSWWWWWWWWW^",
+    "^............................................^",
+    "^............................................^",
+    "^...............p............p...............^",
+    "^............................................^",
+    "^............................................^",
+    "^..CCCCCCCCCCCC..CCCCCCCCCCCC..CCCCCCCCCCCC..^",
+    "^..v..........v..v..........v..v..........v..^",
+    "^..MMMMKMMMMMMM..MMMMKMMMKMMM..MMMMMMMMKMMM..^",
+    "^............................................^",
+    "^..vvvvvvvvvv....vvvvvvvvvv......vvvvvvvvvv..^",
+    "^............................................^",
+    "^..................vvvvvvvvvv................^",
+    "^p..........................................p^",
+    "^..k.k.k..............................k.k.k..^",
+    "^............................................^",
+    "^............................................^",
+    "^p..........................................p^",
+    "^............................................^",
+    "GGGGGGGGGGGGGGGGGGGGGPPPPGGGGGGGGGGGGGGGGGGGGG",
+    "wwwwwwbwwwwwbwwwwwwwwwwwwwwwwwwwwbwwwwwbwwwwww",
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+    "==============================================",
+    "----------------------------------------------",
+    "==============================================",
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {"name":"Nivel 3 · Salidas","subtitle":"Aeropuerto de Santiago · Terminal 2","x":0,"y":21,"w":46,"h":7},
+    {"name":"Embarque internacional","subtitle":"Solo pasajeros","x":17,"y":1,"w":12,"h":4},
+    {"name":"Hall de check-in","subtitle":"Terminal 2 · Vuelos internacionales","x":0,"y":0,"w":46,"h":20}
+  ],
+  "spawns": {
+    "auto": {"x":22,"y":22,"dir":"up"},
+    "acceso": {"x":22,"y":5,"dir":"up"}
+  },
+  "warps": [
+    {"x":21,"y":1,"to":"scl_controles","spawn":"entrada","if":{"flag":"despedida"},"blockedDialogue":"acceso_bloqueado"},
+    {"x":22,"y":1,"to":"scl_controles","spawn":"entrada","if":{"flag":"despedida"},"blockedDialogue":"acceso_bloqueado"},
+    {"x":23,"y":1,"to":"scl_controles","spawn":"entrada","if":{"flag":"despedida"},"blockedDialogue":"acceso_bloqueado"},
+    {"x":24,"y":1,"to":"scl_controles","spawn":"entrada","if":{"flag":"despedida"},"blockedDialogue":"acceso_bloqueado"}
+  ],
+  "triggers": [
+    {"id":"despedida","x":21,"y":3,"w":4,"h":1,"event":"despedida","if":{"all":[{"hasItem":"pase"},{"notFlag":"despedida"}]}}
+  ],
+  "labels": [
+    {"x":23,"y":0.5,"text":"EMBARQUE INTERNACIONAL","color":"#f0d048"},
+    {"x":9,"y":6.5,"text":"ISLA A"},
+    {"x":23,"y":6.5,"text":"ISLA B · CORDILLERA AIR"},
+    {"x":37,"y":6.5,"text":"ISLA C"},
+    {"x":23,"y":25.5,"text":"NIVEL 3 · SALIDAS"}
+  ],
+  "crowd": {"lines":"aeropuerto","areas":[{"x":2,"y":14,"w":42,"h":3,"count":8},{"x":1,"y":2,"w":44,"h":3,"count":4},{"x":17,"y":12,"w":10,"h":1,"count":3,"dir":"up"},{"x":3,"y":12,"w":10,"h":2,"count":3,"dir":"up"},{"x":33,"y":12,"w":10,"h":2,"count":3,"dir":"up"},{"x":2,"y":21,"w":42,"h":1,"count":4}]},
+  "enter": [
+    {"id":"llegada","dialogue":"scl_llegada","once":true}
+  ]
+}

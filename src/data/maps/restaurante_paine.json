@@ -1,0 +1,39 @@
+{
+  "id": "restaurante_paine",
+  "name": "Restorán Las Sandías",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 20,
+  "height": 12,
+  "background": "#14121a",
+  "music": "credits",
+  "legend": {"^":"muro_techo","W":"resto_muro","c":"resto_cuadro","w":"resto_ventana",".":"resto_piso","T":"mesa_resto","h":"silla_resto","n":"silla_resto_n","B":"resto_meson","P":"puerta"},
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^",
+    "^WWcWwWWWcWWwWWcWWW^",
+    "^.............BBBB.^",
+    "^.nn...nn...nn.....^",
+    "^.TT...TT...TT.....^",
+    "^.hh...hh...hh.....^",
+    "^..................^",
+    "^.nn...nn...nn.....^",
+    "^.TT...TT...TT.....^",
+    "^.hh...hh...hh.....^",
+    "^WWWWWWWWWPWWWWWWWW^",
+    "^^^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {"name":"Restorán Las Sandías","subtitle":"Paine, capital de la sandía","x":0,"y":0,"w":20,"h":12}
+  ],
+  "spawns": {
+    "mesa": {"x":7,"y":9,"dir":"up"},
+    "puerta": {"x":10,"y":9,"dir":"up"}
+  },
+  "warps": [
+    {"x":10,"y":10,"to":"paine","spawn":"restaurante","if":{"any":[{"flag":"cena_terminada"},{"notFlag":"mision3_iniciada"}]},"blockedDialogue":"resto_no_salir"}
+  ],
+  "labels": [
+    {"x":10,"y":0.5,"text":"RESTORÁN LAS SANDÍAS"}
+  ],
+  "crowd": {"lines":"restaurante","seats":0.75}
+}

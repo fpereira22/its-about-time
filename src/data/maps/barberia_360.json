@@ -1,0 +1,104 @@
+{
+  "id": "barberia_360",
+  "name": "Barbería 360",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 18,
+  "height": 11,
+  "background": "#101018",
+  "music": "barberia",
+  "legend": {
+    "^": "muro_techo",
+    "W": "barber_muro",
+    "N": "barber_neon",
+    "e": "barber_espejo",
+    "P": "barber_poster",
+    "F": "barber_fotos",
+    "T": "barber_tv",
+    ".": "barber_piso",
+    "b": "barber_silla",
+    "x": "barber_estante",
+    "s": "barber_sofa",
+    "l": "barber_lavacabezas",
+    "o": "barber_planta",
+    "C": "barber_mostrador",
+    "$": "barber_mostrador",
+    "L": "barber_parlante",
+    "V": "barber_vitrina",
+    "D": "barber_puerta"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^",
+    "^WNWeWWeWWeWWPFWT^",
+    "^...b..b..b......^",
+    "^...............x^",
+    "^...............x^",
+    "^l..........ss..x^",
+    "^.............o..^",
+    "^CCC$...........L^",
+    "^...........ss...^",
+    "^VVVVVVVDVVVVVVVV^",
+    "^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {
+      "name": "Barbería 360",
+      "subtitle": "«Cortes de talla mundial» · Ciudad Pacífica",
+      "x": 0,
+      "y": 0,
+      "w": 18,
+      "h": 11
+    }
+  ],
+  "spawns": {
+    "puerta": {
+      "x": 8,
+      "y": 8,
+      "dir": "up"
+    },
+    "silla": {
+      "x": 7,
+      "y": 2,
+      "dir": "up"
+    },
+    "espera": {
+      "x": 12,
+      "y": 5,
+      "dir": "down"
+    }
+  },
+  "warps": [
+    {
+      "x": 8,
+      "y": 9,
+      "to": "ruta_barberia",
+      "spawn": "barberia",
+      "if": {
+        "any": [
+          {
+            "notFlag": "m5_en_corte"
+          },
+          {
+            "flag": "m5_corte"
+          }
+        ]
+      },
+      "blockedDialogue": "m5_barberia_no_salir"
+    }
+  ],
+  "labels": [
+    {
+      "x": 8.5,
+      "y": 0.5,
+      "text": "360 BARBER",
+      "color": "#38e0d8"
+    }
+  ],
+  "enter": [
+    {
+      "id": "llegada",
+      "dialogue": "m5_barberia_llegada",
+      "once": true
+    }
+  ]
+}

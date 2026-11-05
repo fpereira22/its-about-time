@@ -1,0 +1,180 @@
+{
+  "test_senora": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "flag": "hablo_con_senora" }, "goto": "otra_vez" },
+          { "goto": "saludo" }
+        ]
+      },
+      "saludo": {
+        "speaker": "Señora",
+        "text": [
+          "¡Hola, mijito! ¿Andai perdío?",
+          "El Costanera queda pa' allá, donde estaba el kiosco que ya no está. Después dobla donde había un perrito durmiendo... si es que sigue ahí."
+        ],
+        "choices": [
+          { "label": "¿Y dónde estaba el kiosco?", "goto": "kiosco" },
+          { "label": "Gracias, señora", "goto": "gracias" }
+        ]
+      },
+      "kiosco": {
+        "speaker": "Señora",
+        "text": "¡Pero si te estoy diciendo! Donde ya no está, po. Ay, la juventud de hoy...",
+        "effects": [{ "setFlag": "hablo_con_senora" }]
+      },
+      "gracias": {
+        "speaker": "Señora",
+        "text": "De nada. ¡Y abríguese, que está corriendo vientecito!",
+        "effects": [{ "setFlag": "hablo_con_senora" }]
+      },
+      "otra_vez": {
+        "speaker": "Señora",
+        "text": "¿Todavía por aquí? Ya te dije: donde estaba el kiosco."
+      }
+    }
+  },
+
+  "test_sopaipillas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "hasItem": "sopaipilla" }, "goto": "ya_compro" },
+          { "goto": "oferta" }
+        ]
+      },
+      "oferta": {
+        "speaker": "Tía de las sopaipillas",
+        "text": "¡Sopaipillas calentitas! A $500, con pebre o mostaza. ¿Le doy una?",
+        "choices": [
+          {
+            "label": "Sí, una ($500)",
+            "if": { "minMoney": 500 },
+            "effects": [{ "pay": 500 }, { "giveItem": "sopaipilla" }, { "setFlag": "hablo_con_tia_sopaipillas" }],
+            "goto": "gracias"
+          },
+          { "label": "No me alcanza...", "if": { "not": { "minMoney": 500 } }, "goto": "fiado" },
+          { "label": "Otro día", "goto": "chao" }
+        ]
+      },
+      "gracias": { "speaker": "Tía de las sopaipillas", "text": "¡Que le aproveche! Le quedan {plata}." },
+      "ya_compro": { "speaker": "Tía de las sopaipillas", "text": "¿Y? ¿Estaba buena o no? Vuelva cuando quiera." },
+      "fiado": { "speaker": "Tía de las sopaipillas", "text": "Ay, no se preocupe... pero fiado no le puedo dar, mijo." },
+      "chao": { "speaker": "Tía de las sopaipillas", "text": "Ya po, aquí voy a estar." }
+    }
+  },
+
+  "test_turista": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "flag": "ayudo_turista" }, "goto": "otra_vez" },
+          { "goto": "pregunta" }
+        ]
+      },
+      "pregunta": {
+        "speaker": "Turista",
+        "text": "Excuse me! Costanera Center? Which way, please?",
+        "choices": [
+          { "label": "East! Al oriente, todo derecho", "effects": [{ "setFlag": "ayudo_turista" }], "goto": "gracias" },
+          { "label": "Sorry, no English", "goto": "nada" }
+        ]
+      },
+      "gracias": {
+        "speaker": "Turista",
+        "text": "Thank you so much! Grasias, amigou! Take this, please.",
+        "effects": [{ "giveMoney": 1000 }]
+      },
+      "nada": { "speaker": "Turista", "text": "Oh... okay. Grasias anyway!" },
+      "otra_vez": { "speaker": "Turista", "text": "East! I remember. Thanks again!" }
+    }
+  },
+
+  "test_guardia": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "minBip": 800 }, "goto": "pasa" },
+          { "if": { "hasItem": "bip" }, "goto": "sin_saldo" },
+          { "goto": "sin_tarjeta" }
+        ]
+      },
+      "pasa": { "speaker": "Guardia", "text": "Su Bip! tiene {bip}. Adelante, buen viaje." },
+      "sin_saldo": {
+        "speaker": "Guardia",
+        "text": "Su Bip! tiene {bip}. Con eso no pasa ni a la esquina. Cárguela en la estación."
+      },
+      "sin_tarjeta": {
+        "speaker": "Guardia",
+        "text": "Sin Bip! no se puede, joven.",
+        "choices": [
+          { "label": "¿Me presta una?", "goto": "presta" },
+          { "label": "Ya, chao", "goto": "chao" }
+        ]
+      },
+      "presta": {
+        "speaker": "Guardia",
+        "text": "Bueno, tome esta que dejaron botada. Pero va sin saldo, ¿ah?",
+        "effects": [{ "giveItem": "bip" }, { "setFlag": "tiene_bip" }]
+      },
+      "chao": { "speaker": "Guardia", "text": "Que le vaya bien." }
+    }
+  },
+
+  "test_estudiante": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Estudiante",
+        "text": "Llevai {tiempo} dando vueltas. Yo llevo tres años en la U y todavía me pierdo."
+      }
+    }
+  },
+
+  "test_empanada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Hay una empanada envuelta en servilleta encima del pasto. ¡Todavía está tibia!",
+        "effects": [{ "giveItem": "empanada" }]
+      }
+    }
+  },
+
+  "test_maquina": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "hasItem": "bip" }, "goto": "menu" },
+          { "goto": "sin_tarjeta" }
+        ]
+      },
+      "sin_tarjeta": { "text": "CARGA TU TARJETA. (No tienes tarjeta Bip!)" },
+      "menu": {
+        "text": "CARGA TU TARJETA. Saldo actual: {bip}. Efectivo: {plata}.",
+        "choices": [
+          {
+            "label": "Cargar $1.000",
+            "if": { "minMoney": 1000 },
+            "effects": [{ "pay": 1000 }, { "chargeBip": 1000 }, { "setFlag": "bip_cargada" }],
+            "goto": "listo"
+          },
+          { "label": "Cancelar" }
+        ]
+      },
+      "listo": { "text": "¡Carga exitosa! Nuevo saldo: {bip}." }
+    }
+  },
+
+  "test_maquina_mala": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "text": "La pantalla dice FUERA DE SERVICIO. Alguien le pegó un post-it: \"está mala, usen la otra\"." }
+    }
+  }
+}

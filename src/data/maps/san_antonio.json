@@ -1,0 +1,392 @@
+{
+ "id": "san_antonio",
+ "name": "San Antonio",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 64,
+ "height": 50,
+ "region": "cali",
+ "music": "colina",
+ "background": "#2a3a2c",
+ "legend": {
+  ",": "ladera",
+  "\"": "pasto",
+  "T": "arbol",
+  ".": "vereda",
+  "k": "adoquin_rojo",
+  "a": "adoquin",
+  "s": "escalera_piedra",
+  "#": "muro_piedra",
+  "_": "mirador_baranda",
+  "g": "grada_piedra",
+  "F": "farol_colonial",
+  "K": "capilla_torre",
+  "c": "capilla_techo",
+  "m": "capilla_muro",
+  "p": "capilla_puerta",
+  "t": "teatrino",
+  "q": "ermita_atrio",
+  "v": "vista_ciudad",
+  "X": "edificio:colonial",
+  "H": "edificio:teja",
+  "D": "puerta_casa",
+  "B": "banca",
+  "b": "helado_puerta",
+  "Z": "cebra_v"
+ },
+ "rows": [
+  "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+  "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+  "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+  ",______________________________________,_______________________,",
+  ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"",
+  ",,T,,,,,,,,,,KK,,,,,,,,,,tttt,,,,,T,,,,,T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"",
+  ",,,,,,,,,,cccKKccc,,,,F,,tttt,,,F,,,,,,,\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"",
+  ",,,,,,,,,,cccccccc,,,,,,,,,,,,,,,,,,,,,,\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T",
+  ",,,,T,,,,,mmmmmmmm,,,,g,,,,,,,,g,,,,,T,,\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"",
+  ",,,,,,F,,,mmmppmmm,,,F,gggggggg,,,,,,,,,\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"",
+  ",,,,,,qqqqqqqqqqqqqqqq,,,,,,,,,,,,,,,,,,T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"",
+  ",T,,,,qqqqqqqqqqqqqqqq,,gggggg,,,,,,,,,,\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"",
+  ",,,,,,,,,F,,qaaq,,F,,,,,,,,,,,,,,,,T,,,,\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T",
+  ",,,,,,,,,,,,qaaq,,,,,,,,,,,,,,,,,,,,,,,,\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"",
+  ",,,,,,,,,,,,,aa,,,,,,,,,,,,,,,,,,,,,,,,,T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"",
+  ",,,,,,,,,,,,,aaaaaaaaaaaaaass,,,,,,,,,,,\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T",
+  ",,,,,,,,,,,,,aaaaaaaaaaaaFass,,,,,,,,,,,\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"",
+  ",,,,,T,,,,,,,,,,,,,,,,,,,,#ss#,,,T,,,,,,\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"",
+  ",,,,,,,,,,,,,,,,,,,,,,,,,,#ss#,,,,,,,,,,\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"",
+  ",,,,,,,,,,,T,,,,,,,,,,,,,,#ss#F,,,,,,T,,\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"",
+  ",,T,,,,,,,,,,,,,,,,,,,,,,,#ss#,,,,,,,,,,T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"",
+  "###########################ss###################################",
+  "..........................kss...........kk..........kk..........",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+  "........................F.kk...B..B...F.kk........F.kk.........F",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHHHH.kk.HHHHHXXXX",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHHHH.kk.HHHHHXXXX",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHHHH.kk.HHHHHXXXX",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHHHH.kk.HHHHHXXXX",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHHHH.kk.HHHHHXXXX",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHHHH.kk.HHHHHXXXX",
+  "XXDXXXHDHHHHDXXXXDHHHHDHX.kk.XHDHHHHDXX.kk.HHHbHHHH.kk.HHDHHXXDX",
+  "..........................kk............kk..........kk..........",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkZkkZkkkkkkkkkkZkkZkkkkkkkkZkkZkkkkkkkkk",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkZkkZkkkkkkkkkkZkkZkkkkkkkkZkkZkkkkkkkkk",
+  "........B...............F.kk..........F.kk........F.kk...B.....F",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHXXX.kk.HHHHHXXXX",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHXXX.kk.HHHHHXXXX",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHXXX.kk.HHHHHXXXX",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHXXX.kk.HHHHHXXXX",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHXXX.kk.HHHHHXXXX",
+  "XXXXXXHHHHHHXXXXXXHHHHHHX.kk.XHHHHHHXXX.kk.HHHHHXXX.kk.HHHHHXXXX",
+  "XXDXXXHDHHHHDXXXXDHHHHDHX.kk.XHDHHHHDXX.kk.HHDHHXXX.kk.HHDHHXXDX",
+  "..........................kk............kk..........kk..........",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+  "..........................kk............kk..........kk..........",
+  "XXXXXXXXXXXXXXXXXXXXXXXXX.kk.XXXXXXXXXX.kk.XXXXXXXX.kk.XXXXXXXXX",
+  "XXXXXXXXXXXXXXXXXXXXXXXXX.kk.XXXXXXXXXX.kk.XXXXXXXX.kk.XXXXXXXXX"
+ ],
+ "zones": [
+  {
+   "name": "Mirador de San Antonio",
+   "subtitle": "Cali de noche",
+   "x": 0,
+   "y": 3,
+   "w": 40,
+   "h": 2
+  },
+  {
+   "name": "Capilla de San Antonio",
+   "subtitle": "Colina de San Antonio (1747)",
+   "x": 6,
+   "y": 4,
+   "w": 16,
+   "h": 10
+  },
+  {
+   "name": "Los cuenteros",
+   "subtitle": "Colina de San Antonio",
+   "x": 22,
+   "y": 4,
+   "w": 11,
+   "h": 9
+  },
+  {
+   "name": "Colina de San Antonio",
+   "subtitle": "Parque",
+   "x": 0,
+   "y": 4,
+   "w": 40,
+   "h": 18
+  },
+  {
+   "name": "Heladería Corazones",
+   "subtitle": "Calle 2 con Carrera 9",
+   "x": 43,
+   "y": 33,
+   "w": 8,
+   "h": 4
+  },
+  {
+   "name": "Calle 1 Oeste",
+   "subtitle": "Barrio San Antonio",
+   "x": 0,
+   "y": 22,
+   "w": 64,
+   "h": 4
+  },
+  {
+   "name": "Calle 2",
+   "subtitle": "Barrio San Antonio",
+   "x": 0,
+   "y": 33,
+   "w": 64,
+   "h": 4
+  },
+  {
+   "name": "Calle 3",
+   "subtitle": "Barrio San Antonio",
+   "x": 0,
+   "y": 44,
+   "w": 64,
+   "h": 4
+  },
+  {
+   "name": "Carrera 10",
+   "subtitle": "Barrio San Antonio",
+   "x": 25,
+   "y": 22,
+   "w": 4,
+   "h": 28
+  },
+  {
+   "name": "Carrera 9",
+   "subtitle": "Barrio San Antonio",
+   "x": 39,
+   "y": 22,
+   "w": 4,
+   "h": 28
+  },
+  {
+   "name": "Carrera 6",
+   "subtitle": "Barrio San Antonio",
+   "x": 51,
+   "y": 22,
+   "w": 4,
+   "h": 28
+  }
+ ],
+ "spawns": {
+  "desde_bulevar": {
+   "x": 62,
+   "y": 35,
+   "dir": "left"
+  },
+  "heladeria": {
+   "x": 46,
+   "y": 33,
+   "dir": "down"
+  },
+  "atrio": {
+   "x": 14,
+   "y": 11,
+   "dir": "up"
+  },
+  "mirador": {
+   "x": 18,
+   "y": 4,
+   "dir": "up"
+  },
+  "escalinata": {
+   "x": 27,
+   "y": 23,
+   "dir": "up"
+  }
+ },
+ "warps": [
+  {
+   "x": 63,
+   "y": 34,
+   "to": "centro_cali",
+   "spawn": "desde_san_antonio",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     },
+     {
+      "notFlag": "m6_rumbo_helado"
+     },
+     {
+      "flag": "m6_bajando"
+     }
+    ]
+   },
+   "blockedDialogue": "m6_no_volver"
+  },
+  {
+   "x": 63,
+   "y": 35,
+   "to": "centro_cali",
+   "spawn": "desde_san_antonio",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     },
+     {
+      "notFlag": "m6_rumbo_helado"
+     },
+     {
+      "flag": "m6_bajando"
+     }
+    ]
+   },
+   "blockedDialogue": "m6_no_volver"
+  },
+  {
+   "x": 46,
+   "y": 32,
+   "to": "heladeria_corazones",
+   "spawn": "puerta",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     },
+     {
+      "notFlag": "m6_helado"
+     }
+    ]
+   },
+   "blockedDialogue": "m6_heladeria_cerrada"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "apagon",
+   "x": 13,
+   "y": 15,
+   "w": 16,
+   "h": 2,
+   "event": "apagon",
+   "if": {
+    "mission": "mission06",
+    "flag": "m6_helado",
+    "notFlag": "m6_apagon_visto"
+   }
+  },
+  {
+   "id": "cuentero",
+   "x": 22,
+   "y": 10,
+   "w": 10,
+   "h": 3,
+   "event": "cuentero_buziraco",
+   "if": {
+    "mission": "mission06",
+    "flag": "m6_apagon_visto",
+    "notFlag": "m6_buziraco"
+   }
+  },
+  {
+   "id": "mirador",
+   "x": 2,
+   "y": 4,
+   "w": 36,
+   "h": 1,
+   "event": "mirador_noche",
+   "if": {
+    "mission": "mission06",
+    "flag": "m6_buziraco",
+    "notFlag": "m6_mirador"
+   }
+  }
+ ],
+ "labels": [
+  {
+   "x": 46.5,
+   "y": 30,
+   "text": "CORAZONES",
+   "color": "#ffb8d0"
+  },
+  {
+   "x": 14,
+   "y": 4.4,
+   "text": "SAN ANTONIO"
+  }
+ ],
+ "crowd": {
+  "lines": "san_antonio",
+  "areas": [
+   {
+    "x": 0,
+    "y": 34,
+    "w": 24,
+    "h": 2,
+    "count": 4
+   },
+   {
+    "x": 29,
+    "y": 34,
+    "w": 10,
+    "h": 2,
+    "count": 2
+   },
+   {
+    "x": 23,
+    "y": 10,
+    "w": 8,
+    "h": 1,
+    "count": 3,
+    "dir": "up"
+   },
+   {
+    "x": 4,
+    "y": 4,
+    "w": 30,
+    "h": 1,
+    "count": 3,
+    "dir": "up"
+   }
+  ]
+ },
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m6_san_antonio_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission06"
+   }
+  }
+ ],
+ "lights": [
+  {
+   "x": 29,
+   "y": 32.6,
+   "w": 9
+  },
+  {
+   "x": 55,
+   "y": 32.6,
+   "w": 8
+  },
+  {
+   "x": 0,
+   "y": 32.6,
+   "w": 24
+  },
+  {
+   "x": 22,
+   "y": 7.3,
+   "w": 10
+  }
+ ]
+}

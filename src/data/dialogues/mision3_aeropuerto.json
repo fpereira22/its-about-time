@@ -1,0 +1,929 @@
+{
+  "scl_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Aeropuerto de Santiago, Terminal 2. Nivel 3: Salidas.",
+          "Taxis tocando la bocina, carros de maletas, abrazos, gente corriendo con el pasaporte en la boca."
+        ],
+        "next": "papa"
+      },
+      "papa": {
+        "speaker": "Papá",
+        "text": "Ya, yo dejo el auto en el estacionamiento y los alcanzo. ¡No se pierdan, que esto es más grande que Paine entero!",
+        "next": "mama"
+      },
+      "mama": {
+        "speaker": "Mamá",
+        "text": "Anda a hacer el check-in: Cordillera Air, isla B. Nosotros te esperamos al lado del acceso a Embarque Internacional, al fondo.",
+        "effects": [{ "objective": "Haz el check-in: Isla B · Cordillera Air" }]
+      }
+    }
+  },
+  "sag_control": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "notFlag": "pdi_ok" }, "goto": "antes" },
+          { "goto": "perro" }
+        ]
+      },
+      "antes": {
+        "speaker": "Agente SAG",
+        "text": "Primero el control migratorio, joven. Después pasa por aquí."
+      },
+      "perro": {
+        "text": "Recién pasada la PDI, un beagle con chaleco verde se te acerca moviendo la cola... y se sienta frente a tu mochila. Te mira fijo.",
+        "next": "agente"
+      },
+      "agente": {
+        "speaker": "Agente SAG",
+        "text": "Buenas noches, control del SAG. El perrito marcó su mochila. ¿Lleva frutas, verduras o algún producto de origen animal o vegetal?",
+        "choices": [
+          { "label": "No, nada", "goto": "revisar" },
+          { "label": "Solo sueños y esperanzas", "goto": "suenos" },
+          { "label": "Creo que mi mamá me echó algo...", "goto": "revisar" }
+        ]
+      },
+      "suenos": {
+        "speaker": "Agente SAG",
+        "text": "Esos no los detecta el perro. Abra la mochila, por favor.",
+        "next": "revisar"
+      },
+      "revisar": {
+        "branches": [
+          { "if": { "hasItem": "marraqueta" }, "goto": "marraqueta" },
+          { "if": { "hasItem": "manjar" }, "goto": "manjar" },
+          { "goto": "nada" }
+        ]
+      },
+      "marraqueta": {
+        "text": "Abres la mochila. Envuelta en servilleta, con un corazón dibujado: la marraqueta con palta de tu mamá.",
+        "next": "marraqueta_agente"
+      },
+      "marraqueta_agente": {
+        "speaker": "Agente SAG",
+        "text": [
+          "Ah, una marraqueta con palta. Para salir de Chile no hay problema...",
+          "...pero en Colombia el ICA no la va a dejar entrar. Productos vegetales frescos, no. Cómasela antes de aterrizar, ¿ya? Buen viaje."
+        ],
+        "effects": [{ "setFlag": "sag_aviso" }],
+        "next": "fin"
+      },
+      "manjar": {
+        "speaker": "Agente SAG",
+        "text": [
+          "¿Manjar? Ah, el perrito es goloso nomás. El manjar puede viajar, está sellado.",
+          "Eso sí: en la mochila no pasa el control de seguridad. Más de 100 ml en cabina, no. Ojalá lo hubiera echado en la maleta."
+        ],
+        "next": "fin"
+      },
+      "nada": {
+        "speaker": "Agente SAG",
+        "text": "Mmm, nada. Falsa alarma: este perro todo lo que huele a sopaipilla lo marca. Siga, buen viaje.",
+        "next": "fin"
+      },
+      "fin": {
+        "effects": [
+          { "setFlag": "sag_ok" },
+          { "objective": "Pasa el control de seguridad (rayos X)" }
+        ]
+      }
+    }
+  },
+  "agente_sag": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Agente SAG",
+        "text": "El SAG cuida el campo chileno. Y aquí, pasada la PDI, revisamos también a los que salen: uno nunca sabe con las paltas."
+      }
+    }
+  },
+  "beagle": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El beagle del SAG. Chaleco verde, orejas enormes, cara de «yo sé lo que llevai».",
+        "choices": [
+          { "label": "Hacerle cariño", "goto": "carino" },
+          { "label": "Mejor no, está trabajando" }
+        ]
+      },
+      "carino": {
+        "text": "Le rascas detrás de la oreja. El beagle cierra los ojos de felicidad y se le olvida que está de turno.",
+        "effects": [{ "setFlag": "secreto_beagle" }, { "sfx": "secret" }],
+        "next": "agente"
+      },
+      "agente": {
+        "speaker": "Agente SAG",
+        "text": "Se llama Pisco. No le diga a nadie, pero es el más regalón de todo el aeropuerto."
+      }
+    }
+  },
+  "familia_scl": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "flag": "despedida" }, "goto": "despues" },
+          { "if": { "hasItem": "pase" }, "goto": "con_pase" },
+          { "goto": "sin_pase" }
+        ]
+      },
+      "sin_pase": {
+        "speaker": "Mamá",
+        "text": "Primero el check-in, hijo: isla B, Cordillera Air. Aquí te esperamos, no nos movemos."
+      },
+      "con_pase": {
+        "speaker": "Mamá",
+        "text": "¿Ya tení el pase? Ven... acércate a la puerta. No me hagai esperar, que me pongo a llorar antes."
+      },
+      "despues": {
+        "speaker": "Mamá",
+        "text": "(Se seca los ojos) Anda, hijo, anda. Te quiero. ¡Llámame cuando llegues!"
+      }
+    }
+  },
+  "checkin": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "flag": "checkin" }, "goto": "ya" },
+          { "if": { "notItem": "maleta" }, "goto": "sin_maleta" },
+          { "goto": "hola" }
+        ]
+      },
+      "ya": {
+        "speaker": "Agente",
+        "text": "Su maleta ya va camino al avión. Embarque a la 01:10. ¡Revise las pantallas por si cambia la puerta!"
+      },
+      "sin_maleta": {
+        "speaker": "Agente",
+        "text": "¿Y su maleta, joven?"
+      },
+      "hola": {
+        "speaker": "Agente",
+        "text": "Buenas noches, bienvenido a Cordillera Air. ¿Cuál es su destino?",
+        "choices": [
+          { "label": "Cali, Colombia", "goto": "documento" },
+          { "label": "Lo más lejos posible de Optimización", "goto": "lejos" }
+        ]
+      },
+      "lejos": {
+        "speaker": "Agente",
+        "text": "Jaja. Tengo un vuelo a Cali, ¿le sirve? Debe ser lejos de Optimización, digo yo.",
+        "next": "documento"
+      },
+      "documento": {
+        "speaker": "Agente",
+        "text": "Su documento, por favor.",
+        "choices": [
+          { "label": "Pasarle el carnet", "if": { "hasItem": "carnet" }, "goto": "carnet" }
+        ]
+      },
+      "carnet": {
+        "speaker": "Agente",
+        "text": "Feli P., 23 años... perfecto, con la cédula chilena puede entrar a Colombia. Ponga la maleta en la balanza, por favor.",
+        "effects": [{ "event": "pesar_maleta" }]
+      }
+    }
+  },
+  "checkin_balanza": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Subes la maleta a la balanza. La pantallita verde marca: {peso},0 kg.",
+        "effects": [{ "sign": "balanza" }],
+        "branches": [
+          { "if": { "flag": "maleta_optima" }, "goto": "optima" },
+          { "goto": "normal" }
+        ]
+      },
+      "optima": {
+        "speaker": "Agente",
+        "text": "¿Veintitrés coma cero exactos? Llevo quince años en este counter y nunca había visto algo así. ¿Usted es ingeniero o qué?",
+        "next": "pase"
+      },
+      "normal": {
+        "speaker": "Agente",
+        "text": "Bajo el límite, muy bien. Usted no sabe la cantidad de gente que llega con 30 kilos y llora aquí mismo.",
+        "next": "pase"
+      },
+      "pase": {
+        "speaker": "Agente",
+        "text": [
+          "Aquí está su tarjeta de embarque: vuelo CA 742 a Cali, asiento 18A, ventana. Grupo 4.",
+          "Embarque a la 01:10 por la puerta E4. Revise igual las pantallas: a veces cambian la puerta a última hora."
+        ],
+        "effects": [
+          { "sign": "" },
+          { "doc": "show", "id": "pase" },
+          { "takeItem": "maleta" },
+          { "giveItem": "pase" },
+          { "setFlag": "checkin" },
+          { "message": "aero_pase" },
+          { "clock": "vie 23:15", "max": "vie 23:25" },
+          { "objective": "Despídete de tu familia (acceso a Embarque Internacional)" }
+        ]
+      }
+    }
+  },
+  "counter_otro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Agente",
+        "text": "Buenas noches. Este counter es de otra aerolínea: vuelos a Lima y Punta Cana. Cordillera Air está en la isla B, al medio."
+      }
+    }
+  },
+  "balanza": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Una balanza de equipaje. Te subes por curiosidad... y te bajas rápido. Hay cosas que es mejor no saber."
+      }
+    }
+  },
+  "pantalla_salidas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Buscas tu vuelo en la pantalla: CA 742 a Cali, 01:50, check-in en la isla B. A tiempo.",
+        "effects": [{ "board": "salidas_scl" }]
+      }
+    }
+  },
+  "kiosko": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Check-in automático. Pones tu nombre y la pantalla dice: «Su reserva incluye equipaje facturado. Diríjase al counter». Típico."
+      }
+    }
+  },
+  "acceso_bloqueado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "notItem": "pase" }, "goto": "sin_pase" },
+          { "goto": "familia" }
+        ]
+      },
+      "sin_pase": {
+        "speaker": "Guardia",
+        "text": "Acceso solo para pasajeros con tarjeta de embarque. Primero el check-in, joven."
+      },
+      "familia": {
+        "text": "Vas a pasar... y te detienes. Tu familia está ahí, a dos metros. No te puedes ir así nomás."
+      }
+    }
+  },
+  "despedida_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Llegó el momento.",
+          "Más allá de esa puerta, solo pasajeros. Tu familia se acerca. Nadie sabe muy bien qué decir."
+        ]
+      }
+    }
+  },
+  "despedida_papa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Papá",
+        "text": [
+          "Bueno, campeón... (se aclara la garganta) Pórtate bien. Estudia. Come.",
+          "Y si pasa algo, cualquier cosa, me llamai. A la hora que sea. ¿Estamos?"
+        ],
+        "choices": [
+          { "label": "Abrazar a tu papá", "effects": [{ "setFlag": "abrazo_papa" }], "goto": "abrazo" },
+          { "label": "Darle la mano", "goto": "mano" }
+        ]
+      },
+      "abrazo": {
+        "text": "Te da un abrazo de oso y te palmotea la espalda tres veces, como siempre. Cuando se separa, mira al techo un buen rato.",
+        "effects": [{ "vineta": "abrazo_papa" }]
+      },
+      "mano": {
+        "text": "Te da la mano. Firme. Muy de papá chileno. Se le tiembla un poquito la pera, pero hace como que no."
+      }
+    }
+  },
+  "despedida_hermano": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Hermano",
+        "text": "(con los ojos rojos) Toma. Es pa' ti. Te lo hice yo. No lo mirís ahora... bueno, míralo.",
+        "effects": [{ "giveItem": "dibujo" }],
+        "next": "dibujo"
+      },
+      "dibujo": {
+        "text": "Es un dibujo con lápices de colores: tú, mamá, papá y él, de la mano, con un avión arriba. Abajo dice: «VUELVE PRONTO». La N está al revés.",
+        "effects": [{ "vineta": "dibujo" }],
+        "choices": [
+          { "label": "Abrazarlo fuerte", "effects": [{ "setFlag": "abrazo_hermano" }], "goto": "abrazo" },
+          { "label": "Desordenarle el pelo", "goto": "pelo" }
+        ]
+      },
+      "abrazo": {
+        "speaker": "Hermano",
+        "text": "(llorando en tu polera) Igual me voy a quedar con tu pieza... pero te la devuelvo cuando vuelvas. Te lo juro.",
+        "effects": [{ "vineta": "abrazo_hermano" }]
+      },
+      "pelo": {
+        "speaker": "Hermano",
+        "text": "¡Ay! ...Ya. Ya. No estoy llorando. Es que me picó un ojo. Los dos ojos.",
+        "effects": [{ "vineta": "" }]
+      }
+    }
+  },
+  "despedida_mama": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mamá",
+        "text": [
+          "Mi niño... Parece que fue ayer que te iba a dejar al colegio en Paine, con la mochila más grande que tú.",
+          "Y ahora te vai a otro país. Solo. (Se le quiebra la voz.) Estoy tan, tan orgullosa de ti.",
+          "Llámame cuando llegues. Y todos los días. Y abrígate... bueno, allá hace calor, pero igual abrígate."
+        ],
+        "choices": [
+          { "label": "Te voy a extrañar, mamá", "goto": "extranar" },
+          { "label": "No llores, mamá... (se te quiebra la voz)", "goto": "llorar" },
+          { "label": "Abrazarla sin decir nada", "goto": "abrazo" }
+        ]
+      },
+      "extranar": {
+        "speaker": "Mamá",
+        "text": "Y yo a ti, hijo. Más que a nada en el mundo. Ven acá.",
+        "next": "abrazo"
+      },
+      "llorar": {
+        "speaker": "Mamá",
+        "text": "¿Y cómo no voy a llorar? Si tú también estai llorando, tonto. Ven acá.",
+        "next": "abrazo"
+      },
+      "abrazo": {
+        "text": "Te abraza fuerte, muy fuerte, como cuando eras chico y tenías pesadillas. Huele a su perfume de siempre. Los dos lloran.",
+        "effects": [{ "vineta": "abrazo_mama" }],
+        "next": "fin"
+      },
+      "fin": {
+        "speaker": "Mamá",
+        "text": "Te quiero mucho, hijo. Anda. Anda antes de que no te deje ir."
+      }
+    }
+  },
+  "despedida_final": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Se abrazan los cuatro. Nadie dice nada por un rato largo.",
+        "effects": [{ "vineta": "abrazo_familia" }],
+        "next": "puerta"
+      },
+      "puerta": {
+        "text": [
+          "Caminas hacia la puerta. Antes de pasar, miras para atrás: tu mamá se seca las lágrimas con la manga y te hace chao con la mano. Tu papá la abraza. Tu hermano levanta el pulgar.",
+          "Tú también lloras. Y no te da vergüenza."
+        ],
+        "effects": [
+          { "vineta": "" },
+          { "clock": "vie 23:35", "max": "vie 23:40" },
+          { "objective": "Pasa a Embarque Internacional (PDI, SAG y seguridad)" }
+        ]
+      }
+    }
+  },
+  "no_volver": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Esa puerta solo abre para el otro lado. Una vez que pasas, no hay vuelta atrás. Literal."
+      }
+    }
+  },
+  "pdi_chile": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "PDI",
+        "text": "Buenas noches. Documento, por favor.",
+        "choices": [
+          { "label": "Pasarle el carnet", "if": { "hasItem": "carnet" }, "goto": "carnet" }
+        ]
+      },
+      "carnet": {
+        "text": "Le pasas tu carnet. El funcionario lo mira, te mira, mira el carnet otra vez.",
+        "effects": [{ "doc": "show" }],
+        "next": "foto"
+      },
+      "foto": {
+        "speaker": "PDI",
+        "text": "¿Veintitrés años? En la foto sale de quince. ¿Qué le pasó?",
+        "effects": [{ "doc": "focus" }],
+        "choices": [
+          { "label": "Es la luz de la foto", "goto": "luz" },
+          { "label": "Un semestre de Optimización", "goto": "opti" }
+        ]
+      },
+      "luz": {
+        "speaker": "PDI",
+        "text": "La luz, claro. A mí en el carnet me sale el bigote más grande que el de verdad. Es la luz.",
+        "next": "motivo"
+      },
+      "opti": {
+        "speaker": "PDI",
+        "text": "¿Optimización? Mi sobrino también. Dice que tiene un profe calvo que se ríe solo y pierde lápices. ¿Será el mismo?",
+        "next": "motivo"
+      },
+      "motivo": {
+        "speaker": "PDI",
+        "text": "¿Motivo del viaje?",
+        "choices": [
+          { "label": "Intercambio estudiantil en Cali", "goto": "intercambio" },
+          { "label": "Aprender a bailar salsa", "goto": "salsa" },
+          { "label": "Huir de la prueba de Cálculo", "goto": "calculo" }
+        ]
+      },
+      "intercambio": {
+        "speaker": "PDI",
+        "text": "Muy bien. Un semestre, ¿no? Aproveche, que esas cosas pasan una vez.",
+        "next": "plata"
+      },
+      "salsa": {
+        "speaker": "PDI",
+        "text": "Jaja. Va al lugar indicado. Yo fui una vez a Cali y volví con dos pies izquierdos. Igual que me fui.",
+        "next": "plata"
+      },
+      "calculo": {
+        "speaker": "PDI",
+        "text": "Eso no es delito... todavía. Lo voy a anotar como «estudios».",
+        "next": "plata"
+      },
+      "plata": {
+        "speaker": "PDI",
+        "text": "Última pregunta: ¿lleva más de diez mil dólares en efectivo?",
+        "choices": [
+          { "label": "Ojalá", "goto": "fin" },
+          { "label": "Llevo {plata} chilenos", "goto": "fin" }
+        ]
+      },
+      "fin": {
+        "speaker": "PDI",
+        "text": "Jaja. Pase nomás, joven. ¡Buen viaje y saludos a Cali!",
+        "effects": [
+          { "sfx": "sello" },
+          { "doc": "stamp", "id": "pdi" },
+          { "setFlag": "pdi_ok" },
+          { "clock": "vie 23:50", "max": "vie 23:55" },
+          { "objective": "Pasa el control del SAG" }
+        ]
+      }
+    }
+  },
+  "pdi_extranjeros": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "PDI",
+        "text": "Esta fila es para extranjeros. ¿Usted es extranjero?",
+        "choices": [
+          { "label": "No, de Paine", "goto": "paine" },
+          { "label": "Un poquito", "goto": "poquito" }
+        ]
+      },
+      "paine": {
+        "speaker": "PDI",
+        "text": "Entonces a la fila de chilenos, mijo. La de la izquierda."
+      },
+      "poquito": {
+        "speaker": "PDI",
+        "text": "Nadie es extranjero «un poquito». Fila de chilenos. Izquierda. Gracias."
+      }
+    }
+  },
+  "pdi_tripulacion": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "PDI",
+        "text": "Esta fila es para tripulación y diplomáticos. ¿Usted es piloto?",
+        "choices": [
+          { "label": "Sí (mentira)", "goto": "mentira" },
+          { "label": "No", "goto": "no" }
+        ]
+      },
+      "mentira": {
+        "speaker": "PDI",
+        "text": "¿Y su uniforme? ¿Y su gorro? ¿Y esa mochila? Ya, a la fila de chilenos, caballero."
+      },
+      "no": {
+        "speaker": "PDI",
+        "text": "Entonces fila de chilenos, a la izquierda. Pero gracias por la honestidad."
+      }
+    }
+  },
+  "pdi_caseta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un funcionario de la PDI en su caseta, serio como foto de carnet. Ya te timbró: sigue derecho a Embarque."
+      }
+    }
+  },
+  "avsec": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "notFlag": "pdi_ok" }, "goto": "antes" },
+          { "goto": "bandeja" }
+        ]
+      },
+      "antes": {
+        "speaker": "Seguridad",
+        "text": "Primero el control migratorio, joven."
+      },
+      "bandeja": {
+        "speaker": "Seguridad",
+        "text": "Control de seguridad. Todo a la bandeja: celular, billetera, cinturón, chaqueta. ¿Lleva computador o líquidos?",
+        "choices": [
+          { "label": "Sacar todo a la bandeja", "goto": "rayos" },
+          { "label": "Sacarse también los zapatos, por si acaso", "goto": "zapatos" }
+        ]
+      },
+      "zapatos": {
+        "speaker": "Seguridad",
+        "text": "Los zapatos no, joven. Póngaselos. Por favor. Ahora.",
+        "next": "rayos"
+      },
+      "rayos": {
+        "branches": [
+          { "if": { "hasItem": "manjar" }, "goto": "manjar" },
+          { "goto": "limpio" }
+        ]
+      },
+      "manjar": {
+        "text": "La bandeja entra a los rayos X... y se detiene. La pantalla muestra dos frascos sospechosos.",
+        "effects": [{ "sign": "rayosx" }],
+        "next": "manjar_agente"
+      },
+      "manjar_agente": {
+        "speaker": "Seguridad",
+        "text": "¿Qué es esto? ¿Manjar? Son dos tarros de un kilo. En cabina no pasan más de 100 ml de líquidos o pastas.",
+        "choices": [
+          { "label": "¡Es pa' la familia de Cali!", "goto": "decomiso" },
+          { "label": "¿Y si me lo como aquí?", "goto": "comer" }
+        ]
+      },
+      "comer": {
+        "speaker": "Seguridad",
+        "text": "¿Dos kilos de manjar? ¿Ahora? No, joven. No me haga esto.",
+        "next": "decomiso"
+      },
+      "decomiso": {
+        "text": "Los tarros de manjar se quedan en Chile. (Debiste echarlos en la maleta.)",
+        "effects": [{ "sign": "" }, { "takeItem": "manjar" }, { "setFlag": "manjar_decomisado" }, { "sfx": "error" }],
+        "next": "pasar"
+      },
+      "limpio": {
+        "text": "Tu bandeja pasa por los rayos X sin drama.",
+        "next": "pasar"
+      },
+      "pasar": {
+        "text": "Cruzas el arco detector. Silencio. Ni un pitido. Recoges tus cosas.",
+        "effects": [
+          { "setFlag": "avsec_ok" },
+          { "clock": "sáb 00:00", "max": "sáb 00:10" },
+          { "objective": "Sigue por el duty free hasta los espigones" }
+        ]
+      }
+    }
+  },
+  "avsec_agente": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Seguridad",
+        "text": "Siga, siga. Recoja sus cosas de la bandeja y no se le olvide el celular. Siempre se les olvida el celular."
+      }
+    }
+  },
+  "dutyfree_vendedora": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Vendedora",
+        "text": "¡Buenas noches! ¿Quiere probar? Bombones de muestra, son gratis.",
+        "choices": [
+          { "label": "Sacar uno", "goto": "uno" },
+          { "label": "Sacar cinco", "goto": "cinco" }
+        ]
+      },
+      "uno": {
+        "text": "Te comes un bombón. Relleno de pisco sour. Te pone un poco más contento."
+      },
+      "cinco": {
+        "speaker": "Vendedora",
+        "text": "...Uno por persona, joven. Pero bueno, se va lejos. Lleve dos."
+      }
+    }
+  },
+  "perfume": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Probadores de perfume. Uno se llama «Eau de Paine»: «notas de sandía, pasto mojado y tren de las 7:30».",
+        "choices": [
+          { "label": "Echarte un poco", "goto": "echar" },
+          { "label": "No" }
+        ]
+      },
+      "echar": {
+        "text": "Ahora hueles a domingo en Paine. Te da una pena chiquitita, pero bonita.",
+        "effects": [{ "setFlag": "secreto_perfume" }, { "sfx": "secret" }]
+      }
+    }
+  },
+  "pisco": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Pisco, vino, chocolates y cobre «típico chileno». Precios en dólares. Retrocedes despacito."
+      }
+    }
+  },
+  "dutyfree_chocolates": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Chocolates del porte de un ladrillo. «Lleve dos, pague dos». Gran oferta."
+      }
+    }
+  },
+  "espigones_anuncio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Altoparlante",
+        "text": "Pasajeros del vuelo CA siete... ...con destino a Ca... se informa cambio de puer... ¡KRRRSH! ...gracias.",
+        "effects": [{ "sfx": "anuncio" }],
+        "next": "tu"
+      },
+      "tu": {
+        "text": [
+          "El altoparlante suena como radio a pilas. ¿Dijo «cambio de puerta»? ¿Dijo «Cali»? ¿O «Cancún»?",
+          "Lo más seguro: revisar las pantallas."
+        ],
+        "effects": [
+          { "clock": "sáb 00:15", "max": "sáb 00:50" },
+          { "objective": "Revisa las pantallas: ¿de qué puerta sale tu vuelo?" }
+        ]
+      }
+    }
+  },
+  "pantalla_espigon": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Recorres la pantalla buscando CA 742... ahí está. Y en rojo, parpadeando.",
+        "effects": [{ "board": "salidas_t2" }],
+        "next": "tu"
+      },
+      "tu": {
+        "text": "Tu vuelo cambió de la E4 a la D6. Otra vez cambio de sala, como en la prueba del Cuervo. El espigón D está a la izquierda.",
+        "effects": [{ "setFlag": "vio_cambio" }, { "objective": "Ve a la puerta D6 (espigón D, a la izquierda)" }]
+      }
+    }
+  },
+  "pantalla_d6": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Es aquí: puerta D6, vuelo a Cali. El embarque empieza a la 01:10.",
+        "effects": [{ "board": "puerta_d6" }, { "setFlag": "vio_cambio" }, { "objective": "Espera el embarque en la puerta D6" }]
+      }
+    }
+  },
+  "pantalla_e4": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Punta Cana. Ni una palabra de Cali.",
+        "effects": [{ "board": "puerta_e4" }]
+      }
+    }
+  },
+  "pantalla_puerta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La pantalla de esta puerta muestra otro vuelo. No es el tuyo."
+      }
+    }
+  },
+  "agente_puerta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Agente",
+        "text": "¿Cali? No, de esta puerta sale otro vuelo. Revise las pantallas, joven."
+      }
+    }
+  },
+  "agente_e4": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "flag": "vio_cambio" }, "goto": "sabe" },
+          { "goto": "equivocado" }
+        ]
+      },
+      "equivocado": {
+        "speaker": "Agente",
+        "text": [
+          "¿Cali? No, de aquí sale el vuelo a Punta Cana. ¿Usted va a Punta Cana? ¿No? Qué lástima, es bonito.",
+          "El de Cali cambió a la D6, al otro espigón. ¿No escuchó el anuncio? ...No, nadie lo escucha. Camine nomás."
+        ],
+        "effects": [{ "setFlag": ["puerta_equivocada", "vio_cambio"] }, { "message": "aero_cambio" }, { "objective": "Ve a la puerta D6 (espigón D, a la izquierda)" }]
+      },
+      "sabe": {
+        "speaker": "Agente",
+        "text": "Su vuelo está en la D6, joven. Espigón D, al otro lado. ¡Buen viaje!"
+      }
+    }
+  },
+  "agente_d6": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "flag": "embarcando" }, "goto": "buen_viaje" },
+          { "goto": "hola" }
+        ]
+      },
+      "hola": {
+        "speaker": "Agente",
+        "text": "Buenas noches. Vuelo CA 742 a Cali. Embarcamos a la 01:10, por grupos. Su pase dice grupo 4.",
+        "effects": [{ "setFlag": "vio_cambio" }],
+        "choices": [
+          { "label": "Esperar el embarque", "effects": [{ "event": "esperar_embarque" }] },
+          { "label": "¿Hay wifi?", "goto": "wifi" },
+          { "label": "Gracias" }
+        ]
+      },
+      "wifi": {
+        "speaker": "Agente",
+        "text": "La red se llama «Aeropuerto_Free». Free de funcionar, digamos. Puede sentarse a esperar."
+      },
+      "buen_viaje": {
+        "speaker": "Agente",
+        "text": "¡Buen viaje!"
+      }
+    }
+  },
+  "puerta_d6_cerrada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La puerta D6 sigue cerrada. Siéntate a esperar el embarque o habla con la agente."
+      }
+    }
+  },
+  "puerta_embarque_cerrada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Puerta de embarque cerrada. Este no es tu vuelo."
+      }
+    }
+  },
+  "espigon_c": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Espigón C: por aquí salen vuelos nacionales. Tu vuelo es internacional. Las pantallas no lo muestran."
+      }
+    }
+  },
+  "espigon_f": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Espigón F, el de la Patagonia: fotos de glaciares y guanacos. Lindo, pero tu vuelo no sale de aquí."
+      }
+    }
+  },
+  "mural_atacama": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un mural del desierto de Atacama: dunas, cielo sin nubes... y un guanaco que parece seguirte con la mirada."
+      }
+    }
+  },
+  "cafe_aeropuerto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Cafetería",
+        "text": "Café americano: $4.500. ¿Le sirvo uno?",
+        "choices": [
+          { "label": "Uno, por favor ($4.500)", "if": { "minMoney": 4500 }, "effects": [{ "pay": 4500 }, { "giveItem": "cafe" }], "goto": "gracias" },
+          { "label": "¿Cuatro mil quinientos?", "goto": "caro" }
+        ]
+      },
+      "gracias": {
+        "speaker": "Cafetería",
+        "text": "Que le aproveche. Y que tenga buen viaje."
+      },
+      "caro": {
+        "speaker": "Cafetería",
+        "text": "Es café de aeropuerto, joven. Viene con la vista a la pista incluida."
+      }
+    }
+  },
+  "sandwich_aeropuerto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Sándwich de jamón y queso: $9.900. Lo miras. Él te mira. Ninguno de los dos cede."
+      }
+    }
+  },
+  "hombre_misterioso": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Al fondo del espigón, un hombre calvo de terno negro mira la pista, de espaldas. No se mueve.",
+          "Murmura algo, muy bajito: «...lo más óptimo... no existe...»"
+        ],
+        "choices": [
+          { "label": "¿Profe Cuervo?", "goto": "cuervo" },
+          { "label": "Mejor no molestar" }
+        ]
+      },
+      "cuervo": {
+        "text": [
+          "Justo suena el altoparlante y te das vuelta un segundo.",
+          "Cuando vuelves a mirar... el asiento está vacío. Nadie camina por el pasillo.",
+          "Sobre el asiento quedó un lápiz rojo, mordisqueado en la punta."
+        ],
+        "effects": [{ "giveItem": "lapiz_rojo" }, { "setFlag": "secreto_lapiz" }, { "sfx": "secret" }]
+      }
+    }
+  },
+  "embarque_llamado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Altoparlante",
+        "text": "Pasajeros del vuelo CA 742 con destino a Cali: iniciamos el embarque por la puerta D6. Grupos 1 y 2: pasajeros preferentes y familias con niños.",
+        "next": "fila"
+      },
+      "fila": {
+        "text": "Al instante, la mitad de la sala se para y hace fila. Según ellos, todos son grupo 1.",
+        "choices": [
+          { "label": "Hacer la fila igual", "goto": "colado" },
+          { "label": "Esperar tu grupo", "goto": "grupo4" }
+        ]
+      },
+      "colado": {
+        "speaker": "Agente",
+        "text": "Su pase dice grupo 4, joven. Espere un poquito, ¿ya? (Detrás tuyo, la señora del grupo 5 también se va para atrás.)",
+        "next": "grupo4"
+      },
+      "grupo4": {
+        "speaker": "Altoparlante",
+        "text": "Grupos 3 y 4, pueden embarcar.",
+        "choices": [
+          { "label": "Mostrar tu tarjeta de embarque", "goto": "bip" }
+        ]
+      },
+      "bip": {
+        "speaker": "Agente",
+        "text": "*bip* 18A. ¡Buen viaje!",
+        "effects": [
+          { "sfx": "bip" },
+          { "setFlag": "embarcando" },
+          { "clock": "sáb 01:25", "max": "sáb 01:45" },
+          { "objective": "Encuentra tu asiento: 18A (ventana)" },
+          { "warp": { "map": "avion", "spawn": "manga" } }
+        ]
+      }
+    }
+  }
+}

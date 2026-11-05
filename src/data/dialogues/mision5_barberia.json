@@ -1,0 +1,1151 @@
+{
+  "m5_ruta_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Mediodía en punto. El sol de Cali cae a plomo y el asfalto huele a caliente.",
+          "La ruta: Calle 18 hacia el sur, después al oriente por la Carrera 121, cruzar la Calle 25 y seguir por la Carrera 120 hasta la 45A. Unos veinte minutos a pie."
+        ],
+        "effects": [
+          {
+            "clock": "mar 12:00",
+            "max": "mar 12:45"
+          },
+          {
+            "objective": "Camina a la Barbería 360 (Carrera 120 con Calle 45A)"
+          }
+        ]
+      }
+    }
+  },
+  "m5_cruce_25": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "La Calle 25: tres pistas para cada lado y un separador con palmas. Los carros pasan como si los persiguiera alguien.",
+          "El semáforo peatonal dura siete segundos. Un señor cruza caminando como si tuviera todo el tiempo del mundo. Lo tiene: es caleño."
+        ]
+      }
+    }
+  },
+  "m5_te_pasaste": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Esto ya es la Calle 45A y más allá... Te pasaste. La 360 quedó atrás: del lado norte de la Carrera 120, la de la fachada oscura con el poste de colores."
+      }
+    }
+  },
+  "m5_mango": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "mango_biche"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Vendedor de mango",
+        "text": "¡Mango biche, mango biche! Con sal, limón y pimienta. Tres mil la bolsita. Pa'l calor, joven, no hay nada mejor.",
+        "choices": [
+          {
+            "label": "Una bolsita ($3.000)",
+            "if": {
+              "minMoney": 3000
+            },
+            "effects": [
+              {
+                "pay": 3000
+              },
+              {
+                "giveItem": "mango_biche"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "¿Me indica la Barbería 360?",
+            "goto": "indica"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Vendedor de mango",
+        "text": "¡Eso! Cómaselo despacito, que el biche es bravo. Si le arde la lengua es porque está bueno."
+      },
+      "indica": {
+        "speaker": "Vendedor de mango",
+        "text": [
+          "¿Donde el Fredy? Siga derecho por la Carrera 120 hasta la 45A. Del lado izquierdo, la de los espejos y el poste de colores.",
+          "Pero vaya con tiempo, joven. Ese Fredy empieza a hablar y uno sale con barba."
+        ],
+        "next": "oferta"
+      },
+      "ya": {
+        "speaker": "Vendedor de mango",
+        "text": "¿Le gustó? Si le lagrimean los ojos, es la pimienta. O la emoción."
+      }
+    }
+  },
+  "m5_chance": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_chance_jugado"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Chancero",
+        "text": "¡Chance, chance! El de las tres de la tarde. Dos mil pesitos y escoge el número. Hoy amanecí con un presentimiento...",
+        "choices": [
+          {
+            "label": "Jugar el 777 ($2.000)",
+            "if": {
+              "minMoney": 2000
+            },
+            "effects": [
+              {
+                "pay": 2000
+              },
+              {
+                "setFlag": [
+                  "m5_chance_jugado",
+                  "m5_chance_777"
+                ]
+              }
+            ],
+            "goto": "jugado"
+          },
+          {
+            "label": "Jugar el 023 ($2.000)",
+            "if": {
+              "minMoney": 2000
+            },
+            "effects": [
+              {
+                "pay": 2000
+              },
+              {
+                "setFlag": [
+                  "m5_chance_jugado",
+                  "m5_chance_023"
+                ]
+              }
+            ],
+            "goto": "jugado"
+          },
+          {
+            "label": "Jugar el 360 ($2.000)",
+            "if": {
+              "minMoney": 2000
+            },
+            "effects": [
+              {
+                "pay": 2000
+              },
+              {
+                "setFlag": [
+                  "m5_chance_jugado",
+                  "m5_chance_360"
+                ]
+              }
+            ],
+            "goto": "jugado"
+          },
+          {
+            "label": "¿Qué presentimiento?",
+            "goto": "presentimiento"
+          },
+          {
+            "label": "No juego"
+          }
+        ]
+      },
+      "presentimiento": {
+        "speaker": "Chancero",
+        "text": "Soñé con un círculo. Una vuelta completa, ¿me entiende? Trescientos sesenta grados. No sé qué será. Yo solo vendo.",
+        "next": "oferta"
+      },
+      "jugado": {
+        "speaker": "Chancero",
+        "text": "Listo, aquí está su boleto. El resultado sale a las tres. Vuelva y me cuenta, que yo de aquí no me muevo.",
+        "effects": [
+          {
+            "vineta": "m5_chance"
+          }
+        ]
+      },
+      "ya": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_chance_cobrado"
+            },
+            "goto": "cobrado"
+          },
+          {
+            "if": {
+              "notFlag": "m5_corte"
+            },
+            "goto": "espere"
+          },
+          {
+            "if": {
+              "flag": "m5_chance_360"
+            },
+            "goto": "gano"
+          },
+          {
+            "goto": "perdio"
+          }
+        ]
+      },
+      "espere": {
+        "speaker": "Chancero",
+        "text": "Todavía no han jugado, joven. A las tres. Paciencia, que la suerte llega caminando."
+      },
+      "gano": {
+        "speaker": "Chancero",
+        "text": "¡JOVEN! ¡Salió el 360! ¡Se lo dije! ¡El círculo! Tome: veinte mil pesitos. Y deme la mano, que la suerte se pega.",
+        "effects": [
+          {
+            "giveMoney": 20000
+          },
+          {
+            "setFlag": [
+              "m5_chance_cobrado",
+              "secreto_chance"
+            ]
+          },
+          {
+            "sfx": "secret"
+          },
+          {
+            "vineta": "m5_chance"
+          }
+        ]
+      },
+      "perdio": {
+        "speaker": "Chancero",
+        "text": "Salió el 360. ¡El círculo! ¿Usted qué jugó? ...Ay, no. Bueno, la próxima. Yo le dije lo del círculo, ¿o no le dije?",
+        "effects": [
+          {
+            "setFlag": "m5_chance_cobrado"
+          }
+        ]
+      },
+      "cobrado": {
+        "speaker": "Chancero",
+        "text": "Mañana juega el de las tres otra vez. Pero ya no sueño nada, se me acabó la inspiración."
+      }
+    }
+  },
+  "m5_domino": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_domino"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "primera": {
+        "speaker": "Don Abelardo",
+        "text": [
+          "¡Capicúa! ...No, mentira, no era capicúa. Siéntese, mijo, mire y aprenda.",
+          "¿Va pa' donde el Fredy? Uy. ¿Usted es chileno? Prepárese, que a ese le encanta Chile."
+        ],
+        "effects": [
+          {
+            "setFlag": "m5_domino"
+          }
+        ],
+        "next": "efrain"
+      },
+      "efrain": {
+        "speaker": "Don Efraín",
+        "text": "Dice que vivió allá. Yo creo que vivió en el restaurante chileno de la Quinta, que ahí trabajó de mesero. Pero no se lo diga, que se pone bravo."
+      },
+      "otra": {
+        "speaker": "Don Abelardo",
+        "text": "¡Ahora sí, capicúa! ...Efraín, no me mire así. Esta sí vale."
+      }
+    }
+  },
+  "m5_tienda": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Tienda Doña Luz: gaseosas, galletas, minutos a celular y un letrero que dice «HOY NO FÍO, MAÑANA SÍ». El mañana nunca llega."
+      }
+    }
+  },
+  "m5_loro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_loro_2"
+            },
+            "goto": "tercera"
+          },
+          {
+            "if": {
+              "flag": "m5_loro_1"
+            },
+            "goto": "segunda"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "primera": {
+        "speaker": "Loro",
+        "text": "¡FREDY DEBE PLATA! ¡FREDY DEBE PLATA!",
+        "effects": [
+          {
+            "sfx": "loro"
+          },
+          {
+            "vineta": "m5_loro"
+          },
+          {
+            "setFlag": "m5_loro_1"
+          }
+        ],
+        "next": "senora"
+      },
+      "senora": {
+        "speaker": "Señora del loro",
+        "text": "¡Pepe! ¡Respete! Perdone, mijo. El Fredy me debe un corte de pelo de mi marido desde el 2019. Y Pepe no perdona."
+      },
+      "segunda": {
+        "speaker": "Loro",
+        "text": "¡CHIMBA! ¡QUÉ CHIMBA! ¡CRRAAA!",
+        "effects": [
+          {
+            "sfx": "loro"
+          },
+          {
+            "setFlag": "m5_loro_2"
+          }
+        ]
+      },
+      "tercera": {
+        "speaker": "Loro",
+        "text": "...¡AL TIRO, PO! ¡AL TIRO, PO!",
+        "effects": [
+          {
+            "sfx": "loro"
+          },
+          {
+            "setFlag": "secreto_loro"
+          },
+          {
+            "sfx": "secret"
+          },
+          {
+            "vineta": "m5_loro"
+          }
+        ],
+        "next": "explica"
+      },
+      "explica": {
+        "speaker": "Señora del loro",
+        "text": "Ay, eso se lo enseñó el Fredy. Todos los días pasa y le dice cosas en chileno. Pepe ya habla mejor chileno que él."
+      }
+    }
+  },
+  "m5_salpicon": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "salpicon"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Salpiconera",
+        "text": "¡Salpicón, salpicón! Sandía, papaya, banano, piña, mango, todo picadito en jugo de sandía. Cinco mil el vaso grande.",
+        "choices": [
+          {
+            "label": "Un salpicón ($5.000)",
+            "if": {
+              "minMoney": 5000
+            },
+            "effects": [
+              {
+                "pay": 5000
+              },
+              {
+                "giveItem": "salpicon"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "¿Usted conoce al Fredy?",
+            "goto": "fredy"
+          },
+          {
+            "label": "Ahora no"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Salpiconera",
+        "text": "Con cucharita, mi amor. Y si le sobra, ahí está la caneca. No me lo bote en la calle."
+      },
+      "fredy": {
+        "speaker": "Salpiconera",
+        "text": "¿El negro del 360? ¡Claro! Ese es un amor. Me peluquea al nieto gratis. Eso sí, uno entra niño y sale adolescente, de lo que habla.",
+        "next": "oferta"
+      },
+      "ya": {
+        "speaker": "Salpiconera",
+        "text": "¿Otro? Primero termínese ese. Que la fruta no se va a ningún lado, pero usted sí."
+      }
+    }
+  },
+  "m5_lavador": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Lavador de carros",
+        "text": "¿Le lavo el carro, patrón? ...¿No tiene carro? ¿Le lavo los zapatos, entonces? Es broma. A medias."
+      }
+    }
+  },
+  "m5_perro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un perro criollo color caramelo te huele los zapatos, mueve la cola y se echa a la sombra. En Cali hasta los perros duermen siesta.",
+        "effects": [
+          {
+            "sfx": "dog"
+          }
+        ]
+      }
+    }
+  },
+  "m5_poste": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El poste de la barbería da vueltas y vueltas: rojo, blanco, azul. Hipnotiza. Adentro suena salsa a todo volumen."
+      }
+    }
+  },
+  "m5_conjunto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La reja de un conjunto residencial: portería, citófono, piscina y un vigilante que te mira como si fueras a robarte el pasto."
+      }
+    }
+  },
+  "m5_autocine": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El Autocine: una pantalla gigante en medio de un potrero. De noche, la gente ve películas desde el carro. De día, la pantalla es blanca y las garzas la usan de baño."
+      }
+    }
+  },
+  "m5_lago_retiro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El lago El Retiro, detrás de la reja: garzas blancas paradas en una pata, patos y una iguana tomando sol en una piedra. ¿Será prima de la del campus?"
+      }
+    }
+  },
+  "m5_bodega": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Una bodega mayorista enorme. Venden mayonesa en baldes y papel higiénico de a 48 rollos. Todo es tamaño familia numerosa."
+      }
+    }
+  },
+  "m5_parque": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El Parque Principal de Ciudad Pacífica: unos niños juegan un picadito con arcos de chanclas y un señor vende cholados a la sombra."
+      }
+    }
+  },
+  "m5_barberia_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Abres la puerta y te golpea una pared de salsa: trompetas, timbales y un cantante que llora de felicidad. El aire acondicionado está en «Polo Norte».",
+          "Piso de ajedrez, espejos con bombillos, un mapamundi lleno de alfileres y, al centro, un hombre enorme con una máquina de cortar en cada mano."
+        ],
+        "effects": [
+          {
+            "clockMax": "mar 12:55"
+          }
+        ],
+        "next": "fredy"
+      },
+      "fredy": {
+        "speaker": "Fredy",
+        "text": [
+          "¡BIENVENIDO A LA 360, MI REY! ¡La única barbería de Cali con cortes de talla mundial!",
+          "Siéntese, póngase cómodo. Ya lo atiendo: termino con el señor y es suyo. Veinte minuticos."
+        ],
+        "effects": [
+          {
+            "vineta": "m5_fredy"
+          },
+          {
+            "objective": "Habla con Fredy cuando estés listo para el corte"
+          }
+        ]
+      }
+    }
+  },
+  "m5_fredy": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_corte"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Fredy",
+        "text": "¡Ya quedó el señor! ¿Qué le parece? Una obra de arte. ¿Y usted, mi rey? ¿Le hacemos el milagro?",
+        "choices": [
+          {
+            "label": "Sí, estoy listo",
+            "goto": "silla"
+          },
+          {
+            "label": "Doña Mery me mandó",
+            "goto": "mery"
+          },
+          {
+            "label": "Espere, miro un poco primero"
+          }
+        ]
+      },
+      "mery": {
+        "speaker": "Fredy",
+        "text": "¿Doña Mery, la de Pance? ¡Esa señora es una reina! Le corté el pelo al marido veinte años. Entonces a usted le hago precio de familia: el mismo, pero con más cariño.",
+        "next": "silla"
+      },
+      "silla": {
+        "speaker": "Fredy",
+        "text": "Venga, venga. La silla del medio, la de los campeones. Yeimar, ¡súbele a esa salsa!",
+        "effects": [
+          {
+            "setFlag": "m5_en_corte"
+          },
+          {
+            "event": "corte_pelo"
+          }
+        ]
+      },
+      "despues": {
+        "speaker": "Fredy",
+        "text": [
+          "Ya está, mi rey. Ahora vaya y conquiste el mundo. Yo ya lo conquisté, pero el mundo es grande y hay pa' todos.",
+          "Y vuelva en quince días, que el pelo crece aunque uno no lo mire."
+        ]
+      }
+    }
+  },
+  "m5_corte_1": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Fredy",
+        "text": [
+          "Le pongo la capa... así. Uy, mi rey, aquí hay trabajo. ¿Usted se cortó solo la última vez? ¿Con cuchillo de cocina?",
+          "Tranquilo. Para eso estamos. ¿Y usted de dónde es? Ese acentico no es de aquí."
+        ],
+        "effects": [
+          {
+            "vineta": "m5_corte_maquina"
+          },
+          {
+            "sfx": "maquina"
+          }
+        ],
+        "choices": [
+          {
+            "label": "De Chile",
+            "goto": "chile"
+          },
+          {
+            "label": "De Paine, al sur de Santiago",
+            "goto": "chile"
+          }
+        ]
+      },
+      "chile": {
+        "speaker": "Fredy",
+        "text": [
+          "¡¿CHILENO?! ¡Yo viví en Chile, huevón! ¡Al tiro! ¿Cachai? ¡Cuatro años! En Antofagasta, en una barbería de colombianos frente al mar.",
+          "Y después en Santiago, en Estación Central. ¿Usted conoce el Persa? ¡Ahí me compré estas tijeras! Las mejores del mundo. Bueno, del Persa."
+        ],
+        "choices": [
+          {
+            "label": "¡Al tiro, po! ¿Y le gustó Chile?",
+            "effects": [
+              {
+                "setFlag": "secreto_fredy_chile"
+              },
+              {
+                "sfx": "secret"
+              }
+            ],
+            "goto": "al_tiro"
+          },
+          {
+            "label": "¿En serio? ¿Y qué tal?",
+            "goto": "que_tal"
+          },
+          {
+            "label": "Eh... ¿y el corte?",
+            "goto": "corte"
+          }
+        ]
+      },
+      "al_tiro": {
+        "speaker": "Fredy",
+        "text": [
+          "¡¡¡AL TIRO, PO!!! ¡Yeimar, el chileno habla como en Chile! ¡Párale a la salsa, ponle una cueca! ...¿No tenemos cueca? Bueno, sigue la salsa.",
+          "Chile me encantó, mi rey. La marraqueta, el completo, el terremoto... Uy, el terremoto. El trago, digo. Del otro también me tocó uno."
+        ],
+        "next": "corte"
+      },
+      "que_tal": {
+        "speaker": "Fredy",
+        "text": "Frío, mi rey. ¡Frío! Yo llegué en junio con chanclas. Pero la gente es buena. Me decían «el negro Fredy» con cariño y me invitaban a asados con vino en caja.",
+        "next": "corte"
+      },
+      "corte": {
+        "speaker": "Fredy",
+        "text": "Bueno, bueno, al corte. ¿Qué le hacemos? Tengo de todo: el clásico, el moderno y el internacional.",
+        "choices": [
+          {
+            "label": "Un degradado, bien limpio",
+            "effects": [
+              {
+                "setFlag": "_corte_degradado"
+              }
+            ],
+            "goto": "eleccion"
+          },
+          {
+            "label": "Rápelo todo, maestro",
+            "effects": [
+              {
+                "setFlag": "_corte_rapado"
+              }
+            ],
+            "goto": "rapado"
+          },
+          {
+            "label": "¿Qué es el «internacional»?",
+            "goto": "internacional"
+          },
+          {
+            "label": "Lo que usted diga, maestro",
+            "effects": [
+              {
+                "setFlag": [
+                  "_corte_degradado",
+                  "m5_confio_fredy"
+                ]
+              }
+            ],
+            "goto": "confia"
+          }
+        ]
+      },
+      "internacional": {
+        "speaker": "Fredy",
+        "text": [
+          "El internacional es el que usa un cliente mío, un boliviano: corto adelante, largo atrás. Negocios adelante, fiesta atrás.",
+          "Él dice que en Cochabamba es lo máximo. Yo no he ido a Cochabamba, pero le creo. ¿Se lo hago?"
+        ],
+        "choices": [
+          {
+            "label": "¡Hágale! El internacional",
+            "effects": [
+              {
+                "setFlag": "_corte_mullet"
+              }
+            ],
+            "goto": "eleccion"
+          },
+          {
+            "label": "Mejor un degradado",
+            "effects": [
+              {
+                "setFlag": "_corte_degradado"
+              }
+            ],
+            "goto": "eleccion"
+          }
+        ]
+      },
+      "rapado": {
+        "speaker": "Fredy",
+        "text": "¿Todo? ¿Seguro? Con este calor, no es mala idea. Pero después no me llore, que el pelo no se pega con colbón.",
+        "next": "eleccion"
+      },
+      "confia": {
+        "speaker": "Fredy",
+        "text": "¡Eso! Un cliente que confía es un cliente que sale feliz. Le voy a hacer un degradado 360: perfecto por donde lo mire. Ese es el secreto del nombre.",
+        "next": "eleccion"
+      },
+      "eleccion": {
+        "speaker": "Fredy",
+        "text": "Listo. Cierre los ojos y déjese llevar. Como la salsa.",
+        "effects": [
+          {
+            "sfx": "maquina"
+          }
+        ]
+      }
+    }
+  },
+  "m5_corte_2": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Fredy",
+        "text": [
+          "Después de Chile me fui a Panamá. Y de Panamá a Madrid. Y de Madrid... a Dubái.",
+          "Bueno, Dubái fue una escala de seis horas en el aeropuerto, pero me tomé un café de diez dólares. Eso cuenta."
+        ],
+        "effects": [
+          {
+            "vineta": "m5_corte_tijera"
+          },
+          {
+            "sfx": "tijera"
+          }
+        ],
+        "choices": [
+          {
+            "label": "¿Y Japón?",
+            "goto": "japon"
+          },
+          {
+            "label": "¿Y por qué volvió a Cali?",
+            "goto": "volvio"
+          }
+        ]
+      },
+      "japon": {
+        "speaker": "Fredy",
+        "text": "¡Japón! Japón lo conozco mejor que un japonés. Por documentales. Me he visto todos. Sé decir «arigató» y cortar con tijeras de sushi.",
+        "next": "volvio"
+      },
+      "volvio": {
+        "speaker": "Fredy",
+        "text": [
+          "¿Y sabe por qué volví a Cali, mi rey? Porque en ninguna parte del mundo suena la salsa como aquí. Escuche esa trompeta. ¡Escúchela!",
+          "Eso no se escucha: se siente. Aquí, en el pecho."
+        ],
+        "effects": [
+          {
+            "sfx": "tijera"
+          }
+        ]
+      }
+    }
+  },
+  "m5_corte_3": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Fredy",
+        "text": "Y dígame una cosa, mi rey... ¿novia? ¿Allá en Chile? ¿Aquí? ¿Nada?",
+        "effects": [
+          {
+            "sfx": "maquina"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Nada por ahora",
+            "goto": "nada"
+          },
+          {
+            "label": "Eso es privado, Fredy",
+            "goto": "privado"
+          }
+        ]
+      },
+      "nada": {
+        "speaker": "Fredy",
+        "text": [
+          "¿Nada? Con este corte, eso se arregla hoy mismo. Se lo firmo. Yo tengo un don: veo el futuro en el pelo de la gente.",
+          "Y su pelo me dice... que hoy conoce a alguien. Chiquita. Que nada. Y que no se me ponga nervioso, que el corte le da seguridad."
+        ],
+        "next": "fin"
+      },
+      "privado": {
+        "speaker": "Fredy",
+        "text": [
+          "¡Ja! Privado, dice. En una barbería no hay nada privado, mi rey. Esto es como el confesionario, pero con salsa.",
+          "Igual se lo digo gratis: su pelo me dice que hoy conoce a alguien. Chiquita. Que nada. Acuérdese de Fredy."
+        ],
+        "next": "fin"
+      },
+      "fin": {
+        "text": "Fredy sigue hablando: de su tía en Buenaventura, de un concierto de salsa en Nueva York que vio por YouTube, del Mundial del 90... El reloj de la pared avanza. Y avanza.",
+        "effects": [
+          {
+            "sfx": "tijera"
+          }
+        ]
+      }
+    }
+  },
+  "m5_corte_espejo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Fredy",
+        "text": "¡Listo! Mírese, mi rey. Mírese bien. Por delante, por el lado, por detrás... 360 grados de perfección.",
+        "effects": [
+          {
+            "vineta": "m5_corte_espejo"
+          },
+          {
+            "sfx": "secret"
+          }
+        ],
+        "next": "reaccion"
+      },
+      "reaccion": {
+        "branches": [
+          {
+            "if": {
+              "flag": "corte_mullet"
+            },
+            "goto": "mullet"
+          },
+          {
+            "if": {
+              "flag": "corte_rapado"
+            },
+            "goto": "rapado"
+          },
+          {
+            "goto": "degradado"
+          }
+        ]
+      },
+      "degradado": {
+        "text": "En el espejo hay alguien que se parece a ti, pero con la vida resuelta. El degradado es perfecto: ni un pelo fuera de lugar.",
+        "next": "hora"
+      },
+      "rapado": {
+        "text": "En el espejo, una cabeza brillante como bola de billar. Se siente el aire acondicionado directo en el cerebro. Fresquísimo.",
+        "next": "hora"
+      },
+      "mullet": {
+        "text": "En el espejo: negocios adelante, fiesta atrás. Es... es algo. Es definitivamente algo. Fredy está emocionado. Tú todavía lo estás procesando.",
+        "next": "hora"
+      },
+      "hora": {
+        "text": "Miras el reloj de la pared: 15:40. ¡Tres horas y media! Fredy ni se inmuta: «Veinte minuticos, le dije. Minuticos caleños».",
+        "next": "pagar"
+      },
+      "pagar": {
+        "speaker": "Fredy",
+        "text": "Son veinticinco mil, mi rey. Pa' usted, chileno, veinticinco mil. Igual. Pero con cariño.",
+        "choices": [
+          {
+            "label": "Pagar $25.000",
+            "if": {
+              "minMoney": 25000
+            },
+            "effects": [
+              {
+                "pay": 25000
+              }
+            ],
+            "goto": "pagado"
+          },
+          {
+            "label": "Pagar $30.000 (con propina)",
+            "if": {
+              "minMoney": 30000
+            },
+            "effects": [
+              {
+                "pay": 30000
+              },
+              {
+                "setFlag": "m5_propina"
+              }
+            ],
+            "goto": "propina"
+          },
+          {
+            "label": "No me alcanza...",
+            "if": {
+              "not": {
+                "minMoney": 25000
+              }
+            },
+            "goto": "fiado"
+          }
+        ]
+      },
+      "pagado": {
+        "speaker": "Fredy",
+        "text": "¡Gracias, mi rey! Vaya con Dios y con ese pelo.",
+        "next": "fin"
+      },
+      "propina": {
+        "speaker": "Fredy",
+        "text": "¡Uy! ¡Propina! ¡Usted sí es un chileno de verdad! Yeimar, anota: este cliente es VIP. Corte con tinto gratis de por vida.",
+        "next": "fin"
+      },
+      "fiado": {
+        "speaker": "Fredy",
+        "text": "Tranquilo, mi rey. Me paga la próxima. Yo confío. Pepe el loro dice que yo debo plata, pero yo también presto.",
+        "next": "fin"
+      },
+      "fin": {
+        "text": "Te vibra el celular. Es Grover, el boliviano de tu clase de Simulación.",
+        "effects": [
+          {
+            "setFlag": "m5_corte"
+          },
+          {
+            "message": "grover_parqueadero"
+          },
+          {
+            "clockMax": "mar 16:25"
+          },
+          {
+            "objective": "Vuelve a la U: Grover te espera en el parqueadero principal (al norte)"
+          }
+        ]
+      }
+    }
+  },
+  "m5_barberia_no_salir": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Fredy",
+        "text": "¡Mi rey! ¿Pa' dónde va con medio corte? ¡Siéntese, que no he terminado! ¡Me arruina la reputación!"
+      }
+    }
+  },
+  "m5_yeimar": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_corte"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Yeimar",
+        "text": [
+          "Yo soy Yeimar, el ayudante. Barro el pelo y le subo la salsa. Llevo dos años aprendiendo.",
+          "Un consejo: si Fredy le pregunta si conoce Dubái, diga que no. Si dice que sí, son dos horas más."
+        ]
+      },
+      "despues": {
+        "speaker": "Yeimar",
+        "text": "¿Tres horas y media? Tuvo suerte. El récord es de seis. Un argentino. Se quedó a almorzar y todo."
+      }
+    }
+  },
+  "m5_cliente": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Don Aurelio",
+        "text": "Yo vengo todos los martes. No por el corte: ya no me queda pelo. Vengo por las historias. Hoy toca Dubái. Va a ver."
+      }
+    }
+  },
+  "m5_mapamundi": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un mapamundi lleno de alfileres rojos: Cali, Antofagasta, Santiago, Panamá, Madrid, Dubái... y uno en la Antártida. Con un signo de pregunta.",
+        "effects": [
+          {
+            "vineta": "m5_mapamundi"
+          }
+        ]
+      }
+    }
+  },
+  "m5_fotos": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Fotos enmarcadas: «Fredy en la Torre Eiffel», «Fredy en las Torres del Paine», «Fredy en Dubái».",
+          "Si miras bien, en las tres está el mismo fondo de cartón pintado. Y en la de Dubái, atrás, se ve el letrero de una panadería de Palmira."
+        ],
+        "effects": [
+          {
+            "vineta": "m5_fotos"
+          }
+        ]
+      }
+    }
+  },
+  "m5_tele_barberia": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "En la tele, un partido repetido del 2001. Fredy se lo sabe de memoria y lo narra adelantándose dos segundos."
+      }
+    }
+  },
+  "m5_parlante": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un parlante del tamaño de una nevera. La salsa sale de ahí con tanta fuerza que el agua del lavacabezas hace ondas.",
+        "choices": [
+          {
+            "label": "Pedir otra canción",
+            "goto": "otra"
+          },
+          {
+            "label": "Dejarla así"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Fredy",
+        "text": "¿Otra? ¡Claro, mi rey! Yeimar, ponle la otra. ...No, esa no, esa es de despecho. La otra. ¡La de los timbales!",
+        "effects": [
+          {
+            "sfx": "select"
+          }
+        ]
+      }
+    }
+  },
+  "m5_espejo_barberia": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_corte"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "text": "El espejo, con sus bombillos de camerino, no tiene piedad: ilumina cada pelo rebelde. Son muchos.",
+        "effects": [
+          {
+            "vineta": "m5_espejo_pelo"
+          }
+        ]
+      },
+      "despues": {
+        "text": "Te miras otra vez. Y otra. Fredy te pilla y te guiña un ojo por el espejo.",
+        "effects": [
+          {
+            "vineta": "m5_corte_espejo"
+          }
+        ]
+      }
+    }
+  },
+  "m5_estante": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Ceras, lociones y una colonia llamada «Conquista Mundial». La etiqueta tiene una foto de Fredy guiñando el ojo."
+      }
+    }
+  },
+  "m5_mostrador": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La caja registradora, un frasco de bombones y un letrero escrito a mano: «Aquí se fía... la conversación»."
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "carro_grover",
+  "name": "El cacharro de Grover",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 9,
+  "height": 6,
+  "background": "#0c0c14",
+  "music": "morenada",
+  "legend": {
+    "k": "auto_carroceria",
+    "V": "auto_ventana",
+    "T": "auto_tablero",
+    "s": "auto_asiento",
+    ".": "auto_piso"
+  },
+  "rows": [
+    "kkkkkkkkk",
+    "kVVVVVVVk",
+    "kTs.s...k",
+    "kTs.s...k",
+    "kVVVVVVVk",
+    "kkkkkkkkk"
+  ],
+  "spawns": {
+    "asiento": {
+      "x": 2,
+      "y": 3,
+      "dir": "left"
+    }
+  },
+  "enter": [
+    {
+      "id": "viaje",
+      "dialogue": "m5_auto_grover"
+    }
+  ]
+}

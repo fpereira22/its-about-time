@@ -1,0 +1,267 @@
+{
+  "ascensor": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "ASCENSOR. ¿A qué piso vas?",
+        "effects": [{ "sign": "botonera_ascensor" }],
+        "choices": [
+          { "label": "Pisos -1 a 3", "goto": "bajos" },
+          { "label": "Pisos 4 a 6", "goto": "altos" },
+          { "label": "Cancelar" }
+        ]
+      },
+      "bajos": {
+        "text": "ASCENSOR. ¿A qué piso vas?",
+        "choices": [
+          { "label": "-1 · Supermercado", "effects": [{ "sfx": "elevator" }, { "warp": { "map": "costanera_m1", "spawn": "ascensor" } }] },
+          { "label": "1 · Acceso Providencia", "effects": [{ "sfx": "elevator" }, { "warp": { "map": "costanera_1", "spawn": "ascensor" } }] },
+          { "label": "2 · Moda", "effects": [{ "sfx": "elevator" }, { "warp": { "map": "costanera_2", "spawn": "ascensor" } }] },
+          { "label": "3 · Tecnología", "effects": [{ "sfx": "elevator" }, { "warp": { "map": "costanera_3", "spawn": "ascensor" } }] },
+          { "label": "Volver", "goto": "inicio" }
+        ]
+      },
+      "altos": {
+        "text": "ASCENSOR. ¿A qué piso vas?",
+        "choices": [
+          { "label": "4 · Deportes y juguetes", "effects": [{ "sfx": "elevator" }, { "warp": { "map": "costanera_4", "spawn": "ascensor" } }] },
+          { "label": "5 · Patio de comidas", "effects": [{ "sfx": "elevator" }, { "warp": { "map": "costanera_5", "spawn": "ascensor" } }] },
+          { "label": "6 · Cine", "effects": [{ "sfx": "elevator" }, { "warp": { "map": "costanera_6", "spawn": "ascensor" } }] },
+          { "label": "61 · Sky Costanera", "goto": "sky" },
+          { "label": "Volver", "goto": "inicio" }
+        ]
+      },
+      "sky": {
+        "text": [
+          "Aprietas el botón 61... El ascensor tiembla, sube un poquito y vuelve a bajar.",
+          "VOZ: «Este ascensor llega hasta el piso 6. Para el mirador, use el ascensor del mirador.»",
+          "Te quedas mirando el botón. Nadie sabe por qué existe."
+        ],
+        "effects": [{ "setFlag": "secreto_sky" }]
+      }
+    }
+  },
+
+  "llamada_mama_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mamá (llamada)",
+        "text": [
+          "¿Aló? ¿Hijo? ¿Leíste mi mensaje? ¡Nunca contestai!",
+          "Oye, si no te alcanza la Bip!, cárgala desde la app del celu: aprieta Q, abre la app Bip! y listo. ¡Ya, chao, te quiero!"
+        ],
+        "effects": [{ "message": "mama_app_bip" }]
+      }
+    }
+  },
+
+  "llamada_mama_costanera": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mamá (llamada)",
+        "text": [
+          "¿Aló? ¿Llegaste al Costanera? ¡Qué bueno, hijo!",
+          "Yo ando dando vueltas... Te mando un mensaje con el piso. Búscame, ¿ya? Hay ascensor y escaleras mecánicas."
+        ],
+        "effects": [{ "objective": "Encuentra a tu mamá (revisa los mensajes: Q)" }]
+      }
+    }
+  },
+
+  "mama_encuentro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mamá",
+        "text": "¡Hijo! ¡Por fin! Pensé que te habías ido a Puente Alto de nuevo.",
+        "branches": [
+          { "if": { "flag": "quiltro_sigue" }, "goto": "perro" },
+          { "goto": "ruta" }
+        ]
+      },
+      "perro": {
+        "speaker": "Mamá",
+        "text": "Y... ¿ese perro que está afuera mirándote por el vidrio? ...Ya, bueno, se viene con nosotros. Pero tú lo bañai.",
+        "next": "ruta"
+      },
+      "ruta": {
+        "branches": [
+          { "if": { "all": [{ "flag": "ruta_metro" }, { "notFlag": "bajo_antes" }] }, "goto": "metro" },
+          { "if": { "all": [{ "flag": "ruta_micro" }, { "notFlag": "bajo_antes" }] }, "goto": "micro" },
+          { "goto": "pie" }
+        ]
+      },
+      "metro": { "speaker": "Mamá", "text": "¿Viniste en metro? Así me gusta: rápido y sin perderse.", "next": "final" },
+      "micro": { "speaker": "Mamá", "text": "¿En micro? ¿Y tocaste el timbre a tiempo? ¡Estoy orgullosa!", "next": "final" },
+      "pie": { "speaker": "Mamá", "text": "¿Caminaste? ¡Con razón te demoraste! Pero seguro conociste harto.", "next": "final" },
+      "final": {
+        "speaker": "Mamá",
+        "text": "Ya, vamos a comer algo. Yo invito... con tu Bip!. Mentira. ¡Vamos!",
+        "effects": [{ "event": "encontrar_mama" }]
+      }
+    }
+  },
+
+  "guardia_costanera": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "flag": "quiltro_sigue" }, "goto": "perro" },
+          { "goto": "normal" }
+        ]
+      },
+      "perro": {
+        "speaker": "Guardia",
+        "text": "Su perrito lo espera afuera, joven. Se sentó en la puerta y ya tiene tres fans sacándole fotos."
+      },
+      "normal": { "speaker": "Guardia", "text": "Bienvenido al Costanera. Ascensor al fondo, escaleras mecánicas a los lados." }
+    }
+  },
+
+  "info_costanera": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Informaciones",
+        "text": "-1 supermercado, 1 acceso, 2 moda, 3 tecnología, 4 deportes, 5 patio de comidas, 6 cine. ¿Busca a alguien? Revise su celular, joven, que para eso está."
+      }
+    }
+  },
+
+  "cajera": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "speaker": "Cajera", "text": "¿Tiene tarjeta del súper? ¿Le doy boleta? ¿Quiere donar un peso? ...¿No? Pase nomás." }
+    }
+  },
+
+  "senor_auto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "speaker": "Señor", "text": "¿Usted no habrá visto un auto gris? Lo dejé aquí hace dos horas... o en el piso -2. O en otro mall." }
+    }
+  },
+
+  "vendedora_ropa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "speaker": "Vendedora", "text": "¿Le muestro algo? Tenemos chaquetas de invierno en pleno verano y poleras en pleno invierno." }
+    }
+  },
+
+  "senora_bolsas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "speaker": "Señora", "text": "Vine por un calcetín y llevo nueve bolsas. Es que estaba todo en oferta, mijo." }
+    }
+  },
+
+  "vendedor_celulares": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Vendedor",
+        "text": [
+          "¿Ese es su celular? ¡Qué clásico! Tiene hasta la culebrita.",
+          "Dicen que si haces 10 puntos pasa algo. Yo llegué a 9 y me temblaron las manos."
+        ]
+      }
+    }
+  },
+
+  "gamer": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "speaker": "Gamer", "text": "Shhh, estoy speedrunneando el mall. Récord: llegar del metro al cine en 2 minutos. ¿Tú cuánto llevai? ({tiempo})" }
+    }
+  },
+
+  "nino_balon": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "speaker": "Niño", "text": "¡Quiero ese balón! ¡Y esa bici! ¡Y ese peluche de alpaca! Mi mamá dice que \"después\"." }
+    }
+  },
+
+  "vendedor_deportes": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "speaker": "Vendedor", "text": "¿Zapatillas para correr? Con lo que caminó por Providencia ya se ganó unas, joven." }
+    }
+  },
+
+  "comensal": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "speaker": "Comensal", "text": "La fila del sushi da la vuelta al piso. Yo me pedí un completo y fui feliz." }
+    }
+  },
+
+  "turista_mall": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "flag": "ayudo_turista" }, "goto": "amigo" },
+          { "goto": "normal" }
+        ]
+      },
+      "amigo": { "speaker": "Turista", "text": "Amigou! I made it! East was right. Now I'm eating my first completo. Grasias!" },
+      "normal": { "speaker": "Turista", "text": "I finally found it! Somebody sent me west first... very funny, Santiago." }
+    }
+  },
+
+  "boletero": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Boletero",
+        "text": "Función de las 7. Cabritas grandes, bebida grande, butaca chica. Así es el cine.",
+        "effects": [{ "sign": "menu_confiteria" }]
+      }
+    }
+  },
+
+  "arcade": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "speaker": "Gamer", "text": "Me sé un truco: en algunos juegos apretai arriba, arriba, abajo, abajo, izquierda, derecha, izquierda, derecha, B, A... y pasa algo." }
+    }
+  },
+
+  "poster_cine": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "PRÓXIMAMENTE: «Santiago Laberinto 2: Perdidos en Maipú».",
+          "Con la participación especial del quiltro. Clasificación: TE (Todo Espectador, incluso los que se bajan en la estación equivocada)."
+        ],
+        "effects": [{ "sign": "afiche_cine" }, { "setFlag": "secreto_poster" }]
+      }
+    }
+  },
+
+  "kiosco_fantasma": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          { "if": { "flag": "secreto_kiosco" }, "goto": "otra_vez" },
+          { "goto": "hallazgo" }
+        ]
+      },
+      "hallazgo": {
+        "text": [
+          "Hay un cuadrado en la vereda más limpio que el resto, con cuatro marcas de tornillos...",
+          "¡Aquí estaba el kiosco que ya no está! Entre las baldosas hay un chicle de menta de 1998. Mejor lo dejas donde está."
+        ],
+        "effects": [{ "sign": "kiosco_huella" }, { "setFlag": "secreto_kiosco" }]
+      },
+      "otra_vez": { "text": "Aquí estaba el kiosco. Le haces un minuto de silencio.", "effects": [{ "sign": "kiosco_huella" }] }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "micro",
+  "name": "Micro",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 18,
+  "height": 7,
+  "background": "#0c0c14",
+  "legend": {
+    "^": "muro_techo",
+    "T": "micro_tablero",
+    "V": "micro_ventana",
+    "P": "micro_puerta",
+    "s": "micro_asiento",
+    ".": "micro_piso"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^",
+    "TVVVVVVVVVVVVVVVV^",
+    "T...ssssss.ssssss^",
+    "T................^",
+    "T................^",
+    "T...ssssss...ssss^",
+    "^VPVVVVVVVVPVVVVV^"
+  ],
+  "spawns": {
+    "inicio": { "x": 3, "y": 4, "dir": "right" }
+  },
+  "crowd": {
+    "lines": "micro",
+    "seats": 0.6,
+    "areas": [{ "x": 5, "y": 3, "w": 12, "h": 2, "count": 3, "dir": "left" }]
+  }
+}

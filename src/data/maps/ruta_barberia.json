@@ -1,0 +1,281 @@
+{
+  "id": "ruta_barberia",
+  "name": "Carrera 121 · Ciudad Pacífica",
+  "kind": "overworld",
+  "tileSize": 16,
+  "width": 160,
+  "height": 26,
+  "background": "#78c060",
+  "music": "salsa",
+  "region": "cali",
+  "legend": {
+    "\"": "pasto",
+    ".": "vereda",
+    "=": "calle",
+    "-": "calle_linea_h",
+    "|": "calle_linea_v",
+    "z": "cebra_h",
+    "Z": "cebra_v",
+    "S": "separador",
+    "y": "palmera",
+    "T": "arbol",
+    "t": "arbol_vereda",
+    "r": "reja",
+    "R": "reja_verde",
+    "~": "agua",
+    "G": "garza",
+    "C": "edificio:conjunto",
+    "H": "edificio:barrio",
+    "V": "edificio:gris",
+    "B": "barber_vitrina",
+    "E": "puerta",
+    "N": "barber_neon",
+    "D": "puerta_casa",
+    "M": "mural_barrio",
+    "c": "cancha",
+    "a": "autocine_parqueo",
+    "P": "autocine_pantalla",
+    "p": "parqueadero",
+    "k": "adoquin_rojo"
+  },
+  "rows": [
+    "r\".=|=S=|=.\"\"\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".===S===.\"RaaaaaaaaaaaaaaaaaaR.==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"",
+    "r\".=|=y=|=.\"\"\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".===y===.\"RPPPPPPPPPPPPPPPPPPR.==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"",
+    "r\".=|=S=|=.\"\"CCCCCCCCC\".==.\"~~~~~~~~~~\".==.\"\"\"cccccccccccc\"\"T\"\"T\"\"T\"\".===S===.\"RaaaaaaaaaaaaaaaaaaR.==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"",
+    "r\".=|=S=|=.\"\"CCCCCCCCC\".==.T~~~~~~~~~~T.==.\"\"\"cccccccccccc\"\"\"\"\"\"\"\"\"\"\".===S===.\"RaaaaaaaaaaaaaaaaaaR.==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.HHHHHHHHHH.==.HHHHH",
+    "r\".=|=S=|=.\"\"CCCCCCCCC\".==.\"~~G~~~~~~~\".==.\"\"\"cccccccccccc\"\"\"\"\"\"\"\"\"\"\".===y===.\"RaaaaaaaaaaaaaaaaaaR.==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.HHHHHHHHHH.==.HHHHH",
+    "r\".=|=y=|=.\"\"CCCCCCCCC\".==.\"~~~~~~~~~~\".==.\"\"\"cccccccccccc\"\"T\"\"T\"\"T\"\".===S===.\"RaaaaaaaaaaaaaaaaaaR.==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.HHHHHHHHHH.==.HHHHH",
+    "r\".=|=S=|=.\"\"CCCCDCCCC\".==.T~~~~~~~~~~T.==.\"\"\"cccccccccccc\"\"\"\"\"\"\"\"\"\"\".===S===.\"RaaaaaaaaaaaaaaaaaaR.==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.HHHHHHHHHH.==.HHHHH",
+    "r\".=|=S=|=.\"\"\"\"\"\"\"\"\"\"\"\".==.\"~~~~~~~G~~\".==.\"\"\"cccccccccccc\"\"\"\"\"\"\"\"\"\"\".===y===.\"RaaaaaaaaaaaaaaaaaaR.==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.HHHHHHHHHH.==.HHHHH",
+    "r\".=|=S=|=.\"\"y\"\"y\"\"y\"\"y.==.\"~~~~~~~~~~\".==.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"T\"\"T\"\"T\"\".===S===.\"RaaaaaaaaaaaaaaaaaaR.==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.HHBBNNNBBH.==.HHHHH",
+    "r\".=|=y=|=.\"\"\"\"\"\"\"\"\"\"\"\".==.T\"\"\"\"\"\"\"\"\"\"T.==.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".===S===.\"RaaaaaaaaaaaaaaaaaaR.==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.HHBBBBBBBH.==.HHHHH",
+    "r\".=|=S=|=.\"RRRRRRRRRRR.==.RRRRRRRRRRRR.==.RRRRRRRRRRRRRRRRRRRRRRRRR\".===y===.\"RRRRRRRRRRRRRRRRRRRR.==.HHHDHHHDH.==.HHMMHHDHH.==.HHDHHHDH.==.HHBBBEBBBH.==.HHHHH",
+    "r\".=|=S=|=.\"\"\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".===S===.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"",
+    "r\".ZZZZZZZ....t........tZZ......t.......ZZ........t........t........t.ZZZZZZZt........t........t....ZZ..t........ZZ.......t...ZZ...t......ZZt........t..ZZ....t.",
+    "r\"z=======z============z==z============z==z==========================z=======z=====================z==z=========z==z=========z==z========z==z==========z==z=====",
+    "r\"z=======z------------z--z------------z--z--------------------------z-------z---------------------z--z---------z--z---------z--z--------z--z----------z--z-----",
+    "r\"z=======z============z==z============z==z==========================z=======z=====================z==z=========z==z=========z==z========z==z==========z==z=====",
+    "r\".ZZZZZZZ........t.....ZZ...t..........ZZ.........t..........t.......ZZZZZZZ.......t..........t....ZZ....t......ZZ..t........ZZt.........ZZ..........t.ZZ......",
+    "r\".=|=y=|=.\"\"\"\"\"\"\"\"\"\"\"\".==.RRRRRRRRRRRR.==.RRRRRRRRRRRRRRRRRRRRRRRRR\".===S===.\"RRRRRRRRRRRRRRRRRRRR.==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"",
+    "r\".=|=S=|=.\"VVVVVVVVVVV.==.\"\"\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".===S===.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.T\"\"\"\"\"\"\"\"\"\"\"\"kkkkkk",
+    "r\".=|=S=|=.\"VVVVVVVVVVV.==.\"CCCCCCCCCC\".==.\"\"CCCCCCCCCC\"\"\"CCCCCCCCC\"\".===y===.\"\"\"CCCCCCCCCCCCCCCC\"\".==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.\"\"cccccccc\"\"\"kkkkkk",
+    "r\".=|=S=|=.\"VVVVVVVVVVV.==.\"CCCCCCCCCC\".==.\"\"CCCCCCCCCC\"\"\"CCCCCCCCC\"\".===S===.\"\"TCCCCCCCCCCCCCCCC\"T.==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.\"\"cccccccc\"\"\"\"\"\"\"\"\"",
+    "r\".=|=y=|=.\"VVVVVVVVVVV.==.\"CCCCCCCCCC\".==.\"\"CCCCCCCCCC\"\"\"CCCCCCCCC\"\".===S===.\"\"\"CCCCCCCCCCCCCCCC\"\".==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.T\"cccccccc\"\"\"\"T\"\"T\"",
+    "r\".=|=S=|=.\"VVVVVVVVVVV.==.\"CCCCCCCCCC\".==.\"\"CCCCCCCCCC\"\"\"CCCCCCCCC\"\".===y===.\"\"\"CCCCCCCCCCCCCCCC\"\".==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.\"\"cccccccc\"\"\"\"\"\"\"\"\"",
+    "r\".=|=S=|=.\"VVVVVVVVVVV.==.\"CCCCCCCCCC\".==.\"\"CCCCCCCCCC\"\"\"CCCCCCCCC\"\".===S===.\"\"\"CCCCCCCCCCCCCCCC\"\".==.HHHHHHHHH.==.HHHHHHHHH.==.HHHHHHHH.==.\"\"cccccccc\"\"\"\"\"\"\"\"\"",
+    "r\".=|=S=|=.\"VVVVVVVVVVV.==.\"CCCCCCCCCC\".==.\"\"CCCCCCCCCC\"\"\"CCCCCCCCC\"\".===S===.\"\"\"CCCCCCCCCCCCCCCC\"\".==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\".==.T\"\"\"\"\"\"\"\"\"\"\"\"\"T\"\"T\"",
+    "r\".=|=y=|=.\"ppppppppppp.==.\"\"\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".===y===.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\".==.\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+  ],
+  "zones": [
+    {
+      "name": "Barbería 360",
+      "subtitle": "Carrera 120 con Calle 45A",
+      "x": 141,
+      "y": 10,
+      "w": 11,
+      "h": 3
+    },
+    {
+      "name": "Calle 18",
+      "subtitle": "Av. Cañasgordas · Pance",
+      "x": 0,
+      "y": 0,
+      "w": 11,
+      "h": 12
+    },
+    {
+      "name": "Lago El Retiro",
+      "subtitle": "Carrera 121",
+      "x": 26,
+      "y": 0,
+      "w": 14,
+      "h": 11
+    },
+    {
+      "name": "Calle 25",
+      "subtitle": "Vía a Jamundí · ¡ojo al cruzar!",
+      "x": 68,
+      "y": 0,
+      "w": 10,
+      "h": 26
+    },
+    {
+      "name": "Carrera 120",
+      "subtitle": "Calles 40 a 45A · Ciudad Pacífica",
+      "x": 78,
+      "y": 0,
+      "w": 82,
+      "h": 26
+    },
+    {
+      "name": "Carrera 121",
+      "subtitle": "Calles 18 a 25 · Pance",
+      "x": 11,
+      "y": 0,
+      "w": 57,
+      "h": 26
+    },
+    {
+      "name": "Calle 18",
+      "subtitle": "Av. Cañasgordas · Pance",
+      "x": 0,
+      "y": 0,
+      "w": 11,
+      "h": 26
+    }
+  ],
+  "spawns": {
+    "desde_u": {
+      "x": 2,
+      "y": 1,
+      "dir": "down"
+    },
+    "barberia": {
+      "x": 146,
+      "y": 12,
+      "dir": "down"
+    }
+  },
+  "warps": [
+    {
+      "x": 2,
+      "y": 0,
+      "to": "pucc_campus",
+      "spawn": "calle18_sur"
+    },
+    {
+      "x": 146,
+      "y": 10,
+      "to": "barberia_360",
+      "spawn": "puerta"
+    }
+  ],
+  "labels": [
+    {
+      "x": 6,
+      "y": 11.4,
+      "text": "CALLE 18"
+    },
+    {
+      "x": 33,
+      "y": 0.6,
+      "text": "LAGO EL RETIRO"
+    },
+    {
+      "x": 55,
+      "y": 1.0,
+      "text": "CLUB DEL MUNICIPIO"
+    },
+    {
+      "x": 73.5,
+      "y": 11.4,
+      "text": "CALLE 25"
+    },
+    {
+      "x": 89,
+      "y": 4.5,
+      "text": "AUTOCINE"
+    },
+    {
+      "x": 17.5,
+      "y": 24.4,
+      "text": "BODEGA MAYORISTA"
+    },
+    {
+      "x": 25,
+      "y": 11.4,
+      "text": "CL. 20"
+    },
+    {
+      "x": 41,
+      "y": 11.4,
+      "text": "CL. 22A"
+    },
+    {
+      "x": 101,
+      "y": 11.4,
+      "text": "CL. 40"
+    },
+    {
+      "x": 114,
+      "y": 11.4,
+      "text": "CL. 42"
+    },
+    {
+      "x": 127,
+      "y": 11.4,
+      "text": "CL. 44"
+    },
+    {
+      "x": 139,
+      "y": 11.4,
+      "text": "CL. 45"
+    },
+    {
+      "x": 153,
+      "y": 11.4,
+      "text": "CL. 45A"
+    },
+    {
+      "x": 146.5,
+      "y": 7.6,
+      "text": "360 BARBER",
+      "color": "#38e0d8"
+    },
+    {
+      "x": 147,
+      "y": 25.0,
+      "text": "PARQUE CIUDAD PACÍFICA"
+    },
+    {
+      "x": 40,
+      "y": 13.9,
+      "text": "CARRERA 121"
+    },
+    {
+      "x": 90,
+      "y": 13.9,
+      "text": "CARRERA 120"
+    },
+    {
+      "x": 107.5,
+      "y": 2.4,
+      "text": "TIENDA DOÑA LUZ"
+    }
+  ],
+  "enter": [
+    {
+      "id": "m5_ida",
+      "dialogue": "m5_ruta_llegada",
+      "once": true,
+      "if": {
+        "mission": "mission05"
+      }
+    }
+  ],
+  "triggers": [
+    {
+      "id": "cruce_25",
+      "x": 69,
+      "y": 12,
+      "w": 1,
+      "h": 5,
+      "event": "dialogo:m5_cruce_25",
+      "once": true,
+      "if": {
+        "notFlag": "m5_corte"
+      }
+    },
+    {
+      "id": "te_pasaste",
+      "x": 155,
+      "y": 12,
+      "w": 1,
+      "h": 5,
+      "event": "dialogo:m5_te_pasaste",
+      "if": {
+        "notFlag": "m5_corte"
+      }
+    }
+  ]
+}

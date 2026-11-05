@@ -1,0 +1,343 @@
+{
+ "id": "universidades",
+ "name": "Estación Universidades",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 104,
+ "height": 66,
+ "region": "cali",
+ "music": "salsa",
+ "background": "#3a5a34",
+ "legend": {
+  ".": "vereda",
+  "=": "calle",
+  "-": "calle_linea_h",
+  "|": "calle_linea_v",
+  "z": "cebra_h",
+  "Z": "cebra_v",
+  "\"": "pasto",
+  "*": "pasto_flor",
+  "T": "arbol",
+  "t": "arbol_vereda",
+  "y": "palmera",
+  "S": "separador",
+  "r": "mio_carril",
+  "e": "estacion_piso",
+  "b": "estacion_borde",
+  "v": "estacion_vidrio",
+  "o": "estacion_puerta",
+  "q": "taquilla_estacion",
+  "Q": "recargadora",
+  "g": "torniquete",
+  "M": "edificio:mall",
+  "C": "edificio:conjunto",
+  "V": "edificio:vidrio",
+  "G": "edificio:gris",
+  "H": "edificio:barrio",
+  "D": "puerta",
+  "p": "parqueadero",
+  "c": "parqueadero_auto",
+  "k": "parqueadero_auto_b",
+  "w": "rio",
+  "W": "rio_b",
+  "n": "cancha",
+  "N": "cancha_linea_h",
+  "f": "farol",
+  "B": "banca",
+  "x": "basurero",
+  "a": "adoquin",
+  "j": "reja_verde",
+  "P": "puente_piso"
+ },
+ "rows": [
+  "T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"j\".=|=......t.....t.....t.....t.....t.....t.....t.....t.....t.....==S==.\"\"",
+  "\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"j\".=|============================================================.==S==.\"\"",
+  "\"\"nnnnnnnnnnT\"nnnnnnnn\"\"\"\"T\"\"\"j\".=|=-----------------------------------------------------------.==y==.\"T",
+  "\"\"nnnnnnnnnn\"\"nnnnnnnn\"\"\"T\"\"\"\"j\".=|============================================================.==S==.T\"",
+  "\"\"nnnnnnnnnn\"\"nnnnnnnn\"\"T\"\"\"\"\"j\".=|=..t.....t.....t.....t.....t.....t.....t.....t.....t.....t...==S==.\"\"",
+  "\"\"NNNNNNNNNN\"\"NNNNNNNN\"T\"\"\"\"\"\"j\".=|=.\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\"T\"\"\".==S==.\"\"",
+  "\"Tnnnnnnnnnn\"\"nnnnnnnnT\"\"\"\"\"\"Tj\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==S==.\"\"",
+  "T\"nnnnnnnnnn\"\"nnnnnnnn\"\"\"\"\"\"T\"j\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==S==.\"T",
+  "\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"j\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==y==.T\"",
+  "\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"j\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==S==.\"\"",
+  "\"\"nnnnnnnnnT\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"j\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==S==.\"\"",
+  "\"\"nnnnnnnnn\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"j\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==S==.\"\"",
+  "\"\"nnnnnnnnn\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"j\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==S==.\"T",
+  "\"TNNNNNNNNN\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"Tj\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==S==.T\"",
+  "T\"nnnnnnnnn\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"j\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==y==.\"\"",
+  "\"\"nnnnnnnnn\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"j\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==S==.\"\"",
+  "\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"j\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==S==.\"\"",
+  "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\".=|=.\"\"\"\"\"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\".==S==.\"T",
+  "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"j\".=|=.\"\"\"\"\"MMMMMMDMMMMMMMMMDDMMMMMMMMMMMMMMMMMMMMDMMMMMMMMMMMMM\".==S==.T\"",
+  "\"\"\"\"\"\"\"\"\"\"\"\"\"\"VVVVVVVVVVVVVVV\"j\".=|=.....f.....f.....f.....f.....f.....f.....f.....f.....f......==S==.\"\"",
+  "\"\"\"\"\"\"\"\"\"\"\"\"\"\"VVVVVVVVVVVVVVV\"j\".=|=.ckpcpkccpkpcpcckpkcpaaaacpcpcckpkcpcpkcpckpcpkc=======pcck.==y==.\"\"",
+  "\"\"\"\"\"\"\"\"\"\"\"\"\"\"VVVVVVVVVVVVVVV\"j\".=|=.====================yaay=========================***======.==S==.\"\"",
+  "\"\"\"\"\"\"\"\"\"\"\"\"\"\"VVVVVVVVVVVVVVV\"j\".=|=.cpkccpkpcpcckpkcpcpkkaacpcckpkcpcpkcpckpcpkcckp==*y*==kpcp.==S==.\"T",
+  "\"\"\"\"\"\"\"\"\"\"\"\"\"\"VVVVVVVVVVVVVVV\"j\".=|=.kccpkpcpcckpkcpcpkkcpaacckpkcpcpkcpckpcpkcckpcp==***==cpkc.==S==.T\"",
+  "\"\"\"\"\"\"\"\"\"\"\"\"\"\"VVVVVVVVVVVVVVV\"j\".=|=.====================yaay=========================***======.==S==.\"\"",
+  "\"\"\"\"\"\"\"\"\"\"\"\"\"\"VVVVVVVDVVVVVVV\"j\".=|=.cpkpcpcckpkcpcpkkcpcpaakpkcpcpkcpckpcpkcckpcpkc=======kccp.==S==.\"\"",
+  "....t....t....t....t....t....t.\".=|=.\"\"t\"\"\"\"t\"\"\"\"t\"\"\"\"t\"\"aaaa\"\"\"t\"\"\"\"t\"\"\"\"t\"\"\"\"t\"\"\"\"t\"===t\"\"\"\"t.==y==.\"\"",
+  "...............................\".zzz.....................aaaa.........................===.......==S==.\"T",
+  "..t.....t.....t.....t.....t...........................................................===.......==S==.T\"",
+  "===============================Z=====Z=ZZ======================================================.==S==.\"\"",
+  "-------------------------------Z-===-Z-ZZ------------------------------------------------------.==S==.\"\"",
+  "===============================Z=====Z=ZZ======================================================.==S==.\"\"",
+  "SSSySSSSSSySSSSSSySSSSSSySSSSSSyS===SSyZZSSSSySSSSSSySSSSSSySSSSSSySSSSSSySSSSSSySSSSSSySSSSSSy.==y==.\"T",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrZZrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.==S==.T\"",
+  "SSySSSSSSSSySSSSSSSSySSSSSSSSySSS===SvveevvvvvvovvvvvovvvvvovvvvvovvvvvovvvvvSSSSSSySSSSSSSSySS.==S==.\"\"",
+  "SySSSSSSSSySSSSSSSSySSSSSSSSySSSS===SvQeeegbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbvSSSSSySSSSSSSSySSS.==S==.\"\"",
+  "ySSSSSSSSySSSSSSSSySSSSSSSSySSSSS===yvqeeegeeeeeeeBeeeeeeeeeeeBeeeeeeeeeeeBevSSSSySSSSSSSSySSSS.==S==.\"\"",
+  "SSSSSSSSySSSSSSSSySSSSSSSSySSSSSS===SveeeegeexeeeeeeeeeeeeeeeeeeeeeeeeeeeeeevSSSySSSSSSSSySSSSS.==S==.\"T",
+  "SSSSSSSySSSSSSSSySSSSSSSSySSSSSSS===SveeeegbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbvSSySSSSSSSSySSSSSS.==y==.T\"",
+  "SSSSSSySSSSSSSSySSSSSSSSySSSSSSSS===SvveevvvvvvvvovvvvvvvovvvvvvvvvovvvvvvvvvSySSSSSSSSySSSSSSS.==S==.\"\"",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrZZrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.==S==.\"\"",
+  "SySSSSSSySSSSSSySSSSSSySSSSSSySSS===ySSZZSSySSSSSSySSSSSSySSSSSSySSSSSSySSSSSSySSSSSSySSSSSSySS.==S==.\"\"",
+  "===============================Z=====Z=ZZ======================================================.==S==.\"T",
+  "-------------------------------Z-===-Z-ZZ------------------------------------------------------.==S==.T\"",
+  "===============================Z=====Z=ZZ======================================================.==y==.\"\"",
+  "...t.....t.....t.....t.....t....................................................................==S==.\"\"",
+  "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".zzz........................==................==................==S==.\"\"",
+  "\"\"CCCCCCCCCCCC\"\"\"CCCCCCCCCCCC\"\"\".=|=.\"HHHHHHHHH\"*T**T**T**\".==CCCCCCCCCCCCCC\".==GGGGGGGGGGGGGG\".==S==.\"T",
+  "\"\"CCCCCCCCCCCC\"\"\"CCCCCCCCCCCC\"\"\".=|=.\"HHHHHHHHH\"T**T**T**T\".==CCCCCCCCCCCCCC\".==GGGGGGGGGGGGGG\".==S==.T\"",
+  "\"\"CCCCCCCCCCCC\"\"\"CCCCCCCCCCCC\"\"\".=|=.\"HHHHHHHHH\"**T**T**T*\".==CCCCCCCCCCCCCC\".==GGGGGGGGGGGGGG\".==S==.\"\"",
+  "WwwW\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\".=|=.\"HHHDHHHDH\"*T**T**T**\".==CCCCCCDCCCCCCC\".==GGGGDGGGGGDGGG\".==y==.\"\"",
+  "wwWwwwWw\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\".=|=.\"......................zz................zz................==S==.\"\"",
+  "\"\"\"TwWwwwWw\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\".=|=........................==................==................==S==.\"T",
+  "\"\"T\"\"\"\"TWwwwWw\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\".=|=.Z=====================Z==Z==============Z==Z==============.==S==.T\"",
+  "\"T\"\"\"\"T\"\"\"\"WwwwWw\"\"\"\"T\"\"\"\"T\"\"\"\"T.=|=.Z---------------------Z==Z--------------Z==Z--------------.==S==.\"\"",
+  "T\"\"\"\"T\"\"\"\"T\"\"\"WwwwWwT\"\"\"\"T\"\"\"\"T\".=|=.Z=====================Z==Z==============Z==Z==============.==S==.\"\"",
+  "\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"WwwwWw\"T\"\"\"\"T\"\".=|=........................==................==................==y==.\"\"",
+  "\"\"\"T\"\"\"\"B\"\"\"\"T\"\"\"\"T\"WwwwWw\"\"T\"\"\".=|=.\"CCCCCCCCCCCCCCCCCCCCC.zzCCCCCCCCCCCCCCC.zzCCCCCCCCCCCCCCC.==S==.\"T",
+  "\"\"T\"wwwwwwwwww\"\"\"T\"\"\"\"TWwwwWww\"\".=|=.\"CCCCCCCCCCCCCCCCCCCCC.==CCCCCCCCCCCCCCC.==CCCCCCCCCCCCCCC.==S==.T\"",
+  "\"T\"\"wWWWWWWWWw\"\"T\"\"\"\"T\"\"\"\"WwwWWwPP|=.\"CCCCCCCCCCCCCCCCCCCCC.==CCCCCCCCCCCCCCC.==CCCCCCCCCCCCCCC.==S==.\"\"",
+  "T\"\"\"wWWWWWWWWw\"B\"\"\"\"T\"\"\"\"T\"\"\"\"wwPPPPPw......................==................==................==S==.\"\"",
+  "\"\"\"\"wWWWWWWWWwT\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\".=PPPwwWwwWwwW\"T\"\"\"\"\"T\"\"\"\"\".==.\"\"T\"\"\"\"\"T\"\"\"\"\".==.\"\"T\"\"\"\"\"T\"\"\"\"\".==S==.\"\"",
+  "\"\"\"TwWWWWWWWWw\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\".=|=.\"WwwWwwWwwwWwwWwwWwwWwPPPPWwwWwwWw\"\"\"\"\"T.==.\"T\"\"\"\"\"T\"\"\"\"\"T.==y==.\"T",
+  "\"\"T\"wwwwwwwwww\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\".=|=.\"\"T\"\"\"\"\"TwWwwWwwWwwWwwPPPPwwWwwWwwwWwwWwPPPPWwwWwwWwwWwwWwPP=S==.T\"",
+  "\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T.=|=.\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\".==.\"\"\"\"\"T\"\"WwwWwwPPPPwwWwwWwwWwwWwwPPPwPPPWw",
+  "T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\"\"\"\"T\".=|=.T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\".==.\"\"\"\"T\"\"\"\"\"T\"\"\".==.\"\"\"\"T\"\"\"\"\"T\"\"\".=PWPPPww"
+ ],
+ "zones": [
+  {
+   "name": "Estación Universidades",
+   "subtitle": "Terminal de cabecera · Av. Carrera 100",
+   "x": 37,
+   "y": 34,
+   "w": 40,
+   "h": 6
+  },
+  {
+   "name": "C.C. Guayacán Plaza",
+   "subtitle": "Carrera 98 con Calle 16",
+   "x": 37,
+   "y": 5,
+   "w": 58,
+   "h": 22
+  },
+  {
+   "name": "Universidad Pública del Valle",
+   "subtitle": "Ciudad Universitaria",
+   "x": 0,
+   "y": 0,
+   "w": 31,
+   "h": 18
+  },
+  {
+   "name": "Plaza Aventura",
+   "subtitle": "Av. Carrera 100",
+   "x": 0,
+   "y": 18,
+   "w": 31,
+   "h": 10
+  },
+  {
+   "name": "Carrera 98",
+   "subtitle": "Ciudad Universitaria",
+   "x": 36,
+   "y": 0,
+   "w": 59,
+   "h": 5
+  },
+  {
+   "name": "Calle 16",
+   "subtitle": "Av. Pasoancho",
+   "x": 31,
+   "y": 0,
+   "w": 7,
+   "h": 66
+  },
+  {
+   "name": "Autopista Simón Bolívar",
+   "subtitle": "Calle 25",
+   "x": 95,
+   "y": 0,
+   "w": 9,
+   "h": 66
+  },
+  {
+   "name": "Av. Carrera 100",
+   "subtitle": "Ciudad Jardín",
+   "x": 0,
+   "y": 27,
+   "w": 95,
+   "h": 19
+  },
+  {
+   "name": "Parque Corredor del Río Lili",
+   "subtitle": "Ciudad Jardín",
+   "x": 0,
+   "y": 58,
+   "w": 104,
+   "h": 8
+  },
+  {
+   "name": "Parque de la Babilla",
+   "subtitle": "Ciudad Jardín",
+   "x": 0,
+   "y": 50,
+   "w": 32,
+   "h": 16
+  },
+  {
+   "name": "Calle 18",
+   "subtitle": "Ciudad Jardín",
+   "x": 37,
+   "y": 46,
+   "w": 58,
+   "h": 12
+  }
+ ],
+ "spawns": {
+  "alimentador": {
+   "x": 57,
+   "y": 38,
+   "dir": "up"
+  },
+  "adentro": {
+   "x": 43,
+   "y": 37,
+   "dir": "right"
+  },
+  "afuera": {
+   "x": 41,
+   "y": 37,
+   "dir": "left"
+  },
+  "mall": {
+   "x": 58,
+   "y": 19,
+   "dir": "down"
+  },
+  "anden_t31": {
+   "x": 47,
+   "y": 35,
+   "dir": "up"
+  }
+ },
+ "warps": [
+  {
+   "x": 58,
+   "y": 18,
+   "to": "guayacan_plaza",
+   "spawn": "puerta"
+  },
+  {
+   "x": 59,
+   "y": 18,
+   "to": "guayacan_plaza",
+   "spawn": "puerta"
+  }
+ ],
+ "triggers": [],
+ "labels": [
+  {
+   "x": 65,
+   "y": 12,
+   "text": "C.C. GUAYACÁN PLAZA"
+  },
+  {
+   "x": 57,
+   "y": 33.6,
+   "text": "UNIVERSIDADES"
+  },
+  {
+   "x": 47,
+   "y": 36.5,
+   "text": "T31"
+  },
+  {
+   "x": 53,
+   "y": 36.5,
+   "text": "E31"
+  },
+  {
+   "x": 59,
+   "y": 36.5,
+   "text": "T42"
+  },
+  {
+   "x": 65,
+   "y": 36.5,
+   "text": "T47"
+  },
+  {
+   "x": 71,
+   "y": 36.5,
+   "text": "E27"
+  },
+  {
+   "x": 21,
+   "y": 22,
+   "text": "PLAZA AVENTURA"
+  },
+  {
+   "x": 12,
+   "y": 9,
+   "text": "U. PÚBLICA DEL VALLE"
+  }
+ ],
+ "crowd": {
+  "lines": "cali",
+  "areas": [
+   {
+    "x": 44,
+    "y": 36,
+    "w": 30,
+    "h": 2,
+    "count": 9,
+    "dir": "up"
+   },
+   {
+    "x": 38,
+    "y": 19,
+    "w": 50,
+    "h": 1,
+    "count": 5
+   },
+   {
+    "x": 0,
+    "y": 28,
+    "w": 30,
+    "h": 1,
+    "count": 3
+   },
+   {
+    "x": 38,
+    "y": 51,
+    "w": 20,
+    "h": 1,
+    "count": 3
+   }
+  ]
+ },
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m6_universidades_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission06"
+   }
+  }
+ ]
+}

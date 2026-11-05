@@ -1,0 +1,665 @@
+{
+  "m5_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Martes, 7:00. Esta vez despiertas antes que la alarma. El cuerpo ya se acostumbró a la hora de Cali (o se rindió).",
+          "Te miras en el espejito de la pieza. El pelo... El pelo no está bien. Parece que durmió en otro lado y volvió tarde."
+        ],
+        "effects": [
+          {
+            "giveItem": "carnet_pucc",
+            "silent": true
+          },
+          {
+            "vineta": "m5_espejo_pelo"
+          },
+          {
+            "clock": "mar 07:00",
+            "max": "mar 07:25"
+          }
+        ],
+        "next": "mery"
+      },
+      "mery": {
+        "speaker": "Doña Mery",
+        "text": "¡Mijo! ¡A desayunar, que se le enfría la arepa! ¡Y péinese, por Dios, que parece un nido de guacharacas!",
+        "effects": [
+          {
+            "objective": "Desayuna con doña Mery (en la cocina)"
+          }
+        ]
+      }
+    }
+  },
+  "m5_mery": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_insta"
+            },
+            "goto": "noche_fin"
+          },
+          {
+            "if": {
+              "flag": "m5_volvio_piscina"
+            },
+            "goto": "noche"
+          },
+          {
+            "if": {
+              "flag": "m5_desayuno"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "desayuno"
+          }
+        ]
+      },
+      "desayuno": {
+        "speaker": "Doña Mery",
+        "text": "Hoy hay calentado: arroz, frijolitos, huevo y arepa. ¿O prefiere avena con pandebono? Y un tintico, claro.",
+        "effects": [
+          {
+            "vineta": "cali_desayuno"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Calentado, por favor",
+            "goto": "calentado"
+          },
+          {
+            "label": "Avena con pandebono",
+            "goto": "avena"
+          },
+          {
+            "label": "Las dos cosas",
+            "goto": "las_dos"
+          }
+        ]
+      },
+      "calentado": {
+        "text": "El calentado: lo de anoche, recalentado en sartén, con huevo encima. Debería ser ilegal lo rico que es a las siete de la mañana.",
+        "next": "pelo"
+      },
+      "avena": {
+        "text": "Avena fría, espesita, con canela. Y el pandebono, tibio. Lo mojas en la avena y doña Mery te mira con orgullo.",
+        "next": "pelo"
+      },
+      "las_dos": {
+        "speaker": "Doña Mery",
+        "text": "¡Eso, mijo! Un muchacho que come es un muchacho sano. En Chile los tienen a pan y té, ¿cierto?",
+        "next": "pelo"
+      },
+      "pelo": {
+        "speaker": "Doña Mery",
+        "text": [
+          "Ahora, mijo... con todo respeto... ese pelo. ¿Así lo dejan entrar a la universidad?",
+          "Vaya donde un barbero. Cerquita de la U, en Ciudad Pacífica, está la Barbería 360: la del Fredy.",
+          "Habla más que un loro mojado, pero corta como los ángeles. Dígale que va de parte mía."
+        ],
+        "choices": [
+          {
+            "label": "Hoy al mediodía voy, prometido",
+            "goto": "promesa"
+          },
+          {
+            "label": "¿Tan mal está?",
+            "goto": "tan_mal"
+          }
+        ]
+      },
+      "tan_mal": {
+        "speaker": "Doña Mery",
+        "text": "Mijo, hace un rato un pajarito se le quiso parar en la cabeza. Yo no digo nada. Yo nomás cuento.",
+        "next": "promesa"
+      },
+      "promesa": {
+        "speaker": "Doña Mery",
+        "text": "Bueno. Coma, coma. Y a estudiar juicioso. ¡Que le vaya bien!",
+        "effects": [
+          {
+            "setFlag": "m5_desayuno"
+          },
+          {
+            "sfx": "eat"
+          },
+          {
+            "clockMax": "mar 07:45"
+          },
+          {
+            "objective": "Toma el bus P27 a la U (paradero frente a la casa)"
+          }
+        ]
+      },
+      "despues": {
+        "speaker": "Doña Mery",
+        "text": "¿Todavía aquí? ¡Vaya, vaya, que se le va el bus! Y no se le olvide: Barbería 360, el Fredy.",
+        "effects": [
+          {
+            "objective": "Toma el bus P27 a la U (paradero frente a la casa)"
+          }
+        ]
+      },
+      "noche": {
+        "speaker": "Doña Mery",
+        "text": [
+          "¡Uy! ¿Y ese corte? ¡Quedó divino, mijo! ¿Vio? El Fredy es un artista. ¿Y le contó lo de Chile?",
+          "...¿Tres horas? Sí, eso es normal. A mí una vez me contó lo de Dubái y salí con la permanente hecha."
+        ],
+        "choices": [
+          {
+            "label": "Ahora voy a comer hamburguesas con el equipo",
+            "goto": "hamburguesas"
+          },
+          {
+            "label": "Doña Mery, ¿usted fue a Pance Burger?",
+            "goto": "burger"
+          }
+        ]
+      },
+      "hamburguesas": {
+        "speaker": "Doña Mery",
+        "text": "¿Hamburguesas a esta hora? ¡Ay, la juventud! Vaya, pues. Pero vuelve temprano, que mañana también hay universidad.",
+        "effects": [
+          {
+            "setFlag": "m5_mery_noche_ok"
+          }
+        ]
+      },
+      "burger": {
+        "speaker": "Doña Mery",
+        "text": "Claro, mijo. La dueña es mi comadre. Pida la «Caleña», la que trae maduro y piña. Los gringos le tienen miedo, pero es la mejor.",
+        "effects": [
+          {
+            "setFlag": "m5_mery_noche_ok"
+          }
+        ]
+      },
+      "noche_fin": {
+        "speaker": "Doña Mery",
+        "text": "(Doña Mery duerme en el sofá con la tele prendida. Murmura algo de «el Fredy»...)"
+      }
+    }
+  },
+  "m5_paradero_pance": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_volvio_piscina"
+            },
+            "goto": "noche"
+          },
+          {
+            "if": {
+              "flag": "m5_llego_u"
+            },
+            "goto": "nada"
+          },
+          {
+            "if": {
+              "notFlag": "m5_desayuno"
+            },
+            "goto": "sin_desayuno"
+          },
+          {
+            "goto": "bus"
+          }
+        ]
+      },
+      "bus": {
+        "text": "Paradero de la ruta P27. Pasa cada 15 minutos (más o menos, depende de cómo amaneció el chofer).",
+        "effects": [
+          {
+            "sign": "paradero_cali"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Esperar el bus a la U",
+            "effects": [
+              {
+                "event": "bus_cali",
+                "data": {
+                  "destino": "u",
+                  "lane": 7,
+                  "x": 31
+                }
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "sin_desayuno": {
+        "text": "Desde la ventana de la cocina, doña Mery te hace señas con la cuchara de palo. Primero el desayuno."
+      },
+      "nada": {
+        "text": "El paradero de la P27. Hoy ya no vas a volver en bus: Grover dijo que te traía."
+      },
+      "noche": {
+        "text": "El paradero, de noche. Un perro duerme debajo de la banca. Pance Burger queda aquí al lado."
+      }
+    }
+  },
+  "m5_bus_tramo_1": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "El bus va lleno. Una señora te mira el pelo y le dice algo a su comadre. Las dos se ríen.",
+          "Te miras en el reflejo de la ventana. Tienen razón."
+        ]
+      }
+    }
+  },
+  "m5_bus_tramo_2": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Calle 18. El señor de los mangos ya está en su semáforo. Te saluda como si te conociera de toda la vida. Ya casi te conoce."
+      }
+    }
+  },
+  "m5_campus_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Martes en la U. Ya no eres el perdido del lunes: sabes dónde queda la plaza, la cafetería y hasta el lago de la iguana.",
+          "Hoy toca estudiar: la tarea de la profe Gloria (rutear las panaderías de Pance, con capacidad) es para mañana."
+        ],
+        "effects": [
+          {
+            "setFlag": "m5_llego_u"
+          },
+          {
+            "clockMax": "mar 08:40"
+          },
+          {
+            "objective": "Estudia en la Biblioteca (2º piso, Sala de Estudio)"
+          }
+        ]
+      }
+    }
+  },
+  "pucc_sala_estudio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission05",
+              "flag": "m5_llego_u",
+              "notFlag": "m5_estudio"
+            },
+            "goto": "estudiar"
+          },
+          {
+            "goto": "silencio"
+          }
+        ]
+      },
+      "estudiar": {
+        "text": "Sala de Estudio. Mesas largas, enchufes en cada puesto y un aire acondicionado que podría congelar un pollo. Perfecto.",
+        "choices": [
+          {
+            "label": "Sentarse a estudiar (hasta mediodía)",
+            "effects": [
+              {
+                "event": "estudiar_m5"
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "silencio": {
+        "text": "Silencio. Alguien estudia con audífonos y mueve la cabeza al ritmo de una salsa que solo él oye.",
+        "effects": [
+          {
+            "sign": "silencio"
+          }
+        ]
+      }
+    }
+  },
+  "m5_estudio_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Abres el cuaderno. La tarea: una panadería central en Pance y cuatro clientes. Un solo carro con capacidad para 30 bolsas de pandebono.",
+          "Sacas el tinto del termo, te pones los audífonos (sin salsa, que distrae) y te concentras."
+        ],
+        "effects": [
+          {
+            "vineta": "m5_estudio"
+          }
+        ]
+      }
+    }
+  },
+  "m5_estudio_q1": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Primero, vecino más cercano. Desde la Panadería (P), los clientes están a: A = 4 km, B = 2 km, C = 7 km, D = 5 km. ¿A cuál vas primero?",
+        "effects": [
+          {
+            "vineta": "m5_ruteo"
+          }
+        ],
+        "choices": [
+          {
+            "label": "A (4 km)",
+            "goto": "mal"
+          },
+          {
+            "label": "B (2 km)",
+            "goto": "bien"
+          },
+          {
+            "label": "C (7 km)",
+            "goto": "mal"
+          },
+          {
+            "label": "D (5 km)",
+            "goto": "mal"
+          }
+        ]
+      },
+      "bien": {
+        "text": "B, el más cercano: 2 km. El vecino más cercano no piensa en el futuro, solo en el que tiene al lado. Como algunos ex.",
+        "effects": [
+          {
+            "sfx": "select"
+          }
+        ]
+      },
+      "mal": {
+        "text": "Revisas los números... no. El vecino más cercano siempre va al más cerca: B, a 2 km. Lo corriges con lápiz.",
+        "effects": [
+          {
+            "sfx": "error"
+          },
+          {
+            "setFlag": "m5_tarea_error"
+          }
+        ]
+      }
+    }
+  },
+  "m5_estudio_q2": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Las demandas: A pide 12 bolsas, B 10, C 9 y D 8. Son 39 bolsas y el carro lleva 30. ¿Cuántos viajes necesitas como mínimo?",
+        "choices": [
+          {
+            "label": "Uno, si lo aprietas bien",
+            "goto": "mal"
+          },
+          {
+            "label": "Dos",
+            "goto": "bien"
+          },
+          {
+            "label": "Cuatro, uno por cliente",
+            "goto": "mal_cuatro"
+          }
+        ]
+      },
+      "bien": {
+        "text": "Dos viajes: 39 bolsas no caben en 30, pero sí en dos cargas. Ruteo con capacidad: el problema de la mochila se hizo panadero.",
+        "effects": [
+          {
+            "sfx": "select"
+          }
+        ]
+      },
+      "mal": {
+        "text": "Uno no alcanza: 39 bolsas en un carro de 30... ni sentándose encima. Son dos viajes.",
+        "effects": [
+          {
+            "sfx": "error"
+          },
+          {
+            "setFlag": "m5_tarea_error"
+          }
+        ]
+      },
+      "mal_cuatro": {
+        "text": "Cuatro funciona, pero gastas bencina como loco. El mínimo son dos: lo importante es que cada carga no pase de 30.",
+        "effects": [
+          {
+            "sfx": "error"
+          },
+          {
+            "setFlag": "m5_tarea_error"
+          }
+        ]
+      }
+    }
+  },
+  "m5_estudio_q3": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¿Qué dos clientes van juntos en un viaje, sin pasarse de 30 bolsas y dejando el resto para el otro?",
+        "choices": [
+          {
+            "label": "A + B (22) y C + D (17)",
+            "goto": "bien"
+          },
+          {
+            "label": "A + B + C (31) y D (8)",
+            "goto": "mal_31"
+          },
+          {
+            "label": "Todos en uno y que sea lo que Dios quiera",
+            "goto": "mal_dios"
+          }
+        ]
+      },
+      "bien": {
+        "text": "A + B en un viaje (22 bolsas) y C + D en el otro (17). Ninguno se pasa de 30. La profe Gloria va a estar orgullosa. O por lo menos no va a suspirar.",
+        "effects": [
+          {
+            "sfx": "select"
+          }
+        ]
+      },
+      "mal_31": {
+        "text": "31 bolsas: te pasaste por una. El carro de la panadería no perdona. Mejor A + B (22) y C + D (17).",
+        "effects": [
+          {
+            "sfx": "error"
+          },
+          {
+            "setFlag": "m5_tarea_error"
+          }
+        ]
+      },
+      "mal_dios": {
+        "text": "Dios no hace ruteo con capacidad. Lo correcto: A + B (22) y C + D (17).",
+        "effects": [
+          {
+            "sfx": "error"
+          },
+          {
+            "setFlag": "m5_tarea_error"
+          }
+        ]
+      }
+    }
+  },
+  "m5_estudio_correo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Vibra el celular dos veces: un correo de la universidad y un mensaje de un número con foto de... ¿una llama?",
+        "effects": [
+          {
+            "setFlag": "m5_correo_equipo"
+          },
+          {
+            "message": "u_correo_equipo"
+          },
+          {
+            "message": "grover_piscina"
+          }
+        ]
+      }
+    }
+  },
+  "m5_estudio_fin": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_tarea_error"
+            },
+            "goto": "con_errores"
+          },
+          {
+            "goto": "perfecta"
+          }
+        ]
+      },
+      "perfecta": {
+        "text": "Tarea lista, sin un solo borrón. Cierras el cuaderno con la satisfacción de quien rutea pandebonos a la perfección.",
+        "effects": [
+          {
+            "setFlag": "m5_tarea_perfecta"
+          }
+        ],
+        "next": "fin"
+      },
+      "con_errores": {
+        "text": "Tarea lista. Con un par de borrones, pero lista. La goma de borrar quedó del tamaño de una lenteja.",
+        "next": "fin"
+      },
+      "fin": {
+        "text": [
+          "Miras la hora: casi mediodía. Te ruge la guata y, en el vidrio de la ventana, el pelo te saluda.",
+          "Revisa el celular (Q): Mi U y los mensajes. Y después, a la Barbería 360. Doña Mery dijo «cerquita»: Carrera 120 con Calle 45A."
+        ],
+        "effects": [
+          {
+            "setFlag": "m5_estudio"
+          },
+          {
+            "clockMax": "mar 12:00"
+          },
+          {
+            "objective": "Camina a la Barbería 360: sal por la Calle 18 hacia el sur"
+          }
+        ]
+      }
+    }
+  },
+  "m5_calle18_sur": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission05",
+              "notFlag": "m5_estudio"
+            },
+            "goto": "estudiar"
+          },
+          {
+            "goto": "nada"
+          }
+        ]
+      },
+      "estudiar": {
+        "text": "La Calle 18 sigue hacia el sur. Primero a estudiar: la Biblioteca, 2º piso."
+      },
+      "nada": {
+        "text": "La Calle 18 sigue hacia el sur, hacia Pance. Por ahora no tienes nada que hacer por allá."
+      }
+    }
+  },
+  "m5_carrito_pandebono": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Señor del carrito",
+        "text": "¡Pandebono, pan de yuca, calientitos! Dos mil cada uno. Pa' estudiar con la barriga llena, joven.",
+        "choices": [
+          {
+            "label": "Pan de yuca ($2.000)",
+            "if": {
+              "minMoney": 2000,
+              "notItem": "pan_de_yuca"
+            },
+            "effects": [
+              {
+                "pay": 2000
+              },
+              {
+                "giveItem": "pan_de_yuca"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "Pandebono ($2.000)",
+            "if": {
+              "minMoney": 2000,
+              "notItem": "pandebono"
+            },
+            "effects": [
+              {
+                "pay": 2000
+              },
+              {
+                "giveItem": "pandebono"
+              }
+            ],
+            "goto": "pandebono"
+          },
+          {
+            "label": "¿Y los pavos reales comen pandebono?",
+            "goto": "pavos"
+          },
+          {
+            "label": "Nada, gracias"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Señor del carrito",
+        "text": "¡Que le aproveche! El pan de yuca, con tinto. Nunca con gaseosa: eso es pecado."
+      },
+      "pandebono": {
+        "speaker": "Señor del carrito",
+        "text": "Ese está recién salido. Si se le enfría, no me eche la culpa a mí, échesela al aire acondicionado de la biblioteca."
+      },
+      "pavos": {
+        "speaker": "Señor del carrito",
+        "text": "¿Comer? ¡Esos bichos matan por un pandebono! Uno me robó uno de la mano. Y otro se llevó el reloj de un profesor. Son unos ladrones con plumas."
+      }
+    }
+  }
+}

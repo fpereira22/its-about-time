@@ -1,0 +1,473 @@
+{
+ "id": "centro_cali",
+ "name": "Centro de Cali",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 124,
+ "height": 50,
+ "region": "cali",
+ "music": "feria",
+ "background": "#3a5a34",
+ "legend": {
+  ".": "vereda",
+  "=": "calle",
+  "-": "calle_linea_h",
+  "Z": "cebra_v",
+  "\"": "pasto",
+  "*": "pasto_flor",
+  "T": "arbol",
+  "t": "arbol_vereda",
+  "y": "palmera",
+  "S": "separador",
+  "r": "mio_carril",
+  "e": "estacion_piso",
+  "b": "estacion_borde",
+  "v": "estacion_vidrio",
+  "o": "estacion_puerta",
+  "K": "edificio:centro",
+  "V": "edificio:vidrio",
+  "a": "adoquin",
+  "u": "bulevar",
+  "c": "cicloruta",
+  "_": "baranda",
+  "1": "toldo_blanco",
+  "2": "toldo_rojo",
+  "3": "toldo_azul",
+  "4": "toldo_amarillo",
+  "5": "toldo_verde",
+  "L": "puesto_libros",
+  "l": "libros_caja",
+  "E": "estante_feria",
+  "m": "maquina_escribir",
+  "w": "rio",
+  "W": "rio_b",
+  "n": "rio_orilla",
+  "N": "rio_orilla_s",
+  "p": "puente_ladrillo",
+  "P": "puente_muro",
+  "d": "puente_piso",
+  "R": "puente_reja",
+  "A": "ermita_aguja",
+  "O": "ermita_torre",
+  "h": "ermita_techo",
+  "M": "ermita_muro",
+  "X": "ermita_muro",
+  "Q": "ermita_roseton",
+  "D": "ermita_puerta",
+  "q": "ermita_atrio",
+  "B": "banca",
+  "f": "farol"
+ },
+ "rows": [
+  "KVVVVVVVVVVKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKaaKKKKKKKKKKKKaaKKKKKKKKKKKKKK\"\"T\"\"\"\"T\"\"\"\"KKKKKKKKKKKKKKKKKKKKKKKK",
+  "KVVVVVVVVVVKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKaaKKKKKKKKKKKKaaKKKKKKKKKKKKKK\"T\"\"\"\"T\"\"\"\"TKKKKKKKKKKKKKKKKKKKKKKKK",
+  "KVVVVVVVVVVKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKaaKKKKKKKKKKKKaaKKKKKKKKKKKKKKT\"\"\"\"T\"\"\"\"T\"KKKKKKKKKKKKKKKKKKKKKKKK",
+  "KVVVVVVVVVVKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKaaKKKKKKKKKKKKaaKKKKKKKKKKKKKK\"\"B\"TB\"\"BT\"\"KKKKKKKKKKKKKKKKKKKKKKKK",
+  "...t......t......t......t......t......t......t......t.....aa......t.....aa......t......t\"\"\"\"\"\"\"\"\"\"\"\".t......t......t......t.",
+  "============================================================================================================================",
+  "----------------------------------------------------------------------------------------------------------------------------",
+  "============================================================================================================================",
+  "SSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSS==SSSSySSSSS",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "SSSvvvvvovvvvvvvovvvvvvvvvySSSSSSSSySSSSvvvvovvvvvovvvvSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSS==SSySSSSSSS",
+  "SSSvbbbbbbbbbbbbbbbbbbbbbvSSSSSSSSySSSSSvbbbbbbbbbbbbbvSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSS==SySSSSSSSS",
+  "SSSveeeeeeeeeeeeeeeeeeeeevSSSSSSSySSSSSSveeeeeeeeeeeeevSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSS==ySSSSSSSSy",
+  "SSSvbbbbbbbbbbbbbbbbbbbbbvSSSSSSySSSSSSSvbbbbbbbbbbbbbvSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSS==SSSSSSSSyS",
+  "SSSvvvvvvvvovvvvvvvovvveevSSSSSySSSSSSSSvvvvvvvovvvveevSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSSySSSSSSSS==SSSSSSSySS",
+  "rrrrrrrrrrrrrrrrrrrrrrrZZrrrrrrrrrrrrrrrrrrrrrrrrrrrZZrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "SSySSSSSySSSSSySSSSSySSZZSySSSSSySSSSSySSSSSySSSSSySZZSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSySSSSSyS==SSySSSSSyS",
+  ".t.....t.....t.....t.....t.....t.....t.....t.....t.....t.....t.....t.....t.....t.....t.....t.....t.....t.....t..==.t.....t..",
+  "T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"a\"\"\"\"\"T\"\"\"\"\"T\"\"\"\"\"T\"\"a\"\"T\"\"\"\"\"T\"qqqq\"\"\"\"\"\"\"\"\"\"\"\"qqKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.==.KKKKKKKKK",
+  "\"\"\"*\"T\"\"\"\"\"T\"\"*\"\"T\"\"\"\"\"Ta*\"\"\"T\"\"\"\"\"T*\"\"\"\"T\"\"\"a\"T\"\"\"\"\"T\"\"TqqqqAqqqAAqqqAqqqKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.==.KKKKKKKKK",
+  "\"\"*\"T\"\"\"\"\"T\"\"*\"\"T\"\"\"\"\"T\"a\"\"\"T\"\"\"\"\"T*\"\"\"\"T\"\"\"\"aT\"\"\"\"\"T\"\"\"qqqq\"OhhhOOhhhO\"qTKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.==.KKKKKKKKK",
+  "\"\"\"T\"\"\"\"\"T\"\"B\"\"T\"\"\"\"\"T\"*a\"\"T\"\"B\"\"T*\"\"\"\"T\"\"\"\"\"a\"\"\"\"\"T\"\"\"\"qfqq\"OhhhOOhhhO\"qqKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.==.KKKKKKKKK",
+  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaqqqqMOhhhhhhhhOMqqKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.==.KKKKKKKKK",
+  "\"T\"\"\"\"\"T\"\"*\"\"T\"\"\"\"\"T\"*\"\"aT\"\"\"\"\"T*\"\"\"\"TB\"\"\"\"T\"a\"\"\"T\"\"\"\"*TqqqqMOMXMQQMXMOMfqKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.==.KKKKKKKKK",
+  "T\"\"\"\"\"T\"\"*\"\"T\"\"\"\"\"T\"*\"\"\"a\"\"\"\"\"T*\"\"\"\"T\"\"\"\"\"T\"\"a\"\"T\"\"\"\"*T\"TqqqMOXMXMMXMXOMqqKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.==.KKKKKKKKK",
+  "\"\"\"\"\"T\"\"*\"\"T\"\"\"\"\"T\"*\"\"\"Ta\"\"\"\"T*\"\"\"\"T\"\"\"\"\"T\"\"\"a\"T\"\"\"\"*T\"\"qqqqMOMMMDDMMMOMqqKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.==.KKKKKKKKK",
+  "\"\"\"\"T\"\"*\"\"T\"\"\"\"\"T\"*\"\"\"T\"a\"\"\"T*\"\"\"\"T\"\"\"\"\"T\"\"\"\"aT\"\"\"\"*T\"\"\"qqqqqqqqqqqqqqqqqq..................................................",
+  "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuqqqqqqqqqqqqqqqqqquuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuZ==Zuuuuuuuuu",
+  "uuuuuuuuuuuuuuuuuuuuuuuuuu22222u33333u44444u11111u55555uuuuuuuuuuuuuuuuuuuuu22222u33333u44444u11111u55555u22222Z==Zuuuuuuuuu",
+  "uuuuuuuuuuuuuuuuuuuuuuuuuuEuuuEuEuuuEuEuuuEuEuuuEuEuuuEuuuuuuuuuuuuuuuuuuuuuEuuuEuEuuuEuEuuuEuEuuuEuEuuuEuEuuuEZ==Zuuuuuuuuu",
+  "uuuuuuuuuuuuuuuuuuuuuuuuuuLLLLLuLLLLLuLLLLLuLLLLLuLLLLLuuuuuuuuuuuuuuuuuuuuuLLLLLuLLLLLuLLLLLuLLLLLuLLLLLuLLLLLZ==Zuuuuuuuuu",
+  "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuZ==Zuuuuuuuuu",
+  "uuuufuuuuuBuuuuuuuuufuuuuuBuuuuuuuuufuuuuuBuuuuuuuuufuuuuuBuuuuuuuuufuuuuuBuuuuuuuuufuuuuumuBBuuuuuufuuuuuBuuuuZ==ZufuuuuuBu",
+  "uuuuyuuuuuuuyuuuuuuuyuuuuuuuyuluuuuuyuuuuuuuyuuuluuuyuuuuuuuyuuuuuuuyuuuuuuuyuuuluuuyuuuuuuuyuuuuuluyuuuluuuyuuZ==Zuyuuuuuuu",
+  "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc==cccccccccc",
+  "_______________________________________________________________PppppP___________RddR_______________RddR________R==R_________",
+  "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnPppppPnnnnnnnnnnnRddRnnnnnnnnnnnnnnnRddRnnnnnnnnR==Rnnnnnnnnn",
+  "wwwWwwwwwWwwwwwWwwwwwWwwwwwWwwwwwWwwwwwWwwwwwWwwwwwWwwwwwWwwwwwPlpppPWwwwwwWwwwwRddRwwwWwwwwwWwwwwwRddRwwWwwwwwR==RwwWwwwwwW",
+  "WwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWWwWPppplPWwWWwWWwWWwRddRWwWWwWWwWWwWWwWRddRwWWwWWwWR==RwWWwWWwWW",
+  "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNPppppPNNNNNNNNNNNRddRNNNNNNNNNNNNNNNRddRNNNNNNNNR==RNNNNNNNNN",
+  "_______________________________________________________________PppppP___________RddR_______________RddR________R==R_________",
+  "\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"aaaaaaaaaaaa\"\"\"\"\"\"aaaaaa\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"==\"\"\"\"\"\"T\"\"\"",
+  "T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"aaaaaaaaaaaa\"\"\"\"\"TaaaaaaT\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"T\"\"\"\"\"\"==\"\"\"\"\"T\"\"\"\"",
+  "......t......t......t......t......t......t......t......t......t......t......t......t......t......t......t......t==....t.....",
+  "================================================================ZZZZ========================================================",
+  "----------------------------------------------------------------------------------------------------------------------------",
+  "================================================================ZZZZ========================================================",
+  "............................................................................................................................",
+  "KKKKKKKKKKKKKKKKKKKKKKKKKKKKVVVVVVVVVVVVVVVVVVVVVVVVKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+  "KKKKKKKKKKKKKKKKKKKKKKKKKKKKVVVVVVVVVVVVVVVVVVVVVVVVKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK"
+ ],
+ "zones": [
+  {
+   "name": "Estación Torre de Cali",
+   "subtitle": "Carrera 1",
+   "x": 3,
+   "y": 10,
+   "w": 23,
+   "h": 5
+  },
+  {
+   "name": "Estación La Ermita",
+   "subtitle": "Carrera 1",
+   "x": 40,
+   "y": 10,
+   "w": 15,
+   "h": 5
+  },
+  {
+   "name": "La Ermita",
+   "subtitle": "Templo de Nuestra Señora de los Dolores",
+   "x": 56,
+   "y": 18,
+   "w": 18,
+   "h": 10
+  },
+  {
+   "name": "Puente Ortiz",
+   "subtitle": "Sobre el río Cali (1845)",
+   "x": 63,
+   "y": 35,
+   "w": 6,
+   "h": 6
+  },
+  {
+   "name": "Puente España",
+   "subtitle": "Sobre el río Cali",
+   "x": 80,
+   "y": 35,
+   "w": 4,
+   "h": 6
+  },
+  {
+   "name": "Feria del Libro",
+   "subtitle": "Bulevar del Río",
+   "x": 24,
+   "y": 27,
+   "w": 90,
+   "h": 8
+  },
+  {
+   "name": "Bulevar del Río",
+   "subtitle": "Av. Colombia",
+   "x": 0,
+   "y": 27,
+   "w": 124,
+   "h": 8
+  },
+  {
+   "name": "Parque La Retreta",
+   "subtitle": "Carrera 1",
+   "x": 0,
+   "y": 18,
+   "w": 56,
+   "h": 9
+  },
+  {
+   "name": "Río Cali",
+   "subtitle": "Bulevar del Río",
+   "x": 0,
+   "y": 35,
+   "w": 124,
+   "h": 6
+  },
+  {
+   "name": "Monumento a Jorge Isaacs",
+   "subtitle": "Autor de «María» (1867)",
+   "x": 60,
+   "y": 41,
+   "w": 12,
+   "h": 2
+  },
+  {
+   "name": "Av. 2 Norte",
+   "subtitle": "Centro Administrativo Municipal",
+   "x": 0,
+   "y": 41,
+   "w": 124,
+   "h": 9
+  },
+  {
+   "name": "Calle 8",
+   "subtitle": "Hacia San Antonio",
+   "x": 111,
+   "y": 17,
+   "w": 4,
+   "h": 18
+  },
+  {
+   "name": "Parque de los Poetas",
+   "subtitle": "Calle 12",
+   "x": 88,
+   "y": 0,
+   "w": 12,
+   "h": 5
+  },
+  {
+   "name": "Carrera 1",
+   "subtitle": "Centro",
+   "x": 0,
+   "y": 4,
+   "w": 124,
+   "h": 14
+  }
+ ],
+ "spawns": {
+  "torre_cali": {
+   "x": 13,
+   "y": 12,
+   "dir": "down"
+  },
+  "la_ermita": {
+   "x": 46,
+   "y": 12,
+   "dir": "down"
+  },
+  "atrio": {
+   "x": 65,
+   "y": 27,
+   "dir": "up"
+  },
+  "desde_san_antonio": {
+   "x": 122,
+   "y": 31,
+   "dir": "left"
+  },
+  "puente_ortiz": {
+   "x": 65,
+   "y": 33,
+   "dir": "down"
+  }
+ },
+ "warps": [
+  {
+   "x": 123,
+   "y": 29,
+   "to": "san_antonio",
+   "spawn": "desde_bulevar",
+   "if": {
+    "any": [
+     {
+      "flag": "m6_rumbo_helado"
+     },
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     }
+    ]
+   },
+   "blockedDialogue": "m6_bulevar_fin"
+  },
+  {
+   "x": 123,
+   "y": 30,
+   "to": "san_antonio",
+   "spawn": "desde_bulevar",
+   "if": {
+    "any": [
+     {
+      "flag": "m6_rumbo_helado"
+     },
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     }
+    ]
+   },
+   "blockedDialogue": "m6_bulevar_fin"
+  },
+  {
+   "x": 123,
+   "y": 31,
+   "to": "san_antonio",
+   "spawn": "desde_bulevar",
+   "if": {
+    "any": [
+     {
+      "flag": "m6_rumbo_helado"
+     },
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     }
+    ]
+   },
+   "blockedDialogue": "m6_bulevar_fin"
+  },
+  {
+   "x": 123,
+   "y": 32,
+   "to": "san_antonio",
+   "spawn": "desde_bulevar",
+   "if": {
+    "any": [
+     {
+      "flag": "m6_rumbo_helado"
+     },
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     }
+    ]
+   },
+   "blockedDialogue": "m6_bulevar_fin"
+  },
+  {
+   "x": 123,
+   "y": 33,
+   "to": "san_antonio",
+   "spawn": "desde_bulevar",
+   "if": {
+    "any": [
+     {
+      "flag": "m6_rumbo_helado"
+     },
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     }
+    ]
+   },
+   "blockedDialogue": "m6_bulevar_fin"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "sira_ermita",
+   "x": 56,
+   "y": 26,
+   "w": 18,
+   "h": 3,
+   "event": "encuentro_ermita",
+   "if": {
+    "mission": "mission06",
+    "flag": "m6_llego_centro",
+    "notFlag": "m6_con_sira"
+   }
+  },
+  {
+   "id": "raponazo",
+   "x": 60,
+   "y": 31,
+   "w": 12,
+   "h": 4,
+   "event": "raponazo",
+   "if": {
+    "mission": "mission06",
+    "flag": "m6_firmado",
+    "notFlag": "m6_persecucion"
+   }
+  },
+  {
+   "id": "salir_estacion",
+   "x": 23,
+   "y": 16,
+   "w": 2,
+   "h": 2,
+   "event": "dialogo:m6_salida_estacion",
+   "once": true,
+   "if": {
+    "mission": "mission06"
+   }
+  }
+ ],
+ "labels": [
+  {
+   "x": 6,
+   "y": 1.5,
+   "text": "TORRE DE CALI"
+  },
+  {
+   "x": 14,
+   "y": 12.5,
+   "text": "TORRE DE CALI"
+  },
+  {
+   "x": 47,
+   "y": 12.5,
+   "text": "LA ERMITA"
+  },
+  {
+   "x": 79,
+   "y": 1.5,
+   "text": "TEATRO JORGE ISAACS"
+  },
+  {
+   "x": 68,
+   "y": 31.6,
+   "text": "FERIA DEL LIBRO · BULEVAR DEL RÍO"
+  },
+  {
+   "x": 40,
+   "y": 48.6,
+   "text": "C.A.M."
+  }
+ ],
+ "crowd": {
+  "lines": "feria",
+  "areas": [
+   {
+    "x": 24,
+    "y": 31,
+    "w": 32,
+    "h": 2,
+    "count": 10
+   },
+   {
+    "x": 74,
+    "y": 31,
+    "w": 36,
+    "h": 2,
+    "count": 12
+   },
+   {
+    "x": 4,
+    "y": 11,
+    "w": 20,
+    "h": 3,
+    "count": 6
+   },
+   {
+    "x": 0,
+    "y": 22,
+    "w": 50,
+    "h": 1,
+    "count": 4
+   },
+   {
+    "x": 0,
+    "y": 43,
+    "w": 60,
+    "h": 1,
+    "count": 3
+   }
+  ]
+ },
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m6_centro_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission06"
+   }
+  }
+ ]
+}

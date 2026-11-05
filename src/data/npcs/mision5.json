@@ -1,0 +1,889 @@
+[
+  {
+    "id": "m5_mery",
+    "map": "pance_casa",
+    "x": 16,
+    "y": 3,
+    "dir": "left",
+    "sprite": "anfitriona",
+    "dialogue": "m5_mery",
+    "if": {
+      "mission": "mission05",
+      "notFlag": "m5_volvio_piscina"
+    }
+  },
+  {
+    "id": "m5_mery_noche",
+    "map": "pance_casa",
+    "x": 5,
+    "y": 8,
+    "dir": "left",
+    "sprite": "anfitriona",
+    "dialogue": "m5_mery",
+    "if": {
+      "mission": "mission05",
+      "flag": "m5_volvio_piscina"
+    }
+  },
+  {
+    "id": "m5_paradero_pance",
+    "map": "pance",
+    "x": 31,
+    "y": 6,
+    "object": "paradero_cali",
+    "dialogue": "m5_paradero_pance",
+    "if": {
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_vigilante",
+    "map": "pucc_campus",
+    "x": 67,
+    "y": 22,
+    "dir": "down",
+    "sprite": "vigilante",
+    "dialogue": "m5_vigilante",
+    "if": {
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_kiosko_pan",
+    "map": "pucc_campus",
+    "x": 60,
+    "y": 21,
+    "object": "kiosko_champus",
+    "dialogue": "m5_carrito_pandebono",
+    "if": {
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_vendedor_pan",
+    "map": "pucc_campus",
+    "x": 61,
+    "y": 21,
+    "dir": "down",
+    "sprite": "vendedor",
+    "dialogue": "m5_carrito_pandebono",
+    "if": {
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_grover",
+    "map": "pucc_campus",
+    "x": 47,
+    "y": 3,
+    "dir": "down",
+    "sprite": "grover",
+    "dialogue": "m5_grover",
+    "if": {
+      "mission": "mission05",
+      "flag": "m5_corte",
+      "notFlag": "m5_llaves_listas"
+    }
+  },
+  {
+    "id": "m5_grover_listo",
+    "map": "pucc_campus",
+    "x": 47,
+    "y": 3,
+    "dir": "down",
+    "sprite": "grover",
+    "dialogue": "m5_grover_listo",
+    "if": {
+      "mission": "mission05",
+      "flag": "m5_llaves_listas",
+      "notFlag": "m5_en_deportivo"
+    }
+  },
+  {
+    "id": "m5_pavo_llaves",
+    "map": "pucc_campus",
+    "x": 62,
+    "y": 31,
+    "dir": "left",
+    "sprite": "pavo_real",
+    "dialogue": "m5_pavo_llaves",
+    "if": {
+      "mission": "mission05",
+      "flag": "m5_grover_visto",
+      "notItem": "llaves_grover",
+      "notFlag": "m5_llaves_listas"
+    }
+  },
+  {
+    "id": "m5_estudiante_lago",
+    "map": "pucc_campus",
+    "x": 34,
+    "y": 12,
+    "dir": "left",
+    "sprite": "universitaria",
+    "dialogue": "m5_estudiante_lago",
+    "if": {
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_aseo_cafe",
+    "map": "pucc_cafeteria",
+    "x": 12,
+    "y": 7,
+    "dir": "left",
+    "sprite": "senora",
+    "dialogue": "m5_aseo_cafe",
+    "wander": 2,
+    "if": {
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_semaforo_1",
+    "map": "ruta_barberia",
+    "x": 68,
+    "y": 11,
+    "object": "semaforo",
+    "dialogue": "m5_cruce_25"
+  },
+  {
+    "id": "m5_semaforo_2",
+    "map": "ruta_barberia",
+    "x": 78,
+    "y": 11,
+    "object": "semaforo",
+    "dialogue": "m5_cruce_25"
+  },
+  {
+    "id": "m5_carreta_mango",
+    "map": "ruta_barberia",
+    "x": 65,
+    "y": 11,
+    "object": "carreta_mango",
+    "dialogue": "m5_mango"
+  },
+  {
+    "id": "m5_vendedor_mango",
+    "map": "ruta_barberia",
+    "x": 66,
+    "y": 11,
+    "dir": "down",
+    "sprite": "vendedor_mango",
+    "dialogue": "m5_mango"
+  },
+  {
+    "id": "m5_chancero",
+    "map": "ruta_barberia",
+    "x": 90,
+    "y": 11,
+    "dir": "down",
+    "sprite": "chancero",
+    "dialogue": "m5_chance"
+  },
+  {
+    "id": "m5_lavador",
+    "map": "ruta_barberia",
+    "x": 95,
+    "y": 11,
+    "dir": "down",
+    "sprite": "lavador_carros",
+    "dialogue": "m5_lavador"
+  },
+  {
+    "id": "m5_autocine",
+    "map": "ruta_barberia",
+    "x": 85,
+    "y": 10,
+    "dialogue": "m5_autocine"
+  },
+  {
+    "id": "m5_lago_retiro",
+    "map": "ruta_barberia",
+    "x": 33,
+    "y": 10,
+    "dialogue": "m5_lago_retiro"
+  },
+  {
+    "id": "m5_conjunto",
+    "map": "ruta_barberia",
+    "x": 17,
+    "y": 10,
+    "dialogue": "m5_conjunto"
+  },
+  {
+    "id": "m5_conjunto_2",
+    "map": "ruta_barberia",
+    "x": 88,
+    "y": 17,
+    "dialogue": "m5_conjunto"
+  },
+  {
+    "id": "m5_bodega",
+    "map": "ruta_barberia",
+    "x": 17,
+    "y": 18,
+    "dialogue": "m5_bodega"
+  },
+  {
+    "id": "m5_tienda",
+    "map": "ruta_barberia",
+    "x": 106,
+    "y": 10,
+    "dialogue": "m5_tienda"
+  },
+  {
+    "id": "m5_mesa_domino",
+    "map": "ruta_barberia",
+    "x": 108,
+    "y": 11,
+    "object": "mesa_domino",
+    "dialogue": "m5_domino"
+  },
+  {
+    "id": "m5_abuelo_1",
+    "map": "ruta_barberia",
+    "x": 107,
+    "y": 11,
+    "dir": "right",
+    "sprite": "abuelo_domino",
+    "dialogue": "m5_domino"
+  },
+  {
+    "id": "m5_abuelo_2",
+    "map": "ruta_barberia",
+    "x": 109,
+    "y": 11,
+    "dir": "left",
+    "sprite": "abuelo_domino_2",
+    "dialogue": "m5_domino"
+  },
+  {
+    "id": "m5_jaula_loro",
+    "map": "ruta_barberia",
+    "x": 120,
+    "y": 11,
+    "object": "jaula_loro",
+    "dialogue": "m5_loro"
+  },
+  {
+    "id": "m5_senora_loro",
+    "map": "ruta_barberia",
+    "x": 121,
+    "y": 11,
+    "dir": "down",
+    "sprite": "senora_loro",
+    "dialogue": "m5_loro"
+  },
+  {
+    "id": "m5_puesto_salpicon",
+    "map": "ruta_barberia",
+    "x": 129,
+    "y": 11,
+    "object": "puesto_salpicon",
+    "dialogue": "m5_salpicon"
+  },
+  {
+    "id": "m5_salpiconera",
+    "map": "ruta_barberia",
+    "x": 130,
+    "y": 11,
+    "dir": "down",
+    "sprite": "salpiconera",
+    "dialogue": "m5_salpicon"
+  },
+  {
+    "id": "m5_poste_1",
+    "map": "ruta_barberia",
+    "x": 144,
+    "y": 11,
+    "object": "poste_barberia",
+    "dialogue": "m5_poste"
+  },
+  {
+    "id": "m5_poste_2",
+    "map": "ruta_barberia",
+    "x": 148,
+    "y": 11,
+    "object": "poste_barberia",
+    "dialogue": "m5_poste"
+  },
+  {
+    "id": "m5_perro",
+    "map": "ruta_barberia",
+    "x": 157,
+    "y": 21,
+    "dir": "left",
+    "sprite": "perro_ciudad",
+    "dialogue": "m5_perro",
+    "wander": 2
+  },
+  {
+    "id": "m5_ninos_parque",
+    "map": "ruta_barberia",
+    "x": 146,
+    "y": 21,
+    "dir": "right",
+    "sprite": "escolar",
+    "dialogue": "m5_parque",
+    "wander": 2
+  },
+  {
+    "id": "m5_fredy",
+    "map": "barberia_360",
+    "x": 8,
+    "y": 2,
+    "dir": "left",
+    "sprite": "fredy",
+    "dialogue": "m5_fredy"
+  },
+  {
+    "id": "m5_yeimar",
+    "map": "barberia_360",
+    "x": 3,
+    "y": 6,
+    "dir": "down",
+    "sprite": "yeimar",
+    "dialogue": "m5_yeimar",
+    "wander": 1
+  },
+  {
+    "id": "m5_cliente",
+    "map": "barberia_360",
+    "x": 4,
+    "y": 2,
+    "dir": "up",
+    "sprite": "cliente_barberia",
+    "dialogue": "m5_cliente"
+  },
+  {
+    "id": "m5_mapamundi",
+    "map": "barberia_360",
+    "x": 13,
+    "y": 1,
+    "dialogue": "m5_mapamundi"
+  },
+  {
+    "id": "m5_fotos",
+    "map": "barberia_360",
+    "x": 14,
+    "y": 1,
+    "dialogue": "m5_fotos"
+  },
+  {
+    "id": "m5_tele",
+    "map": "barberia_360",
+    "x": 16,
+    "y": 1,
+    "dialogue": "m5_tele_barberia"
+  },
+  {
+    "id": "m5_parlante",
+    "map": "barberia_360",
+    "x": 16,
+    "y": 7,
+    "dialogue": "m5_parlante"
+  },
+  {
+    "id": "m5_espejo_0",
+    "map": "barberia_360",
+    "x": 4,
+    "y": 1,
+    "dialogue": "m5_espejo_barberia"
+  },
+  {
+    "id": "m5_espejo_1",
+    "map": "barberia_360",
+    "x": 7,
+    "y": 1,
+    "dialogue": "m5_espejo_barberia"
+  },
+  {
+    "id": "m5_espejo_2",
+    "map": "barberia_360",
+    "x": 10,
+    "y": 1,
+    "dialogue": "m5_espejo_barberia"
+  },
+  {
+    "id": "m5_estante_3",
+    "map": "barberia_360",
+    "x": 16,
+    "y": 3,
+    "dialogue": "m5_estante"
+  },
+  {
+    "id": "m5_estante_4",
+    "map": "barberia_360",
+    "x": 16,
+    "y": 4,
+    "dialogue": "m5_estante"
+  },
+  {
+    "id": "m5_estante_5",
+    "map": "barberia_360",
+    "x": 16,
+    "y": 5,
+    "dialogue": "m5_estante"
+  },
+  {
+    "id": "m5_mostrador_1",
+    "map": "barberia_360",
+    "x": 1,
+    "y": 7,
+    "dialogue": "m5_mostrador"
+  },
+  {
+    "id": "m5_mostrador_2",
+    "map": "barberia_360",
+    "x": 2,
+    "y": 7,
+    "dialogue": "m5_mostrador"
+  },
+  {
+    "id": "m5_mostrador_3",
+    "map": "barberia_360",
+    "x": 3,
+    "y": 7,
+    "dialogue": "m5_mostrador"
+  },
+  {
+    "id": "m5_mostrador_4",
+    "map": "barberia_360",
+    "x": 4,
+    "y": 7,
+    "dialogue": "m5_mostrador"
+  },
+  {
+    "id": "m5_taquilla",
+    "map": "pucc_piscina",
+    "x": 17,
+    "y": 29,
+    "dialogue": "m5_taquilla"
+  },
+  {
+    "id": "m5_portero_1",
+    "map": "pucc_piscina",
+    "x": 18,
+    "y": 28,
+    "dialogue": "m5_portero",
+    "if": {
+      "notFlag": "m5_entrada",
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_portero_2",
+    "map": "pucc_piscina",
+    "x": 19,
+    "y": 28,
+    "dialogue": "m5_portero",
+    "if": {
+      "notFlag": "m5_entrada",
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_portero_3",
+    "map": "pucc_piscina",
+    "x": 20,
+    "y": 28,
+    "dialogue": "m5_portero",
+    "if": {
+      "notFlag": "m5_entrada",
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_grover_g1",
+    "map": "pucc_piscina",
+    "x": 21,
+    "y": 29,
+    "dir": "left",
+    "sprite": "grover",
+    "dialogue": "m5_grover_piscina",
+    "if": {
+      "notFlag": "m5_en_bano",
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_grover_g2",
+    "map": "pucc_piscina",
+    "x": 11,
+    "y": 22,
+    "dir": "down",
+    "sprite": "grover_bano",
+    "dialogue": "m5_grover_piscina",
+    "if": {
+      "flag": "m5_en_bano",
+      "notFlag": "m5_vestido_post",
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_grover_g3",
+    "map": "pucc_piscina",
+    "x": 21,
+    "y": 30,
+    "dir": "left",
+    "sprite": "grover",
+    "dialogue": "m5_grover_vuelta",
+    "if": {
+      "flag": "m5_sira_conocida",
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_sira_piscina",
+    "map": "pucc_piscina",
+    "x": 22,
+    "y": 23,
+    "dir": "down",
+    "sprite": "sira",
+    "dialogue": "m5_sira_encuentro",
+    "if": {
+      "flag": "m5_vestido_post",
+      "notFlag": "m5_sira_conocida",
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_salvavidas",
+    "map": "pucc_piscina",
+    "x": 16,
+    "y": 22,
+    "dir": "left",
+    "sprite": "salvavidas",
+    "dialogue": "m5_salvavidas",
+    "if": {
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_nino",
+    "map": "pucc_piscina",
+    "x": 13,
+    "y": 23,
+    "dir": "up",
+    "sprite": "nino_piscina",
+    "dialogue": "m5_nino",
+    "if": {
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_antiparras",
+    "map": "pucc_piscina",
+    "x": 17,
+    "y": 12,
+    "object": "antiparras",
+    "dialogue": "m5_antiparras_suelo",
+    "if": {
+      "notFlag": "m5_antiparras_ok",
+      "notItem": "antiparras",
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_trampolin",
+    "map": "pucc_piscina",
+    "x": 1,
+    "y": 16,
+    "dialogue": "m5_trampolin",
+    "if": {
+      "mission": "mission05"
+    }
+  },
+  {
+    "id": "m5_kiosko_champus",
+    "map": "pucc_piscina",
+    "x": 24,
+    "y": 9,
+    "object": "kiosko_champus",
+    "dialogue": "m5_champus"
+  },
+  {
+    "id": "m5_champusera",
+    "map": "pucc_piscina",
+    "x": 25,
+    "y": 9,
+    "dir": "down",
+    "sprite": "salpiconera",
+    "dialogue": "m5_champus"
+  },
+  {
+    "id": "m5_snacks",
+    "map": "pucc_piscina",
+    "x": 14,
+    "y": 9,
+    "object": "maquina_snacks",
+    "dialogue": "m5_snacks"
+  },
+  {
+    "id": "m5_ducha_1",
+    "map": "pucc_piscina",
+    "x": 0,
+    "y": 10,
+    "dialogue": "m5_ducha"
+  },
+  {
+    "id": "m5_ducha_2",
+    "map": "pucc_piscina",
+    "x": 17,
+    "y": 10,
+    "dialogue": "m5_ducha"
+  },
+  {
+    "id": "m5_nadadora",
+    "map": "pucc_piscina",
+    "x": 13,
+    "y": 11,
+    "dir": "down",
+    "sprite": "nadadora",
+    "dialogue": "m5_gradas",
+    "wander": 2
+  },
+  {
+    "id": "m5_locker_1",
+    "map": "piscinas_camerino",
+    "x": 1,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_locker_2",
+    "map": "piscinas_camerino",
+    "x": 2,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_locker_3",
+    "map": "piscinas_camerino",
+    "x": 3,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_locker_4",
+    "map": "piscinas_camerino",
+    "x": 4,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_locker_5",
+    "map": "piscinas_camerino",
+    "x": 5,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_locker_6",
+    "map": "piscinas_camerino",
+    "x": 6,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_locker_8",
+    "map": "piscinas_camerino",
+    "x": 8,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_locker_9",
+    "map": "piscinas_camerino",
+    "x": 9,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_locker_10",
+    "map": "piscinas_camerino",
+    "x": 10,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_locker_11",
+    "map": "piscinas_camerino",
+    "x": 11,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_locker_12",
+    "map": "piscinas_camerino",
+    "x": 12,
+    "y": 1,
+    "dialogue": "m5_locker"
+  },
+  {
+    "id": "m5_ducha_cam",
+    "map": "piscinas_camerino",
+    "x": 12,
+    "y": 5,
+    "dialogue": "m5_ducha"
+  },
+  {
+    "id": "m5_profe",
+    "map": "pance_burger",
+    "x": 11,
+    "y": 3,
+    "dir": "down",
+    "sprite": "profe_julian",
+    "dialogue": "m5_profe_mesa",
+    "if": {
+      "notFlag": "m5_solos"
+    }
+  },
+  {
+    "id": "m5_vale",
+    "map": "pance_burger",
+    "x": 12,
+    "y": 3,
+    "dir": "down",
+    "sprite": "valentina",
+    "dialogue": "m5_vale_mesa",
+    "if": {
+      "notFlag": "m5_solos"
+    }
+  },
+  {
+    "id": "m5_camilo",
+    "map": "pance_burger",
+    "x": 14,
+    "y": 3,
+    "dir": "down",
+    "sprite": "camilo",
+    "dialogue": "m5_camilo_mesa",
+    "if": {
+      "notFlag": "m5_solos"
+    }
+  },
+  {
+    "id": "m5_sira_burger",
+    "map": "pance_burger",
+    "x": 13,
+    "y": 3,
+    "dir": "down",
+    "sprite": "sira_noche",
+    "dialogue": "m5_sira_mesa",
+    "if": {
+      "flag": "m5_sira_llega",
+      "notFlag": "m5_insta"
+    }
+  },
+  {
+    "id": "m5_mesera",
+    "map": "pance_burger",
+    "x": 8,
+    "y": 6,
+    "dir": "down",
+    "sprite": "mesera_burger",
+    "dialogue": "m5_mesera",
+    "wander": 2
+  },
+  {
+    "id": "m5_cocinero",
+    "map": "pance_burger",
+    "x": 3,
+    "y": 3,
+    "dir": "up",
+    "sprite": "lavador_carros",
+    "dialogue": "m5_cocinero"
+  },
+  {
+    "id": "m5_grover_auto",
+    "map": "carro_grover",
+    "x": 2,
+    "y": 2,
+    "dir": "left",
+    "sprite": "grover",
+    "dialogue": "m5_grover_auto"
+  },
+  {
+    "id": "m5_llama_tablero",
+    "map": "carro_grover",
+    "x": 1,
+    "y": 2,
+    "dialogue": "m5_llama_tablero"
+  },
+  {
+    "id": "m5_pareja_1",
+    "map": "pance_burger",
+    "x": 3,
+    "y": 7,
+    "dir": "down",
+    "sprite": "senora",
+    "dialogue": "m5_pareja"
+  },
+  {
+    "id": "m5_pareja_2",
+    "map": "pance_burger",
+    "x": 3,
+    "y": 9,
+    "dir": "up",
+    "sprite": "pasajero",
+    "dialogue": "m5_pareja"
+  },
+  {
+    "id": "m5_cita",
+    "map": "pance_burger",
+    "x": 8,
+    "y": 9,
+    "dir": "up",
+    "sprite": "universitaria",
+    "dialogue": "m5_cita"
+  },
+  {
+    "id": "m5_coliseo",
+    "map": "pucc_piscina",
+    "x": 26,
+    "y": 16,
+    "dialogue": "m5_coliseo"
+  },
+  {
+    "id": "m5_tenista_1",
+    "map": "pucc_piscina",
+    "x": 37,
+    "y": 13,
+    "dir": "right",
+    "sprite": "estudiante",
+    "dialogue": "m5_tenis",
+    "wander": 1
+  },
+  {
+    "id": "m5_tenista_2",
+    "map": "pucc_piscina",
+    "x": 41,
+    "y": 14,
+    "dir": "left",
+    "sprite": "universitaria",
+    "dialogue": "m5_tenis",
+    "wander": 1
+  },
+  {
+    "id": "m5_basket_1",
+    "map": "pucc_piscina",
+    "x": 29,
+    "y": 21,
+    "dir": "right",
+    "sprite": "escolar",
+    "dialogue": "m5_basket",
+    "wander": 2
+  },
+  {
+    "id": "m5_basket_2",
+    "map": "pucc_piscina",
+    "x": 38,
+    "y": 27,
+    "dir": "left",
+    "sprite": "caleno_u",
+    "dialogue": "m5_basket",
+    "wander": 2
+  }
+]

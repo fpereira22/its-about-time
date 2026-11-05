@@ -1,0 +1,131 @@
+{
+  "id": "mission01",
+  "number": 1,
+  "title": "De Baquedano al Costanera",
+  "start": {
+    "map": "providencia",
+    "spawn": "inicio"
+  },
+  "introDialogue": "mision1_intro",
+  "objective": "Llega al Costanera Center (al oriente)",
+  "destination": {
+    "map": "providencia",
+    "x": 182,
+    "y": 13,
+    "name": "Costanera"
+  },
+  "victoryEvent": "encontrar_mama",
+  "routes": [
+    {
+      "id": "metro",
+      "name": "Metro",
+      "if": {
+        "flag": "ruta_metro"
+      }
+    },
+    {
+      "id": "micro",
+      "name": "Micro",
+      "if": {
+        "flag": "ruta_micro"
+      }
+    }
+  ],
+  "defaultRoute": "A pie",
+  "walkedSuffix": {
+    "if": {
+      "flag": "bajo_antes"
+    },
+    "text": " + a pie"
+  },
+  "collectibles": [
+    "sopaipilla",
+    "empanada",
+    "completo",
+    "mote"
+  ],
+  "bonuses": [
+    {
+      "text": "Llegaste con el quiltro",
+      "if": {
+        "flag": "quiltro_sigue"
+      }
+    },
+    {
+      "text": "Ayudaste al turista",
+      "if": {
+        "flag": "ayudo_turista"
+      }
+    },
+    {
+      "text": "Conociste el atajo",
+      "if": {
+        "flag": "conoce_atajo"
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "flag": "secreto_kiosco",
+      "name": "El kiosco que ya no está"
+    },
+    {
+      "flag": "secreto_dormido",
+      "name": "Despertar al estudiante del metro"
+    },
+    {
+      "flag": "secreto_selfie_quiltro",
+      "name": "Selfie con el quiltro"
+    },
+    {
+      "flag": "secreto_culebrita",
+      "name": "10 puntos en la Culebrita"
+    },
+    {
+      "flag": "secreto_sky",
+      "name": "El piso 61"
+    },
+    {
+      "flag": "secreto_poster",
+      "name": "El estreno del cine"
+    },
+    {
+      "flag": "secreto_konami",
+      "name": "Arriba, arriba, abajo, abajo..."
+    }
+  ],
+  "endings": [
+    {
+      "id": "metro",
+      "name": "Llegaste en metro",
+      "if": {
+        "all": [
+          {
+            "flag": "ruta_metro"
+          },
+          {
+            "notFlag": "bajo_antes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "micro",
+      "name": "Llegaste en micro",
+      "if": {
+        "all": [
+          {
+            "flag": "ruta_micro"
+          },
+          {
+            "notFlag": "bajo_antes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pie",
+      "name": "Llegaste caminando"
+    }
+  ]
+}

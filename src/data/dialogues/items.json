@@ -1,0 +1,162 @@
+{
+  "usar_bip": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Tu tarjeta Bip! tiene {bip}.",
+        "branches": [{ "if": { "not": { "minBip": 800 } }, "goto": "poco" }, { "goto": "alcanza" }]
+      },
+      "poco": { "text": "Con menos de $800 no alcanza para un pasaje. Puedes cargarla en las máquinas de la estación Baquedano." },
+      "alcanza": { "text": "Alcanza para un pasaje de $800. ¡Buen viaje!" }
+    }
+  },
+
+  "usar_sopaipilla": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¿Comerte la sopaipilla? Si te la comes, ya no cuenta como coleccionable para la misión.",
+        "choices": [
+          { "label": "Sí, comer", "effects": [{ "takeItem": "sopaipilla" }, { "setFlag": "comio_sopaipilla" }], "goto": "comida" },
+          { "label": "Mejor no" }
+        ]
+      },
+      "comida": {
+        "text": "Te la comes en tres mascadas. Crujiente por fuera, suavecita por dentro. Pura felicidad.",
+        "effects": [{ "vineta": "comer_sopaipilla" }],
+        "branches": [{ "if": { "flag": "quiltro_sigue" }, "goto": "quiltro" }]
+      },
+      "quiltro": { "text": "El quiltro te mira fijo, con cara de traición. Le pasas el último pedacito.", "effects": [{ "vineta": "comer_sopaipilla_quiltro" }] }
+    }
+  },
+
+  "usar_empanada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¿Comerte la empanada? Si te la comes, ya no cuenta como coleccionable para la misión.",
+        "choices": [
+          { "label": "Sí, comer", "effects": [{ "takeItem": "empanada" }, { "setFlag": "comio_empanada" }], "goto": "comida" },
+          { "label": "Mejor no" }
+        ]
+      },
+      "comida": {
+        "text": "Jugosa, con harto pino... ¡y el cuesco de la aceituna! Casi pierdes una muela. Doña Juana te lo advirtió.",
+        "effects": [{ "vineta": "comer_empanada" }],
+        "branches": [{ "if": { "flag": "quiltro_sigue" }, "goto": "quiltro" }]
+      },
+      "quiltro": { "text": "Al quiltro se le cae la baba encima de tu zapatilla. Le das la orillita.", "effects": [{ "vineta": "comer_empanada_quiltro" }] }
+    }
+  },
+
+  "usar_completo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¿Comerte el completo? Si te lo comes, ya no cuenta como coleccionable para la misión.",
+        "choices": [
+          { "label": "Sí, comer", "effects": [{ "takeItem": "completo" }, { "setFlag": "comio_completo" }], "goto": "comida" },
+          { "label": "Mejor no" }
+        ]
+      },
+      "comida": {
+        "text": "La mayo se chorrea por todos lados y te queda palta en la nariz. Valió cada peso.",
+        "effects": [{ "vineta": "comer_completo" }],
+        "branches": [{ "if": { "flag": "quiltro_sigue" }, "goto": "quiltro" }]
+      },
+      "quiltro": { "text": "El quiltro se lleva la vienesa que se te cayó. Trabajo en equipo.", "effects": [{ "vineta": "comer_completo_quiltro" }] }
+    }
+  },
+
+  "usar_mote": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¿Tomarte el mote con huesillo? Si te lo tomas, ya no cuenta como coleccionable para la misión.",
+        "choices": [
+          { "label": "Sí, tomar", "effects": [{ "takeItem": "mote" }, { "setFlag": "comio_mote" }], "goto": "comida" },
+          { "label": "Mejor no" }
+        ]
+      },
+      "comida": {
+        "text": "Te lo tomas de un viaje. ¡Cerebro congelado! Pero qué rico. El huesillo lo dejas pa' después.",
+        "effects": [{ "vineta": "comer_mote" }],
+        "branches": [{ "if": { "flag": "quiltro_sigue" }, "goto": "quiltro" }]
+      },
+      "quiltro": { "text": "El quiltro olfatea el vaso vacío y estornuda. No es fan del mote.", "effects": [{ "vineta": "comer_mote_quiltro" }] }
+    }
+  },
+
+  "usar_hueso": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un hueso bien pelado. Huele a... hueso.",
+        "branches": [{ "if": { "flag": "quiltro_sigue" }, "goto": "con_quiltro" }, { "goto": "sin_quiltro" }]
+      },
+      "sin_quiltro": { "text": "A algún quiltro le encantaría. ¿Habrá alguno dando vueltas por la Plaza Baquedano?" },
+      "con_quiltro": { "text": "El quiltro que te sigue lo mira de reojo. Ya comió, pero nunca se sabe." }
+    }
+  },
+
+  "usar_mapa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "effects": [{ "sign": "servilleta" }],
+        "text": [
+          "Es una servilleta con un mapa dibujado con lápiz pasta.",
+          "\"Galería de Los Leones (la puerta al lado norte de Providencia): cruzas por dentro y sales en Nueva Tajamar, al ladito del Costanera.\"",
+          "Abajo dice: \"¡Suerte! Atte., el oficinista apurado\"."
+        ]
+      }
+    }
+  },
+
+  "usar_mochila": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": { "text": "Revisas tu mochila: cuaderno de Optimización, calculadora, estuche... y un chicle de dudosa edad. Todo en orden." }
+    }
+  },
+
+  "usar_apuntes": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "effects": [{ "sign": "cuaderno" }],
+        "text": [
+          "APUNTES DE BENJA · La mochila 0/1: cada objeto entra entero o no entra. Maximizar el valor sin pasarse de la capacidad.",
+          "Restricción: suma de (peso × x_i) <= capacidad. Objetivo: maximizar suma de (valor × x_i).",
+          "Regla golosa: ordenar por valor/peso. En la 0/1 puede fallar; en la fraccionaria es óptima.",
+          "Programación dinámica: tabla n × W, tiempo O(n·W). Al margen, un dibujo: un cuervo con calculadora."
+        ]
+      }
+    }
+  },
+
+  "usar_marraqueta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¿Te comes la marraqueta con palta? Si te la comes, ya no cuenta como coleccionable.",
+        "choices": [{ "label": "Sí, comer", "effects": [{ "takeItem": "marraqueta" }], "goto": "comida" }, { "label": "Mejor no" }]
+      },
+      "comida": { "text": "Crujiente, con harta palta y sal. Desayuno de campeón. Gracias, mamá." }
+    }
+  },
+
+  "usar_cafe": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¿Te tomas el café? Si te lo tomas, ya no cuenta como coleccionable.",
+        "choices": [
+          { "label": "Sí, tomar", "effects": [{ "takeItem": "cafe" }, { "setFlag": "tomo_cafe" }], "goto": "tomado" },
+          { "label": "Mejor no" }
+        ]
+      },
+      "tomado": { "text": "¡Quema! ...Pero ahora ves todo más nítido. Hasta las integrales." }
+    }
+  }
+}

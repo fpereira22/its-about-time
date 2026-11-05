@@ -1,0 +1,114 @@
+{
+  "id": "pance_burger",
+  "name": "Pance Burger",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 20,
+  "height": 12,
+  "background": "#101018",
+  "music": "hamburguesas",
+  "legend": {
+    "^": "muro_techo",
+    "W": "burger_muro",
+    "N": "burger_neon",
+    "M": "burger_menu",
+    "w": "burger_ventana",
+    ".": "burger_piso",
+    "G": "burger_plancha",
+    "B": "burger_barra",
+    "T": "burger_mesa",
+    "s": "burger_banca",
+    "n": "burger_banca_n",
+    "D": "burger_puerta"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^",
+    "^WWNWWMWWwWWWWNWWww^",
+    "^GGBBBB............^",
+    "^..........nnnnnn..^",
+    "^..........TTTTTT..^",
+    "^..........ssssss..^",
+    "^..................^",
+    "^.nnn..nnn.........^",
+    "^.TTT..TTT.........^",
+    "^.sss..sss.........^",
+    "^WWWWWWWWWWDWWWWWWW^",
+    "^^^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {
+      "name": "Pance Burger",
+      "subtitle": "«Hamburguesas al carbón» · Pance",
+      "x": 0,
+      "y": 0,
+      "w": 20,
+      "h": 12
+    }
+  ],
+  "spawns": {
+    "puerta": {
+      "x": 11,
+      "y": 9,
+      "dir": "up"
+    },
+    "mesa": {
+      "x": 13,
+      "y": 5,
+      "dir": "up"
+    }
+  },
+  "warps": [
+    {
+      "x": 11,
+      "y": 10,
+      "to": "pance",
+      "spawn": "burger",
+      "if": {
+        "any": [
+          {
+            "notFlag": "m5_en_burger"
+          },
+          {
+            "flag": "m5_insta"
+          }
+        ]
+      },
+      "blockedDialogue": "m5_burger_no_salir"
+    }
+  ],
+  "labels": [
+    {
+      "x": 10,
+      "y": 0.5,
+      "text": "PANCE BURGER",
+      "color": "#f8a838"
+    }
+  ],
+  "lights": [
+    {
+      "x": 1,
+      "y": 1.2,
+      "w": 18
+    }
+  ],
+  "enter": [
+    {
+      "id": "llegada",
+      "dialogue": "m5_burger_llegada",
+      "once": true
+    }
+  ],
+  "triggers": [
+    {
+      "id": "mesa",
+      "x": 11,
+      "y": 5,
+      "w": 6,
+      "h": 1,
+      "event": "hamburguesas",
+      "if": {
+        "notFlag": "m5_cinco_jugado"
+      }
+    }
+  ]
+}

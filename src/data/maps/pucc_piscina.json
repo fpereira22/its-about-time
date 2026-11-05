@@ -1,0 +1,268 @@
+{
+ "id": "pucc_piscina",
+ "name": "Centro Deportivo",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 46,
+ "height": 32,
+ "background": "#3c7c40",
+ "music": "piscina",
+ "region": "cali",
+ "legend": {
+  ",": "pasto",
+  "T": "arbol",
+  "y": "palmera",
+  "a": "adoquin",
+  "K": "edificio:pucc",
+  "D": "puerta",
+  "g": "basket_verde",
+  "u": "basket_azul",
+  "Y": "basket_amarillo",
+  "|": "basket_linea_v",
+  "O": "basket_aro",
+  "C": "carpa",
+  "L": "carpa_borde",
+  "M": "mastil",
+  "R": "tenis_rosa",
+  "n": "cancha_tenis",
+  "N": "tenis_red",
+  "f": "piso_piscina",
+  "m": "piso_mojado",
+  "b": "borde_piscina",
+  "B": "borde_piscina_s",
+  "w": "agua_piscina",
+  "l": "agua_linea",
+  "i": "agua_corchera",
+  "k": "partidor",
+  "S": "sombrilla",
+  "G": "gradas_techo",
+  "U": "ducha_piscina",
+  "Q": "taquilla",
+  "P": "reflector_cancha"
+ },
+ "rows": [
+  "yTTyTTyTTyTTyTTyTTyTTyTTyTTyTTyTTyTTyTTyTTyTTy",
+  "KKKKKKKKKKKK,gggggggggg|gggggggggg,,,,,T,,,,,T",
+  "KKKKKKKKKKKK,gggggggggg|gggggggggg,,T,,,,,,,,T",
+  "KKKKKKKKKKKK,YYYggggggYYYggggggYYY,,,,,,,,T,,T",
+  "KKKKKKKKKKKK,OYYggggggYYYggggggYYO,,,,,,,,,,,y",
+  "KKKKKKKKKKKK,YYYggggggYYYggggggYYY,,,T,,,,,,,T",
+  "KKKKKKKKKKKK,gggggggggg|gggggggggg,,,,,,,T,,,T",
+  "KKKKKDKKKKKK,gggggggggg|gggggggggg,T,,,,,,,,,T",
+  "ffffffffffffffffffaaaaaaaaaaaaaaaaaaaaaaaaaaay",
+  "ffffffffffffffffffaaay,,,,,,,,,,y,,GGG,,,,,,,T",
+  "UffSffSffSffSffffUaaa,CCCCMCCCCC,RRRRRRRRRRRRT",
+  "ffffffffmfffffffffaaa,CCMCCCCMCC,RRnnnnNnnnRRT",
+  "ffbbbbbbbbbbbbbbffaaa,CCCCCCCCCC,RRnnnnNnnnRRy",
+  "fkwiiiiiiiiiiiiwffaaayCCCCCCCCCC,RRnnnnNnnnRRT",
+  "fkllllllllllllllffaaa,CCCCCCCCCC,RRnnnnNnnnRRT",
+  "fkwiiiiiiiiiiiiwmfaaa,CCCCCCCCCC,RRnnnnNnnnRRT",
+  "fkllllllllllllllffaaa,LLLLLLLLLL,RRnnnnNnnnRRy",
+  "fkwiiiiiiiiiiiiwffaaa,,,,,,,,,,,,RRRRRRRRRRRRT",
+  "fkllllllllllllllffaaay,,,,,GGGG,,,,,,,GGGG,,,T",
+  "mkwiiiiiiiiiiiiwffaaa,P,gggggggggg|ggggggggggT",
+  "fkllllllllllllllffaaa,,,gggggggggg|ggggggggggy",
+  "ffBBBBBBBBBBBBBBffaaay,,gggggggggg|ggggggggggT",
+  "ffffmfffffffffffffaaa,,,YYYYgggggg|ggggggYYYYT",
+  "fffffffffffmffffffaaa,,,YYYYgggggYYYgggggYYYYT",
+  ",,,GGGGGG,,,,,,,aaaaaaaaOYYYgggggYYYgggggYYYOy",
+  ",,,,,,,,,,,,,,,,aaaaaaaaYYYYgggggYYYgggggYYYYT",
+  "uuuuuuuuuuuuuuuu,,aaa,,,YYYYgggggg|ggggggYYYYT",
+  "YYuuuuYYYuuuuuYY,yaaa,,ygggggggggg|ggggggggggT",
+  "OYuuuuYYYuuuuuYO,,aaa,,,gggggggggg|ggggggggggy",
+  "YYuuuuYYYuuuuuYY,Qaaa,,,gggggggggg|ggggggggggT",
+  "uuuuuuuuuuuuuuuuy,aaa,P,gggggggggg|ggggggggggT",
+  "uuuuuuuuuuuuuuuu,,aaa,,,,,,,,,,,,,,,,,,,,,,,,T"
+ ],
+ "zones": [
+  {
+   "name": "Piscina",
+   "subtitle": "Centro Deportivo · 8 carriles",
+   "x": 0,
+   "y": 8,
+   "w": 18,
+   "h": 16
+  },
+  {
+   "name": "Centro Deportivo",
+   "subtitle": "Universidad Cristiana-Caleña · el «GLD»",
+   "x": 0,
+   "y": 0,
+   "w": 46,
+   "h": 32
+  }
+ ],
+ "spawns": {
+  "entrada": {
+   "x": 19,
+   "y": 30,
+   "dir": "up"
+  },
+  "camerino": {
+   "x": 5,
+   "y": 8,
+   "dir": "down"
+  },
+  "borde": {
+   "x": 9,
+   "y": 22,
+   "dir": "up"
+  }
+ },
+ "warps": [
+  {
+   "x": 5,
+   "y": 7,
+   "to": "piscinas_camerino",
+   "spawn": "puerta",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     },
+     {
+      "flag": "m6_clase"
+     }
+    ]
+   },
+   "blockedDialogue": "m6_piscina_no_salir"
+  },
+  {
+   "x": 18,
+   "y": 31,
+   "to": "pucc_campus",
+   "spawn": "deportivo",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     },
+     {
+      "flag": "m6_clase"
+     }
+    ]
+   },
+   "blockedDialogue": "m6_piscina_no_salir"
+  },
+  {
+   "x": 19,
+   "y": 31,
+   "to": "pucc_campus",
+   "spawn": "deportivo",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     },
+     {
+      "flag": "m6_clase"
+     }
+    ]
+   },
+   "blockedDialogue": "m6_piscina_no_salir"
+  },
+  {
+   "x": 20,
+   "y": 31,
+   "to": "pucc_campus",
+   "spawn": "deportivo",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission06"
+      }
+     },
+     {
+      "flag": "m6_clase"
+     }
+    ]
+   },
+   "blockedDialogue": "m6_piscina_no_salir"
+  }
+ ],
+ "labels": [
+  {
+   "x": 23,
+   "y": 0.4,
+   "text": "CENTRO DEPORTIVO · PUCC",
+   "color": "#f0d048"
+  },
+  {
+   "x": 6,
+   "y": 1.0,
+   "text": "CAMERINOS · GIMNASIO"
+  },
+  {
+   "x": 8.5,
+   "y": 11.4,
+   "text": "PISCINA"
+  },
+  {
+   "x": 27,
+   "y": 13.5,
+   "text": "COLISEO"
+  },
+  {
+   "x": 39.5,
+   "y": 9.4,
+   "text": "TENIS"
+  },
+  {
+   "x": 17,
+   "y": 28.4,
+   "text": "CONTROL BIENESTAR"
+  }
+ ],
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m5_piscina_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission05"
+   }
+  },
+  {
+   "id": "m6_jueves",
+   "dialogue": "m6_jueves",
+   "once": true,
+   "if": {
+    "mission": "mission06"
+   }
+  }
+ ],
+ "triggers": [
+  {
+   "id": "nadar",
+   "x": 2,
+   "y": 22,
+   "w": 14,
+   "h": 1,
+   "event": "dialogo:m5_borde_piscina",
+   "if": {
+    "notFlag": "m5_nado",
+    "mission": "mission05"
+   }
+  },
+  {
+   "id": "sira",
+   "x": 16,
+   "y": 20,
+   "w": 8,
+   "h": 8,
+   "event": "dialogo:m5_sira_encuentro",
+   "if": {
+    "flag": "m5_vestido_post",
+    "notFlag": "m5_sira_conocida",
+    "mission": "mission05"
+   }
+  }
+ ]
+}

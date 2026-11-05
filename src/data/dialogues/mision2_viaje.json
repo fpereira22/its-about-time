@@ -1,0 +1,627 @@
+{
+  "paine_salida": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Lunes, {hora}. Hace frío y huele a pasto mojado.",
+          "El tren a Estación Central sale a las 7:30 en punto. ¡A la estación, al oriente!"
+        ],
+        "effects": [
+          {
+            "setFlag": "salio_casa"
+          },
+          {
+            "objective": "Ve a la Estación Paine (al oriente) · tren 7:30"
+          }
+        ]
+      }
+    }
+  },
+  "vecina_paine": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Vecina",
+        "text": "¡Buenos días, mijo! ¿Va a la universidad? Apúrese, que el tren de las 7:30 no espera a nadie."
+      }
+    }
+  },
+  "perro_paine": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El perro de la esquina te acompaña unos metros moviendo la cola. Después se aburre y vuelve a su esquina."
+      }
+    }
+  },
+  "cartel_paine": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "ESTACIÓN PAINE · Trenes a Estación Central."
+      }
+    }
+  },
+  "estacion_paine_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Estación Paine. El tren a Estación Central llega a las 7:20 y sale a las 7:30.",
+          "El pasaje cuesta $1.060: carga tu tarjeta en la máquina y pasa por el validador."
+        ],
+        "effects": [
+          {
+            "objective": "Carga la tarjeta y pasa el validador (pasaje $1.060)"
+          }
+        ]
+      }
+    }
+  },
+  "maquina_tren": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "CARGA DE TARJETA. Saldo: {bip}. Efectivo: {plata}. (Pasaje al centro: $1.060)",
+        "choices": [
+          {
+            "label": "Cargar $1.000",
+            "if": {
+              "minMoney": 1000
+            },
+            "effects": [
+              {
+                "pay": 1000
+              },
+              {
+                "chargeBip": 1000
+              },
+              {
+                "setFlag": "bip_cargada"
+              }
+            ],
+            "goto": "listo"
+          },
+          {
+            "label": "Cargar $2.000",
+            "if": {
+              "minMoney": 2000
+            },
+            "effects": [
+              {
+                "pay": 2000
+              },
+              {
+                "chargeBip": 2000
+              },
+              {
+                "setFlag": "bip_cargada"
+              }
+            ],
+            "goto": "listo"
+          },
+          {
+            "label": "Cargar $3.000",
+            "if": {
+              "minMoney": 3000
+            },
+            "effects": [
+              {
+                "pay": 3000
+              },
+              {
+                "chargeBip": 3000
+              },
+              {
+                "setFlag": "bip_cargada"
+              }
+            ],
+            "goto": "listo"
+          },
+          {
+            "label": "Cancelar"
+          }
+        ]
+      },
+      "listo": {
+        "text": "*Bip* ¡Carga exitosa! Nuevo saldo: {bip}."
+      }
+    }
+  },
+  "horarios_tren": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "PRÓXIMAS SALIDAS A ESTACIÓN CENTRAL: 07:30 · 08:00 · 08:30. Llegada a Estación Central: 40 minutos. (El de las 8:00 te deja tarde. Ni lo pienses.)"
+      }
+    }
+  },
+  "guardia_tren": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Guardia",
+        "text": "Buenos días. El pasaje sale $1.060. Si no le alcanza el saldo, la máquina está ahí, a la izquierda."
+      }
+    }
+  },
+  "validador_tren": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "pago_tren"
+            },
+            "goto": "ya"
+          },
+          {
+            "if": {
+              "minBip": 1060
+            },
+            "goto": "pasa"
+          },
+          {
+            "goto": "rechazo"
+          }
+        ]
+      },
+      "pasa": {
+        "text": "Acercas la tarjeta al validador... *Bip* Se descontaron $1.060. Saldo: {bip}.",
+        "effects": [
+          {
+            "payBip": 1060
+          },
+          {
+            "setFlag": "pago_tren"
+          },
+          {
+            "objective": "Espera el tren de las 7:30 en el andén"
+          },
+          {
+            "warp": {
+              "map": "estacion_paine",
+              "spawn": "anden"
+            }
+          }
+        ]
+      },
+      "rechazo": {
+        "text": "Acercas la tarjeta... *BIP-BIP* SALDO INSUFICIENTE. El pasaje cuesta $1.060.",
+        "effects": [
+          {
+            "sfx": "error"
+          }
+        ]
+      },
+      "ya": {
+        "text": "Ya validaste tu pasaje. El tren sale desde este andén."
+      }
+    }
+  },
+  "anden_paine": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "ANDÉN · Trenes a Estación Central. ¿Esperas el tren de las 7:30? (Llega al andén a las 7:20.)",
+        "choices": [
+          {
+            "label": "Esperar el tren",
+            "effects": [
+              {
+                "event": "metro_esperar_tren",
+                "data": {
+                  "ride": "tren_paine",
+                  "track": 10,
+                  "dir": "left",
+                  "texture": "tren_efe",
+                  "arrive": "lun 07:20"
+                }
+              }
+            ]
+          },
+          {
+            "label": "No"
+          }
+        ]
+      }
+    }
+  },
+  "trabajador_anden": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Trabajador",
+        "text": "Todos los días el de las 7:30. Si lo pierdes, llegas tarde a todo. Palabra."
+      }
+    }
+  },
+  "tren_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "*Piii* Se cierran las puertas. El tren sale puntual: 7:30.",
+          "Para bajarte, párate frente a una puerta abierta y presiona E. Tú te bajas en Estación Central, al final del recorrido."
+        ],
+        "effects": [
+          {
+            "setFlag": "tomo_tren"
+          },
+          {
+            "objective": "Bájate en Estación Central (la última)"
+          }
+        ]
+      }
+    }
+  },
+  "tren_puerta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": [
+                "_puertas_abiertas",
+                "_parada_final"
+              ]
+            },
+            "goto": "aqui"
+          },
+          {
+            "if": {
+              "flag": "_puertas_abiertas"
+            },
+            "goto": "no_aqui"
+          },
+          {
+            "goto": "cerrada"
+          }
+        ]
+      },
+      "aqui": {
+        "text": "Estación {estacion}. ¡Aquí te bajas!",
+        "choices": [
+          {
+            "label": "Bajarme",
+            "effects": [
+              {
+                "event": "ride_exit"
+              }
+            ]
+          },
+          {
+            "label": "Seguir arriba"
+          }
+        ]
+      },
+      "no_aqui": {
+        "text": "Estación {estacion}. Todavía no es tu estación."
+      },
+      "cerrada": {
+        "text": "Las puertas están cerradas. Próxima estación: {estacion}."
+      }
+    }
+  },
+  "tren_terminal": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "VOZ: «Estación Central. Fin del recorrido. Todos los pasajeros deben descender.» Te bajas con la marea de gente."
+      }
+    }
+  },
+  "benja_tren": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "apuntes"
+            },
+            "goto": "ya"
+          },
+          {
+            "if": {
+              "flag": "presto_apuntes"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "hola"
+          }
+        ]
+      },
+      "hola": {
+        "speaker": "Benja",
+        "text": [
+          "¡Oe! ¿Tú también en el de las 7:30? Yo vengo desde Rancagua, llevo media hora arriba.",
+          "¿Estudiaste pa' la prueba? Dicen que el Cuervo la va a hacer de la mochila. Toma, te paso mis apuntes. Tienen hasta dibujitos."
+        ],
+        "effects": [
+          {
+            "giveItem": "apuntes"
+          },
+          {
+            "setFlag": "presto_apuntes"
+          }
+        ],
+        "next": "tip"
+      },
+      "tip": {
+        "speaker": "Benja",
+        "text": "Revísalos en el inventario (Tab). La fraccionaria siempre sale."
+      },
+      "ya": {
+        "speaker": "Benja",
+        "text": "Repasa wn. Valor por kilo... y ojo, que lo goloso no siempre es óptimo."
+      }
+    }
+  },
+  "central_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Estación Central. Mucha gente, mucho ruido... y olor a sopaipilla.",
+          "Ahora: Metro Línea 1 dirección Los Dominicos hasta Manuel Montt. El pasaje del metro sale $800."
+        ],
+        "effects": [
+          {
+            "clockMax": "lun 08:13"
+          },
+          {
+            "objective": "Toma la Línea 1 dir. Los Dominicos hasta Manuel Montt"
+          }
+        ]
+      }
+    }
+  },
+  "cartel_central": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "METRO LÍNEA 1: por el pasillo, bajando. Combinación con los trenes al sur."
+      }
+    }
+  },
+  "cafe_central": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "cafe"
+            },
+            "goto": "ya"
+          },
+          {
+            "if": {
+              "flag": "tomo_cafe"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Señora del café",
+        "text": "¡Cafecito, cafecito pa' despertar! A $700.",
+        "choices": [
+          {
+            "label": "Uno, por favor ($700)",
+            "if": {
+              "minMoney": 700
+            },
+            "effects": [
+              {
+                "pay": 700
+              },
+              {
+                "giveItem": "cafe"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "No me alcanza...",
+            "if": {
+              "not": {
+                "minMoney": 700
+              }
+            },
+            "goto": "fiado"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Señora del café",
+        "text": "Cuidado que quema. ¡Que le vaya bien!"
+      },
+      "fiado": {
+        "speaker": "Señora del café",
+        "text": "Ay, mijo. Fiado no doy, pero le deseo suerte igual."
+      },
+      "ya": {
+        "speaker": "Señora del café",
+        "text": "¿Otro? No, no, que después anda temblando en la prueba."
+      }
+    }
+  },
+  "torniquete_central": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "minBip": 800
+            },
+            "goto": "pasa"
+          },
+          {
+            "goto": "rechazo"
+          }
+        ]
+      },
+      "pasa": {
+        "text": "Acercas la tarjeta al torniquete... *Bip* Se cobraron $800. Saldo: {bip}.",
+        "effects": [
+          {
+            "payBip": 800
+          },
+          {
+            "objective": "Baja al andén dirección Los Dominicos"
+          },
+          {
+            "warp": {
+              "map": "estacion_central",
+              "spawn": "post_torniquete"
+            }
+          }
+        ]
+      },
+      "rechazo": {
+        "text": "Acercas la tarjeta... *BIP-BIP-BIP* SALDO INSUFICIENTE. La máquina de carga está a la izquierda.",
+        "effects": [
+          {
+            "sfx": "error"
+          }
+        ]
+      }
+    }
+  },
+  "guardia_central": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Guardia",
+        "text": "Dirección Los Dominicos: escalera de la derecha. Dirección San Pablo: la de la izquierda. ¡Atento!"
+      }
+    }
+  },
+  "anden_ld_central": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "ANDÉN DIRECCIÓN LOS DOMINICOS (hacia el oriente). ¿Esperar el tren?",
+        "choices": [
+          {
+            "label": "Esperar el tren",
+            "effects": [
+              {
+                "event": "metro_esperar_tren",
+                "data": {
+                  "ride": "metro_l1_m2",
+                  "track": 21,
+                  "dir": "right"
+                }
+              }
+            ]
+          },
+          {
+            "label": "No"
+          }
+        ]
+      }
+    }
+  },
+  "anden_sp_central": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "ANDÉN DIRECCIÓN SAN PABLO (hacia el poniente). ¿Esperar el tren?",
+        "choices": [
+          {
+            "label": "Esperar el tren",
+            "effects": [
+              {
+                "event": "metro_esperar_tren",
+                "data": {
+                  "ride": "metro_l1_m2_poniente",
+                  "track": 15,
+                  "dir": "left"
+                }
+              }
+            ]
+          },
+          {
+            "label": "No"
+          }
+        ]
+      }
+    }
+  },
+  "metro_m2_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Las puertas se cierran: ¡piii, piii, piii!",
+          "Manuel Montt queda a 10 estaciones. Cuando lleguemos, párate frente a una puerta abierta y presiona E."
+        ],
+        "effects": [
+          {
+            "setFlag": "tomo_metro"
+          },
+          {
+            "objective": "Bájate en Manuel Montt"
+          }
+        ]
+      }
+    }
+  },
+  "metro_m2_te_pasaste": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "VOZ: Estación Pedro de Valdivia.",
+          "¡Te pasaste de Manuel Montt! Te bajas, vuelves una estación y sales corriendo."
+        ],
+        "effects": [
+          {
+            "clock": "lun 08:27",
+            "max": "lun 08:29"
+          }
+        ]
+      }
+    }
+  },
+  "metro_m2_direccion_equivocada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "VOZ: Estación Universidad de Santiago.",
+          "¡Ibas hacia San Pablo! Te bajas, cruzas al otro andén y vuelves a Estación Central. Perdiste unos minutos."
+        ],
+        "effects": [
+          {
+            "clock": "lun 08:13",
+            "max": "lun 08:13"
+          }
+        ]
+      }
+    }
+  },
+  "vagon_m2_escolar": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Escolar",
+        "text": "¿Vai a la U? Qué suerte. Yo tengo prueba de química... y no estudié nada."
+      }
+    }
+  }
+}

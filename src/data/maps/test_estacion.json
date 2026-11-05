@@ -1,0 +1,33 @@
+{
+  "id": "test_estacion",
+  "name": "Estación de prueba",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 14,
+  "height": 9,
+  "background": "#14141c",
+  "legend": {
+    "^": "muro_techo",
+    "W": "muro",
+    ".": "piso",
+    "E": "escalera",
+    "y": "piso_linea",
+    "v": "via"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^",
+    "WWWWWWWWWWWWWW",
+    "vvvvvvvvvvvvvv",
+    "vvvvvvvvvvvvvv",
+    "yyyyyyyyyyyyyy",
+    "..............",
+    "..............",
+    "..............",
+    "^^^^^^E^^^^^^^"
+  ],
+  "spawns": {
+    "entrada": { "x": 6, "y": 7, "dir": "up" }
+  },
+  "warps": [{ "x": 6, "y": 8, "to": "test", "spawn": "metro" }],
+  "labels": [{ "x": 7, "y": 1.5, "text": "ESTACIÓN DE PRUEBA" }]
+}

@@ -1,0 +1,1279 @@
+{
+  "m5_campus_vuelta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "De vuelta en la U. En la portería, el vigilante te mira dos veces: «¿Usted es el de intercambio? Uy, no lo había reconocido. Quedó bien, ¿ah?».",
+          "Grover dijo que te esperaba en el parqueadero principal, al norte del campus."
+        ],
+        "effects": [
+          {
+            "clockMax": "mar 16:40"
+          }
+        ]
+      }
+    }
+  },
+  "m5_carro_estacionado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "effects": [
+          {
+            "event": "carro_grover_estacionado"
+          }
+        ]
+      }
+    }
+  },
+  "m5_grover": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "llaves_grover"
+            },
+            "goto": "llaves"
+          },
+          {
+            "if": {
+              "flag": "m5_grover_visto"
+            },
+            "goto": "buscando"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "primera": {
+        "speaker": "Grover",
+        "text": [
+          "¡CUMPA! ¡Aquí, aquí! ...¿Sos vos? ¡Qué corte, cumpa! ¡Parecés futbolista! De la B, pero futbolista.",
+          "Ya, ya, escuchá. Tengo un problema. Un problemita chiquito. Del tamaño de unas llaves."
+        ],
+        "effects": [
+          {
+            "vineta": "m5_grover"
+          }
+        ],
+        "next": "problema"
+      },
+      "problema": {
+        "speaker": "Grover",
+        "text": [
+          "No encuentro las llaves del carro. Las tengo con un llavero de llama que me tejió mi abuela en Cochabamba. ¡Sin llaves no hay piscina!",
+          "A ver, recapitulemos: almorcé en la Cafetería Central, después me eché una siestita en la Biblioteca... y después les di pandebono a los pavos reales en el lago."
+        ],
+        "choices": [
+          {
+            "label": "¿Les diste pandebono a los pavos?",
+            "goto": "pavos"
+          },
+          {
+            "label": "Te ayudo a buscarlas",
+            "goto": "ayuda"
+          }
+        ]
+      },
+      "pavos": {
+        "speaker": "Grover",
+        "text": "Claro, cumpa. Me miraban con hambre. Uno se me subió a la mesa y todo. Muy cariñoso. Se me pegó un montón... ¿Por qué me mirás así?",
+        "next": "ayuda"
+      },
+      "ayuda": {
+        "speaker": "Grover",
+        "text": "¡Gracias, cumpa! Yo me quedo aquí cuidando el carro, por si vuelven solas. A veces pasa. En Bolivia pasa.",
+        "effects": [
+          {
+            "setFlag": "m5_grover_visto"
+          },
+          {
+            "event": "carro_grover_estacionado"
+          },
+          {
+            "clockMax": "mar 17:40"
+          },
+          {
+            "objective": "Busca las llaves de Grover (llavero de llama): Cafetería, Biblioteca, El Lago..."
+          }
+        ]
+      },
+      "buscando": {
+        "speaker": "Grover",
+        "text": "¿Y? ¿Nada? Pucha. Acordate: cafetería, biblioteca, lago con los pavos. Yo sigo aquí. El carro no se va a ir solo. Sin llaves, digo.",
+        "choices": [
+          {
+            "label": "¿Cómo es el llavero?",
+            "goto": "llavero"
+          },
+          {
+            "label": "Sigo buscando"
+          }
+        ]
+      },
+      "llavero": {
+        "speaker": "Grover",
+        "text": "Una llamita blanca con una mantita de colores. Brilla al sol porque tiene hilo dorado. Mi abuela dice que es para la suerte. No está funcionando."
+      },
+      "llaves": {
+        "speaker": "Grover",
+        "text": [
+          "¡MIS LLAVES! ¡Cumpa, sos un genio! ¿Dónde estaban? ...¿Un pavo real? ¿En serio? ¡Ladrón con plumas!",
+          "En Bolivia no hay pavos así. Bueno, tenemos el cóndor, pero el cóndor tiene dignidad."
+        ],
+        "effects": [
+          {
+            "takeItem": "llaves_grover"
+          },
+          {
+            "setFlag": "m5_llaves_listas"
+          }
+        ],
+        "next": "vamos"
+      },
+      "vamos": {
+        "speaker": "Grover",
+        "text": [
+          "¡Vamos a la piscina! Al GLD, el Centro Deportivo, aquí mismo en la U. A las siete liberan los carriles y nadamos tranquilos.",
+          "¿Caminar? ¿Seiscientos metros? No, cumpa, vamos en carro. En Bolivia uno no camina si tiene carro. Traje de baño te presto yo, tengo uno de repuesto. Con llamas."
+        ],
+        "choices": [
+          {
+            "label": "¡Vamos! (en carro, aunque esté al lado)",
+            "effects": [
+              {
+                "event": "grover_arranca"
+              }
+            ]
+          },
+          {
+            "label": "Espera un poco"
+          }
+        ]
+      }
+    }
+  },
+  "m5_grover_listo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Grover",
+        "text": "¿Ya, cumpa? El carro está listo. Bueno, «listo». Arranca a la tercera, pero arranca.",
+        "choices": [
+          {
+            "label": "¡Vamos al GLD!",
+            "effects": [
+              {
+                "event": "grover_arranca"
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      }
+    }
+  },
+  "m5_aseo_cafe": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_grover_visto",
+              "notFlag": "m5_llaves_listas"
+            },
+            "goto": "llaves"
+          },
+          {
+            "goto": "normal"
+          }
+        ]
+      },
+      "normal": {
+        "speaker": "Señora del aseo",
+        "text": "Permiso, mijo, que voy a trapear. Pise por lo seco, por favor. Por lo seco, le dije."
+      },
+      "llaves": {
+        "speaker": "Señora del aseo",
+        "text": [
+          "¿Unas llaves con una llamita? No, mijo, aquí no han dejado nada. Bueno, un paraguas, una calculadora y media empanada.",
+          "Pero ese muchacho... el feíto, perdón, el del bigotico y la melena atrás... estuvo afuera dándole pandebono a un pavo real. El pavo se fue feliz, contoneándose, para el lado del lago."
+        ],
+        "effects": [
+          {
+            "setFlag": "m5_pista_cafe"
+          }
+        ]
+      }
+    }
+  },
+  "m5_estudiante_lago": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_grover_visto",
+              "notFlag": "m5_llaves_listas"
+            },
+            "goto": "pista"
+          },
+          {
+            "goto": "normal"
+          }
+        ]
+      },
+      "normal": {
+        "speaker": "Estudiante",
+        "text": "Estoy dibujando la iguana para Diseño. Lleva dos horas sin moverse. Es la modelo perfecta."
+      },
+      "pista": {
+        "speaker": "Estudiante",
+        "text": [
+          "¿Un pavo real con algo brillante? ¡Sí! Pasó por aquí con una cosita dorada en el pico. Pensé que era un collar.",
+          "Se fue para el lado de la Capilla. A los pavos les encantan las cosas que brillan. Y el pan. Si le ofrece pan, suelta lo que sea. Son negociantes."
+        ],
+        "effects": [
+          {
+            "setFlag": "m5_pista_lago"
+          }
+        ]
+      }
+    }
+  },
+  "m5_pavo_llaves": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "pandebono"
+            },
+            "goto": "ofrecer"
+          },
+          {
+            "goto": "sin_pan"
+          }
+        ]
+      },
+      "sin_pan": {
+        "text": [
+          "Un pavo real enorme, con algo colgando del pico: ¡un llavero de llama! El hilo dorado brilla al sol.",
+          "Cuando te acercas, abre la cola, te mira con desprecio y grita. No va a soltar las llaves así nomás. (¿Qué le gustaba a este pavo? Grover le dio...)"
+        ],
+        "effects": [
+          {
+            "sfx": "pavo"
+          },
+          {
+            "vineta": "m5_pavo_llaves"
+          },
+          {
+            "setFlag": "m5_pavo_visto"
+          }
+        ]
+      },
+      "ofrecer": {
+        "text": "El pavo real tiene las llaves de Grover en el pico. Mira tu pandebono. Mira las llaves. Mira el pandebono otra vez.",
+        "effects": [
+          {
+            "vineta": "m5_pavo_llaves"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Ofrecerle el pandebono",
+            "goto": "trato"
+          },
+          {
+            "label": "Intentar quitárselas a la fuerza",
+            "goto": "fuerza"
+          }
+        ]
+      },
+      "fuerza": {
+        "text": "Estiras la mano. El pavo abre la cola, grita como una sirena y te da un picotazo en el dedo. Él gana este round.",
+        "effects": [
+          {
+            "sfx": "pavo"
+          }
+        ]
+      },
+      "trato": {
+        "text": [
+          "Dejas el pandebono en el pasto. El pavo lo mira, suelta las llaves con elegancia (clinc) y se pone a comer como si nada.",
+          "Trato hecho. Un negociante, de verdad."
+        ],
+        "effects": [
+          {
+            "takeItem": "pandebono"
+          },
+          {
+            "giveItem": "llaves_grover"
+          },
+          {
+            "sfx": "item"
+          },
+          {
+            "setFlag": "secreto_pavo_ladron"
+          },
+          {
+            "objective": "Lleva las llaves a Grover (parqueadero principal)"
+          }
+        ]
+      }
+    }
+  },
+  "m5_bibliotecaria": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission05",
+              "flag": "m5_grover_visto",
+              "notFlag": "m5_llaves_listas"
+            },
+            "goto": "llaves"
+          },
+          {
+            "goto": "normal"
+          }
+        ]
+      },
+      "normal": {
+        "text": "Biblioteca. La bibliotecaria te muestra el préstamo de libros con una sonrisa y un «shhh» al mismo tiempo."
+      },
+      "llaves": {
+        "speaker": "Bibliotecaria",
+        "text": [
+          "¿Llaves con una llama? No, mijo. Objetos perdidos de hoy: unas gafas, una arepa y un libro de cálculo que nadie quiere reclamar.",
+          "¿El muchacho boliviano? Sí, durmió aquí. Roncaba tan duro que lo tuvimos que despertar. Dijo que se iba a «darle de comer a los pavos». Así, textual."
+        ],
+        "effects": [
+          {
+            "setFlag": "m5_pista_biblio"
+          }
+        ]
+      }
+    }
+  },
+  "m5_vigilante": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_grover_visto",
+              "notFlag": "m5_llaves_listas"
+            },
+            "goto": "llaves"
+          },
+          {
+            "if": {
+              "flag": "m5_corte"
+            },
+            "goto": "corte"
+          },
+          {
+            "goto": "manana"
+          }
+        ]
+      },
+      "manana": {
+        "speaker": "Vigilante",
+        "text": "Buenos días, joven. ¿Carnet? Ah, el de intercambio. Siga, siga. Ojo con los pavos, que hoy amanecieron alzados."
+      },
+      "corte": {
+        "speaker": "Vigilante",
+        "text": "¿Se motiló donde el Fredy? Se le nota. Ese degrada como nadie. ¿Le contó lo de Dubái?"
+      },
+      "llaves": {
+        "speaker": "Vigilante",
+        "text": "¿Un pavo con unas llaves? No me extraña. El mes pasado uno se robó el carnet de un profesor de Física. Lo encontramos detrás de la Capilla. Ahí esconden todo."
+      }
+    }
+  },
+  "m5_auto_grover": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_nado"
+            },
+            "goto": "vuelta"
+          },
+          {
+            "goto": "ida"
+          }
+        ]
+      },
+      "ida": {
+        "effects": [
+          {
+            "event": "trayecto",
+            "data": {
+              "id": "grover_piscina"
+            }
+          }
+        ]
+      },
+      "vuelta": {
+        "effects": [
+          {
+            "event": "trayecto",
+            "data": {
+              "id": "grover_pance"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "m5_auto_1": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "El carro arranca a la tercera, con un ruido de licuadora con piedras. Grover pone música a todo volumen: una morenada de Oruro.",
+          "En el tablero, una llamita de peluche mueve la cabeza con cada bache. Hay muchos baches."
+        ],
+        "effects": [
+          {
+            "vineta": "m5_grover_carro"
+          },
+          {
+            "sfx": "bocina_grover"
+          }
+        ],
+        "next": "grover"
+      },
+      "grover": {
+        "speaker": "Grover",
+        "text": "¿Te gusta? ¡Es morenada, cumpa! En el Carnaval de Oruro se baila tres días seguidos. Con trajes que pesan treinta kilos. Los bolivianos no descansamos, nomás bailamos.",
+        "choices": [
+          {
+            "label": "¡Suena bacán!",
+            "goto": "bacan"
+          },
+          {
+            "label": "¿Puedes mirar el camino?",
+            "goto": "camino"
+          }
+        ]
+      },
+      "bacan": {
+        "speaker": "Grover",
+        "text": "¡Bacán, dice! ¡Qué chileno! Te voy a llevar al Carnaval de Oruro. Te disfrazo de diablo. Te quedaría bien con ese corte."
+      },
+      "camino": {
+        "speaker": "Grover",
+        "text": "Tranquilo, cumpa, yo manejo por instinto. En Cochabamba aprendí a manejar en un camión de papas. Los peatones se apartan solos."
+      }
+    }
+  },
+  "m5_auto_2": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "La salida del parqueadero da a la Calle 18, y el Centro Deportivo queda en la otra punta del campus: hay que dar la vuelta entera por afuera.",
+          "Un señor que camina con su perro por la vereda llega antes que ustedes. Grover toca la bocina: suena «La Cucaracha». El perro ladra al ritmo."
+        ],
+        "effects": [
+          {
+            "sfx": "bocina_grover"
+          }
+        ],
+        "next": "grover"
+      },
+      "grover": {
+        "speaker": "Grover",
+        "text": [
+          "La bocina me la instalé yo. Original, cumpa. En La Paz todos los minibuses tienen una así.",
+          "Oye... yo nado poco, ¿ah? Bueno, nada. Floto. A veces. ¿Vos sabés nadar?"
+        ],
+        "choices": [
+          {
+            "label": "Más o menos... me hundo con estilo",
+            "goto": "igual"
+          },
+          {
+            "label": "En Chile el mar es tan frío que nadie nada",
+            "goto": "frio"
+          }
+        ]
+      },
+      "igual": {
+        "speaker": "Grover",
+        "text": "¡Somos iguales, cumpa! Bolivia no tiene mar y vos no sabés nadar. Hacemos un gran equipo. Jugamos algo para practicar, ¿ya?"
+      },
+      "frio": {
+        "speaker": "Grover",
+        "text": "¿Y ustedes tienen mar y no lo usan? ¡Qué desperdicio! Bolivia lo usaría todos los días. Ya, no digo nada más del mar. Ya sabés."
+      }
+    }
+  },
+  "m5_auto_3": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El Centro Deportivo: el coliseo de carpa blanca con sus mástiles de luz, las canchas de básquet, el tenis y, al fondo, la piscina con sus sombrillas azules. Los estudiantes le dicen «el GLD». Grover estaciona ocupando tres puestos."
+      }
+    }
+  },
+  "m5_auto_4": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Grover",
+        "text": "¿Y?... ¿Y? ¿Y la chica, cumpa? ¡Te vi desde el carro! ¡Te brillaban los ojos como mi llavero! ¿Cómo se llama? ¿Sira? ¡Qué nombre más bonito!",
+        "choices": [
+          {
+            "label": "No pasó nada, Grover",
+            "goto": "nada"
+          },
+          {
+            "label": "Es simpática...",
+            "goto": "simpatica"
+          }
+        ]
+      },
+      "nada": {
+        "speaker": "Grover",
+        "text": "«No pasó nada», dice. ¡Ja! Cumpa, yo seré feo, pero no ciego. Bueno, un poco miope. Pero eso lo vi clarito."
+      },
+      "simpatica": {
+        "speaker": "Grover",
+        "text": "«Simpática», dice. ¡Te gustó! Mi abuela dice que el amor llega cuando uno no lo busca. A mí todavía no me ha llegado, y eso que no busco nunca."
+      }
+    }
+  },
+  "m5_auto_5": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Pance de noche: luciérnagas, olor a leña y el río sonando. Grover canta una morenada desafinado. Tú miras por la ventana, pensando en otra cosa. En otra persona, mejor dicho."
+      }
+    }
+  },
+  "m5_piscina_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "El Centro Deportivo de la U, el «GLD»: la piscina de ocho carriles con sus sombrillas azules, el coliseo de carpa blanca, las canchas de básquet y la de tenis.",
+          "Huele a cloro y a pasto recién cortado. Se oyen balones, un silbato y alguien gritando «¡mía, mía!». Los mástiles de luz se prenden uno por uno."
+        ],
+        "effects": [
+          {
+            "clockMax": "mar 18:59"
+          }
+        ],
+        "next": "grover"
+      },
+      "grover": {
+        "speaker": "Grover",
+        "text": "Primero el carnet en el control de Bienestar, ahí a la izquierda del camino. Después nos cambiamos en los camerinos (al lado del gimnasio) y a las siete, ¡al agua!",
+        "effects": [
+          {
+            "objective": "Muestra el carnet en el control de Bienestar (junto al camino)"
+          }
+        ]
+      }
+    }
+  },
+  "m5_taquilla": {
+    "start": "router",
+    "nodes": {
+      "inicio": {
+        "speaker": "Funcionaria de Bienestar",
+        "text": "Buenas tardes. Para la piscina: carnet de estudiante y gorro... bueno, el gorro es recomendado. Visitantes, tres mil pesos.",
+        "choices": [
+          {
+            "label": "Mostrar el carnet PUCC",
+            "if": {
+              "hasItem": "carnet_pucc"
+            },
+            "goto": "pagado"
+          },
+          {
+            "label": "Pagar como visitante ($3.000)",
+            "if": {
+              "notItem": "carnet_pucc",
+              "minMoney": 3000
+            },
+            "effects": [
+              {
+                "pay": 3000
+              }
+            ],
+            "goto": "pagado"
+          },
+          {
+            "label": "No tengo carnet ni plata...",
+            "if": {
+              "notItem": "carnet_pucc",
+              "not": {
+                "minMoney": 3000
+              }
+            },
+            "goto": "fiado"
+          },
+          {
+            "label": "Ya vuelvo"
+          }
+        ]
+      },
+      "pagado": {
+        "speaker": "Funcionaria de Bienestar",
+        "text": "Listo, siga. Camerinos al lado del gimnasio. Y nada de correr en el borde, que el salvavidas es bravo.",
+        "effects": [
+          {
+            "setFlag": "m5_entrada"
+          },
+          {
+            "sfx": "bip"
+          },
+          {
+            "objective": "Cámbiate en los camerinos (al lado del gimnasio)"
+          }
+        ]
+      },
+      "fiado": {
+        "speaker": "Grover",
+        "text": "Tranquila, señora, viene conmigo, es de intercambio. ...Ya, cumpa, pasá.",
+        "effects": [
+          {
+            "setFlag": "m5_entrada"
+          },
+          {
+            "objective": "Cámbiate en los camerinos (a la izquierda)"
+          }
+        ]
+      },
+      "router": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_entrada"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "inicio"
+          }
+        ]
+      },
+      "ya": {
+        "speaker": "Taquillera",
+        "text": "Ya pasó, joven. Siga, siga. Y no corra en el borde."
+      }
+    }
+  },
+  "m5_locker": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "en_bano",
+              "notFlag": "m5_nado"
+            },
+            "goto": "listo"
+          },
+          {
+            "if": {
+              "flag": [
+                "en_bano",
+                "m5_nado"
+              ]
+            },
+            "goto": "vestirse"
+          },
+          {
+            "if": {
+              "flag": "m5_nado"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "cambiarse"
+          }
+        ]
+      },
+      "cambiarse": {
+        "text": "Grover te pasa el traje de baño de repuesto: azul, con llamitas blancas. Tiene una etiqueta que dice «Recuerdo de Copacabana». La de Bolivia, no la de Río.",
+        "effects": [
+          {
+            "giveItem": "traje_bano",
+            "silent": true
+          }
+        ],
+        "choices": [
+          {
+            "label": "Ponérselo (con dignidad)",
+            "effects": [
+              {
+                "setFlag": [
+                  "en_bano",
+                  "m5_en_bano",
+                  "sin_mochila"
+                ]
+              },
+              {
+                "sfx": "door"
+              }
+            ],
+            "goto": "puesto"
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "puesto": {
+        "text": "Te cambias. Las llamas te miran desde todos los ángulos. Grover sale del otro camerino: traje rosado, mullet al aire y la monoceja más orgullosa de Sudamérica.",
+        "effects": [
+          {
+            "vineta": "m5_grover"
+          },
+          {
+            "objective": "Ve al borde de la piscina (al sur de los carriles)"
+          }
+        ]
+      },
+      "listo": {
+        "text": "Ya tienes el traje puesto. Las llamas están listas. Tú, más o menos."
+      },
+      "vestirse": {
+        "text": "Te secas con la toalla, te vistes y guardas el traje de llamas en la mochila. Grover dice que te lo regala. «Pa' que te acordés de mí». Como si se pudiera olvidar.",
+        "choices": [
+          {
+            "label": "Vestirse",
+            "effects": [
+              {
+                "clearFlag": [
+                  "en_bano",
+                  "sin_mochila"
+                ]
+              },
+              {
+                "setFlag": "m5_vestido_post"
+              },
+              {
+                "sfx": "door"
+              },
+              {
+                "objective": "Sal de las piscinas: Grover te espera en la salida"
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "ya": {
+        "text": "Tu locker, vacío. Bueno, hay un calcetín que no es tuyo."
+      }
+    }
+  },
+  "m5_camerino_no_salir": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_nado",
+              "notFlag": "m5_vestido_post"
+            },
+            "goto": "vestirse"
+          },
+          {
+            "goto": "cambiarse"
+          }
+        ]
+      },
+      "cambiarse": {
+        "speaker": "Grover",
+        "text": "¡Cumpa! ¿Vas a nadar con jeans? Cambiate primero. El traje de llamas te espera en el locker."
+      },
+      "vestirse": {
+        "text": "No vas a salir a la calle en traje de baño de llamas. Vístete primero (el locker)."
+      }
+    }
+  },
+  "m5_ducha": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Una ducha. Agua fría, obviamente. Un cartel dice: «Dúchese antes de entrar a la piscina». Grover pasa de largo. Tú te duchas por los dos.",
+        "effects": [
+          {
+            "sfx": "ducha"
+          }
+        ]
+      }
+    }
+  },
+  "m5_borde_piscina": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "en_bano"
+            },
+            "goto": "sin_traje"
+          },
+          {
+            "goto": "nadar"
+          }
+        ]
+      },
+      "sin_traje": {
+        "text": "El borde de la piscina. El agua azul brilla con los reflectores. Primero cámbiate en los camerinos."
+      },
+      "nadar": {
+        "speaker": "Grover",
+        "text": [
+          "Los carriles 7 y 8 son libres, cumpa. Los otros son para los que saben nadar. O sea, no para nosotros.",
+          "¿Jugamos Marco Polo? Uno cierra los ojos y dice «¡Marco!», el otro contesta «¡Polo!» y hay que pillarlo. El que es Marco cuando el salvavidas toque el silbato, pierde. Nadie se ahoga, ojalá."
+        ],
+        "choices": [
+          {
+            "label": "¡Al agua! (Marco Polo)",
+            "effects": [
+              {
+                "event": "piscina_m5"
+              }
+            ]
+          },
+          {
+            "label": "Espera, primero miro"
+          }
+        ]
+      }
+    }
+  },
+  "m5_piscina_agua": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Antes de entrar al agua, Grover se persigna, se tapa la nariz y salta de pie. ¡SPLASH! Tú entras por la escalerita, como la gente decente.",
+        "effects": [
+          {
+            "sfx": "splash"
+          }
+        ]
+      }
+    }
+  },
+  "m5_piscina_fin": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¡Piiiiii! El silbato del salvavidas: «¡Ocho en punto, muchachos! ¡Afuera todo el mundo!».",
+        "next": "resultado"
+      },
+      "resultado": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_marco_gane"
+            },
+            "goto": "gane"
+          },
+          {
+            "if": {
+              "flag": "m5_marco_perdi"
+            },
+            "goto": "perdi"
+          },
+          {
+            "goto": "empate"
+          }
+        ]
+      },
+      "gane": {
+        "text": "Salen del agua arrugados como pasas. Grover sigue con los ojos cerrados, nadando a tientas hacia la escalerita. El que es Marco cuando suena el silbato pierde: ¡ganaste tú!",
+        "effects": [
+          {
+            "vineta": "m5_piscina_toallas"
+          }
+        ],
+        "next": "grover_gane"
+      },
+      "grover_gane": {
+        "speaker": "Grover",
+        "text": "¡Pucha! Me ganaste en la última, cumpa. Pero que conste: no me pillaste ni una vez más. Revancha el martes que viene. Vamos a cambiarnos.",
+        "next": "cambiarse"
+      },
+      "perdi": {
+        "text": "Salen del agua arrugados como pasas. Tú todavía tienes los ojos cerrados cuando suena el silbato. El que es Marco al final pierde... y ese eres tú.",
+        "effects": [
+          {
+            "vineta": "m5_piscina_toallas"
+          }
+        ],
+        "next": "grover_perdi"
+      },
+      "grover_perdi": {
+        "speaker": "Grover",
+        "text": "¡Gané, cumpa! ¡Bolivia campeón del Marco Polo! El salvavidas es testigo. Bueno, el salvavidas dice que nadamos como gatos en una lavadora, pero es testigo igual. Vamos a cambiarnos.",
+        "next": "cambiarse"
+      },
+      "empate": {
+        "text": "Salen del agua arrugados como pasas. Grover dice que ganó él. Tú dices que ganaste tú. El salvavidas dice que los dos nadan como gatos en una lavadora.",
+        "effects": [
+          {
+            "vineta": "m5_piscina_toallas"
+          }
+        ],
+        "next": "grover"
+      },
+      "grover": {
+        "speaker": "Grover",
+        "text": "Empate técnico, cumpa. O sea, nadie ganó. ¡Pero nadie se ahogó! En Bolivia eso es victoria. Vamos a cambiarnos.",
+        "next": "cambiarse"
+      },
+      "cambiarse": {
+        "effects": [
+          {
+            "setFlag": "m5_nado"
+          },
+          {
+            "clockMax": "mar 20:15"
+          },
+          {
+            "objective": "Vístete en los camerinos y sal (Grover te espera en la salida)"
+          }
+        ]
+      }
+    }
+  },
+  "m5_trampolin": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "en_bano"
+            },
+            "goto": "sin_traje"
+          },
+          {
+            "if": {
+              "flag": "secreto_panzazo"
+            },
+            "goto": "otra_vez"
+          },
+          {
+            "goto": "subir"
+          }
+        ]
+      },
+      "sin_traje": {
+        "text": "Los partidores de salida, uno por carril. Los de la selección se tiran de aquí como flechas. Primero cámbiate."
+      },
+      "subir": {
+        "text": "El partidor del carril 4. Desde arriba la piscina se ve más honda de lo que es. Grover te mira desde el borde: «¿Te animás a tirarte de clavado, cumpa?».",
+        "choices": [
+          {
+            "label": "¡Tirarse de clavado!",
+            "goto": "clavado"
+          },
+          {
+            "label": "Mejor no, mi vida vale"
+          }
+        ]
+      },
+      "clavado": {
+        "text": [
+          "Te subes al partidor. Te agachas como los de la tele. Brazos adelante, mirada al frente, elegancia olímpica...",
+          "¡PLAF! Panzazo. Un panzazo histórico. Se escucha hasta en el coliseo. El salvavidas pita, Grover aplaude y un niño grita «¡OTRA!»."
+        ],
+        "effects": [
+          {
+            "vineta": "m5_panzazo"
+          },
+          {
+            "sfx": "chapuzon"
+          },
+          {
+            "setFlag": "secreto_panzazo"
+          },
+          {
+            "sfx": "secret"
+          }
+        ]
+      },
+      "otra_vez": {
+        "text": "Todavía te arde la guata. El partidor te mira. Tú no lo miras a él."
+      }
+    }
+  },
+  "m5_salvavidas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Salvavidas",
+        "text": "Carriles 1 al 6, nado. Carriles 7 y 8, libres. No correr, no empujar, no tirarse de barriga desde los partidores. ¿Entendido? ¿Y su amigo? ¿Por qué tiene un traje rosado con llamas?"
+      }
+    }
+  },
+  "m5_nino": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_antiparras_ok"
+            },
+            "goto": "feliz"
+          },
+          {
+            "if": {
+              "hasItem": "antiparras"
+            },
+            "goto": "devolver"
+          },
+          {
+            "goto": "llora"
+          }
+        ]
+      },
+      "llora": {
+        "speaker": "Niño",
+        "text": "¡Perdí mis gafas de nadar! Son azules... Mi papá me va a regañar. Se me cayeron por allá, por el borde de las duchas. *snif*",
+        "effects": [
+          {
+            "setFlag": "m5_nino_visto"
+          }
+        ]
+      },
+      "devolver": {
+        "speaker": "Niño",
+        "text": "¡MIS GAFAS! ¡Gracias, señor! ...Digo, joven. Usted nada raro, pero es buena gente.",
+        "effects": [
+          {
+            "takeItem": "antiparras"
+          },
+          {
+            "setFlag": "m5_antiparras_ok"
+          },
+          {
+            "sfx": "item"
+          },
+          {
+            "vineta": "m5_antiparras"
+          }
+        ]
+      },
+      "feliz": {
+        "speaker": "Niño",
+        "text": "¡Mire, ya veo bajo el agua! ¡Hay una moneda! ¡Y un chicle! ...Mejor no miro más."
+      }
+    }
+  },
+  "m5_antiparras_suelo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "En el borde, junto a la ducha y un charquito: unas gafas de natación azules, de niño.",
+        "effects": [
+          {
+            "giveItem": "antiparras"
+          }
+        ]
+      }
+    }
+  },
+  "m5_champus": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "champus"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Vendedora de champús",
+        "text": "¡Champús, champús! Maíz, lulo, piña, panela y canela, bien frío. Tres mil quinientos. Pa' después de nadar, lo mejor.",
+        "choices": [
+          {
+            "label": "Un champús ($3.500)",
+            "if": {
+              "minMoney": 3500
+            },
+            "effects": [
+              {
+                "pay": 3500
+              },
+              {
+                "giveItem": "champus"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "Ahora no"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Vendedora de champús",
+        "text": "Revuélvalo bien, que el maíz se va al fondo. Como los que no saben nadar."
+      },
+      "ya": {
+        "speaker": "Vendedora de champús",
+        "text": "¿Le gustó? El champús es del Valle, mijo. Llévese la receta en el corazón."
+      }
+    }
+  },
+  "m5_snacks": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Una máquina de snacks. Te traga una moneda de mil y no te da nada. Le pegas suavecito. Te devuelve dos monedas de quinientos. Ganaste... nada.",
+        "effects": [
+          {
+            "sfx": "coin"
+          }
+        ]
+      }
+    }
+  },
+  "m5_gradas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Las gradas. Unos papás miran a sus hijos nadar y graban todo con el celular. Una chica de pelo mojado se seca con una toalla amarilla."
+      }
+    }
+  },
+  "m5_grover_piscina": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_nado"
+            },
+            "goto": "despues"
+          },
+          {
+            "if": {
+              "flag": "en_bano"
+            },
+            "goto": "bano"
+          },
+          {
+            "if": {
+              "flag": "m5_entrada"
+            },
+            "goto": "camerino"
+          },
+          {
+            "goto": "taquilla"
+          }
+        ]
+      },
+      "taquilla": {
+        "speaker": "Grover",
+        "text": "El control de Bienestar, cumpa, ahí junto al camino. Mostrá el carnet y pasamos."
+      },
+      "camerino": {
+        "speaker": "Grover",
+        "text": "¡A los camerinos, al lado del gimnasio! Te dejé el traje de llamas en el locker. Te va a quedar precioso."
+      },
+      "bano": {
+        "speaker": "Grover",
+        "text": "¡Mirá esas llamas, cumpa! Somos los más elegantes del GLD. Vamos al borde de la piscina, del lado sur."
+      },
+      "despues": {
+        "speaker": "Grover",
+        "text": "Me duele todo, cumpa. Hasta la monoceja. Vestite y vamos, que te llevo a Pance."
+      }
+    }
+  },
+  "m5_grover_auto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Grover",
+        "text": "¡No me distraigas, cumpa, que estoy manejando! ...Bueno, contame algo. Pero no me mirés a los ojos, que me pongo nervioso."
+      }
+    }
+  },
+  "m5_llama_tablero": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Una llamita de peluche pegada al tablero con cinta. Mueve la cabeza con cada bache. Grover dice que se llama Evo. «No por nadie en particular»."
+      }
+    }
+  },
+  "m5_coliseo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El coliseo cubierto: una carpa blanca enorme con tres mástiles de luz que la atraviesan. Adentro se juega voleibol y un profe de Educación Física grita «¡rotación!»."
+      }
+    }
+  },
+  "m5_tenis": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Tenista",
+        "text": "¡Fuera! ...No, adentro. No sé, la línea está borrada. Esta cancha es azul sobre rojo para que nadie pueda ver nada."
+      }
+    }
+  },
+  "m5_basket": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Basquetbolista",
+        "text": "¿Juega? Nos falta uno. ...Ah, ¿va a la piscina? ¿Con ese de las llamas? Suerte, parce."
+      }
+    }
+  },
+  "m5_piscina_cerrada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La piscina del Centro Deportivo. A esta hora entrena la selección de natación. Hoy no te toca."
+      }
+    }
+  }
+}

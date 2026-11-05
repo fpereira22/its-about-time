@@ -1,0 +1,922 @@
+[
+  {
+    "id": "m4_mery",
+    "map": "pance_casa",
+    "x": 16,
+    "y": 3,
+    "dir": "left",
+    "sprite": "anfitriona",
+    "dialogue": "m4_mery",
+    "if": {
+      "all": [
+        {
+          "mission": "mission04"
+        },
+        {
+          "notFlag": "volvio_casa"
+        }
+      ]
+    }
+  },
+  {
+    "id": "m4_mery_noche",
+    "map": "pance_casa",
+    "x": 4,
+    "y": 7,
+    "dir": "right",
+    "sprite": "anfitriona",
+    "dialogue": "m4_mery_noche",
+    "if": {
+      "flag": "partido_jugado",
+      "notFlag": "gano_partido"
+    }
+  },
+  {
+    "id": "m4_ropero",
+    "map": "pance_casa",
+    "x": 2,
+    "y": 1,
+    "dialogue": "m4_ropero"
+  },
+  {
+    "id": "m4_ventana",
+    "map": "pance_casa",
+    "x": 3,
+    "y": 1,
+    "dialogue": "m4_ventana"
+  },
+  {
+    "id": "m4_escritorio",
+    "map": "pance_casa",
+    "x": 5,
+    "y": 1,
+    "dialogue": "m4_escritorio"
+  },
+  {
+    "id": "m4_velador",
+    "map": "pance_casa",
+    "x": 6,
+    "y": 1,
+    "dialogue": "m4_reloj"
+  },
+  {
+    "id": "m4_lavamanos",
+    "map": "pance_casa",
+    "x": 9,
+    "y": 1,
+    "dialogue": "m4_lavamanos"
+  },
+  {
+    "id": "m4_wc",
+    "map": "pance_casa",
+    "x": 11,
+    "y": 1,
+    "dialogue": "m4_wc"
+  },
+  {
+    "id": "m4_ducha",
+    "map": "pance_casa",
+    "x": 12,
+    "y": 1,
+    "dialogue": "m4_ducha"
+  },
+  {
+    "id": "m4_refri",
+    "map": "pance_casa",
+    "x": 14,
+    "y": 1,
+    "dialogue": "m4_refri"
+  },
+  {
+    "id": "m4_estufa",
+    "map": "pance_casa",
+    "x": 15,
+    "y": 1,
+    "dialogue": "m4_estufa"
+  },
+  {
+    "id": "m4_meson",
+    "map": "pance_casa",
+    "x": 16,
+    "y": 1,
+    "dialogue": "m4_estufa"
+  },
+  {
+    "id": "m4_lavaplatos",
+    "map": "pance_casa",
+    "x": 17,
+    "y": 1,
+    "dialogue": "m4_lavaplatos"
+  },
+  {
+    "id": "m4_ventana_cocina",
+    "map": "pance_casa",
+    "x": 20,
+    "y": 1,
+    "dialogue": "m4_ventana"
+  },
+  {
+    "id": "m4_ventilador",
+    "map": "pance_casa",
+    "x": 1,
+    "y": 4,
+    "dialogue": "m4_ventilador"
+  },
+  {
+    "id": "m4_hamaca",
+    "map": "pance_casa",
+    "x": 1,
+    "y": 10,
+    "dialogue": "m4_hamaca"
+  },
+  {
+    "id": "m4_cuadro_1",
+    "map": "pance_casa",
+    "x": 5,
+    "y": 11,
+    "dialogue": "m4_cuadro"
+  },
+  {
+    "id": "m4_cuadro_2",
+    "map": "pance_casa",
+    "x": 16,
+    "y": 11,
+    "dialogue": "m4_cuadro"
+  },
+  {
+    "id": "m4_mesa_11",
+    "map": "pance_casa",
+    "x": 11,
+    "y": 8,
+    "dialogue": "m4_mesa"
+  },
+  {
+    "id": "m4_mesa_12",
+    "map": "pance_casa",
+    "x": 12,
+    "y": 8,
+    "dialogue": "m4_mesa"
+  },
+  {
+    "id": "m4_mesa_13",
+    "map": "pance_casa",
+    "x": 13,
+    "y": 8,
+    "dialogue": "m4_mesa"
+  },
+  {
+    "id": "m4_mesa_14",
+    "map": "pance_casa",
+    "x": 14,
+    "y": 8,
+    "dialogue": "m4_mesa"
+  },
+  {
+    "id": "m4_paradero_pance",
+    "map": "pance",
+    "x": 31,
+    "y": 6,
+    "object": "paradero_cali",
+    "dialogue": "paradero_pance",
+    "if": {
+      "flag": "mision4_iniciada"
+    }
+  },
+  {
+    "id": "m4_vecina",
+    "map": "pance",
+    "x": 25,
+    "y": 10,
+    "dir": "up",
+    "sprite": "calena",
+    "dialogue": "m4_vecina",
+    "if": {
+      "flag": "mision4_iniciada"
+    }
+  },
+  {
+    "id": "m4_chontaduro",
+    "map": "pance",
+    "x": 13,
+    "y": 10,
+    "dir": "up",
+    "sprite": "vendedor",
+    "dialogue": "m4_chontaduro",
+    "if": {
+      "flag": "mision4_iniciada"
+    }
+  },
+  {
+    "id": "m4_vigilante",
+    "map": "pucc_campus",
+    "x": 67,
+    "y": 22,
+    "dir": "down",
+    "sprite": "vigilante",
+    "dialogue": "m4_vigilante",
+    "if": {
+      "mission": "mission04"
+    }
+  },
+  {
+    "id": "m4_paradero_u",
+    "map": "pucc_campus",
+    "x": 71,
+    "y": 17,
+    "object": "paradero_cali",
+    "dialogue": "paradero_u",
+    "if": {
+      "mission": "mission04"
+    }
+  },
+  {
+    "id": "m4_letrero_62",
+    "map": "pucc_campus",
+    "x": 62,
+    "y": 25,
+    "dialogue": "pucc_letrero"
+  },
+  {
+    "id": "m4_letrero_63",
+    "map": "pucc_campus",
+    "x": 63,
+    "y": 25,
+    "dialogue": "pucc_letrero"
+  },
+  {
+    "id": "m4_letrero_64",
+    "map": "pucc_campus",
+    "x": 64,
+    "y": 25,
+    "dialogue": "pucc_letrero"
+  },
+  {
+    "id": "m4_puerta_teatrino",
+    "map": "pucc_campus",
+    "x": 41,
+    "y": 17,
+    "dialogue": "pucc_teatrino"
+  },
+  {
+    "id": "m4_puerta_auditorio",
+    "map": "pucc_campus",
+    "x": 60,
+    "y": 17,
+    "dialogue": "pucc_auditorio"
+  },
+  {
+    "id": "m4_puerta_capilla",
+    "map": "pucc_campus",
+    "x": 59,
+    "y": 28,
+    "dialogue": "pucc_capilla"
+  },
+  {
+    "id": "m4_puerta_villa",
+    "map": "pucc_campus",
+    "x": 20,
+    "y": 83,
+    "dialogue": "pucc_villa"
+  },
+  {
+    "id": "m4_puerta_gimnasio",
+    "map": "pucc_campus",
+    "x": 54,
+    "y": 82,
+    "dialogue": "pucc_gimnasio"
+  },
+  {
+    "id": "m4_iguana",
+    "map": "pucc_campus",
+    "x": 32,
+    "y": 11,
+    "object": "iguana",
+    "dialogue": "iguana"
+  },
+  {
+    "id": "m4_cholero",
+    "map": "pucc_campus",
+    "x": 70,
+    "y": 11,
+    "dir": "right",
+    "sprite": "cholero",
+    "dialogue": "cholado",
+    "if": {
+      "flag": "almorzo"
+    }
+  },
+  {
+    "id": "m4_carro_cholados",
+    "map": "pucc_campus",
+    "x": 71,
+    "y": 11,
+    "object": "carro_cholados",
+    "dialogue": "cholado",
+    "if": {
+      "flag": "almorzo"
+    }
+  },
+  {
+    "id": "m4_monica",
+    "map": "pucc_campus",
+    "x": 47,
+    "y": 20,
+    "dir": "down",
+    "sprite": "monica",
+    "dialogue": "monica_plaza",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_plaza_alvaro",
+    "map": "pucc_campus",
+    "x": 44,
+    "y": 21,
+    "dir": "right",
+    "sprite": "alvaro",
+    "dialogue": "plaza_alvaro",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_plaza_iker",
+    "map": "pucc_campus",
+    "x": 45,
+    "y": 23,
+    "dir": "up",
+    "sprite": "iker",
+    "dialogue": "plaza_iker",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_plaza_pau",
+    "map": "pucc_campus",
+    "x": 50,
+    "y": 20,
+    "dir": "down",
+    "sprite": "pau",
+    "dialogue": "plaza_pau",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_plaza_sergio",
+    "map": "pucc_campus",
+    "x": 52,
+    "y": 21,
+    "dir": "left",
+    "sprite": "sergio",
+    "dialogue": "plaza_sergio",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_plaza_antoine",
+    "map": "pucc_campus",
+    "x": 40,
+    "y": 21,
+    "dir": "right",
+    "sprite": "antoine",
+    "dialogue": "plaza_antoine",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_plaza_lucas",
+    "map": "pucc_campus",
+    "x": 41,
+    "y": 23,
+    "dir": "up",
+    "sprite": "lucas",
+    "dialogue": "plaza_lucas",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_plaza_mathieu",
+    "map": "pucc_campus",
+    "x": 54,
+    "y": 20,
+    "dir": "down",
+    "sprite": "mathieu",
+    "dialogue": "plaza_mathieu",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_plaza_hugo",
+    "map": "pucc_campus",
+    "x": 53,
+    "y": 23,
+    "dir": "up",
+    "sprite": "hugo",
+    "dialogue": "plaza_hugo",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_plaza_diego",
+    "map": "pucc_campus",
+    "x": 46,
+    "y": 23,
+    "dir": "up",
+    "sprite": "diego",
+    "dialogue": "plaza_diego",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_plaza_nacho",
+    "map": "pucc_campus",
+    "x": 50,
+    "y": 23,
+    "dir": "up",
+    "sprite": "nacho",
+    "dialogue": "plaza_nacho",
+    "if": {
+      "flag": "llego_u",
+      "notFlag": "tormenta_vista"
+    }
+  },
+  {
+    "id": "m4_pre_alvaro",
+    "map": "pucc_campus",
+    "x": 32,
+    "y": 59,
+    "dir": "up",
+    "sprite": "alvaro_u",
+    "dialogue": "pre_alvaro",
+    "if": {
+      "flag": "clase_ok",
+      "notFlag": "partido_jugado"
+    }
+  },
+  {
+    "id": "m4_pre_nacho",
+    "map": "pucc_campus",
+    "x": 34,
+    "y": 59,
+    "dir": "up",
+    "sprite": "nacho_u",
+    "dialogue": "pre_nacho",
+    "if": {
+      "flag": "clase_ok",
+      "notFlag": "partido_jugado"
+    }
+  },
+  {
+    "id": "m4_pre_diego",
+    "map": "pucc_campus",
+    "x": 30,
+    "y": 60,
+    "dir": "up",
+    "sprite": "diego_u",
+    "dialogue": "pre_diego",
+    "if": {
+      "flag": "clase_ok",
+      "notFlag": "partido_jugado"
+    }
+  },
+  {
+    "id": "m4_pre_mathieu",
+    "map": "pucc_campus",
+    "x": 33,
+    "y": 61,
+    "dir": "up",
+    "sprite": "mathieu_u",
+    "dialogue": "pre_mathieu",
+    "if": {
+      "flag": "clase_ok",
+      "notFlag": "partido_jugado"
+    }
+  },
+  {
+    "id": "m4_pre_johan",
+    "map": "pucc_campus",
+    "x": 33,
+    "y": 67,
+    "dir": "up",
+    "sprite": "johan",
+    "dialogue": "pre_johan",
+    "if": {
+      "flag": "clase_ok",
+      "notFlag": "partido_jugado"
+    }
+  },
+  {
+    "id": "m4_pre_rival_1",
+    "map": "pucc_campus",
+    "x": 31,
+    "y": 68,
+    "dir": "up",
+    "sprite": "rival",
+    "dialogue": "pre_rival",
+    "if": {
+      "flag": "clase_ok",
+      "notFlag": "partido_jugado"
+    }
+  },
+  {
+    "id": "m4_pre_rival_2",
+    "map": "pucc_campus",
+    "x": 35,
+    "y": 68,
+    "dir": "up",
+    "sprite": "rival",
+    "dialogue": "pre_rival",
+    "if": {
+      "flag": "clase_ok",
+      "notFlag": "partido_jugado"
+    }
+  },
+  {
+    "id": "m4_derrota_alvaro",
+    "map": "pucc_campus",
+    "x": 30,
+    "y": 62,
+    "dir": "right",
+    "sprite": "alvaro_u",
+    "dialogue": "derrota_alvaro",
+    "if": {
+      "flag": "partido_jugado",
+      "notFlag": "gano_partido"
+    }
+  },
+  {
+    "id": "m4_derrota_nacho",
+    "map": "pucc_campus",
+    "x": 33,
+    "y": 63,
+    "dir": "left",
+    "sprite": "nacho_u",
+    "dialogue": "derrota_nacho",
+    "if": {
+      "flag": "partido_jugado",
+      "notFlag": "gano_partido"
+    }
+  },
+  {
+    "id": "m4_derrota_diego",
+    "map": "pucc_campus",
+    "x": 30,
+    "y": 64,
+    "dir": "right",
+    "sprite": "diego_u",
+    "dialogue": "derrota_diego",
+    "if": {
+      "flag": "partido_jugado",
+      "notFlag": "gano_partido"
+    }
+  },
+  {
+    "id": "m4_derrota_mathieu",
+    "map": "pucc_campus",
+    "x": 34,
+    "y": 61,
+    "dir": "down",
+    "sprite": "mathieu_u",
+    "dialogue": "derrota_mathieu",
+    "if": {
+      "flag": "partido_jugado",
+      "notFlag": "gano_partido"
+    }
+  },
+  {
+    "id": "m4_derrota_sergio",
+    "map": "pucc_campus",
+    "x": 35,
+    "y": 64,
+    "dir": "left",
+    "sprite": "sergio_u",
+    "dialogue": "derrota_sergio",
+    "if": {
+      "flag": "partido_jugado",
+      "notFlag": "gano_partido"
+    }
+  },
+  {
+    "id": "m4_derrota_hugo",
+    "map": "pucc_campus",
+    "x": 29,
+    "y": 66,
+    "dir": "up",
+    "sprite": "hugo_u",
+    "dialogue": "derrota_hugo",
+    "if": {
+      "flag": "partido_jugado",
+      "notFlag": "gano_partido"
+    }
+  },
+  {
+    "id": "m4_derrota_johan",
+    "map": "pucc_campus",
+    "x": 36,
+    "y": 66,
+    "dir": "left",
+    "sprite": "johan",
+    "dialogue": "derrota_johan",
+    "if": {
+      "flag": "partido_jugado",
+      "notFlag": "gano_partido"
+    }
+  },
+  {
+    "id": "m4_cajera",
+    "map": "pucc_cafeteria",
+    "x": 4,
+    "y": 2,
+    "dir": "down",
+    "sprite": "cajera",
+    "dialogue": "cafe_cajera"
+  },
+  {
+    "id": "m4_mostrador_1",
+    "map": "pucc_cafeteria",
+    "x": 1,
+    "y": 3,
+    "dialogue": "cafe_caja"
+  },
+  {
+    "id": "m4_mostrador_2",
+    "map": "pucc_cafeteria",
+    "x": 2,
+    "y": 3,
+    "dialogue": "cafe_caja"
+  },
+  {
+    "id": "m4_mostrador_3",
+    "map": "pucc_cafeteria",
+    "x": 3,
+    "y": 3,
+    "dialogue": "cafe_caja"
+  },
+  {
+    "id": "m4_mostrador_4",
+    "map": "pucc_cafeteria",
+    "x": 4,
+    "y": 3,
+    "dialogue": "cafe_caja"
+  },
+  {
+    "id": "m4_mostrador_5",
+    "map": "pucc_cafeteria",
+    "x": 5,
+    "y": 3,
+    "dialogue": "cafe_caja"
+  },
+  {
+    "id": "m4_mostrador_6",
+    "map": "pucc_cafeteria",
+    "x": 6,
+    "y": 3,
+    "dialogue": "cafe_caja"
+  },
+  {
+    "id": "m4_mostrador_7",
+    "map": "pucc_cafeteria",
+    "x": 7,
+    "y": 3,
+    "dialogue": "cafe_caja"
+  },
+  {
+    "id": "m4_cafe_diego",
+    "map": "pucc_cafeteria",
+    "x": 7,
+    "y": 6,
+    "sprite": "diego",
+    "dialogue": "cafe_diego",
+    "if": {
+      "all": [
+        {
+          "mission": "mission04"
+        },
+        {
+          "notFlag": "tormenta_vista"
+        }
+      ]
+    }
+  },
+  {
+    "id": "m4_cafe_nacho",
+    "map": "pucc_cafeteria",
+    "x": 11,
+    "y": 6,
+    "sprite": "nacho",
+    "dialogue": "cafe_nacho",
+    "if": {
+      "all": [
+        {
+          "mission": "mission04"
+        },
+        {
+          "notFlag": "tormenta_vista"
+        }
+      ]
+    }
+  },
+  {
+    "id": "m4_profe_gloria",
+    "map": "pucc_aula_logistica",
+    "x": 8,
+    "y": 2,
+    "dir": "down",
+    "sprite": "profe_gloria",
+    "dialogue": "profe_gloria"
+  },
+  {
+    "id": "m4_aula_diego",
+    "map": "pucc_aula_logistica",
+    "x": 8,
+    "y": 4,
+    "sprite": "diego",
+    "dialogue": "cafe_diego",
+    "if": {
+      "all": [
+        {
+          "mission": "mission04"
+        },
+        {
+          "notFlag": "clase_ok"
+        }
+      ]
+    }
+  },
+  {
+    "id": "m4_aula_nacho",
+    "map": "pucc_aula_logistica",
+    "x": 11,
+    "y": 4,
+    "sprite": "nacho",
+    "dialogue": "cafe_nacho",
+    "if": {
+      "all": [
+        {
+          "mission": "mission04"
+        },
+        {
+          "notFlag": "clase_ok"
+        }
+      ]
+    }
+  },
+  {
+    "id": "m4_antoine",
+    "map": "rooftop_cali",
+    "x": 13,
+    "y": 3,
+    "dir": "down",
+    "sprite": "antoine",
+    "dialogue": "rooftop_antoine"
+  },
+  {
+    "id": "m4_rt_alvaro",
+    "map": "rooftop_cali",
+    "x": 6,
+    "y": 5,
+    "sprite": "alvaro",
+    "dialogue": "rooftop_alvaro"
+  },
+  {
+    "id": "m4_rt_iker",
+    "map": "rooftop_cali",
+    "x": 7,
+    "y": 5,
+    "sprite": "iker",
+    "dialogue": "rooftop_iker"
+  },
+  {
+    "id": "m4_rt_pau",
+    "map": "rooftop_cali",
+    "x": 5,
+    "y": 5,
+    "sprite": "pau",
+    "dialogue": "rooftop_pau"
+  },
+  {
+    "id": "m4_rt_sergio",
+    "map": "rooftop_cali",
+    "x": 8,
+    "y": 5,
+    "sprite": "sergio",
+    "dialogue": "rooftop_sergio"
+  },
+  {
+    "id": "m4_rt_lucas",
+    "map": "rooftop_cali",
+    "x": 14,
+    "y": 8,
+    "sprite": "lucas",
+    "dialogue": "rooftop_lucas"
+  },
+  {
+    "id": "m4_rt_mathieu",
+    "map": "rooftop_cali",
+    "x": 15,
+    "y": 8,
+    "sprite": "mathieu",
+    "dialogue": "rooftop_mathieu"
+  },
+  {
+    "id": "m4_rt_hugo",
+    "map": "rooftop_cali",
+    "x": 16,
+    "y": 8,
+    "sprite": "hugo",
+    "dialogue": "rooftop_hugo"
+  },
+  {
+    "id": "m4_rt_diego",
+    "map": "rooftop_cali",
+    "x": 18,
+    "y": 6,
+    "dir": "left",
+    "sprite": "diego",
+    "dialogue": "rooftop_diego"
+  },
+  {
+    "id": "m4_rt_nacho",
+    "map": "rooftop_cali",
+    "x": 6,
+    "y": 9,
+    "dir": "down",
+    "sprite": "nacho",
+    "dialogue": "rooftop_nacho"
+  },
+  {
+    "id": "m4_mesa_rt_5",
+    "map": "rooftop_cali",
+    "x": 5,
+    "y": 4,
+    "dialogue": "rooftop_mesa"
+  },
+  {
+    "id": "m4_mesa_rt_6",
+    "map": "rooftop_cali",
+    "x": 6,
+    "y": 4,
+    "dialogue": "rooftop_mesa"
+  },
+  {
+    "id": "m4_mesa_rt_7",
+    "map": "rooftop_cali",
+    "x": 7,
+    "y": 4,
+    "dialogue": "rooftop_mesa"
+  },
+  {
+    "id": "m4_mesa_rt_8",
+    "map": "rooftop_cali",
+    "x": 8,
+    "y": 4,
+    "dialogue": "rooftop_mesa"
+  },
+  {
+    "id": "m4_mesa_rt2_14",
+    "map": "rooftop_cali",
+    "x": 14,
+    "y": 7,
+    "dialogue": "rooftop_mesa"
+  },
+  {
+    "id": "m4_mesa_rt2_15",
+    "map": "rooftop_cali",
+    "x": 15,
+    "y": 7,
+    "dialogue": "rooftop_mesa"
+  },
+  {
+    "id": "m4_mesa_rt2_16",
+    "map": "rooftop_cali",
+    "x": 16,
+    "y": 7,
+    "dialogue": "rooftop_mesa"
+  },
+  {
+    "id": "m4_parrilla",
+    "map": "rooftop_cali",
+    "x": 14,
+    "y": 2,
+    "dialogue": "rooftop_parrilla"
+  }
+]

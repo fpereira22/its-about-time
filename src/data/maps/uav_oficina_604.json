@@ -1,0 +1,33 @@
+{
+  "id": "uav_oficina_604",
+  "name": "Oficina 604",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 10,
+  "height": 8,
+  "background": "#1a1a22",
+  "music": "credits",
+  "legend": {"^": "muro_techo", "W": "u_muro", "v": "u_ventana", "l": "librero", ".": "u_piso", "X": "escritorio", "a": "alfombra", "D": "u_puerta_abierta"},
+  "rows": [
+    "^^^^^^^^^^",
+    "WlllWvWWlW",
+    "..XX......",
+    "..........",
+    "....a.....",
+    "..........",
+    "WWWWDWWWWW",
+    "^^^^^^^^^^"
+  ],
+  "zones": [
+    {"name": "Oficina 604", "subtitle": "Prof. R. Cuervo", "x": 0, "y": 0, "w": 10, "h": 8}
+  ],
+  "spawns": {
+    "puerta": {"x": 4, "y": 5, "dir": "up"}
+  },
+  "warps": [
+    {"x": 4, "y": 6, "to": "uav_a2_p6", "spawn": "sala_3"}
+  ],
+  "enter": [
+    {"id": "llegada", "dialogue": "oficina_llegada", "if": {"flag": "invitado_oficina"}, "once": true}
+  ]
+}

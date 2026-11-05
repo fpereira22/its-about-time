@@ -1,0 +1,2360 @@
+{
+  "m6_jueves": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Jueves, 6:52 p. m. Piscina del GLD. Llegaste ocho minutos antes. Primera vez en tu vida que llegas antes a algo.",
+          "Ya estás en traje de baño (azul, nuevo, sin llamas: lo compraste ayer con una dignidad que no sabías que tenías). Los reflectores se prenden uno por uno."
+        ],
+        "effects": [
+          {
+            "clock": "jue 18:52",
+            "max": "jue 19:00"
+          },
+          {
+            "setFlag": "m6_jueves_visto"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "text": "Al fondo, en el borde, alguien chiquitita con gorro de natación verde agua te hace señas con los dos brazos, como si estuvieras a un kilómetro.",
+        "effects": [
+          {
+            "objective": "Busca a Sira en el borde de la piscina"
+          }
+        ]
+      }
+    }
+  },
+  "m6_sira_clase": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Sira",
+        "text": "¡Llegaste! Y temprano. Anoto: el chileno es puntual cuando hay agua de por medio.",
+        "choices": [
+          {
+            "label": "Puntual y con traje nuevo. Sin llamas.",
+            "effects": [
+              {
+                "setFlag": "m6_q_traje"
+              }
+            ],
+            "goto": "traje"
+          },
+          {
+            "label": "Vine a aprender. Y a que no me vean ahogarme.",
+            "goto": "aprender"
+          },
+          {
+            "label": "Grover no viene, ¿cierto?",
+            "goto": "grover"
+          }
+        ]
+      },
+      "traje": {
+        "speaker": "Sira",
+        "text": "Ay, lo extrañaba un poco, el de llamas. Tenía personalidad. Este tiene... potencial.",
+        "next": "plan"
+      },
+      "aprender": {
+        "speaker": "Sira",
+        "text": "Nadie se ahoga en mi clase. Bueno, una vez un primo. Pero era chiquito y salió bien. Más o menos.",
+        "next": "plan"
+      },
+      "grover": {
+        "speaker": "Sira",
+        "text": "Me escribió que tiene ensayo de caporales. Lo vi bailar una vez. Mejor que esté allá.",
+        "next": "plan"
+      },
+      "plan": {
+        "speaker": "Sira",
+        "text": [
+          "Hoy: cinco cosas. Burbujas, la estrella, la patada, el crol y, si te portas bien, una carrera.",
+          "Nada de Marco Polo. Bueno... al final, un poquito. Si sobrevives."
+        ],
+        "choices": [
+          {
+            "label": "¡Al agua!",
+            "effects": [
+              {
+                "event": "clase_natacion"
+              }
+            ],
+            "goto": "agua"
+          },
+          {
+            "label": "Un momento (todavía no)",
+            "goto": "espera"
+          }
+        ]
+      },
+      "agua": {
+        "text": "Se mete al agua de un salto, sin salpicar. Tú bajas por la escalerita. Despacio. Con respeto."
+      },
+      "espera": {
+        "speaker": "Sira",
+        "text": "Tranquilo. El agua no se va a ningún lado. Yo tampoco. Bueno, a las ocho sí."
+      }
+    }
+  },
+  "m6_clase_antes": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El agua está tibia. Sira se acomoda las gafas en la frente y te mira como una profe de verdad. Una profe que se ríe sola.",
+        "effects": [
+          {
+            "vineta": "m6_clase_manos"
+          }
+        ]
+      }
+    }
+  },
+  "m6_post_clase": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Ocho menos cinco. Se sientan en el borde, con los pies en el agua. El salvavidas apaga dos reflectores; la piscina queda azul oscura, con brillitos.",
+          "Aprendiste {ejercicios} de 5 ejercicios."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_borde"
+          },
+          {
+            "clock": "jue 19:55",
+            "max": "jue 20:05"
+          }
+        ],
+        "next": "router"
+      },
+      "router": {
+        "branches": [
+          {
+            "goto": "carrera",
+            "if": {
+              "flag": "m6_gano_carrera"
+            }
+          },
+          {
+            "goto": "normal"
+          }
+        ]
+      },
+      "carrera": {
+        "speaker": "Sira",
+        "text": "Todavía no supero que me ganaste. Con un brazo. Pero me ganaste. Le voy a decir a todo el mundo que te dejé.",
+        "next": "feria"
+      },
+      "normal": {
+        "speaker": "Sira",
+        "text": "Vas bien, ¿ah? En serio. El jueves pasado parecías un gato metido a una tina. Hoy pareces... un gato que sabe nadar.",
+        "next": "feria"
+      },
+      "feria": {
+        "speaker": "Sira",
+        "text": [
+          "Oye, una cosa. El sábado empieza la Feria del Libro, en el Bulevar del Río. Toldos, libros viejos, poetas, de todo.",
+          "Yo voy todos los años. ¿Vienes? Nos vemos a las 4, afuera de La Ermita. La iglesia blanca, la de las agujas, junto al río. No tiene pierde."
+        ],
+        "choices": [
+          {
+            "label": "Claro que voy. ¿Llevo algo?",
+            "effects": [
+              {
+                "setFlag": "m6_q_invitacion"
+              }
+            ],
+            "goto": "llevo"
+          },
+          {
+            "label": "¿Una feria de libros? ¿Con poetas? ...Me encanta.",
+            "effects": [
+              {
+                "setFlag": "m6_q_invitacion"
+              }
+            ],
+            "goto": "poetas"
+          },
+          {
+            "label": "¿Es una cita o una salida de estudio?",
+            "goto": "cita"
+          }
+        ]
+      },
+      "llevo": {
+        "speaker": "Sira",
+        "text": "Llévate a ti. Y ganas de caminar. Y si quieres, algo para leer en el bus: de Pance al centro es un viaje.",
+        "next": "bus"
+      },
+      "poetas": {
+        "speaker": "Sira",
+        "text": "¿Te encanta? ¡Ay, qué mentiroso tan lindo! Ya veremos si te encanta cuando un poeta te lea cuarenta minutos sobre su perro.",
+        "next": "bus"
+      },
+      "cita": {
+        "speaker": "Sira",
+        "text": "...Es una feria. Con libros. Y tú. Y yo. Llámala como quieras, chileno. Yo la llamo «sábado».",
+        "effects": [
+          {
+            "setFlag": "m6_q_cita"
+          }
+        ],
+        "next": "bus"
+      },
+      "bus": {
+        "speaker": "Sira",
+        "text": [
+          "Desde Pance tomas el bus a Universidades, la estación grande junto al centro comercial. Ahí te subes al T31 y te bajas en Torre de Cali. Dos cuadras y llegas a La Ermita.",
+          "Y escríbeme por el camino, ¿ya? Para saber que no te perdiste. O que sí. Las dos me sirven."
+        ],
+        "effects": [
+          {
+            "objective": "Hasta el sábado..."
+          }
+        ]
+      }
+    }
+  },
+  "m6_jueves_a_sabado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Esa noche sueñas que nadas en el río Cali y que los peces te piden que respires cada tres brazadas.",
+          "Viernes: clases, un taller de Modelación, Grover mandando audios de cuatro minutos sobre caporales.",
+          "Y llega el sábado."
+        ]
+      }
+    }
+  },
+  "m6_salvavidas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "despues",
+            "if": {
+              "flag": "m6_clase"
+            }
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Salvavidas",
+        "text": "¿Usted es el de las llamas del martes? Hoy viene con la nadadora del carril seis. Bien, bien. Esa sí sabe. Hágale caso."
+      },
+      "despues": {
+        "speaker": "Salvavidas",
+        "text": "Nadó, joven. Feo, pero nadó. Eso es lo importante."
+      }
+    }
+  },
+  "m6_piscina_no_salir": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Sira está en el borde esperándote. Huir de la clase después de llegar temprano sería un récord muy triste."
+      }
+    }
+  },
+  "m6_sabado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Sábado, 9:30. Te duelen músculos que no sabías que existían. Hasta los de las orejas.",
+          "El celular vibra en el velador."
+        ],
+        "effects": [
+          {
+            "clock": "sáb 09:30",
+            "max": "sáb 12:50"
+          },
+          {
+            "message": "sira_m6_manana"
+          },
+          {
+            "vineta": "m6_chat"
+          }
+        ],
+        "next": "responder"
+      },
+      "responder": {
+        "text": "Sira te escribió. ¿Qué le contestas?",
+        "choices": [
+          {
+            "label": "«Me duele hasta el pelo. Ahí estaré, 4 en punto»",
+            "effects": [
+              {
+                "message": "yo_m6_manana_a"
+              },
+              {
+                "setFlag": "m6_q_chat_manana"
+              }
+            ],
+            "goto": "r"
+          },
+          {
+            "label": "«¿Plantarte? Jamás. Llego a las 3:55»",
+            "effects": [
+              {
+                "message": "yo_m6_manana_b"
+              },
+              {
+                "setFlag": "m6_q_chat_manana"
+              }
+            ],
+            "goto": "r"
+          },
+          {
+            "label": "«ok»",
+            "effects": [
+              {
+                "message": "yo_m6_manana_c"
+              }
+            ],
+            "goto": "ok"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Le mandas «ok». Lo miras. Es lo más frío que has escrito desde que llegaste a Cali. Ella responde con un pingüino. No sabes si es bueno o malo.",
+        "next": "mas"
+      },
+      "r": {
+        "text": "Mandado. Los dos chulitos se ponen azules casi al tiro. Ella está escribiendo...",
+        "next": "mas"
+      },
+      "mas": {
+        "text": "Llegan dos mensajes más, seguidos.",
+        "effects": [
+          {
+            "message": "sira_m6_manana_2"
+          },
+          {
+            "message": "sira_m6_regalos"
+          },
+          {
+            "message": "sira_m6_libro"
+          },
+          {
+            "vineta": "m6_chat"
+          }
+        ],
+        "next": "pista"
+      },
+      "pista": {
+        "text": [
+          "Maracuyá. Odia las flores cortadas. Le gustan las cosas que duran. Y perdió su «¡Que viva la música!» en 2019.",
+          "Información importante. Muy importante. La anotas mentalmente en negrita."
+        ],
+        "next": "mery"
+      },
+      "mery": {
+        "speaker": "Doña Mery",
+        "text": "¡Mijooo! ¿Ya se levantó? ¡Venga a la cocina, que le tengo una noticia y un mandado!",
+        "effects": [
+          {
+            "objective": "Habla con doña Mery (en la cocina)"
+          }
+        ]
+      }
+    }
+  },
+  "m6_mery": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "volvio",
+            "if": {
+              "flag": "m6_mandado_ok",
+              "notFlag": "m6_almorzo"
+            }
+          },
+          {
+            "goto": "esperando",
+            "if": {
+              "flag": "m6_mandado"
+            }
+          },
+          {
+            "goto": "saludo"
+          }
+        ]
+      },
+      "saludo": {
+        "speaker": "Doña Mery",
+        "text": "Buenos días, mijo. Lo vi llegar el jueves con una sonrisa de oreja a oreja. ¿Y esa cara de hoy? Esa es cara de... ¡ay, no me diga! ¿Tiene una cita?",
+        "choices": [
+          {
+            "label": "Es una feria del libro. Con una amiga.",
+            "goto": "amiga"
+          },
+          {
+            "label": "...Sí. Más o menos. Con Sira.",
+            "effects": [
+              {
+                "setFlag": "m6_le_conto_mery"
+              }
+            ],
+            "goto": "sira"
+          },
+          {
+            "label": "No, nada. Voy a estudiar.",
+            "goto": "mentira"
+          }
+        ]
+      },
+      "amiga": {
+        "speaker": "Doña Mery",
+        "text": "«Una amiga». Ajá. Yo también tuve «amigos» en el 89. Me casé con uno.",
+        "next": "consejo"
+      },
+      "sira": {
+        "speaker": "Doña Mery",
+        "text": "¡Ay, mijo! ¡Sira! ¿La de la piscina? ¡Qué nombre tan bonito! Suena a pájaro. Venga, siéntese, que le voy a dar unos consejos.",
+        "next": "consejo"
+      },
+      "mentira": {
+        "speaker": "Doña Mery",
+        "text": "¿A estudiar? ¿Con esa camisa planchada en la cabeza? Mijo, a mí no me mienta, que yo crié a cuatro.",
+        "next": "consejo"
+      },
+      "consejo": {
+        "speaker": "Doña Mery",
+        "text": [
+          "Escúcheme bien: a una muchacha que lee no se le habla del clima. Se le pregunta qué está leyendo... y se la deja hablar.",
+          "Y si no está de acuerdo con ella, dígaselo. Con cariño, pero dígaselo. Las que leen se aburren con los que dicen «sí» a todo.",
+          "Y otra cosa: nada de flores de las que venden en el centro comercial, que se mueren en dos días. ¿Ve el guayacán del patio? Está tirando florecitas amarillas. Con eso se hace un separador de libro que dura años."
+        ],
+        "effects": [
+          {
+            "setFlag": "m6_consejo_mery"
+          },
+          {
+            "vineta": "m6_mery_consejo"
+          }
+        ],
+        "next": "tarjeta"
+      },
+      "tarjeta": {
+        "speaker": "Doña Mery",
+        "text": [
+          "Ah, y llévese mi tarjeta de repuesto, la del bus. Tiene dos pasajes: uno para el P47 y otro por si se pierde. Que se va a perder.",
+          "El P47 sale aquí en la esquina y lo deja en Universidades. Allá se pasa al T31 sin pagar otra vez, si no sale de la estación."
+        ],
+        "effects": [
+          {
+            "giveItem": "tarjeta_recorre"
+          },
+          {
+            "chargeBip": 5800
+          }
+        ],
+        "next": "mandado"
+      },
+      "mandado": {
+        "speaker": "Doña Mery",
+        "text": "Ahora el mandado: voy a hacer sancocho de gallina, que un sábado sin sancocho no es sábado. Me falta el cilantro cimarrón y las mazorcas. ¿Me hace el favor de ir donde don Arcesio? Es aquí al frente, en la carretilla.",
+        "choices": [
+          {
+            "label": "Claro, voy volando",
+            "effects": [
+              {
+                "setFlag": "m6_mandado"
+              },
+              {
+                "objective": "Compra cilantro cimarrón y mazorcas donde don Arcesio (frente a la casa)"
+              }
+            ],
+            "goto": "va"
+          },
+          {
+            "label": "Mejor la ayudo a picar aquí",
+            "goto": "picar"
+          }
+        ]
+      },
+      "va": {
+        "speaker": "Doña Mery",
+        "text": "Dígale que es para el sancocho de la Mery. Él ya sabe. Y no se demore, que el que llega tarde al sancocho se queda con la presa del ala."
+      },
+      "picar": {
+        "speaker": "Doña Mery",
+        "text": "Bueno, pique la cebolla larga. Fino, mijo, ¡fino! Eso no es picar, eso es apuñalar.",
+        "effects": [
+          {
+            "clockAdd": 25
+          },
+          {
+            "setFlag": "m6_ayudo_picar"
+          }
+        ],
+        "next": "picado"
+      },
+      "picado": {
+        "text": "Entre los dos dejan la olla lista. Mery manda a don Arcesio a traer el cilantro con un vecino (el que pasaba). Ahora a esperar el sancocho.",
+        "next": "almuerzo"
+      },
+      "almuerzo": {
+        "speaker": "Doña Mery",
+        "text": "¡A la mesa! Sancochito de gallina con arroz, aguacate y su ají. Venga, siéntese.",
+        "effects": [
+          {
+            "event": "almuerzo_m6"
+          }
+        ]
+      },
+      "esperando": {
+        "speaker": "Doña Mery",
+        "text": "¿Y el cilantro, mijo? Don Arcesio está aquí al frente, en la carretilla de la acera de enfrente. Ese señor no se mueve de ahí desde 1998."
+      },
+      "volvio": {
+        "speaker": "Doña Mery",
+        "text": "¡Eso! Cilantro cimarrón del bueno y mazorcas tiernas. Gracias, mijo. Ahora a esperar el sancocho. ¡Siéntese en la mesa!",
+        "effects": [
+          {
+            "takeItem": "mazorcas"
+          },
+          {
+            "event": "almuerzo_m6"
+          }
+        ]
+      }
+    }
+  },
+  "m6_almuerzo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "El sancocho humea en el plato hondo: gallina, mazorca, papa, yuca, plátano verde y cilantro. Al lado, arroz blanco, aguacate y el ají de la casa.",
+          "Doña Mery se sienta enfrente y te mira comer como quien ve un partido de fútbol."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_sancocho"
+          }
+        ],
+        "next": "charla"
+      },
+      "charla": {
+        "speaker": "Doña Mery",
+        "text": "¿Y qué le va a regalar a la muchacha? Porque a una cita no se llega con las manos vacías, mijo. Eso lo sabe hasta el perro de la vecina.",
+        "choices": [
+          {
+            "label": "Pensaba hacer el separador de guayacán",
+            "if": {
+              "notItem": "separador_guayacan"
+            },
+            "goto": "separador"
+          },
+          {
+            "label": "Ya hice el separador",
+            "if": {
+              "hasItem": "separador_guayacan"
+            },
+            "goto": "ya"
+          },
+          {
+            "label": "Algo en el centro comercial de Universidades",
+            "goto": "mall"
+          },
+          {
+            "label": "¿Hay que llevar algo?",
+            "goto": "nada"
+          }
+        ]
+      },
+      "separador": {
+        "speaker": "Doña Mery",
+        "text": "¡Eso! Después del almuerzo coja una flor de la matera del patio, la que está caída. Yo le presto el diccionario para prensarla. Y la plancha. Con cuidado.",
+        "next": "fin"
+      },
+      "ya": {
+        "speaker": "Doña Mery",
+        "text": "Ay, qué lindo le quedó. Esa muchacha lo va a guardar en un libro y se va a acordar de usted cada vez que lo abra. Así se hace.",
+        "next": "fin"
+      },
+      "mall": {
+        "speaker": "Doña Mery",
+        "text": "En el centro comercial de Universidades hay una librería buena. Pero no le compre flores, ¡que se mueren! Bueno, usted verá. Yo ya le dije.",
+        "next": "fin"
+      },
+      "nada": {
+        "speaker": "Doña Mery",
+        "text": "¡Mijo! ¡Pues claro! Algo chiquito, que no sea un anillo, por Dios, que van empezando. Un libro, un detalle. Algo que dure.",
+        "next": "fin"
+      },
+      "fin": {
+        "text": "Comes dos platos. Doña Mery dice que eso es amor por el sancocho y no nervios. Son nervios."
+      }
+    }
+  },
+  "m6_almuerzo_fin": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Doña Mery",
+        "text": [
+          "Bueno, mijo: báñese, péinese y póngase algo bonito. El P47 pasa por la esquina cada quince minutos.",
+          "Para llegar a las cuatro al centro, salga a más tardar a las dos y media. Que el T31 los sábados va lleno."
+        ],
+        "effects": [
+          {
+            "objective": "Toma el P47 en el paradero (a la derecha de la casa) antes de las 2:30"
+          }
+        ]
+      }
+    }
+  },
+  "m6_mery_tarde": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "salio",
+            "if": {
+              "flag": "m6_salio_casa"
+            }
+          },
+          {
+            "goto": "consejos"
+          }
+        ]
+      },
+      "consejos": {
+        "speaker": "Doña Mery",
+        "text": "¿Todavía aquí? ¡Váyase, que se le hace tarde! Y péinese bien, que el pelo de Fredy ya está creciendo para los lados.",
+        "choices": [
+          {
+            "label": "¿Me veo bien?",
+            "goto": "bien"
+          },
+          {
+            "label": "Ya voy, ya voy"
+          }
+        ]
+      },
+      "bien": {
+        "speaker": "Doña Mery",
+        "text": "Se ve como un muchacho que va a una cita y dice que no es una cita. O sea: perfecto."
+      },
+      "salio": {
+        "speaker": "Doña Mery",
+        "text": "¿Se le quedó algo? Las llaves, la tarjeta, el corazón... ¡váyase!"
+      }
+    }
+  },
+  "m6_mery_noche": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Doña Mery",
+        "text": "¿Y? ¿Cómo le fue? No, no me cuente. Bueno, sí, cuénteme. Pero mañana, que ya me voy a acostar. Ay, mijo, esa sonrisa..."
+      }
+    }
+  },
+  "m6_matera": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "hasItem": "separador_guayacan"
+            }
+          },
+          {
+            "goto": "tarde",
+            "if": {
+              "flag": "m6_salio_casa"
+            }
+          },
+          {
+            "goto": "flor"
+          }
+        ]
+      },
+      "flor": {
+        "text": "La matera del patio. En la tierra hay varias flores amarillas del guayacán de la vecina: caen solas, todas iguales, como confeti.",
+        "choices": [
+          {
+            "label": "Hacer un separador con una flor (20 min)",
+            "effects": [
+              {
+                "event": "separador"
+              }
+            ],
+            "goto": "hacer"
+          },
+          {
+            "label": "Dejarlas ahí"
+          }
+        ]
+      },
+      "hacer": {
+        "text": "Escoges la flor más bonita: entera, sin una sola mancha."
+      },
+      "ya": {
+        "text": "La matera. Las flores de guayacán siguen cayendo, como si el árbol estuviera contento por algo."
+      },
+      "tarde": {
+        "text": "La matera. Ahora no hay tiempo: el P47 no espera."
+      }
+    }
+  },
+  "m6_separador_hacer": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Doña Mery saca un diccionario gordísimo de 1987 y dos hojas de papel mantequilla. «La plancha tibia, mijo, ¡tibia!»",
+          "Pones la flor entre las hojas, el diccionario encima, la plancha encima del diccionario. Esperas. Mery tararea un bolero."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_separador"
+          }
+        ]
+      }
+    }
+  },
+  "m6_separador_listo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Le recortas los bordes, le haces un huequito con un clavo y le amarras una cinta roja de las de los regalos de Navidad. Quedó precioso. Bueno, quedó. Y lo hiciste tú.",
+        "effects": [
+          {
+            "setFlag": "m6_q_manualidad"
+          }
+        ]
+      }
+    }
+  },
+  "m6_paradero_pance": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "noche",
+            "if": {
+              "flag": "m6_taxi_casa"
+            }
+          },
+          {
+            "goto": "temprano",
+            "if": {
+              "notFlag": "m6_almorzo"
+            }
+          },
+          {
+            "goto": "bus"
+          }
+        ]
+      },
+      "temprano": {
+        "text": "El paradero del P47 (Pance → Universidades). Todavía es temprano: primero el almuerzo con doña Mery."
+      },
+      "bus": {
+        "text": "Paradero del P47 · Pance → Universidades. Pasa cada 15 minutos (los sábados, cada 15 minutos «colombianos»).",
+        "effects": [
+          {
+            "sign": "paradero_cali"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Esperar el P47",
+            "effects": [
+              {
+                "setFlag": "m6_salio_casa"
+              },
+              {
+                "event": "bus_cali",
+                "data": {
+                  "destino": "universidades",
+                  "ruta": "P47",
+                  "lane": 7,
+                  "x": 31
+                }
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "noche": {
+        "text": "El paradero, de noche. Un sapo grande descansa en la banca como si esperara el último bus."
+      }
+    }
+  },
+  "m6_tienda": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "hasItem": "mazorcas"
+            }
+          },
+          {
+            "goto": "ya2",
+            "if": {
+              "flag": "m6_mandado_ok"
+            }
+          },
+          {
+            "goto": "vender",
+            "if": {
+              "flag": "m6_mandado"
+            }
+          },
+          {
+            "goto": "saludo"
+          }
+        ]
+      },
+      "saludo": {
+        "speaker": "Don Arcesio",
+        "text": "¡Buenas, joven! Mazorca, cilantro, papaya, limones, mandarinas. Y chontaduro, para que se ponga fuerte. ¿Qué le doy?",
+        "choices": [
+          {
+            "label": "Un chontaduro con sal y miel ($2.000)",
+            "if": {
+              "minMoney": 2000
+            },
+            "effects": [
+              {
+                "pay": 2000
+              }
+            ],
+            "goto": "chonta"
+          },
+          {
+            "label": "Solo miraba"
+          }
+        ]
+      },
+      "chonta": {
+        "speaker": "Don Arcesio",
+        "text": "Lo pela con un cuchillo que ha visto cosas. Le echa sal y miel. Lo muerdes: es como una papa dulce que te está juzgando. Te gusta. Raro.",
+        "effects": [
+          {
+            "sfx": "eat"
+          }
+        ]
+      },
+      "vender": {
+        "speaker": "Don Arcesio",
+        "text": "¿Para el sancocho de la Mery? ¡Ah, pues claro! Cilantro cimarrón del que huele a monte y dos mazorcas tiernitas. ¿Está de cita, joven? Se le nota.",
+        "choices": [
+          {
+            "label": "Pagar ($6.000)",
+            "if": {
+              "minMoney": 6000
+            },
+            "effects": [
+              {
+                "pay": 6000
+              },
+              {
+                "giveItem": "mazorcas",
+                "silent": true
+              },
+              {
+                "setFlag": "m6_mandado_ok"
+              },
+              {
+                "objective": "Llévale el cilantro y las mazorcas a doña Mery"
+              }
+            ],
+            "goto": "pago"
+          },
+          {
+            "label": "¿Tanto se me nota?",
+            "goto": "nota"
+          }
+        ]
+      },
+      "nota": {
+        "speaker": "Don Arcesio",
+        "text": "Joven, usted tiene cara de que le van a contestar un «sí». Y eso no se esconde. Son seis mil.",
+        "choices": [
+          {
+            "label": "Pagar ($6.000)",
+            "if": {
+              "minMoney": 6000
+            },
+            "effects": [
+              {
+                "pay": 6000
+              },
+              {
+                "giveItem": "mazorcas",
+                "silent": true
+              },
+              {
+                "setFlag": "m6_mandado_ok"
+              },
+              {
+                "objective": "Llévale el cilantro y las mazorcas a doña Mery"
+              }
+            ],
+            "goto": "pago"
+          }
+        ]
+      },
+      "pago": {
+        "speaker": "Don Arcesio",
+        "text": "Le pasas los billetes. Te los envuelve en una hoja de periódico, de la sección de deportes. «Salúdeme a la Mery»."
+      },
+      "ya": {
+        "speaker": "Don Arcesio",
+        "text": "¡Váyase que la Mery está esperando! Y suerte en la cita, joven."
+      },
+      "ya2": {
+        "speaker": "Don Arcesio",
+        "text": "Suerte en la cita, joven. Y si le dicen que no, venga, que le regalo un chontaduro."
+      }
+    }
+  },
+  "m6_vecina": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Vecina",
+        "text": "¡Buenas, vecino! Uy, ¿y ese perfume? ¿Para quién es tanta elegancia un sábado? No me diga, no me diga. La Mery ya me contó todo."
+      }
+    }
+  },
+  "m6_p47_pance": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El P47 baja por Pance entre guaduales, fincas y señores en bicicleta con ropa de ciclista profesional. El aire huele a río.",
+        "effects": [
+          {
+            "setFlag": "m6_salio_casa"
+          }
+        ]
+      }
+    }
+  },
+  "m6_p47_calle18": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Pasan por fuera de la U. Ves el parqueadero principal y, juras, un pavo real mirando el bus con desprecio.",
+        "next": "chat"
+      },
+      "chat": {
+        "text": "El celular vibra.",
+        "effects": [
+          {
+            "message": "sira_m6_saliendo"
+          },
+          {
+            "vineta": "m6_chat"
+          }
+        ],
+        "choices": [
+          {
+            "label": "«Voy en el P47, pasando por la U»",
+            "effects": [
+              {
+                "message": "yo_m6_p47"
+              },
+              {
+                "setFlag": "m6_q_chat_bus"
+              }
+            ],
+            "goto": "ok"
+          },
+          {
+            "label": "«Ya voy, ya voy» (mentira, vas lejísimos)",
+            "effects": [
+              {
+                "message": "yo_m6_p47_b"
+              }
+            ],
+            "goto": "ok"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Ella responde con un emoji de bus y otro de reloj. Presión."
+      }
+    }
+  },
+  "m6_p47_canasgordas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Av. Cañasgordas: conjuntos con portería, árboles enormes, un señor vendiendo mangos con sal a pleno sol. El bus frena en cada semáforo como si fuera la primera vez."
+      }
+    }
+  },
+  "m6_p47_llegando": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El P47 entra a la Av. Carrera 100. Al frente, un techo larguísimo de lámina con un letrero: UNIVERSIDADES. La estación grande."
+      }
+    }
+  },
+  "m6_universidades_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Estación Universidades, la cabecera del sur. Se llama así por las universidades que tiene alrededor: aquí se bajan estudiantes de todo Cali con cara de sueño y mochila.",
+          "Al frente, el centro comercial Guayacán Plaza; al otro lado, la Universidad Pública del Valle. La estación está en medio de la Av. Carrera 100, entre los dos carriles del bus."
+        ],
+        "effects": [
+          {
+            "setFlag": "m6_llego_universidades"
+          }
+        ],
+        "next": "tarde"
+      },
+      "tarde": {
+        "text": "Llegaste por el andén de los alimentadores (adentro de la estación, ya pagado). Al frente, al otro lado del andén, paran los buses troncales: el T31 es el de la primera puerta.",
+        "effects": [
+          {
+            "objective": "Toma el T31 (primera puerta del andén norte) y bájate en Torre de Cali"
+          }
+        ],
+        "next": "chat"
+      },
+      "chat": {
+        "text": "El celular vibra otra vez.",
+        "effects": [
+          {
+            "message": "sira_m6_donde"
+          },
+          {
+            "vineta": "m6_chat"
+          }
+        ],
+        "choices": [
+          {
+            "label": "«En Universidades, a punto de tomar el T31»",
+            "effects": [
+              {
+                "message": "yo_m6_universidades"
+              },
+              {
+                "setFlag": "m6_q_chat_universidades"
+              }
+            ],
+            "goto": "ok"
+          },
+          {
+            "label": "«Perdido en un centro comercial. Mentira. Más o menos.»",
+            "effects": [
+              {
+                "message": "yo_m6_universidades_b"
+              }
+            ],
+            "goto": "ok"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Responde al tiro.",
+        "effects": [
+          {
+            "message": "sira_m6_ok"
+          },
+          {
+            "vineta": "m6_chat"
+          }
+        ]
+      }
+    }
+  },
+  "m6_orientadora": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Orientadora",
+        "text": "¡Buenas tardes! ¿Para dónde va, joven? Lo veo leyendo el tablero como si fuera un examen.",
+        "choices": [
+          {
+            "label": "Para Torre de Cali, en el centro",
+            "goto": "torre"
+          },
+          {
+            "label": "¿Cuál es la diferencia entre la T y la E?",
+            "goto": "te"
+          },
+          {
+            "label": "Si salgo de la estación, ¿tengo que pagar otra vez?",
+            "goto": "salir"
+          },
+          {
+            "label": "Nada, gracias"
+          }
+        ]
+      },
+      "torre": {
+        "speaker": "Orientadora",
+        "text": "El T31, primera puerta del andén. Para en todas, también en Torre de Cali. El E31 es expreso: llega más rápido... pero no para en Torre de Cali. Si se sube a ese, se baja en el Estadio y queda lejos.",
+        "next": "mas"
+      },
+      "te": {
+        "speaker": "Orientadora",
+        "text": "La T para en todas las estaciones. La E es expresa: solo en las grandes. El T42 y el T47 van para el oriente y el norte por la Autopista: esos no le sirven para el centro.",
+        "next": "mas"
+      },
+      "salir": {
+        "speaker": "Orientadora",
+        "text": "Sí, joven: si sale por los torniquetes y vuelve a entrar, paga otro pasaje. Si no sale, el trasbordo del alimentador es gratis.",
+        "next": "mas"
+      },
+      "mas": {
+        "speaker": "Orientadora",
+        "text": "¿Algo más?",
+        "choices": [
+          {
+            "label": "¿Para dónde va el T31, entonces?",
+            "goto": "torre"
+          },
+          {
+            "label": "¿La T y la E?",
+            "goto": "te"
+          },
+          {
+            "label": "¿Y si salgo?",
+            "goto": "salir"
+          },
+          {
+            "label": "Gracias",
+            "effects": [
+              {
+                "setFlag": "m6_oriento"
+              }
+            ],
+            "goto": "chao"
+          }
+        ]
+      },
+      "chao": {
+        "speaker": "Orientadora",
+        "text": "Con gusto. ¡Y no se quede dormido, que el T31 llega hasta Chiminangos y de allá es otro viaje!"
+      }
+    }
+  },
+  "m6_tablero_rutas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "TABLERO DE RUTAS · ESTACIÓN UNIVERSIDADES",
+          "Puerta 1 · T31 Chiminangos — todas las paradas: Univalle, Meléndez, Pampalinda, Unidad Deportiva, Estadio, Santa Librada, San Pedro, Torre de Cali, La Ermita...",
+          "Puerta 2 · E31 Expreso — Meléndez, Estadio, Centro. (No para en Torre de Cali.)",
+          "Puertas 3, 4 y 5 · T42 Calipso, T47 Sameco y E27 Andrés Sanín (por la Autopista Simón Bolívar)."
+        ],
+        "effects": [
+          {
+            "setFlag": "m6_leyo_tablero"
+          },
+          {
+            "vineta": "m6_ruta_t31"
+          }
+        ]
+      }
+    }
+  },
+  "m6_puerta_t31": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "afuera",
+            "if": {
+              "flag": "m6_afuera"
+            }
+          },
+          {
+            "goto": "esperar"
+          }
+        ]
+      },
+      "afuera": {
+        "text": "Desde afuera no se puede: primero hay que pasar los torniquetes."
+      },
+      "esperar": {
+        "text": "Puerta 1 · T31 Chiminangos (por el Centro). Para en todas, también en Torre de Cali.",
+        "choices": [
+          {
+            "label": "Esperar el T31",
+            "effects": [
+              {
+                "event": "articulado_t31"
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      }
+    }
+  },
+  "m6_puerta_e31": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Puerta · E31 Expreso. Meléndez, Estadio, Centro.",
+        "choices": [
+          {
+            "label": "Subirse al E31 Expreso",
+            "effects": [
+              {
+                "clockAdd": 14
+              },
+              {
+                "sfx": "error"
+              }
+            ],
+            "goto": "mal"
+          },
+          {
+            "label": "Mejor no"
+          }
+        ]
+      },
+      "mal": {
+        "text": "El E31 vuela por la Calle 5 sin parar en casi nada. Cuando ves pasar «Torre de Cali» por la ventana sin frenar, entiendes. Te bajas en el Estadio y tomas uno de vuelta a Universidades, rojo de vergüenza.",
+        "next": "vuelta"
+      },
+      "vuelta": {
+        "text": "Pierdes 14 minutos en ir y volver. Moraleja: mirar el tablero antes de subirse. Vuelves al andén, un poco más sabio y un poco más tarde.",
+        "effects": [
+          {
+            "setFlag": "m6_se_equivoco"
+          }
+        ]
+      }
+    }
+  },
+  "m6_puerta_t42": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Puerta · T42 Calipso. Por la Autopista Simón Bolívar, hacia el oriente.",
+        "choices": [
+          {
+            "label": "Subirse al T42 Calipso",
+            "effects": [
+              {
+                "clockAdd": 12
+              },
+              {
+                "sfx": "error"
+              }
+            ],
+            "goto": "mal"
+          },
+          {
+            "label": "Mejor no"
+          }
+        ]
+      },
+      "mal": {
+        "text": "El T42 agarra la Autopista hacia el oriente. Ves pasar canchas, una iglesia gigante y un señor vendiendo piñas. Nada de río, nada de Ermita. Te bajas en la siguiente y te devuelves.",
+        "next": "vuelta"
+      },
+      "vuelta": {
+        "text": "Pierdes 12 minutos en ir y volver. Moraleja: mirar el tablero antes de subirse. Vuelves al andén, un poco más sabio y un poco más tarde.",
+        "effects": [
+          {
+            "setFlag": "m6_se_equivoco"
+          }
+        ]
+      }
+    }
+  },
+  "m6_puerta_t47": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Puerta · T47 Sameco. Hacia el norte, por la Autopista.",
+        "choices": [
+          {
+            "label": "Subirse al T47 Sameco",
+            "effects": [
+              {
+                "clockAdd": 12
+              },
+              {
+                "sfx": "error"
+              }
+            ],
+            "goto": "mal"
+          },
+          {
+            "label": "Mejor no"
+          }
+        ]
+      },
+      "mal": {
+        "text": "Le preguntas a la señora de al lado si este va para Torre de Cali. Se ríe como si le hubieras contado un chiste buenísimo. Te bajas en la siguiente y te devuelves.",
+        "next": "vuelta"
+      },
+      "vuelta": {
+        "text": "Pierdes 12 minutos en ir y volver. Moraleja: mirar el tablero antes de subirse. Vuelves al andén, un poco más sabio y un poco más tarde.",
+        "effects": [
+          {
+            "setFlag": "m6_se_equivoco"
+          }
+        ]
+      }
+    }
+  },
+  "m6_puerta_e27": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Puerta · E27 Andrés Sanín. Expreso al oriente.",
+        "choices": [
+          {
+            "label": "Subirse al E27 Andrés Sanín",
+            "effects": [
+              {
+                "clockAdd": 15
+              },
+              {
+                "sfx": "error"
+              }
+            ],
+            "goto": "mal"
+          },
+          {
+            "label": "Mejor no"
+          }
+        ]
+      },
+      "mal": {
+        "text": "Andrés Sanín queda al otro lado de la ciudad. Te das cuenta en la segunda estación, cuando un niño te pregunta si eres turista. Te devuelves.",
+        "next": "vuelta"
+      },
+      "vuelta": {
+        "text": "Pierdes 15 minutos en ir y volver. Moraleja: mirar el tablero antes de subirse. Vuelves al andén, un poco más sabio y un poco más tarde.",
+        "effects": [
+          {
+            "setFlag": "m6_se_equivoco"
+          }
+        ]
+      }
+    }
+  },
+  "m6_puerta_alimentadores": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Andén de los alimentadores: los buses que vienen de Pance, Ciudad Jardín y La Buitrera. El tuyo ya pasó. Al centro se va por el otro lado del andén (el T31)."
+      }
+    }
+  },
+  "m6_torniquete": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "entrar",
+            "if": {
+              "flag": "m6_afuera"
+            }
+          },
+          {
+            "goto": "salir"
+          }
+        ]
+      },
+      "salir": {
+        "text": "Los torniquetes de salida. Si sales de la estación (al centro comercial, a la calle), para volver a entrar hay que pagar otro pasaje ($2.900).",
+        "choices": [
+          {
+            "label": "Salir de la estación",
+            "effects": [
+              {
+                "setFlag": "m6_afuera"
+              },
+              {
+                "warp": {
+                  "map": "universidades",
+                  "spawn": "afuera"
+                }
+              }
+            ],
+            "goto": "fuera"
+          },
+          {
+            "label": "Quedarme adentro"
+          }
+        ]
+      },
+      "fuera": {
+        "text": "Empujas el torniquete. Clac."
+      },
+      "entrar": {
+        "text": "Torniquete de entrada. Pasaje: $2.900. Saldo de la tarjeta: {bip}.",
+        "choices": [
+          {
+            "label": "Pasar la tarjeta",
+            "if": {
+              "hasItem": "tarjeta_recorre",
+              "minBip": 2900
+            },
+            "effects": [
+              {
+                "payBip": 2900
+              },
+              {
+                "clearFlag": "m6_afuera"
+              },
+              {
+                "warp": {
+                  "map": "universidades",
+                  "spawn": "adentro"
+                }
+              }
+            ],
+            "goto": "pasa"
+          },
+          {
+            "label": "Pasar la tarjeta (sin saldo)",
+            "if": {
+              "hasItem": "tarjeta_recorre",
+              "not": {
+                "minBip": 2900
+              }
+            },
+            "effects": [
+              {
+                "sfx": "error"
+              }
+            ],
+            "goto": "sin"
+          },
+          {
+            "label": "No tengo tarjeta",
+            "if": {
+              "notItem": "tarjeta_recorre"
+            },
+            "goto": "no"
+          },
+          {
+            "label": "Nada"
+          }
+        ]
+      },
+      "pasa": {
+        "text": "¡Bip! Luz verde. Saldo: {bip}."
+      },
+      "sin": {
+        "text": "¡Piiii! Luz roja: «Saldo insuficiente». La señora de atrás suspira como si fuera tu culpa. Lo es. Recarga en la máquina de la entrada."
+      },
+      "no": {
+        "text": "Sin tarjeta no se entra. La taquilla de la entrada vende tarjetas."
+      }
+    }
+  },
+  "m6_recargadora": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "dentro",
+            "if": {
+              "not": {
+                "flag": "m6_afuera"
+              }
+            }
+          },
+          {
+            "goto": "maquina"
+          }
+        ]
+      },
+      "dentro": {
+        "text": "La máquina de recarga está del lado de afuera de los torniquetes. Desde aquí solo ves tu reflejo en la pantalla."
+      },
+      "maquina": {
+        "branches": [
+          {
+            "goto": "recargar",
+            "if": {
+              "hasItem": "tarjeta_recorre"
+            }
+          },
+          {
+            "goto": "sin_tarjeta"
+          }
+        ]
+      },
+      "sin_tarjeta": {
+        "text": "RECARGA TU TARJETA. ...Pero primero hay que tener una. Se compra en la taquilla, al lado."
+      },
+      "recargar": {
+        "text": "RECARGA TU TARJETA · Saldo actual: {bip}. Recibe billetes. Los billetes arrugados, no.",
+        "choices": [
+          {
+            "label": "Recargar un pasaje ($2.900)",
+            "if": {
+              "minMoney": 2900
+            },
+            "effects": [
+              {
+                "pay": 2900
+              },
+              {
+                "chargeBip": 2900
+              }
+            ],
+            "goto": "listo"
+          },
+          {
+            "label": "Recargar dos pasajes ($5.800)",
+            "if": {
+              "minMoney": 5800
+            },
+            "effects": [
+              {
+                "pay": 5800
+              },
+              {
+                "chargeBip": 5800
+              }
+            ],
+            "goto": "listo"
+          },
+          {
+            "label": "Nada"
+          }
+        ]
+      },
+      "listo": {
+        "text": "La máquina se traga el billete con hambre. «Recarga exitosa». Saldo: {bip}."
+      }
+    }
+  },
+  "m6_taquilla": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "dentro",
+            "if": {
+              "not": {
+                "flag": "m6_afuera"
+              }
+            }
+          },
+          {
+            "goto": "vende"
+          }
+        ]
+      },
+      "dentro": {
+        "text": "La taquilla atiende del lado de afuera. La señora está viendo una novela en el celular y no te ve."
+      },
+      "vende": {
+        "speaker": "Taquillera",
+        "text": "¿Tarjeta nueva? Siete mil, y le queda con un pasaje cargado.",
+        "choices": [
+          {
+            "label": "Comprar tarjeta ($7.000)",
+            "if": {
+              "minMoney": 7000,
+              "notItem": "tarjeta_recorre"
+            },
+            "effects": [
+              {
+                "pay": 7000
+              },
+              {
+                "giveItem": "tarjeta_recorre"
+              },
+              {
+                "chargeBip": 2900
+              }
+            ],
+            "goto": "compra"
+          },
+          {
+            "label": "Ya tengo, gracias"
+          }
+        ]
+      },
+      "compra": {
+        "speaker": "Taquillera",
+        "text": "Aquí tiene. No la pierda, que todo el mundo la pierde."
+      }
+    }
+  },
+  "m6_obleas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Señor de las obleas",
+        "text": "¡Obleas, obleas! Con arequipe, mora, queso, crema de leche... ¡Lleve la del amor, que esa la comparte!",
+        "choices": [
+          {
+            "label": "Una oblea con todo ($3.000)",
+            "if": {
+              "minMoney": 3000
+            },
+            "effects": [
+              {
+                "pay": 3000
+              },
+              {
+                "giveItem": "oblea"
+              }
+            ],
+            "goto": "compra"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "compra": {
+        "speaker": "Señor de las obleas",
+        "text": "La arma en dos segundos: arequipe, mora, queso rallado. Te la pasa con una servilleta que no va a alcanzar para nada."
+      }
+    }
+  },
+  "m6_lustrabotas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "flag": "secreto_lustrabotas"
+            }
+          },
+          {
+            "goto": "ofrece"
+          }
+        ]
+      },
+      "ofrece": {
+        "speaker": "Lustrabotas",
+        "text": "Joven, joven... ¿va para una cita? No me diga nada, se le nota en los zapatos. Esos zapatos están pidiendo auxilio. Siéntese, que yo se los dejo como espejo.",
+        "choices": [
+          {
+            "label": "Lustrar los zapatos ($5.000)",
+            "if": {
+              "minMoney": 5000
+            },
+            "effects": [
+              {
+                "pay": 5000
+              },
+              {
+                "clockAdd": 10
+              },
+              {
+                "setFlag": "secreto_lustrabotas"
+              },
+              {
+                "setFlag": "m6_q_zapatos"
+              }
+            ],
+            "goto": "lustra"
+          },
+          {
+            "label": "Son tenis, señor",
+            "goto": "tenis"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "lustra": {
+        "speaker": "Lustrabotas",
+        "text": [
+          "Se pone a trabajar con betún, cepillo y un trapo que le zumba como un violín. Te cuenta que lleva cuarenta años lustrando zapatos frente a las universidades.",
+          "«Usted no se preocupe, joven. Con estos zapatos, la muchacha le dice que sí a lo que sea.»"
+        ],
+        "effects": [
+          {
+            "vineta": "m6_lustrabotas"
+          },
+          {
+            "sfx": "secret"
+          }
+        ]
+      },
+      "tenis": {
+        "speaker": "Lustrabotas",
+        "text": "¿Y qué? Los tenis también tienen alma. Bueno, si no quiere... pero después no diga que no le avisé."
+      },
+      "ya": {
+        "speaker": "Lustrabotas",
+        "text": "Ya va brillando, joven. Que le vaya bonito."
+      }
+    }
+  },
+  "m6_mango_universidades": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Vendedor",
+        "text": "¡Mango biche con sal y limón! ¡Mango maduro! ¡Coco! ¡Agua, gaseosa, Bon Ice!",
+        "choices": [
+          {
+            "label": "Un mango biche ($2.500)",
+            "if": {
+              "minMoney": 2500
+            },
+            "effects": [
+              {
+                "pay": 2500
+              },
+              {
+                "giveItem": "mango_biche"
+              }
+            ],
+            "goto": "mango"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "mango": {
+        "speaker": "Vendedor",
+        "text": "Te lo da en un vasito con mucha sal. Ojo: no le vayas a dar un beso a nadie con esta boca. Bueno. No va a haber beso. Probablemente."
+      }
+    }
+  },
+  "m6_policia": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Policía",
+        "text": "Buenas tardes. Cuide el celular en el bus, joven, que los sábados el T31 va lleno. Ojo con los que se paran muy cerquita."
+      }
+    }
+  },
+  "m6_estudiante_upv": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Estudiante",
+        "text": "¿Universidades? Sí, por nosotros: la Pública, la de los Javerianos... digo, la Cristiana-Caleña, la de los ingenieros. Por eso aquí todo el mundo anda con ojeras."
+      }
+    }
+  },
+  "m6_libreria": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Librera",
+        "text": "Bienvenido a Hojarasca Libros. ¿Busca algo en especial, o viene a oler libros como todo el mundo?",
+        "choices": [
+          {
+            "label": "«¡Que viva la música!», de Caicedo ($42.000)",
+            "if": {
+              "minMoney": 42000,
+              "notItem": "libro_qvlm"
+            },
+            "effects": [
+              {
+                "pay": 42000
+              },
+              {
+                "giveItem": "libro_qvlm"
+              }
+            ],
+            "goto": "qvlm"
+          },
+          {
+            "label": "«María», de Jorge Isaacs ($25.000)",
+            "if": {
+              "minMoney": 25000,
+              "notItem": "libro_maria"
+            },
+            "effects": [
+              {
+                "pay": 25000
+              },
+              {
+                "giveItem": "libro_maria"
+              }
+            ],
+            "goto": "maria"
+          },
+          {
+            "label": "¿Qué me recomienda para regalar?",
+            "goto": "reco"
+          },
+          {
+            "label": "Solo miraba"
+          }
+        ]
+      },
+      "reco": {
+        "speaker": "Librera",
+        "text": "Depende. ¿Es para alguien que lee o para alguien que dice que lee? Si es caleña y lectora, Caicedo nunca falla. Si es romántica, «María». Si es las dos cosas... cásese.",
+        "choices": [
+          {
+            "label": "«¡Que viva la música!» ($42.000)",
+            "if": {
+              "minMoney": 42000,
+              "notItem": "libro_qvlm"
+            },
+            "effects": [
+              {
+                "pay": 42000
+              },
+              {
+                "giveItem": "libro_qvlm"
+              }
+            ],
+            "goto": "qvlm"
+          },
+          {
+            "label": "«María» ($25.000)",
+            "if": {
+              "minMoney": 25000,
+              "notItem": "libro_maria"
+            },
+            "effects": [
+              {
+                "pay": 25000
+              },
+              {
+                "giveItem": "libro_maria"
+              }
+            ],
+            "goto": "maria"
+          },
+          {
+            "label": "Lo pienso"
+          }
+        ]
+      },
+      "qvlm": {
+        "speaker": "Librera",
+        "text": "Excelente elección. La última de esta edición. Se lo envuelvo en papel kraft, con un lazo. Así no se entera nadie de qué es. Bueno, se entera todo el mundo: tiene forma de libro."
+      },
+      "maria": {
+        "speaker": "Librera",
+        "text": "Un clásico. Pasa en el Valle del Cauca, ¿sabía? Haciendas, amores imposibles y un pájaro negro de mal agüero. Ideal para una primera cita. O no, depende."
+      }
+    }
+  },
+  "m6_floreria": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Florista",
+        "text": "¡Flores para la novia! Rosas, girasoles, astromelias... ¡El girasol está en promoción!",
+        "choices": [
+          {
+            "label": "Un girasol ($15.000)",
+            "if": {
+              "minMoney": 15000,
+              "notItem": "girasol"
+            },
+            "effects": [
+              {
+                "pay": 15000
+              },
+              {
+                "giveItem": "girasol"
+              }
+            ],
+            "goto": "girasol"
+          },
+          {
+            "label": "No es mi novia",
+            "goto": "novia"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "novia": {
+        "speaker": "Florista",
+        "text": "Todavía. Ay, joven, todos dicen eso. Y después vuelven a comprar rosas para el aniversario."
+      },
+      "girasol": {
+        "speaker": "Florista",
+        "text": "Precioso. Póngalo en agua apenas llegue, que en dos días se marchita. Bueno, eso le pasa a todas las flores cortadas, ¿no?"
+      }
+    }
+  },
+  "m6_cine": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El cine del centro comercial. En cartelera: «Rápidos y Ruidosos 14», «El perro que sabía demasiado» y un documental sobre el pandebono que dura tres horas."
+      }
+    }
+  },
+  "m6_perfumeria": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "flag": "secreto_perfume"
+            }
+          },
+          {
+            "goto": "ofrece"
+          }
+        ]
+      },
+      "ofrece": {
+        "speaker": "Vendedora",
+        "text": "¿Una muestra, joven? Este es nuevo: «Brisa del Pacífico». Huele a mar, a coco y a... decisión.",
+        "choices": [
+          {
+            "label": "Una rociadita",
+            "effects": [
+              {
+                "setFlag": "m6_perfume_poco"
+              }
+            ],
+            "goto": "poco"
+          },
+          {
+            "label": "Écheme bastante, que es una cita",
+            "effects": [
+              {
+                "setFlag": [
+                  "secreto_perfume",
+                  "m6_perfume_mucho"
+                ]
+              },
+              {
+                "sfx": "secret"
+              }
+            ],
+            "goto": "mucho"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "poco": {
+        "speaker": "Vendedora",
+        "text": "Psst. Un poquito en el cuello. Hueles a vacaciones. Bien."
+      },
+      "mucho": {
+        "speaker": "Vendedora",
+        "text": "Psst, psst, psst, psst. Psssssst. La vendedora tose. Un señor que pasaba tose. Un niño llora. Hueles a vacaciones de un mes entero."
+      },
+      "ya": {
+        "speaker": "Vendedora",
+        "text": "¿Más perfume? No, joven, por su bien y el del centro comercial, no."
+      }
+    }
+  },
+  "m6_papeleria": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Vendedor",
+        "text": "Papelería Tinta: cuadernos, esferos, postales de Cali y separadores de libro... de plástico. ¿Le empaco algo?",
+        "choices": [
+          {
+            "label": "Un separador de plástico ($4.000)",
+            "if": {
+              "minMoney": 4000
+            },
+            "goto": "sep"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "sep": {
+        "text": "Lo miras. Tiene un gato con lentes y dice «Leer es vivir». Lo devuelves a su lugar. Doña Mery tenía razón: lo que dura no se compra en una papelería."
+      }
+    }
+  },
+  "m6_guardia_mall": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Guardia",
+        "text": "Buenas. El centro comercial abre hasta las nueve. La estación queda saliendo derecho, cruzando la avenida por la cebra."
+      }
+    }
+  },
+  "m6_t31_llega": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Llega el T31 por el carril exclusivo: largo, verde y blanco, con su fuelle de acordeón al medio. Las puertas se abren con un «pssshh» y una ola de gente sale y otra entra.",
+        "choices": [
+          {
+            "label": "Subir al T31",
+            "effects": [
+              {
+                "setFlag": "_subir"
+              }
+            ],
+            "goto": "subir"
+          },
+          {
+            "label": "Esperar el próximo"
+          }
+        ]
+      },
+      "subir": {
+        "text": "Te metes entre una señora con una caja de pollitos y un estudiante dormido de pie. Las puertas se cierran detrás de ti."
+      }
+    }
+  },
+  "m6_t31_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El articulado arranca con un tirón. Todos se agarran de algo; tú te agarras de la mochila de un desconocido sin querer. «Tranquilo, parce».",
+        "effects": [
+          {
+            "objective": "Bájate en Torre de Cali (la puerta se abre en cada estación)"
+          }
+        ]
+      }
+    }
+  },
+  "m6_art_puerta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "abierta_final",
+            "if": {
+              "flag": [
+                "_puertas_abiertas",
+                "_parada_final"
+              ]
+            }
+          },
+          {
+            "goto": "abierta",
+            "if": {
+              "flag": "_puertas_abiertas"
+            }
+          },
+          {
+            "goto": "cerrada"
+          }
+        ]
+      },
+      "cerrada": {
+        "text": "La puerta del articulado. «No apoyarse». Te apoyas igual, como todo el mundo."
+      },
+      "abierta": {
+        "text": "Estación {estacion}. Las puertas están abiertas.",
+        "choices": [
+          {
+            "label": "Bajarme aquí",
+            "goto": "no"
+          },
+          {
+            "label": "Quedarme"
+          }
+        ]
+      },
+      "no": {
+        "text": "Miras el letrero: {estacion}. No, esta no es: tu parada es Torre de Cali. Te quedas."
+      },
+      "abierta_final": {
+        "text": "¡Estación Torre de Cali! Esta es.",
+        "choices": [
+          {
+            "label": "Bajarme",
+            "effects": [
+              {
+                "event": "ride_exit"
+              }
+            ]
+          },
+          {
+            "label": "Quedarme (seguir)"
+          }
+        ]
+      }
+    }
+  },
+  "m6_art_senora": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Señora",
+        "text": "¿Para el centro, mijo? A esta hora el T31 va así, como lata de sardinas. Agárrese bien. Y la billetera adelante, que hay mucho vivo."
+      }
+    }
+  },
+  "m6_t31_melendez": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Estación Meléndez. Sube media universidad con libros bajo el brazo. El celular vibra.",
+        "effects": [
+          {
+            "message": "sira_m6_donde"
+          },
+          {
+            "vineta": "m6_chat"
+          }
+        ],
+        "choices": [
+          {
+            "label": "«Pasando por Meléndez. Faltan como mil estaciones»",
+            "effects": [
+              {
+                "message": "yo_m6_melendez"
+              },
+              {
+                "setFlag": "m6_q_chat_t31"
+              }
+            ],
+            "goto": "ok"
+          },
+          {
+            "label": "«Voy bien. El bus va lleno de gente con más prisa que yo»",
+            "effects": [
+              {
+                "message": "yo_m6_melendez_b"
+              }
+            ],
+            "goto": "ok"
+          },
+          {
+            "label": "No contestar (estás apretado)"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Ella te manda tu ubicación en el mapa con un circulito alrededor y tres signos de exclamación. Ve el puntito tuyo moviéndose. Se siente raro y bonito que alguien te espere."
+      }
+    }
+  },
+  "m6_t31_pampalinda": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Rapero",
+        "text": [
+          "Estación Pampalinda. Se sube un muchacho con un parlante colgado del cuello y una bolsa de bombombunes.",
+          "«Buenas tardes, damas y caballeros, no vengo a robar, vengo a rimar: ¡tres bombombunes por mil, que endulzan el camino y el corazón también!»"
+        ],
+        "effects": [
+          {
+            "vineta": "m6_rapero"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Comprarle ($1.000)",
+            "if": {
+              "minMoney": 1000
+            },
+            "effects": [
+              {
+                "pay": 1000
+              },
+              {
+                "giveItem": "bombombun"
+              }
+            ],
+            "goto": "compra"
+          },
+          {
+            "label": "Aplaudir nomás",
+            "goto": "aplaude"
+          }
+        ]
+      },
+      "compra": {
+        "speaker": "Rapero",
+        "text": "«¡Gracias, mi llave! Pa' la novia, pa' la suegra, pa' usted». Te pasa tres. Le guardas uno a Sira."
+      },
+      "aplaude": {
+        "text": "Medio bus aplaude contigo. El rapero hace una reverencia y se baja en la siguiente con veinte mil pesos en monedas."
+      }
+    }
+  },
+  "m6_t31_varado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Estación Lido. El articulado cierra las puertas, avanza diez metros... y se detiene. El motor se apaga. Silencio.",
+          "«Señores pasajeros, tenemos una falla técnica. Les pido un momentico de paciencia». El momentico tiene cara de largo."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_varado"
+          },
+          {
+            "sfx": "apagon"
+          }
+        ],
+        "next": "espera"
+      },
+      "espera": {
+        "text": "Pasan los minutos. El reloj del celular avanza como si tuviera prisa por ti. Una señora reza. Un señor dice que en sus tiempos esto no pasaba.",
+        "effects": [
+          {
+            "clockAdd": 8
+          }
+        ],
+        "next": "chat"
+      },
+      "chat": {
+        "text": "El celular vibra.",
+        "effects": [
+          {
+            "message": "sira_m6_varado"
+          },
+          {
+            "vineta": "m6_chat"
+          }
+        ],
+        "choices": [
+          {
+            "label": "«El bus se varó en Lido. Ya arrancó. Llego en nada»",
+            "effects": [
+              {
+                "message": "yo_m6_varado"
+              },
+              {
+                "setFlag": "m6_q_chat_varado"
+              }
+            ],
+            "goto": "arranca"
+          },
+          {
+            "label": "«Si no llego, que conste que fue culpa del bus»",
+            "effects": [
+              {
+                "message": "yo_m6_varado_b"
+              },
+              {
+                "setFlag": "m6_q_chat_varado"
+              }
+            ],
+            "goto": "arranca"
+          }
+        ]
+      },
+      "arranca": {
+        "text": "Como si te hubiera oído, el motor tose, ruge y el bus arranca. Aplausos generales. El chofer saluda por el espejo como un piloto que aterrizó con tormenta.",
+        "effects": [
+          {
+            "sfx": "bus-pass"
+          }
+        ]
+      }
+    }
+  },
+  "m6_t31_estadio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Estación Estadio. Se suben unos hinchas con camisetas rojas cantando. Uno te ofrece la mitad de su empanada. La aceptas. Cali."
+      }
+    }
+  },
+  "m6_t31_santa_librada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Estación Santa Librada. Una abuelita te mira y dice: «¿Va para La Ermita? Ahí me casé yo, en el 72. Llovió. Fue lo más bonito». Y se baja."
+      }
+    }
+  },
+  "m6_t31_san_pedro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Estación San Pedro. «Próxima estación: Torre de Cali». Te acercas a la puerta. Un mensaje.",
+        "effects": [
+          {
+            "message": "sira_m6_ermita"
+          },
+          {
+            "vineta": "m6_chat"
+          }
+        ],
+        "choices": [
+          {
+            "label": "«¡Ya me bajo en Torre de Cali! Dos cuadras y llego»",
+            "effects": [
+              {
+                "message": "yo_m6_casi"
+              }
+            ],
+            "goto": "ok"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Te late el corazón como si fuera el final del partido. Es solo un bus. Y una feria. Y ella."
+      }
+    }
+  },
+  "m6_t31_torre": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¡Estación Torre de Cali! Por la ventana se ve la torre del hotel, altísima, y entre los edificios, el río. Bájate por la puerta."
+      }
+    }
+  },
+  "m6_t31_te_pasaste": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Te pasaste de Torre de Cali... pero el T31 para en La Ermita, justo al lado de la iglesia. A veces equivocarse sale bien."
+      }
+    }
+  }
+}

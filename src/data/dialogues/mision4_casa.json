@@ -1,0 +1,1949 @@
+{
+  "m4_despertar": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "effects": [
+          {
+            "event": "despertar_cali"
+          }
+        ]
+      }
+    }
+  },
+  "m4_alarma": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "BIP-BIP-BIP. BIP-BIP-BIP.",
+          "La alarma del celular. Abres un ojo: la pieza está casi a oscuras y por debajo de la puerta entra olor a café."
+        ],
+        "effects": [
+          {
+            "vineta": "cali_despertar"
+          }
+        ],
+        "next": "reloj"
+      },
+      "reloj": {
+        "text": [
+          "El celular dice 6:00. Tu reloj de pulsera dice 8:00.",
+          "Tu cuerpo le cree al reloj: en Chile ya son las ocho y deberías ir en el tren. ¿O no? ¿Dónde estás?"
+        ],
+        "choices": [
+          {
+            "label": "Levantarse (en Cali son las 6)",
+            "goto": "levantarse"
+          },
+          {
+            "label": "Cinco minutitos más...",
+            "effects": [
+              {
+                "setFlag": "_posponer"
+              }
+            ],
+            "goto": "posponer"
+          }
+        ]
+      },
+      "levantarse": {
+        "text": "Te sientas en la cama. La baldosa está fresquita. Afuera canta un pájaro que dice, clarito, «¡bichofué!».",
+        "effects": [
+          {
+            "setFlag": "despierto"
+          }
+        ]
+      },
+      "posponer": {
+        "text": "Te tapas hasta la cabeza. Total, ¿qué son quince minutos? En Chile ya llegaste tarde igual."
+      }
+    }
+  },
+  "m4_mery_golpea": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Doña Mery",
+        "text": [
+          "¡Toc, toc, toc! ¡Mijo! ¿Ya está despierto?",
+          "Mire que el bus para la universidad pasa a las siete y media, ¡y el desayuno se me enfría!"
+        ],
+        "choices": [
+          {
+            "label": "¡Ya voy, doña Mery!",
+            "goto": "fin"
+          }
+        ]
+      },
+      "fin": {
+        "effects": [
+          {
+            "setFlag": "despierto"
+          }
+        ]
+      }
+    }
+  },
+  "m4_desorientado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Te paras y el mundo se ladea un poquito. Dormiste nueve horas, pero tu cabeza sigue en Chile, dos horas más adelante.",
+          "El sol, la luz, el hambre: todo llega a otra hora. Necesitas una ducha y un café. O como le dicen aquí, un tinto."
+        ],
+        "effects": [
+          {
+            "clockMax": "lun 07:40"
+          },
+          {
+            "objective": "Báñate (el baño está al lado de tu pieza)"
+          }
+        ]
+      }
+    }
+  },
+  "m4_reloj": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "reloj_chile"
+            },
+            "goto": "chile"
+          },
+          {
+            "goto": "cali"
+          }
+        ]
+      },
+      "chile": {
+        "text": "El celular dice {hora}. Tu reloj de pulsera marca dos horas más: sigue en hora de Chile.",
+        "effects": [
+          {
+            "vineta": "reloj_chile"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Atrasarlo dos horas",
+            "goto": "atrasar"
+          },
+          {
+            "label": "Dejarlo así (para saber la hora de Chile)",
+            "goto": "dejar"
+          }
+        ]
+      },
+      "atrasar": {
+        "text": "Giras la perilla: dos vueltas completas hacia atrás. Ahora el reloj y el celular están de acuerdo. Tu estómago todavía no.",
+        "effects": [
+          {
+            "clearFlag": "reloj_chile"
+          },
+          {
+            "setFlag": "ajusto_reloj"
+          },
+          {
+            "vineta": "reloj_atrasar"
+          }
+        ]
+      },
+      "dejar": {
+        "text": "Lo dejas así. Cada vez que lo mires vas a saber qué hora es en Paine. (El reloj de arriba muestra las dos horas.)"
+      },
+      "cali": {
+        "text": "Tu reloj ya marca la hora de Cali.",
+        "effects": [
+          {
+            "vineta": "reloj_cali"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Volver a ponerlo en hora de Chile",
+            "effects": [
+              {
+                "setFlag": "reloj_chile"
+              }
+            ],
+            "goto": "volver"
+          },
+          {
+            "label": "Dejarlo"
+          }
+        ]
+      },
+      "volver": {
+        "text": "Dos vueltas para adelante. Paine, otra vez en tu muñeca.",
+        "effects": [
+          {
+            "vineta": "reloj_chile"
+          }
+        ]
+      }
+    }
+  },
+  "m4_ducha": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "banado"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "ofrecer"
+          }
+        ]
+      },
+      "ofrecer": {
+        "text": "La ducha: un tubo, una regadera y una sola perilla. Una.",
+        "choices": [
+          {
+            "label": "Bañarse",
+            "effects": [
+              {
+                "event": "fundido",
+                "data": {
+                  "dialogue": "m4_ducha_fundido"
+                }
+              }
+            ]
+          },
+          {
+            "label": "Después"
+          }
+        ]
+      },
+      "ya": {
+        "text": "Ya te bañaste. Todavía tiritas un poco."
+      }
+    }
+  },
+  "m4_ducha_fundido": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Abres la llave y esperas que salga calentita. Esperas. Esperas un poco más.",
+          "Agua fría. En Pance el agua baja de los Farallones y nadie tiene calefón: «¿pa' qué, mijo, si aquí hace calor?».",
+          "¡AAAAH! Gritas. Te despiertas. Completamente."
+        ],
+        "effects": [
+          {
+            "sfx": "ducha"
+          },
+          {
+            "vineta": "casa_ducha"
+          },
+          {
+            "setFlag": "banado"
+          },
+          {
+            "clockAdd": 12
+          },
+          {
+            "objective": "Vístete (el ropero de tu pieza)"
+          }
+        ]
+      }
+    }
+  },
+  "m4_ropero": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "mojado"
+            },
+            "goto": "mojado"
+          },
+          {
+            "if": {
+              "notFlag": "banado"
+            },
+            "goto": "sucio"
+          },
+          {
+            "if": {
+              "flag": "vestido"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "vestirse"
+          }
+        ]
+      },
+      "sucio": {
+        "text": "Primero báñate. Llevas un día entero de aviones y furgones encima."
+      },
+      "vestirse": {
+        "text": "Abres el ropero: tu ropa de Chile, doblada como la dejó tu mamá. Huele a tu casa.",
+        "effects": [
+          {
+            "clearFlag": "en_pijama"
+          },
+          {
+            "setFlag": "vestido"
+          },
+          {
+            "event": "ropero"
+          },
+          {
+            "objective": "Toma la mochila (escritorio) y ve a desayunar (cocina)"
+          }
+        ]
+      },
+      "otra": {
+        "text": "¿Te cambias de ropa?",
+        "choices": [
+          {
+            "label": "Sí",
+            "effects": [
+              {
+                "event": "ropero"
+              }
+            ]
+          },
+          {
+            "label": "No"
+          }
+        ]
+      },
+      "mojado": {
+        "text": "Te sacas la ropa empapada y la cuelgas en la reja de la ventana. Ropa seca: qué gran invento.",
+        "effects": [
+          {
+            "clearFlag": "mojado"
+          },
+          {
+            "setFlag": "cambio_ropa"
+          },
+          {
+            "event": "ropero"
+          },
+          {
+            "objective": "Cocina el almuerzo: fideos con salsa (la estufa)"
+          }
+        ]
+      }
+    }
+  },
+  "m4_escritorio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "tiene_mochila"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "tomar"
+          }
+        ]
+      },
+      "tomar": {
+        "text": "Tu mochila: el cuaderno nuevo, el estuche, el cargador y un mapa de Cali que te regaló don Jairo.",
+        "effects": [
+          {
+            "setFlag": "tiene_mochila"
+          },
+          {
+            "clearFlag": "sin_mochila"
+          },
+          {
+            "vineta": "casa_mochila"
+          }
+        ],
+        "next": "horario"
+      },
+      "horario": {
+        "text": "Pegado en el escritorio, el horario de hoy.",
+        "effects": [
+          {
+            "vineta": ""
+          },
+          {
+            "sign": "horario_m4"
+          }
+        ]
+      },
+      "ya": {
+        "text": "El horario de hoy, pegado con cinta en el escritorio.",
+        "effects": [
+          {
+            "sign": "horario_m4"
+          }
+        ]
+      }
+    }
+  },
+  "m4_ventana": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "tormenta_vista",
+              "notFlag": "almorzo"
+            },
+            "goto": "lluvia"
+          },
+          {
+            "goto": "sol"
+          }
+        ]
+      },
+      "sol": {
+        "text": [
+          "Por la reja de la ventana: el patio, una mata de plátano y los Farallones con nubes en la punta.",
+          "Un pájaro amarillo se para en el cable y grita, clarito, «¡bichofué!». Después se va."
+        ],
+        "effects": [
+          {
+            "vineta": "casa_ventana"
+          }
+        ]
+      },
+      "lluvia": {
+        "text": "Por la ventana: el patio inundado, la mata de plátano agachada y los Farallones perdidos entre las nubes.",
+        "effects": [
+          {
+            "vineta": "casa_ventana"
+          }
+        ]
+      }
+    }
+  },
+  "m4_ventilador": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un ventilador de pie. En Chile esto se guarda en invierno; aquí trabaja todo el año, de día y de noche.",
+        "effects": [
+          {
+            "vineta": "casa_ventilador"
+          }
+        ]
+      }
+    }
+  },
+  "m4_lavamanos": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Te lavas los dientes con agua fría. Aquí todo es con agua fría.",
+          "En el espejo, la cara de alguien que todavía cree que son las ocho."
+        ],
+        "effects": [
+          {
+            "vineta": "casa_dientes"
+          }
+        ]
+      }
+    }
+  },
+  "m4_wc": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "No. Ahora no."
+      }
+    }
+  },
+  "m4_hamaca": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Una hamaca de colores colgada entre dos ganchos. Doña Mery dice que es para la siesta, «pero no para la del lunes, ¿oyó?».",
+        "choices": [
+          {
+            "label": "Subirse un ratito",
+            "goto": "subir"
+          },
+          {
+            "label": "Mejor no"
+          }
+        ]
+      },
+      "subir": {
+        "text": [
+          "Te acuestas en diagonal, como te enseñó don Jairo. La hamaca se mece sola.",
+          "Cierras los ojos un segundo... y casi te quedas dormido. Mejor te bajas."
+        ],
+        "effects": [
+          {
+            "vineta": "casa_hamaca"
+          }
+        ]
+      }
+    }
+  },
+  "m4_cuadro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Un cuadro de los Farallones al atardecer: el sol bajando, el río Pance brillando y unas palmas.",
+          "Abajo, con lápiz: «Pance, 1998»."
+        ],
+        "effects": [
+          {
+            "vineta": "casa_cuadro"
+          }
+        ]
+      }
+    }
+  },
+  "m4_lavaplatos": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission05"
+            },
+            "goto": "m5"
+          },
+          {
+            "if": {
+              "flag": "almorzo"
+            },
+            "goto": "olla"
+          },
+          {
+            "goto": "manana"
+          }
+        ]
+      },
+      "olla": {
+        "text": "La olla de los fideos, remojando. Después la lavas. (Sí. Después.)"
+      },
+      "manana": {
+        "text": "El lavaplatos, con un tarro de café y una mata de albahaca en la ventana."
+      },
+      "m5": {
+        "text": "El lavaplatos, impecable. Doña Mery lava hasta lo que ya está limpio."
+      }
+    }
+  },
+  "m4_refri": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "volvio_casa",
+              "notFlag": "lulada_tomada"
+            },
+            "goto": "nota"
+          },
+          {
+            "goto": "llena"
+          }
+        ]
+      },
+      "nota": {
+        "text": "La nevera. Pegado con un imán de piña, un papelito de doña Mery.",
+        "effects": [
+          {
+            "sign": "receta_fideos"
+          }
+        ],
+        "next": "lulada"
+      },
+      "lulada": {
+        "text": "Y adentro, en un vaso tapado con un platito: una lulada. Con tu nombre escrito en cinta de papel.",
+        "effects": [
+          {
+            "sign": ""
+          },
+          {
+            "vineta": "casa_nevera"
+          },
+          {
+            "giveItem": "lulada"
+          },
+          {
+            "setFlag": "lulada_tomada"
+          }
+        ]
+      },
+      "llena": {
+        "text": "La nevera: lulos, maracuyás, mangos, un queso blanco enorme y una botella de agua que dice «NO TOMAR, ES DEL PERRO». No hay perro.",
+        "effects": [
+          {
+            "vineta": "casa_nevera"
+          }
+        ]
+      }
+    }
+  },
+  "m4_estufa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission05"
+            },
+            "goto": "m5"
+          },
+          {
+            "if": {
+              "flag": "almorzo"
+            },
+            "goto": "limpia"
+          },
+          {
+            "if": {
+              "flag": [
+                "volvio_casa",
+                "mojado"
+              ]
+            },
+            "goto": "mojado"
+          },
+          {
+            "if": {
+              "flag": "volvio_casa"
+            },
+            "goto": "cocinar"
+          },
+          {
+            "goto": "manana"
+          }
+        ]
+      },
+      "limpia": {
+        "text": "La estufa, limpiecita. Doña Mery va a estar orgullosa."
+      },
+      "mojado": {
+        "text": "Primero cámbiate: estás goteando encima de la estufa."
+      },
+      "cocinar": {
+        "text": "La estufa de cuatro puestos. Hay fideos, tomates, cebolla larga y ajo. Manos a la obra.",
+        "choices": [
+          {
+            "label": "Cocinar fideos con hogao",
+            "effects": [
+              {
+                "event": "cocinar_fideos"
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "manana": {
+        "text": "En la estufa hierve una olla con agua de panela. Doña Mery la vigila de reojo."
+      },
+      "m5": {
+        "text": "La estufa. En una olla, sopa de tortilla para la noche. Doña Mery la cuida como si fuera un tesoro nacional."
+      }
+    }
+  },
+  "m4_mesa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission05"
+            },
+            "goto": "m5"
+          },
+          {
+            "if": {
+              "flag": "almorzo"
+            },
+            "goto": "comio"
+          },
+          {
+            "if": {
+              "flag": "volvio_casa"
+            },
+            "goto": "cocina"
+          },
+          {
+            "if": {
+              "notFlag": "desayuno"
+            },
+            "goto": "mery"
+          },
+          {
+            "goto": "mantel"
+          }
+        ]
+      },
+      "comio": {
+        "text": "Aquí te comiste los fideos, oyendo la lluvia."
+      },
+      "cocina": {
+        "text": "Primero hay que cocinar algo (la estufa, en la cocina)."
+      },
+      "mery": {
+        "text": "Doña Mery está sirviendo el desayuno en la cocina. Háblale."
+      },
+      "mantel": {
+        "text": "La mesa del comedor, con el mantel de cuadritos verdes."
+      },
+      "m5": {
+        "text": "La mesa del comedor, con su mantel de flores y un frutero con mandarinas, granadillas y un mango que nadie se atreve a tocar."
+      }
+    }
+  },
+  "m4_mery": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "desayuno"
+            },
+            "goto": "despues"
+          },
+          {
+            "if": {
+              "notFlag": "vestido"
+            },
+            "goto": "pijama"
+          },
+          {
+            "if": {
+              "notFlag": "tiene_mochila"
+            },
+            "goto": "mochila"
+          },
+          {
+            "goto": "desayuno"
+          }
+        ]
+      },
+      "pijama": {
+        "speaker": "Doña Mery",
+        "text": [
+          "¡Buenos días, mijo! ¿Durmió rico? Uy, qué cara...",
+          "Báñese y vístase, que el desayuno ya casi está. ¡El agua sale fría, pero eso despierta!"
+        ]
+      },
+      "mochila": {
+        "speaker": "Doña Mery",
+        "text": "¿Y la mochila, mijo? Tráigala de una vez, que después se le olvida. Está en el escritorio."
+      },
+      "desayuno": {
+        "speaker": "Doña Mery",
+        "text": "¡Ahora sí! Siéntese, siéntese. Arepa con quesito, huevos pericos y chocolate. ¿O prefiere un tinto?",
+        "effects": [
+          {
+            "vineta": "cali_desayuno"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Un tinto, por favor",
+            "goto": "tinto"
+          },
+          {
+            "label": "Chocolate con queso",
+            "goto": "chocolate"
+          },
+          {
+            "label": "¿Hay jugo?",
+            "goto": "jugo"
+          }
+        ]
+      },
+      "tinto": {
+        "text": "Tinto: café negro, chiquito y dulcecito. El primer sorbo te devuelve el alma al cuerpo.",
+        "next": "comer"
+      },
+      "chocolate": {
+        "speaker": "Doña Mery",
+        "text": "¡Eso! Y le echa el queso adentro, que se derrite. ¿En Chile no? ¿Y entonces qué hacen con el queso, pues?",
+        "next": "comer"
+      },
+      "jugo": {
+        "speaker": "Doña Mery",
+        "text": "Jugo de lulo, recién hecho. Ácido, ¿cierto? Así es que despierta.",
+        "next": "comer"
+      },
+      "comer": {
+        "text": [
+          "La arepa está tibia, el quesito derretido, los pericos con su cebolla y su tomate. Comes como si no hubieras comido en dos días.",
+          "Y de a poco, la cabeza se te acomoda en Cali. El piso deja de ladearse. Ya no son las ocho: son las siete y diez, y todo está bien."
+        ],
+        "effects": [
+          {
+            "clearFlag": "desorientado"
+          },
+          {
+            "setFlag": "desayuno"
+          },
+          {
+            "clock": "lun 07:10",
+            "max": "lun 08:10"
+          }
+        ],
+        "next": "paraguas"
+      },
+      "paraguas": {
+        "speaker": "Doña Mery",
+        "text": [
+          "Bueno, mijo: el bus para la universidad es el P27. Para ahí en la esquina, en el paradero del palo de mango.",
+          "Y lleve paraguas, que en Cali a mediodía se larga el aguacero sin avisar."
+        ],
+        "choices": [
+          {
+            "label": "Sí, gracias, doña Mery",
+            "goto": "acepta"
+          },
+          {
+            "label": "¿Lluvia? Si hay un sol tremendo",
+            "goto": "rechaza"
+          }
+        ]
+      },
+      "acepta": {
+        "speaker": "Doña Mery",
+        "text": "Ese era de mi Hernando, que en paz descanse. Me lo cuida, ¿oyó?",
+        "effects": [
+          {
+            "giveItem": "paraguas"
+          }
+        ],
+        "next": "fin"
+      },
+      "rechaza": {
+        "speaker": "Doña Mery",
+        "text": "Jum. Usted verá. Después no diga que no le avisé.",
+        "next": "fin"
+      },
+      "fin": {
+        "effects": [
+          {
+            "objective": "Toma el bus a la U (paradero P27, a la derecha de la casa)"
+          }
+        ]
+      },
+      "despues": {
+        "speaker": "Doña Mery",
+        "text": "¡Que le vaya bonito en la U, mijo! Y no se me pierda, que ese campus es grandísimo."
+      }
+    }
+  },
+  "m4_casa_no_salir": {
+    "start": "m6_router",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission05"
+            },
+            "goto": "m5"
+          },
+          {
+            "if": {
+              "flag": "noche_casa"
+            },
+            "goto": "noche"
+          },
+          {
+            "if": {
+              "flag": "mojado"
+            },
+            "goto": "mojado"
+          },
+          {
+            "if": {
+              "flag": "volvio_casa",
+              "notFlag": "almorzo"
+            },
+            "goto": "almuerzo"
+          },
+          {
+            "if": {
+              "notFlag": "vestido"
+            },
+            "goto": "pijama"
+          },
+          {
+            "if": {
+              "notFlag": "tiene_mochila"
+            },
+            "goto": "mochila"
+          },
+          {
+            "goto": "desayuno"
+          }
+        ]
+      },
+      "noche": {
+        "text": "Ya es de noche. Mejor a dormir."
+      },
+      "mojado": {
+        "text": "Estás chorreando. Primero cámbiate de ropa (el ropero de tu pieza)."
+      },
+      "almuerzo": {
+        "text": "Te suenan las tripas. Primero almuerza: en la cocina hay de todo."
+      },
+      "pijama": {
+        "text": "¿En pijama a la universidad? En Cali hace calor, pero tampoco tanto."
+      },
+      "mochila": {
+        "text": "Te falta la mochila (en el escritorio de tu pieza)."
+      },
+      "desayuno": {
+        "speaker": "Doña Mery",
+        "text": "¡Mijo! ¿Se va sin desayunar? ¡Ni lo piense! Venga a la cocina."
+      },
+      "m5": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "m5_desayuno"
+            },
+            "goto": "m5_desayuno"
+          },
+          {
+            "goto": "m5_noche"
+          }
+        ]
+      },
+      "m5_desayuno": {
+        "speaker": "Doña Mery",
+        "text": "¡Mijo! ¿Se va sin desayunar? ¡Ni lo piense! Venga a la cocina, que hay calentado."
+      },
+      "m5_noche": {
+        "text": "Ya es tarde. Mejor a dormir: mañana hay universidad (y clase de natación el jueves, si todo sale bien)."
+      },
+      "m6_router": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission06",
+              "flag": "m6_taxi_casa"
+            },
+            "goto": "m6_noche"
+          },
+          {
+            "if": {
+              "mission": "mission06"
+            },
+            "goto": "m6"
+          },
+          {
+            "goto": "inicio"
+          }
+        ]
+      },
+      "m6": {
+        "speaker": "Doña Mery",
+        "text": "¡Mijo! ¿Para dónde va tan rápido? Venga primero a la cocina, que le tengo una noticia y un mandado."
+      },
+      "m6_noche": {
+        "text": "Ya es de noche. Lo único que queda por hacer es dormir... y mirar el celular cuarenta veces."
+      }
+    }
+  },
+  "m4_vuelve_casa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "paraguas_usado"
+            },
+            "goto": "seco"
+          },
+          {
+            "goto": "mojado"
+          }
+        ]
+      },
+      "mojado": {
+        "speaker": "Doña Mery",
+        "text": [
+          "¡Ave María, mijo! ¡Viene hecho una sopa! Le dije, le dije que llevara paraguas.",
+          "Quítese esa ropa ya mismo, que se me resfría el primer día."
+        ],
+        "next": "comun"
+      },
+      "seco": {
+        "speaker": "Doña Mery",
+        "text": "¿Vio? ¿Vio que se largó? Menos mal llevó el paraguas de Hernando. Las zapatillas sí se las ahogó, pobrecito.",
+        "next": "comun"
+      },
+      "comun": {
+        "speaker": "Doña Mery",
+        "text": [
+          "Mijo, yo tengo cita en el médico a la una y ya me tengo que ir. En la nevera hay fideos, tomate y cebolla: hágase un hogao, que eso no tiene ciencia.",
+          "¡Y no me queme la olla! Chao, mijo."
+        ],
+        "effects": [
+          {
+            "setFlag": "volvio_casa"
+          },
+          {
+            "clock": "lun 12:50",
+            "max": "lun 13:30"
+          },
+          {
+            "weather": "lluvia"
+          }
+        ],
+        "next": "obj"
+      },
+      "obj": {
+        "branches": [
+          {
+            "if": {
+              "flag": "mojado"
+            },
+            "goto": "obj_mojado"
+          },
+          {
+            "goto": "obj_seco"
+          }
+        ]
+      },
+      "obj_mojado": {
+        "effects": [
+          {
+            "objective": "Cámbiate de ropa (ropero) y cocina el almuerzo"
+          }
+        ]
+      },
+      "obj_seco": {
+        "effects": [
+          {
+            "objective": "Cocina el almuerzo: fideos con salsa (la estufa)"
+          }
+        ]
+      }
+    }
+  },
+  "fideos_paso_agua": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La olla grande de doña Mery. ¿Cuánta agua le echas?",
+        "effects": [
+          {
+            "vineta": "fideos_agua"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Harta, unos tres cuartos de olla",
+            "goto": "ok"
+          },
+          {
+            "label": "Un poquito, así hierve más rápido",
+            "effects": [
+              {
+                "setFlag": "fideos_error"
+              }
+            ],
+            "goto": "error"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Bien: los fideos necesitan espacio para nadar."
+      },
+      "error": {
+        "text": "Poquita agua. Van a quedar apretados como en el metro en hora punta."
+      }
+    }
+  },
+  "fideos_paso_sal": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¿Y la sal?",
+        "effects": [
+          {
+            "vineta": "fideos_agua"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Una cucharada al agua",
+            "goto": "ok"
+          },
+          {
+            "label": "Nada, la sal hace mal",
+            "effects": [
+              {
+                "setFlag": "fideos_error"
+              }
+            ],
+            "goto": "sosos"
+          },
+          {
+            "label": "Medio paquete, por si acaso",
+            "effects": [
+              {
+                "setFlag": "fideos_error"
+              }
+            ],
+            "goto": "mar"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Al agua, con sal. Así los fideos quedan con sabor por dentro."
+      },
+      "sosos": {
+        "text": "Van a quedar sosos. Doña Mery se va a enterar. Doña Mery siempre se entera."
+      },
+      "mar": {
+        "text": "Agua del Pacífico. Muy chileno, pero no."
+      }
+    }
+  },
+  "fideos_paso_hervir": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Prendes el fuego y esperas. Burbujitas... burbujas... ¡hierve!",
+        "effects": [
+          {
+            "vineta": "fideos_hierve"
+          },
+          {
+            "sfx": "hervir"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Echar los fideos ahora, con el hervor",
+            "goto": "ok"
+          },
+          {
+            "label": "Mejor bajar el fuego y esperar que se calme",
+            "effects": [
+              {
+                "setFlag": "fideos_error"
+              }
+            ],
+            "goto": "error"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Al hervor, sin miedo."
+      },
+      "error": {
+        "text": "Agua tibia: los fideos se van a deshacer en engrudo."
+      }
+    }
+  },
+  "fideos_paso_echar": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Echas los fideos. Se doblan solitos al tocar el agua.",
+        "effects": [
+          {
+            "vineta": "fideos_olla"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Revolver para que no se peguen",
+            "goto": "ok"
+          },
+          {
+            "label": "Tapar la olla e ir a ver tele",
+            "effects": [
+              {
+                "setFlag": "fideos_error"
+              }
+            ],
+            "goto": "error"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Revuelves. Ninguno pegado al fondo."
+      },
+      "error": {
+        "text": "Cuando vuelves, la espuma se rebalsó y apagó la llama. Huele a gas: abres todas las ventanas. Doña Mery no puede saber esto."
+      }
+    }
+  },
+  "fideos_paso_hogao": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Mientras se cuecen, el hogao: tomate y cebolla larga picaditos, a la sartén con un chorrito de aceite.",
+        "effects": [
+          {
+            "vineta": "fideos_hogao"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Sofreír lento, con ajo y una pizca de comino",
+            "goto": "ok"
+          },
+          {
+            "label": "Echar todo crudo encima de los fideos",
+            "effects": [
+              {
+                "setFlag": "fideos_error"
+              }
+            ],
+            "goto": "crudo"
+          },
+          {
+            "label": "Ponerle manjar (es lo que trajiste)",
+            "effects": [
+              {
+                "setFlag": "fideos_error"
+              }
+            ],
+            "goto": "manjar"
+          }
+        ]
+      },
+      "ok": {
+        "text": "La cocina huele a casa de abuela caleña."
+      },
+      "crudo": {
+        "text": "Ensalada tibia de fideos. Técnicamente, comida."
+      },
+      "manjar": {
+        "text": "No. Simplemente no."
+      }
+    }
+  },
+  "fideos_paso_colar": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Sacas un fideo con el tenedor y lo muerdes. ¿Cómo está?",
+        "effects": [
+          {
+            "vineta": "fideos_hogao"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Al dente: ¡a colar!",
+            "goto": "ok"
+          },
+          {
+            "label": "Cinco minutos más, por si acaso",
+            "effects": [
+              {
+                "setFlag": "fideos_error"
+              }
+            ],
+            "goto": "error"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Los colas en el colador de doña Mery. Una nube de vapor te empaña los lentes que no tienes."
+      },
+      "error": {
+        "text": "Ahora quedaron blanditos, como de casino de oficina."
+      }
+    }
+  },
+  "fideos_listo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "fideos_perfectos"
+            },
+            "goto": "perfecto"
+          },
+          {
+            "goto": "normal"
+          }
+        ]
+      },
+      "perfecto": {
+        "text": "Fideos al dente con hogao caleño. Te quedaron mejores que los de tu mamá. No se lo digas nunca.",
+        "effects": [
+          {
+            "vineta": "fideos_plato"
+          }
+        ]
+      },
+      "normal": {
+        "text": "No te quedaron perfectos, pero son tuyos y están calientes. Y después de un aguacero, eso es oro.",
+        "effects": [
+          {
+            "vineta": "fideos_plato"
+          }
+        ]
+      }
+    }
+  },
+  "fideos_comer": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Comes en el comedor, oyendo la lluvia en el techo de zinc del patio.",
+          "De a poco para. Una gota, otra... y sale el sol como si nada. Así es Cali, te había dicho don Jairo."
+        ],
+        "effects": [
+          {
+            "setFlag": "almorzo"
+          },
+          {
+            "clock": "lun 13:35",
+            "max": "lun 14:00"
+          },
+          {
+            "weather": "nublado"
+          },
+          {
+            "message": "grupo_polera"
+          },
+          {
+            "objective": "Vuelve a la U: polera azul en Bienestar y clase a las 2:00 (Educación Continua, piso 2)"
+          }
+        ]
+      }
+    }
+  },
+  "pance_noche": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Pance de noche: grillos, ranas, el río sonando y las ventanas amarillas de las casas. En la de doña Mery hay una luz prendida.",
+        "effects": [
+          {
+            "clockMax": "lun 19:40"
+          },
+          {
+            "objective": "Entra a la casa de doña Mery"
+          }
+        ]
+      }
+    }
+  },
+  "m4_noche_casa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Doña Mery",
+        "text": "¿Y esa cara, mijo? Venga, venga, siéntese. ¿Cómo les fue?",
+        "effects": [
+          {
+            "setFlag": "noche_casa"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Perdimos contra Ingeniería",
+            "if": {
+              "flag": "perdio_partido"
+            },
+            "goto": "perdimos"
+          },
+          {
+            "label": "Empatamos... pero se sintió como perder",
+            "if": {
+              "flag": "empato_partido"
+            },
+            "goto": "empate"
+          }
+        ]
+      },
+      "perdimos": {
+        "speaker": "Doña Mery",
+        "text": [
+          "¿Contra los de Ingeniería? ¡Si esos juegan todos los días a mediodía! El próximo lunes les ganan, ya va a ver.",
+          "Le preparo una aguapanela con limón, que eso cura todo: el resfriado, el guayabo y las derrotas."
+        ],
+        "next": "fin"
+      },
+      "empate": {
+        "speaker": "Doña Mery",
+        "text": [
+          "¿Empataron? ¡Pero eso no es perder, mijo! Un punto es un punto.",
+          "Le preparo una aguapanela con limón, que eso cura todo: el resfriado, el guayabo y los empates."
+        ],
+        "next": "fin"
+      },
+      "fin": {
+        "text": [
+          "Te tomas la aguapanela en la sala, con el ventilador girando y una telenovela de fondo.",
+          "Te duelen las piernas y el celular vibra: «Revancha el próximo lunes. Entrenamos el miércoles. NADIE FALTA». Firma: Álvaro.",
+          "Primer día en Cali: te mareaste con las dos horas, gritaste en la ducha, te mojaste hasta los huesos, cocinaste, ruteaste pandebonos y perdiste un partido.",
+          "No está nada mal."
+        ],
+        "effects": [
+          {
+            "event": "mision4_final"
+          }
+        ]
+      }
+    }
+  },
+  "m4_mery_noche": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Doña Mery",
+        "text": "Tómese la aguapanela, mijo, que se le enfría."
+      }
+    }
+  },
+  "m4_vecina": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "almorzo"
+            },
+            "goto": "tarde"
+          },
+          {
+            "goto": "manana"
+          }
+        ]
+      },
+      "manana": {
+        "speaker": "Vecina",
+        "text": "¡Buenos días, vecino! ¿Usted es el chileno de la Mery? Bienvenido. ¡Y lleve paraguas, que hoy llueve!"
+      },
+      "tarde": {
+        "speaker": "Vecina",
+        "text": "¿Vio el aguacero? Se me inundó el patio. Pero el mango quedó feliz."
+      }
+    }
+  },
+  "m4_chontaduro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Vendedor",
+        "text": "¡Chontaduro, chontaduro! ¿Otra vez por aquí, joven? Hoy le vendo con sal y miel, a mil pesitos. ...¿No quiere? Bueno, mañana."
+      }
+    }
+  },
+  "paradero_pance": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "partido_jugado"
+            },
+            "goto": "noche"
+          },
+          {
+            "if": {
+              "any": [
+                {
+                  "flag": "desayuno",
+                  "notFlag": "llego_u"
+                },
+                {
+                  "flag": "almorzo",
+                  "notFlag": "tarde_u"
+                }
+              ]
+            },
+            "goto": "bus"
+          },
+          {
+            "if": {
+              "flag": "volvio_casa",
+              "notFlag": "almorzo"
+            },
+            "goto": "almuerzo"
+          },
+          {
+            "goto": "nada"
+          }
+        ]
+      },
+      "bus": {
+        "text": "Paradero de la ruta P27. Pasa cada 15 minutos (más o menos).",
+        "effects": [
+          {
+            "sign": "paradero_cali"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Esperar el bus a la U",
+            "effects": [
+              {
+                "event": "bus_cali",
+                "data": {
+                  "destino": "u",
+                  "lane": 7,
+                  "x": 31
+                }
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "almuerzo": {
+        "text": "Primero almuerza. No vas a jugar un partido con la guata vacía."
+      },
+      "noche": {
+        "text": "El paradero, de noche. Ya no tienes nada que hacer en la U hoy."
+      },
+      "nada": {
+        "text": "Paradero de la P27. Ahora no necesitas el bus.",
+        "effects": [
+          {
+            "sign": "paradero_cali"
+          }
+        ]
+      }
+    }
+  },
+  "paradero_u": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "partido_jugado",
+              "notFlag": "gano_partido"
+            },
+            "goto": "casa"
+          },
+          {
+            "if": {
+              "flag": "tormenta_vista",
+              "notFlag": "volvio_casa"
+            },
+            "goto": "casa"
+          },
+          {
+            "goto": "nada"
+          }
+        ]
+      },
+      "casa": {
+        "text": "Paradero P27, dirección Pance.",
+        "effects": [
+          {
+            "sign": "paradero_cali"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Esperar el bus a Pance",
+            "effects": [
+              {
+                "event": "bus_cali",
+                "data": {
+                  "destino": "casa",
+                  "laneX": 73,
+                  "y": 19
+                }
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "nada": {
+        "text": "El paradero de la P27 hacia Pance. Por ahora, tu día sigue en la U.",
+        "effects": [
+          {
+            "sign": "paradero_cali"
+          }
+        ]
+      }
+    }
+  },
+  "bus_llega": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission06"
+            },
+            "goto": "m6"
+          },
+          {
+            "if": {
+              "flag": "tormenta_vista",
+              "notFlag": "volvio_casa"
+            },
+            "goto": "lluvia"
+          },
+          {
+            "goto": "normal"
+          }
+        ]
+      },
+      "lluvia": {
+        "speaker": "Chofer",
+        "text": "El bus llega levantando una ola de agua. El chofer abre la puerta: «¡Súbase, mijo, que se ahoga!».",
+        "next": "pagar"
+      },
+      "normal": {
+        "speaker": "Chofer",
+        "text": "¡P27, Pance–Universidades! ¿Se sube, joven?",
+        "next": "pagar"
+      },
+      "pagar": {
+        "text": "El letrero del parabrisas dice P27 · UNIVERSIDADES / PANCE.",
+        "choices": [
+          {
+            "label": "Subir y pagar ($2.900)",
+            "if": {
+              "minMoney": 2900
+            },
+            "effects": [
+              {
+                "pay": 2900
+              },
+              {
+                "setFlag": "_subir"
+              }
+            ],
+            "goto": "subir"
+          },
+          {
+            "label": "Subir (no me alcanza...)",
+            "if": {
+              "not": {
+                "minMoney": 2900
+              }
+            },
+            "effects": [
+              {
+                "setFlag": "_subir"
+              }
+            ],
+            "goto": "fiado"
+          },
+          {
+            "label": "Esperar el siguiente"
+          }
+        ]
+      },
+      "subir": {
+        "text": "Le pagas al chofer. Te da las vueltas sin mirar, mientras saluda a media calle por la ventana."
+      },
+      "fiado": {
+        "speaker": "Chofer",
+        "text": "«Tranquilo, mijo, mañana me paga». Cali."
+      },
+      "m6": {
+        "speaker": "Chofer",
+        "text": "¡P47, Pance–Universidades! ¡Pasando por la Calle 18 y Cañasgordas! ¿Se sube, joven?",
+        "next": "m6_pagar"
+      },
+      "m6_pagar": {
+        "text": "Junto a la puerta hay un validador con una lucecita verde. El chofer no tiene dónde recibir plata.",
+        "choices": [
+          {
+            "label": "Pasar la tarjeta Recorre ($2.900)",
+            "if": {
+              "hasItem": "tarjeta_recorre",
+              "minBip": 2900
+            },
+            "effects": [
+              {
+                "payBip": 2900
+              },
+              {
+                "setFlag": [
+                  "_subir",
+                  "m6_pago_p47"
+                ]
+              }
+            ],
+            "goto": "m6_subir"
+          },
+          {
+            "label": "Pasar la tarjeta (sin saldo)",
+            "if": {
+              "hasItem": "tarjeta_recorre",
+              "not": {
+                "minBip": 2900
+              }
+            },
+            "goto": "m6_sin_saldo"
+          },
+          {
+            "label": "Pagar en efectivo",
+            "if": {
+              "notItem": "tarjeta_recorre"
+            },
+            "goto": "m6_efectivo"
+          },
+          {
+            "label": "Esperar el siguiente"
+          }
+        ]
+      },
+      "m6_subir": {
+        "text": "¡Bip! Luz verde. Saldo de la tarjeta: {bip}. El chofer te saluda con dos dedos, como un piloto de avión."
+      },
+      "m6_sin_saldo": {
+        "speaker": "Chofer",
+        "text": "Esa tarjeta está en ceros, mijo. Recárguela en Universidades... pero para llegar allá tiene que subirse. Ay, venga, súbase. Por esta vez.",
+        "effects": [
+          {
+            "setFlag": "_subir"
+          }
+        ]
+      },
+      "m6_efectivo": {
+        "speaker": "Chofer",
+        "text": "Aquí no se recibe efectivo, mijo: solo tarjeta. ¿No tiene? ...Doña Mery siempre tiene una de repuesto, pregúntele. Bueno, ya, súbase, que lo veo cara de buena gente. Paga en la estación.",
+        "effects": [
+          {
+            "setFlag": [
+              "_subir",
+              "m6_colado_p47"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "bus_viaje": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission06",
+              "flag": "bus_a_universidades"
+            },
+            "goto": "m6_a_universidades"
+          },
+          {
+            "if": {
+              "mission": "mission05",
+              "flag": "bus_a_u"
+            },
+            "goto": "m5_a_u"
+          },
+          {
+            "if": {
+              "flag": "bus_a_u"
+            },
+            "goto": "a_u"
+          },
+          {
+            "if": {
+              "flag": "bus_a_casa"
+            },
+            "goto": "a_casa"
+          },
+          {
+            "goto": "nada"
+          }
+        ]
+      },
+      "a_u": {
+        "effects": [
+          {
+            "event": "trayecto",
+            "data": {
+              "id": "bus_pance_u"
+            }
+          }
+        ]
+      },
+      "a_casa": {
+        "effects": [
+          {
+            "event": "trayecto",
+            "data": {
+              "id": "bus_u_pance"
+            }
+          }
+        ]
+      },
+      "nada": {
+        "text": "El bus está detenido en el terminal. El chofer duerme una siesta sobre el volante."
+      },
+      "m5_a_u": {
+        "effects": [
+          {
+            "event": "trayecto",
+            "data": {
+              "id": "bus_pance_u_m5"
+            }
+          }
+        ]
+      },
+      "m6_a_universidades": {
+        "effects": [
+          {
+            "event": "trayecto",
+            "data": {
+              "id": "bus_pance_universidades"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "bus_tramo_pance": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "almorzo"
+            },
+            "goto": "tarde"
+          },
+          {
+            "goto": "manana"
+          }
+        ]
+      },
+      "manana": {
+        "text": [
+          "El bus va lleno: colegiales de uniforme, una señora con una caja que hace «pío» y un parlante con salsa choque.",
+          "Por la ventana: techos de teja, palmas, guaduales y el río Pance brillando entre los árboles."
+        ]
+      },
+      "tarde": {
+        "text": "El sol volvió como si nada. La calle humea, el pasto brilla y el chofer canta a todo pulmón una salsa de las de antes."
+      }
+    }
+  },
+  "bus_tramo_calle18": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "almorzo"
+            },
+            "goto": "tarde"
+          },
+          {
+            "goto": "manana"
+          }
+        ]
+      },
+      "manana": {
+        "text": [
+          "Calle 18: universidades, colegios, condominios con nombres de pájaros y vendedores de mango biche en cada semáforo.",
+          "Una estudiante a tu lado ve tu cara de perdido: «¿Primer día? Bájese donde se baja todo el mundo, ahí es la U»."
+        ]
+      },
+      "tarde": {
+        "text": "Calle 18 otra vez. Ya la reconoces: el semáforo eterno, el señor de los mangos, la reja de la U."
+      }
+    }
+  },
+  "bus_tramo_vuelta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "partido_jugado"
+            },
+            "goto": "noche"
+          },
+          {
+            "goto": "lluvia"
+          }
+        ]
+      },
+      "lluvia": {
+        "text": [
+          "La Calle 18 parece un río. El bus levanta olas y la gente de los paraderos grita.",
+          "Adentro huele a ropa mojada. Los vidrios están empañados y alguien dibujó una carita triste."
+        ],
+        "effects": [
+          {
+            "weather": "lluvia"
+          }
+        ]
+      },
+      "noche": {
+        "text": [
+          "Ya oscureció. Los faroles naranjos de la Calle 18 pasan uno detrás de otro.",
+          "Te duelen las piernas. Te quedas dormido con la frente en el vidrio... y despiertas justo a tiempo."
+        ]
+      }
+    }
+  },
+  "bus_tramo_vuelta_2": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "partido_jugado"
+            },
+            "goto": "noche"
+          },
+          {
+            "goto": "lluvia"
+          }
+        ]
+      },
+      "lluvia": {
+        "text": "Por la vía a Pance la lluvia afloja. Sobre los Farallones aparece un arcoíris doble. Nadie en el bus lo mira: para ellos es un lunes cualquiera."
+      },
+      "noche": {
+        "text": "Pance de noche: luciérnagas en las zanjas, el río sonando y olor a leña."
+      }
+    }
+  }
+}

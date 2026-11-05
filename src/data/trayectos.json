@@ -1,0 +1,322 @@
+{
+  "auto_aeropuerto": {
+    "music": "credits",
+    "flag": "llego_scl",
+    "legs": [
+      {
+        "title": "Ruta 5 Sur",
+        "subtitle": "Paine → Santiago",
+        "ms": 3500,
+        "clock": "vie 22:10",
+        "dialogue": "auto_tramo_1"
+      },
+      {
+        "title": "Autopista Central",
+        "subtitle": "San Bernardo",
+        "ms": 3500,
+        "clock": "vie 22:25",
+        "dialogue": "auto_tramo_2"
+      },
+      {
+        "title": "Av. Américo Vespucio",
+        "subtitle": "Cerrillos · Maipú",
+        "ms": 3500,
+        "clock": "vie 22:40",
+        "dialogue": "auto_tramo_3"
+      },
+      {
+        "title": "Ruta 68",
+        "subtitle": "Pudahuel",
+        "ms": 3000,
+        "clock": "vie 22:50",
+        "dialogue": "auto_tramo_4"
+      },
+      {
+        "title": "Aeropuerto de Santiago",
+        "subtitle": "Nivel 3 · Salidas",
+        "ms": 2500,
+        "clock": "vie 22:55"
+      }
+    ],
+    "exit": {
+      "map": "scl_salidas",
+      "spawn": "auto"
+    }
+  },
+  "furgon_pance": {
+    "music": "salsa",
+    "flag": "llego_pance",
+    "legs": [
+      {
+        "title": "Aeropuerto Alfonso Bonilla Aragón",
+        "subtitle": "Palmira, Valle del Cauca",
+        "ms": 2500,
+        "clock": "sáb 06:45",
+        "dialogue": "furgon_tramo_1"
+      },
+      {
+        "title": "Recta Cali–Palmira",
+        "subtitle": "Entre cañaduzales",
+        "ms": 4000,
+        "clock": "sáb 07:00",
+        "dialogue": "furgon_tramo_2"
+      },
+      {
+        "title": "Puente de Juanchito",
+        "subtitle": "Río Cauca · Entrando a Cali",
+        "ms": 3500,
+        "clock": "sáb 07:12",
+        "dialogue": "furgon_tramo_3"
+      },
+      {
+        "title": "Autopista Simón Bolívar",
+        "subtitle": "Cali",
+        "ms": 4000,
+        "clock": "sáb 07:30",
+        "dialogue": "furgon_tramo_4"
+      },
+      {
+        "title": "Avenida Cañasgordas",
+        "subtitle": "Sur de Cali",
+        "ms": 3500,
+        "clock": "sáb 07:45",
+        "dialogue": "furgon_tramo_5"
+      },
+      {
+        "title": "Pance",
+        "subtitle": "Al pie de los Farallones",
+        "ms": 2500,
+        "clock": "sáb 07:55"
+      }
+    ],
+    "exit": {
+      "map": "pance",
+      "spawn": "furgon"
+    }
+  },
+  "bus_pance_u": {
+    "music": "salsa",
+    "flag": "llego_bus_u",
+    "clear": [
+      "bus_a_u"
+    ],
+    "legs": [
+      {
+        "title": "Vía a Pance",
+        "subtitle": "Ruta P27 · hacia el norte",
+        "ms": 3000,
+        "minutes": 6,
+        "dialogue": "bus_tramo_pance"
+      },
+      {
+        "title": "Calle 18",
+        "subtitle": "Av. Cañasgordas",
+        "ms": 3500,
+        "minutes": 8,
+        "dialogue": "bus_tramo_calle18"
+      },
+      {
+        "title": "Universidades",
+        "subtitle": "Paradero Calle 18 · PUCC",
+        "ms": 2200,
+        "minutes": 3
+      }
+    ],
+    "exit": {
+      "map": "pucc_campus",
+      "spawn": "paradero"
+    }
+  },
+  "bus_u_pance": {
+    "music": "salsa",
+    "flag": "llego_bus_casa",
+    "clear": [
+      "bus_a_casa"
+    ],
+    "legs": [
+      {
+        "title": "Calle 18",
+        "subtitle": "Ruta P27 · hacia el sur",
+        "ms": 3000,
+        "minutes": 7,
+        "dialogue": "bus_tramo_vuelta"
+      },
+      {
+        "title": "Vía a Pance",
+        "subtitle": "Al pie de los Farallones",
+        "ms": 3000,
+        "minutes": 8,
+        "dialogue": "bus_tramo_vuelta_2"
+      },
+      {
+        "title": "Pance",
+        "subtitle": "Paradero de la casa de doña Mery",
+        "ms": 2000,
+        "minutes": 2
+      }
+    ],
+    "exit": {
+      "map": "pance",
+      "spawn": "paradero"
+    }
+  },
+  "bus_pance_u_m5": {
+    "music": "salsa",
+    "flag": "m5_bus_ok",
+    "clear": [
+      "bus_a_u"
+    ],
+    "legs": [
+      {
+        "title": "Vía a Pance",
+        "subtitle": "Ruta P27 · hacia el norte",
+        "ms": 3000,
+        "minutes": 6,
+        "dialogue": "m5_bus_tramo_1"
+      },
+      {
+        "title": "Calle 18",
+        "subtitle": "Av. Cañasgordas",
+        "ms": 3200,
+        "minutes": 8,
+        "dialogue": "m5_bus_tramo_2"
+      },
+      {
+        "title": "Universidades",
+        "subtitle": "Paradero Calle 18 · PUCC",
+        "ms": 2000,
+        "minutes": 3
+      }
+    ],
+    "exit": {
+      "map": "pucc_campus",
+      "spawn": "paradero"
+    }
+  },
+  "grover_piscina": {
+    "music": "morenada",
+    "flag": "m5_en_deportivo",
+    "legs": [
+      {
+        "title": "Parqueadero principal",
+        "subtitle": "En el cacharro de Grover",
+        "ms": 3000,
+        "minutes": 4,
+        "dialogue": "m5_auto_1"
+      },
+      {
+        "title": "Calle 18",
+        "subtitle": "La vuelta larga por afuera del campus",
+        "ms": 3400,
+        "minutes": 12,
+        "dialogue": "m5_auto_2"
+      },
+      {
+        "title": "Centro Deportivo",
+        "subtitle": "Universidad Cristiana-Caleña · el «GLD»",
+        "ms": 2200,
+        "minutes": 3,
+        "dialogue": "m5_auto_3"
+      }
+    ],
+    "exit": {
+      "map": "pucc_piscina",
+      "spawn": "entrada"
+    }
+  },
+  "grover_pance": {
+    "music": "morenada",
+    "flag": "m5_volvio_piscina",
+    "legs": [
+      {
+        "title": "Calle 18",
+        "subtitle": "De noche, rumbo a Pance",
+        "ms": 3200,
+        "minutes": 12,
+        "dialogue": "m5_auto_4"
+      },
+      {
+        "title": "Pance",
+        "subtitle": "Al pie de los Farallones",
+        "ms": 3000,
+        "minutes": 10,
+        "dialogue": "m5_auto_5"
+      }
+    ],
+    "exit": {
+      "map": "pance",
+      "spawn": "casa"
+    }
+  },
+  "bus_pance_universidades": {
+    "music": "bus",
+    "flag": "m6_llego_universidades",
+    "clear": [
+      "bus_a_universidades"
+    ],
+    "legs": [
+      {
+        "title": "Pance",
+        "subtitle": "P47 · Pance → Universidades",
+        "ms": 3000,
+        "minutes": 9,
+        "dialogue": "m6_p47_pance"
+      },
+      {
+        "title": "Calle 18",
+        "subtitle": "Por fuera de la U",
+        "ms": 3000,
+        "minutes": 9,
+        "dialogue": "m6_p47_calle18"
+      },
+      {
+        "title": "Av. Cañasgordas",
+        "subtitle": "Ciudad Jardín",
+        "ms": 2800,
+        "minutes": 7,
+        "dialogue": "m6_p47_canasgordas"
+      },
+      {
+        "title": "Av. Carrera 100",
+        "subtitle": "Llegando a Universidades",
+        "ms": 2600,
+        "minutes": 5,
+        "dialogue": "m6_p47_llegando"
+      }
+    ],
+    "exit": {
+      "map": "universidades",
+      "spawn": "alimentador"
+    }
+  },
+  "taxi_pance_m6": {
+    "music": "sira",
+    "flag": "m6_taxi_casa",
+    "legs": [
+      {
+        "title": "Av. Colombia",
+        "subtitle": "En taxi, de noche",
+        "ms": 3000,
+        "minutes": 10,
+        "dialogue": "m6_taxi_1"
+      },
+      {
+        "title": "Autopista Simón Bolívar",
+        "subtitle": "Rumbo a Pance",
+        "ms": 3000,
+        "minutes": 12,
+        "dialogue": "m6_taxi_2"
+      },
+      {
+        "title": "Pance",
+        "subtitle": "Al pie de los Farallones",
+        "ms": 2600,
+        "minutes": 8
+      }
+    ],
+    "exit": {
+      "map": "pance",
+      "spawn": "casa"
+    }
+  }
+}

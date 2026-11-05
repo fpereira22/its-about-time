@@ -1,0 +1,48 @@
+{
+ "id": "articulado",
+ "name": "Bus articulado T31",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 30,
+ "height": 7,
+ "background": "#0c0c14",
+ "legend": {
+  "^": "muro_techo",
+  "V": "art_ventana",
+  "P": "art_puerta",
+  "s": "art_asiento",
+  "S": "art_asiento_s",
+  ".": "art_piso",
+  "f": "art_fuelle",
+  "b": "art_barra"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+  "VVVVPVVVVVVVPVVVVVVVPVVVVVVPVV",
+  "sss.sssssss.ss.f.sss.ssssss.ss",
+  "...............f..............",
+  "...b...........f.......b......",
+  "SSSSSSSSSSSSSSSfSSSSSSSSSSSSSS",
+  "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
+ ],
+ "spawns": {
+  "inicio": {
+   "x": 5,
+   "y": 3,
+   "dir": "up"
+  }
+ },
+ "crowd": {
+  "lines": "bus_cali",
+  "seats": 0.75,
+  "areas": [
+   {
+    "x": 0,
+    "y": 3,
+    "w": 30,
+    "h": 2,
+    "count": 7
+   }
+  ]
+ }
+}

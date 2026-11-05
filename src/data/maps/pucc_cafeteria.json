@@ -1,0 +1,83 @@
+{
+  "id": "pucc_cafeteria",
+  "name": "Cafetería Central",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 18,
+  "height": 12,
+  "background": "#1a1a22",
+  "music": "campus",
+  "legend": {
+    "^": "muro_techo",
+    "W": "cafe_muro",
+    "m": "cafe_menu",
+    "v": "p_ventana",
+    ".": "cafe_piso",
+    "C": "cafe_mostrador",
+    "$": "cafe_caja",
+    "O": "mesa_cafe",
+    "h": "silla_cafe",
+    "P": "puerta"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^",
+    "^WWmWWWmWWWvWWWvW^",
+    "^.......W........^",
+    "^CCC$CCCW........^",
+    "^................^",
+    "^..O...O...O...O.^",
+    "^..h...h...h...h.^",
+    "^................^",
+    "^..O...O...O...O.^",
+    "^..h...h...h...h.^",
+    "^WWWWWWWWPWWWWWWW^",
+    "^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {
+      "name": "Cafetería Central",
+      "subtitle": "Universidad Cristiana-Caleña",
+      "x": 0,
+      "y": 0,
+      "w": 18,
+      "h": 11
+    }
+  ],
+  "spawns": {
+    "puerta": {
+      "x": 9,
+      "y": 9,
+      "dir": "up"
+    }
+  },
+  "warps": [
+    {
+      "x": 9,
+      "y": 10,
+      "to": "pucc_campus",
+      "spawn": "cafeteria"
+    }
+  ],
+  "labels": [
+    {
+      "x": 3.5,
+      "y": 0.5,
+      "text": "CAFETERÍA CENTRAL",
+      "color": "#f0d048"
+    }
+  ],
+  "crowd": {
+    "lines": "cafeteria",
+    "seats": 0.5,
+    "areas": [
+      {
+        "x": 9,
+        "y": 2,
+        "w": 7,
+        "h": 2,
+        "count": 3,
+        "dir": "left"
+      }
+    ]
+  }
+}

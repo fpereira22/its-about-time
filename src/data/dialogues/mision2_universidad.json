@@ -1,0 +1,1427 @@
+{
+  "av_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "effects": [
+          {
+            "clockMax": "lun 08:29"
+          }
+        ],
+        "branches": [
+          {
+            "if": {
+              "flag": "correo_cambio_sala"
+            },
+            "goto": "sabe"
+          },
+          {
+            "goto": "no_sabe"
+          }
+        ]
+      },
+      "sabe": {
+        "text": "Manuel Montt, {hora}. Camina al oriente por Providencia hasta Antonio Varas y dobla al sur: la U queda pasado Eliodoro Yáñez, a los dos lados de la calle.",
+        "effects": [
+          {
+            "objective": "Ve a la sala A2-403 (Antonio Varas al sur, pasado Eliodoro Yáñez)"
+          }
+        ]
+      },
+      "no_sabe": {
+        "text": [
+          "Manuel Montt, {hora}. Camina al oriente por Providencia hasta Antonio Varas y dobla al sur: la U queda pasado Eliodoro Yáñez, a los dos lados de la calle.",
+          "¿Y en qué sala era la prueba? Te suena que llegó un correo... Revisa Mi U en el celular (Q)."
+        ],
+        "effects": [
+          {
+            "objective": "Revisa tu sala en Mi U (Q) y baja por Antonio Varas"
+          }
+        ]
+      }
+    }
+  },
+  "sopaipillas_av": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "sopaipilla"
+            },
+            "goto": "ya"
+          },
+          {
+            "if": {
+              "flag": "compro_sopaipilla_av"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Tía de las sopaipillas",
+        "text": "¡Sopaipillas pa'l frío, mijo! A $500. Con pebre o con mostaza.",
+        "choices": [
+          {
+            "label": "Una, por favor ($500)",
+            "if": {
+              "minMoney": 500
+            },
+            "effects": [
+              {
+                "pay": 500
+              },
+              {
+                "giveItem": "sopaipilla"
+              },
+              {
+                "setFlag": "compro_sopaipilla_av"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "No me alcanza...",
+            "if": {
+              "not": {
+                "minMoney": 500
+              }
+            },
+            "goto": "fiado"
+          },
+          {
+            "label": "Voy apurado"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Tía de las sopaipillas",
+        "text": "¡Que le vaya bien en la U! Estudie, pa' que después me compre diez."
+      },
+      "fiado": {
+        "speaker": "Tía de las sopaipillas",
+        "text": "Fiado no puedo, mijo. Pero mañana aquí estoy."
+      },
+      "ya": {
+        "speaker": "Tía de las sopaipillas",
+        "text": "¿Y? ¿Buena o no la sopaipilla?"
+      }
+    }
+  },
+  "guardia_u": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Guardia",
+        "text": [
+          "Buenos días. Este es el A2; el A1 está al frente, cruzando Antonio Varas. ¿Su credencial? ...Ya, pase nomás, que va tarde.",
+          "Ah, y si el profe Cuervo le pregunta por un lápiz rojo, usted no ha visto nada. Ya me preguntó tres veces."
+        ]
+      }
+    }
+  },
+  "cata_plaza": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "examen_perfecto"
+            },
+            "goto": "despues"
+          },
+          {
+            "if": {
+              "flag": "correo_cambio_sala"
+            },
+            "goto": "sabe"
+          },
+          {
+            "goto": "avisa"
+          }
+        ]
+      },
+      "avisa": {
+        "speaker": "Cata",
+        "text": "¡Hola! ¿Viste el correo? Cambiaron la sala de la prueba de Opti. Revisa Mi U en el celu (Q)."
+      },
+      "sabe": {
+        "speaker": "Cata",
+        "text": "¡Corre! La prueba es en la A2-403, piso 4: este edificio, no el del frente. El ascensor del A2 se demora: la escalera es más rápida."
+      },
+      "despues": {
+        "speaker": "Cata",
+        "text": "¿Seis de seis? ¡Ya lo sabe toda la facultad! ¿Me explicai la fraccionaria?"
+      }
+    }
+  },
+  "estudiante_plaza": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Estudiante",
+        "text": "Toco guitarra aquí todas las mañanas. Hoy me pidieron que no toque la misma canción de siempre. Otra vez."
+      }
+    }
+  },
+  "cartel_uav": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El letrero de la universidad.",
+        "effects": [{ "sign": "uav" }]
+      }
+    }
+  },
+  "ascensor_a1": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "ASCENSOR · EDIFICIO A1. ¿A qué piso vas?",
+        "choices": [
+          {
+            "label": "Pisos -1 a 3",
+            "goto": "bajos"
+          },
+          {
+            "label": "Pisos 4 a 6",
+            "goto": "altos"
+          },
+          {
+            "label": "Cancelar"
+          }
+        ]
+      },
+      "bajos": {
+        "text": "ASCENSOR · EDIFICIO A1. ¿A qué piso vas?",
+        "choices": [
+          {
+            "label": "-1 · Casino",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a1_pm1",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "1 · Acceso",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a1_p1",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "2 · Salas",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a1_p2",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "3 · Salas",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a1_p3",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "Volver",
+            "goto": "inicio"
+          }
+        ]
+      },
+      "altos": {
+        "text": "ASCENSOR · EDIFICIO A1. ¿A qué piso vas?",
+        "choices": [
+          {
+            "label": "4 · Salas",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a1_p4",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "5 · Salas",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a1_p5",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "6 · Decanatura",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a1_p6",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "Volver",
+            "goto": "inicio"
+          }
+        ]
+      }
+    }
+  },
+  "ascensor_a2": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "ASCENSOR · EDIFICIO A2. ¿A qué piso vas?",
+        "choices": [
+          {
+            "label": "Pisos -1 a 3",
+            "goto": "bajos"
+          },
+          {
+            "label": "Pisos 4 a 6",
+            "goto": "altos"
+          },
+          {
+            "label": "Cancelar"
+          }
+        ]
+      },
+      "bajos": {
+        "text": "ASCENSOR · EDIFICIO A2. ¿A qué piso vas?",
+        "choices": [
+          {
+            "label": "-1 · Casino",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a2_pm1",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "1 · Acceso",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a2_p1",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "2 · Salas",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a2_p2",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "3 · Salas",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a2_p3",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "Volver",
+            "goto": "inicio"
+          }
+        ]
+      },
+      "altos": {
+        "text": "ASCENSOR · EDIFICIO A2. ¿A qué piso vas?",
+        "choices": [
+          {
+            "label": "4 · Salas",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a2_p4",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "5 · Salas",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a2_p5",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "6 · Oficinas",
+            "effects": [
+              {
+                "sfx": "elevator"
+              },
+              {
+                "warp": {
+                  "map": "uav_a2_p6",
+                  "spawn": "ascensor"
+                }
+              }
+            ]
+          },
+          {
+            "label": "7",
+            "goto": "siete"
+          },
+          {
+            "label": "Volver",
+            "goto": "inicio"
+          }
+        ]
+      },
+      "siete": {
+        "text": [
+          "Aprietas el 7. El ascensor sube... sube... y se detiene. Las puertas no se abren.",
+          "Una voz grabada: «Piso no habilitado». El edificio tiene 6 pisos. Nadie sabe por qué existe ese botón."
+        ],
+        "effects": [
+          {
+            "setFlag": "secreto_piso7"
+          }
+        ]
+      }
+    }
+  },
+  "u_sala_clase": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Por la ventanita de la puerta ves una clase. El profe llena la pizarra de integrales y nadie levanta la vista. Mejor no interrumpir."
+      }
+    }
+  },
+  "u_sala_cerrada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Está cerrada con llave."
+      }
+    }
+  },
+  "u_oficina": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Oficina de un profesor. Hay un post-it: «Vuelvo en 5 minutos». El post-it está amarillo de viejo.",
+        "effects": [{ "sign": "postit_vuelvo" }]
+      }
+    }
+  },
+  "u_terraza": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La terraza del A1. Se ve la cordillera nevada... y una montaña de colillas. Cerrada por mantención."
+      }
+    }
+  },
+  "u_biblioteca": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un letrero: «SILENCIO». Adentro alguien ronca sobre un libro de cálculo.",
+        "effects": [{ "sign": "silencio" }]
+      }
+    }
+  },
+  "u_admision": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "ADMISIÓN. Una fila larguísima de gente con carpetas. No es tu fila."
+      }
+    }
+  },
+  "u_fotocopias": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "—¿Doble faz, mijo? —No, gracias, voy apurado. —Todos van apurados un lunes."
+      }
+    }
+  },
+  "u_auditorio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El auditorio está vacío. En el escenario quedó un micrófono... y un eco de «¿se escucha atrás?»."
+      }
+    }
+  },
+  "u_centro_alumnos": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "CENTRO DE ALUMNOS. Hay un cartel: «Mechoneo solidario: trae alimentos no perecibles». Y olor a café quemado."
+      }
+    }
+  },
+  "u_bodega": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "BODEGA. Sillas rotas, un proyector de los noventa y un esqueleto de anatomía con gorro de cumpleaños."
+      }
+    }
+  },
+  "u_casino": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "cafe"
+            },
+            "goto": "ya"
+          },
+          {
+            "if": {
+              "flag": "tomo_cafe"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Casino",
+        "text": "CASINO. Huele a pan amasado. Café de máquina a $700.",
+        "choices": [
+          {
+            "label": "Un café ($700)",
+            "if": {
+              "minMoney": 700
+            },
+            "effects": [
+              {
+                "pay": 700
+              },
+              {
+                "giveItem": "cafe"
+              }
+            ]
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "ya": {
+        "speaker": "Casino",
+        "text": "CASINO. Ya tienes tu café. No abuses, que después tiemblas en la prueba."
+      }
+    }
+  },
+  "u_diario_mural": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "El diario mural: avisos de compraventa, gente buscando grupo...",
+          "Y un afiche grande de becas de intercambio. Colombia, México y España.",
+          "En una esquina, un post-it del profe Cuervo. Sigue buscando su lápiz."
+        ],
+        "effects": [{ "sign": "diario_mural" }]
+      }
+    }
+  },
+  "puerta_a1_201": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "correo_cambio_sala"
+            },
+            "goto": "sabe"
+          },
+          {
+            "goto": "papel"
+          }
+        ]
+      },
+      "papel": {
+        "text": "Sala A1-201. Está vacía. En la puerta hay un papel pegado: «PRUEBA DE OPTIMIZACIÓN: CAMBIO DE SALA. REVISAR CORREO».",
+        "effects": [
+          {
+            "sign": "papel_cambio_sala"
+          },
+          {
+            "objective": "Revisa el correo de la U (Q → Mi U)"
+          }
+        ]
+      },
+      "sabe": {
+        "text": "Sala A1-201. Vacía. La prueba es en la A2-403, según el correo."
+      }
+    }
+  },
+  "puerta_403": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "examen_perfecto"
+            },
+            "goto": "despues"
+          },
+          {
+            "if": {
+              "flag": "correo_cambio_sala"
+            },
+            "goto": "entrar"
+          },
+          {
+            "goto": "sin_correo"
+          }
+        ]
+      },
+      "entrar": {
+        "text": "Sala A2-403. Desde adentro se escucha una voz grave: «...pasen, pasen, que empezamos».",
+        "effects": [
+          {
+            "warp": {
+              "map": "uav_aula_403",
+              "spawn": "puerta"
+            }
+          }
+        ]
+      },
+      "sin_correo": {
+        "text": "Sala A2-403. ¿Te tocará aquí? En el calendario, Optimización era en la A1-201... Mejor revisa el correo de la U (Q → Mi U)."
+      },
+      "despues": {
+        "text": "Por la ventanita ves a tus compañeros mordiendo el lápiz. Mejor no interrumpir."
+      }
+    }
+  },
+  "puerta_604": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "invitado_oficina"
+            },
+            "goto": "entrar"
+          },
+          {
+            "goto": "cerrada"
+          }
+        ]
+      },
+      "cerrada": {
+        "text": "OF. 604 · Prof. R. Cuervo · Investigación de Operaciones. Atención de alumnos: lunes de 10:00 a 11:00.",
+        "effects": [{ "sign": "placa_of604" }]
+      },
+      "entrar": {
+        "text": "OF. 604 · Prof. R. Cuervo. Golpeas la puerta. «Adelante».",
+        "effects": [
+          {
+            "warp": {
+              "map": "uav_oficina_604",
+              "spawn": "puerta"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "aula_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Sala A2-403. Llegas a las {hora}, justo.",
+          "Al frente, el profe Cuervo: de negro de pies a cabeza, pelado, grandote, con un anillo de calavera... y riéndose solo mientras revuelve el escritorio."
+        ],
+        "effects": [
+          {
+            "clock": "lun 08:29",
+            "max": "lun 08:31"
+          },
+          {
+            "objective": "Habla con el profesor Cuervo para rendir la prueba"
+          }
+        ]
+      }
+    }
+  },
+  "pizarra_mochila": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "La pizarra con el problema de la prueba. Mochila de 10 kg y cuatro objetos.",
+          "Abajo, en chiquitito, la definición de x_i. Y un dibujo de un murciélago."
+        ],
+        "effects": [{ "sign": "pizarra_mochila" }]
+      }
+    }
+  },
+  "benja_aula": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "examen_perfecto"
+            },
+            "goto": "perfecto"
+          },
+          {
+            "if": {
+              "flag": "examen_reintento"
+            },
+            "goto": "animo"
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Benja",
+        "text": "Uf, ¿vai primero? Suerte, compadre. Acuérdate: valor por kilo... y no le digai «lo más óptimo» al Cuervo, que se ríe de ti toda la clase."
+      },
+      "animo": {
+        "speaker": "Benja",
+        "text": "Tranqui. Mira la pizarra: prueba todas las combinaciones que caben en 10 kg y quédate con la de más valor."
+      },
+      "perfecto": {
+        "speaker": "Benja",
+        "text": "¡Seis de seis! ¿Cómo lo hiciste? Ah, verdad: mis apuntes. De nada."
+      }
+    }
+  },
+  "examen": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "examen_perfecto"
+            },
+            "goto": "ya_paso"
+          },
+          {
+            "if": {
+              "flag": "examen_reintento"
+            },
+            "goto": "otra_vez"
+          },
+          {
+            "goto": "presentacion"
+          }
+        ]
+      },
+      "presentacion": {
+        "speaker": "Prof. Cuervo",
+        "text": [
+          "¡Buenos días, mijos! Guarden todo menos la calculadora... y las ganas de vivir. Jajaja, es broma. Más o menos.",
+          "Antes de empezar: ¿alguien ha visto un lápiz rojo? Lo tenía aquí hace un segundo... ¿Usted, mijo? ¿No? ¿Y usted? ...Bueno, ya va a aparecer.",
+          "La prueba de hoy: el problema de la mochila. Tienen una mochila que aguanta 10 kg y estos objetos para un viaje:",
+          "Carpa: 6 kg, vale 30. Saco de dormir: 5 kg, vale 20. Cocinilla: 5 kg, vale 20. Linterna: 1 kg, vale 6.",
+          "Cada objeto se lleva entero o no se lleva. Son seis preguntas, oral. Usted primero, hijo. Tranquilo, que no muerdo. Los lunes no."
+        ],
+        "effects": [
+          {
+            "clearFlag": "examen_error"
+          },
+          { "sign": "prueba" }
+        ],
+        "next": "q1"
+      },
+      "otra_vez": {
+        "speaker": "Prof. Cuervo",
+        "text": "¡Volvió, mijo! Así me gusta, jajaja. Mismo problema, mire la pizarra. ¿Le hacemos?",
+        "effects": [{ "sign": "prueba" }],
+        "choices": [
+          {
+            "label": "Sí, de nuevo",
+            "effects": [
+              {
+                "clearFlag": "examen_error"
+              }
+            ],
+            "goto": "q1"
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "ya_paso": {
+        "speaker": "Prof. Cuervo",
+        "text": "Usted ya rindió, mijo. Váyase antes de que le pregunte por mi lápiz otra vez. Jajaja."
+      },
+      "fin": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "examen_error"
+            },
+            "goto": "perfecto"
+          },
+          {
+            "goto": "repetir"
+          }
+        ]
+      },
+      "perfecto": {
+        "speaker": "Prof. Cuervo",
+        "text": [
+          "¡Seis de seis! ¡Impecable, mijo! Jajaja, así da gusto venir a trabajar un lunes.",
+          "Puede retirarse. Los demás, sigan mirando la pizarra, que nadie copia: los estoy viendo...",
+          "...¡Ah! ¡Aquí estaba el lápiz! Detrás de la oreja. Jajaja. Ni una palabra de esto, ¿ya?"
+        ],
+        "effects": [
+          {
+            "setFlag": "examen_perfecto"
+          },
+          {
+            "sfx": "secret"
+          },
+          {
+            "clock": "lun 09:45",
+            "max": "lun 09:58"
+          },
+          {
+            "objective": "Sal de la sala"
+          }
+        ]
+      },
+      "repetir": {
+        "speaker": "Prof. Cuervo",
+        "text": [
+          "Tuvo errores, hijo. Pero tranquilo: de los errores se aprende. Yo llevo veinte años perdiendo lápices y mire, aquí estoy. Jajaja.",
+          "Repase la pizarra y sus apuntes, y cuando esté listo, vuelva a hablarme y la rinde de nuevo. Yo de aquí no me muevo."
+        ],
+        "effects": [
+          {
+            "setFlag": "examen_reintento"
+          },
+          {
+            "objective": "Repasa (pizarra, apuntes) y vuelve a hablar con el profe"
+          }
+        ]
+      },
+      "q1": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "sign": "prueba", "step": 1 }],
+        "text": "Pregunta 1. ¿Qué busca el problema de la mochila 0/1?",
+        "choices": [
+          {
+            "label": "Llevar la mayor cantidad de objetos",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q1_mal"
+          },
+          {
+            "label": "Maximizar el valor sin pasarse del peso",
+            "goto": "q1_bien"
+          },
+          {
+            "label": "Que la mochila pese lo menos posible",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q1_mal"
+          }
+        ]
+      },
+      "q1_bien": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "signMark": "ok" }],
+        "text": "¡Exacto, mijo! El mayor VALOR total, respetando la capacidad de 10 kg.",
+        "next": "q2"
+      },
+      "q1_mal": {
+        "speaker": "Prof. Cuervo",
+        "text": "Jajaja, no, hijo. Si fuera llevar más cosas, todos seríamos expertos en mudanzas. Se maximiza el VALOR total sin pasarse de la CAPACIDAD (10 kg).",
+        "effects": [
+          { "signMark": "bad" },
+          {
+            "sfx": "error"
+          }
+        ],
+        "next": "q2"
+      },
+      "q2": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "sign": "prueba", "step": 2 }],
+        "text": "Pregunta 2. Si x_i vale 1 cuando llevo el objeto i (y 0 si no), ¿cuál es la restricción del problema?",
+        "choices": [
+          {
+            "label": "30x1 + 20x2 + 20x3 + 6x4 <= 10",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q2_mal"
+          },
+          {
+            "label": "x1 + x2 + x3 + x4 <= 10",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q2_mal"
+          },
+          {
+            "label": "6x1 + 5x2 + 5x3 + x4 <= 10",
+            "goto": "q2_bien"
+          }
+        ]
+      },
+      "q2_bien": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "signMark": "ok" }],
+        "text": "Bien: la suma de los PESOS de lo que llevo no puede pasar de 10. Usted sí mira la pizarra, no como otros que yo conozco.",
+        "next": "q3"
+      },
+      "q2_mal": {
+        "speaker": "Prof. Cuervo",
+        "text": "Mmm, no, mijo. La restricción es de PESO: 6x1 + 5x2 + 5x3 + x4 <= 10. Los valores (30, 20, 20, 6) van en la función objetivo, la que se maximiza.",
+        "effects": [
+          { "signMark": "bad" },
+          {
+            "sfx": "error"
+          }
+        ],
+        "next": "q3"
+      },
+      "q3": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "sign": "prueba", "step": 3 }],
+        "text": "Pregunta 3. Regla golosa: tomo primero lo que vale más por kilo, mientras quepa. ¿Qué valor junto?",
+        "choices": [
+          {
+            "label": "36",
+            "goto": "q3_bien"
+          },
+          {
+            "label": "40",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q3_mal"
+          },
+          {
+            "label": "46",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q3_mal"
+          }
+        ]
+      },
+      "q3_bien": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "signMark": "ok" }],
+        "text": "Así es, mijo: linterna (6 por kilo) y carpa (5 por kilo). Llevas 7 kg y ya no cabe nada de 5 kg. Valor: 36.",
+        "next": "q4"
+      },
+      "q3_mal": {
+        "speaker": "Prof. Cuervo",
+        "text": "Ojo, hijo: la linterna rinde 6 por kilo y la carpa 5. Con esas dos llevas 7 kg y ya no caben ni el saco ni la cocinilla (5 kg cada uno). Total: 36.",
+        "effects": [
+          { "signMark": "bad" },
+          {
+            "sfx": "error"
+          }
+        ],
+        "next": "q4"
+      },
+      "q4": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "sign": "prueba", "step": 4 }],
+        "text": "Pregunta 4. ¿Y cuál es la solución ÓPTIMA?",
+        "choices": [
+          {
+            "label": "Carpa + linterna: 36",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q4_mal"
+          },
+          {
+            "label": "Carpa + saco: 50",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q4_mal"
+          },
+          {
+            "label": "Lo más óptimo: saco + cocinilla, 40",
+            "goto": "q4_mas_optimo"
+          },
+          {
+            "label": "Saco + cocinilla: 40",
+            "goto": "q4_bien"
+          }
+        ]
+      },
+      "q4_bien": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "signMark": "ok" }],
+        "text": "¡Eso, mijo! Saco y cocinilla: 10 kg justos y valor 40. En la mochila 0/1, la regla golosa NO garantiza el óptimo.",
+        "next": "q5"
+      },
+      "q4_mas_optimo": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "signMark": "ok" }],
+        "text": [
+          "¿Cómo que LO MÁS ÓPTIMO? ¡Eso no existe, mijo! Jajaja. Lo óptimo ya es lo mejor: no hay «más mejor».",
+          "¿Qué va a decir después? ¿«Lo más máximo»? Jajaja... ya, ya. La respuesta está buena: saco y cocinilla, 10 kg justos y valor 40. Se la cuento."
+        ],
+        "next": "q5"
+      },
+      "q4_mal": {
+        "speaker": "Prof. Cuervo",
+        "text": "Jajaja, no, hijo. Carpa + saco pesa 11 kg: no cabe ni a patadas. Carpa + linterna da solo 36. Lo mejor es saco + cocinilla: 10 kg y valor 40. Lo goloso no siempre es lo óptimo.",
+        "effects": [
+          { "signMark": "bad" },
+          {
+            "sfx": "error"
+          }
+        ],
+        "next": "q5"
+      },
+      "q5": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "sign": "prueba", "step": 5 }],
+        "text": "Pregunta 5. Si pudiera llevar PEDAZOS de los objetos (mochila fraccionaria), ¿cuál sería el valor máximo?",
+        "choices": [
+          {
+            "label": "40",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q5_mal"
+          },
+          {
+            "label": "48",
+            "goto": "q5_bien"
+          },
+          {
+            "label": "56",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q5_mal"
+          }
+        ]
+      },
+      "q5_bien": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "signMark": "ok" }],
+        "text": "¡Correcto! Linterna, carpa y 3 de los 5 kg del saco: 6 + 30 + 12 = 48. Con fracciones, lo goloso SÍ es óptimo.",
+        "next": "q6"
+      },
+      "q5_mal": {
+        "speaker": "Prof. Cuervo",
+        "text": "Casi, mijo. Con fracciones se llena por valor/kilo: linterna (6), carpa (30) y 3 kg del saco (3 × 4 = 12). Total: 48.",
+        "effects": [
+          { "signMark": "bad" },
+          {
+            "sfx": "error"
+          }
+        ],
+        "next": "q6"
+      },
+      "q6": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "sign": "prueba", "step": 6 }],
+        "text": "Pregunta 6. Última: con programación dinámica, n objetos y capacidad W, ¿cuánto se demora el algoritmo?",
+        "choices": [
+          {
+            "label": "O(n log n)",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q6_mal"
+          },
+          {
+            "label": "O(n · W)",
+            "goto": "q6_bien"
+          },
+          {
+            "label": "O(n)",
+            "effects": [
+              {
+                "setFlag": "examen_error"
+              }
+            ],
+            "goto": "q6_mal"
+          }
+        ]
+      },
+      "q6_bien": {
+        "speaker": "Prof. Cuervo",
+        "effects": [{ "signMark": "ok" }],
+        "text": "¡Así es! Se llena una tabla de n por W. Se le dice pseudo-polinomial, porque depende del número W. ¡Ese es mi alumno!",
+        "next": "fin"
+      },
+      "q6_mal": {
+        "speaker": "Prof. Cuervo",
+        "text": "No, hijo: es O(n · W). Una tabla con una fila por objeto y una columna por cada kilo de capacidad. Pseudo-polinomial, porque depende de W.",
+        "effects": [
+          { "signMark": "bad" },
+          {
+            "sfx": "error"
+          }
+        ],
+        "next": "fin"
+      }
+    }
+  },
+  "profe_invita": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Prof. Cuervo",
+        "text": [
+          "¡Mijo! ¡Espere, espere!",
+          "Seis de seis. Hace años que no veía una prueba así, jajaja. Me alegró el lunes.",
+          "Pase por mi oficina en un rato: piso 6, la 604. Tengo algo que contarle. Y si ve un lápiz rojo en el pasillo... es mío. Se me volvió a perder."
+        ],
+        "next": "fin"
+      },
+      "fin": {
+        "effects": [
+          {
+            "setFlag": "invitado_oficina"
+          },
+          {
+            "objective": "Ve a la oficina 604 (Edificio A2, piso 6)"
+          }
+        ]
+      }
+    }
+  },
+  "oficina_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La oficina del profe Cuervo: libros, un murciélago de peluche, una radio sonando muy bajito... y como diez lápices. Ninguno rojo.",
+        "effects": [
+          {
+            "clock": "lun 10:00",
+            "max": "lun 10:12"
+          },
+          {
+            "objective": "Habla con el profesor Cuervo"
+          }
+        ]
+      }
+    }
+  },
+  "profe_oficina": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "intercambio"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "noticia"
+          }
+        ]
+      },
+      "noticia": {
+        "speaker": "Prof. Cuervo",
+        "text": "¡Pase, mijo, pase! Siéntese... bueno, quédese parado, que la silla está coja. Jajaja.",
+        "next": "convenio"
+      },
+      "convenio": {
+        "speaker": "Prof. Cuervo",
+        "text": [
+          "Le cuento: la universidad firmó un convenio de intercambio con la Pontificia Universidad Cristiana-Caleña, en Cali, Colombia. Un semestre completo, con todo pagado.",
+          "Me pidieron recomendar al mejor estudiante de Optimización. Y con la prueba de hoy, no tuve ni que pensarlo.",
+          "¡Felicitaciones, hijo! En un par de meses usted se va de intercambio a Cali."
+        ],
+        "effects": [
+          {
+            "sign": "convenio_cali"
+          }
+        ],
+        "choices": [
+          {
+            "label": "¡¿EN SERIO?!",
+            "goto": "serio"
+          },
+          {
+            "label": "¿Y hay que llevar mochila?",
+            "goto": "chiste"
+          },
+          {
+            "label": "¡Es lo más óptimo que me ha pasado!",
+            "goto": "mas_optimo"
+          }
+        ]
+      },
+      "serio": {
+        "speaker": "Prof. Cuervo",
+        "text": "¡En serio, mijo! Jajaja, mire la cara que puso. Llame a su familia: estas noticias se dan en caliente.",
+        "next": "fin"
+      },
+      "chiste": {
+        "speaker": "Prof. Cuervo",
+        "text": "Jajaja, ¡ese es mi alumno! Una de 23 kilos, mijo. Optimícela bien. Ahora llame a su familia: estas noticias se dan en caliente.",
+        "next": "fin"
+      },
+      "mas_optimo": {
+        "speaker": "Prof. Cuervo",
+        "text": [
+          "¿Cómo que lo MÁS óptimo? ¡Eso no existe, mijo! Jajaja. ¿Todo el semestre explicándolo y me sale con eso?",
+          "Se lo perdono por la emoción. Ahora llame a su familia: estas noticias se dan en caliente."
+        ],
+        "next": "fin"
+      },
+      "fin": {
+        "effects": [
+          {
+            "setFlag": "intercambio"
+          },
+          {
+            "sfx": "secret"
+          },
+          {
+            "objective": "Llama a tu mamá para contarle (Q → Teléfono)"
+          }
+        ]
+      },
+      "despues": {
+        "speaker": "Prof. Cuervo",
+        "text": [
+          "Llame a su mamá, mijo. Y vaya practicando el «¡mirá, ve!», que en Cali se habla así. Jajaja.",
+          "...Oiga, ¿no ha visto un lápiz rojo? Lo tenía aquí hace un segundo."
+        ]
+      }
+    }
+  },
+  "radio_profe": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Una radio vieja sobre el escritorio. Suena bajito un tema de metal gótico... y en la pantallita dice: «Lista: Algoritmos golosos».",
+        "effects": [
+          {
+            "setFlag": "secreto_radio"
+          }
+        ]
+      }
+    }
+  },
+  "librero_profe": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Libros: «Investigación de Operaciones», «Programación dinámica para gente con sueño», «El cuervo», de Poe... y «Cómo no perder tus cosas», sin abrir."
+      }
+    }
+  },
+  "llamada_mama_intercambio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mamá (llamada)",
+        "text": "¿Aló, hijo? ¿Cómo te fue en la prueba? Estoy en la pega, cuéntame rapidito.",
+        "choices": [
+          {
+            "label": "¡Seis de seis! ¡Y me voy de intercambio a Cali!",
+            "goto": "feliz"
+          }
+        ]
+      },
+      "feliz": {
+        "speaker": "Mamá (llamada)",
+        "text": [
+          "¿QUÉ? ¿A CALI? ¿A COLOMBIA? ¡Hijo! ¡Te felicito! ¡Estoy tan orgullosa de ti!",
+          "¿En un par de meses? ¡Pero si no tienes ni maleta! Vas a volver bailando salsa, ya verás.",
+          "Le voy a contar a tu papá, a tu abuela, a la vecina... ¡a todo Paine!",
+          "Esta noche celebramos. Y la loza la lavo yo, ¿ya? Te quiero mucho, mi niño."
+        ],
+        "effects": [
+          {
+            "event": "mision2_final"
+          }
+        ]
+      }
+    }
+  },
+  "llamada_mama_noche": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mamá (llamada)",
+        "text": "¿Me estai llamando desde el segundo piso? Baja nomás, si estoy aquí abajo. Jajaja."
+      }
+    }
+  },
+  "llamada_mama_manana": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mamá (llamada)",
+        "text": "Hijo, voy entrando a la pega. ¿Pasó algo? ¿No? Ya, entonces ¡concéntrate en la prueba! Te quiero."
+      }
+    }
+  },
+  "llamada_mama_m1": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mamá (llamada)",
+        "text": "¿Aló? Hijo, te espero en el Costanera. ¡No te vayas a perder! Y cárgale la Bip!"
+      }
+    }
+  },
+  "llamada_benja": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "examen_perfecto"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Benja (llamada)",
+        "text": "Wena hermano, nos vemos en la U. ¡No te vayai a quedar dormido!"
+      },
+      "despues": {
+        "speaker": "Benja (llamada)",
+        "text": "¡Oe! ¿Es verdad que te sacaste un siete? Culiao seco, te pasaste loco!"
+      }
+    }
+  }
+}

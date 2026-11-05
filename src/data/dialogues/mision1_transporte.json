@@ -1,0 +1,641 @@
+{
+  "maquina_mala": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "MÁQUINA DE CARGA. La pantalla está negra y alguien pegó un papel: \"ESTÁ MALA. Use la otra, la del fondo a la izquierda\".",
+        "effects": [{ "sign": "papel_maquina_mala" }]
+      }
+    }
+  },
+  "maquina_bip": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "CARGA TU TARJETA BIP!. Saldo: {bip}. Efectivo: {plata}.",
+        "choices": [
+          {
+            "label": "Cargar $1.000",
+            "if": {
+              "minMoney": 1000
+            },
+            "effects": [
+              {
+                "pay": 1000
+              },
+              {
+                "chargeBip": 1000
+              },
+              {
+                "setFlag": "bip_cargada"
+              }
+            ],
+            "goto": "listo"
+          },
+          {
+            "label": "Cargar $2.000",
+            "if": {
+              "minMoney": 2000
+            },
+            "effects": [
+              {
+                "pay": 2000
+              },
+              {
+                "chargeBip": 2000
+              },
+              {
+                "setFlag": "bip_cargada"
+              }
+            ],
+            "goto": "listo"
+          },
+          {
+            "label": "Cancelar"
+          }
+        ]
+      },
+      "listo": {
+        "text": "*Bip* ¡Carga exitosa! Nuevo saldo: {bip}."
+      }
+    }
+  },
+  "guardia_metro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "minBip": 800
+            },
+            "goto": "pase"
+          },
+          {
+            "goto": "sin_saldo"
+          }
+        ]
+      },
+      "pase": {
+        "speaker": "Guardia",
+        "text": "Pase nomás, joven. Acerque la Bip! al torniquete."
+      },
+      "sin_saldo": {
+        "speaker": "Guardia",
+        "text": "Sin Bip! con saldo no pasa nadie, joven. Las máquinas de carga están ahí... bueno, la de al lado está mala. Use la del fondo."
+      }
+    }
+  },
+  "torniquete": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "minBip": 800
+            },
+            "goto": "pasa"
+          },
+          {
+            "goto": "rechazo"
+          }
+        ]
+      },
+      "pasa": {
+        "text": "Acercas la Bip! al lector... *Bip* Se cobraron $800. Saldo: {bip}.",
+        "effects": [
+          {
+            "payBip": 800
+          },
+          {
+            "setFlag": "ruta_metro"
+          },
+          {
+            "objective": "Toma la Línea 1 dirección Los Dominicos"
+          },
+          {
+            "warp": {
+              "map": "metro_baquedano",
+              "spawn": "post_torniquete"
+            }
+          }
+        ]
+      },
+      "rechazo": {
+        "text": "Acercas la Bip! al lector... *BIP-BIP-BIP* SALDO INSUFICIENTE.",
+        "effects": [
+          {
+            "sfx": "error"
+          }
+        ],
+        "next": "reto"
+      },
+      "reto": {
+        "speaker": "Guardia",
+        "text": "¡Ey, joven! Sin saldo no pasa. Cargue la tarjeta en las máquinas."
+      }
+    }
+  },
+  "anden_san_pablo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "ANDÉN DIRECCIÓN SAN PABLO (hacia el poniente). ¿Esperar el tren?",
+        "effects": [{ "sign": "metro_san_pablo" }],
+        "choices": [
+          {
+            "label": "Esperar el tren",
+            "effects": [
+              {
+                "event": "metro_esperar_tren",
+                "data": {
+                  "ride": "metro_poniente",
+                  "track": 12,
+                  "dir": "left"
+                }
+              }
+            ]
+          },
+          {
+            "label": "No"
+          }
+        ]
+      }
+    }
+  },
+  "anden_los_dominicos": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "ANDÉN DIRECCIÓN LOS DOMINICOS (hacia el oriente). ¿Esperar el tren?",
+        "effects": [{ "sign": "metro_los_dominicos" }],
+        "choices": [
+          {
+            "label": "Esperar el tren",
+            "effects": [
+              {
+                "event": "metro_esperar_tren",
+                "data": {
+                  "ride": "metro_oriente",
+                  "track": 18,
+                  "dir": "right"
+                }
+              }
+            ]
+          },
+          {
+            "label": "No"
+          }
+        ]
+      }
+    }
+  },
+  "metro_tren_llega": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¡Llegó el tren! Suena el pitido y se abren las puertas.",
+        "choices": [
+          {
+            "label": "Subir",
+            "effects": [
+              {
+                "setFlag": "_subir"
+              }
+            ]
+          },
+          {
+            "label": "Mejor no"
+          }
+        ]
+      }
+    }
+  },
+  "mural_linea": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un mapa gigante de la Línea 1, de San Pablo a Los Dominicos. Alguien marcó Baquedano con plumón: \"ESTÁS AQUÍ\".",
+        "choices": [
+          {
+            "label": "Mirar el mapa",
+            "effects": [
+              {
+                "event": "mapa_linea"
+              }
+            ]
+          },
+          {
+            "label": "Seguir"
+          }
+        ]
+      }
+    }
+  },
+  "pasajera_anden": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Pasajera",
+        "text": "Este andén va pa'l oriente: Salvador, Manuel Montt... hasta Los Dominicos. El otro andén va pa'l poniente."
+      }
+    }
+  },
+  "estudiante_metro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Estudiante",
+        "text": "Tip: si te quedai parado en la puerta del vagón la gente te mira feo. Hay que correrse pa' adentro."
+      }
+    }
+  },
+  "vagon_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Las puertas se cierran: ¡piii, piii, piii!",
+          "Para bajarte, párate frente a una puerta cuando esté abierta y presiona E. El Costanera queda en la estación Tobalaba."
+        ]
+      }
+    }
+  },
+  "vagon_inicio_poniente": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Las puertas se cierran: ¡piii, piii, piii!",
+          "VOZ: Próxima estación: Universidad Católica.",
+          "¿Universidad Católica? Esa queda... al poniente. Uh-oh."
+        ]
+      }
+    }
+  },
+  "metro_direccion_equivocada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "VOZ: Estación Universidad Católica.",
+          "Te bajas, cruzas al otro andén y tomas el tren de vuelta a Baquedano. Perdiste un buen rato. (+1:30)"
+        ],
+        "effects": [
+          {
+            "addTime": 90000
+          }
+        ]
+      }
+    }
+  },
+  "metro_te_pasaste": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "VOZ: Estación El Golf.",
+          "¡Te pasaste de Tobalaba! Te bajas y vuelves una estación. (+1:00)"
+        ],
+        "effects": [
+          {
+            "addTime": 60000
+          }
+        ]
+      }
+    }
+  },
+  "vagon_puerta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "_puertas_abiertas"
+            },
+            "goto": "abierta"
+          },
+          {
+            "goto": "cerrada"
+          }
+        ]
+      },
+      "abierta": {
+        "text": "Estación {estacion}. Las puertas están abiertas.",
+        "choices": [
+          {
+            "label": "Bajarme aquí",
+            "effects": [
+              {
+                "event": "ride_exit"
+              }
+            ]
+          },
+          {
+            "label": "Seguir en el tren"
+          }
+        ]
+      },
+      "cerrada": {
+        "text": "Las puertas están cerradas. Próxima estación: {estacion}."
+      }
+    }
+  },
+  "vagon_celular": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Pasajera",
+        "text": "...sí, mamá, ya voy en el metro. No, no estoy perdida. ¿Cómo que Tobalaba es de la Línea 4? ¡Es de la 1 y de la 4!"
+      }
+    }
+  },
+  "vagon_dormido": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "secreto_dormido"
+            },
+            "goto": "despierto"
+          },
+          {
+            "if": {
+              "flag": "dormido_2"
+            },
+            "goto": "despierta"
+          },
+          {
+            "if": {
+              "flag": "dormido_1"
+            },
+            "goto": "ronca"
+          },
+          {
+            "goto": "duerme"
+          }
+        ]
+      },
+      "duerme": {
+        "text": "El estudiante duerme profundamente, con la boca abierta. Seguro que se pasa de estación.",
+        "effects": [
+          {
+            "setFlag": "dormido_1"
+          }
+        ]
+      },
+      "ronca": {
+        "text": "Le tocas el hombro. Ronca más fuerte: «zzz... cinco minutos más, mamá... zzz».",
+        "effects": [
+          {
+            "setFlag": "dormido_2"
+          }
+        ]
+      },
+      "despierta": {
+        "speaker": "Estudiante",
+        "text": [
+          "¡¿AH?! ¿Ya llegamos a Los Dominicos? ...Ah, no, recién vamos por {estacion}.",
+          "Gracias, igual me iba a pasar. Hoy tengo prueba de cálculo y no estudié nada."
+        ],
+        "effects": [
+          {
+            "setFlag": "secreto_dormido"
+          }
+        ]
+      },
+      "despierto": {
+        "speaker": "Estudiante",
+        "text": "Estoy despierto, estoy despierto. Repasando derivadas con los ojos cerrados."
+      }
+    }
+  },
+  "vagon_abuelo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Abuelo",
+        "text": "Antes el metro era mucho más tranquilo... Bueno, antes no había metro, así que era bien tranquilo."
+      }
+    }
+  },
+  "vagon_permiso": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Pasajero",
+        "text": "¡Permiso! ¿Se baja en la próxima? ¿No? Entonces córrase pa' adentro, porfa."
+      }
+    }
+  },
+  "micro_411_inicio": {
+    "start": "chofer",
+    "nodes": {
+      "chofer": {
+        "speaker": "Chofer",
+        "text": "¡Avancen pa' atrás, que atrás hay espacio!",
+        "next": "tip"
+      },
+      "tip": {
+        "text": "Para bajarte, toca el timbre (los botones rojos al fondo) antes de tu parada. El Costanera queda en Tobalaba. Puedes presionar la tecla V en cualquier momento para ver la micro desde afuera.",
+        "next": "vendedor"
+      },
+      "vendedor": {
+        "speaker": "Vendedor",
+        "text": [
+          "Buenas tardes, señoras y señores, disculpen la molestia.",
+          "No vengo a robarles su tiempo, vengo a ofrecerles un producto de excelente calidad...",
+          "Barritas de chocolate a $500, tres por mil. En el negocio le cuestan $700, en el supermercado $800 y en el aeropuerto ni le cuento.",
+          "Si no me compra, igual le deseo un excelente día. Recibo monedas, billetes y sonrisas."
+        ],
+        "choices": [
+          {
+            "label": "Comprar una ($500)",
+            "if": {
+              "minMoney": 500
+            },
+            "effects": [
+              {
+                "pay": 500
+              }
+            ],
+            "goto": "compra"
+          },
+          {
+            "label": "Regalarle una sonrisa",
+            "goto": "sonrisa"
+          },
+          {
+            "label": "Mirar por la ventana",
+            "goto": "ventana"
+          }
+        ]
+      },
+      "compra": {
+        "text": "Te la comes al tiro. Estaba medio derretida, pero rica."
+      },
+      "sonrisa": {
+        "speaker": "Vendedor",
+        "text": "¡Eso también vale, joven! Que tenga buen viaje."
+      },
+      "ventana": {
+        "text": "Miras por la ventana con intensidad. El vendedor entiende la indirecta."
+      }
+    }
+  },
+  "micro_210_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Chofer",
+        "text": "¡Avancen, avancen, que no muerde nadie!",
+        "next": "sospecha"
+      },
+      "sospecha": {
+        "text": "La micro arranca por Providencia... y en la primera esquina pone el intermitente a la derecha. Mmm."
+      }
+    }
+  },
+  "micro_210_dobla": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "¡La 210 dobló al sur por Vicuña Mackenna!",
+          "Te bajas en la siguiente parada y caminas de vuelta a Plaza Baquedano. (+1:30)"
+        ],
+        "effects": [
+          {
+            "addTime": 90000
+          }
+        ]
+      }
+    }
+  },
+  "micro_te_pasaste": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "¡Te pasaste de Tobalaba! El chofer no para hasta la siguiente parada.",
+          "Te bajas y caminas de vuelta. (+1:00)"
+        ],
+        "effects": [
+          {
+            "addTime": 60000
+          }
+        ]
+      }
+    }
+  },
+  "micro_timbre": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "_timbre"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "pregunta"
+          }
+        ]
+      },
+      "pregunta": {
+        "text": "Es el timbre. ¿Tocarlo para bajarte en la próxima parada ({estacion})?",
+        "choices": [
+          {
+            "label": "¡Tocar!",
+            "effects": [
+              {
+                "setFlag": "_timbre"
+              }
+            ],
+            "goto": "riiing"
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "riiing": {
+        "text": "¡RIIIING! El chofer te mira por el espejo. Te bajas en la próxima parada."
+      },
+      "ya": {
+        "text": "Ya tocaste el timbre. Paciencia, que el chofer ya sabe."
+      }
+    }
+  },
+  "micro_puerta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La puerta está cerrada. Para bajarte, toca el timbre antes de tu parada."
+      }
+    }
+  },
+  "micro_chofer": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Chofer",
+        "text": "Prohibido conversar con el chofer... pero ya que pregunta: Tobalaba es después de Los Leones. Toque el timbre a tiempo."
+      }
+    }
+  },
+  "micro_vendedor": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Vendedor",
+        "text": "Tres por mil, joven. Es mi última oferta. Bueno, también la primera."
+      }
+    }
+  },
+  "micro_pasajera": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Pasajera",
+        "text": "¿También vai pa'l Costanera? Yo voy a cambiar unas zapatillas. Por tercera vez."
+      }
+    }
+  },
+  "micro_abuelo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Abuelo",
+        "text": "Joven, ¿me da el asiento? ...Ah, no, si ya estoy sentado. Perdón, es la costumbre."
+      }
+    }
+  },
+  "micro_ventana": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Miras por la ventana hacia Av. Providencia. Se ven los autos pasando y la gente caminando por la vereda.",
+        "choices": [
+          {
+            "label": "Ver la micro desde afuera (Tecla V)",
+            "effects": [
+              {
+                "event": "toggle-ride-view"
+              }
+            ]
+          },
+          {
+            "label": "Seguir adentro"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "bus_cali",
+  "name": "Bus P27",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 14,
+  "height": 6,
+  "background": "#0c0c14",
+  "music": "salsa",
+  "legend": {
+    "k": "auto_carroceria",
+    "V": "bus_ventana",
+    "T": "micro_tablero",
+    "s": "micro_asiento",
+    ".": "micro_piso",
+    "P": "micro_puerta"
+  },
+  "rows": [
+    "kkkkkkkkkkkkkk",
+    "kVVVVVVVVVVVVk",
+    "kT.ss.ss.ss.sk",
+    "kT...........k",
+    "kVPVVVVVVPVVVk",
+    "kkkkkkkkkkkkkk"
+  ],
+  "spawns": {
+    "asiento": {
+      "x": 4,
+      "y": 2,
+      "dir": "left"
+    }
+  },
+  "crowd": {
+    "lines": "bus_cali",
+    "seats": 0.55
+  },
+  "enter": [
+    {
+      "id": "viaje",
+      "dialogue": "bus_viaje"
+    }
+  ]
+}

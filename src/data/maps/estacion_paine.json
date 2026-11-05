@@ -1,0 +1,44 @@
+{
+  "id": "estacion_paine",
+  "name": "Estación Paine",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 22,
+  "height": 12,
+  "background": "#14141c",
+  "music": "station",
+  "legend": {"^": "muro_techo", "W": "muro_tren", ".": "piso", "P": "puerta", "T": "torniquete", "y": "piso_linea", "v": "via"},
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^^^",
+    "WWWWWWWWWWPWWWWWWWWWWW",
+    "......................",
+    "......................",
+    "......................",
+    "^^^^^^^^^TT.TT^^^^^^^^",
+    "......................",
+    "......................",
+    "yyyyyyyyyyyyyyyyyyyyyy",
+    "vvvvvvvvvvvvvvvvvvvvvv",
+    "vvvvvvvvvvvvvvvvvvvvvv",
+    "^^^^^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {"name": "Estación Paine", "subtitle": "Hall", "x": 0, "y": 0, "w": 22, "h": 5},
+    {"name": "Andén", "subtitle": "Trenes a Estación Central", "x": 0, "y": 5, "w": 22, "h": 7}
+  ],
+  "spawns": {
+    "entrada": {"x": 10, "y": 2, "dir": "down"},
+    "anden": {"x": 11, "y": 6, "dir": "down"}
+  },
+  "warps": [
+    {"x": 10, "y": 1, "to": "paine", "spawn": "estacion"}
+  ],
+  "labels": [
+    {"x": 11, "y": 0.5, "text": "ESTACIÓN PAINE"},
+    {"x": 11, "y": 4.5, "text": "VALIDADOR · PASAJE $1.060"}
+  ],
+  "crowd": {"lines": "tren", "areas": [{"x": 1, "y": 2, "w": 20, "h": 3, "count": 2}, {"x": 0, "y": 6, "w": 22, "h": 2, "count": 4, "dir": "down"}]},
+  "enter": [
+    {"id": "llegada", "dialogue": "estacion_paine_llegada", "if": {"flag": "despierto"}, "once": true}
+  ]
+}

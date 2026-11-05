@@ -1,0 +1,805 @@
+{
+  "mision1_intro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "*Bzzzt* Te vibra el celular: es un mensaje de tu mamá. (Presiona Q para abrir el celular.)",
+          "Estás en Plaza Baquedano. El Costanera queda al oriente, siguiendo Av. Providencia.",
+          "Puedes ir en metro, en micro o a pie. Tienes {plata} en efectivo y tu Bip! tiene {bip}.",
+          "(Caminas con WASD o las flechas. Con E hablas con la gente y revisas las cosas; Tab abre el inventario y Esc pausa, donde también puedes guardar la partida.)"
+        ],
+        "effects": [
+          {
+            "setFlag": "mision_iniciada"
+          },
+          {
+            "objective": "Llega al Costanera Center (al oriente)"
+          }
+        ]
+      }
+    }
+  },
+  "cartel_barrio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Un mapa del barrio: Av. Providencia, de poniente a oriente, hasta Tobalaba.",
+          "Junto a Tobalaba, el Costanera Center. Y al lado del \"Usted está aquí\", alguien dibujó un monito."
+        ],
+        "effects": [{ "sign": "mapa_barrio" }]
+      }
+    }
+  },
+  "acceso_cerrado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Las rejas están cerradas. Un cartel dice: \"ACCESO CERRADO POR MANTENCIÓN. Use el acceso del frente, al otro lado de Providencia\".",
+        "effects": [{ "sign": "acceso_cerrado" }]
+      }
+    }
+  },
+  "senora_indicaciones": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "hablo_con_senora"
+            },
+            "goto": "otra_vez"
+          },
+          {
+            "goto": "saludo"
+          }
+        ]
+      },
+      "saludo": {
+        "speaker": "Señora",
+        "text": [
+          "¡Hola, mijito! ¿Andai perdío? ¿Al Costanera?",
+          "Mira, es fácil: te vai pa' allá, donde estaba el kiosco que ya no está. Después doblai donde había un perrito durmiendo... si es que sigue ahí."
+        ],
+        "choices": [
+          {
+            "label": "¿Y dónde estaba el kiosco?",
+            "goto": "kiosco"
+          },
+          {
+            "label": "¿Y el metro?",
+            "goto": "metro"
+          },
+          {
+            "label": "Gracias, señora",
+            "goto": "gracias"
+          }
+        ]
+      },
+      "kiosco": {
+        "speaker": "Señora",
+        "text": "¡Pero si te estoy diciendo! Donde ya no está, po. Ay, la juventud de hoy...",
+        "effects": [
+          {
+            "setFlag": "hablo_con_senora"
+          }
+        ]
+      },
+      "metro": {
+        "speaker": "Señora",
+        "text": "¿El metro? Este acceso está cerrado hace como tres años. Cruza Providencia, que al frente hay otro. Al lado del kiosco que ya no está.",
+        "effects": [
+          {
+            "setFlag": "hablo_con_senora"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Señora",
+        "text": "De nada. ¡Y abríguese, que está corriendo vientecito!",
+        "effects": [
+          {
+            "setFlag": "hablo_con_senora"
+          }
+        ]
+      },
+      "otra_vez": {
+        "speaker": "Señora",
+        "text": "¿Todavía por aquí? Ya te dije: donde estaba el kiosco. Si te fijai, se nota la marca en la vereda, pasado el paradero."
+      }
+    }
+  },
+  "hallazgo_hueso": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Entre el pasto hay un hueso bien pelado. Mmm... a algún perrito le puede servir.",
+        "effects": [
+          {
+            "giveItem": "hueso"
+          },
+          {
+            "setFlag": "encontro_hueso"
+          }
+        ]
+      }
+    }
+  },
+  "quiltro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un quiltro te mira con ojos de cordero degollado. Mueve la cola, esperanzado.",
+        "choices": [
+          {
+            "label": "Darle el hueso",
+            "if": {
+              "hasItem": "hueso"
+            },
+            "effects": [
+              {
+                "takeItem": "hueso"
+              },
+              {
+                "setFlag": "quiltro_sigue"
+              }
+            ],
+            "goto": "hueso"
+          },
+          {
+            "label": "Darle un pedazo de sopaipilla",
+            "if": {
+              "hasItem": "sopaipilla"
+            },
+            "effects": [
+              {
+                "setFlag": "quiltro_sigue"
+              }
+            ],
+            "goto": "sopaipilla"
+          },
+          {
+            "label": "Hacerle cariño",
+            "goto": "carino"
+          },
+          {
+            "label": "Seguir tu camino"
+          }
+        ]
+      },
+      "hueso": {
+        "text": "¡Se lo comió en dos mordiscos! Ahora el quiltro te sigue a todas partes. Tienes un nuevo amigo.",
+        "effects": [
+          {
+            "vineta": "quiltro_hueso"
+          }
+        ]
+      },
+      "sopaipilla": {
+        "text": "Le das la mitad de tu sopaipilla. ¡Le encantó! Ahora el quiltro te sigue a todas partes.",
+        "effects": [
+          {
+            "vineta": "quiltro_sopaipilla"
+          }
+        ]
+      },
+      "carino": {
+        "text": "Le haces cariño detrás de las orejas. Se tira de espaldas... pero lo que de verdad quiere es comida."
+      }
+    }
+  },
+  "abuelo_micro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "sabe_micro"
+            },
+            "goto": "otra_vez"
+          },
+          {
+            "goto": "consejo"
+          }
+        ]
+      },
+      "consejo": {
+        "speaker": "Abuelo",
+        "text": [
+          "¿Vai pa'l Costanera? Tomai la 411 en este paradero. Esa sigue derechito por Providencia hasta Tobalaba.",
+          "Pero ojo: ¡no te subai a la 210! Esa dobla al sur por Vicuña Mackenna y terminai en cualquier parte.",
+          "Y toca el timbre antes de tu parada, que los choferes no paran por adivinación."
+        ],
+        "effects": [
+          {
+            "setFlag": "sabe_micro"
+          }
+        ]
+      },
+      "otra_vez": {
+        "speaker": "Abuelo",
+        "text": "La 411, mijo. La cuatro-uno-uno. Y con saldo en la Bip!, ¿ah?"
+      }
+    }
+  },
+  "paradero_baquedano": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Alguien rayó el letrero del paradero: de los recorridos solo se lee \"2_0\" y \"4_1\".",
+        "effects": [{ "sign": "paradero_pa421" }],
+        "choices": [
+          {
+            "label": "Esperar micro",
+            "effects": [
+              {
+                "event": "micro_esperar",
+                "data": {
+                  "x": 26,
+                  "lane": 17
+                }
+              }
+            ]
+          },
+          {
+            "label": "Mejor no"
+          }
+        ]
+      }
+    }
+  },
+  "micro_pasa_llena": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¡Pasó una 411 repleta y ni siquiera paró! Iba gente colgando de la puerta."
+      }
+    }
+  },
+  "micro_llega": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Llega la micro {micro} y abre la puerta. El chofer te mira.",
+        "choices": [
+          {
+            "label": "Subir (Bip! $800)",
+            "if": {
+              "minBip": 800
+            },
+            "effects": [
+              {
+                "payBip": 800
+              },
+              {
+                "setFlag": [
+                  "ruta_micro",
+                  "_subir"
+                ]
+              }
+            ],
+            "goto": "sube"
+          },
+          {
+            "label": "Subir",
+            "if": {
+              "not": {
+                "minBip": 800
+              }
+            },
+            "goto": "sin_saldo"
+          },
+          {
+            "label": "Esperar la siguiente",
+            "goto": "espera"
+          }
+        ]
+      },
+      "sube": {
+        "text": "*Bip* Pagaste $800. Saldo: {bip}.",
+        "next": "modo_viaje"
+      },
+      "modo_viaje": {
+        "speaker": "Chofer",
+        "text": "¡Pase nomás! ¿Cómo prefieres hacer el viaje?",
+        "choices": [
+          {
+            "label": "Viajar en el interior de la micro",
+            "goto": "sube_interior"
+          },
+          {
+            "label": "Ver la micro desde afuera (recorrido original)",
+            "effects": [
+              {
+                "setFlag": "_ver_exterior"
+              }
+            ],
+            "goto": "sube_exterior"
+          }
+        ]
+      },
+      "sube_interior": {
+        "speaker": "Chofer",
+        "text": "¡Avancen pa' atrás, que al fondo hay espacio! (Con la tecla V puedes cambiar de vista en cualquier momento)."
+      },
+      "sube_exterior": {
+        "text": "Comienza el viaje. Sigues a la micro desde afuera por Av. Providencia hacia el oriente. (Presiona V para entrar al bus o E para tocar el timbre)."
+      },
+      "sin_saldo": {
+        "speaker": "Chofer",
+        "text": "*Bip-bip-bip* Saldo insuficiente, joven. Cargue la tarjeta en una estación de metro.",
+        "effects": [
+          {
+            "sfx": "error"
+          }
+        ]
+      },
+      "espera": {
+        "text": "La {micro} cierra la puerta y se va."
+      }
+    }
+  },
+  "micro_no_subio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "No te subiste a ninguna micro. Ni modo: en metro o a pata."
+      }
+    }
+  },
+  "paradero_otro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Paradero de micros. Desde aquí ya conviene seguir caminando: el Costanera queda al oriente.",
+        "effects": [{ "sign": "paradero_providencia" }]
+      }
+    }
+  },
+  "metro_no_volver": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Mejor sigue a pie desde aquí. El Costanera Center es la torre de vidrio junto a Nueva Tajamar, antes de llegar a Tobalaba."
+      }
+    }
+  },
+  "sopaipillas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "sopaipilla"
+            },
+            "goto": "ya_compro"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Tía de las sopaipillas",
+        "text": "¡Sopaipillas calentitas, recién fritas! A $500. ¿Le doy una?",
+        "choices": [
+          {
+            "label": "Sí, una ($500)",
+            "if": {
+              "minMoney": 500
+            },
+            "effects": [
+              {
+                "pay": 500
+              },
+              {
+                "giveItem": "sopaipilla"
+              },
+              {
+                "setFlag": "hablo_con_tia_sopaipillas"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "No me alcanza...",
+            "if": {
+              "not": {
+                "minMoney": 500
+              }
+            },
+            "goto": "fiado"
+          },
+          {
+            "label": "Otro día",
+            "goto": "chao"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Tía de las sopaipillas",
+        "text": "¿Con pebre o mostaza? ...Ay, se me acabó la mostaza. Con pebre nomás. ¡Que le aproveche!",
+        "effects": [{ "vineta": "compra_sopaipilla" }]
+      },
+      "ya_compro": {
+        "speaker": "Tía de las sopaipillas",
+        "text": "¿Y? ¿Estaba buena o no? Si pasa un quiltro, no le dé toda, ¿ah?"
+      },
+      "fiado": {
+        "speaker": "Tía de las sopaipillas",
+        "text": "Ay, no se preocupe... pero fiado no le puedo dar, mijo."
+      },
+      "chao": {
+        "speaker": "Tía de las sopaipillas",
+        "text": "Ya po, aquí voy a estar."
+      }
+    }
+  },
+  "turista": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "ayudo_turista"
+            },
+            "goto": "agradecido"
+          },
+          {
+            "if": {
+              "flag": "turista_perdido"
+            },
+            "goto": "volvio"
+          },
+          {
+            "goto": "pregunta"
+          }
+        ]
+      },
+      "pregunta": {
+        "speaker": "Turista",
+        "text": "Excuse me! Costanera Center? The big tower? Which way, please?",
+        "choices": [
+          {
+            "label": "East! Al oriente, todo derecho",
+            "effects": [
+              {
+                "setFlag": "ayudo_turista"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "West! Pa' allá (al poniente)",
+            "effects": [
+              {
+                "setFlag": "turista_perdido"
+              }
+            ],
+            "goto": "engano"
+          },
+          {
+            "label": "Sorry, no English",
+            "goto": "nada"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Turista",
+        "text": "Thank you so much! Grasias, amigou! Please, take this for an empanada.",
+        "effects": [
+          {
+            "giveMoney": 1000
+          }
+        ]
+      },
+      "engano": {
+        "speaker": "Turista",
+        "text": "West? Okay! Grasias!"
+      },
+      "volvio": {
+        "speaker": "Turista",
+        "text": "I went west and ended up in Plaza Baquedano... again! I think the tower is EAST.",
+        "choices": [
+          {
+            "label": "Sorry! Yes, east",
+            "effects": [
+              {
+                "setFlag": "ayudo_turista"
+              }
+            ],
+            "goto": "perdona"
+          }
+        ]
+      },
+      "perdona": {
+        "speaker": "Turista",
+        "text": "No problem! Chilean directions are an adventure."
+      },
+      "nada": {
+        "speaker": "Turista",
+        "text": "Oh... okay. Grasias anyway!"
+      },
+      "agradecido": {
+        "speaker": "Turista",
+        "text": "East! I remember. Thank you, amigou!"
+      }
+    }
+  },
+  "estudiante_parque": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Estudiante",
+        "text": "Por Providencia es más rápido en metro, pero a pie te encuentras más cosas. Dicen que en Pedro de Valdivia regalan empanadas."
+      }
+    }
+  },
+  "completos": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "completo"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Don Lucho",
+        "text": "¡Completos, completos! Italiano a $1.000: palta, tomate y mayo casera. ¡Como en la fuente de soda, pero al paso!",
+        "choices": [
+          {
+            "label": "Un italiano ($1.000)",
+            "if": {
+              "minMoney": 1000
+            },
+            "effects": [
+              {
+                "pay": 1000
+              },
+              {
+                "giveItem": "completo"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "¿Me lo fía?",
+            "goto": "fiado"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Don Lucho",
+        "text": "¡Ojo con la mayo, que se chorrea! Le quedan {plata}.",
+        "effects": [{ "vineta": "compra_completo" }]
+      },
+      "fiado": {
+        "speaker": "Don Lucho",
+        "text": "¡Jajaja! Fiado no le doy ni a mi suegra."
+      },
+      "ya": {
+        "speaker": "Don Lucho",
+        "text": "¿Y? ¿Le faltó mayo? A mí me gusta con harta."
+      }
+    }
+  },
+  "senor_pileta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Señor",
+        "text": [
+          "En mis tiempos esta pileta tenía patos. Ahora tiene monedas... y una zapatilla.",
+          "Si vas pa'l Costanera, sigue por Providencia. Y si te cansai, en cada esquina hay metro."
+        ]
+      }
+    }
+  },
+  "empanadas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "probo_empanada"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Doña Juana",
+        "text": "¡Empanadas de pino, recién salidas del horno! ¿Quiere probar? La primera es de regalo, pa' que vuelva.",
+        "choices": [
+          {
+            "label": "¡Sí, gracias!",
+            "effects": [
+              {
+                "giveItem": "empanada"
+              },
+              {
+                "setFlag": "probo_empanada"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "No, gracias",
+            "goto": "pierde"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Doña Juana",
+        "text": "Cuidado con el cuesco de la aceituna, ¿ah?",
+        "effects": [{ "vineta": "compra_empanada" }]
+      },
+      "pierde": {
+        "speaker": "Doña Juana",
+        "text": "Usted se lo pierde, mijo."
+      },
+      "ya": {
+        "speaker": "Doña Juana",
+        "text": "¿Estaba rica? La receta es de mi abuela, de Curicó."
+      }
+    }
+  },
+  "oficinista": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "conoce_atajo"
+            },
+            "goto": "otra_vez"
+          },
+          {
+            "goto": "saludo"
+          }
+        ]
+      },
+      "saludo": {
+        "speaker": "Oficinista",
+        "text": "¡Permiso, permiso! Voy atrasadísimo a una reunión... ¿Qué? ¿Al Costanera?",
+        "choices": [
+          {
+            "label": "Sí, ¿cómo llego rápido?",
+            "goto": "atajo"
+          },
+          {
+            "label": "No, nada, perdón",
+            "goto": "chao"
+          }
+        ]
+      },
+      "atajo": {
+        "speaker": "Oficinista",
+        "text": [
+          "Te voy a contar un secreto de oficinista: la galería de aquí al frente cruza por dentro hasta Nueva Tajamar.",
+          "Sales justo al lado del Costanera. Toma, te hice un mapa en una servilleta."
+        ],
+        "effects": [
+          {
+            "sign": "servilleta"
+          },
+          {
+            "giveItem": "mapa"
+          },
+          {
+            "setFlag": "conoce_atajo"
+          },
+          {
+            "objective": "Usa el atajo de la galería (Los Leones)"
+          }
+        ]
+      },
+      "chao": {
+        "speaker": "Oficinista",
+        "text": "¡Ya, chao, chao! ¡Se me va la reunión!"
+      },
+      "otra_vez": {
+        "speaker": "Oficinista",
+        "text": "¿Todavía aquí? ¡La galería! La puerta al otro lado de la calle."
+      }
+    }
+  },
+  "atajo_cerrado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Es la puerta de una galería comercial. Un letrero dice \"Solo personal autorizado\". Mejor no entrar sin saber adónde lleva.",
+        "effects": [{ "sign": "solo_personal" }]
+      }
+    }
+  },
+  "mote": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "mote"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Vendedor",
+        "text": "¡Mote con huesillo heladito! A $800 el vaso, con harto mote y dos huesillos.",
+        "choices": [
+          {
+            "label": "Uno ($800)",
+            "if": {
+              "minMoney": 800
+            },
+            "effects": [
+              {
+                "pay": 800
+              },
+              {
+                "giveItem": "mote"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "Está caro",
+            "goto": "caro"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Vendedor",
+        "text": "¡Salud! Ojo con el cuesco del huesillo.",
+        "effects": [{ "vineta": "compra_mote" }]
+      },
+      "caro": {
+        "speaker": "Vendedor",
+        "text": "¿Caro? ¡Con el calor que hace! Bueno... pero no le hago descuento."
+      },
+      "ya": {
+        "speaker": "Vendedor",
+        "text": "¿Otro? No, mijo, déjele a los demás."
+      }
+    }
+  },
+  "tobalaba_tip": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Pasajero",
+        "text": "¿El Costanera? ¡Mira pa' arriba! Esa torre gigante. Cruza Tobalaba y el canal hacia el poniente: la entrada da a Providencia."
+      }
+    }
+  }
+}

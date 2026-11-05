@@ -1,0 +1,70 @@
+{
+  "id": "antonio_varas",
+  "name": "Antonio Varas",
+  "kind": "overworld",
+  "tileSize": 16,
+  "width": 32,
+  "height": 30,
+  "background": "#5c5c6c",
+  "legend": {"#": "edificio", "G": "edificio:vidrio", ".": "vereda", "=": "calle", "-": "calle_linea_h", "|": "calle_linea_v", "z": "cebra_h", "Z": "cebra_v", "M": "metro", "f": "farol", "t": "arbol_vereda", "r": "reja", "a": "adoquin", "\"": "pasto", "T": "arbol", "P": "arbol_plaza", "B": "banca_plaza", "D": "puerta"},
+  "rows": [
+    "=|=#############################",
+    "=|=#############################",
+    "ZZZ...t..f..........t......f....",
+    "===========zz===================",
+    "-----------zz-------------------",
+    "===========zz===================",
+    "ZZZ...........ZZZ...............",
+    "=|=...M.......=|=.......t....f..",
+    "=|=.#########.=|=.##############",
+    "=|=.#########.=|=.##############",
+    "=|=.#########.=|=.##############",
+    "=|=.#########.=|=.##############",
+    "=|=.#########.=|=.##############",
+    "=|=.#########.=|=.##############",
+    "ZZZ....f......ZZZ...f....t......",
+    "============zz===zz=============",
+    "------------zz---zz-------------",
+    "============zz===zz=============",
+    "ZZZ...t.......ZZZ.......f.......",
+    "=|=.rGGGGGGGr.=|=.rGGGGGGGGGGG\"\"",
+    "=|=.rGGGGGGGr.=|=.rGGGGGGGGGGGT\"",
+    "=|=.rGGGGGGGr.=|=.rGGGGGGGGGGG\"\"",
+    "=|=.rGGGGGGGr.=|=.rGGGGGGGGGGG\"T",
+    "=|=.rGGGDGGGr.=|=.rGGGGGDGGGGG\"\"",
+    "=|=.raaaaaaaa.=|=.aaaaaaaaaaaaPa",
+    "=|=.raaaaaaaa.=|=.aaaaaaaaaaaaaa",
+    "=|=.rPaaaBaar.=|=.raaaBaaaaBaaaP",
+    "=|=.rrrrrrrrr.=|=.rrrrrrrrrrrrrr",
+    "=|=.#########.=|=.##############",
+    "=|=.#########.=|=.##############"
+  ],
+  "zones": [
+    {"name": "Universidad Antonio Varas", "subtitle": "Edificio A1", "x": 4, "y": 19, "w": 9, "h": 9},
+    {"name": "Universidad Antonio Varas", "subtitle": "Edificio A2", "x": 18, "y": 19, "w": 14, "h": 9},
+    {"name": "Av. Providencia", "subtitle": "Metro Manuel Montt", "x": 0, "y": 0, "w": 32, "h": 8},
+    {"name": "Eliodoro Yáñez", "subtitle": "Providencia", "x": 0, "y": 14, "w": 32, "h": 5},
+    {"name": "Antonio Varas", "subtitle": "Providencia", "x": 13, "y": 8, "w": 5, "h": 22},
+    {"name": "Manuel Montt", "subtitle": "Providencia", "x": 0, "y": 8, "w": 4, "h": 22}
+  ],
+  "spawns": {
+    "metro": {"x": 7, "y": 7, "dir": "right"},
+    "a1": {"x": 8, "y": 24, "dir": "down"},
+    "a2": {"x": 24, "y": 24, "dir": "down"}
+  },
+  "warps": [
+    {"x": 8, "y": 23, "to": "uav_a1_p1", "spawn": "entrada"},
+    {"x": 24, "y": 23, "to": "uav_a2_p1", "spawn": "entrada"}
+  ],
+  "labels": [
+    {"x": 6, "y": 8.6, "text": "METRO MANUEL MONTT"},
+    {"x": 15.5, "y": 8.6, "text": "ANTONIO VARAS"},
+    {"x": 15.5, "y": 19.6, "text": "UNIVERSIDAD ANTONIO VARAS"},
+    {"x": 8, "y": 22.6, "text": "A1"},
+    {"x": 24, "y": 22.6, "text": "A2"},
+    {"x": 15.5, "y": 25, "text": "N° 880"}
+  ],
+  "enter": [
+    {"id": "llegada", "dialogue": "av_llegada", "if": {"flag": "tomo_metro"}, "once": true}
+  ]
+}

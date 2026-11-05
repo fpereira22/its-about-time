@@ -1,0 +1,2053 @@
+{
+  "m6_centro_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Estación Torre de Cali. Arriba, la torre del hotel; abajo, la Carrera 1 con su carril de buses; al frente, los samanes del Parque La Retreta y, detrás, el río.",
+          "Se oye música de cuerdas y un murmullo de mucha gente: la feria."
+        ],
+        "effects": [
+          {
+            "setFlag": "m6_llego_centro"
+          },
+          {
+            "objective": "Camina a La Ermita (la iglesia blanca junto al río): Sira te espera afuera"
+          }
+        ]
+      }
+    }
+  },
+  "m6_salida_estacion": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Sales de la estación por la cebra. Al oriente, sobre los árboles, asoman las agujas blancas de La Ermita."
+      }
+    }
+  },
+  "m6_vigilante_estacion": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Vigilante",
+        "text": "¿La Ermita? Salga por la cebra y camine por la Carrera 1 hacia el oriente, por el parque. No tiene pierde: es la iglesia que parece de cuento."
+      }
+    }
+  },
+  "m6_sira_espera": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "encuentro"
+          }
+        ]
+      },
+      "encuentro": {
+        "text": "Sira está mirando las cometas del vendedor. Todavía no te ha visto.",
+        "effects": [
+          {
+            "event": "encuentro_ermita"
+          }
+        ]
+      },
+      "ya": {
+        "text": "..."
+      }
+    }
+  },
+  "m6_encuentro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Afuera de La Ermita, entre las palomas y el vendedor de cometas, está Sira. Blusa clara, el pelo suelto (por primera vez la ves sin gorro de natación), una bolsa de tela al hombro.",
+          "Te ve. Levanta la mano. Se le arruga la nariz cuando sonríe. Eso no lo sabías."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_sira_ermita"
+          }
+        ],
+        "next": "hora"
+      },
+      "hora": {
+        "branches": [
+          {
+            "goto": "puntual",
+            "if": {
+              "flag": "m6_puntual"
+            }
+          },
+          {
+            "goto": "tarde"
+          }
+        ]
+      },
+      "puntual": {
+        "speaker": "Sira",
+        "text": "¡Puntual! Las 4 y algo. Me debes cero minutos. Increíble. ¿Seguro que eres chileno?",
+        "next": "olor"
+      },
+      "tarde": {
+        "speaker": "Sira",
+        "text": "Tarde. Anoto. Pero llegaste, y con cara de haber corrido. Eso suma.",
+        "next": "olor"
+      },
+      "olor": {
+        "branches": [
+          {
+            "goto": "perfume",
+            "if": {
+              "flag": "m6_perfume_mucho"
+            }
+          },
+          {
+            "goto": "zapatos",
+            "if": {
+              "flag": "secreto_lustrabotas"
+            }
+          },
+          {
+            "goto": "cumplido"
+          }
+        ]
+      },
+      "perfume": {
+        "speaker": "Sira",
+        "text": "Se acerca para saludarte de beso en la mejilla y... «¡Achís! ¡Achís!». «¿Te bañaste en perfume? ¡Achís! Hueles a... coco. Mucho coco.»",
+        "next": "perfume2"
+      },
+      "perfume2": {
+        "text": "Se ríe con los ojos llorosos. Tú te quieres meter al río. Pero ella se queda cerquita igual.",
+        "next": "cumplido"
+      },
+      "zapatos": {
+        "speaker": "Sira",
+        "text": "Te mira de arriba abajo y se detiene en los pies. «¿Te lustraste los zapatos? ¿Para venir a una feria?» Se tapa la sonrisa. «Qué tierno.»",
+        "next": "cumplido"
+      },
+      "cumplido": {
+        "speaker": "Sira",
+        "text": "Bueno, ¿qué? ¿Me vas a decir algo o nos quedamos mirando las palomas?",
+        "choices": [
+          {
+            "label": "Te ves muy linda sin gorro de natación",
+            "effects": [
+              {
+                "setFlag": "m6_q_cumplido"
+              }
+            ],
+            "goto": "linda"
+          },
+          {
+            "label": "No te reconocí seca",
+            "effects": [
+              {
+                "setFlag": "m6_q_cumplido"
+              }
+            ],
+            "goto": "seca"
+          },
+          {
+            "label": "Las palomas están muy interesantes, la verdad",
+            "goto": "palomas"
+          },
+          {
+            "label": "Hola",
+            "goto": "hola"
+          }
+        ]
+      },
+      "linda": {
+        "speaker": "Sira",
+        "text": "...Gracias. Tú te ves muy... vestido. O sea, bien. Te ves bien. Ay, ya. Vamos.",
+        "next": "flor"
+      },
+      "seca": {
+        "speaker": "Sira",
+        "text": "¡Jajaja! Yo tampoco a ti. Sin pataleo te ves hasta elegante.",
+        "next": "flor"
+      },
+      "palomas": {
+        "speaker": "Sira",
+        "text": "Esa de ahí se llama Gustavo. Lo sé porque todas las palomas del centro se llaman Gustavo. ...Ya, ya, vamos.",
+        "next": "flor"
+      },
+      "hola": {
+        "speaker": "Sira",
+        "text": "Hola. ...Hola. Bueno, ya nos saludamos dos veces. Vamos antes de que se ponga más raro.",
+        "next": "flor"
+      },
+      "flor": {
+        "branches": [
+          {
+            "goto": "girasol",
+            "if": {
+              "hasItem": "girasol"
+            }
+          },
+          {
+            "goto": "feria"
+          }
+        ]
+      },
+      "girasol": {
+        "text": "Ve el girasol en tu mano. Se queda callada un segundo. «Ay... qué lindo. Lo voy a poner en agua apenas llegue.» Sonríe. Pero es una sonrisa de «lo voy a ver morir en dos días».",
+        "effects": [
+          {
+            "takeItem": "girasol"
+          },
+          {
+            "setFlag": "m6_regalo_girasol"
+          }
+        ],
+        "next": "feria"
+      },
+      "feria": {
+        "speaker": "Sira",
+        "text": [
+          "La feria está a lo largo del Bulevar, entre la iglesia y el río, y sigue por los puentes. Toldos de colores, libros viejos, poetas, de todo.",
+          "Hay una cosa que no me puedo perder: hoy firma Amparo Ledesma, mi escritora favorita. «El río que no se quiso ir». Lo traje en la bolsa. ¿Me acompañas a la fila? Pero primero, ¡a dar una vuelta!"
+        ],
+        "effects": [
+          {
+            "objective": "Recorre la feria con Sira (habla en los toldos) y hagan la fila de la firma"
+          }
+        ]
+      }
+    }
+  },
+  "m6_ermita_puerta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "La Ermita. La capillita vieja se cayó con un temblor en 1925; la de ahora, blanca, gótica y con sus agujas, la terminaron en los años cuarenta. Parece de cuento.",
+          "Adentro, alguien practica en el órgano. Suena a domingo aunque sea sábado."
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "con": {
+        "speaker": "Sira",
+        "text": "De chiquita creía que aquí vivía una princesa. Después supe que era el Señor de la Caña. Me decepcioné un poquito.",
+        "next": "fin"
+      },
+      "fin": {
+        "text": "Un letrero dice: «Misa de 6:00 p. m.»."
+      }
+    }
+  },
+  "m6_violinista": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un señor mayor toca el violín junto a la iglesia: algo lento y triste, como un pasillo. El estuche abierto tiene monedas y un caramelo.",
+        "choices": [
+          {
+            "label": "Dejarle una moneda ($2.000) y pedirle un bolero",
+            "if": {
+              "minMoney": 2000
+            },
+            "effects": [
+              {
+                "pay": 2000
+              }
+            ],
+            "goto": "bolero"
+          },
+          {
+            "label": "Escuchar un rato",
+            "goto": "escuchar"
+          }
+        ]
+      },
+      "bolero": {
+        "speaker": "Violinista",
+        "text": "El señor guiña un ojo y cambia a un bolero. «Para los novios», dice en voz alta. Media plazoleta los mira.",
+        "next": "bolero2"
+      },
+      "bolero2": {
+        "branches": [
+          {
+            "goto": "sira",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "solo"
+          }
+        ]
+      },
+      "sira": {
+        "text": "Sira se pone roja hasta las orejas. «No somos...» empieza, pero no termina la frase. Y no se va.",
+        "effects": [
+          {
+            "setFlag": "m6_q_violin"
+          }
+        ]
+      },
+      "solo": {
+        "text": "...Lo que pasa es que estás solo. El señor se da cuenta, toca más fuerte para disimular."
+      },
+      "escuchar": {
+        "text": "Cierras los ojos un rato. El violín y el río. Si Cali tuviera banda sonora, sería esta. O salsa. Probablemente salsa."
+      }
+    }
+  },
+  "m6_cometas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Vendedor de cometas",
+        "text": "¡Cometas, cometas! ¡De gavilán, de pez, de corazón! Para el viento de agosto... que este año llegó en noviembre."
+      }
+    }
+  },
+  "m6_isaacs": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "MONUMENTO A JORGE ISAACS (1837–1895). Autor de «María» (1867), la novela del Valle del Cauca.",
+          "La estatua mira al río con cara de estar pensando en algo triste. Alguien le dejó un clavel en la mano."
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "con": {
+        "speaker": "Sira",
+        "text": "«María» la leí a los doce y lloré tres días. Ahora la releo y pienso: Efraín, mijo, ¿pa' qué te fuiste a Londres?"
+      },
+      "fin": {
+        "text": "Te quedas un rato mirándolo. Él no te mira a ti."
+      }
+    }
+  },
+  "m6_poetas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El Parque de los Poetas: estatuas de bronce de poetas del Valle sentados en bancas, como si esperaran el bus. Uno tiene un pájaro en la cabeza. Le queda bien."
+      }
+    }
+  },
+  "m6_estatua": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Una estatua humana, gris de pies a cabeza, completamente quieta. No pestañea. ¿Respira?",
+        "choices": [
+          {
+            "label": "Dejarle una moneda ($1.000)",
+            "if": {
+              "minMoney": 1000
+            },
+            "effects": [
+              {
+                "pay": 1000
+              }
+            ],
+            "goto": "moneda"
+          },
+          {
+            "label": "Mirarla fijo hasta que se mueva",
+            "goto": "fijo"
+          }
+        ]
+      },
+      "moneda": {
+        "text": "Clin. La estatua cobra vida: hace una reverencia lentísima, te entrega una flor de papel gris y se vuelve a congelar a mitad de un guiño.",
+        "next": "sira"
+      },
+      "sira": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "con": {
+        "text": "Sira se ríe tanto que tiene que apoyarse en tu hombro. «¡Te guiñó el ojo! ¡Te está coqueteando la estatua!»",
+        "effects": [
+          {
+            "setFlag": "m6_q_estatua"
+          }
+        ]
+      },
+      "fin": {
+        "text": "La flor de papel no sirve para nada. La guardas igual."
+      },
+      "fijo": {
+        "text": "La miras. Te mira. Pasan dos minutos. Un niño se para al lado y también la mira. La estatua no se mueve. Pierdes."
+      }
+    }
+  },
+  "m6_nino_feria": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "solo"
+          }
+        ]
+      },
+      "solo": {
+        "speaker": "Niño",
+        "text": "¿Usted sabe dónde están los libros de dinosaurios? Mi mamá dice que hay uno que ruge."
+      },
+      "con": {
+        "speaker": "Niño",
+        "text": "Oiga, ¿ella es su novia?",
+        "choices": [
+          {
+            "label": "No, es mi profe de natación",
+            "effects": [
+              {
+                "setFlag": "m6_q_nino"
+              }
+            ],
+            "goto": "profe"
+          },
+          {
+            "label": "...Todavía no",
+            "effects": [
+              {
+                "setFlag": "m6_q_todavia"
+              }
+            ],
+            "goto": "todavia"
+          },
+          {
+            "label": "¿Y a usted qué le importa?",
+            "goto": "importa"
+          }
+        ]
+      },
+      "profe": {
+        "speaker": "Niño",
+        "text": "¿Y por qué la mira así? Mi profe de natación es un señor y nadie lo mira así.",
+        "next": "sira"
+      },
+      "todavia": {
+        "speaker": "Niño",
+        "text": "¡Uyyyy! ¡«Todavía»! ¡Mamá, mamá, dijo «todavía»!",
+        "next": "sira"
+      },
+      "importa": {
+        "speaker": "Niño",
+        "text": "Me importa porque mi tía dice que en las ferias se conocen los novios. Usted tiene cara de novio. Chao.",
+        "next": "sira"
+      },
+      "sira": {
+        "text": "Sira mira para otro lado, muy interesada de repente en un libro de cocina vegana. Tiene las orejas rojas."
+      }
+    }
+  },
+  "m6_fila_gente": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "despues",
+            "if": {
+              "flag": "m6_firmado"
+            }
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Lectora",
+        "text": "Estamos en la fila para la firma de Amparo Ledesma. Empieza aquí. Llevamos media hora. Ella firma despacio porque les pregunta la vida a todos."
+      },
+      "despues": {
+        "speaker": "Lectora",
+        "text": "¿Ya les firmó? ¡Qué envidia! Yo llevo una hora y todavía voy por «El río»."
+      }
+    }
+  },
+  "m6_puesto_maria": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Librero",
+        "text": "Librería de viejo La Retreta. Todo a cinco mil, menos lo que vale más. Lo que vale más se lo digo cuando lo toque.",
+        "next": "router"
+      },
+      "router": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "flag": "m6_maria_hablado"
+            }
+          },
+          {
+            "goto": "sira",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "solo"
+          }
+        ]
+      },
+      "solo": {
+        "speaker": "Librero",
+        "text": "Tengo «María» de 1953, con dedicatoria de alguien a alguien. «Para Olga, que nunca leyó esto». Pobre Olga."
+      },
+      "ya": {
+        "speaker": "Librero",
+        "text": "¿Otra vez por aquí? A la señorita le gustó el debate. Se le nota. Vuelvan cuando quieran discutir de libros, que eso es gratis."
+      },
+      "sira": {
+        "text": "Sira toma un «María» viejísimo, de tapas duras. Lo hojea con cuidado. «Mi abuela me lo hizo leer a los doce. Lloré tres días. Ahora creo que Efraín era un intenso. ¿Tú qué opinas?»",
+        "choices": [
+          {
+            "label": "Totalmente, un intenso",
+            "goto": "acuerdo"
+          },
+          {
+            "label": "No es intenso: es cobarde. Se fue a Londres y la dejó esperando",
+            "effects": [
+              {
+                "setFlag": "m6_q_debate"
+              }
+            ],
+            "goto": "cobarde"
+          },
+          {
+            "label": "No lo he leído (la verdad)",
+            "effects": [
+              {
+                "setFlag": "m6_q_debate"
+              }
+            ],
+            "goto": "honesto"
+          },
+          {
+            "label": "Antes de opinar: ¿qué estás leyendo tú ahora?",
+            "if": {
+              "flag": "m6_consejo_mery"
+            },
+            "effects": [
+              {
+                "setFlag": "m6_q_pregunta"
+              }
+            ],
+            "goto": "pregunta"
+          }
+        ]
+      },
+      "acuerdo": {
+        "speaker": "Sira",
+        "text": "¿Ves? ...Aunque no sé. Tampoco es tan así. Él tenía diecisiete años... Bueno. Me dejaste sin debate, qué aburrido.",
+        "next": "chile"
+      },
+      "cobarde": {
+        "speaker": "Sira",
+        "text": "¡Ay! ¡Cobarde! Nunca lo había pensado así. Se fue a estudiar a Londres «por su futuro» y ella se murió esperándolo... ¡Claro! ¡No es romántico, es cobarde! Me arruinaste el libro. Me encanta.",
+        "next": "chile"
+      },
+      "honesto": {
+        "speaker": "Sira",
+        "text": "¿No lo has leído? Por lo menos no finges. Te lo leo yo, entonces. En voz alta. Con todos los suspiros. Te advierto que son muchos suspiros.",
+        "next": "chile"
+      },
+      "pregunta": {
+        "speaker": "Sira",
+        "text": [
+          "...Nadie me pregunta eso. Estoy leyendo una novela de una escritora de Buenaventura, sobre una mujer que nada en el Pacífico para llegar a ver a su hermano.",
+          "Me tiene loca. Leo en el bus, en la fila del banco, en la piscina entre series. ...Perdón, estoy hablando mucho."
+        ],
+        "choices": [
+          {
+            "label": "No, sigue. Me gusta cómo hablas de libros",
+            "effects": [
+              {
+                "setFlag": "m6_q_escuchar"
+              }
+            ],
+            "goto": "sigue"
+          },
+          {
+            "label": "¿Y cómo termina?",
+            "goto": "termina"
+          }
+        ]
+      },
+      "sigue": {
+        "speaker": "Sira",
+        "text": "Se queda mirándote. «...Bueno, pero después me cuentas tú algo. Que no se vuelva un monólogo.» Y sigue. Diez minutos. Es lo mejor de la tarde, hasta ahora.",
+        "next": "chile"
+      },
+      "termina": {
+        "speaker": "Sira",
+        "text": "¡No te voy a contar el final! ¿Estás loco? Te lo presto cuando lo termine. Si me lo devuelves. Mi prima nunca me devolvió el de Caicedo.",
+        "next": "chile"
+      },
+      "chile": {
+        "speaker": "Sira",
+        "text": "¿Y en Chile qué se lee? Aparte de Neruda, que ya sé que todos dicen Neruda.",
+        "choices": [
+          {
+            "label": "Gabriela Mistral: era profesora rural y ganó el Nobel antes que Neruda",
+            "effects": [
+              {
+                "setFlag": "m6_q_chile"
+              }
+            ],
+            "goto": "mistral"
+          },
+          {
+            "label": "Neruda. Y los menús de los restaurantes",
+            "goto": "menus"
+          },
+          {
+            "label": "Yo leía cómics, la verdad",
+            "goto": "comics"
+          }
+        ]
+      },
+      "mistral": {
+        "speaker": "Sira",
+        "text": "¿Antes que Neruda? ¡No sabía! Una profe rural con Nobel... Me la tienes que mostrar. En serio. Anótalo.",
+        "next": "fin"
+      },
+      "menus": {
+        "speaker": "Sira",
+        "text": "Jajaja. Bueno, los menús también son literatura. «Pastel de choclo». Suena a poema.",
+        "next": "fin"
+      },
+      "comics": {
+        "speaker": "Sira",
+        "text": "¿Y qué tiene? Los cómics son libros con dibujos. Yo leí Mafalda entera tres veces. Es la mejor filósofa de Latinoamérica.",
+        "next": "fin"
+      },
+      "fin": {
+        "text": "El librero los mira por encima de los lentes y sonríe, como quien ve algo que ya vio muchas veces y todavía le gusta.",
+        "effects": [
+          {
+            "setFlag": "m6_maria_hablado"
+          }
+        ]
+      }
+    }
+  },
+  "m6_puesto_fanzines": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Fanzinero",
+        "text": "Fanzines, cómics independientes y una revista de poesía impresa en papel de panadería. ¡El más vendido: «El Buziraco»!",
+        "choices": [
+          {
+            "label": "Comprar «El Buziraco» ($3.000)",
+            "if": {
+              "minMoney": 3000,
+              "notItem": "fanzine_buziraco"
+            },
+            "effects": [
+              {
+                "pay": 3000
+              },
+              {
+                "giveItem": "fanzine_buziraco"
+              }
+            ],
+            "goto": "compra"
+          },
+          {
+            "label": "¿Quién es el Buziraco?",
+            "goto": "quien"
+          },
+          {
+            "label": "Nada, gracias"
+          }
+        ]
+      },
+      "quien": {
+        "speaker": "Fanzinero",
+        "text": "El diablo de Cali, parce. Dicen que vivía en el cerro y se le aparecía a la gente de noche. Lo encerraron con tres cruces. Por eso se llama el Cerro de las Tres Cruces. Pero... ¿quién sabe si se quedó adentro?",
+        "next": "sira"
+      },
+      "sira": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "con": {
+        "speaker": "Sira",
+        "text": "No le hagas caso. Bueno, sí. Mi abuela no sube a ningún cerro de noche por eso. Yo tampoco. Bueno, sí subo. Con compañía."
+      },
+      "fin": {
+        "text": "El fanzinero te mira con ojos de que sabe algo que tú no."
+      },
+      "compra": {
+        "speaker": "Fanzinero",
+        "text": "Doce páginas fotocopiadas, dibujadas a lapicero. En la portada, un diablo con cachos y bigote. Da miedo y risa al mismo tiempo."
+      }
+    }
+  },
+  "m6_puesto_infantil": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "flag": "m6_leyo_ninos"
+            }
+          },
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "solo"
+          }
+        ]
+      },
+      "solo": {
+        "speaker": "Libreros",
+        "text": "Libros para niños, con dibujos enormes. Unos niños sentados en el suelo esperan a alguien que les lea un cuento. «¿Usted lee?», te pregunta una niña.",
+        "next": "leer"
+      },
+      "con": {
+        "text": "Unos niños sentados en el suelo esperan el cuentacuentos, que se demora. Una niña te jala la camisa: «¿Usted nos lee?». Sira te mira con cara de «hazlo».",
+        "next": "leer"
+      },
+      "leer": {
+        "text": "El libro es «El tigre que se comió la luna». ¿Con qué voz lees al tigre?",
+        "choices": [
+          {
+            "label": "Voz grave de tigre: «¡GRRR, LA LUNA ES MÍA!»",
+            "effects": [
+              {
+                "setFlag": "m6_leyo_ninos"
+              }
+            ],
+            "goto": "tigre"
+          },
+          {
+            "label": "Voz de abuelita: «Ay, mijo, la luna...»",
+            "effects": [
+              {
+                "setFlag": "m6_leyo_ninos"
+              }
+            ],
+            "goto": "abuelita"
+          },
+          {
+            "label": "Con acento chileno: «¡Cachai que me comí la luna, po!»",
+            "effects": [
+              {
+                "setFlag": "m6_leyo_ninos"
+              }
+            ],
+            "goto": "chileno"
+          }
+        ]
+      },
+      "tigre": {
+        "text": "Los niños gritan de felicidad. Uno se esconde detrás de su mamá. Lees el cuento entero rugiendo.",
+        "next": "sira"
+      },
+      "abuelita": {
+        "text": "Un tigre-abuelita. Los niños no entienden nada y se mueren de risa. Una niña dice: «Otra vez».",
+        "next": "sira"
+      },
+      "chileno": {
+        "text": "«¿Qué es \"cachai\"?» pregunta un niño. Le explicas. Ahora diez niños caleños dicen «cachai» y sus mamás te miran raro.",
+        "next": "sira"
+      },
+      "sira": {
+        "branches": [
+          {
+            "goto": "sira_con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "sira_con": {
+        "text": "Cuando terminas, Sira está apoyada en el palo del toldo, mirándote con una sonrisa que no le habías visto. «Vas a ser un buen... tío. Un buen tío.»",
+        "effects": [
+          {
+            "setFlag": "m6_q_ninos"
+          },
+          {
+            "vineta": "m6_cuento"
+          }
+        ]
+      },
+      "fin": {
+        "text": "Los niños te aplauden. Una niña te regala un sticker de un tigre."
+      },
+      "ya": {
+        "text": "Los niños te saludan: «¡Adiós, tigre!». Ahora eres el tigre."
+      }
+    }
+  },
+  "m6_puesto_ciegas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "flag": "m6_ciegas"
+            }
+          },
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "solo"
+          }
+        ]
+      },
+      "solo": {
+        "speaker": "Librera",
+        "text": "«Cita a ciegas con un libro»: libros envueltos en papel kraft, con una sola frase escrita encima. Diez mil cada uno. Ideal para regalar... a alguien."
+      },
+      "con": {
+        "speaker": "Librera",
+        "text": "«Cita a ciegas con un libro»: envueltos en papel, con una sola frase. Sira se va a mirar los de poesía y te deja solo con la librera. «¿Le escoge uno a ella?», susurra la señora. Diez mil.",
+        "choices": [
+          {
+            "label": "«Una ciudad que baila, un río y una muchacha rubia que no quiere dormir»",
+            "if": {
+              "minMoney": 10000
+            },
+            "effects": [
+              {
+                "pay": 10000
+              },
+              {
+                "setFlag": [
+                  "m6_ciegas",
+                  "m6_ciegas_ok"
+                ]
+              },
+              {
+                "setFlag": "m6_q_ciegas"
+              }
+            ],
+            "goto": "qvlm"
+          },
+          {
+            "label": "«Un ingeniero lo calcula todo, menos el amor»",
+            "if": {
+              "minMoney": 10000
+            },
+            "effects": [
+              {
+                "pay": 10000
+              },
+              {
+                "setFlag": "m6_ciegas"
+              }
+            ],
+            "goto": "inge"
+          },
+          {
+            "label": "«Un pájaro negro anuncia lo que nadie quiere oír»",
+            "if": {
+              "minMoney": 10000
+            },
+            "effects": [
+              {
+                "pay": 10000
+              },
+              {
+                "setFlag": "m6_ciegas"
+              }
+            ],
+            "goto": "maria"
+          },
+          {
+            "label": "Mejor no"
+          }
+        ]
+      },
+      "qvlm": {
+        "speaker": "Sira",
+        "text": "Se lo das. Lo desenvuelve con cuidado... y se queda con la boca abierta. «¡¿\"¡Que viva la música!\"?! ¿Cómo...? ¡Es el que perdí! ¿Leíste mi mensaje y te acordaste?»",
+        "next": "qvlm2"
+      },
+      "qvlm2": {
+        "branches": [
+          {
+            "goto": "doble",
+            "if": {
+              "hasItem": "libro_qvlm"
+            }
+          },
+          {
+            "goto": "fin_ok"
+          }
+        ]
+      },
+      "doble": {
+        "speaker": "Sira",
+        "text": "...Espera. ¿Y ese paquete que tienes en la mochila tiene forma de libro también? ¡¿Me compraste DOS?! ¡Jajaja! Uno para leer y otro para prestarle a mi prima. Esta vez no se lo devuelvo.",
+        "next": "fin_ok"
+      },
+      "fin_ok": {
+        "text": "Se lo aprieta contra el pecho. «Gracias. En serio.» Te mira un segundo de más. Un segundo largo.",
+        "effects": [
+          {
+            "vineta": "m6_ciegas"
+          }
+        ]
+      },
+      "inge": {
+        "speaker": "Sira",
+        "text": "Lo desenvuelve: «Manual de investigación de operaciones, 4.ª edición». Se ríe tanto que llora. «¿Es una indirecta? ¿Me estás diciendo que estudie?» Igual se lo lleva. Dice que lo va a usar de almohada."
+      },
+      "maria": {
+        "speaker": "Sira",
+        "text": "Lo desenvuelve: «María», de Isaacs. «Ay... Ya lo tengo. Tres veces. Pero esta edición tiene una flor seca adentro.» Lo guarda. Es amable. Pero no es lo mismo."
+      },
+      "ya": {
+        "speaker": "Librera",
+        "text": "Los libros envueltos siguen ahí, guardando su secreto. La señora te guiña un ojo."
+      }
+    }
+  },
+  "m6_puesto_trueque": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Señor del trueque",
+        "text": "¡Trueque! Usted me da algo y yo le doy algo. Libros, discos, piedritas del río pintadas a mano... Lo que sea, menos plata.",
+        "choices": [
+          {
+            "label": "Cambiar el girasol por una piedrita pintada",
+            "if": {
+              "hasItem": "girasol"
+            },
+            "effects": [
+              {
+                "takeItem": "girasol"
+              },
+              {
+                "giveItem": "piedra_rio"
+              }
+            ],
+            "goto": "piedra"
+          },
+          {
+            "label": "Cambiar el bombombún por una piedrita pintada",
+            "if": {
+              "hasItem": "bombombun",
+              "notItem": "piedra_rio"
+            },
+            "effects": [
+              {
+                "takeItem": "bombombun"
+              },
+              {
+                "giveItem": "piedra_rio"
+              }
+            ],
+            "goto": "piedra"
+          },
+          {
+            "label": "Solo miraba"
+          }
+        ]
+      },
+      "piedra": {
+        "speaker": "Señor del trueque",
+        "text": "Te da una piedra lisita del río Cali, pintada de azul con un pececito amarillo. «Dura más que cualquier flor, joven. Las piedras no se mueren.»"
+      }
+    }
+  },
+  "m6_puesto_firma": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "despues",
+            "if": {
+              "flag": "m6_firmado"
+            }
+          },
+          {
+            "goto": "fila",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "solo"
+          }
+        ]
+      },
+      "solo": {
+        "speaker": "Organizador",
+        "text": "Amparo Ledesma firma «El río que no se quiso ir». La fila llega hasta el puente. Es mejor venir acompañado: las filas acompañadas son más cortas (no es verdad, pero se sienten así)."
+      },
+      "fila": {
+        "speaker": "Sira",
+        "text": "¡Ahí está! Amparo Ledesma. Mírala: con su chal y sus gafas, firmando como si tuviera todo el tiempo del mundo. Hay como cincuenta personas en la fila. ¿Hacemos la fila conmigo?",
+        "choices": [
+          {
+            "label": "Hagamos la fila",
+            "effects": [
+              {
+                "event": "firma_autora"
+              }
+            ]
+          },
+          {
+            "label": "Primero demos otra vuelta",
+            "goto": "vuelta"
+          }
+        ]
+      },
+      "vuelta": {
+        "speaker": "Sira",
+        "text": "Bueno, pero no tardemos, que se va a las seis. ¡Y la fila crece!"
+      },
+      "despues": {
+        "speaker": "Amparo Ledesma",
+        "text": "Gracias por venir. Cuiden ese libro, que el río se lleva todo lo que uno no agarra fuerte."
+      }
+    }
+  },
+  "m6_fila_1": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La fila avanza un paso. Se detiene. Avanza otro. Sira saca el libro de la bolsa y le pasa la mano a la tapa, como si fuera un gato.",
+        "next": "pregunta"
+      },
+      "pregunta": {
+        "speaker": "Sira",
+        "text": "Oye, pregunta seria: si te encontraras con tu escritor favorito, ¿qué le dirías?",
+        "choices": [
+          {
+            "label": "«Gracias por acompañarme cuando estaba solo»",
+            "effects": [
+              {
+                "setFlag": "m6_q_fila"
+              }
+            ],
+            "goto": "gracias"
+          },
+          {
+            "label": "«¿Me firma la frente?»",
+            "goto": "frente"
+          },
+          {
+            "label": "Me quedaría mudo, como ahora",
+            "effects": [
+              {
+                "setFlag": "m6_q_fila"
+              }
+            ],
+            "goto": "mudo"
+          }
+        ]
+      },
+      "gracias": {
+        "speaker": "Sira",
+        "text": "...Esa es buena. Muy buena. Yo le iba a decir «la amo» y salir corriendo. Ahora me da vergüenza."
+      },
+      "frente": {
+        "speaker": "Sira",
+        "text": "¡Jajaja! Ella te firma la frente y yo te tomo la foto. Trato."
+      },
+      "mudo": {
+        "speaker": "Sira",
+        "text": "¿«Como ahora»? ¿Estás mudo ahora? ...Ah. Ah, ya entendí. Ay, cállate. Bueno, no te calles."
+      }
+    }
+  },
+  "m6_fila_2": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Quince minutos después, la fila llega al toldo. Delante de ustedes, un señor le cuenta a la autora su vida entera.",
+          "Sira se pone en puntitas para ver. Es tan chiquita que se apoya en tu brazo para no caerse. No lo suelta enseguida."
+        ],
+        "effects": [
+          {
+            "setFlag": "m6_q_brazo"
+          }
+        ]
+      }
+    }
+  },
+  "m6_firma": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Amparo Ledesma",
+        "text": "¡Siguiente! Buenas tardes, mi niña. ¿Para quién se lo dedico?",
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "Para... Sira. S-I-R-A. Señora Amparo, yo la leo desde los quince, de verdad, «El río...» es el libro que más he...",
+        "next": "autora"
+      },
+      "autora": {
+        "speaker": "Amparo Ledesma",
+        "text": "Tranquila, mi amor, respira. ¿Y el joven? ¿También lo pongo?",
+        "choices": [
+          {
+            "label": "No, no, yo solo la acompaño",
+            "goto": "solo"
+          },
+          {
+            "label": "Ponga «para Sira y su alumno de natación»",
+            "effects": [
+              {
+                "setFlag": "m6_q_dedicatoria"
+              }
+            ],
+            "goto": "alumno"
+          },
+          {
+            "label": "Ponga «para Sira, la que nada contra la corriente»",
+            "effects": [
+              {
+                "setFlag": "m6_q_dedicatoria"
+              }
+            ],
+            "goto": "corriente"
+          }
+        ]
+      },
+      "solo": {
+        "speaker": "Amparo Ledesma",
+        "text": "«Solo la acompaña»... Ajá. Así empiezan todas mis novelas, joven.",
+        "next": "firma"
+      },
+      "alumno": {
+        "speaker": "Amparo Ledesma",
+        "text": "¿Su alumno de natación? Esto tiene novela. Ya está: «Para Sira, que enseña a flotar. Y para su alumno, que aprende rápido».",
+        "next": "firma"
+      },
+      "corriente": {
+        "speaker": "Amparo Ledesma",
+        "text": "Ay, qué bonito. Eso lo voy a robar para mi próximo libro. «Para Sira, que nada contra la corriente. Y para el que la sigue».",
+        "next": "firma"
+      },
+      "firma": {
+        "text": "Firma despacio, con letra redonda. Le devuelve el libro a Sira, que lo abraza como si fuera un peluche.",
+        "effects": [
+          {
+            "vineta": "m6_firma"
+          }
+        ],
+        "next": "fin"
+      },
+      "fin": {
+        "speaker": "Sira",
+        "text": "¡No lo puedo creer! ¡Me lo firmó! ¡Y me dijo «mi amor»! ...Ven, vamos al Puente Ortiz, que desde ahí se ve el río precioso a esta hora.",
+        "effects": [
+          {
+            "objective": "Ve con Sira al Puente Ortiz (frente a La Ermita)"
+          }
+        ]
+      }
+    }
+  },
+  "m6_puesto_pucc": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "flag": "secreto_profe_feria"
+            }
+          },
+          {
+            "goto": "profe"
+          }
+        ]
+      },
+      "profe": {
+        "speaker": "Profe Julián",
+        "text": "¡Hombre! ¡Mi estudiante de intercambio! Aquí, comprando «El problema del agente viajero: una historia de amor». Es un libro de matemáticas, no se confunda.",
+        "next": "ve"
+      },
+      "ve": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "con": {
+        "speaker": "Profe Julián",
+        "text": "...¿Y la señorita Martínez? ¿Del Equipo 5? ¿Ustedes dos...? Ah. Ah. No, no. Yo no vi nada. Yo estoy leyendo. Muy concentrado. Sigan, sigan.",
+        "effects": [
+          {
+            "setFlag": "secreto_profe_feria"
+          },
+          {
+            "sfx": "secret"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "Sira se tapa la cara con el libro firmado. «El lunes no voy a poder mirarlo a los ojos.»"
+      },
+      "fin": {
+        "speaker": "Profe Julián",
+        "text": "Ojo, que el lunes hay entrega del informe del Equipo 5. Nada de feria el domingo."
+      },
+      "ya": {
+        "text": "(El profe Julián lee con mucha concentración un libro que está al revés.)"
+      }
+    }
+  },
+  "m6_puesto_frances": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "flag": "secreto_franceses"
+            }
+          },
+          {
+            "goto": "hola"
+          }
+        ]
+      },
+      "hola": {
+        "speaker": "Antoine",
+        "text": "¡Feli! ¡Mon ami! Estamos ayudando en el toldo de libros en francés. Es bueno para el intercambio, ¿no? Yo vendí tres. Dos a mí mismo.",
+        "next": "ve"
+      },
+      "ve": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "con": {
+        "speaker": "Antoine",
+        "text": "Et... ¿quién es la mademoiselle? ¡Oh là là! ¡Feli avec une fille! ¡Le voy a contar a todos! ¡Al grupo! ¡A Mónica! ¡A Francia!",
+        "effects": [
+          {
+            "setFlag": "secreto_franceses"
+          },
+          {
+            "sfx": "secret"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "Bonjour. Je m'appelle Sira. ...Es lo único que sé en francés. Y «croissant».",
+        "next": "antoine"
+      },
+      "antoine": {
+        "speaker": "Antoine",
+        "text": "¡Habla francés! Feli, cásate. Ya. Aquí mismo. La Ermita está ahí al lado."
+      },
+      "fin": {
+        "speaker": "Antoine",
+        "text": "Si ves a Mathieu, dile que me debe un tinto. Hace dos semanas."
+      },
+      "ya": {
+        "text": "(Antoine te hace corazoncitos con las manos desde el toldo. Lo ignoras con dignidad.)"
+      }
+    }
+  },
+  "m6_puesto_tinto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Señora del tinto",
+        "text": "¡Tintico, tintico! ¡Pandebono calientico! A mí me dicen la señora del tinto, desde hace treinta años en este Bulevar. Aquí no se me escapa nadie.",
+        "choices": [
+          {
+            "label": "Dos tintos, uno para cada uno ($3.000)",
+            "if": {
+              "minMoney": 3000
+            },
+            "effects": [
+              {
+                "pay": 3000
+              },
+              {
+                "giveItem": "tinto_feria"
+              }
+            ],
+            "goto": "dos"
+          },
+          {
+            "label": "Un tinto ($1.500)",
+            "if": {
+              "minMoney": 1500
+            },
+            "effects": [
+              {
+                "pay": 1500
+              },
+              {
+                "giveItem": "tinto_feria"
+              }
+            ],
+            "goto": "uno"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "dos": {
+        "branches": [
+          {
+            "goto": "dos_con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "uno"
+          }
+        ]
+      },
+      "dos_con": {
+        "text": "Le pasas un vasito a Sira. Se le calientan los dedos y te los pone en la mejilla. «¿Ves? Calientito.» Sus dedos huelen a café y a libro viejo.",
+        "effects": [
+          {
+            "setFlag": "m6_q_tinto"
+          }
+        ]
+      },
+      "uno": {
+        "text": "El tinto: negro, dulce, hirviendo. Te quemas la lengua y todo bien. Así es la vida."
+      }
+    }
+  },
+  "m6_puesto_discos": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Discotequero",
+        "text": "Discos de acetato, salsa vieja, y la novela de Caicedo en todas sus ediciones. «¡Que viva la música!», parce: el libro de la salsa y de Cali. Aquí suena todo el día.",
+        "next": "suena"
+      },
+      "suena": {
+        "text": "Pone un disco: una salsa de los setenta con trompetas que suben y bajan. La gente alrededor empieza a mover los hombros.",
+        "next": "baile"
+      },
+      "baile": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira",
+              "notFlag": "m6_bailo"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "con": {
+        "text": "Sira empieza a llevar el ritmo con los pies, disimulando. Te mira de reojo. «¿Sabes bailar salsa, chileno?»",
+        "choices": [
+          {
+            "label": "No. Pero enséñame (como la natación)",
+            "effects": [
+              {
+                "setFlag": "m6_q_baile"
+              },
+              {
+                "setFlag": "m6_bailo"
+              }
+            ],
+            "goto": "baila"
+          },
+          {
+            "label": "Bailo cueca. ¿Sirve?",
+            "effects": [
+              {
+                "setFlag": "m6_q_baile"
+              },
+              {
+                "setFlag": "m6_bailo"
+              }
+            ],
+            "goto": "cueca"
+          },
+          {
+            "label": "Ni loco, me muero de la vergüenza",
+            "effects": [
+              {
+                "setFlag": "m6_bailo"
+              }
+            ],
+            "goto": "no"
+          }
+        ]
+      },
+      "baila": {
+        "text": "Te toma las dos manos. «Uno, dos, tres... cinco, seis, siete. El cuatro no existe en la salsa.» Pisas su pie tres veces. Ella se ríe tres veces. La gente aplaude.",
+        "effects": [
+          {
+            "vineta": "m6_baile"
+          }
+        ]
+      },
+      "cueca": {
+        "text": "¿Cueca? ¡Muéstrame! Sacas un pañuelo imaginario. Ella saca uno de verdad (el de su bolsa). Bailan algo entre cueca y salsa que no existe en ninguna parte del mundo. La gente aplaude igual.",
+        "effects": [
+          {
+            "vineta": "m6_baile"
+          }
+        ]
+      },
+      "no": {
+        "speaker": "Sira",
+        "text": "Bueno, cobarde como Efraín. Te salvas por hoy. Pero algún día, en algún lado, vas a bailar conmigo."
+      },
+      "fin": {
+        "text": "La aguja del tocadiscos salta y la salsa sigue, como si nada."
+      }
+    }
+  },
+  "m6_puesto_chile": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Librero chileno",
+        "text": "¿Usted es chileno? ¡Se nota hasta en cómo mira! Aquí: editoriales chilenas, de Valparaíso, de Concepción. Poesía, cuentos, un libro de recetas de empanadas de pino.",
+        "effects": [
+          {
+            "setFlag": "secreto_chile_feria"
+          }
+        ],
+        "next": "ve"
+      },
+      "ve": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "con": {
+        "text": "Sira hojea un libro de poemas de Gabriela Mistral. «Léeme uno. Con tu acento. Pero lento, que hablas rapidísimo.»",
+        "choices": [
+          {
+            "label": "Leerle un poema, lento",
+            "effects": [
+              {
+                "setFlag": "m6_q_mistral"
+              }
+            ],
+            "goto": "leer"
+          },
+          {
+            "label": "Enseñarle palabras chilenas",
+            "effects": [
+              {
+                "setFlag": "m6_q_cachai"
+              }
+            ],
+            "goto": "palabras"
+          }
+        ]
+      },
+      "leer": {
+        "text": "Lees despacio, con tu acento. Ella cierra los ojos para escuchar. El librero chileno se seca una lágrima disimuladamente: «Qué falta hace la patria, compadre».",
+        "next": "fin"
+      },
+      "palabras": {
+        "text": "«Cachai», «al tiro», «pololo». ¿Pololo? ¿Qué es pololo? Le explicas. Se pone roja. «Ah. Ok. Bueno. Siguiente palabra.»",
+        "next": "fin"
+      },
+      "fin": {
+        "speaker": "Librero chileno",
+        "text": "¿Se va a quedar mucho tiempo en Cali, compatriota? Cuidado, que esta ciudad engancha. Yo vine por seis meses. En 2004."
+      }
+    }
+  },
+  "m6_poeta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "ya",
+            "if": {
+              "flag": "m6_poema"
+            }
+          },
+          {
+            "goto": "ofrece"
+          }
+        ]
+      },
+      "ofrece": {
+        "speaker": "Poeta",
+        "text": "Poema express: usted me da tres palabras y yo le escribo un poema en la máquina. Cinco mil, o lo que nazca del corazón.",
+        "choices": [
+          {
+            "label": "Un poema para los dos ($5.000)",
+            "if": {
+              "minMoney": 5000,
+              "flag": "m6_con_sira"
+            },
+            "effects": [
+              {
+                "pay": 5000
+              },
+              {
+                "event": "poema_express"
+              }
+            ]
+          },
+          {
+            "label": "Un poema para mí ($5.000)",
+            "if": {
+              "minMoney": 5000,
+              "notFlag": "m6_con_sira"
+            },
+            "effects": [
+              {
+                "pay": 5000
+              },
+              {
+                "event": "poema_express"
+              }
+            ]
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "ya": {
+        "speaker": "Poeta",
+        "text": "Ya les escribí su poema. Los poemas no se repiten, joven: como los sábados."
+      }
+    }
+  },
+  "m6_poeta_palabras": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Poeta",
+        "text": "El poeta mete una hoja en la máquina de escribir y truena los dedos. «Primera palabra.»",
+        "choices": [
+          {
+            "label": "El río",
+            "effects": [
+              {
+                "setFlag": "_poema_a_0"
+              }
+            ],
+            "goto": "dos"
+          },
+          {
+            "label": "La piscina",
+            "effects": [
+              {
+                "setFlag": "_poema_a_1"
+              }
+            ],
+            "goto": "dos"
+          },
+          {
+            "label": "El pandebono",
+            "effects": [
+              {
+                "setFlag": "_poema_a_2"
+              }
+            ],
+            "goto": "dos"
+          },
+          {
+            "label": "La lluvia",
+            "effects": [
+              {
+                "setFlag": "_poema_a_3"
+              }
+            ],
+            "goto": "dos"
+          }
+        ]
+      },
+      "dos": {
+        "speaker": "Poeta",
+        "text": "«Segunda: un verbo. Algo que se hace.»",
+        "choices": [
+          {
+            "label": "Nadar",
+            "effects": [
+              {
+                "setFlag": "_poema_b_0"
+              }
+            ],
+            "goto": "tres"
+          },
+          {
+            "label": "Perderse",
+            "effects": [
+              {
+                "setFlag": "_poema_b_1"
+              }
+            ],
+            "goto": "tres"
+          },
+          {
+            "label": "Leer",
+            "effects": [
+              {
+                "setFlag": "_poema_b_2"
+              }
+            ],
+            "goto": "tres"
+          },
+          {
+            "label": "Llegar tarde",
+            "effects": [
+              {
+                "setFlag": "_poema_b_3"
+              }
+            ],
+            "goto": "tres"
+          }
+        ]
+      },
+      "tres": {
+        "speaker": "Poeta",
+        "text": "«Y la última. La más importante. La que no se dice.»",
+        "choices": [
+          {
+            "label": "Un helado",
+            "effects": [
+              {
+                "setFlag": "_poema_c_0"
+              }
+            ]
+          },
+          {
+            "label": "Un jueves",
+            "effects": [
+              {
+                "setFlag": "_poema_c_1"
+              }
+            ]
+          },
+          {
+            "label": "Chile",
+            "effects": [
+              {
+                "setFlag": "_poema_c_2"
+              }
+            ]
+          },
+          {
+            "label": "La Ermita",
+            "effects": [
+              {
+                "setFlag": "_poema_c_3"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "m6_poeta_poema": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Tac, tac, tac, tac... ¡ding! El poeta saca la hoja, la sopla y la lee en voz alta, con voz de radio:",
+        "effects": [
+          {
+            "vineta": "m6_poema"
+          }
+        ],
+        "next": "poema"
+      },
+      "poema": {
+        "speaker": "Poeta",
+        "text": "{poema}",
+        "next": "sira"
+      },
+      "sira": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "con": {
+        "text": "Silencio. Sira no dice nada. Toma la hoja, la dobla en cuatro y la guarda dentro del libro firmado, justo en la página de la dedicatoria.",
+        "next": "fin"
+      },
+      "fin": {
+        "text": "«Los poemas se leen dos veces: una con los ojos y otra con el tiempo», dice el poeta. Nadie sabe qué significa. Suena precioso."
+      }
+    }
+  },
+  "m6_raponazo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "En la entrada del Puente Ortiz, Sira se detiene a mostrarte la dedicatoria otra vez. En ese momento, un muchacho con gorra roja pasa corriendo y... ¡zas!",
+          "¡Le arranca la bolsa de tela del hombro! ¡Con el libro firmado adentro!"
+        ],
+        "effects": [
+          {
+            "vineta": "m6_raponazo"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "¡OYE! ¡MI LIBRO! ¡AL LADRÓN!",
+        "next": "tu"
+      },
+      "tu": {
+        "text": "No piensas. Las piernas piensan por ti. Sales corriendo detrás de la gorra roja."
+      }
+    }
+  },
+  "m6_rescate_atrapo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Vuelves por el Bulevar con la bolsa en la mano, empapado de sudor hasta las orejas. Te tiemblan las piernas. Te zumban los oídos.",
+          "Sira llega corriendo, te quita la bolsa, revisa el libro (intacto, con el poema adentro)... y te abraza. Fuerte. Un segundo. Dos."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_abrazo"
+          }
+        ],
+        "next": "suelta"
+      },
+      "suelta": {
+        "speaker": "Sira",
+        "text": "Se separa de golpe, como si se hubiera acordado de algo. «¡Estás loco! ¿Y si tenía un cuchillo? ¿Y si te caías al río?»",
+        "choices": [
+          {
+            "label": "Era tu libro firmado. No había opción",
+            "effects": [
+              {
+                "setFlag": "m6_q_valiente"
+              }
+            ],
+            "goto": "opcion"
+          },
+          {
+            "label": "Fue culpa de las clases de natación: me siento invencible",
+            "effects": [
+              {
+                "setFlag": "m6_q_valiente"
+              }
+            ],
+            "goto": "natacion"
+          },
+          {
+            "label": "...Me dio mucho miedo, la verdad",
+            "effects": [
+              {
+                "setFlag": "m6_q_honesto"
+              }
+            ],
+            "goto": "miedo"
+          }
+        ]
+      },
+      "opcion": {
+        "speaker": "Sira",
+        "text": "...Había opción. La opción de quedarte aquí, conmigo, comprando otro. Pero gracias. De verdad.",
+        "next": "tinto"
+      },
+      "natacion": {
+        "speaker": "Sira",
+        "text": "¡Jajaja! Le corriste a un ladrón por el puente. Eso no se aprende en la piscina. ...Gracias, nadador.",
+        "next": "tinto"
+      },
+      "miedo": {
+        "speaker": "Sira",
+        "text": "A mí también me dio miedo. Por ti, tonto. No por el libro. Bueno, un poco por el libro.",
+        "next": "tinto"
+      },
+      "tinto": {
+        "text": "La señora del tinto te pasa un vasito de agua sin decir nada y te da dos palmaditas en la espalda. «Así se hace, mijo. Así se hace.»"
+      }
+    }
+  },
+  "m6_rescate_tinto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Señora del tinto",
+        "text": [
+          "El ladrón se te escapa entre la gente... hasta que la señora del tinto, sin soltar el termo, saca el pie. ¡PUM! El de la gorra roja se va de cara contra un huacal de libros y la bolsa sale volando.",
+          "Sale corriendo sin nada, con un diccionario de inglés pegado en la espalda. La señora te pasa la bolsa: «Aquí no se me escapa nadie, mijo»."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_abrazo"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "text": "Sira llega corriendo, revisa el libro (intacto, con el poema adentro) y te abraza. Rápido. Fuerte. Después abraza a la señora del tinto, que se ríe a carcajadas.",
+        "next": "suelta"
+      },
+      "suelta": {
+        "speaker": "Sira",
+        "text": "¡Estás loco! ¡Te tiraste detrás de él sin pensar! ...Gracias.",
+        "choices": [
+          {
+            "label": "No lo alcancé, pero lo intenté",
+            "effects": [
+              {
+                "setFlag": "m6_q_valiente"
+              }
+            ],
+            "goto": "intento"
+          },
+          {
+            "label": "La verdadera heroína es la señora del tinto",
+            "effects": [
+              {
+                "setFlag": "m6_q_humilde"
+              }
+            ],
+            "goto": "senora"
+          }
+        ]
+      },
+      "intento": {
+        "speaker": "Sira",
+        "text": "Lo intentaste. Que es más de lo que hizo el señor que estaba al lado comiéndose un mango."
+      },
+      "senora": {
+        "speaker": "Sira",
+        "text": "¡Viva la señora del tinto! Le voy a dedicar mi tesis. En serio."
+      }
+    }
+  },
+  "m6_atardecer": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Se quedan un rato en el Puente Ortiz, apoyados en el pretil de ladrillo. El sol se pone detrás de los cerros y el río se vuelve de color naranja, después rosado, después morado.",
+          "Pasa la brisa de la tarde, la de las seis, la que en Cali todos esperan. Le mueve el pelo a Sira, que no se lo arregla."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_atardecer"
+          }
+        ],
+        "next": "charla"
+      },
+      "charla": {
+        "speaker": "Sira",
+        "text": "¿Sabes qué? Este puente lo hicieron en 1845. Dicen que lo pegaron con cal y clara de huevo. Ciento ochenta años aguantando gente, ladrones y novios.",
+        "choices": [
+          {
+            "label": "Y ahora nosotros",
+            "effects": [
+              {
+                "setFlag": "m6_q_puente"
+              }
+            ],
+            "goto": "nosotros"
+          },
+          {
+            "label": "¿Clara de huevo? ¿En serio?",
+            "goto": "huevo"
+          },
+          {
+            "label": "Quedarte callado mirando el río con ella",
+            "effects": [
+              {
+                "setFlag": "m6_q_silencio"
+              }
+            ],
+            "goto": "callado"
+          }
+        ]
+      },
+      "nosotros": {
+        "speaker": "Sira",
+        "text": "...«Y ahora nosotros». Ay. Eso fue lindo y no sé qué contestarte.",
+        "next": "helado"
+      },
+      "huevo": {
+        "speaker": "Sira",
+        "text": "¡En serio! Por eso dura tanto. Las cosas pegadas con cosas de cocina duran. Como las amistades que empiezan con un pandebono.",
+        "next": "helado"
+      },
+      "callado": {
+        "text": "No dicen nada. No hace falta. El río hace todo el ruido por los dos.",
+        "next": "helado"
+      },
+      "helado": {
+        "speaker": "Sira",
+        "text": [
+          "Bueno. Después de una persecución, lo único que corresponde es un helado. Conozco uno en San Antonio, subiendo por la Calle 2: la Heladería Corazones. Los hacen en forma de corazón, no te burles.",
+          "Y después, si quieres... subimos a la colina. De noche se ve toda Cali."
+        ],
+        "effects": [
+          {
+            "objective": "Camina con Sira a San Antonio (por el Bulevar, hacia el oriente)"
+          },
+          {
+            "clock": "sáb 18:05",
+            "max": "sáb 18:40"
+          }
+        ]
+      }
+    }
+  },
+  "m6_bulevar_fin": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "sin",
+            "if": {
+              "notFlag": "m6_con_sira"
+            }
+          },
+          {
+            "goto": "feria"
+          }
+        ]
+      },
+      "sin": {
+        "text": "El Bulevar sigue hacia el oriente, hacia San Antonio. Pero Sira te espera en La Ermita. ¡No la hagas esperar más!"
+      },
+      "feria": {
+        "speaker": "Sira",
+        "text": "Más allá, el Bulevar sigue hacia San Antonio. Pero todavía queda feria por ver... y una fila para la firma."
+      }
+    }
+  }
+}

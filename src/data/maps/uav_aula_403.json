@@ -1,0 +1,39 @@
+{
+  "id": "uav_aula_403",
+  "name": "Sala A2-403",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 14,
+  "height": 10,
+  "background": "#1a1a22",
+  "music": "credits",
+  "legend": {"^": "muro_techo", "W": "u_muro", "v": "u_ventana", "p": "pizarra", ".": "u_piso", "X": "escritorio", "u": "pupitre", "D": "u_puerta_abierta"},
+  "rows": [
+    "^^^^^^^^^^^^^^",
+    "WvWWppppppWWvW",
+    ".........X....",
+    "..............",
+    ".uu.uu..uu.uu.",
+    "..............",
+    ".uu.uu..uu.uu.",
+    "..............",
+    "WWWWWWWWWWWWDW",
+    "^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {"name": "Sala A2-403", "subtitle": "Optimización · Prof. R. Cuervo", "x": 0, "y": 0, "w": 14, "h": 10}
+  ],
+  "spawns": {
+    "puerta": {"x": 12, "y": 7, "dir": "up"}
+  },
+  "warps": [
+    {"x": 12, "y": 8, "to": "uav_a2_p4", "spawn": "sala_3"}
+  ],
+  "labels": [
+    {"x": 7, "y": 0.5, "text": "PRUEBA · LA MOCHILA"}
+  ],
+  "crowd": {"lines": "aula", "seats": 0.7},
+  "enter": [
+    {"id": "llegada", "dialogue": "aula_llegada", "once": true}
+  ]
+}

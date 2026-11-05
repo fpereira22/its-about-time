@@ -1,0 +1,1197 @@
+{
+  "m5_sira_encuentro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "En el camino de salida, una chica se escurre el pelo mojado en un moño. Es chiquitita, muy blanca, con pecas en la nariz y una toalla amarilla al hombro.",
+          "Es la que nadaba mariposa en el carril de al lado. La que pasaba como un torpedo mientras ustedes se ahogaban jugando Marco Polo."
+        ],
+        "effects": [
+          {
+            "vineta": "m5_sira"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Chica",
+        "text": "Perdón... ¿ustedes eran los del Marco Polo? Es que no podía nadar de la risa. Casi me ahogo yo, y eso que nado hace diez años.",
+        "choices": [
+          {
+            "label": "Culpable. Éramos nosotros",
+            "effects": [
+              {
+                "setFlag": "m5_sira_p1"
+              }
+            ],
+            "goto": "culpable"
+          },
+          {
+            "label": "Era un entrenamiento secreto",
+            "effects": [
+              {
+                "setFlag": "m5_sira_p1"
+              }
+            ],
+            "goto": "secreto"
+          },
+          {
+            "label": "No sé de qué me hablas",
+            "goto": "niega"
+          }
+        ]
+      },
+      "culpable": {
+        "speaker": "Chica",
+        "text": "¡Ja! Por lo menos lo reconoces. Tu amigo gritaba «¡POLO!» como si lo estuvieran asaltando.",
+        "next": "nombre"
+      },
+      "secreto": {
+        "speaker": "Chica",
+        "text": "¿Secreto? Se escuchaba desde el estadio. Muy secreto no era. Pero me encantó la técnica de hundirse con estilo.",
+        "next": "nombre"
+      },
+      "niega": {
+        "speaker": "Chica",
+        "text": "Ajá. Y ese traje de llamas que asoma de tu mochila tampoco es tuyo, ¿cierto? Tranquilo, tu secreto está a salvo conmigo.",
+        "next": "nombre"
+      },
+      "nombre": {
+        "speaker": "Sira",
+        "text": "Soy Sira, por cierto. ¿Eres nuevo? Nunca te había visto por la U... y eso que yo vivo en esta piscina. Ese acento no es de aquí.",
+        "choices": [
+          {
+            "label": "Soy de Chile, estoy de intercambio en la PUCC",
+            "goto": "chile"
+          },
+          {
+            "label": "Soy de Paine. Queda... lejos",
+            "goto": "paine"
+          }
+        ]
+      },
+      "chile": {
+        "speaker": "Sira",
+        "text": "¡De intercambio! Con razón. Bienvenido a la Cristiana, chileno. Yo estoy entre la piscina y la biblioteca: si no me encuentras en una, estoy en la otra.",
+        "next": "corte"
+      },
+      "paine": {
+        "speaker": "Sira",
+        "text": "¿Paine? ¿Como las Torres del Paine? ...¿No? ¿Es otro Paine? Ay, perdón. Bueno, igual suena lindo. ¿Y qué haces en Cali?",
+        "next": "corte"
+      },
+      "corte": {
+        "text": "Se miran un segundo más de lo normal. Ella sonríe y desvía la mirada hacia el estadio. Tú te tocas el corte nuevo sin darte cuenta.",
+        "next": "sira_corte"
+      },
+      "sira_corte": {
+        "speaker": "Sira",
+        "text": "Lindo corte, por cierto. ¿Donde el Fredy? Se nota. Ese señor degrada como nadie. Y habla como nadie también.",
+        "choices": [
+          {
+            "label": "¡Tres horas y media me tuvo!",
+            "effects": [
+              {
+                "setFlag": "m5_sira_risa"
+              }
+            ],
+            "goto": "tres_horas"
+          },
+          {
+            "label": "Gracias... tú nadas increíble",
+            "goto": "nadas"
+          }
+        ]
+      },
+      "tres_horas": {
+        "speaker": "Sira",
+        "text": "¡Ja! A mi hermano le contó lo de Dubái dos veces en el mismo corte. ¿Te dijo que veía el futuro en el pelo? Le dice eso a todo el mundo.",
+        "next": "fredy_futuro"
+      },
+      "nadas": {
+        "speaker": "Sira",
+        "text": "¿Me estabas mirando? ...Digo, gracias. Nado en la selección de la U. Ahí sí que no se juega Marco Polo.",
+        "next": "fredy_futuro"
+      },
+      "fredy_futuro": {
+        "text": "Te acuerdas de Fredy: «Hoy conoce a alguien. Chiquita. Que nada». Tragas saliva.",
+        "next": "grover"
+      },
+      "grover": {
+        "speaker": "Grover",
+        "text": "(Desde la salida, tocando la bocina de «La Cucaracha») ¡CUMPA! ¡El carro está listo! ¡Arrancó a la primera, es un milagro!",
+        "effects": [
+          {
+            "sfx": "bocina_grover"
+          }
+        ],
+        "next": "despedida"
+      },
+      "despedida": {
+        "speaker": "Sira",
+        "text": "Te llaman. Bueno... nos vemos en la U, entonces. Si es que nos vemos. Es grande la U. Chao, chileno.",
+        "choices": [
+          {
+            "label": "Chao, Sira. Nos vemos",
+            "goto": "chao"
+          },
+          {
+            "label": "¿Me das tu número?",
+            "goto": "numero"
+          }
+        ]
+      },
+      "numero": {
+        "speaker": "Sira",
+        "text": "¿Así, de una? ¡Ja! Apenas nos conocemos. Además... algo me dice que nos vamos a ver pronto. Chao, chileno del Marco Polo.",
+        "next": "chao"
+      },
+      "chao": {
+        "text": "Se va caminando hacia la portería de la Calle 18, con la toalla al hombro. Se da vuelta una vez. Una sola. Tú finges que no la estabas mirando. Ella finge que no lo notó.",
+        "effects": [
+          {
+            "setFlag": "m5_sira_conocida"
+          },
+          {
+            "clockMax": "mar 20:25"
+          },
+          {
+            "objective": "Ve con Grover (junto a la salida del Centro Deportivo)"
+          }
+        ]
+      }
+    }
+  },
+  "m5_grover_vuelta": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Grover",
+        "text": "¡Subite, cumpa! Te llevo a Pance. Y en el camino me contás TODO.",
+        "choices": [
+          {
+            "label": "Subir al carro",
+            "effects": [
+              {
+                "event": "grover_vuelta"
+              }
+            ]
+          },
+          {
+            "label": "Espera un poco"
+          }
+        ]
+      }
+    }
+  },
+  "m5_pance_noche": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Grover se va tocando «La Cucaracha» por toda la calle. Los perros del barrio le ladran a coro.",
+          "Te vibra el celular: el grupo «Equipo 5 · Proyecto»."
+        ],
+        "effects": [
+          {
+            "message": "equipo_hamburguesas"
+          },
+          {
+            "clock": "mar 20:45",
+            "max": "mar 21:00"
+          }
+        ],
+        "next": "fin"
+      },
+      "fin": {
+        "text": "Pance Burger queda a dos casas, al oriente. A las nueve. Te da tiempo de pasar a la casa a saludar a doña Mery, si quieres.",
+        "effects": [
+          {
+            "objective": "Ve a Pance Burger (a dos casas, al oriente) a las 9"
+          }
+        ]
+      }
+    }
+  },
+  "m5_casa_noche": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La casa huele a sopa de tortilla. Doña Mery ve la novela en la sala, con el ventilador apuntándole directo a la cara."
+      }
+    }
+  },
+  "m5_burger_cerrado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission05"
+            },
+            "goto": "m5"
+          },
+          {
+            "goto": "otra"
+          }
+        ]
+      },
+      "m5": {
+        "text": "Pance Burger. Todavía está cerrado: abren a las seis de la tarde. «Hamburguesas al carbón», dice el letrero de neón apagado."
+      },
+      "otra": {
+        "text": "Una casa de Pance, con la puerta cerrada."
+      }
+    }
+  },
+  "m5_burger_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Pance Burger: ladrillo a la vista, guirnaldas de bombillos, una plancha que chisporrotea y olor a carbón. Suena salsa suave.",
+          "En la mesa larga del fondo, un señor de lentes y barba levanta la mano: «¿Equipo 5? ¡Aquí!». Es el profe Julián, con dos estudiantes."
+        ],
+        "effects": [
+          {
+            "setFlag": "m5_en_burger"
+          },
+          {
+            "clock": "mar 21:00",
+            "max": "mar 21:05"
+          },
+          {
+            "objective": "Siéntate con tu equipo (mesa larga del fondo, frente al profe)"
+          }
+        ]
+      }
+    }
+  },
+  "m5_burger_no_salir": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Profe Julián",
+        "text": "¿Ya se va? ¡Si ni ha llegado la comida! Siéntese, siéntese, que hoy nos conocemos."
+      }
+    }
+  },
+  "m5_burger_pedir": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mesera",
+        "text": "¡Buenas noches! ¿Qué le traigo? La Clásica, la Caleña (con maduro, piña y queso costeño) o la Pance (doble carne y huevo). Todas con papas criollas.",
+        "choices": [
+          {
+            "label": "La Caleña ($28.000)",
+            "if": {
+              "minMoney": 28000
+            },
+            "effects": [
+              {
+                "pay": 28000
+              },
+              {
+                "setFlag": "m5_caleña"
+              }
+            ],
+            "goto": "calena"
+          },
+          {
+            "label": "La Pance ($30.000)",
+            "if": {
+              "minMoney": 30000
+            },
+            "effects": [
+              {
+                "pay": 30000
+              }
+            ],
+            "goto": "pance"
+          },
+          {
+            "label": "La Clásica ($22.000)",
+            "if": {
+              "minMoney": 22000
+            },
+            "effects": [
+              {
+                "pay": 22000
+              }
+            ],
+            "goto": "clasica"
+          },
+          {
+            "label": "Solo un agua...",
+            "if": {
+              "not": {
+                "minMoney": 22000
+              }
+            },
+            "goto": "agua"
+          }
+        ]
+      },
+      "calena": {
+        "speaker": "Profe Julián",
+        "text": "¡Uy, la Caleña! Valiente el chileno. Los de intercambio siempre piden la Clásica. Usted ya es de aquí.",
+        "next": "llega"
+      },
+      "pance": {
+        "speaker": "Camilo",
+        "text": "¡Doble carne! Así me gusta, parcero. El que come con hambre, juega Cinco con hambre.",
+        "next": "llega"
+      },
+      "clasica": {
+        "speaker": "Valentina",
+        "text": "La Clásica. Buena elección. Predecible, pero buena. Como un diagrama de Gantt.",
+        "next": "llega"
+      },
+      "agua": {
+        "speaker": "Profe Julián",
+        "text": "Nada de agua. Hoy invito yo, para eso nos juntamos. ¡Una Clásica para el chileno! Y papas para todos.",
+        "next": "llega"
+      },
+      "llega": {
+        "text": "Llega la hamburguesa. Es del tamaño de tu cabeza (de tu cabeza recién motilada, que es más chica que la de esta mañana).",
+        "effects": [
+          {
+            "vineta": "m5_hamburguesa"
+          },
+          {
+            "sfx": "eat"
+          }
+        ]
+      }
+    }
+  },
+  "m5_presenta_profe": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Profe Julián",
+        "text": [
+          "Bueno, muchachos, bienvenidos al Equipo 5 de Diseño Logístico. Yo soy Julián Caicedo, caleño, de San Fernando, y vivo aquí en Pance hace diez años.",
+          "Me gusta la salsa, el ciclismo y las hamburguesas de este sitio. El proyecto del semestre: rediseñar las rutas de los buses alimentadores de Pance. Ustedes los usan, ustedes los sufren, ustedes los arreglan.",
+          "Pero primero, a conocernos. Que se presente cada uno: nombre, de dónde son y algo que nadie sepa."
+        ],
+        "effects": [
+          {
+            "vineta": "m5_equipo"
+          }
+        ]
+      }
+    }
+  },
+  "m5_presenta_vale": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Valentina",
+        "text": [
+          "Yo soy Valentina, Vale. Caleña de Ciudad Jardín. Ingeniería Industrial, sexto semestre.",
+          "Algo que nadie sepa... Ya hice el cronograma del proyecto. Con colores. Lo hice anoche, antes de saber quiénes éramos. Se los mando ahora."
+        ]
+      }
+    }
+  },
+  "m5_presenta_camilo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Camilo",
+        "text": [
+          "Camilo, de Palmira, la capital agrícola de Colombia. Si les falta caña, tengo un tío.",
+          "Algo que nadie sepa: inventé un juego de cartas. Se llama Cinco. Es como otro que hay, pero mejor, porque lo inventé yo. Lo traje. Ya verán."
+        ]
+      }
+    }
+  },
+  "m5_presenta_tu": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Profe Julián",
+        "text": "¿Y usted, el de intercambio?",
+        "choices": [
+          {
+            "label": "Feli, de Paine, Chile. Hoy me perdí... y me encontré con un corte nuevo",
+            "effects": [
+              {
+                "setFlag": "m5_presenta_gracioso"
+              }
+            ],
+            "goto": "gracioso"
+          },
+          {
+            "label": "Feli, Ingeniería. Me gusta optimizar cosas: rutas, mochilas, maletas",
+            "effects": [
+              {
+                "setFlag": "m5_presenta_nerd"
+              }
+            ],
+            "goto": "nerd"
+          },
+          {
+            "label": "Feli. Chileno. Algo que nadie sepa: no sé nadar",
+            "effects": [
+              {
+                "setFlag": "m5_presenta_nadar"
+              }
+            ],
+            "goto": "nadar"
+          }
+        ]
+      },
+      "gracioso": {
+        "speaker": "Camilo",
+        "text": "¡Ja! ¿Donde el Fredy? ¿Cuántas horas? ...¿Tres y media? Está bien. A mí me tuvo cinco. Me contó lo de Dubái."
+      },
+      "nerd": {
+        "speaker": "Valentina",
+        "text": "¿Optimizar? ¿Maletas? Ay, por fin alguien en un equipo que no deja todo para el último día. Somos almas gemelas del Excel."
+      },
+      "nadar": {
+        "speaker": "Profe Julián",
+        "text": "¡Ja! Eso tiene arreglo, mijo. Aquí en Cali hay buenas piscinas. Y buenos profesores de natación. Nunca se sabe quién le puede enseñar."
+      }
+    }
+  },
+  "m5_sira_llega": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Suena la campanita de la puerta. Entra alguien corriendo, con el pelo todavía húmedo, recogido en un moño.",
+        "effects": [
+          {
+            "sfx": "door"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Chica",
+        "text": "¡Perdón, perdón, profe! Salí tarde del entrenamiento y el bus... ¿Este es el Equipo 5? Soy S. Martínez, la del correo...",
+        "next": "sorpresa"
+      },
+      "sorpresa": {
+        "text": "Te mira. La miras. Es Sira. La de la piscina. La del Marco Polo. «S. Martínez», la del correo.",
+        "effects": [
+          {
+            "vineta": "m5_sira_sorpresa"
+          }
+        ],
+        "next": "sira_2"
+      },
+      "sira_2": {
+        "speaker": "Sira",
+        "text": "...¿TÚ? ¡El chileno del Marco Polo! Te dije que nos íbamos a ver pronto. Pero no tan pronto. Ni así.",
+        "choices": [
+          {
+            "label": "Fredy tenía razón",
+            "effects": [
+              {
+                "setFlag": "m5_sira_p2"
+              }
+            ],
+            "goto": "fredy"
+          },
+          {
+            "label": "¿Me estás siguiendo?",
+            "effects": [
+              {
+                "setFlag": "m5_sira_p2"
+              }
+            ],
+            "goto": "siguiendo"
+          },
+          {
+            "label": "Hola... (te pones rojo)",
+            "goto": "rojo"
+          }
+        ]
+      },
+      "fredy": {
+        "speaker": "Sira",
+        "text": "¿Fredy? ¿Qué te dijo Fredy? ...No me digas. «Ve el futuro en el pelo». ¡Ja! Mírenlo, se puso rojo.",
+        "next": "sentarse"
+      },
+      "siguiendo": {
+        "speaker": "Sira",
+        "text": "¿Yo a ti? ¡Llegué después! Si alguien sigue a alguien, eres tú. Primero mi piscina, ahora mi equipo...",
+        "next": "sentarse"
+      },
+      "rojo": {
+        "speaker": "Camilo",
+        "text": "¿Ustedes se conocen? ¿Por qué el chileno está del color de la salsa de tomate?",
+        "next": "sentarse"
+      },
+      "sentarse": {
+        "text": "Sira se sienta justo al frente tuyo. El profe Julián los mira a los dos por encima de los lentes, con una sonrisita. Valentina anota algo en su cronograma.",
+        "next": "presenta"
+      },
+      "presenta": {
+        "speaker": "Sira",
+        "text": [
+          "Bueno, yo soy Sira Martínez. Caleña, del barrio El Peñón. Ingeniería Industrial, cuarto semestre. Nado en la selección de la U.",
+          "¿Algo que nadie sepa? ...Le tengo miedo a los pavos reales. Uno me robó una vez un sánduche de la mano. Desde ahí no confío."
+        ],
+        "choices": [
+          {
+            "label": "¡Hoy uno se robó unas llaves!",
+            "effects": [
+              {
+                "setFlag": "m5_sira_pavo"
+              }
+            ],
+            "goto": "pavo"
+          },
+          {
+            "label": "Los pavos son negociantes",
+            "effects": [
+              {
+                "setFlag": "m5_sira_pavo"
+              }
+            ],
+            "goto": "pavo"
+          }
+        ]
+      },
+      "pavo": {
+        "speaker": "Sira",
+        "text": "¿En serio? ¡Te lo dije, son ladrones con plumas! ¿Y cómo las recuperaste? ...¿Con un pandebono? ¡Ja! Eres un genio. Un genio raro, pero genio."
+      }
+    }
+  },
+  "m5_cinco_intro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Camilo",
+        "text": [
+          "Bueno, ¡llegó el momento! Saco el Cinco. Somos cinco, ¿ven? Por eso se llama así. Bueno, no, se llama así por otra cosa, pero ya verán.",
+          "Reglas: cada uno siete cartas. Hay que tirar una del mismo color o del mismo número que la de la mesa. Si no tienes, robas.",
+          "Especiales: «¡Quieto!» salta al siguiente, «¡Pa'trás!» cambia el sentido, «+2» y el comodín, que cambia el color. Y el «Aguacero», que es comodín +4.",
+          "Y lo más importante: cuando a alguien le queda una carta, tiene que gritar «¡CINCO!» (con F). Si no grita y lo pillan, roba dos.",
+          "¡Y cuando alguien tira un CINCO, todos golpean la mesa (E)! El último en golpear roba una carta. ¿Listo?"
+        ],
+        "choices": [
+          {
+            "label": "¡Listo, a jugar!",
+            "goto": "jugar"
+          },
+          {
+            "label": "¿Por qué el cinco es especial?",
+            "goto": "porque"
+          }
+        ]
+      },
+      "porque": {
+        "speaker": "Camilo",
+        "text": "Porque en Palmira, cuando yo era chiquito, mi abuelo golpeaba la mesa cada vez que salía un cinco en el dominó. Nadie sabe por qué. Tradición familiar.",
+        "next": "jugar"
+      },
+      "jugar": {
+        "speaker": "Profe Julián",
+        "text": "Yo juego también, pero aviso: soy muy competitivo. Una vez le gané a mi mamá y no le pedí perdón.",
+        "effects": [
+          {
+            "vineta": ""
+          }
+        ]
+      }
+    }
+  },
+  "m5_cinco_gano": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¡GANASTE! Tiras tu última carta con un golpe en la mesa. Camilo se agarra la cabeza: «¡Me ganaron en mi propio juego!».",
+        "effects": [
+          {
+            "setFlag": "m5_gano_cinco"
+          },
+          {
+            "sfx": "complete"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "No puede ser. Nadas como gato en lavadora, pero juegas cartas como tiburón. Exijo la revancha. Otro día. Y en otro lugar.",
+        "effects": [
+          {
+            "setFlag": "m5_sira_p3"
+          }
+        ]
+      }
+    }
+  },
+  "m5_cinco_perdio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "_cinco_sira"
+            },
+            "goto": "sira_gana"
+          },
+          {
+            "if": {
+              "flag": "_cinco_profe"
+            },
+            "goto": "profe_gana"
+          },
+          {
+            "if": {
+              "flag": "_cinco_vale"
+            },
+            "goto": "vale_gana"
+          },
+          {
+            "goto": "camilo_gana"
+          }
+        ]
+      },
+      "sira_gana": {
+        "speaker": "Sira",
+        "text": "¡CINCO... y fuera! ¡Gané! ¿Vieron? Nado y además juego cartas. Lo siento, chileno. Bueno, no lo siento nada.",
+        "effects": [
+          {
+            "setFlag": "m5_sira_p3"
+          }
+        ],
+        "next": "fin"
+      },
+      "profe_gana": {
+        "speaker": "Profe Julián",
+        "text": "¡JA! ¡Les dije que era competitivo! Esto va a la nota. Es broma. A medias. Es broma.",
+        "next": "fin"
+      },
+      "vale_gana": {
+        "speaker": "Valentina",
+        "text": "Gané. Lo tenía todo calculado desde la tercera ronda. Hice un diagrama mental. Con colores.",
+        "next": "fin"
+      },
+      "camilo_gana": {
+        "speaker": "Camilo",
+        "text": "¡Gané mi propio juego! Como debe ser. El que inventa, gana. Esa es la regla número cero.",
+        "next": "fin"
+      },
+      "fin": {
+        "text": "Perdiste. Pero te reíste más que nadie. Y Sira te pasó una carta por debajo de la mesa cuando no tenías azul. Nadie lo vio. Bueno, el profe sí.",
+        "effects": [
+          {
+            "setFlag": "m5_sira_ayuda"
+          }
+        ]
+      }
+    }
+  },
+  "m5_despedida_equipo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Profe Julián",
+        "text": [
+          "Bueno, muchachos, me voy, que mañana doy clase a las siete. Buen equipo. Muy buen equipo. Se nota la química.",
+          "(Los mira a ti y a Sira por encima de los lentes. Valentina tose. Camilo silba.)"
+        ],
+        "next": "vale"
+      },
+      "vale": {
+        "speaker": "Valentina",
+        "text": "Yo también me voy. Les mando el cronograma por el grupo. Camilo, tú me llevas, que vivimos cerca. Vamos. ¡Ya! ¡Vamos, Camilo!",
+        "next": "camilo"
+      },
+      "camilo": {
+        "speaker": "Camilo",
+        "text": "¿Ah? ¿Ya? Pero si... ¡Ah! Sí, sí, ya, ya entendí. Chao, chao. ¡Que les vaya bonito!",
+        "effects": [
+          {
+            "setFlag": "m5_solos"
+          }
+        ]
+      }
+    }
+  },
+  "m5_coqueteo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Quedan los dos solos en la mesa larga. Las papas criollas ya se enfriaron. La salsa de fondo baja de volumen. O eso te parece.",
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "Bueno... Qué día raro, ¿no? Primero el Marco Polo, ahora esto. ¿Siempre te pasan estas cosas o es Cali?",
+        "choices": [
+          {
+            "label": "Es Cali. Y Fredy, que me lo predijo",
+            "effects": [
+              {
+                "setFlag": "m5_coq_1"
+              }
+            ],
+            "goto": "cali"
+          },
+          {
+            "label": "Hoy me robó las llaves un pavo. Ya nada me sorprende",
+            "effects": [
+              {
+                "setFlag": "m5_coq_1"
+              }
+            ],
+            "goto": "pavo"
+          },
+          {
+            "label": "Me pasan cosas raras desde que llegué",
+            "goto": "raras"
+          }
+        ]
+      },
+      "cali": {
+        "speaker": "Sira",
+        "text": "¿Y qué más te predijo Fredy? ...No, no me digas. Prefiero no saber. Me da miedo que tenga razón.",
+        "next": "nadar"
+      },
+      "pavo": {
+        "speaker": "Sira",
+        "text": "Todavía no puedo creer lo del pandebono. Le pagaste el rescate a un pavo real. Eres el primer negociador de rehenes con plumas.",
+        "next": "nadar"
+      },
+      "raras": {
+        "speaker": "Sira",
+        "text": "¿Cosas raras? ¿Como qué? ¿Como conocer a alguien dos veces el mismo día? Eso sí es raro, sí.",
+        "next": "nadar"
+      },
+      "nadar": {
+        "speaker": "Sira",
+        "text": "Oye... lo de que no sabes nadar. Lo vi. Es grave. Muy grave. Alguien te tiene que enseñar, por tu seguridad.",
+        "choices": [
+          {
+            "label": "¿Te estás ofreciendo?",
+            "effects": [
+              {
+                "setFlag": "m5_coq_2"
+              }
+            ],
+            "goto": "ofreces"
+          },
+          {
+            "label": "Grover dice que flotar ya es nadar",
+            "goto": "grover"
+          },
+          {
+            "label": "Es que en Chile el mar es muy frío",
+            "goto": "frio"
+          }
+        ]
+      },
+      "ofreces": {
+        "speaker": "Sira",
+        "text": "Puede ser. Los jueves no entreno. A las siete, aquí en la piscina de la U, en el GLD. Si llegas con el traje de llamas, me voy. Es broma. Llega con el traje de llamas.",
+        "next": "insta"
+      },
+      "grover": {
+        "speaker": "Sira",
+        "text": "Tu amigo Grover tragó como medio litro de piscina. No es buen ejemplo. Yo te enseño. Los jueves no entreno... digo. Por si acaso.",
+        "next": "insta"
+      },
+      "frio": {
+        "speaker": "Sira",
+        "text": "Aquí el agua es tibia, así que se te acabaron las excusas. Los jueves no entreno, por si te interesa. No es que me importe.",
+        "next": "insta"
+      },
+      "insta": {
+        "text": "Silencio. Ella juega con una papa criolla. Tú juegas con el borde del vaso. El celular está ahí, en la mesa, mirándote.",
+        "choices": [
+          {
+            "label": "¿Me das tu Instagram? Para lo de la natación",
+            "goto": "pedir"
+          },
+          {
+            "label": "¿Me pasas tu número? Para... el proyecto",
+            "goto": "proyecto"
+          },
+          {
+            "label": "Quedarte callado y sonreír",
+            "goto": "callado"
+          }
+        ]
+      },
+      "callado": {
+        "speaker": "Sira",
+        "text": "...¿Ya? ¿Te vas a quedar mirándome? ¡Ja! Eres más tímido de lo que pareces, chileno. Vamos, pídemelo. Sé que lo quieres pedir.",
+        "choices": [
+          {
+            "label": "¿Me das tu Instagram?",
+            "goto": "pedir"
+          }
+        ]
+      },
+      "proyecto": {
+        "speaker": "Sira",
+        "text": "¿Para el proyecto? Ya estamos en el grupo del equipo, genio. Ahí está mi número. ...Pero si quieres algo que no sea del proyecto, pídeme otra cosa.",
+        "choices": [
+          {
+            "label": "Entonces... ¿tu Instagram?",
+            "effects": [
+              {
+                "setFlag": "m5_coq_3"
+              }
+            ],
+            "goto": "pedir"
+          }
+        ]
+      },
+      "pedir": {
+        "speaker": "Sira",
+        "text": "Mmm... déjame pensarlo... Ya lo pensé. Pásame el celular.",
+        "next": "escribe"
+      },
+      "escribe": {
+        "text": "Sira toma tu celular, escribe rápido con los pulgares y te lo devuelve. En la pantalla: @sira.mtz. Siguiendo. Y un corazoncito en tu última foto. Esa en que sales con cara de dormido en el avión.",
+        "effects": [
+          {
+            "vineta": "m5_insta"
+          },
+          {
+            "sfx": "notify"
+          },
+          {
+            "setFlag": "m5_insta"
+          }
+        ],
+        "next": "chao"
+      },
+      "chao": {
+        "speaker": "Sira",
+        "text": "Ya está. Ahora no tienes excusa. Me voy, que mi mamá me pasa a buscar. Nos vemos el jueves... digo, mañana en la U. Chao, chileno.",
+        "effects": [
+          {
+            "clockMax": "mar 22:45"
+          },
+          {
+            "objective": "Vuelve a la casa de doña Mery"
+          }
+        ]
+      }
+    }
+  },
+  "m5_casa_final": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "La casa está a oscuras. Doña Mery duerme en el sofá con la novela prendida. Le pones una manta encima y apagas la tele.",
+          "En la pieza, te tiras en la cama. Hueles a cloro, a carbón y a algo de salsa. Te duelen los brazos, las piernas y la cara de tanto sonreír."
+        ],
+        "effects": [
+          {
+            "clock": "mar 22:50",
+            "max": "mar 23:00"
+          }
+        ],
+        "next": "celular"
+      },
+      "celular": {
+        "text": "Vibra el celular.",
+        "effects": [
+          {
+            "message": "sira_buenas_noches"
+          },
+          {
+            "vineta": "m5_buenas_noches"
+          }
+        ],
+        "next": "fin"
+      },
+      "fin": {
+        "text": "Sonríes como un tonto en la oscuridad. Fredy tenía razón. Fredy siempre tiene razón. Bueno, casi siempre: Dubái fue una escala.",
+        "effects": [
+          {
+            "event": "mision5_final"
+          }
+        ]
+      }
+    }
+  },
+  "llamada_grover_m5": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_volvio_piscina"
+            },
+            "goto": "noche"
+          },
+          {
+            "if": {
+              "flag": "m5_llaves_listas"
+            },
+            "goto": "piscina"
+          },
+          {
+            "if": {
+              "flag": "m5_grover_visto"
+            },
+            "goto": "llaves"
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Grover (llamada)",
+        "text": "¡Cumpa! A las cuatro y media en el parqueadero de la U, ¿ya? No te olvidés. Yo pongo el carro, vos ponés las ganas."
+      },
+      "llaves": {
+        "speaker": "Grover (llamada)",
+        "text": "¿Y? ¿Las encontraste? Yo estoy aquí al lado del carro, mirándolo fijo. Como si eso ayudara."
+      },
+      "piscina": {
+        "speaker": "Grover (llamada)",
+        "text": "¿Por qué me llamás si estoy al lado tuyo, cumpa? ...Igual te contesto. Hola."
+      },
+      "noche": {
+        "speaker": "Grover (llamada)",
+        "text": "¡Cumpa! ¿Ya la saludaste? ¿A la Sira? ¡Contame todo mañana! Yo me voy a dormir, me duele hasta la monoceja."
+      }
+    }
+  },
+  "llamada_mama_m5": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mamá (llamada)",
+        "text": [
+          "¡Hijo! ¿Cómo va el martes? ¿Te cortaste el pelo? Doña Mery me escribió que parecías un chascón.",
+          "Mándame una foto. Y no te metas a nadar en piscinas hondas, que tú nadas como piedra."
+        ],
+        "choices": [
+          {
+            "label": "Ya me lo corté, mamá",
+            "goto": "corte"
+          },
+          {
+            "label": "Te dejo, mamá, estoy ocupado",
+            "goto": "ocupado"
+          }
+        ]
+      },
+      "corte": {
+        "speaker": "Mamá (llamada)",
+        "text": "¡Ay, qué bueno! Mándame foto. Y cuídate. Te quiero, hijo. Saludos a la señora."
+      },
+      "ocupado": {
+        "speaker": "Mamá (llamada)",
+        "text": "¿Ocupado? ¿En qué? ...Ya, ya, no te molesto. Pero mándame foto del pelo."
+      }
+    }
+  },
+  "llamada_mery_m5": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Doña Mery (llamada)",
+        "text": "¿Aló? ¿Mijo? ¿Ya fue donde el Fredy? ¡Salúdemelo! Y dígale que la comadre Gladys todavía espera que le pague el corte del marido. Del 2019."
+      }
+    }
+  },
+  "usar_mango_biche": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Mango biche con sal, limón y pimienta. Ácido, salado, picante. Se te cierra un ojo solo. Quieres más.",
+        "effects": [
+          {
+            "vineta": "m5_mango"
+          },
+          {
+            "takeItem": "mango_biche"
+          }
+        ]
+      }
+    }
+  },
+  "usar_salpicon": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Salpicón bien frío: sandía, papaya, banano, piña y mango. Es como tomarse una frutería entera con cuchara.",
+        "effects": [
+          {
+            "vineta": "m5_salpicon"
+          },
+          {
+            "takeItem": "salpicon"
+          }
+        ]
+      }
+    }
+  },
+  "usar_champus": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Champús: maíz, lulo, piña, panela y canela. Dulce, espeso y helado. Después de nadar sabe a gloria.",
+        "effects": [
+          {
+            "vineta": "tomar_lulada"
+          },
+          {
+            "takeItem": "champus"
+          }
+        ]
+      }
+    }
+  },
+  "usar_pan_de_yuca": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Pan de yuca: crocante por fuera, elástico por dentro, con sabor a queso. Se estira como chicle. Es adictivo.",
+        "effects": [
+          {
+            "vineta": "comer_pandebono"
+          },
+          {
+            "takeItem": "pan_de_yuca"
+          }
+        ]
+      }
+    }
+  },
+  "usar_llaves_grover": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Las llaves del carro de Grover, con la llamita tejida y su manta de colores. Huelen a pandebono y a pavo real."
+      }
+    }
+  },
+  "usar_antiparras": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Unas gafas de natación azules, de niño. Alguien las está buscando, seguro."
+      }
+    }
+  },
+  "usar_traje_bano": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El traje de baño de Grover: azul con llamitas blancas. «Recuerdo de Copacabana». Te lo regaló. Es feo. Lo vas a guardar para siempre."
+      }
+    }
+  },
+  "m5_portero": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Portero",
+        "text": "¡Ey, ey! ¿Para dónde? Primero la entrada, joven. La taquilla está ahí a la izquierda."
+      }
+    }
+  },
+  "m5_profe_mesa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "m5_cinco_jugado"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Profe Julián",
+        "text": "Siéntese ahí al frente, mijo, que ya pedimos. Aquí las papas criollas son las mejores de Pance. De Cali, me atrevería a decir."
+      },
+      "despues": {
+        "speaker": "Profe Julián",
+        "text": "Buen equipo, buen equipo. Muy buena química. (Te guiña un ojo)."
+      }
+    }
+  },
+  "m5_vale_mesa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Valentina",
+        "text": "Hola. Te agregué al grupo, al Drive, al calendario y al tablero de tareas. Revisa el tablero de tareas. Hay tareas."
+      }
+    }
+  },
+  "m5_camilo_mesa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Camilo",
+        "text": "¿Sabes jugar cartas, chileno? ...No importa. Cuando terminemos de comer te enseño el Cinco. Vas a perder, pero vas a aprender."
+      }
+    }
+  },
+  "m5_sira_mesa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Sira",
+        "text": "¿Qué? ¿Tengo algo en la cara? ...¿No? ¿Y entonces por qué me miras así? (Se ríe y mira para otro lado)."
+      }
+    }
+  },
+  "m5_mesera": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mesera",
+        "text": "¿Le traigo algo más, mi vida? ¿Una limonada de coco? Es la especialidad. Bueno, todo es la especialidad."
+      }
+    }
+  },
+  "m5_cocinero": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Cocinero",
+        "text": "El secreto de la hamburguesa es el carbón. Y la salsa de la casa. Y el cariño. Pero más que nada el carbón."
+      }
+    }
+  },
+  "m5_pareja": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Señora",
+        "text": "Yo pido siempre la Caleña. Mi esposo, la Clásica. Llevamos veinte años discutiendo cuál es mejor. Es la base de nuestro matrimonio."
+      }
+    }
+  },
+  "m5_cita": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Muchacha",
+        "text": "Shhh, estoy esperando a alguien. Una primera cita. ¿Se me nota el nervio? No me conteste."
+      }
+    }
+  }
+}

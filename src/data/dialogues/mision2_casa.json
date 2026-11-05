@@ -1,0 +1,1082 @@
+{
+  "mision2_intro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Domingo, 21:00. Paine, Inés de Suárez 122.",
+          "Terminaste de comer con tu mamá. Mañana a las 8:30 tienes la prueba de Optimización: la más importante del semestre."
+        ],
+        "next": "mama"
+      },
+      "mama": {
+        "speaker": "Mamá",
+        "text": [
+          "Ya, hijo: hoy te toca lavar la loza. Lleva los platos al lavaplatos, ¿ya?",
+          "Y después a la ducha y a acostarse temprano, que mañana tenís prueba y el tren sale a las 7:30."
+        ],
+        "effects": [
+          {
+            "objective": "Lleva los platos al lavaplatos (cocina)"
+          }
+        ],
+        "next": "tip"
+      },
+      "tip": {
+        "text": "Estás sentado a la mesa. Muévete para pararte. Los platos están justo enfrente: presiona E."
+      }
+    }
+  },
+  "mama_cena": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "duchado"
+            },
+            "goto": "dormir"
+          },
+          {
+            "if": {
+              "flag": "platos_lavados"
+            },
+            "goto": "gracias"
+          },
+          {
+            "if": {
+              "flag": "platos_retirados"
+            },
+            "goto": "lava"
+          },
+          {
+            "goto": "platos"
+          }
+        ]
+      },
+      "platos": {
+        "speaker": "Mamá",
+        "text": "Los platos, hijo. Están ahí en la mesa, no se van a ir solitos al lavaplatos."
+      },
+      "lava": {
+        "speaker": "Mamá",
+        "text": "¿Y? La loza no se lava sola. El lavaplatos está en la cocina."
+      },
+      "gracias": {
+        "speaker": "Mamá",
+        "text": [
+          "Gracias, hijo. Quedó impeque. Ahora a la ducha, en el segundo piso.",
+          "¿Y qué es eso del «problema de la mochila» que vai a dar mañana? ¿Les enseñan a ordenar la mochila? Ya era hora."
+        ]
+      },
+      "dormir": {
+        "speaker": "Mamá",
+        "text": "A la cama, que son casi las diez. Pon la alarma, ¿ah? ¡Que mañana no te quedes dormido!"
+      }
+    }
+  },
+  "platos_mesa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Los platos sucios de la comida: dos platos, dos vasos y la olla del arroz (con el pegado del fondo).",
+        "effects": [
+          {
+            "vineta": "loza_mesa"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Llevarlos al lavaplatos",
+            "goto": "llevar"
+          },
+          {
+            "label": "Ahora no"
+          }
+        ]
+      },
+      "llevar": {
+        "text": "Haces equilibrio con todo y lo llevas a la cocina sin quebrar nada. ¡Un artista!",
+        "effects": [
+          {
+            "vineta": "loza_recoger"
+          },
+          {
+            "setFlag": "platos_retirados"
+          },
+          {
+            "sfx": "item"
+          },
+          {
+            "clock": "dom 21:05",
+            "max": "dom 21:15"
+          },
+          {
+            "objective": "Lava los platos (lavaplatos de la cocina)"
+          }
+        ]
+      }
+    }
+  },
+  "lavaplatos": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "manana"
+            },
+            "goto": "manana"
+          },
+          {
+            "if": {
+              "flag": "platos_lavados"
+            },
+            "goto": "limpio"
+          },
+          {
+            "if": {
+              "flag": "platos_retirados"
+            },
+            "goto": "lavar"
+          },
+          {
+            "goto": "vacio"
+          }
+        ]
+      },
+      "vacio": {
+        "text": "El lavaplatos está vacío. Los platos sucios siguen en la mesa del comedor."
+      },
+      "limpio": {
+        "text": "El lavaplatos brilla. Tu mamá estaría orgullosa (lo está)."
+      },
+      "manana": {
+        "text": "Ni una taza sucia. Bien."
+      },
+      "lavar": {
+        "text": "Abres la llave. Agua tibia, detergente y a darle.",
+        "effects": [
+          {
+            "vineta": "loza_llave"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Lavar y dejar estilando",
+            "effects": [
+              {
+                "setFlag": "platos_lavados"
+              },
+              {
+                "clock": "dom 21:20",
+                "max": "dom 21:30"
+              }
+            ],
+            "goto": "fin"
+          },
+          {
+            "label": "Lavar, secar y guardar todo",
+            "effects": [
+              {
+                "setFlag": [
+                  "platos_lavados",
+                  "seco_platos"
+                ]
+              },
+              {
+                "clock": "dom 21:30",
+                "max": "dom 21:40"
+              }
+            ],
+            "goto": "fin"
+          }
+        ]
+      },
+      "fin": {
+        "effects": [
+          {
+            "objective": "Sube al baño a ducharte (segundo piso)"
+          },
+          {
+            "event": "fundido",
+            "data": {
+              "dialogue": "lavando"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "lavando": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "*Clink, clank, fssshhh...* Platos y vasos, uno por uno.",
+        "effects": [
+          {
+            "vineta": "loza_lavar"
+          }
+        ],
+        "next": "olla"
+      },
+      "olla": {
+        "text": "Y la olla del arroz: lado verde de la esponja contra el pegado del fondo... Hasta la olla quedó brillante.",
+        "effects": [
+          {
+            "vineta": "loza_olla"
+          }
+        ],
+        "branches": [
+          {
+            "if": {
+              "flag": "seco_platos"
+            },
+            "goto": "guardar"
+          },
+          {
+            "goto": "estilando"
+          }
+        ]
+      },
+      "estilando": {
+        "text": "Cierras la llave y dejas todo estilando en el escurridor. Listo: loza limpia.",
+        "effects": [
+          {
+            "vineta": "loza_estilando"
+          }
+        ]
+      },
+      "guardar": {
+        "text": "Secas todo con el paño de cocina y lo guardas en el mueble. Listo: loza limpia y guardada.",
+        "effects": [
+          {
+            "vineta": "loza_guardar"
+          }
+        ]
+      }
+    }
+  },
+  "refri": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "all": [
+                {
+                  "flag": "manana"
+                },
+                {
+                  "notFlag": "saco_marraqueta"
+                }
+              ]
+            },
+            "goto": "nota"
+          },
+          {
+            "if": {
+              "flag": "manana"
+            },
+            "goto": "vacio"
+          },
+          {
+            "goto": "noche"
+          }
+        ]
+      },
+      "noche": {
+        "text": "Ya comiste. Aunque un yogurcito... no, ya es tarde."
+      },
+      "nota": {
+        "text": [
+          "En la puerta del refri hay una nota con un imán de Paine:",
+          "«Hijo: salí temprano a la pega. Te dejé una marraqueta con palta. ¡Mucho éxito en la prueba! Te quiero. Mamá»"
+        ],
+        "effects": [
+          {
+            "sign": "nota_mama_prueba"
+          },
+          {
+            "giveItem": "marraqueta"
+          },
+          {
+            "setFlag": "saco_marraqueta"
+          }
+        ]
+      },
+      "vacio": {
+        "text": "Leche, mantequilla y un tupper misterioso que nadie se atreve a abrir."
+      }
+    }
+  },
+  "cocina_casa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La tetera. Hoy no hay tiempo para tecito."
+      }
+    }
+  },
+  "tele_casa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "manana"
+            },
+            "goto": "manana"
+          },
+          {
+            "goto": "noche"
+          }
+        ]
+      },
+      "noche": {
+        "text": "Resumen del fútbol del domingo. Tu mamá le grita al árbitro desde la mesa.",
+        "effects": [{ "sign": "tele_futbol" }]
+      },
+      "manana": {
+        "text": "Las noticias de la mañana: un frío que cala, pero trenes y metro funcionan normal. Menos mal.",
+        "effects": [{ "sign": "tele_noticias" }]
+      }
+    }
+  },
+  "sofa_casa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El sillón te mira con ganas de que te tires una siesta. No. Hoy no."
+      }
+    }
+  },
+  "mochila_casa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "despierto"
+            },
+            "goto": "tomar"
+          },
+          {
+            "goto": "noche"
+          }
+        ]
+      },
+      "noche": {
+        "text": "Tu mochila, lista para mañana: cuaderno, calculadora y estuche. La tomas antes de salir."
+      },
+      "tomar": {
+        "text": "Tu mochila. ¡Casi sales sin ella!",
+        "effects": [
+          {
+            "giveItem": "mochila"
+          },
+          {
+            "clearFlag": "sin_mochila"
+          },
+          {
+            "setFlag": "tiene_mochila"
+          }
+        ],
+        "next": "check"
+      },
+      "check": {
+        "branches": [
+          {
+            "if": {
+              "flag": [
+                "vestido",
+                "cara_lavada",
+                "tiene_mochila"
+              ]
+            },
+            "goto": "listo"
+          },
+          {
+            "goto": "pendiente"
+          }
+        ]
+      },
+      "listo": {
+        "effects": [
+          {
+            "objective": "Sal de la casa y ve a la Estación Paine (tren 7:30)"
+          }
+        ]
+      },
+      "pendiente": {}
+    }
+  },
+  "casa_no_salir": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "mision3_iniciada"
+            },
+            "goto": "m3"
+          },
+          {
+            "if": {
+              "notFlag": "manana"
+            },
+            "goto": "noche"
+          },
+          {
+            "if": {
+              "notFlag": "despierto"
+            },
+            "goto": "noche"
+          },
+          {
+            "if": {
+              "notFlag": "vestido"
+            },
+            "goto": "pijama"
+          },
+          {
+            "if": {
+              "notFlag": "cara_lavada"
+            },
+            "goto": "cara"
+          },
+          {
+            "goto": "mochila"
+          }
+        ]
+      },
+      "noche": {
+        "text": "Son más de las nueve de la noche. No vas a salir a ninguna parte: loza, ducha y cama."
+      },
+      "pijama": {
+        "text": "¿Salir en pijama? Paine es tranquilo, pero tampoco tanto. Vístete primero (ropero de tu pieza)."
+      },
+      "cara": {
+        "text": "Tienes cara de almohada. Lávate la cara en el baño del segundo piso."
+      },
+      "mochila": {
+        "text": "Te falta la mochila. Está en el suelo, al lado de la puerta."
+      },
+      "m3": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "maleta_cerrada"
+            },
+            "goto": "m3_maleta"
+          },
+          {
+            "goto": "m3_carnet"
+          }
+        ]
+      },
+      "m3_maleta": {
+        "text": "¿Y la maleta? Sigue abierta arriba en tu pieza. Sin maleta no hay Cali."
+      },
+      "m3_carnet": {
+        "text": "Te falta lo más importante: el carnet. Sin carnet no pasas ni la PDI. Revisa tu escritorio."
+      }
+    }
+  },
+  "ducha": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "manana"
+            },
+            "goto": "manana"
+          },
+          {
+            "if": {
+              "flag": "duchado"
+            },
+            "goto": "ya"
+          },
+          {
+            "if": {
+              "notFlag": "platos_lavados"
+            },
+            "goto": "antes"
+          },
+          {
+            "goto": "duchar"
+          }
+        ]
+      },
+      "antes": {
+        "text": "Primero la loza, después la ducha. Regla de la casa."
+      },
+      "ya": {
+        "text": "Ya te duchaste. Estás más limpio que la loza."
+      },
+      "manana": {
+        "text": "No hay tiempo para otra ducha. ¡El tren sale a las 7:30!"
+      },
+      "duchar": {
+        "text": "¿Te duchas?",
+        "choices": [
+          {
+            "label": "Sí, a la ducha",
+            "effects": [
+              {
+                "setFlag": [
+                  "duchado",
+                  "en_pijama"
+                ]
+              },
+              {
+                "clock": "dom 21:50",
+                "max": "dom 22:20"
+              },
+              {
+                "objective": "Acuéstate a dormir (tu cama)"
+              },
+              {
+                "event": "fundido",
+                "data": {
+                  "dialogue": "duchandose"
+                }
+              }
+            ]
+          },
+          {
+            "label": "Después"
+          }
+        ]
+      }
+    }
+  },
+  "duchandose": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Agua calientita... Cantas un reguetón con voz de tenor.",
+          "Te pones el pijama. Huele a suavizante."
+        ]
+      }
+    }
+  },
+  "lavamanos": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "despierto"
+            },
+            "goto": "noche"
+          },
+          {
+            "if": {
+              "flag": "cara_lavada"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "lavar"
+          }
+        ]
+      },
+      "noche": {
+        "text": "Te lavas los dientes. Arriba, abajo, círculos. Como dice el dentista."
+      },
+      "ya": {
+        "text": "Ya te lavaste la cara. El espejo dice que sigues teniendo sueño, pero menos."
+      },
+      "lavar": {
+        "text": "Agua helada en la cara. ¡BRRR! Ahora sí estás despierto.",
+        "effects": [
+          {
+            "setFlag": "cara_lavada"
+          }
+        ],
+        "next": "check"
+      },
+      "check": {
+        "branches": [
+          {
+            "if": {
+              "flag": [
+                "vestido",
+                "cara_lavada",
+                "tiene_mochila"
+              ]
+            },
+            "goto": "listo"
+          },
+          {
+            "goto": "pendiente"
+          }
+        ]
+      },
+      "listo": {
+        "effects": [
+          {
+            "objective": "Sal de la casa y ve a la Estación Paine (tren 7:30)"
+          }
+        ]
+      },
+      "pendiente": {}
+    }
+  },
+  "wc_casa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Haces lo tuyo y tiras la cadena. Un clásico."
+      }
+    }
+  },
+  "ropero": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "all": [
+                {
+                  "flag": "manana"
+                },
+                {
+                  "flag": "en_pijama"
+                }
+              ]
+            },
+            "goto": "vestirse"
+          },
+          {
+            "if": {
+              "flag": "manana"
+            },
+            "goto": "cambiar"
+          },
+          {
+            "goto": "noche"
+          }
+        ]
+      },
+      "noche": {
+        "text": "Tu ropero. ¿Dejas elegida la ropa para mañana?",
+        "choices": [
+          {
+            "label": "Elegir ropa",
+            "effects": [
+              {
+                "event": "ropero"
+              }
+            ]
+          },
+          {
+            "label": "No"
+          }
+        ]
+      },
+      "cambiar": {
+        "text": "¿Te cambias de ropa?",
+        "choices": [
+          {
+            "label": "Elegir ropa",
+            "effects": [
+              {
+                "event": "ropero"
+              }
+            ]
+          },
+          {
+            "label": "Así estoy bien"
+          }
+        ]
+      },
+      "vestirse": {
+        "text": "Te sacas el pijama. ¿Qué te pones hoy? (A/D cambia cada prenda.)",
+        "effects": [
+          {
+            "clearFlag": "en_pijama"
+          },
+          {
+            "setFlag": "vestido"
+          },
+          {
+            "event": "ropero"
+          }
+        ],
+        "next": "check"
+      },
+      "check": {
+        "branches": [
+          {
+            "if": {
+              "flag": [
+                "vestido",
+                "cara_lavada",
+                "tiene_mochila"
+              ]
+            },
+            "goto": "listo"
+          },
+          {
+            "goto": "pendiente"
+          }
+        ]
+      },
+      "listo": {
+        "effects": [
+          {
+            "objective": "Sal de la casa y ve a la Estación Paine (tren 7:30)"
+          }
+        ]
+      },
+      "pendiente": {}
+    }
+  },
+  "escritorio_casa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "manana"
+            },
+            "goto": "manana"
+          },
+          {
+            "if": {
+              "flag": "repaso"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "repasar"
+          }
+        ]
+      },
+      "manana": {
+        "text": "Tu escritorio. No hay tiempo de estudiar ahora: lo que se aprendió, se aprendió."
+      },
+      "ya": {
+        "text": "Ya repasaste. Sabes más de mochilas que un scout."
+      },
+      "repasar": {
+        "text": "Tus apuntes de Optimización: «Problema de la mochila». ¿Repasas un rato antes de dormir?",
+        "choices": [
+          {
+            "label": "Repasar",
+            "effects": [
+              {
+                "setFlag": "repaso"
+              }
+            ],
+            "goto": "repaso"
+          },
+          {
+            "label": "Mejor no"
+          }
+        ]
+      },
+      "repaso": {
+        "text": [
+          "Mochila 0/1: cada objeto se lleva entero o no se lleva. Se maximiza el VALOR sin pasarse de la CAPACIDAD.",
+          "Regla golosa: ordenar por valor/peso y llenar. Ojo: en la 0/1 NO siempre da el óptimo.",
+          "Mochila fraccionaria (se pueden llevar pedazos): ahí la regla golosa SÍ es óptima.",
+          "Programación dinámica: una tabla de n objetos × W de capacidad. Tiempo O(n·W)."
+        ],
+        "effects": [
+          {
+            "sign": "cuaderno"
+          }
+        ]
+      }
+    }
+  },
+  "despertador": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "despierto"
+            },
+            "goto": "manana"
+          },
+          {
+            "goto": "noche"
+          }
+        ]
+      },
+      "noche": {
+        "text": "Tu despertador. Lo pones a las 7:00 cuando te acuestes."
+      },
+      "manana": {
+        "text": "Tu despertador. Ya hizo su trabajo (y tú lo odiaste por eso)."
+      }
+    }
+  },
+  "cama": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "manana"
+            },
+            "goto": "manana"
+          },
+          {
+            "if": {
+              "flag": "duchado"
+            },
+            "goto": "dormir"
+          },
+          {
+            "goto": "temprano"
+          }
+        ]
+      },
+      "temprano": {
+        "text": "Todavía no: falta lavar la loza y ducharte."
+      },
+      "manana": {
+        "text": "Tu cama, todavía tibia... No. NO. Hay prueba."
+      },
+      "dormir": {
+        "text": "¿Te acuestas? Mañana: prueba de Optimización a las 8:30, y el tren de Paine sale a las 7:30.",
+        "choices": [
+          {
+            "label": "Poner la alarma a las 7:00 y dormir",
+            "effects": [
+              {
+                "event": "dormir"
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      }
+    }
+  },
+  "dormir_noche": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Pones la alarma a las 7:00 y apagas la luz.",
+          "Zzz... sueñas con mochilas que no cierran...",
+          "Zzz..."
+        ],
+        "effects": [
+          {
+            "setFlag": "manana"
+          },
+          {
+            "clock": "lun 07:00"
+          },
+          {
+            "vineta": "dormir"
+          }
+        ]
+      }
+    }
+  },
+  "alarma": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "posponer_2"
+            },
+            "goto": "a3"
+          },
+          {
+            "if": {
+              "flag": "posponer_1"
+            },
+            "goto": "a2"
+          },
+          {
+            "goto": "a1"
+          }
+        ]
+      },
+      "a1": {
+        "text": "¡PIRIRIRÍ! ¡PIRIRIRÍ! El despertador marca las {hora}. Es lunes... y hoy tienes prueba de Optimización.",
+        "effects": [
+          {
+            "vineta": "despertador"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Apagar la alarma y levantarse",
+            "effects": [
+              {
+                "setFlag": "despierto"
+              },
+              {
+                "clockMax": "lun 07:19"
+              },
+              {
+                "objective": "Prepárate: vístete, lávate la cara y toma tu mochila"
+              }
+            ]
+          },
+          {
+            "label": "Posponer 5 minutitos...",
+            "effects": [
+              {
+                "setFlag": "_posponer"
+              }
+            ]
+          }
+        ]
+      },
+      "a2": {
+        "text": "¡PIRIRIRÍ! Las {hora}. El tren sale a las 7:30 y la estación no queda al lado...",
+        "effects": [
+          {
+            "vineta": "despertador"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Levantarse (ya, ya...)",
+            "effects": [
+              {
+                "setFlag": "despierto"
+              },
+              {
+                "clockMax": "lun 07:19"
+              },
+              {
+                "objective": "Prepárate: vístete, lávate la cara y toma tu mochila"
+              }
+            ]
+          },
+          {
+            "label": "Otros 5 minutitos...",
+            "effects": [
+              {
+                "setFlag": "_posponer"
+              }
+            ]
+          }
+        ]
+      },
+      "a3": {
+        "text": "¡PIRIRIRÍ! ¡¿Las {hora}?! Si pospones otra vez, no llegas.",
+        "effects": [
+          {
+            "vineta": "despertador"
+          }
+        ],
+        "choices": [
+          {
+            "label": "¡Levantarse de un salto!",
+            "effects": [
+              {
+                "setFlag": "despierto"
+              },
+              {
+                "clockMax": "lun 07:19"
+              },
+              {
+                "objective": "Prepárate: vístete, lávate la cara y toma tu mochila"
+              }
+            ]
+          },
+          {
+            "label": "Cinco minutitos más... nada más...",
+            "effects": [
+              {
+                "setFlag": "_posponer"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "pesadilla": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Zzz... Zzz...",
+          "...",
+          "Abres un ojo. Hay mucha luz. Demasiada luz."
+        ],
+        "effects": [
+          {
+            "clock": "lun 10:47"
+          }
+        ],
+        "next": "reloj"
+      },
+      "reloj": {
+        "text": [
+          "El despertador marca las {hora}.",
+          "¡¿LAS DIEZ CUARENTA Y SIETE?!",
+          "El celular explota de mensajes: «¿Dónde estai?», «Empezó la prueba», «El Cuervo preguntó por ti», «Te van a poner un 1,0».",
+          "Te quedaste dormido y faltaste a la prueba de Optimización. La más importante del semestre..."
+        ],
+        "effects": [
+          {
+            "vineta": "pesadilla"
+          }
+        ]
+      }
+    }
+  },
+  "pesadilla_despertar": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "¡PIRIRIRÍ! ¡PIRIRIRÍ!",
+          "Despiertas de un salto, con el corazón a mil. El despertador marca las {hora}.",
+          "¡Era una pesadilla! Todavía estás a tiempo. Esta vez no pospones NADA."
+        ],
+        "effects": [
+          {
+            "clock": "lun 07:00"
+          },
+          {
+            "setFlag": "despierto"
+          },
+          {
+            "clockMax": "lun 07:19"
+          },
+          {
+            "objective": "Prepárate: vístete, lávate la cara y toma tu mochila"
+          },
+          {
+            "vineta": "despertador"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "auto_familia",
+  "name": "Auto de la familia",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 9,
+  "height": 6,
+  "background": "#0c0c14",
+  "music": "credits",
+  "legend": {"k":"auto_carroceria","V":"auto_ventana","T":"auto_tablero","s":"auto_asiento",".":"auto_piso"},
+  "rows": [
+    "kkkkkkkkk",
+    "kVVVVVVVk",
+    "kTs.s...k",
+    "kTs.s...k",
+    "kVVVVVVVk",
+    "kkkkkkkkk"
+  ],
+  "spawns": {
+    "asiento": {"x":4,"y":2,"dir":"left"}
+  },
+  "enter": [
+    {"id":"viaje","dialogue":"auto_inicio","if":{"notFlag":"llego_scl"}}
+  ]
+}

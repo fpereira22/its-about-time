@@ -1,0 +1,1369 @@
+{
+  "characters": {
+    "player": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#4a3020",
+        "shirt": "#e05050",
+        "pants": "#3a4a78",
+        "hairStyle": "cap",
+        "cap": "#2f6fd0",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#e8a030"
+      }
+    },
+    "senora": {
+      "look": {
+        "skin": "#e8b890",
+        "hair": "#c8c8d0",
+        "shirt": "#9c6cb8",
+        "pants": "#6c4c78",
+        "hairStyle": "bun"
+      }
+    },
+    "turista": {
+      "look": {
+        "skin": "#f8d8c0",
+        "hair": "#e8c858",
+        "shirt": "#58c0a8",
+        "pants": "#c8b088",
+        "hairStyle": "cap",
+        "cap": "#f0e8d0",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#5878c8"
+      }
+    },
+    "sopaipillera": {
+      "look": {
+        "skin": "#d8a078",
+        "hair": "#2a1c18",
+        "shirt": "#f8f0e0",
+        "pants": "#4c5c88",
+        "hairStyle": "long"
+      }
+    },
+    "quiltro": {
+      "look": {
+        "body": "dog",
+        "fur": "#c89458",
+        "spot": "#f0e0c0"
+      }
+    },
+    "guardia": {
+      "look": {
+        "skin": "#d8a880",
+        "hair": "#2a2020",
+        "shirt": "#38486c",
+        "pants": "#28303c",
+        "hairStyle": "cap",
+        "cap": "#28303c"
+      }
+    },
+    "vendedor": {
+      "look": {
+        "skin": "#d8a078",
+        "hair": "#3a2818",
+        "shirt": "#e8c040",
+        "pants": "#585868",
+        "hairStyle": "short",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#a85838"
+      }
+    },
+    "oficinista": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#2a2020",
+        "shirt": "#f0f0f8",
+        "pants": "#383848",
+        "hairStyle": "short",
+        "extras": [
+          "tie",
+          "glasses"
+        ],
+        "accent": "#c83848"
+      }
+    },
+    "estudiante": {
+      "look": {
+        "skin": "#e0b088",
+        "hair": "#5a3828",
+        "shirt": "#5878c8",
+        "pants": "#383848",
+        "hairStyle": "long",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#48a858"
+      }
+    },
+    "abuelo": {
+      "look": {
+        "skin": "#e0b090",
+        "hair": "#e8e8e8",
+        "shirt": "#8c6c48",
+        "pants": "#585048",
+        "hairStyle": "short",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "chofer": {
+      "look": {
+        "skin": "#d8a078",
+        "hair": "#1c1c20",
+        "shirt": "#78a8d8",
+        "pants": "#383848",
+        "hairStyle": "short"
+      }
+    },
+    "pasajera": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#a84838",
+        "shirt": "#e888a8",
+        "pants": "#484868",
+        "hairStyle": "long"
+      }
+    },
+    "pasajero": {
+      "look": {
+        "skin": "#c89070",
+        "hair": "#2a2020",
+        "shirt": "#68a858",
+        "pants": "#4c4c5c",
+        "hairStyle": "cap",
+        "cap": "#c83838"
+      }
+    },
+    "player_dorado": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#4a3020",
+        "shirt": "#f0c030",
+        "pants": "#2a2a38",
+        "hairStyle": "cap",
+        "cap": "#f8d848",
+        "extras": [
+          "backpack",
+          "glasses"
+        ],
+        "accent": "#d8232a"
+      }
+    },
+    "mama": {
+      "look": {
+        "skin": "#e8b890",
+        "hair": "#3a2420",
+        "shirt": "#3cb4a0",
+        "pants": "#3a3a58",
+        "hairStyle": "long",
+        "extras": [
+          "glasses"
+        ],
+        "accent": "#e8789a"
+      }
+    },
+    "guardia_mall": {
+      "look": {
+        "skin": "#c89070",
+        "hair": "#1c1c20",
+        "shirt": "#2a2a38",
+        "pants": "#1c1c24",
+        "hairStyle": "short",
+        "extras": [
+          "tie"
+        ],
+        "accent": "#d8232a"
+      }
+    },
+    "nino": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#8a5a30",
+        "shirt": "#f08838",
+        "pants": "#3a5ab8",
+        "hairStyle": "short"
+      }
+    },
+    "transeunte_joven": {
+      "look": {
+        "skin": "#e0b088",
+        "hair": "#2d241e",
+        "shirt": "#22c55e",
+        "pants": "#334155",
+        "hairStyle": "short",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#f59e0b"
+      }
+    },
+    "transeunte_runner": {
+      "look": {
+        "skin": "#f5d0b0",
+        "hair": "#78350f",
+        "shirt": "#eab308",
+        "pants": "#1e293b",
+        "hairStyle": "cap",
+        "cap": "#ef4444"
+      }
+    },
+    "transeunte_ejecutiva": {
+      "look": {
+        "skin": "#eed2b6",
+        "hair": "#18181b",
+        "shirt": "#3b82f6",
+        "pants": "#1e1e24",
+        "hairStyle": "bun",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "transeunte_abuelita": {
+      "look": {
+        "skin": "#f3cbb3",
+        "hair": "#d4d4d8",
+        "shirt": "#c084fc",
+        "pants": "#581c87",
+        "hairStyle": "bun"
+      }
+    },
+    "transeunte_skater": {
+      "look": {
+        "skin": "#e8b894",
+        "hair": "#451a03",
+        "shirt": "#f43f5e",
+        "pants": "#475569",
+        "hairStyle": "cap",
+        "cap": "#0ea5e9",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#10b981"
+      }
+    },
+    "escolar": {
+      "look": {
+        "skin": "#e8b894",
+        "hair": "#2a1c18",
+        "shirt": "#f0f0f8",
+        "pants": "#585868",
+        "hairStyle": "short",
+        "extras": [
+          "tie",
+          "backpack"
+        ],
+        "accent": "#283868"
+      }
+    },
+    "trabajador": {
+      "look": {
+        "skin": "#c89070",
+        "hair": "#1c1c20",
+        "shirt": "#f08020",
+        "pants": "#38486c",
+        "hairStyle": "cap",
+        "cap": "#f0d030"
+      }
+    },
+    "universitaria": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#5a2818",
+        "shirt": "#a8d8a0",
+        "pants": "#3a3a58",
+        "hairStyle": "bun",
+        "extras": [
+          "glasses",
+          "backpack"
+        ],
+        "accent": "#d86848"
+      }
+    },
+    "profe_cuervo": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#8a5a3c",
+        "shirt": "#201c28",
+        "pants": "#121016",
+        "shoes": "#0a0a0e",
+        "hairStyle": "bald",
+        "build": "heavy",
+        "extras": [
+          "tie"
+        ],
+        "accent": "#6a1a3a"
+      }
+    },
+    "benja": {
+      "look": {
+        "skin": "#e0b088",
+        "hair": "#2a1c18",
+        "shirt": "#3c8c5c",
+        "pants": "#3a4a78",
+        "hairStyle": "short",
+        "extras": [
+          "backpack",
+          "glasses"
+        ],
+        "accent": "#2a2a38"
+      }
+    },
+    "papa": {
+      "look": {
+        "skin": "#e0b088",
+        "hair": "#3a3030",
+        "shirt": "#5a8ad8",
+        "pants": "#4a4a58",
+        "shoes": "#5a3c28",
+        "hairStyle": "short",
+        "build": "heavy",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "hermano": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#4a3020",
+        "shirt": "#f0c030",
+        "pants": "#3a5ab8",
+        "shoes": "#e8e8e0",
+        "hairStyle": "cap",
+        "cap": "#d04848"
+      }
+    },
+    "mesero": {
+      "look": {
+        "skin": "#d8a078",
+        "hair": "#1c1c20",
+        "shirt": "#f8f8f0",
+        "pants": "#1c1c24",
+        "hairStyle": "short",
+        "extras": [
+          "tie"
+        ],
+        "accent": "#2a2a38"
+      }
+    },
+    "agente_sag": {
+      "look": {
+        "skin": "#d8a880",
+        "hair": "#2a2020",
+        "shirt": "#3c7c48",
+        "pants": "#2a3a2c",
+        "hairStyle": "cap",
+        "cap": "#2a5a34"
+      }
+    },
+    "beagle": {
+      "look": {
+        "body": "dog",
+        "fur": "#f0f0e8",
+        "spot": "#c88838"
+      }
+    },
+    "pdi": {
+      "look": {
+        "skin": "#c89070",
+        "hair": "#1c1c20",
+        "shirt": "#2a3450",
+        "pants": "#1c2030",
+        "hairStyle": "short",
+        "extras": [
+          "tie"
+        ],
+        "accent": "#c8a040"
+      }
+    },
+    "avsec": {
+      "look": {
+        "skin": "#e0b088",
+        "hair": "#2a1c18",
+        "shirt": "#f0f0f8",
+        "pants": "#2a2a38",
+        "hairStyle": "bun",
+        "extras": [
+          "tie"
+        ],
+        "accent": "#2f4a8c"
+      }
+    },
+    "agente_counter": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#5a2818",
+        "shirt": "#2f6fd0",
+        "pants": "#2a2a38",
+        "hairStyle": "bun",
+        "extras": [
+          "tie"
+        ],
+        "accent": "#f0c030"
+      }
+    },
+    "auxiliar": {
+      "look": {
+        "skin": "#e8b890",
+        "hair": "#2a1c18",
+        "shirt": "#2f4a8c",
+        "pants": "#2f4a8c",
+        "hairStyle": "bun",
+        "extras": [
+          "tie"
+        ],
+        "accent": "#d84848"
+      }
+    },
+    "piloto": {
+      "look": {
+        "skin": "#d8a880",
+        "hair": "#c8c8d0",
+        "shirt": "#f0f0f8",
+        "pants": "#1c2030",
+        "hairStyle": "cap",
+        "cap": "#1c2030",
+        "extras": [
+          "tie"
+        ],
+        "accent": "#1c2030"
+      }
+    },
+    "migracion_co": {
+      "look": {
+        "skin": "#b87850",
+        "hair": "#1c1c20",
+        "shirt": "#e8e8f0",
+        "pants": "#2a3450",
+        "hairStyle": "short",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "agente_ica": {
+      "look": {
+        "skin": "#a87048",
+        "hair": "#1c1c20",
+        "shirt": "#3c7c48",
+        "pants": "#2a2a38",
+        "hairStyle": "long"
+      }
+    },
+    "labrador": {
+      "look": {
+        "body": "dog",
+        "fur": "#e8c070",
+        "spot": "#f8e8c0"
+      }
+    },
+    "chofer_furgon": {
+      "look": {
+        "skin": "#a87048",
+        "hair": "#1c1c20",
+        "shirt": "#f0c030",
+        "pants": "#3a4a78",
+        "hairStyle": "cap",
+        "cap": "#2f6fd0"
+      }
+    },
+    "calena": {
+      "look": {
+        "skin": "#a06848",
+        "hair": "#1c1418",
+        "shirt": "#e85878",
+        "pants": "#3a3a58",
+        "hairStyle": "long",
+        "extras": [
+          "glasses"
+        ],
+        "accent": "#f0c030"
+      }
+    },
+    "anfitriona": {
+      "look": {
+        "skin": "#b87850",
+        "hair": "#2a1c18",
+        "shirt": "#f0f0e0",
+        "pants": "#3c8c5c",
+        "hairStyle": "bun"
+      }
+    },
+    "viajero": {
+      "look": {
+        "skin": "#e8b894",
+        "hair": "#5a3828",
+        "shirt": "#6a6c78",
+        "pants": "#3a4a78",
+        "hairStyle": "short",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#d84848"
+      }
+    },
+    "viajera": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#c89040",
+        "shirt": "#f0a8c8",
+        "pants": "#c8b088",
+        "hairStyle": "long",
+        "extras": [
+          "backpack",
+          "glasses"
+        ],
+        "accent": "#2f6fd0"
+      }
+    },
+    "alvaro": {
+      "look": {
+        "skin": "#e8c0a0",
+        "hair": "#3a2818",
+        "shirt": "#ece8dc",
+        "pants": "#c8b088",
+        "hairStyle": "short"
+      }
+    },
+    "alvaro_u": {
+      "look": {
+        "skin": "#e8c0a0",
+        "hair": "#3a2818",
+        "shirt": "#2050a8",
+        "pants": "#f0f0e8",
+        "hairStyle": "short",
+        "extras": []
+      }
+    },
+    "iker": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#1c1418",
+        "shirt": "#c83838",
+        "pants": "#3a4a78",
+        "hairStyle": "short",
+        "build": "heavy"
+      }
+    },
+    "iker_u": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#1c1418",
+        "shirt": "#2050a8",
+        "pants": "#f0f0e8",
+        "hairStyle": "short",
+        "build": "heavy",
+        "extras": []
+      }
+    },
+    "pau": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#5a3828",
+        "shirt": "#3c9c8c",
+        "pants": "#383848",
+        "hairStyle": "bun"
+      }
+    },
+    "pau_u": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#5a3828",
+        "shirt": "#2050a8",
+        "pants": "#f0f0e8",
+        "hairStyle": "bun",
+        "extras": []
+      }
+    },
+    "sergio": {
+      "look": {
+        "skin": "#e8b890",
+        "hair": "#3a2818",
+        "shirt": "#48a858",
+        "pants": "#585868",
+        "hairStyle": "bald"
+      }
+    },
+    "sergio_u": {
+      "look": {
+        "skin": "#e8b890",
+        "hair": "#3a2818",
+        "shirt": "#2050a8",
+        "pants": "#f0f0e8",
+        "hairStyle": "bald",
+        "extras": []
+      }
+    },
+    "antoine": {
+      "look": {
+        "skin": "#f4d4b8",
+        "hair": "#5a3828",
+        "shirt": "#2a3c68",
+        "pants": "#c8b088",
+        "hairStyle": "long"
+      }
+    },
+    "antoine_u": {
+      "look": {
+        "skin": "#f4d4b8",
+        "hair": "#5a3828",
+        "shirt": "#2050a8",
+        "pants": "#f0f0e8",
+        "hairStyle": "long",
+        "extras": []
+      }
+    },
+    "lucas": {
+      "look": {
+        "skin": "#f4d4b8",
+        "hair": "#a85830",
+        "shirt": "#f0c030",
+        "pants": "#3a4a78",
+        "hairStyle": "long"
+      }
+    },
+    "lucas_u": {
+      "look": {
+        "skin": "#f4d4b8",
+        "hair": "#a85830",
+        "shirt": "#2050a8",
+        "pants": "#f0f0e8",
+        "hairStyle": "long",
+        "extras": []
+      }
+    },
+    "mathieu": {
+      "look": {
+        "skin": "#f0d0b0",
+        "hair": "#c8a060",
+        "shirt": "#8a8e98",
+        "pants": "#26262e",
+        "hairStyle": "short",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "mathieu_u": {
+      "look": {
+        "skin": "#f0d0b0",
+        "hair": "#c8a060",
+        "shirt": "#2050a8",
+        "pants": "#f0f0e8",
+        "hairStyle": "short",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "hugo": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#1c1418",
+        "shirt": "#e88838",
+        "pants": "#26262e",
+        "hairStyle": "short"
+      }
+    },
+    "hugo_u": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#1c1418",
+        "shirt": "#2050a8",
+        "pants": "#f0f0e8",
+        "hairStyle": "short",
+        "extras": []
+      }
+    },
+    "diego": {
+      "look": {
+        "skin": "#c08860",
+        "hair": "#1c1418",
+        "shirt": "#d84848",
+        "pants": "#3a4a78",
+        "hairStyle": "short"
+      }
+    },
+    "diego_u": {
+      "look": {
+        "skin": "#c08860",
+        "hair": "#1c1418",
+        "shirt": "#2050a8",
+        "pants": "#f0f0e8",
+        "hairStyle": "short",
+        "extras": []
+      }
+    },
+    "nacho": {
+      "look": {
+        "skin": "#e8b894",
+        "hair": "#2a2020",
+        "shirt": "#5a8ad8",
+        "pants": "#26262e",
+        "hairStyle": "cap",
+        "cap": "#2a2a38"
+      }
+    },
+    "nacho_u": {
+      "look": {
+        "skin": "#e8b894",
+        "hair": "#2a2020",
+        "shirt": "#2050a8",
+        "pants": "#f0f0e8",
+        "hairStyle": "cap",
+        "cap": "#2a2a38",
+        "extras": []
+      }
+    },
+    "monica": {
+      "look": {
+        "skin": "#c89068",
+        "hair": "#2a1c18",
+        "shirt": "#2050a8",
+        "pants": "#26262e",
+        "hairStyle": "bun",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "profe_gloria": {
+      "look": {
+        "skin": "#b87850",
+        "hair": "#4a3020",
+        "shirt": "#9c6cb8",
+        "pants": "#383848",
+        "hairStyle": "bun",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "funcionaria": {
+      "look": {
+        "skin": "#a87048",
+        "hair": "#1c1418",
+        "shirt": "#2050a8",
+        "pants": "#3a4a78",
+        "hairStyle": "long"
+      }
+    },
+    "cajera": {
+      "look": {
+        "skin": "#c89068",
+        "hair": "#2a1c18",
+        "shirt": "#f8f8f0",
+        "pants": "#383848",
+        "hairStyle": "cap",
+        "cap": "#c83838"
+      }
+    },
+    "vigilante": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#1c1418",
+        "shirt": "#4a4c56",
+        "pants": "#26262e",
+        "hairStyle": "cap",
+        "cap": "#26262e"
+      }
+    },
+    "johan": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#1c1418",
+        "shirt": "#2c9c4c",
+        "pants": "#f8f8f0",
+        "hairStyle": "cap",
+        "cap": "#f8f8f0"
+      }
+    },
+    "rival": {
+      "look": {
+        "skin": "#b87850",
+        "hair": "#1c1418",
+        "shirt": "#2c9c4c",
+        "pants": "#f8f8f0",
+        "hairStyle": "short"
+      }
+    },
+    "cholero": {
+      "look": {
+        "skin": "#a87048",
+        "hair": "#1c1418",
+        "shirt": "#f0f0e0",
+        "pants": "#585868",
+        "hairStyle": "cap",
+        "cap": "#e86878"
+      }
+    },
+    "calena_u": {
+      "look": {
+        "skin": "#a06848",
+        "hair": "#1c1418",
+        "shirt": "#f0c030",
+        "pants": "#3a3a58",
+        "hairStyle": "long",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#2050a8"
+      }
+    },
+    "caleno_u": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#1c1418",
+        "shirt": "#e8e8e0",
+        "pants": "#3a4a78",
+        "hairStyle": "short",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#3c9c5c"
+      }
+    },
+    "pavo_real": {
+      "look": {
+        "body": "peacock"
+      }
+    },
+    "pavo_real_cola": {
+      "look": {
+        "body": "peacock",
+        "fan": true
+      }
+    },
+    "grover": {
+      "look": {
+        "skin": "#c89070",
+        "hair": "#141010",
+        "shirt": "#2c9c4c",
+        "pants": "#c8b088",
+        "shoes": "#e8e8e0",
+        "hairStyle": "mullet",
+        "extras": [
+          "unibrow",
+          "mustache"
+        ]
+      }
+    },
+    "grover_bano": {
+      "look": {
+        "skin": "#c89070",
+        "hair": "#141010",
+        "shirt": "#c89070",
+        "pants": "#e84868",
+        "shoes": "#c89070",
+        "hairStyle": "mullet",
+        "extras": [
+          "unibrow",
+          "mustache"
+        ]
+      }
+    },
+    "fredy": {
+      "look": {
+        "skin": "#4a2a1c",
+        "hair": "#141010",
+        "shirt": "#1c1c24",
+        "pants": "#2a2a38",
+        "shoes": "#e8e8e0",
+        "hairStyle": "bald",
+        "build": "heavy",
+        "extras": [
+          "beard"
+        ]
+      }
+    },
+    "yeimar": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#141010",
+        "shirt": "#1c1c24",
+        "pants": "#2a2a38",
+        "hairStyle": "fade",
+        "extras": [
+          "mustache"
+        ]
+      }
+    },
+    "sira": {
+      "look": {
+        "skin": "#f8e2d4",
+        "hair": "#5a3424",
+        "shirt": "#a8acb8",
+        "pants": "#2a2a38",
+        "shoes": "#e8e8e0",
+        "hairStyle": "bun",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#3c8c8c"
+      }
+    },
+    "sira_noche": {
+      "look": {
+        "skin": "#f8e2d4",
+        "hair": "#5a3424",
+        "shirt": "#e8a0b8",
+        "pants": "#3a4a78",
+        "shoes": "#e8e8e0",
+        "hairStyle": "long"
+      }
+    },
+    "profe_julian": {
+      "look": {
+        "skin": "#c89068",
+        "hair": "#3a2c24",
+        "shirt": "#f4f0e0",
+        "pants": "#c8b088",
+        "shoes": "#6a4a30",
+        "hairStyle": "short",
+        "extras": [
+          "glasses",
+          "beard"
+        ]
+      }
+    },
+    "valentina": {
+      "look": {
+        "skin": "#b87850",
+        "hair": "#1c1418",
+        "shirt": "#f0c030",
+        "pants": "#26262e",
+        "hairStyle": "long",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "camilo": {
+      "look": {
+        "skin": "#d8a880",
+        "hair": "#3a2818",
+        "shirt": "#3c9c48",
+        "pants": "#3a4a78",
+        "hairStyle": "cap",
+        "cap": "#d84848"
+      }
+    },
+    "salvavidas": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#141010",
+        "shirt": "#d83838",
+        "pants": "#f0c030",
+        "hairStyle": "cap",
+        "cap": "#f0c030"
+      }
+    },
+    "taquillera": {
+      "look": {
+        "skin": "#b87850",
+        "hair": "#2a1c18",
+        "shirt": "#2050a8",
+        "pants": "#26262e",
+        "hairStyle": "bun",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "cliente_barberia": {
+      "look": {
+        "skin": "#a87048",
+        "hair": "#1c1418",
+        "shirt": "#3c6cd0",
+        "pants": "#26262e",
+        "hairStyle": "fade"
+      }
+    },
+    "vendedor_mango": {
+      "look": {
+        "skin": "#a87048",
+        "hair": "#1c1418",
+        "shirt": "#f8f8f0",
+        "pants": "#585868",
+        "hairStyle": "cap",
+        "cap": "#f0c030"
+      }
+    },
+    "salpiconera": {
+      "look": {
+        "skin": "#b87850",
+        "hair": "#2a1c18",
+        "shirt": "#e86878",
+        "pants": "#3a3a58",
+        "hairStyle": "bun"
+      }
+    },
+    "chancero": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#c8c8c8",
+        "shirt": "#f0c030",
+        "pants": "#3a4a78",
+        "hairStyle": "cap",
+        "cap": "#f8f8f0"
+      }
+    },
+    "abuelo_domino": {
+      "look": {
+        "skin": "#a87048",
+        "hair": "#e0e0e0",
+        "shirt": "#f4f0e0",
+        "pants": "#6a4a30",
+        "hairStyle": "bald",
+        "extras": [
+          "mustache"
+        ]
+      }
+    },
+    "abuelo_domino_2": {
+      "look": {
+        "skin": "#5a3424",
+        "hair": "#d0d0d0",
+        "shirt": "#9cc0e8",
+        "pants": "#383848",
+        "hairStyle": "short",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "senora_loro": {
+      "look": {
+        "skin": "#c89068",
+        "hair": "#d0c8c0",
+        "shirt": "#9c6cb8",
+        "pants": "#383848",
+        "hairStyle": "bun"
+      }
+    },
+    "lavador_carros": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#1c1418",
+        "shirt": "#f0f0e0",
+        "pants": "#3a4a78",
+        "hairStyle": "short"
+      }
+    },
+    "nino_piscina": {
+      "look": {
+        "skin": "#c08860",
+        "hair": "#1c1418",
+        "shirt": "#c08860",
+        "pants": "#2f6fd0",
+        "shoes": "#c08860",
+        "hairStyle": "short"
+      }
+    },
+    "nadadora": {
+      "look": {
+        "skin": "#e8c0a0",
+        "hair": "#2a2a38",
+        "shirt": "#2a2a38",
+        "pants": "#2a2a38",
+        "shoes": "#e8c0a0",
+        "hairStyle": "cap",
+        "cap": "#d84848"
+      }
+    },
+    "mesera_burger": {
+      "look": {
+        "skin": "#a06848",
+        "hair": "#1c1418",
+        "shirt": "#1c1c24",
+        "pants": "#26262e",
+        "hairStyle": "cap",
+        "cap": "#1c1c24"
+      }
+    },
+    "perro_ciudad": {
+      "look": {
+        "body": "dog",
+        "fur": "#a87850",
+        "spot": "#e8d0b0"
+      }
+    },
+    "sira_feria": {
+      "look": {
+        "skin": "#f8e2d4",
+        "hair": "#5a3424",
+        "shirt": "#f0e2c0",
+        "pants": "#3a5a8a",
+        "shoes": "#c87858",
+        "hairStyle": "long",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#e8a0b8"
+      }
+    },
+    "sira_bano": {
+      "look": {
+        "skin": "#f8e2d4",
+        "hair": "#5a3424",
+        "shirt": "#2c8c8c",
+        "pants": "#2c8c8c",
+        "shoes": "#f8e2d4",
+        "hairStyle": "bun"
+      }
+    },
+    "raponero": {
+      "look": {
+        "skin": "#a87050",
+        "hair": "#141010",
+        "shirt": "#3a3a44",
+        "pants": "#5a5a66",
+        "shoes": "#e8e8e0",
+        "hairStyle": "cap",
+        "cap": "#c83c3c"
+      }
+    },
+    "librero": {
+      "look": {
+        "skin": "#d8a880",
+        "hair": "#e8e8e8",
+        "shirt": "#8a6a48",
+        "pants": "#3a3a44",
+        "shoes": "#5a3a28",
+        "hairStyle": "short",
+        "extras": [
+          "glasses",
+          "beard"
+        ]
+      }
+    },
+    "poeta": {
+      "look": {
+        "skin": "#c89068",
+        "hair": "#2a2020",
+        "shirt": "#2a2433",
+        "pants": "#2a2a38",
+        "shoes": "#1c1c24",
+        "hairStyle": "long",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "autora": {
+      "look": {
+        "skin": "#e0b090",
+        "hair": "#c8c8c8",
+        "shirt": "#9c3c5c",
+        "pants": "#2a2a38",
+        "shoes": "#5a3a28",
+        "hairStyle": "bun",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "cuentero": {
+      "look": {
+        "skin": "#7a4a30",
+        "hair": "#e8e8e8",
+        "shirt": "#f4f0e0",
+        "pants": "#6a5040",
+        "shoes": "#3a2a20",
+        "hairStyle": "cap",
+        "cap": "#c8a060",
+        "extras": [
+          "mustache"
+        ]
+      }
+    },
+    "heladera": {
+      "look": {
+        "skin": "#c89070",
+        "hair": "#3a2020",
+        "shirt": "#f4b8c8",
+        "pants": "#f8f4f0",
+        "shoes": "#e8e8e0",
+        "hairStyle": "bun"
+      }
+    },
+    "orientadora": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#141010",
+        "shirt": "#2c8c5c",
+        "pants": "#2a2a38",
+        "shoes": "#1c1c24",
+        "hairStyle": "bun"
+      }
+    },
+    "lustrabotas": {
+      "look": {
+        "skin": "#6a4028",
+        "hair": "#9a9a9a",
+        "shirt": "#c8a868",
+        "pants": "#4a4038",
+        "shoes": "#1c1c24",
+        "hairStyle": "cap",
+        "cap": "#3c5c8c"
+      }
+    },
+    "obleero": {
+      "look": {
+        "skin": "#c89068",
+        "hair": "#2a2020",
+        "shirt": "#f4f0e0",
+        "pants": "#3a3a44",
+        "hairStyle": "cap",
+        "cap": "#e8e8e8"
+      }
+    },
+    "rapero_bus": {
+      "look": {
+        "skin": "#5a3424",
+        "hair": "#141010",
+        "shirt": "#f0c030",
+        "pants": "#2a2a38",
+        "shoes": "#e8e8e0",
+        "hairStyle": "cap",
+        "cap": "#2a2a38"
+      }
+    },
+    "estatua_humana": {
+      "look": {
+        "skin": "#c8c8c0",
+        "hair": "#c8c8c0",
+        "shirt": "#d0d0c8",
+        "pants": "#c0c0b8",
+        "shoes": "#b0b0a8",
+        "hairStyle": "short"
+      }
+    },
+    "senora_tinto": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#2a2020",
+        "shirt": "#e86078",
+        "pants": "#3a3a44",
+        "hairStyle": "bun"
+      }
+    },
+    "nino_feria": {
+      "look": {
+        "skin": "#d8a880",
+        "hair": "#3a2c24",
+        "shirt": "#48a868",
+        "pants": "#2a4a8a",
+        "shoes": "#e8e8e0",
+        "hairStyle": "short",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#f0c030"
+      }
+    },
+    "don_arcesio": {
+      "look": {
+        "skin": "#a87050",
+        "hair": "#e8e8e8",
+        "shirt": "#f4f0e0",
+        "pants": "#6a5040",
+        "shoes": "#3a2a20",
+        "hairStyle": "cap",
+        "cap": "#c8a060",
+        "extras": [
+          "mustache"
+        ]
+      }
+    }
+  },
+  "objects": [
+    "paradero",
+    "cartel",
+    "cartel_metro",
+    "maquina_bip",
+    "maquina_bip_mala",
+    "carro_sopaipillas",
+    "carro_completos",
+    "empanada",
+    "completo",
+    "mote",
+    "sopaipilla",
+    "bip",
+    "plata",
+    "hueso",
+    "mapa",
+    "timbre",
+    "torniquete",
+    "mochila",
+    "platos",
+    "marraqueta",
+    "cafe",
+    "apuntes",
+    "maleta",
+    "carnet",
+    "pase",
+    "dibujo",
+    "alfajor",
+    "pandebono",
+    "chontaduro",
+    "manjar",
+    "lapiz_rojo",
+    "plato_cena",
+    "cartel_vuelos",
+    "cartel_chofer",
+    "paraguas",
+    "carnet_pucc",
+    "polera",
+    "bunuelo",
+    "lulada",
+    "cholado",
+    "aborrajado",
+    "iguana",
+    "paradero_cali",
+    "pelota",
+    "carro_cholados",
+    "poste_barberia",
+    "llaves_grover",
+    "mango_biche",
+    "salpicon",
+    "champus",
+    "pan_de_yuca",
+    "carreta_mango",
+    "puesto_salpicon",
+    "antiparras",
+    "hamburguesa",
+    "semaforo",
+    "mesa_domino",
+    "jaula_loro",
+    "kiosko_champus",
+    "maquina_snacks",
+    "cartas_cinco",
+    "toalla",
+    "traje_bano",
+    "tarjeta_recorre",
+    "separador",
+    "libro_regalo",
+    "girasol",
+    "oblea",
+    "bombombun",
+    "fanzine",
+    "tinto",
+    "poema",
+    "estatua",
+    "tablero_rutas",
+    "piedra",
+    "mazorcas"
+  ],
+  "sheets": {}
+}

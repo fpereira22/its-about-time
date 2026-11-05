@@ -1,0 +1,81 @@
+{
+  "id": "avion",
+  "name": "Vuelo CA 742 · Santiago – Cali",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 74,
+  "height": 16,
+  "background": "#0c0e18",
+  "music": "aeropuerto",
+  "legend": {"x":"pista","V":"avion_ventana","W":"avion_muro","G":"avion_galley","L":"avion_bano","O":"avion_puerta",".":"avion_piso","s":"avion_asiento","p":"avion_asiento_premium","m":"manga_muro","n":"manga_piso"},
+  "rows": [
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "xxWWWVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWWWxx",
+    "xxWGG.....p.p.p.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.LWxx",
+    "xxWGG...........s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.GWxx",
+    "xxWGG.....p.p.p.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.GWxx",
+    "xxW....................................................................Wxx",
+    "xxWGG.....p.p.p.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.GWxx",
+    "xxWGG...........s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.GWxx",
+    "xxWGG.....p.p.p.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.LWxx",
+    "xxWWWVOOVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWWWxx",
+    "xxxxxmnnmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "xxxxxmnnmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "xxxxxmnnmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "xxxxxmnnmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "xxxxxmnnmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "xxxxxmmmmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  ],
+  "zones": [
+    {"name":"Manga de embarque","subtitle":"Puerta D6","x":4,"y":10,"w":6,"h":6},
+    {"name":"Vuelo CA 742","subtitle":"Santiago (SCL) → Cali (CLO) · 6 horas","x":0,"y":0,"w":74,"h":10}
+  ],
+  "spawns": {
+    "manga": {"x":6,"y":14,"dir":"up"}
+  },
+  "triggers": [
+    {"id":"asiento_18a","x":42,"y":8,"w":1,"h":1,"event":"vuelo","if":{"notFlag":"aterrizo"}}
+  ],
+  "labels": [
+    {"x":10.5,"y":1.5,"text":"1","color":"#ffffff"},
+    {"x":12.5,"y":1.5,"text":"2","color":"#ffffff"},
+    {"x":14.5,"y":1.5,"text":"3","color":"#ffffff"},
+    {"x":16.5,"y":1.5,"text":"4","color":"#ffffff"},
+    {"x":18.5,"y":1.5,"text":"5","color":"#ffffff"},
+    {"x":20.5,"y":1.5,"text":"6","color":"#ffffff"},
+    {"x":22.5,"y":1.5,"text":"7","color":"#ffffff"},
+    {"x":24.5,"y":1.5,"text":"8","color":"#ffffff"},
+    {"x":26.5,"y":1.5,"text":"9","color":"#ffffff"},
+    {"x":28.5,"y":1.5,"text":"10","color":"#ffffff"},
+    {"x":30.5,"y":1.5,"text":"11","color":"#ffffff"},
+    {"x":32.5,"y":1.5,"text":"12","color":"#ffffff"},
+    {"x":34.5,"y":1.5,"text":"14","color":"#ffffff"},
+    {"x":36.5,"y":1.5,"text":"15","color":"#ffffff"},
+    {"x":38.5,"y":1.5,"text":"16","color":"#ffffff"},
+    {"x":40.5,"y":1.5,"text":"17","color":"#ffffff"},
+    {"x":42.5,"y":1.5,"text":"18","color":"#f0d048"},
+    {"x":44.5,"y":1.5,"text":"19","color":"#ffffff"},
+    {"x":46.5,"y":1.5,"text":"20","color":"#ffffff"},
+    {"x":48.5,"y":1.5,"text":"21","color":"#ffffff"},
+    {"x":50.5,"y":1.5,"text":"22","color":"#ffffff"},
+    {"x":52.5,"y":1.5,"text":"23","color":"#ffffff"},
+    {"x":54.5,"y":1.5,"text":"24","color":"#ffffff"},
+    {"x":56.5,"y":1.5,"text":"25","color":"#ffffff"},
+    {"x":58.5,"y":1.5,"text":"26","color":"#ffffff"},
+    {"x":60.5,"y":1.5,"text":"27","color":"#ffffff"},
+    {"x":62.5,"y":1.5,"text":"28","color":"#ffffff"},
+    {"x":64.5,"y":1.5,"text":"29","color":"#ffffff"},
+    {"x":66.5,"y":1.5,"text":"30","color":"#ffffff"},
+    {"x":68.5,"y":1.5,"text":"31","color":"#ffffff"},
+    {"x":8.5,"y":2.5,"text":"F"},
+    {"x":8.5,"y":3.5,"text":"E"},
+    {"x":8.5,"y":4.5,"text":"D"},
+    {"x":8.5,"y":6.5,"text":"C"},
+    {"x":8.5,"y":7.5,"text":"B"},
+    {"x":8.5,"y":8.5,"text":"A"}
+  ],
+  "crowd": {"lines":"avion","seats":0.93},
+  "enter": [
+    {"id":"abordo","dialogue":"avion_bienvenida","once":true}
+  ]
+}

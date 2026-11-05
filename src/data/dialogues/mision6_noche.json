@@ -1,0 +1,1591 @@
+{
+  "m6_san_antonio_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "San Antonio: casas de un piso con teja de barro, puertas de madera pintadas de azul y verde, calles de ladrillo que suben y bajan. Arriba, en la colina, la capillita blanca de 1747.",
+          "Huele a café, a pan y a algo que se está cocinando en alguna casa con la puerta abierta. Alguien toca guitarra en una esquina."
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "Por aquí. Subiendo por la Calle 2, la de la puerta rosada. Si no te gusta el helado, no me lo digas: hago como que no escuché.",
+        "effects": [
+          {
+            "objective": "Entra con Sira a la Heladería Corazones (Calle 2 con Carrera 9)"
+          }
+        ]
+      }
+    }
+  },
+  "m6_no_volver": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El Bulevar queda para abajo. La noche, para arriba. Sira ya va subiendo por la Calle 2."
+      }
+    }
+  },
+  "m6_heladeria_cerrada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La heladera está barriendo y le da vuelta al letrero: CERRADO. Les hace adiós con el palo de la escoba."
+      }
+    }
+  },
+  "m6_helado_no_salir": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "¿Te vas sin helado? Sira te mira como si le hubieras dicho que no te gusta el pandebono."
+      }
+    }
+  },
+  "m6_heladeria_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La heladería es chiquita y rosada, con un corazón de neón en la pared y seis cubetas de colores detrás del vidrio. Suena un bolero viejito en una radio.",
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "Yo voy al baño un segundo. Pídeme lo que quieras... a ver si adivinas cuál es mi favorito. Es un examen. Sin presión.",
+        "effects": [
+          {
+            "objective": "Pide los helados en el mostrador (y adivina el de Sira)"
+          }
+        ]
+      }
+    }
+  },
+  "m6_sira_mostrador": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Sira",
+        "text": "Ya vengo, ya vengo. ¡No mires, que me estoy arreglando el pelo en el reflejo de la vitrina!"
+      }
+    }
+  },
+  "m6_heladera": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "listo",
+            "if": {
+              "flag": "m6_helados_listos"
+            }
+          },
+          {
+            "goto": "saludo"
+          }
+        ]
+      },
+      "listo": {
+        "speaker": "Heladera",
+        "text": "¡Disfruten, mis amores! Y si se les derrite, pidan servilletas, que el amor es pegajoso."
+      },
+      "saludo": {
+        "speaker": "Heladera",
+        "text": "¡Bienvenidos a Corazones! Todo en forma de corazón, hasta el cono. ¿Qué te sirvo a ti primero, mi amor?",
+        "choices": [
+          {
+            "label": "Lulo",
+            "effects": [
+              {
+                "setFlag": "m6_mio_lulo"
+              }
+            ],
+            "goto": "ella"
+          },
+          {
+            "label": "Mora",
+            "effects": [
+              {
+                "setFlag": "m6_mio_mora"
+              }
+            ],
+            "goto": "ella"
+          },
+          {
+            "label": "Guanábana",
+            "effects": [
+              {
+                "setFlag": "m6_mio_guanabana"
+              }
+            ],
+            "goto": "ella"
+          },
+          {
+            "label": "Chontaduro (¿en serio existe?)",
+            "effects": [
+              {
+                "setFlag": "m6_mio_chonta"
+              }
+            ],
+            "goto": "chonta"
+          }
+        ]
+      },
+      "chonta": {
+        "speaker": "Heladera",
+        "text": "¡Claro que existe! Es el más pedido por los turistas valientes. Sale con miel y sal. Te va a cambiar la vida. O el estómago.",
+        "next": "ella"
+      },
+      "ella": {
+        "speaker": "Heladera",
+        "text": "¿Y para la niña? Me dijo que tú sabías. Ay, qué presión, mijo.",
+        "choices": [
+          {
+            "label": "Maracuyá",
+            "effects": [
+              {
+                "setFlag": "m6_helado_acertado"
+              },
+              {
+                "setFlag": "m6_q_helado"
+              }
+            ],
+            "goto": "maracuya"
+          },
+          {
+            "label": "Chocolate",
+            "goto": "otro"
+          },
+          {
+            "label": "Fresa",
+            "goto": "otro"
+          },
+          {
+            "label": "Lo mismo que yo",
+            "goto": "otro"
+          }
+        ]
+      },
+      "maracuya": {
+        "speaker": "Heladera",
+        "text": "¿Maracuyá? ¡Ay, sí! Ella siempre pide maracuyá. Viene desde chiquita con la mamá. ¿Cómo supiste? ...No me digas, no me digas.",
+        "next": "pagar"
+      },
+      "otro": {
+        "speaker": "Heladera",
+        "text": "Bueno... ese también es rico. Aunque ella siempre pide maracuyá. Pero no le digas que te dije. Te pongo los dos, el que dijiste y uno chiquito de maracuyá, por si acaso.",
+        "next": "pagar"
+      },
+      "pagar": {
+        "speaker": "Heladera",
+        "text": "Dos copas de corazón con corazoncitos de chocolate encima. Son dieciséis mil.",
+        "choices": [
+          {
+            "label": "Pagar ($16.000)",
+            "if": {
+              "minMoney": 16000
+            },
+            "effects": [
+              {
+                "pay": 16000
+              },
+              {
+                "setFlag": "m6_helados_listos"
+              },
+              {
+                "objective": "Siéntate con Sira en la mesa"
+              }
+            ],
+            "goto": "pago"
+          },
+          {
+            "label": "Pagar con lo que tengo",
+            "if": {
+              "not": {
+                "minMoney": 16000
+              }
+            },
+            "effects": [
+              {
+                "setFlag": "m6_helados_listos"
+              },
+              {
+                "objective": "Siéntate con Sira en la mesa"
+              }
+            ],
+            "goto": "pago"
+          }
+        ]
+      },
+      "pago": {
+        "text": "Sira vuelve del baño y se sienta en la mesa del fondo, la de la ventana. Te hace señas con las dos manos, como en la piscina.",
+        "effects": [
+          {
+            "vineta": "m6_helados"
+          }
+        ]
+      }
+    }
+  },
+  "m6_sira_helado_npc": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "despues",
+            "if": {
+              "flag": "m6_helado"
+            }
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Sira",
+        "text": "¡Siéntate, que se derrite!"
+      },
+      "despues": {
+        "speaker": "Sira",
+        "text": "¿Vamos a la colina? Ya es de noche. Se ve todo Cali, te prometo. Y si hay cuenteros, mejor."
+      }
+    }
+  },
+  "m6_helado_conversa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "acerto",
+            "if": {
+              "flag": "m6_helado_acertado"
+            }
+          },
+          {
+            "goto": "fallo"
+          }
+        ]
+      },
+      "acerto": {
+        "speaker": "Sira",
+        "text": "Ve su copa y abre los ojos enormes. «¿Maracuyá? ¿Cómo...? ¡Ah, el mensaje de esta mañana! ¿Lo leíste de verdad? ¿Prestaste atención?» Se tapa la cara con las manos. «Ay, no. Ay, qué lindo.»",
+        "next": "probar"
+      },
+      "fallo": {
+        "speaker": "Sira",
+        "text": "Mira su copa. «Uy, ¿y este?... ¡Ah, mira, la señora me puso uno chiquito de maracuyá! Ella me conoce desde chiquita.» Te guiña un ojo. «La próxima adivinas.»",
+        "next": "probar"
+      },
+      "probar": {
+        "speaker": "Sira",
+        "text": "Prueba. ¿Me das a probar el tuyo?",
+        "choices": [
+          {
+            "label": "Darle a probar de tu cuchara",
+            "effects": [
+              {
+                "setFlag": "m6_q_cuchara"
+              }
+            ],
+            "goto": "cuchara"
+          },
+          {
+            "label": "Pasarle la copa entera",
+            "goto": "copa"
+          }
+        ]
+      },
+      "cuchara": {
+        "text": "Se lo das con tu cuchara. Ella lo prueba. Se miran. Se ríen al mismo tiempo, sin razón. El bolero de la radio sube solo, o eso te parece.",
+        "effects": [
+          {
+            "vineta": "m6_helados"
+          }
+        ],
+        "next": "charla"
+      },
+      "copa": {
+        "text": "Te recibe la copa, prueba y te la devuelve con una mancha de maracuyá en el borde. «Ahora el tuyo sabe a mío.»",
+        "next": "charla"
+      },
+      "charla": {
+        "speaker": "Sira",
+        "text": "Oye... ¿y cuánto tiempo te quedas en Cali? El intercambio. ¿Hasta cuándo?",
+        "choices": [
+          {
+            "label": "Hasta junio. Pero ya no quiero pensar en junio",
+            "effects": [
+              {
+                "setFlag": "m6_q_junio"
+              }
+            ],
+            "goto": "junio"
+          },
+          {
+            "label": "Un semestre. Más o menos. Depende",
+            "goto": "depende"
+          },
+          {
+            "label": "¿Por qué? ¿Me vas a extrañar?",
+            "effects": [
+              {
+                "setFlag": "m6_q_coqueto"
+              }
+            ],
+            "goto": "extranar"
+          }
+        ]
+      },
+      "junio": {
+        "speaker": "Sira",
+        "text": "Junio... Falta. Falta harto, como dicen ustedes. «Harto». Me gusta esa palabra.",
+        "next": "mama"
+      },
+      "depende": {
+        "speaker": "Sira",
+        "text": "¿Depende de qué? ...No me contestes. Me da miedo la respuesta. O me da miedo que no haya respuesta.",
+        "next": "mama"
+      },
+      "extranar": {
+        "speaker": "Sira",
+        "text": "¿Yo? ¿Extrañarte? ¡Pff! ...Un poquito. A la clase de natación. Al alumno. No a ti. Bueno.",
+        "next": "mama"
+      },
+      "mama": {
+        "speaker": "Sira",
+        "text": "¿Y tú extrañas Chile? ¿A tu mamá? Cuéntame de ella.",
+        "choices": [
+          {
+            "label": "Lloró en el aeropuerto. Me llama todos los días a las nueve",
+            "effects": [
+              {
+                "setFlag": "m6_q_familia"
+              }
+            ],
+            "goto": "llora"
+          },
+          {
+            "label": "Extraño el pan. Y a mi hermano chico. Me hizo un dibujo",
+            "effects": [
+              {
+                "setFlag": "m6_q_familia"
+              }
+            ],
+            "goto": "hermano"
+          },
+          {
+            "label": "No mucho (mentira)",
+            "goto": "mentira"
+          }
+        ]
+      },
+      "llora": {
+        "speaker": "Sira",
+        "text": "Todas las mamás lloran en los aeropuertos. La mía lloró cuando me fui a vivir a dos cuadras. Dale un beso de mi parte cuando la llames. Bueno, no. Sí. No sé.",
+        "next": "regalo"
+      },
+      "hermano": {
+        "speaker": "Sira",
+        "text": "¿Un dibujo? ¡Muéstramelo! ...Ay, qué lindo. Ese eres tú con una maleta gigante. Y ese, ¿es un avión o una ballena? Es una ballena-avión. Claramente.",
+        "next": "regalo"
+      },
+      "mentira": {
+        "speaker": "Sira",
+        "text": "Mentiroso. Se te puso la cara de cuando te hundías en la estrella. Está bien extrañar. Yo extraño a mi papá y vive en Palmira.",
+        "next": "regalo"
+      },
+      "regalo": {
+        "text": "Es el momento. Tienes algo en la mochila...",
+        "choices": [
+          {
+            "label": "Darle el separador de guayacán",
+            "if": {
+              "hasItem": "separador_guayacan"
+            },
+            "effects": [
+              {
+                "takeItem": "separador_guayacan"
+              },
+              {
+                "setFlag": "m6_q_regalo"
+              },
+              {
+                "setFlag": "m6_q_regalo_hecho"
+              }
+            ],
+            "goto": "separador"
+          },
+          {
+            "label": "Darle «¡Que viva la música!»",
+            "if": {
+              "hasItem": "libro_qvlm"
+            },
+            "effects": [
+              {
+                "takeItem": "libro_qvlm"
+              },
+              {
+                "setFlag": "m6_q_regalo"
+              }
+            ],
+            "goto": "qvlm"
+          },
+          {
+            "label": "Darle «María»",
+            "if": {
+              "hasItem": "libro_maria"
+            },
+            "effects": [
+              {
+                "takeItem": "libro_maria"
+              }
+            ],
+            "goto": "maria"
+          },
+          {
+            "label": "Darle la piedrita pintada del río",
+            "if": {
+              "hasItem": "piedra_rio"
+            },
+            "effects": [
+              {
+                "takeItem": "piedra_rio"
+              },
+              {
+                "setFlag": "m6_q_regalo_piedra"
+              }
+            ],
+            "goto": "piedra"
+          },
+          {
+            "label": "Darle un bombombún",
+            "if": {
+              "hasItem": "bombombun"
+            },
+            "effects": [
+              {
+                "takeItem": "bombombun"
+              }
+            ],
+            "goto": "bombombun"
+          },
+          {
+            "label": "No traje nada (mirar el helado)",
+            "goto": "nada"
+          }
+        ]
+      },
+      "separador": {
+        "speaker": "Sira",
+        "text": "Saca el separador con cuidado, a la luz del neón rosado. La flor amarilla, la cinta roja. «¿Lo hiciste tú?» Asientes. «...Es lo más bonito que me han regalado. Y dura. Dura años.» Lo mete en el libro firmado, junto al poema.",
+        "effects": [
+          {
+            "vineta": "m6_regalo"
+          }
+        ],
+        "next": "fin"
+      },
+      "qvlm": {
+        "speaker": "Sira",
+        "text": "Rompe el papel kraft. «¡¿\"¡Que viva la música!\"?! ¡Es el que perdí! ¡Leíste mi mensaje!» Lo abre, lo huele, lo cierra. «Este no se lo presto a nadie. Ni a mi prima. Ni a ti.»",
+        "effects": [
+          {
+            "vineta": "m6_regalo"
+          }
+        ],
+        "next": "fin"
+      },
+      "maria": {
+        "speaker": "Sira",
+        "text": "«¿\"María\"? ...Ya lo tengo, pero... me lo diste tú. Ahora es otro libro.» Lo abre en la primera página: «Le voy a poner la fecha de hoy».",
+        "effects": [
+          {
+            "setFlag": "m6_q_regalo_maria"
+          },
+          {
+            "vineta": "m6_regalo"
+          }
+        ],
+        "next": "fin"
+      },
+      "piedra": {
+        "speaker": "Sira",
+        "text": "Le das la piedrita azul con el pececito amarillo. Ella la mira a contraluz. «Las piedras no se mueren.» Te mira. «Te acordaste de lo que te escribí.» La guarda en el bolsillo, apretada en el puño.",
+        "effects": [
+          {
+            "vineta": "m6_regalo"
+          }
+        ],
+        "next": "fin"
+      },
+      "bombombun": {
+        "speaker": "Sira",
+        "text": "Le das un bombombún medio derretido del rapero del T31. Se ríe hasta que le duele la panza. «¡Lo guardaste todo el viaje!» Se lo come igual. «Es el mejor bombombún de mi vida.»",
+        "effects": [
+          {
+            "setFlag": "m6_q_bombombun"
+          }
+        ],
+        "next": "fin"
+      },
+      "nada": {
+        "text": "Miras el helado como si tuviera las respuestas. Ella no espera nada; se le nota que no esperaba nada. Igual, la próxima vez...",
+        "next": "fin"
+      },
+      "fin": {
+        "text": "La radio cambia a una salsa lenta. Afuera ya es de noche y se prenden los faroles de la calle, amarillos, uno por uno."
+      }
+    }
+  },
+  "m6_helado_fin": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Sira",
+        "text": "Bueno, nadador. ¿Subimos a la colina? Desde arriba se ve toda Cali prendida, y a esta hora están los cuenteros. Sin miedo, ¿eh?",
+        "effects": [
+          {
+            "objective": "Sube con Sira a la Colina de San Antonio (la escalinata de la Carrera 10)"
+          }
+        ]
+      }
+    }
+  },
+  "m6_apagon": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "A mitad de la escalinata, un zumbido... y ¡plop! Se apaga todo. Los faroles, las casas, la capilla. Todo San Antonio queda negro como el fondo de la piscina.",
+          "Allá abajo, la ciudad también parpadea y se apaga por sectores. Silencio. Un perro ladra lejos."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_apagon"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "Ay. Ay, no. ¿Se fue la luz? ¿En TODO el barrio? ...No me sueltes, ¿ya? No es que me dé miedo. Es por ti. Para que no te caigas.",
+        "next": "brazo"
+      },
+      "brazo": {
+        "text": "Sira se agarra de tu brazo. Fuerte. Con las dos manos.",
+        "choices": [
+          {
+            "label": "«Tranquila, yo te cuido» (y prender la linterna)",
+            "effects": [
+              {
+                "setFlag": "m6_q_apagon"
+              }
+            ],
+            "goto": "cuido"
+          },
+          {
+            "label": "«¿Este es el momento en que aparece el Buziraco?»",
+            "goto": "buziraco"
+          },
+          {
+            "label": "«...Yo sí tengo miedo»",
+            "effects": [
+              {
+                "setFlag": "m6_q_apagon"
+              }
+            ],
+            "goto": "miedo"
+          }
+        ]
+      },
+      "cuido": {
+        "speaker": "Sira",
+        "text": "«¿Tú me cuidas? Tú, que te hundías en un metro veinte.» Pero no te suelta. Ni un poquito.",
+        "next": "linterna"
+      },
+      "buziraco": {
+        "speaker": "Sira",
+        "text": "¡No digas ese nombre aquí! ¡En serio! Mi abuela dice que si lo nombras de noche, aparece. ¡Shhh!",
+        "next": "linterna"
+      },
+      "miedo": {
+        "speaker": "Sira",
+        "text": "...Gracias por decirlo. Ahora somos dos. Así es menos.",
+        "next": "linterna"
+      },
+      "linterna": {
+        "text": "(F: prender o apagar la linterna del celular. La batería no es eterna.)",
+        "effects": [
+          {
+            "objective": "Sigue subiendo a oscuras hasta la capilla (F: linterna)"
+          }
+        ]
+      }
+    }
+  },
+  "m6_apagon_gato": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Algo se mueve entre las matas. Dos puntitos brillantes... ¡MIAAAAU! Un gato negro salta frente a ustedes y desaparece colina arriba.",
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "¡AAAAH! ...Era un gato. Era un gato, ¿cierto? Dime que era un gato.",
+        "choices": [
+          {
+            "label": "Era un gato. Negro. En noche de apagón. Normal",
+            "goto": "normal"
+          },
+          {
+            "label": "Era el Buziraco disfrazado de gato",
+            "goto": "buzi"
+          }
+        ]
+      },
+      "normal": {
+        "speaker": "Sira",
+        "text": "Normal. Normalísimo. Todo bien. ...Sigamos. Pero despacio. Y juntos."
+      },
+      "buzi": {
+        "speaker": "Sira",
+        "text": "¡No es chistoso! Bueno, un poquito. ¡Pero no!"
+      }
+    }
+  },
+  "m6_cuentero_npc": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "despues",
+            "if": {
+              "flag": "m6_buziraco"
+            }
+          },
+          {
+            "goto": "dia",
+            "if": {
+              "notFlag": "m6_apagon_visto"
+            }
+          },
+          {
+            "goto": "noche"
+          }
+        ]
+      },
+      "dia": {
+        "speaker": "Cuentero",
+        "text": "Los sábados, después de las siete, aquí se cuentan historias. Historias de las de antes: de espantos, de amores y de Cali. Vengan."
+      },
+      "noche": {
+        "speaker": "Cuentero",
+        "text": "Acérquense, acérquense, que con apagón los cuentos se cuentan mejor."
+      },
+      "despues": {
+        "speaker": "Cuentero",
+        "text": "Que tengan buena noche, muchachos. Y cuidado con las cruces de allá enfrente: dicen que en noches así se oyen crujir."
+      }
+    }
+  },
+  "m6_cuentero": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Arriba, junto a la capilla, los cuenteros no se fueron con el apagón: prendieron velas. Diez, veinte velas en las gradas de piedra. La gente sentada en silencio.",
+          "Un señor de sombrero y bigote blanco, con la cara iluminada desde abajo, levanta un dedo."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_buziraco"
+          }
+        ],
+        "next": "cuento"
+      },
+      "cuento": {
+        "speaker": "Cuentero",
+        "text": [
+          "Hace muchos años, cuando Cali era un pueblo de tejas y caña, vivía en el cerro un diablo. El Buziraco, le decían. Grande, con cachos de toro y ojos de brasa.",
+          "De noche bajaba al pueblo: les desataba los caballos a los arrieros, les apagaba las velas a las viudas, les susurraba a los enamorados que se dejaran...",
+          "Hasta que un cura subió con tres cruces de madera y lo encerró en el cerro. Por eso, ese cerro de allá, el de las Tres Cruces...",
+          "...dicen que en noches sin luz, como esta, el Buziraco empuja las cruces desde adentro. Y que si escuchas con atención... muy, muy atentos..."
+        ]
+      }
+    }
+  },
+  "m6_cuentero_susto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Cuentero",
+        "text": "¡¡¡BUUU!!!",
+        "next": "salto"
+      },
+      "salto": {
+        "text": "Todo el público pega un brinco. Una señora tira las palomitas. Y Sira... Sira salta directo a tus brazos.",
+        "effects": [
+          {
+            "vineta": "m6_susto"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "...",
+        "choices": [
+          {
+            "label": "Abrazarla y reírte bajito",
+            "effects": [
+              {
+                "setFlag": "m6_q_susto"
+              }
+            ],
+            "goto": "abrazo"
+          },
+          {
+            "label": "«Tranquila. El Buziraco no sube escaleras»",
+            "effects": [
+              {
+                "setFlag": "m6_q_susto"
+              }
+            ],
+            "goto": "chiste"
+          },
+          {
+            "label": "Gritar tú también",
+            "goto": "grito"
+          }
+        ]
+      },
+      "abrazo": {
+        "speaker": "Sira",
+        "text": "Ella se ríe contra tu pecho, temblando un poquito. Se queda un segundo más de lo necesario. Después se separa, muy digna, y se arregla el pelo. «Ni una palabra.»",
+        "next": "fin"
+      },
+      "chiste": {
+        "speaker": "Sira",
+        "text": "«¿No sube escaleras? ¿Y cómo bajaba del cerro, genio?» Pero se queda agarrada de tu camisa hasta el final del cuento.",
+        "next": "fin"
+      },
+      "grito": {
+        "speaker": "Sira",
+        "text": "Gritas más fuerte que nadie. El cuentero se ríe tanto que se le apaga la vela. Sira te mira: «Mi héroe».",
+        "next": "fin"
+      },
+      "fin": {
+        "speaker": "Sira",
+        "text": "Aplausos. El cuentero hace una reverencia: «Gracias, gracias. El Buziraco también les manda saludos». Ahora vamos al mirador, que con el apagón se ven todas las estrellas.",
+        "effects": [
+          {
+            "objective": "Ve con Sira al mirador (la baranda, arriba)"
+          }
+        ]
+      }
+    }
+  },
+  "m6_capilla": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La Capilla de San Antonio, de 1747: blanca, chiquita, con su espadaña de ladrillo y una campana. Es una de las construcciones más viejas de Cali. Está cerrada, pero la puerta de madera huele a siglos."
+      }
+    }
+  },
+  "m6_vecino_sa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "noche",
+            "if": {
+              "flag": "m6_helado"
+            }
+          },
+          {
+            "goto": "tarde"
+          }
+        ]
+      },
+      "tarde": {
+        "speaker": "Don Hernando",
+        "text": "¿Van pa' la heladería? La de la puerta rosada. La señora es mi comadre. Díganle que van de parte de Hernando, a ver si les echa más corazoncitos."
+      },
+      "noche": {
+        "speaker": "Don Hernando",
+        "text": "¿Se fue la luz arriba? Pasa cada vez que hay fiesta en Siloé: la gente conecta los parlantes y ¡plop!. Ya vuelve."
+      }
+    }
+  },
+  "m6_guitarrista": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Guitarrista",
+        "text": "Un muchacho toca guitarra sentado en la acera. «¿Una canción, parcero? ¿Para la muchacha?»",
+        "choices": [
+          {
+            "label": "Un bolero ($3.000)",
+            "if": {
+              "minMoney": 3000
+            },
+            "effects": [
+              {
+                "pay": 3000
+              }
+            ],
+            "goto": "bolero"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "bolero": {
+        "speaker": "Guitarrista",
+        "text": "Toca «Sabor a mí» bajito, con la voz rasposa. La calle entera se queda callada para escuchar. Hasta los perros.",
+        "next": "sira"
+      },
+      "sira": {
+        "branches": [
+          {
+            "goto": "con",
+            "if": {
+              "flag": "m6_sira_sigue"
+            }
+          },
+          {
+            "goto": "fin"
+          }
+        ]
+      },
+      "con": {
+        "text": "Sira tararea. Se sabe la letra entera. «Mi abuela la cantaba lavando la loza.»",
+        "effects": [
+          {
+            "setFlag": "m6_q_bolero"
+          }
+        ]
+      },
+      "fin": {
+        "text": "Le dejas las monedas en el estuche. «Gracias, parce. Suerte con eso.» ¿Con qué?"
+      }
+    }
+  },
+  "m6_mirador_cartel": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "MIRADOR DE SAN ANTONIO. Desde aquí se ven el centro de Cali, el río, el Cerro de las Tres Cruces y, en días claros, la cordillera Central."
+      }
+    }
+  },
+  "m6_mirador_oscuro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Llegan a la baranda del mirador. Abajo, la ciudad está a oscuras, casi entera. Arriba, en cambio, se ven más estrellas que nunca. Hasta la Vía Láctea, un poquito.",
+          "Sira apoya los codos en la baranda. Tú también. Sus hombros se tocan."
+        ],
+        "next": "luz"
+      },
+      "luz": {
+        "text": "Y entonces vuelve la luz. Primero un barrio, allá lejos; después el centro, la Torre de Cali, las avenidas como ríos amarillos; después todo, de golpe, como si alguien hubiera encendido una ciudad entera para ustedes."
+      }
+    }
+  },
+  "m6_mirador": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Sira",
+        "text": "Wow...",
+        "effects": [
+          {
+            "vineta": "m6_mirador"
+          }
+        ],
+        "next": "mira"
+      },
+      "mira": {
+        "speaker": "Sira",
+        "text": "Siempre vengo aquí cuando estoy triste. O feliz. O cuando no sé. Hoy no sé qué estoy. ¿Tú qué ves?",
+        "choices": [
+          {
+            "label": "Una ciudad que me recibió como si fuera de aquí",
+            "effects": [
+              {
+                "setFlag": "m6_q_mirador"
+              }
+            ],
+            "goto": "ciudad"
+          },
+          {
+            "label": "Luces. Muchas luces. Y a ti, de reojo",
+            "effects": [
+              {
+                "setFlag": "m6_q_mirador"
+              },
+              {
+                "setFlag": "m6_q_coqueto2"
+              }
+            ],
+            "goto": "reojo"
+          },
+          {
+            "label": "El Cerro de las Tres Cruces. Y nada de Buziraco, por suerte",
+            "goto": "cerro"
+          }
+        ]
+      },
+      "ciudad": {
+        "speaker": "Sira",
+        "text": "Cali es así: te recibe, te da de comer, te pone a bailar y después no te deja ir. Te lo advierto. A mi papá le pasó. Vino de Popayán por un fin de semana.",
+        "next": "sueno"
+      },
+      "reojo": {
+        "speaker": "Sira",
+        "text": "¿De reojo? ...Te vi. Yo también te estaba mirando de reojo. Somos pésimos disimulando, los dos.",
+        "next": "sueno"
+      },
+      "cerro": {
+        "speaker": "Sira",
+        "text": "Shhh, que todavía estamos en su territorio. ...Mira, ahí está el río. Y el Bulevar. Y el puente donde corriste como loco. Desde aquí parece de juguete.",
+        "next": "sueno"
+      },
+      "sueno": {
+        "speaker": "Sira",
+        "text": "¿Sabes qué quiero hacer algún día? Cruzar nadando la bahía de Buenaventura. Como la mujer de mi novela. Todos me dicen que es una locura.",
+        "choices": [
+          {
+            "label": "Yo te acompaño. En lancha. Con salvavidas",
+            "effects": [
+              {
+                "setFlag": "m6_q_sueno"
+              }
+            ],
+            "goto": "lancha"
+          },
+          {
+            "label": "No es locura. Te vi nadar mariposa: tú puedes",
+            "effects": [
+              {
+                "setFlag": "m6_q_sueno"
+              }
+            ],
+            "goto": "puedes"
+          },
+          {
+            "label": "¿Y los tiburones?",
+            "goto": "tiburones"
+          }
+        ]
+      },
+      "lancha": {
+        "speaker": "Sira",
+        "text": "¿En lancha? ¡Ja! Me parece justo. Tú en la lancha gritándome «¡respira cada tres!». Trato hecho.",
+        "next": "silencio"
+      },
+      "puedes": {
+        "speaker": "Sira",
+        "text": "...Nadie me dice eso. Todos me dicen «cuidado». Gracias. De verdad, gracias.",
+        "next": "silencio"
+      },
+      "tiburones": {
+        "speaker": "Sira",
+        "text": "¡Los tiburones son lo de menos! Lo difícil es la corriente. Pero la corriente se aprende, como todo.",
+        "next": "silencio"
+      },
+      "silencio": {
+        "text": "Se quedan callados. Muy cerca. La ciudad zumba allá abajo. Una moto, un perro, una salsa lejana. El viento de la colina le trae su pelo a tu cara."
+      }
+    }
+  },
+  "m6_casi": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Sira se gira para decirte algo. Tú te giras al mismo tiempo. Y de repente están muy, muy cerca. Más cerca que en la piscina. Más cerca que en la fila.",
+        "effects": [
+          {
+            "vineta": "m6_casi"
+          }
+        ],
+        "next": "nivel"
+      },
+      "nivel": {
+        "branches": [
+          {
+            "goto": "pura",
+            "if": {
+              "flag": "m6_final_pura"
+            }
+          },
+          {
+            "goto": "casi",
+            "if": {
+              "flag": "m6_final_casi"
+            }
+          },
+          {
+            "goto": "amigos"
+          }
+        ]
+      },
+      "pura": {
+        "text": "Ella no dice nada. Tú tampoco. Escuchas tu corazón como el tambor del T31. Ella cierra los ojos, apenas... Te acercas. Un centímetro. Dos...",
+        "next": "elige"
+      },
+      "casi": {
+        "text": "Ella se muerde el labio. Mira tu boca, después tus ojos, después otra vez tu boca. Se te olvida cómo respirar. Cada tres. Cada tres...",
+        "next": "elige"
+      },
+      "amigos": {
+        "text": "Ella te mira con una sonrisa nerviosa. Tú la miras. Hay algo en el aire, como antes de un aguacero. Ninguno de los dos se mueve.",
+        "next": "elige"
+      },
+      "elige": {
+        "choices": [
+          {
+            "label": "Acercarte un poquito más",
+            "effects": [
+              {
+                "setFlag": "m6_se_acerco"
+              }
+            ]
+          },
+          {
+            "label": "Quedarte quieto, mirándola"
+          },
+          {
+            "label": "Decir algo tonto para romper el silencio",
+            "effects": [
+              {
+                "setFlag": "m6_dijo_tonto"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "m6_casi_grover": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "...y en ese preciso instante, en ese exacto milímetro, tu celular suena. A todo volumen. Con el tono de «La Cucaracha».",
+        "next": "quien"
+      },
+      "quien": {
+        "text": "Es una videollamada. De Grover.",
+        "effects": [
+          {
+            "vineta": "m6_grover_casi"
+          }
+        ],
+        "next": "router"
+      },
+      "router": {
+        "branches": [
+          {
+            "goto": "sabe",
+            "if": {
+              "flag": "m6_grover_sabe"
+            }
+          },
+          {
+            "goto": "mentira",
+            "if": {
+              "flag": "m6_grover_mentira"
+            }
+          },
+          {
+            "goto": "ignoro"
+          }
+        ]
+      },
+      "sabe": {
+        "speaker": "Grover",
+        "text": "¡CUMPAAA! ¿Y? ¿Y? ¿Ya se besaron? ¡Contame todo! ¡Estoy con Camilo y Vale, te tenemos en altavoz!",
+        "next": "sira_sabe"
+      },
+      "sira_sabe": {
+        "text": "Se escucha a Vale gritar «¡GROVER!» y a Camilo morirse de la risa de fondo. Sira se tapa la cara. Tú quieres que el Buziraco te lleve.",
+        "next": "colgar"
+      },
+      "mentira": {
+        "speaker": "Grover",
+        "text": "Cumpa, ¿no estabas estudiando? Te veo en la ubicación compartida en la Colina de San Antonio... y esa que está al lado... ¿esa es la nadadora? ¡¿ESA ES LA NADADORA?!",
+        "next": "sira_mentira"
+      },
+      "sira_mentira": {
+        "text": "«¿Estudiando?», repite Sira, con una ceja levantada. «¿Le dijiste a Grover que ibas a estudiar?» Se ríe tanto que tiene que sentarse en la grada.",
+        "next": "colgar"
+      },
+      "ignoro": {
+        "speaker": "Grover",
+        "text": "¡Cumpa! ¡Te llamé todo el día! ¡Pensé que te había secuestrado el Buziraco! ...¿Hola? ¿Estás con alguien? ¿Por qué estás tan rojo?",
+        "next": "colgar"
+      },
+      "colgar": {
+        "choices": [
+          {
+            "label": "Colgarle a Grover",
+            "goto": "cuelga"
+          },
+          {
+            "label": "Saludar con la mano y colgar",
+            "goto": "saluda"
+          }
+        ]
+      },
+      "cuelga": {
+        "text": "Le cuelgas. Pantalla negra. Silencio. Y entonces Sira explota de la risa, y tú también, y se ríen hasta que les duele la panza, apoyados el uno en el otro en la baranda."
+      },
+      "saluda": {
+        "text": "Sira se asoma a la cámara: «¡Hola, Grover!». Grover grita como si hubiera ganado la lotería. Cuelgas. Y se ríen. Se ríen tanto que se les olvida de qué se estaban riendo."
+      }
+    }
+  },
+  "m6_fuegos": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Y como si la ciudad también se estuviera riendo, allá abajo, en Siloé, alguien prende fuegos artificiales: verdes, rojos, dorados. Una fiesta de quince, seguro.",
+          "Se quedan mirando los fuegos sin decir nada. Ella vuelve a apoyar el hombro contra el tuyo."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_fuegos"
+          }
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "branches": [
+          {
+            "goto": "pura",
+            "if": {
+              "flag": "m6_final_pura"
+            }
+          },
+          {
+            "goto": "casi",
+            "if": {
+              "flag": "m6_final_casi"
+            }
+          },
+          {
+            "goto": "amigos"
+          }
+        ]
+      },
+      "pura": {
+        "speaker": "Sira",
+        "text": "Oye, nadador... Lo de hace un rato. Lo de antes de Grover. Me debes eso. Te lo cobro otro día. Sin celulares.",
+        "next": "fin"
+      },
+      "casi": {
+        "speaker": "Sira",
+        "text": "Me debes la revancha de la carrera. Y... otra cosa. No te voy a decir qué. Ya sabrás.",
+        "next": "fin"
+      },
+      "amigos": {
+        "speaker": "Sira",
+        "text": "Qué día más raro. Raro bonito. Gracias por venir, en serio. Eres buen compañero de feria.",
+        "next": "fin"
+      },
+      "fin": {
+        "text": "Nada pasó. Y pasó todo."
+      }
+    }
+  },
+  "m6_despedida": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Bajan la colina despacio. Ahora sí con todas las luces prendidas, los faroles amarillos y la gente volviendo a las aceras.",
+          "En la esquina de la Calle 2, Sira para un taxi para ella (vive en San Fernando, a diez minutos) y te para otro a ti."
+        ],
+        "next": "sira"
+      },
+      "sira": {
+        "speaker": "Sira",
+        "text": "Escríbeme cuando llegues. Y el jueves: piscina. Te voy a enseñar mariposa. Vas a odiarme.",
+        "choices": [
+          {
+            "label": "Nunca te voy a odiar",
+            "effects": [
+              {
+                "setFlag": "m6_q_despedida"
+              }
+            ],
+            "goto": "nunca"
+          },
+          {
+            "label": "Ya te odio un poquito (mentira)",
+            "goto": "odio"
+          },
+          {
+            "label": "Abrazarla para despedirte",
+            "effects": [
+              {
+                "setFlag": "m6_q_despedida"
+              }
+            ],
+            "goto": "abrazo"
+          }
+        ]
+      },
+      "nunca": {
+        "speaker": "Sira",
+        "text": "...Eso lo dices porque no has nadado mariposa. Chao, chileno.",
+        "next": "taxi"
+      },
+      "odio": {
+        "speaker": "Sira",
+        "text": "Jajaja. Ese «un poquito» se te nota desde aquí. Chao, chileno.",
+        "next": "taxi"
+      },
+      "abrazo": {
+        "speaker": "Sira",
+        "text": "Te abraza. Huele a maracuyá y a libro viejo. «Chao, chileno.» Se sube al taxi. Por la ventana te hace señas con las dos manos, como en la piscina, hasta que dobla la esquina.",
+        "next": "taxi"
+      },
+      "taxi": {
+        "text": "Te subes a tu taxi. «¿Pa' dónde, joven?» «Pa' Pance.»",
+        "effects": [
+          {
+            "objective": "Vuelve a Pance"
+          },
+          {
+            "setFlag": "m6_tomo_taxi"
+          }
+        ]
+      }
+    }
+  },
+  "m6_taxi_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El taxi arranca por las calles de San Antonio, bajando hacia el río.",
+        "effects": [
+          {
+            "event": "trayecto",
+            "data": {
+              "id": "taxi_pance_m6"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "m6_taxi_1": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Taxista",
+        "text": "El taxista te mira por el espejo. «¿Viene de una cita, joven? Se le nota en la sonrisa. Así llegué yo a mi casa en el 98. Y me casé.»"
+      }
+    }
+  },
+  "m6_taxi_2": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El celular vibra.",
+        "effects": [
+          {
+            "message": "sira_m6_llegue"
+          },
+          {
+            "vineta": "m6_chat"
+          }
+        ],
+        "choices": [
+          {
+            "label": "«Raro bonito es mi género favorito. Buenas noches, profe»",
+            "effects": [
+              {
+                "message": "yo_m6_llegue_a"
+              }
+            ],
+            "goto": "ok"
+          },
+          {
+            "label": "«Gracias a ti. Por todo. Hasta por el Buziraco»",
+            "effects": [
+              {
+                "message": "yo_m6_llegue_b"
+              }
+            ],
+            "goto": "ok"
+          }
+        ]
+      },
+      "ok": {
+        "text": "Mandado. Miras por la ventana: la Autopista, las palmas, los Farallones negros allá al fondo. Sonríes como un tonto todo el camino."
+      }
+    }
+  },
+  "m6_pance_noche": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Pance, de noche: grillos, ranas y el río sonando. La casa de doña Mery tiene la luz del porche prendida. Te estaba esperando.",
+        "effects": [
+          {
+            "objective": "Entra a la casa de doña Mery"
+          }
+        ]
+      }
+    }
+  },
+  "m6_casa_final": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Doña Mery está en la sala, en pijama, «viendo la novela» con el televisor apagado. Obviamente te estaba esperando.",
+        "next": "mery"
+      },
+      "mery": {
+        "speaker": "Doña Mery",
+        "text": "¿Y? ¿Y? No, no me cuente. Bueno, sí. ¿Le gustó el regalo? ¿Se tomaron de la mano? ¿Hubo besito? ¡Ay, perdón, perdón, ya me voy a acostar!",
+        "choices": [
+          {
+            "label": "No hubo besito. Pero casi",
+            "goto": "casi"
+          },
+          {
+            "label": "Fue el mejor día desde que llegué a Cali",
+            "goto": "mejor"
+          },
+          {
+            "label": "Un ladrón, un cuentero, un apagón y Grover",
+            "goto": "todo"
+          }
+        ]
+      },
+      "casi": {
+        "speaker": "Doña Mery",
+        "text": "¿«Casi»? Ay, mijo. El «casi» es lo más bonito. Después viene todo lo demás. Duérmase, que mañana es domingo.",
+        "next": "fin"
+      },
+      "mejor": {
+        "speaker": "Doña Mery",
+        "text": "Se le nota, mijo. Se le nota hasta en la forma de caminar. Ay, la juventud. Duérmase.",
+        "next": "fin"
+      },
+      "todo": {
+        "speaker": "Doña Mery",
+        "text": "¿Qué? ¿Un ladrón? ¿Grover? ...Mañana me cuenta con calma, con el desayuno. Ahora a dormir, que tiene cara de que le pasó la vida entera en un día.",
+        "next": "fin"
+      },
+      "fin": {
+        "text": "Te acuestas. Antes de dormir, abres la foto que te mandó Sira: los dos en el mirador, con los fuegos atrás, borrosos, riéndose de algo que ya no te acuerdas.",
+        "effects": [
+          {
+            "vineta": "m6_buenas_noches"
+          }
+        ],
+        "next": "final"
+      },
+      "final": {
+        "text": "Letras sobre el río. Fin del sábado.",
+        "effects": [
+          {
+            "event": "mision6_final"
+          }
+        ]
+      }
+    }
+  },
+  "m6_llamada_grover": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Grover",
+        "text": "¡Cumpaaa! ¿Qué hacés hoy? Camilo dice que juguemos Cinco en Pance Burger. O vamos al Autocine. ¡O a ensayar caporales! Te enseño. Tenés cadera de caporal.",
+        "choices": [
+          {
+            "label": "No puedo: voy a la feria del libro con Sira",
+            "effects": [
+              {
+                "setFlag": "m6_grover_sabe"
+              }
+            ],
+            "goto": "verdad"
+          },
+          {
+            "label": "No puedo: tengo que estudiar",
+            "effects": [
+              {
+                "setFlag": "m6_grover_mentira"
+              }
+            ],
+            "goto": "mentira"
+          }
+        ]
+      },
+      "verdad": {
+        "speaker": "Grover",
+        "text": "¡¡¿¿CON LA NADADORA??!! ¡Cumpa! ¡Cumpaaa! No le digo a nadie. Te lo juro por la llama de mi tablero. ...¡CAMILO! ¡VALE! ¡ADIVINEN!",
+        "next": "fin"
+      },
+      "mentira": {
+        "speaker": "Grover",
+        "text": "¿Estudiar? ¿Un sábado? Bueno, cumpa, si vos lo decís... Yo no te creo nada, pero respeto. Suerte con el «estudio».",
+        "next": "fin"
+      },
+      "fin": {
+        "text": "Grover cuelga. Tienes la sensación de que acabas de tomar una decisión muy importante sin saberlo."
+      }
+    }
+  },
+  "m6_llamar_grover": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "goto": "noche",
+            "if": {
+              "flag": "m6_mirador"
+            }
+          },
+          {
+            "goto": "tarde"
+          }
+        ]
+      },
+      "tarde": {
+        "text": "Suena y suena. Después, un audio de Grover: «Cumpa, estoy ensayando, te llamo después. ¡Viva Oruro!»."
+      },
+      "noche": {
+        "text": "Grover contesta al primer timbre: «¿YA? ¿Ahora sí me vas a contar?». Le cuelgas. Mañana."
+      }
+    }
+  },
+  "m6_llamar_mery": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Doña Mery",
+        "text": "¿Aló? ¿Mijo? ¿Se perdió? ¡No me diga que se perdió! Ay, no, ¿está bien? Ah, solo llamaba. Ay, qué lindo. Cuídese mucho y vuelva temprano. Bueno, no tan temprano."
+      }
+    }
+  },
+  "usar_tarjeta_recorre": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Tarjeta Recorre (la de repuesto de doña Mery). Saldo: {bip}. Un pasaje cuesta $2.900; se recarga en las máquinas de las estaciones."
+      }
+    }
+  },
+  "usar_separador": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El separador de guayacán: la flor amarilla prensada, la cinta roja, un poco torcido. Lo hiciste tú. Dura años."
+      }
+    }
+  },
+  "usar_libro_regalo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El libro envuelto en papel kraft, con su lazo. Tiene forma de libro, claro. Imposible que sea sorpresa. Igual, es para ella."
+      }
+    }
+  },
+  "usar_girasol": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Hueles el girasol. Huele a... verde. Ya tiene un pétalo caído. Las flores cortadas, ¿no?"
+      }
+    }
+  },
+  "usar_poema": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El poema express, mecanografiado en una hoja con una mancha de café. Lo lees otra vez. Algo se te arruga por dentro. Lo guardas con cuidado."
+      }
+    }
+  },
+  "usar_fanzine": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "«EL BUZIRACO». Doce páginas a lapicero: un diablo con cachos que vivía en el cerro, bajaba de noche al pueblo y apagaba las velas.",
+          "Lo encerraron con tres cruces. Última página: «¿Seguro que se quedó adentro?». Da un poquito de miedo. Bueno, harto."
+        ]
+      }
+    }
+  },
+  "usar_oblea": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Muerdes la oblea. Se parte en mil pedazos y el arequipe se te sale por los lados. Mora en la nariz. Queso en la camisa. Deliciosa."
+        ],
+        "effects": [
+          {
+            "takeItem": "oblea"
+          }
+        ]
+      }
+    }
+  },
+  "usar_bombombun": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Te comes el bombombún: primero el caramelo, después el chicle de adentro. Haces un globo. Se te pega en la nariz.",
+        "effects": [
+          {
+            "takeItem": "bombombun"
+          }
+        ]
+      }
+    }
+  },
+  "usar_tinto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El tinto de la feria: dulce, negro, ya tibio. Te sabe a Bulevar, a libros viejos y a una tarde que no quieres que se acabe.",
+        "effects": [
+          {
+            "takeItem": "tinto_feria"
+          }
+        ]
+      }
+    }
+  },
+  "usar_piedra": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La piedrita del río: lisa, fría, pintada de azul con un pececito amarillo. Las piedras no se mueren."
+      }
+    }
+  }
+}

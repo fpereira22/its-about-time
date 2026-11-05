@@ -1,0 +1,365 @@
+{
+  "bip": {
+    "name": "Tarjeta Bip!",
+    "description": "Sirve para el metro y la micro. Hay que cargarla.",
+    "icon": "bip",
+    "use": "usar_bip",
+    "useLabel": "Ver saldo"
+  },
+  "sopaipilla": {
+    "name": "Sopaipilla",
+    "description": "Con harto pebre. Calentita.",
+    "icon": "sopaipilla",
+    "collectible": true,
+    "use": "usar_sopaipilla",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "empanada": {
+    "name": "Empanada de pino",
+    "description": "Con aceituna y huevo. Ojo con el carozo.",
+    "icon": "empanada",
+    "collectible": true,
+    "use": "usar_empanada",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "completo": {
+    "name": "Completo italiano",
+    "description": "Palta, tomate y mayo. Los colores de la bandera de Italia.",
+    "icon": "completo",
+    "collectible": true,
+    "use": "usar_completo",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "mote": {
+    "name": "Mote con huesillo",
+    "description": "El refresco oficial del verano santiaguino.",
+    "icon": "mote",
+    "collectible": true,
+    "use": "usar_mote",
+    "useLabel": "Tomar",
+    "useSfx": "eat"
+  },
+  "hueso": {
+    "name": "Hueso",
+    "description": "A algún quiltro le va a encantar.",
+    "icon": "hueso",
+    "use": "usar_hueso",
+    "useLabel": "Mirar"
+  },
+  "mapa": {
+    "name": "Mapa dibujado a mano",
+    "description": "Un atajo secreto entre Los Leones y Tobalaba.",
+    "icon": "mapa",
+    "use": "usar_mapa",
+    "useLabel": "Leer"
+  },
+  "mochila": {
+    "name": "Mochila",
+    "description": "Cuaderno de Optimización, calculadora, estuche y un chicle de dudosa edad.",
+    "icon": "mochila",
+    "use": "usar_mochila",
+    "useLabel": "Revisar"
+  },
+  "marraqueta": {
+    "name": "Marraqueta con palta",
+    "description": "Te la dejó tu mamá en el refri. Desayuno de campeón.",
+    "icon": "marraqueta",
+    "collectible": true,
+    "use": "usar_marraqueta",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "apuntes": {
+    "name": "Apuntes de Optimización",
+    "description": "Los apuntes de Benja: la mochila, paso a paso (con dibujitos).",
+    "icon": "apuntes",
+    "collectible": true,
+    "use": "usar_apuntes",
+    "useLabel": "Leer"
+  },
+  "cafe": {
+    "name": "Café de máquina",
+    "description": "Hirviendo. Ideal para despertar antes de una prueba.",
+    "icon": "cafe",
+    "collectible": true,
+    "use": "usar_cafe",
+    "useLabel": "Tomar",
+    "useSfx": "eat"
+  },
+  "carnet": {
+    "name": "Carnet",
+    "description": "Feli P. · 23 años · Chileno. Sin esto no sales del país.",
+    "icon": "carnet",
+    "use": "usar_carnet",
+    "useLabel": "Mirar"
+  },
+  "maleta": {
+    "name": "Maleta",
+    "description": "Hasta 23 kilos. Ni uno más.",
+    "icon": "maleta",
+    "use": "usar_maleta",
+    "useLabel": "Revisar"
+  },
+  "manjar": {
+    "name": "Manjar (2 tarros)",
+    "description": "Regalo de tu mamá para la familia de Cali.",
+    "icon": "manjar",
+    "use": "usar_manjar",
+    "useLabel": "Mirar"
+  },
+  "pase": {
+    "name": "Tarjeta de embarque",
+    "description": "CA 742 · Santiago → Cali · Asiento 18A.",
+    "icon": "pase",
+    "use": "usar_pase",
+    "useLabel": "Leer"
+  },
+  "dibujo": {
+    "name": "Dibujo de tu hermano",
+    "description": "«VUELVE PRONTO», con la N al revés.",
+    "icon": "dibujo",
+    "collectible": true,
+    "use": "usar_dibujo",
+    "useLabel": "Mirar"
+  },
+  "alfajor": {
+    "name": "Alfajor del avión",
+    "description": "Envuelto en papel dorado. Postre a 11.000 metros.",
+    "icon": "alfajor",
+    "collectible": true,
+    "use": "usar_alfajor",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "pandebono": {
+    "name": "Pandebono",
+    "description": "Regalo de Luz Dary, tu vecina de asiento. Duro, pero rico.",
+    "icon": "pandebono",
+    "collectible": true,
+    "use": "usar_pandebono",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "chontaduro": {
+    "name": "Chontaduro",
+    "description": "Fruta de palma con sal y miel. Pa' la energía.",
+    "icon": "chontaduro",
+    "collectible": true,
+    "use": "usar_chontaduro",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "lapiz_rojo": {
+    "name": "Lápiz rojo",
+    "description": "Mordisqueado. Tiene grabado «R. C.».",
+    "icon": "lapiz_rojo",
+    "use": "usar_lapiz",
+    "useLabel": "Mirar"
+  },
+  "paraguas": {
+    "name": "Paraguas de doña Mery",
+    "description": "Negro, grande y con una varilla chueca. «En Cali llueve de repente, mijo».",
+    "icon": "paraguas",
+    "use": "usar_paraguas",
+    "useLabel": "Mirar"
+  },
+  "carnet_pucc": {
+    "name": "Carnet PUCC",
+    "description": "Estudiante de intercambio · Ingeniería · 2026-2.",
+    "icon": "carnet_pucc",
+    "use": "usar_carnet_pucc",
+    "useLabel": "Mirar"
+  },
+  "polera_pucc": {
+    "name": "Polera azul de la U",
+    "description": "La del equipo de intercambio. Número 14.",
+    "icon": "polera",
+    "use": "usar_polera",
+    "useLabel": "Ponérsela"
+  },
+  "bunuelo": {
+    "name": "Buñuelo",
+    "description": "Redondo, dorado y con queso. De la Cafetería Central.",
+    "icon": "bunuelo",
+    "collectible": true,
+    "use": "usar_bunuelo",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "lulada": {
+    "name": "Lulada",
+    "description": "Lulo picado con hielo y limón. Ácida y bien fría.",
+    "icon": "lulada",
+    "collectible": true,
+    "use": "usar_lulada",
+    "useLabel": "Tomar",
+    "useSfx": "eat"
+  },
+  "cholado": {
+    "name": "Cholado",
+    "description": "Hielo raspado, frutas, leche condensada y una galleta encima. Puro Valle.",
+    "icon": "cholado",
+    "collectible": true,
+    "use": "usar_cholado",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "aborrajado": {
+    "name": "Aborrajado",
+    "description": "Plátano maduro con queso, apanado y frito. Del rooftop de Antoine.",
+    "icon": "aborrajado",
+    "collectible": true,
+    "use": "usar_aborrajado",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "pan_de_yuca": {
+    "name": "Pan de yuca",
+    "description": "Crocante afuera, elástico adentro. Del carrito de la plaza.",
+    "icon": "pan_de_yuca",
+    "collectible": true,
+    "use": "usar_pan_de_yuca",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "mango_biche": {
+    "name": "Mango biche",
+    "description": "Con sal, limón y pimienta. Del semáforo de la Calle 25.",
+    "icon": "mango_biche",
+    "collectible": true,
+    "use": "usar_mango_biche",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "salpicon": {
+    "name": "Salpicón",
+    "description": "Frutas picadas en jugo de sandía. De la Calle 44.",
+    "icon": "salpicon",
+    "collectible": true,
+    "use": "usar_salpicon",
+    "useLabel": "Tomar",
+    "useSfx": "eat"
+  },
+  "champus": {
+    "name": "Champús",
+    "description": "Maíz, lulo, piña, panela y canela, bien frío. Del Centro Deportivo.",
+    "icon": "champus",
+    "collectible": true,
+    "use": "usar_champus",
+    "useLabel": "Tomar",
+    "useSfx": "eat"
+  },
+  "llaves_grover": {
+    "name": "Llaves de Grover",
+    "description": "Con un llavero de llama tejido en Cochabamba. Huelen a pandebono.",
+    "icon": "llaves_grover",
+    "use": "usar_llaves_grover",
+    "useLabel": "Mirar"
+  },
+  "antiparras": {
+    "name": "Gafas de natación",
+    "description": "Azules, de niño. Alguien las está buscando.",
+    "icon": "antiparras",
+    "use": "usar_antiparras",
+    "useLabel": "Mirar"
+  },
+  "traje_bano": {
+    "name": "Traje de baño de llamas",
+    "description": "Regalo de Grover. «Recuerdo de Copacabana».",
+    "icon": "traje_bano",
+    "use": "usar_traje_bano",
+    "useLabel": "Mirar"
+  },
+  "tarjeta_recorre": {
+    "name": "Tarjeta Recorre",
+    "description": "La tarjeta del transporte de Cali (la de repuesto de doña Mery).",
+    "icon": "tarjeta_recorre",
+    "use": "usar_tarjeta_recorre",
+    "useLabel": "Ver saldo"
+  },
+  "separador_guayacan": {
+    "name": "Separador de guayacán",
+    "description": "Una flor amarilla de guayacán prensada entre dos hojas de papel mantequilla. Hecho a mano (por ti, con ayuda).",
+    "icon": "separador",
+    "use": "usar_separador",
+    "useLabel": "Mirar"
+  },
+  "libro_qvlm": {
+    "name": "«¡Que viva la música!»",
+    "description": "La novela caleña de Andrés Caicedo (1977), edición de bolsillo. Para Sira.",
+    "icon": "libro_regalo",
+    "use": "usar_libro_regalo",
+    "useLabel": "Mirar"
+  },
+  "libro_maria": {
+    "name": "«María»",
+    "description": "La novela de Jorge Isaacs (1867), la del Valle del Cauca. Edición de bolsillo, para regalar.",
+    "icon": "libro_regalo",
+    "use": "usar_libro_regalo",
+    "useLabel": "Mirar"
+  },
+  "girasol": {
+    "name": "Girasol",
+    "description": "Un girasol enorme envuelto en papel kraft. Muy bonito. Muy... cortado.",
+    "icon": "girasol",
+    "use": "usar_girasol",
+    "useLabel": "Oler"
+  },
+  "oblea": {
+    "name": "Oblea",
+    "description": "Dos obleas con arequipe, mora y queso rallado. Se desarma al primer mordisco.",
+    "icon": "oblea",
+    "collectible": true,
+    "use": "usar_oblea",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "bombombun": {
+    "name": "Bombombún",
+    "description": "El chupete con chicle adentro que vendía el rapero del T31 («tres por mil, mi llave»).",
+    "icon": "bombombun",
+    "collectible": true,
+    "use": "usar_bombombun",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "fanzine_buziraco": {
+    "name": "Fanzine «El Buziraco»",
+    "description": "Doce páginas fotocopiadas sobre el diablo que encerraron en el cerro de las Tres Cruces. Dibujos a lapicero.",
+    "icon": "fanzine",
+    "collectible": true,
+    "use": "usar_fanzine",
+    "useLabel": "Leer"
+  },
+  "tinto_feria": {
+    "name": "Tinto de la feria",
+    "description": "Café negro, dulce, en vasito de plástico. Quema los dedos y el alma.",
+    "icon": "tinto",
+    "collectible": true,
+    "use": "usar_tinto",
+    "useLabel": "Tomar",
+    "useSfx": "eat"
+  },
+  "poema_express": {
+    "name": "Poema express",
+    "description": "El poema que el poeta de la máquina de escribir les escribió a los dos en el Bulevar.",
+    "icon": "poema",
+    "use": "usar_poema",
+    "useLabel": "Leer"
+  },
+  "piedra_rio": {
+    "name": "Piedrita del río",
+    "description": "Una piedra lisa del río Cali, pintada de azul con un pececito amarillo. Las piedras no se mueren.",
+    "icon": "piedra",
+    "use": "usar_piedra",
+    "useLabel": "Mirar"
+  },
+  "mazorcas": {
+    "name": "Cilantro y mazorcas",
+    "description": "El encargo de doña Mery para el sancocho, envuelto en la página de deportes.",
+    "icon": "mazorcas"
+  }
+}

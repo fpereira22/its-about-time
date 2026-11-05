@@ -1,0 +1,274 @@
+{
+ "id": "pance_casa",
+ "name": "Casa de doña Mery",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 22,
+ "height": 13,
+ "background": "#14121a",
+ "music": "salsa",
+ "legend": {
+  "^": "muro_techo",
+  "M": "cali_muro",
+  "w": "cali_ventana",
+  "q": "cali_cuadro",
+  ".": "cali_piso",
+  ",": "casa_baldosa",
+  "O": "ropero",
+  "X": "escritorio_casa",
+  "n": "velador",
+  "b": "cama",
+  "f": "cama_pies",
+  "U": "wc",
+  "Y": "ducha",
+  "l": "lavamanos",
+  "R": "refri",
+  "K": "cocina",
+  "k": "mueble_cocina",
+  "L": "lavaplatos",
+  "T": "mesa_comedor",
+  "h": "silla",
+  "s": "sofa",
+  "H": "hamaca",
+  "V": "ventilador",
+  "m": "matera",
+  "D": "cali_puerta"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^^^^^^^",
+  "^MOwMXn^MlMUY^RKkLkMw^",
+  "^.....b^,,,,,^,,,,,,,^",
+  "^.....f^,,,,,^,,,,,,,^",
+  "^V.....^,,,,,^,,,,,,,^",
+  "^^^^.^^^^^,^^^^,,,^^^^",
+  "^m...................^",
+  "^...................m^",
+  "^.sss......TTTT......^",
+  "^..........hhhh......^",
+  "^H...................^",
+  "^MMMMqMMMMDMMMMMqMMMM^",
+  "^^^^^^^^^^^^^^^^^^^^^^"
+ ],
+ "zones": [
+  {
+   "name": "Tu pieza",
+   "subtitle": "Casa de doña Mery · Pance",
+   "x": 0,
+   "y": 0,
+   "w": 7,
+   "h": 5
+  },
+  {
+   "name": "Baño",
+   "subtitle": "Casa de doña Mery · Pance",
+   "x": 7,
+   "y": 0,
+   "w": 6,
+   "h": 5
+  },
+  {
+   "name": "Cocina",
+   "subtitle": "Casa de doña Mery · Pance",
+   "x": 13,
+   "y": 0,
+   "w": 9,
+   "h": 5
+  },
+  {
+   "name": "Sala y comedor",
+   "subtitle": "Casa de doña Mery · Pance",
+   "x": 0,
+   "y": 5,
+   "w": 22,
+   "h": 8
+  }
+ ],
+ "spawns": {
+  "cama": {
+   "x": 6,
+   "y": 2,
+   "dir": "down"
+  },
+  "pieza": {
+   "x": 5,
+   "y": 3,
+   "dir": "left"
+  },
+  "puerta": {
+   "x": 10,
+   "y": 10,
+   "dir": "up"
+  },
+  "comedor": {
+   "x": 12,
+   "y": 9,
+   "dir": "up"
+  }
+ },
+ "warps": [
+  {
+   "x": 10,
+   "y": 11,
+   "to": "pance",
+   "spawn": "casa",
+   "if": {
+    "any": [
+     {
+      "all": [
+       {
+        "mission": "mission04"
+       },
+       {
+        "all": [
+         {
+          "flag": [
+           "vestido",
+           "desayuno",
+           "tiene_mochila"
+          ]
+         },
+         {
+          "notFlag": "mojado"
+         },
+         {
+          "any": [
+           {
+            "notFlag": "volvio_casa"
+           },
+           {
+            "flag": "almorzo"
+           }
+          ]
+         },
+         {
+          "notFlag": "noche_casa"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "all": [
+       {
+        "mission": "mission05"
+       },
+       {
+        "flag": "m5_desayuno"
+       },
+       {
+        "notFlag": "m5_no_salir"
+       }
+      ]
+     },
+     {
+      "all": [
+       {
+        "mission": "mission06"
+       },
+       {
+        "any": [
+         {
+          "flag": "m6_mandado"
+         },
+         {
+          "flag": "m6_almorzo"
+         }
+        ]
+       },
+       {
+        "notFlag": "m6_taxi_casa"
+       }
+      ]
+     }
+    ]
+   },
+   "blockedDialogue": "m4_casa_no_salir"
+  }
+ ],
+ "enter": [
+  {
+   "id": "despertar",
+   "dialogue": "m4_despertar",
+   "once": true,
+   "if": {
+    "mission": "mission04"
+   }
+  },
+  {
+   "id": "vuelve_mojado",
+   "dialogue": "m4_vuelve_casa",
+   "once": true,
+   "if": {
+    "all": [
+     {
+      "mission": "mission04"
+     },
+     {
+      "flag": "tormenta_vista"
+     }
+    ]
+   }
+  },
+  {
+   "id": "noche",
+   "dialogue": "m4_noche_casa",
+   "once": true,
+   "if": {
+    "all": [
+     {
+      "mission": "mission04"
+     },
+     {
+      "flag": "partido_jugado",
+      "notFlag": "gano_partido"
+     }
+    ]
+   }
+  },
+  {
+   "id": "m5_inicio",
+   "dialogue": "m5_inicio",
+   "once": true,
+   "if": {
+    "mission": "mission05"
+   }
+  },
+  {
+   "id": "m5_vuelta_piscina",
+   "dialogue": "m5_casa_noche",
+   "once": true,
+   "if": {
+    "mission": "mission05",
+    "flag": "m5_volvio_piscina"
+   }
+  },
+  {
+   "id": "m5_final",
+   "dialogue": "m5_casa_final",
+   "once": true,
+   "if": {
+    "mission": "mission05",
+    "flag": "m5_insta"
+   }
+  },
+  {
+   "id": "m6_sabado",
+   "dialogue": "m6_sabado",
+   "once": true,
+   "if": {
+    "mission": "mission06",
+    "flag": "m6_sabado",
+    "notFlag": "m6_almorzo"
+   }
+  },
+  {
+   "id": "m6_final",
+   "dialogue": "m6_casa_final",
+   "once": true,
+   "if": {
+    "mission": "mission06",
+    "flag": "m6_taxi_casa"
+   }
+  }
+ ]
+}

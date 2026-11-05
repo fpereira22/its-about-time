@@ -1,0 +1,322 @@
+{
+  "id": "mission05",
+  "number": 5,
+  "title": "Un martes cualquiera",
+  "start": {
+    "map": "pance_casa",
+    "spawn": "pieza"
+  },
+  "objective": "Desayuna con doña Mery (en la cocina)",
+  "startMoney": 100000,
+  "startFlags": [
+    "mision5_iniciada",
+    "despierto",
+    "banado",
+    "vestido",
+    "tiene_mochila",
+    "desayuno"
+  ],
+  "clock": "mar 07:00",
+  "weather": "despejado",
+  "destinations": [
+    {
+      "if": {
+        "flag": "m5_insta"
+      },
+      "map": "pance",
+      "x": 21,
+      "y": 6,
+      "name": "Casa de doña Mery"
+    },
+    {
+      "if": {
+        "flag": "m5_volvio_piscina",
+        "map": "pance"
+      },
+      "map": "pance",
+      "x": 33,
+      "y": 6,
+      "name": "Pance Burger"
+    },
+    {
+      "if": {
+        "flag": "m5_volvio_piscina"
+      },
+      "map": "pance_burger",
+      "x": 13,
+      "y": 5,
+      "name": "La mesa del equipo"
+    },
+    {
+      "if": {
+        "flag": "m5_sira_conocida"
+      },
+      "map": "pucc_piscina",
+      "x": 21,
+      "y": 30,
+      "name": "Grover (salida)"
+    },
+    {
+      "if": {
+        "flag": "m5_vestido_post"
+      },
+      "map": "pucc_piscina",
+      "x": 19,
+      "y": 29,
+      "name": "Salida"
+    },
+    {
+      "if": {
+        "flag": "m5_nado"
+      },
+      "map": "pucc_piscina",
+      "x": 5,
+      "y": 8,
+      "name": "Camerinos"
+    },
+    {
+      "if": {
+        "flag": "en_bano"
+      },
+      "map": "pucc_piscina",
+      "x": 9,
+      "y": 22,
+      "name": "Borde de la piscina"
+    },
+    {
+      "if": {
+        "flag": "m5_entrada"
+      },
+      "map": "pucc_piscina",
+      "x": 5,
+      "y": 8,
+      "name": "Camerinos"
+    },
+    {
+      "if": {
+        "flag": "m5_en_deportivo"
+      },
+      "map": "pucc_piscina",
+      "x": 18,
+      "y": 29,
+      "name": "Control de Bienestar"
+    },
+    {
+      "if": {
+        "hasItem": "llaves_grover"
+      },
+      "map": "pucc_campus",
+      "x": 47,
+      "y": 4,
+      "name": "Grover (parqueadero)"
+    },
+    {
+      "if": {
+        "flag": [
+          "m5_grover_visto",
+          "m5_pista_lago"
+        ]
+      },
+      "map": "pucc_campus",
+      "x": 62,
+      "y": 32,
+      "name": "Detrás de la Capilla"
+    },
+    {
+      "if": {
+        "flag": [
+          "m5_grover_visto",
+          "m5_pista_cafe"
+        ]
+      },
+      "map": "pucc_campus",
+      "x": 33,
+      "y": 12,
+      "name": "El Lago"
+    },
+    {
+      "if": {
+        "flag": "m5_grover_visto"
+      },
+      "map": "pucc_campus",
+      "x": 48,
+      "y": 18,
+      "name": "Cafetería Central"
+    },
+    {
+      "if": {
+        "flag": "m5_corte",
+        "map": "ruta_barberia"
+      },
+      "map": "ruta_barberia",
+      "x": 2,
+      "y": 1,
+      "name": "Calle 18 (a la U)"
+    },
+    {
+      "if": {
+        "flag": "m5_corte"
+      },
+      "map": "pucc_campus",
+      "x": 47,
+      "y": 4,
+      "name": "Parqueadero principal"
+    },
+    {
+      "if": {
+        "flag": "m5_estudio",
+        "map": "pucc_campus"
+      },
+      "map": "pucc_campus",
+      "x": 71,
+      "y": 86,
+      "name": "Calle 18 (al sur)"
+    },
+    {
+      "if": {
+        "flag": "m5_estudio"
+      },
+      "map": "ruta_barberia",
+      "x": 146,
+      "y": 11,
+      "name": "Barbería 360"
+    },
+    {
+      "if": {
+        "flag": "m5_llego_u"
+      },
+      "map": "pucc_campus",
+      "x": 46,
+      "y": 32,
+      "name": "Biblioteca"
+    },
+    {
+      "if": {
+        "flag": "m5_desayuno"
+      },
+      "map": "pance",
+      "x": 30,
+      "y": 6,
+      "name": "Paradero P27"
+    },
+    {
+      "map": "pance",
+      "x": 21,
+      "y": 6,
+      "name": "Casa de doña Mery"
+    }
+  ],
+  "victoryEvent": "mision5_final",
+  "routes": [
+    {
+      "id": "pie",
+      "name": "A pie a la 360",
+      "if": {
+        "flag": "m5_corte"
+      }
+    },
+    {
+      "id": "grover",
+      "name": "Cacharro de Grover",
+      "if": {
+        "flag": "m5_llaves_listas"
+      }
+    }
+  ],
+  "defaultRoute": "Bus",
+  "walkedSuffix": {
+    "if": {
+      "flag": "nunca"
+    },
+    "text": ""
+  },
+  "collectibles": [
+    "pan_de_yuca",
+    "mango_biche",
+    "salpicon",
+    "champus"
+  ],
+  "bonuses": [
+    {
+      "text": "Tarea de ruteo sin un error",
+      "if": {
+        "flag": "m5_tarea_perfecta"
+      }
+    },
+    {
+      "text": "Le dejaste propina a Fredy",
+      "if": {
+        "flag": "m5_propina"
+      }
+    },
+    {
+      "text": "Le devolviste las gafas al niño",
+      "if": {
+        "flag": "m5_antiparras_ok"
+      }
+    },
+    {
+      "text": "Nadaste los 25 metros (más o menos)",
+      "if": {
+        "flag": "m5_25m"
+      }
+    },
+    {
+      "text": "Ganaste el Cinco",
+      "if": {
+        "flag": "m5_gano_cinco"
+      }
+    },
+    {
+      "text": "Primero en golpear la mesa en todos los cincos",
+      "if": {
+        "flag": "m5_mesa_perfecta"
+      }
+    },
+    {
+      "text": "Pediste la Caleña (con maduro y piña)",
+      "if": {
+        "flag": "m5_caleña"
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "flag": "secreto_fredy_chile",
+      "name": "¡Al tiro, po! (Fredy y su Chile)"
+    },
+    {
+      "flag": "secreto_chance",
+      "name": "El 360 en el chance"
+    },
+    {
+      "flag": "secreto_loro",
+      "name": "El loro que habla chileno"
+    },
+    {
+      "flag": "secreto_panzazo",
+      "name": "Panzazo histórico en la fosa"
+    },
+    {
+      "flag": "secreto_pavo_ladron",
+      "name": "El pavo real negociante"
+    }
+  ],
+  "endings": [
+    {
+      "id": "flechazo",
+      "name": "Flechazo en Pance",
+      "if": {
+        "flag": [
+          "m5_sira_p1",
+          "m5_sira_p2",
+          "m5_sira_p3"
+        ]
+      }
+    },
+    {
+      "id": "despacito",
+      "name": "Despacito, pero con Instagram"
+    }
+  ]
+}

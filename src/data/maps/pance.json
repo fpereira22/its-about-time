@@ -1,0 +1,172 @@
+{
+ "id": "pance",
+ "name": "Pance",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 40,
+ "height": 16,
+ "background": "#78c060",
+ "music": "salsa",
+ "legend": {
+  "c": "cerro",
+  "y": "palmera",
+  "T": "arbol",
+  "\"": "pasto",
+  "H": "edificio:teja",
+  "D": "puerta_casa",
+  ".": "vereda",
+  "=": "calle",
+  "-": "calle_linea_h",
+  "t": "arbol_vereda",
+  "j": "cana",
+  "e": "tierra",
+  "~": "agua"
+ },
+ "rows": [
+  "cccccccccccccccccccccccccccccccccccccccc",
+  "cccccccccccccccccccccccccccccccccccccccc",
+  "y\"\"T\"\"y\"\"T\"\"y\"\"T\"\"y\"\"T\"\"y\"\"T\"\"y\"\"T\"\"y\"\"T",
+  "\"\"\"\"HHHHHHHHH\"\"\"HHHHHHHHHHH\"\"\"HHHHHHHH\"\"",
+  "\"\"\"\"HHHHHHHHH\"\"\"HHHHHHHHHHH\"\"\"HHHHHHHH\"\"",
+  "\"\"\"\"HHHHDHHHH\"\"\"HHHHHDHHHHH\"\"\"HHHDHHHH\"\"",
+  "...t..........t............t........t...",
+  "========================================",
+  "----------------------------------------",
+  "========================================",
+  "........................................",
+  "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"jjjjjjjjjj\"\"",
+  "\"\"y\"\"\"\"\"\"y\"\"\"\"\"\"\"y\"\"\"\"\"\"y\"\"\"jjjjjjjjjj\"\"",
+  "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+  "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+ ],
+ "zones": [
+  {
+   "name": "Río Pance",
+   "subtitle": "Cali, Valle del Cauca",
+   "x": 0,
+   "y": 13,
+   "w": 40,
+   "h": 3
+  },
+  {
+   "name": "Pance",
+   "subtitle": "Al pie de los Farallones de Cali",
+   "x": 0,
+   "y": 0,
+   "w": 40,
+   "h": 16
+  }
+ ],
+ "spawns": {
+  "furgon": {
+   "x": 8,
+   "y": 6,
+   "dir": "right"
+  },
+  "casa": {
+   "x": 21,
+   "y": 6,
+   "dir": "down"
+  },
+  "paradero": {
+   "x": 30,
+   "y": 6,
+   "dir": "down"
+  },
+  "burger": {
+   "x": 33,
+   "y": 6,
+   "dir": "down"
+  }
+ },
+ "labels": [
+  {
+   "x": 21.5,
+   "y": 2.6,
+   "text": "CASA PANCE"
+  },
+  {
+   "x": 20,
+   "y": 14.5,
+   "text": "RÍO PANCE"
+  },
+  {
+   "x": 33.5,
+   "y": 2.6,
+   "text": "PANCE BURGER",
+   "color": "#f8a838"
+  }
+ ],
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "pance_llegada",
+   "once": true,
+   "if": {
+    "notFlag": "mision4_iniciada",
+    "mission": "mission03"
+   }
+  },
+  {
+   "id": "m4_noche",
+   "dialogue": "pance_noche",
+   "once": true,
+   "if": {
+    "flag": "partido_jugado",
+    "notFlag": "gano_partido"
+   }
+  },
+  {
+   "id": "m5_noche_burger",
+   "dialogue": "m5_pance_noche",
+   "once": true,
+   "if": {
+    "mission": "mission05",
+    "flag": "m5_volvio_piscina"
+   }
+  },
+  {
+   "id": "m6_noche",
+   "dialogue": "m6_pance_noche",
+   "once": true,
+   "if": {
+    "mission": "mission06",
+    "flag": "m6_taxi_casa"
+   }
+  }
+ ],
+ "warps": [
+  {
+   "x": 21,
+   "y": 5,
+   "to": "pance_casa",
+   "spawn": "puerta",
+   "if": {
+    "any": [
+     {
+      "flag": "mision4_iniciada"
+     },
+     {
+      "mission": "mission05"
+     },
+     {
+      "mission": "mission06"
+     }
+    ]
+   }
+  },
+  {
+   "x": 33,
+   "y": 5,
+   "to": "pance_burger",
+   "spawn": "puerta",
+   "if": {
+    "mission": "mission05",
+    "flag": "m5_volvio_piscina"
+   },
+   "blockedDialogue": "m5_burger_cerrado"
+  }
+ ],
+ "region": "cali"
+}

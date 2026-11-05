@@ -1,0 +1,72 @@
+{
+  "id": "estacion_central",
+  "name": "Estación Central",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 24,
+  "height": 26,
+  "background": "#14141c",
+  "music": "station",
+  "legend": {"^": "muro_techo", "W": "muro", ".": "piso", "E": "escalera", "T": "torniquete", "y": "piso_linea", "g": "puerta_anden", "v": "via", "[": "mural_ini", "m": "mural_linea", "]": "mural_fin"},
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^^^^^",
+    "vvvvvvvvvvvvvvvvvvvvvvvv",
+    "vvvvvvvvvvvvvvvvvvvvvvvv",
+    "yyyyyyyyyyyyyyyyyyyyyyyy",
+    "........................",
+    "^^^^^^^^^^^..^^^^^^^^^^^",
+    "WWWWWWWWWWW..WWW[mmmm]WW",
+    "........................",
+    "........................",
+    "........................",
+    "^^^^^^^^^TT.TT^^^^^^^^^^",
+    "........................",
+    "....E..............E....",
+    "^^^^^^^^^^^^^^^^^^^^^^^^",
+    "vvvvvvvvvvvvvvvvvvvvvvvv",
+    "vvvvvvvvvvvvvvvvvvvvvvvv",
+    "gggggggggggggggggggggggg",
+    "........................",
+    "........................",
+    "^^^^E^^^^^^^^^^^^^^^^^^^",
+    "vvvvvvvvvvvvvvvvvvvvvvvv",
+    "vvvvvvvvvvvvvvvvvvvvvvvv",
+    "gggggggggggggggggggggggg",
+    "........................",
+    "........................",
+    "^^^^^^^^^^^^^^^^^^^E^^^^"
+  ],
+  "zones": [
+    {"name": "Estación Central", "subtitle": "Andén del tren", "x": 0, "y": 0, "w": 24, "h": 6},
+    {"name": "Estación Central", "subtitle": "Metro · Línea 1", "x": 0, "y": 6, "w": 24, "h": 7},
+    {"name": "Andén dir. San Pablo", "subtitle": "Hacia el poniente", "x": 0, "y": 13, "w": 24, "h": 6},
+    {"name": "Andén dir. Los Dominicos", "subtitle": "Hacia el oriente", "x": 0, "y": 19, "w": 24, "h": 7}
+  ],
+  "spawns": {
+    "desde_tren": {"x": 5, "y": 4, "dir": "down"},
+    "post_torniquete": {"x": 11, "y": 11, "dir": "down"},
+    "desde_anden_a": {"x": 4, "y": 11, "dir": "up"},
+    "desde_anden_b": {"x": 19, "y": 11, "dir": "up"},
+    "anden_a": {"x": 4, "y": 18, "dir": "up"},
+    "anden_b": {"x": 19, "y": 24, "dir": "up"}
+  },
+  "warps": [
+    {"x": 4, "y": 12, "to": "estacion_central", "spawn": "anden_a"},
+    {"x": 19, "y": 12, "to": "estacion_central", "spawn": "anden_b"},
+    {"x": 4, "y": 19, "to": "estacion_central", "spawn": "desde_anden_a"},
+    {"x": 19, "y": 25, "to": "estacion_central", "spawn": "desde_anden_b"}
+  ],
+  "labels": [
+    {"x": 12, "y": 0.5, "text": "ESTACIÓN CENTRAL · TRENES AL SUR"},
+    {"x": 18.5, "y": 5.55, "text": "LÍNEA 1", "color": "#ffd0d2"},
+    {"x": 6, "y": 6.5, "text": "ESTACIÓN CENTRAL"},
+    {"x": 4.5, "y": 11.5, "text": "A SAN PABLO"},
+    {"x": 19.5, "y": 11.5, "text": "A LOS DOMINICOS"},
+    {"x": 12, "y": 13.5, "text": "DIRECCIÓN SAN PABLO"},
+    {"x": 12, "y": 19.5, "text": "DIRECCIÓN LOS DOMINICOS"}
+  ],
+  "crowd": {"lines": "estacion", "areas": [{"x": 0, "y": 4, "w": 24, "h": 1, "count": 4}, {"x": 0, "y": 7, "w": 24, "h": 3, "count": 5}, {"x": 0, "y": 17, "w": 24, "h": 2, "count": 3, "dir": "up"}, {"x": 0, "y": 23, "w": 24, "h": 2, "count": 6, "dir": "up"}]},
+  "enter": [
+    {"id": "llegada", "dialogue": "central_llegada", "if": {"flag": "tomo_tren"}, "once": true}
+  ]
+}

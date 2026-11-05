@@ -1,0 +1,2013 @@
+{
+  "campus_llegada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Te bajas en la Calle 18. Frente a ti: una reja larga, una portería y, detrás, árboles enormes. Samanes, palmas, guayacanes.",
+          "La Universidad Cristiana-Caleña: dieciséis hectáreas de campus, con lagos, canchas y edificios de ladrillo.",
+          "Y en el celular, el horario: encuentro de intercambio a las 9:00 en la Plaza Central."
+        ],
+        "effects": [
+          {
+            "setFlag": "llego_u"
+          },
+          {
+            "clockMax": "lun 09:00"
+          },
+          {
+            "objective": "Ve a la Plaza Central (de frente desde la portería)"
+          }
+        ]
+      }
+    }
+  },
+  "campus_tarde": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "El campus después del aguacero: el pasto brilla, los charcos reflejan los samanes y todo huele a tierra mojada.",
+          "Los estudiantes salen de los edificios como si nada. Para ellos el aguacero de mediodía es como el almuerzo: todos los días."
+        ],
+        "effects": [
+          {
+            "setFlag": "tarde_u"
+          },
+          {
+            "weather": "despejado"
+          },
+          {
+            "clockMax": "lun 14:05"
+          }
+        ]
+      }
+    }
+  },
+  "m4_vigilante": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "carnet_pucc"
+            },
+            "goto": "carnet"
+          },
+          {
+            "goto": "sin"
+          }
+        ]
+      },
+      "sin": {
+        "speaker": "Vigilante",
+        "text": "Buenos días. ¿Carnet? ...¿De intercambio? Ah, siga, siga. Mañana sí me lo muestra, ¿listo?"
+      },
+      "carnet": {
+        "speaker": "Vigilante",
+        "text": "Siga, joven. Bonito el carnet, ¿ah? Sale más bonito en foto que en persona. Es un chiste. Siga."
+      }
+    }
+  },
+  "pucc_letrero": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La piedra con el nombre de la universidad. Alguien le dejó una flor amarilla encima.",
+        "effects": [
+          {
+            "sign": "pucc"
+          }
+        ]
+      }
+    }
+  },
+  "reunion_monica": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mónica",
+        "text": [
+          "¡Buenos días, buenos días! Acérquense, que no muerdo. Soy Mónica, de la Oficina de Relaciones Internacionales.",
+          "¡Bienvenidos a la Cristiana-Caleña y bienvenidos a Cali! Este semestre tenemos once estudiantes de intercambio. ¡Récord!",
+          "Hagamos una ronda: nombre, de dónde vienen y qué estudian. Empiece usted, el nuevo."
+        ],
+        "choices": [
+          {
+            "label": "Feli, de Paine, Chile. Ingeniería",
+            "goto": "chile"
+          },
+          {
+            "label": "Feli. De Chile. Del campo, pero cerca de Santiago",
+            "goto": "chile"
+          }
+        ]
+      },
+      "chile": {
+        "speaker": "Mónica",
+        "text": "¡Chile! Bienvenido. Aquí hay media Europa, así que usted, el otro chileno y el peruano van a tener que defender a Latinoamérica."
+      }
+    }
+  },
+  "reunion_presentaciones": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Álvaro",
+        "text": "Álvaro, de Madrid. Ingeniería Industrial. Y capitán del equipo de fútbol de intercambio, que acabo de fundar ahora mismo.",
+        "next": "iker"
+      },
+      "iker": {
+        "speaker": "Iker",
+        "text": "Iker, de Bilbao. Mecánica. Y no, no soy de Madrid. Que conste.",
+        "next": "pau"
+      },
+      "pau": {
+        "speaker": "Pau",
+        "text": "Pau, de Barcelona. Diseño. Que conste también.",
+        "next": "sergio"
+      },
+      "sergio": {
+        "speaker": "Sergio",
+        "text": "Sergio, de Sevilla. Economía. Yo no hago constar nada, chavales: yo vengo a disfrutar.",
+        "next": "antoine"
+      },
+      "antoine": {
+        "speaker": "Antoine",
+        "text": "Antoine, de Lyon. Arquitectura. Vivo en Ciudad Jardín, en un piso veintiuno. La vista es... magnifique.",
+        "next": "lucas"
+      },
+      "lucas": {
+        "speaker": "Lucas",
+        "text": "Lucas, de París. Comunicación. Ya aprendí «parcero» y «qué chimba». Lo demás, poco a poco.",
+        "next": "mathieu"
+      },
+      "mathieu": {
+        "speaker": "Mathieu",
+        "text": "Mathieu, de Toulouse. Matemáticas. Y portero, si hace falta un portero.",
+        "next": "hugo"
+      },
+      "hugo": {
+        "speaker": "Hugo",
+        "text": "Hugo, de Marsella. Ingeniería Civil. Vine por la salsa. Y por la ingeniería. Más por la salsa.",
+        "next": "diego"
+      },
+      "diego": {
+        "speaker": "Diego",
+        "text": "Diego, de Lima. Industrial, como el pata madrileño. El ceviche de aquí no es ceviche, causa, pero la salsa sí es salsa.",
+        "next": "nacho"
+      },
+      "nacho": {
+        "speaker": "Nacho",
+        "text": "¡Nacho, de Valparaíso! Ingeniería Comercial. ¡Por fin otro chileno, compadre! ¿De dónde? ¿Paine? ¿La capital de la sandía?",
+        "next": "tu"
+      },
+      "tu": {
+        "text": "Y tú: «¡Sí! Paine. Capital de la sandía». Nacho te abraza como si se conocieran de toda la vida.",
+        "next": "foto"
+      },
+      "foto": {
+        "speaker": "Mónica",
+        "text": [
+          "¡Ay, qué lindos! Una foto para la página de la oficina. Los de atrás, más juntos... ¡Digan whisky!"
+        ],
+        "effects": [
+          {
+            "vineta": "reunion_selfie"
+          }
+        ]
+      }
+    }
+  },
+  "reunion_viaje": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mónica",
+        "text": "¿Y cómo les fue con el viaje? ¿Todos llegaron con maleta?",
+        "next": "iker"
+      },
+      "iker": {
+        "speaker": "Iker",
+        "text": "Yo llegué. Mi maleta se quedó en Bogotá. Llega el miércoles, dicen.",
+        "next": "lucas"
+      },
+      "lucas": {
+        "speaker": "Lucas",
+        "text": "Yo hice escala en Madrid y en Bogotá. Treinta horas. Dormí en tres aeropuertos distintos.",
+        "next": "nacho"
+      },
+      "nacho": {
+        "speaker": "Nacho",
+        "text": "Yo vine en bus hasta Lima y de ahí en avión, con el Diego. Me salió más barato. Y más largo.",
+        "next": "diego"
+      },
+      "diego": {
+        "speaker": "Diego",
+        "text": "Y el compadre no paró de hablar de Valparaíso en tres horas de vuelo, causa. Tres horas.",
+        "next": "tu"
+      },
+      "tu": {
+        "text": "Todos te miran. Te toca.",
+        "choices": [
+          {
+            "label": "Seis horas de vuelo y una vecina caleña que me enseñó a hablar",
+            "goto": "vecina"
+          },
+          {
+            "label": "Me lloró toda la familia en el aeropuerto. Hasta el perro del SAG",
+            "goto": "perro"
+          },
+          {
+            "label": "En la aduana casi me quitan una marraqueta con palta",
+            "goto": "marraqueta"
+          }
+        ]
+      },
+      "vecina": {
+        "text": "Les cuentas de Luz Dary, tu vecina de asiento: te corrigió cada «¿cachai?» hasta que te salió el «¿sí o qué?».",
+        "effects": [
+          {
+            "vineta": "recuerdo_vecina"
+          }
+        ],
+        "next": "vecina_hugo"
+      },
+      "vecina_hugo": {
+        "speaker": "Hugo",
+        "text": "¿Te enseñó? ¡Di algo en caleño!",
+        "choices": [
+          {
+            "label": "¿Sí o qué?",
+            "goto": "risa"
+          }
+        ]
+      },
+      "risa": {
+        "text": "Todo el grupo se ríe. Mónica aplaude: «¡Ese es! Ya habla mejor que los de Bogotá».",
+        "effects": [
+          {
+            "vineta": ""
+          }
+        ]
+      },
+      "perro": {
+        "text": "Les cuentas la despedida en el aeropuerto: tu mamá, tu papá, tu hermano chico con el dibujo... y el beagle del SAG moviendo la cola.",
+        "effects": [
+          {
+            "vineta": "abrazo_familia"
+          }
+        ],
+        "next": "perro_sergio"
+      },
+      "perro_sergio": {
+        "speaker": "Sergio",
+        "text": "Eso es amor, chaval. Eso es amor del bueno."
+      },
+      "marraqueta": {
+        "text": "Les cuentas lo de la marraqueta con palta en los rayos X: «producto vegetal».",
+        "effects": [
+          {
+            "vineta": "recuerdo_marraqueta"
+          }
+        ],
+        "next": "marraqueta_pau"
+      },
+      "marraqueta_pau": {
+        "speaker": "Pau",
+        "text": "¿Una qué? ¿Con qué? Tío, me tienes que explicar esto con un dibujo."
+      }
+    }
+  },
+  "reunion_impresiones": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mónica",
+        "text": "¿Y qué les ha parecido Cali hasta ahora?",
+        "next": "antoine"
+      },
+      "antoine": {
+        "speaker": "Antoine",
+        "text": "El calor. Todo el día calor. Me encanta. En Lyon ahora hace cinco grados.",
+        "next": "sergio"
+      },
+      "sergio": {
+        "speaker": "Sergio",
+        "text": "La gente. Me saludan en la calle. En Sevilla también, pero aquí además me ofrecen jugo.",
+        "next": "pau"
+      },
+      "pau": {
+        "speaker": "Pau",
+        "text": "La comida. Ayer comí pandebono, buñuelo, empanada, aborrajado y un cholado. En una hora.",
+        "next": "mathieu"
+      },
+      "mathieu": {
+        "speaker": "Mathieu",
+        "text": "Las motos. Hay más motos que personas. Y las personas van en las motos. Con neveras.",
+        "next": "tu"
+      },
+      "tu": {
+        "speaker": "Mónica",
+        "text": "¿Y a ti?",
+        "choices": [
+          {
+            "label": "El desfase: me levanté a las seis y mi cuerpo decía las ocho",
+            "goto": "desfase"
+          },
+          {
+            "label": "El agua fría de la ducha",
+            "goto": "ducha"
+          },
+          {
+            "label": "Un pájaro que grita «¡bichofué!»",
+            "goto": "pajaro"
+          }
+        ]
+      },
+      "desfase": {
+        "speaker": "Mónica",
+        "text": "Eso se le pasa en dos días. Y si no, un tinto cada hora, como hacemos aquí.",
+        "effects": [
+          {
+            "vineta": "cali_despertar"
+          }
+        ]
+      },
+      "ducha": {
+        "speaker": "Hugo",
+        "text": "¡Oui! ¡Nadie me avisó! Grité tan fuerte que el vecino me trajo un tinto.",
+        "effects": [
+          {
+            "vineta": "casa_ducha"
+          }
+        ]
+      },
+      "pajaro": {
+        "speaker": "Mónica",
+        "text": "¡Ese pajarito! Se llama bichofué porque eso dice. Aquí todo es así de fácil.",
+        "effects": [
+          {
+            "vineta": "casa_ventana"
+          }
+        ]
+      }
+    }
+  },
+  "reunion_partido": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mónica",
+        "text": "Bueno. Les entrego el carnet de estudiante. Y no se me pierdan, que los de intercambio siempre terminan en el lago.",
+        "effects": [
+          {
+            "giveItem": "carnet_pucc"
+          },
+          {
+            "sign": "carnet_pucc"
+          }
+        ],
+        "next": "alvaro"
+      },
+      "alvaro": {
+        "speaker": "Álvaro",
+        "text": [
+          "Y antes de que os vayáis: hoy a las 4:30 hay partido. Intercambio contra los de Ingeniería.",
+          "Nos retaron ayer en la cafetería. Son buenos: juegan todos los días a mediodía. Nosotros somos... entusiastas."
+        ],
+        "next": "nacho"
+      },
+      "nacho": {
+        "speaker": "Nacho",
+        "text": "Nos falta un delantero. ¿Cachai algo de pelota, compadre?",
+        "choices": [
+          {
+            "label": "¡Obvio! Jugaba en la liga de Paine",
+            "goto": "si"
+          },
+          {
+            "label": "Algo... pero corro harto",
+            "goto": "corro"
+          }
+        ]
+      },
+      "si": {
+        "speaker": "Nacho",
+        "text": "¡Eso! Tenemos delantero. Paine al mundo.",
+        "next": "monica"
+      },
+      "corro": {
+        "speaker": "Álvaro",
+        "text": "Con correr basta. El resto lo pone el corazón.",
+        "next": "monica"
+      },
+      "monica": {
+        "speaker": "Mónica",
+        "text": [
+          "¡Ay, qué lindo! Bienestar les presta las poleras azules de la universidad: pasen por Deportes en la tarde.",
+          "Y para comer algo, la Cafetería Central, aquí al frente. Pidan buñuelo, que a esta hora está calientito."
+        ],
+        "effects": [
+          {
+            "setFlag": "reunion_ok"
+          },
+          {
+            "clock": "lun 10:40",
+            "max": "lun 11:50"
+          },
+          {
+            "message": "grupo_bienvenida"
+          },
+          {
+            "objective": "Come algo en la Cafetería Central (al norte de la plaza)"
+          }
+        ]
+      }
+    }
+  },
+  "monica_plaza": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "reunion_ok"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Mónica",
+        "text": "¡Un momentico! Esperemos que lleguen todos."
+      },
+      "despues": {
+        "speaker": "Mónica",
+        "text": "Cualquier cosa me busca en Relaciones Internacionales, en el Edificio Administrativo. Primer piso. ¡Y bienvenido!"
+      }
+    }
+  },
+  "tormenta_inicio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Sales de la cafetería y el cielo está negro. ¿En qué momento? Hace media hora había un sol que partía piedras.",
+          "Un trueno. Uno de verdad, de los que se sienten en el pecho. Y en diez segundos, el cielo se cae."
+        ],
+        "effects": [
+          {
+            "weather": "tormenta"
+          },
+          {
+            "setFlag": "tormenta_vista"
+          },
+          {
+            "vineta": "cali_aguacero"
+          },
+          {
+            "message": "grupo_tormenta"
+          }
+        ],
+        "next": "paraguas"
+      },
+      "paraguas": {
+        "branches": [
+          {
+            "if": {
+              "hasItem": "paraguas"
+            },
+            "goto": "con"
+          },
+          {
+            "goto": "sin"
+          }
+        ]
+      },
+      "con": {
+        "text": "Abres el paraguas de doña Mery justo a tiempo. El viento lo quiere dar vuelta, pero aguanta. Tus zapatillas, no.",
+        "effects": [
+          {
+            "setFlag": "paraguas_usado"
+          }
+        ],
+        "next": "fin"
+      },
+      "sin": {
+        "text": "Te pones la mochila de techito y corres. Inútil: en diez pasos estás mojado hasta los calcetines. Doña Mery tenía razón.",
+        "effects": [
+          {
+            "setFlag": "mojado"
+          }
+        ],
+        "next": "fin"
+      },
+      "fin": {
+        "effects": [
+          {
+            "clock": "lun 12:05",
+            "max": "lun 12:45"
+          },
+          {
+            "objective": "¡Vuelve a casa! (paradero P27, Calle 18, junto a la portería)"
+          }
+        ]
+      }
+    }
+  },
+  "cafe_caja": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Cajera",
+        "text": "¡Siga, siga! ¿Qué le provoca?",
+        "effects": [
+          {
+            "sign": "menu_cafeteria"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Un buñuelo ($2.500)",
+            "if": {
+              "minMoney": 2500
+            },
+            "effects": [
+              {
+                "pay": 2500
+              },
+              {
+                "giveItem": "bunuelo"
+              }
+            ],
+            "goto": "bunuelo"
+          },
+          {
+            "label": "Un pandebono ($2.500)",
+            "if": {
+              "minMoney": 2500
+            },
+            "effects": [
+              {
+                "pay": 2500
+              }
+            ],
+            "goto": "pandebono"
+          },
+          {
+            "label": "Una empanada ($2.000)",
+            "if": {
+              "minMoney": 2000
+            },
+            "effects": [
+              {
+                "pay": 2000
+              }
+            ],
+            "goto": "empanada"
+          },
+          {
+            "label": "Un tinto ($1.500)",
+            "if": {
+              "minMoney": 1500
+            },
+            "effects": [
+              {
+                "pay": 1500
+              }
+            ],
+            "goto": "tinto"
+          },
+          {
+            "label": "Nada, gracias"
+          }
+        ]
+      },
+      "bunuelo": {
+        "text": "Un buñuelo redondo, dorado, recién salido del aceite.",
+        "choices": [
+          {
+            "label": "Comérselo ahora",
+            "effects": [
+              {
+                "takeItem": "bunuelo"
+              }
+            ],
+            "goto": "bunuelo_comer"
+          },
+          {
+            "label": "Guardarlo para después",
+            "goto": "bunuelo_guardar"
+          }
+        ]
+      },
+      "bunuelo_comer": {
+        "text": "Crujiente por fuera, esponjoso y con queso por dentro. Te quemas un poquito la lengua. Vale la pena.",
+        "effects": [
+          {
+            "vineta": "comer_bunuelo"
+          }
+        ],
+        "next": "comio"
+      },
+      "bunuelo_guardar": {
+        "text": "Te lo guardas en una servilleta. Huele tan rico que te da hambre igual... así que pides algo más para comer aquí.",
+        "next": "comio_no"
+      },
+      "comio_no": {
+        "branches": [
+          {
+            "if": {
+              "flag": "comio_u"
+            },
+            "goto": "comio"
+          },
+          {
+            "goto": "fin_vacio"
+          }
+        ]
+      },
+      "fin_vacio": {
+        "text": "(Todavía no has comido nada: pídele algo más a la cajera.)"
+      },
+      "pandebono": {
+        "text": "Te lo comes ahí mismo, con la mano quemándote. Crujiente por fuera y puro queso por dentro.",
+        "effects": [
+          {
+            "vineta": "comer_pandebono"
+          }
+        ],
+        "next": "comio"
+      },
+      "empanada": {
+        "text": "Empanada de maíz, crocante, con ají de cilantro. Tres mordiscos. Felicidad.",
+        "effects": [
+          {
+            "vineta": "comer_empanada_valluna"
+          }
+        ],
+        "next": "comio"
+      },
+      "tinto": {
+        "text": "Un tinto en vasito de plástico. Te despierta lo poco que quedaba dormido. Pero no llena.",
+        "effects": [
+          {
+            "vineta": "tomar_tinto"
+          }
+        ]
+      },
+      "comio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "comio_u"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "primera": {
+        "text": "Por las ventanas se ve que el cielo se está poniendo gris. Muy gris.",
+        "effects": [
+          {
+            "setFlag": "comio_u"
+          },
+          {
+            "clockMax": "lun 12:00"
+          },
+          {
+            "objective": "Sal a la plaza cuando quieras (algo raro pasa con el cielo)"
+          }
+        ]
+      },
+      "ya": {
+        "speaker": "Cajera",
+        "text": "¡Que le aproveche!"
+      }
+    }
+  },
+  "cafe_cajera": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Cajera",
+        "text": "¿Qué le provoca? Pídamelo aquí en el mostrador, mi amor."
+      }
+    }
+  },
+  "cafe_diego": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Diego",
+        "text": [
+          "Pide el buñuelo, causa. Hazme caso.",
+          "Y mira por la ventana: se está poniendo negro. Aquí llueve a mediodía como reloj, me dijeron."
+        ]
+      }
+    }
+  },
+  "cafe_nacho": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Nacho",
+        "text": [
+          "Compadre, ¿sabías que el pandebono no lleva pan? Ni bono. Es pura harina de yuca con queso. Este país es mágico.",
+          "Oye, si llueve no te mojes, que en la tarde te necesitamos entero."
+        ]
+      }
+    }
+  },
+  "puerta_logistica": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "clase_ok"
+            },
+            "goto": "fin"
+          },
+          {
+            "if": {
+              "flag": "almorzo"
+            },
+            "goto": "entrar"
+          },
+          {
+            "goto": "temprano"
+          }
+        ]
+      },
+      "temprano": {
+        "text": "EC 203 · Modelación Logística · Lunes 2:00 p.m. Todavía falta."
+      },
+      "entrar": {
+        "text": "EC 203. Adentro, una profesora ya está escribiendo en la pizarra.",
+        "choices": [
+          {
+            "label": "Entrar",
+            "effects": [
+              {
+                "warp": {
+                  "map": "pucc_aula_logistica",
+                  "spawn": "puerta"
+                }
+              }
+            ]
+          },
+          {
+            "label": "Todavía no"
+          }
+        ]
+      },
+      "fin": {
+        "text": "La clase ya terminó. En la pizarra quedó el grafo de la panadería, a medio borrar."
+      }
+    }
+  },
+  "aula_llegada_pucc": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "La sala EC 203. Busca un puesto libre y siéntate (E frente al pupitre)."
+      }
+    }
+  },
+  "profe_gloria": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "clase_ok"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Profe Gloria",
+        "text": "Siéntese, joven, que ya empezamos. Hay un puesto libre al medio, adelante."
+      },
+      "despues": {
+        "speaker": "Profe Gloria",
+        "text": "Para el miércoles: rutear las panaderías de Pance. Con capacidad. ¡Y salúdeme al profe Cuervo!"
+      }
+    }
+  },
+  "clase_logistica": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Profe Gloria",
+        "text": [
+          "Buenas tardes. Soy Gloria Arboleda y esto es Modelación Logística.",
+          "Veo caras nuevas... ¿intercambio? Bienvenidos. Aquí no se duerme, aunque haga calor."
+        ],
+        "next": "p1"
+      },
+      "p1": {
+        "speaker": "Profe Gloria",
+        "text": [
+          "Problema del día: la Panadería D reparte pandebonos a cuatro tiendas: A, B, C y E. Un camión sale de la panadería, pasa una vez por cada tienda y vuelve.",
+          "Eso tiene nombre. ¿Quién sabe cómo se llama?"
+        ],
+        "effects": [
+          {
+            "sign": "rutas"
+          }
+        ],
+        "choices": [
+          {
+            "label": "El problema del vendedor viajero",
+            "goto": "p1_ok"
+          },
+          {
+            "label": "El problema de la mochila",
+            "effects": [
+              {
+                "setFlag": "clase_error"
+              }
+            ],
+            "goto": "p1_mal"
+          },
+          {
+            "label": "El problema del panadero viajero",
+            "effects": [
+              {
+                "setFlag": "clase_error"
+              }
+            ],
+            "goto": "p1_chiste"
+          }
+        ]
+      },
+      "p1_ok": {
+        "speaker": "Profe Gloria",
+        "text": "¡Exacto! El vendedor viajero: el TSP. Se nota que vienen con base.",
+        "next": "p2"
+      },
+      "p1_mal": {
+        "speaker": "Profe Gloria",
+        "text": "La mochila es otra cosa: elegir qué cargar. Aquí hay que elegir el ORDEN de las visitas. Es el vendedor viajero.",
+        "next": "p2"
+      },
+      "p1_chiste": {
+        "speaker": "Profe Gloria",
+        "text": "Jajaja... casi. Es el vendedor viajero. Pero «panadero viajero» se lo voy a robar para el examen.",
+        "next": "p2"
+      },
+      "p2": {
+        "speaker": "Profe Gloria",
+        "text": [
+          "Heurística del vecino más cercano: desde donde estoy, voy siempre a la tienda más cercana que no he visitado.",
+          "Desde la panadería D, ¿a cuál voy primero?"
+        ],
+        "choices": [
+          {
+            "label": "A, a 4 km",
+            "goto": "p2_ok"
+          },
+          {
+            "label": "E, a 5 km",
+            "effects": [
+              {
+                "setFlag": "clase_error"
+              }
+            ],
+            "goto": "p2_mal"
+          },
+          {
+            "label": "B, a 6 km",
+            "effects": [
+              {
+                "setFlag": "clase_error"
+              }
+            ],
+            "goto": "p2_mal"
+          }
+        ]
+      },
+      "p2_ok": {
+        "speaker": "Profe Gloria",
+        "text": "Bien. Y desde A, a B (3); desde B, a C (4); desde C, a E (3); y de vuelta a la panadería (5).",
+        "effects": [
+          {
+            "sign": "rutas_vecino"
+          }
+        ],
+        "next": "p3"
+      },
+      "p2_mal": {
+        "speaker": "Profe Gloria",
+        "text": "Mire bien el tablero: la más cercana a D es A, a 4. Entonces: A, después B, C, E y de vuelta a casa.",
+        "effects": [
+          {
+            "sign": "rutas_vecino"
+          }
+        ],
+        "next": "p3"
+      },
+      "p3": {
+        "speaker": "Profe Gloria",
+        "text": "¿Cuántos kilómetros recorre el camión en esa ruta?",
+        "choices": [
+          {
+            "label": "19 km",
+            "goto": "p3_ok"
+          },
+          {
+            "label": "17 km",
+            "effects": [
+              {
+                "setFlag": "clase_error"
+              }
+            ],
+            "goto": "p3_mal"
+          },
+          {
+            "label": "23 km",
+            "effects": [
+              {
+                "setFlag": "clase_error"
+              }
+            ],
+            "goto": "p3_mal23"
+          }
+        ]
+      },
+      "p3_ok": {
+        "speaker": "Profe Gloria",
+        "text": "¡19! Muy bien.",
+        "next": "p3_explica"
+      },
+      "p3_mal": {
+        "speaker": "Profe Gloria",
+        "text": "Sume despacito: 4 + 3 + 4 + 3 + 5. Son 19.",
+        "next": "p3_explica"
+      },
+      "p3_mal23": {
+        "speaker": "Profe Gloria",
+        "text": "23 es otra ruta, la que voy a dibujar ahora. Esta suma 19.",
+        "next": "p3_explica"
+      },
+      "p3_explica": {
+        "speaker": "Profe Gloria",
+        "text": [
+          "Miren esta otra: D, A, E, C, B y de vuelta. 23 kilómetros. Peor.",
+          "Aquí el vecino más cercano encontró la mejor ruta. No siempre pasa: es una heurística, no un milagro."
+        ],
+        "effects": [
+          {
+            "sign": "rutas_mala"
+          }
+        ],
+        "next": "p4"
+      },
+      "p4": {
+        "speaker": "Profe Gloria",
+        "text": [
+          "Última: ahora el camión es una moto con canasto. Solo le caben dos pedidos por viaje, así que vuelve a la panadería a recargar.",
+          "¿Qué problema es ese?"
+        ],
+        "effects": [
+          {
+            "sign": "rutas_camiones"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Ruteo de vehículos con capacidad (CVRP)",
+            "goto": "p4_ok"
+          },
+          {
+            "label": "Sigue siendo el vendedor viajero",
+            "effects": [
+              {
+                "setFlag": "clase_error"
+              }
+            ],
+            "goto": "p4_mal"
+          },
+          {
+            "label": "Una mochila... con ruedas",
+            "effects": [
+              {
+                "setFlag": "clase_error"
+              }
+            ],
+            "goto": "p4_mochila"
+          }
+        ]
+      },
+      "p4_ok": {
+        "speaker": "Profe Gloria",
+        "text": "¡Eso! Ruteo de vehículos con capacidad. Ruteo y mochila juntos: el monstruo de la logística.",
+        "next": "fin"
+      },
+      "p4_mal": {
+        "speaker": "Profe Gloria",
+        "text": "Ya no: con capacidad son varias rutas, una por viaje. Ruteo de vehículos con capacidad: CVRP.",
+        "next": "fin"
+      },
+      "p4_mochila": {
+        "speaker": "Profe Gloria",
+        "text": "¡Jajaja! No está tan perdido: cada viaje es una mochila de dos pedidos. Pero el nombre es ruteo de vehículos con capacidad.",
+        "next": "fin"
+      },
+      "fin": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "clase_error"
+            },
+            "goto": "perfecta"
+          },
+          {
+            "goto": "cierre"
+          }
+        ]
+      },
+      "perfecta": {
+        "speaker": "Profe Gloria",
+        "text": "Usted, el chileno: todo bien. ¿Dónde estudió?",
+        "choices": [
+          {
+            "label": "En la Antonio Varas, con el profe Cuervo",
+            "goto": "cuervo"
+          }
+        ]
+      },
+      "cuervo": {
+        "speaker": "Profe Gloria",
+        "text": "¿Cuervo? ¿Rodrigo Cuervo? ¡Estudiamos juntos el magíster! Salúdemelo. ¿Todavía pierde lápices?",
+        "effects": [
+          {
+            "setFlag": "clase_perfecta"
+          }
+        ],
+        "next": "cierre"
+      },
+      "cierre": {
+        "text": [
+          "La clase sigue: matrices de distancias, el método de los ahorros y un video de motos repartiendo almuerzos en el centro de Cali.",
+          "A las 4:00 la profe cierra el computador: «Para el miércoles: rutear las panaderías de Pance. Con capacidad»."
+        ],
+        "effects": [
+          {
+            "setFlag": "clase_ok"
+          },
+          {
+            "clock": "lun 16:05",
+            "max": "lun 16:30"
+          }
+        ],
+        "next": "obj"
+      },
+      "obj": {
+        "branches": [
+          {
+            "if": {
+              "flag": "polera"
+            },
+            "goto": "obj_listo"
+          },
+          {
+            "goto": "obj_polera"
+          }
+        ]
+      },
+      "obj_listo": {
+        "effects": [
+          {
+            "objective": "Partido a las 4:30: cancha de fútbol (al sur, junto al Cedro Rosado)"
+          }
+        ]
+      },
+      "obj_polera": {
+        "effects": [
+          {
+            "objective": "¡Partido a las 4:30! Antes: la polera azul en Bienestar (Deportes)"
+          }
+        ]
+      }
+    }
+  },
+  "pucc_deportes": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "polera"
+            },
+            "goto": "ya"
+          },
+          {
+            "if": {
+              "flag": "almorzo"
+            },
+            "goto": "entregar"
+          },
+          {
+            "goto": "temprano"
+          }
+        ]
+      },
+      "temprano": {
+        "speaker": "Funcionaria",
+        "text": "Las poleras del equipo de intercambio se entregan en la tarde, joven. Vuelva después de almuerzo."
+      },
+      "entregar": {
+        "speaker": "Funcionaria",
+        "text": "¿Usted es del equipo de intercambio? ¡Claro! Aquí está: polera azul, número 14. Me la devuelve lavada, ¿oyó?",
+        "effects": [
+          {
+            "giveItem": "polera_pucc"
+          },
+          {
+            "setFlag": "polera"
+          },
+          {
+            "vineta": "cali_polera"
+          }
+        ],
+        "next": "poner"
+      },
+      "poner": {
+        "text": "¿Te la pones de una vez?",
+        "choices": [
+          {
+            "label": "¡Obvio!",
+            "effects": [
+              {
+                "outfit": {
+                  "shirt": "#2050a8"
+                }
+              }
+            ],
+            "goto": "puesta"
+          },
+          {
+            "label": "Después (desde el inventario)",
+            "goto": "obj"
+          }
+        ]
+      },
+      "puesta": {
+        "text": "Te queda un poco grande, pero es azul y tiene tu número. Ya eres de la U.",
+        "next": "obj"
+      },
+      "obj": {
+        "branches": [
+          {
+            "if": {
+              "flag": "clase_ok"
+            },
+            "goto": "obj_partido"
+          },
+          {
+            "goto": "obj_clase"
+          }
+        ]
+      },
+      "obj_partido": {
+        "effects": [
+          {
+            "objective": "Partido a las 4:30: cancha de fútbol (al sur, junto al Cedro Rosado)"
+          }
+        ]
+      },
+      "obj_clase": {
+        "effects": [
+          {
+            "objective": "Clase a las 2:00: Educación Continua, piso 2 (EC 203)"
+          }
+        ]
+      },
+      "ya": {
+        "speaker": "Funcionaria",
+        "text": "¡Que ganen! Bueno... que no pierdan por mucho."
+      }
+    }
+  },
+  "pucc_danza": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Sala de danza. Una profesora cuenta «uno, dos, tres... cinco, seis, siete» y veinte estudiantes bailan salsa caleña, rapidísimo.",
+        "choices": [
+          {
+            "label": "Entrar a probar",
+            "goto": "probar"
+          },
+          {
+            "label": "Mejor otro día"
+          }
+        ]
+      },
+      "probar": {
+        "text": [
+          "La profe te toma de las manos: «¡Pa'lante, pa'trás y vuelta!».",
+          "Te mareas como en la mañana. Pero, por un segundo, te sale."
+        ],
+        "effects": [
+          {
+            "setFlag": "secreto_salsa"
+          },
+          {
+            "sfx": "secret"
+          }
+        ]
+      }
+    }
+  },
+  "pucc_terraza_solar": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "La terraza del Cedro Rosado: paneles solares, plantas y una vista del campus entero. El lago, la cancha, los Farallones.",
+          "Un letrero: «Edificio certificado LEED Oro». Al lado, alguien pegó un sticker: «y con wifi»."
+        ],
+        "effects": [
+          {
+            "setFlag": "secreto_terraza"
+          },
+          {
+            "sfx": "secret"
+          }
+        ]
+      }
+    }
+  },
+  "iguana": {
+    "start": "m5_router",
+    "nodes": {
+      "inicio": {
+        "text": "Una iguana verde, enorme, tomando sol en la orilla del lago. Te mira. No se mueve. Tú tampoco.",
+        "effects": [
+          {
+            "vineta": "iguana"
+          }
+        ],
+        "choices": [
+          {
+            "label": "Saludarla",
+            "goto": "saludo"
+          },
+          {
+            "label": "Dejarla tranquila"
+          }
+        ]
+      },
+      "saludo": {
+        "text": "Mueve la cabeza arriba y abajo, tres veces. Dicen que así saludan las iguanas. Ahora son amigas.",
+        "effects": [
+          {
+            "setFlag": "secreto_iguana"
+          },
+          {
+            "sfx": "secret"
+          }
+        ]
+      },
+      "m5_router": {
+        "branches": [
+          {
+            "if": {
+              "mission": "mission05",
+              "flag": "m5_grover_visto",
+              "notFlag": "m5_llaves_listas"
+            },
+            "goto": "m5_pista"
+          },
+          {
+            "goto": "inicio"
+          }
+        ]
+      },
+      "m5_pista": {
+        "text": [
+          "La iguana del lago te mira sin pestañear. En la piedra, a su lado: tres plumas de pavo real y un papel de pandebono.",
+          "Un rastro de plumas sigue por el pasto... hacia el oriente, para el lado de la Capilla."
+        ],
+        "effects": [
+          {
+            "setFlag": "m5_pista_lago"
+          }
+        ]
+      }
+    }
+  },
+  "cholado": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "compro_cholado"
+            },
+            "goto": "ya"
+          },
+          {
+            "goto": "oferta"
+          }
+        ]
+      },
+      "oferta": {
+        "speaker": "Cholero",
+        "text": "¡Cholado, cholado! Hielo raspado, frutas, lechera y galleta. Pa'l calor, joven. ¿Uno?",
+        "choices": [
+          {
+            "label": "Uno ($7.000)",
+            "if": {
+              "minMoney": 7000
+            },
+            "effects": [
+              {
+                "pay": 7000
+              },
+              {
+                "giveItem": "cholado"
+              },
+              {
+                "setFlag": "compro_cholado"
+              }
+            ],
+            "goto": "compra"
+          },
+          {
+            "label": "No, gracias"
+          }
+        ]
+      },
+      "compra": {
+        "speaker": "Cholero",
+        "text": "¡Que lo disfrute! Cómaselo antes de que se derrita, que con este sol..."
+      },
+      "ya": {
+        "speaker": "Cholero",
+        "text": "¿Le gustó? Mañana le pongo doble lechera."
+      }
+    }
+  },
+  "pucc_sala_clase": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Por la ventanita de la puerta: una clase. El profe dice «¿sí o qué?» cada dos frases y todos contestan «sí»."
+      }
+    }
+  },
+  "pucc_sala_cerrada": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Cerrado. Un papel pegado: «Vuelvo ya». En Cali, «ya» puede ser en cualquier momento del día."
+      }
+    }
+  },
+  "pucc_oficina": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Una oficina con el aire acondicionado a 18 grados. Te dan ganas de quedarte a vivir aquí."
+      }
+    }
+  },
+  "pucc_lab": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un laboratorio lleno de máquinas que pitan. Un estudiante con delantal te mira como diciendo «no toques nada»."
+      }
+    }
+  },
+  "pucc_biblioteca": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Biblioteca. La bibliotecaria te muestra el préstamo de libros con una sonrisa y un «shhh» al mismo tiempo."
+      }
+    }
+  },
+  "pucc_silencio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Silencio. Alguien estudia con audífonos y mueve la cabeza al ritmo de una salsa que solo él oye.",
+        "effects": [
+          {
+            "sign": "silencio"
+          }
+        ]
+      }
+    }
+  },
+  "pucc_registro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Registro Académico: una fila larga de estudiantes con carpetas. Hoy no, gracias."
+      }
+    }
+  },
+  "pucc_tesoreria": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Tesorería. Por suerte tu matrícula la paga el convenio con la Antonio Varas."
+      }
+    }
+  },
+  "pucc_ori": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "flag": "reunion_ok"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "antes"
+          }
+        ]
+      },
+      "antes": {
+        "text": "Relaciones Internacionales: banderas de todos los países. La de Chile está al revés. Un papel: «Mónica está en la Plaza Central con los de intercambio»."
+      },
+      "despues": {
+        "text": "Relaciones Internacionales. Alguien dio vuelta la bandera de Chile. Ahora está derecha."
+      }
+    }
+  },
+  "pucc_ec_recepcion": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Recepción de Educación Continua: «Las salas EC están en el segundo piso. Por la escalera, a la derecha»."
+      }
+    }
+  },
+  "pucc_ec_cafe": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Una cafetería chiquita. Tinto a $1.500 y olor a pandebono recién horneado."
+      }
+    }
+  },
+  "pucc_enfermeria": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Enfermería. Un estudiante con una bolsa de hielo en el tobillo te explica: «Partido de mediodía contra los de Ingeniería»."
+      }
+    }
+  },
+  "pucc_musica": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Sala de música: alguien practica timbales. Muy fuerte. Muy bien."
+      }
+    }
+  },
+  "pucc_design_factory": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Design Factory: sillas de colores, pizarras llenas de post-its y una impresora 3D haciendo... ¿una iguana?"
+      }
+    }
+  },
+  "pucc_anatomia": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Laboratorio de anatomía. Un esqueleto con sombrero vueltiao te saluda desde la ventana."
+      }
+    }
+  },
+  "pucc_diario_mural": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "Diario mural: «Se arrienda pieza en Pance», «Clases de salsa gratis: Bienestar, 2º piso».",
+          "Y un afiche azul con letra de Álvaro: «PARTIDO: INTERCAMBIO vs. INGENIERÍA. LUNES 4:30. CANCHA PRINCIPAL»."
+        ],
+        "effects": [
+          {
+            "sign": "mural_pucc"
+          }
+        ]
+      }
+    }
+  },
+  "pucc_teatrino": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El Teatrino: un ensayo. Alguien grita «¡Ser o no ser!» con acento caleño: «¡Ser o no ser, pues!»."
+      }
+    }
+  },
+  "pucc_auditorio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El auditorio está cerrado. En la puerta, un afiche: «Festival Universitario de Salsa · viernes 7:00 p.m.»."
+      }
+    }
+  },
+  "pucc_capilla": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": [
+          "La capilla: chiquita, fresca, con ventiladores de techo y un vitral de colores. Una señora reza en voz bajita.",
+          "Te sientas un minuto en la última banca y piensas en tu mamá."
+        ],
+        "effects": [
+          {
+            "vineta": "capilla"
+          }
+        ]
+      }
+    }
+  },
+  "pavo_real": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Un pavo real azul eléctrico, paseándose por el campus como si fuera el rector. Te mira de reojo, infla el pecho y...",
+        "effects": [
+          {
+            "vineta": "pavo_real"
+          }
+        ],
+        "next": "cola"
+      },
+      "cola": {
+        "text": [
+          "¡Abre la cola! Un abanico enorme, verde y dorado, lleno de ojos que te miran.",
+          "Dicen que los pavos reales viven libres en el campus hace años. Nadie sabe bien de dónde salieron."
+        ],
+        "effects": [
+          {
+            "setFlag": "secreto_pavo"
+          }
+        ]
+      }
+    }
+  },
+  "pucc_villa": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Villa Javier, la casa de los padres jesuitas. Un letrero: «Residencia. Por favor, no tocar el timbre». Hay tres timbres."
+      }
+    }
+  },
+  "pucc_gimnasio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "El gimnasio: pesas, trotadoras y un profe de spinning gritando «¡vamos, vamos, que se viene la subida!»."
+      }
+    }
+  },
+  "plaza_alvaro": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "reunion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "if": {
+              "flag": "hablo_alvaro"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Álvaro",
+        "text": "¡Hola! Esperemos a Mónica, que ya viene."
+      },
+      "primera": {
+        "speaker": "Álvaro",
+        "text": "Esta tarde, partido. Necesito que corras como si te persiguiera un toro. Bueno, un caleño con pelota, que es peor.",
+        "effects": [
+          {
+            "setFlag": "hablo_alvaro"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Álvaro",
+        "text": "Llevo tres días en Cali y ya me he comido doce pandebonos. Doce, tío."
+      }
+    }
+  },
+  "plaza_iker": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "reunion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "if": {
+              "flag": "hablo_iker"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Iker",
+        "text": "¡Hola! Esperemos a Mónica, que ya viene."
+      },
+      "primera": {
+        "speaker": "Iker",
+        "text": "Mi maleta llega el miércoles, dicen. Llevo la misma camiseta desde Bilbao. No te acerques mucho.",
+        "effects": [
+          {
+            "setFlag": "hablo_iker"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Iker",
+        "text": "Aquí todo el mundo me llama «mono». ¿Es por el pelo? Diego dice que es cariño."
+      }
+    }
+  },
+  "plaza_pau": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "reunion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "if": {
+              "flag": "hablo_pau"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Pau",
+        "text": "¡Hola! Esperemos a Mónica, que ya viene."
+      },
+      "primera": {
+        "speaker": "Pau",
+        "text": "¿Has visto los edificios? Ladrillo a la vista, todo verde alrededor... Tengo que dibujar el Cedro Rosado, es precioso.",
+        "effects": [
+          {
+            "setFlag": "hablo_pau"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Pau",
+        "text": "Ayer comí pandebono, buñuelo, empanada, aborrajado y un cholado. En una hora. Estoy bien. Creo."
+      }
+    }
+  },
+  "plaza_sergio": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "reunion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "if": {
+              "flag": "hablo_sergio"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Sergio",
+        "text": "¡Hola! Esperemos a Mónica, que ya viene."
+      },
+      "primera": {
+        "speaker": "Sergio",
+        "text": "Esto es como Sevilla en agosto, pero con montañas y gente más simpática. No se lo digas a nadie en Sevilla.",
+        "effects": [
+          {
+            "setFlag": "hablo_sergio"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Sergio",
+        "text": "¿Fútbol a las cuatro y media? Yo juego atrás. Atrás del todo. Casi en la grada."
+      }
+    }
+  },
+  "plaza_antoine": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "reunion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "if": {
+              "flag": "hablo_antoine"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Antoine",
+        "text": "¡Hola! Esperemos a Mónica, que ya viene."
+      },
+      "primera": {
+        "speaker": "Antoine",
+        "text": "En Lyon ahora hace cinco grados. Aquí, treinta. Ya no me quiero ir.",
+        "effects": [
+          {
+            "setFlag": "hablo_antoine"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Antoine",
+        "text": "Si ganamos esta tarde, hacemos fiesta en mi rooftop. Si perdemos... también, pero más triste."
+      }
+    }
+  },
+  "plaza_lucas": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "reunion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "if": {
+              "flag": "hablo_lucas"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Lucas",
+        "text": "¡Hola! Esperemos a Mónica, que ya viene."
+      },
+      "primera": {
+        "speaker": "Lucas",
+        "text": "Mira el cielo: muy azul. Demasiado azul. En París eso significa que va a llover. ¿Aquí también?",
+        "effects": [
+          {
+            "setFlag": "hablo_lucas"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Lucas",
+        "text": "Mi profesora de español me dijo «qué chimba» y tuve que buscarlo en internet. Es bueno, ¿no? Es bueno."
+      }
+    }
+  },
+  "plaza_mathieu": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "reunion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "if": {
+              "flag": "hablo_mathieu"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Mathieu",
+        "text": "¡Hola! Esperemos a Mónica, que ya viene."
+      },
+      "primera": {
+        "speaker": "Mathieu",
+        "text": "Soy portero. Bueno, fui portero en el colegio. Hace diez años. Pero las manos no se olvidan, ¿no?",
+        "effects": [
+          {
+            "setFlag": "hablo_mathieu"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Mathieu",
+        "text": "Las motos aquí van por todas partes. Por la calle, por la vereda... vi una por la ciclovía con una nevera encima."
+      }
+    }
+  },
+  "plaza_hugo": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "reunion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "if": {
+              "flag": "hablo_hugo"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Hugo",
+        "text": "¡Hola! Esperemos a Mónica, que ya viene."
+      },
+      "primera": {
+        "speaker": "Hugo",
+        "text": "Me dijeron que en Juanchito se baila salsa hasta que sale el sol. Esta semana voy. ¿Vienes?",
+        "effects": [
+          {
+            "setFlag": "hablo_hugo"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Hugo",
+        "text": "Ducha fría. ¡Ducha fría! Grité tan fuerte que el vecino me trajo un tinto para calmarme."
+      }
+    }
+  },
+  "plaza_diego": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "reunion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "if": {
+              "flag": "hablo_diego"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Diego",
+        "text": "¡Hola! Esperemos a Mónica, que ya viene."
+      },
+      "primera": {
+        "speaker": "Diego",
+        "text": "Causa, aquí te dicen «mijo», «mi amor», «mi rey»... la señora de la tienda me dijo «mi vida». Ya me quiero casar.",
+        "effects": [
+          {
+            "setFlag": "hablo_diego"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Diego",
+        "text": "Esta tarde hay que ganar. Por Latinoamérica, pe. Que los europeos vean."
+      }
+    }
+  },
+  "plaza_nacho": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "branches": [
+          {
+            "if": {
+              "notFlag": "reunion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "if": {
+              "flag": "hablo_nacho"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "primera"
+          }
+        ]
+      },
+      "antes": {
+        "speaker": "Nacho",
+        "text": "¡Hola! Esperemos a Mónica, que ya viene."
+      },
+      "primera": {
+        "speaker": "Nacho",
+        "text": "Compadre, ¿cachai que aquí no existe el «po»? Lo digo igual. La gente me mira raro, pero con cariño.",
+        "effects": [
+          {
+            "setFlag": "hablo_nacho"
+          }
+        ]
+      },
+      "otra": {
+        "speaker": "Nacho",
+        "text": "¿Viste el lago? Dicen que hay iguanas. Iguanas, compadre. ¡Como en los documentales!"
+      }
+    }
+  }
+}

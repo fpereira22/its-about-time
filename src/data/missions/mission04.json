@@ -1,0 +1,268 @@
+{
+  "id": "mission04",
+  "number": 4,
+  "title": "Primer día en la U",
+  "start": {
+    "map": "pance_casa",
+    "spawn": "cama"
+  },
+  "objective": "Apaga la alarma",
+  "startMoney": 80000,
+  "startFlags": [
+    "mision4_iniciada",
+    "en_pijama",
+    "sin_mochila",
+    "reloj_chile",
+    "desorientado"
+  ],
+  "clock": "lun 06:00",
+  "weather": "despejado",
+  "destinations": [
+    {
+      "if": {
+        "flag": "gano_partido"
+      },
+      "map": "rooftop_cali",
+      "x": 10,
+      "y": 4,
+      "name": "El rooftop"
+    },
+    {
+      "if": {
+        "flag": "partido_jugado"
+      },
+      "map": "pance",
+      "x": 21,
+      "y": 6,
+      "name": "Casa de doña Mery"
+    },
+    {
+      "if": {
+        "all": [
+          {
+            "flag": [
+              "clase_ok",
+              "polera"
+            ]
+          }
+        ]
+      },
+      "map": "pucc_campus",
+      "x": 33,
+      "y": 56,
+      "name": "Cancha de fútbol"
+    },
+    {
+      "if": {
+        "all": [
+          {
+            "flag": "almorzo"
+          },
+          {
+            "notFlag": "polera"
+          }
+        ]
+      },
+      "map": "pucc_campus",
+      "x": 28,
+      "y": 42,
+      "name": "Bienestar (Deportes)"
+    },
+    {
+      "if": {
+        "all": [
+          {
+            "flag": "almorzo"
+          },
+          {
+            "notFlag": "clase_ok"
+          }
+        ]
+      },
+      "map": "pucc_campus",
+      "x": 51,
+      "y": 42,
+      "name": "Educación Continua"
+    },
+    {
+      "if": {
+        "flag": "almorzo"
+      },
+      "map": "pance",
+      "x": 30,
+      "y": 6,
+      "name": "Paradero P27"
+    },
+    {
+      "if": {
+        "flag": "volvio_casa"
+      },
+      "map": "pance",
+      "x": 21,
+      "y": 6,
+      "name": "Casa de doña Mery"
+    },
+    {
+      "if": {
+        "flag": "tormenta_vista"
+      },
+      "map": "pucc_campus",
+      "x": 70,
+      "y": 18,
+      "name": "Paradero Calle 18"
+    },
+    {
+      "if": {
+        "flag": "reunion_ok"
+      },
+      "map": "pucc_campus",
+      "x": 48,
+      "y": 18,
+      "name": "Cafetería Central"
+    },
+    {
+      "if": {
+        "flag": "llego_u"
+      },
+      "map": "pucc_campus",
+      "x": 48,
+      "y": 21,
+      "name": "Plaza Central"
+    },
+    {
+      "if": {
+        "flag": "desayuno"
+      },
+      "map": "pance",
+      "x": 30,
+      "y": 6,
+      "name": "Paradero P27"
+    },
+    {
+      "map": "pance",
+      "x": 21,
+      "y": 6,
+      "name": "Casa de doña Mery"
+    }
+  ],
+  "victoryEvent": "mision4_final",
+  "routes": [
+    {
+      "id": "bus",
+      "name": "Bus",
+      "if": {
+        "flag": "tomo_bus"
+      }
+    },
+    {
+      "id": "taxi",
+      "name": "Taxi",
+      "if": {
+        "flag": "tomo_taxi"
+      }
+    }
+  ],
+  "defaultRoute": "A pie",
+  "walkedSuffix": {
+    "if": {
+      "flag": "nunca"
+    },
+    "text": ""
+  },
+  "collectibles": [
+    "bunuelo",
+    "lulada",
+    "cholado",
+    "aborrajado"
+  ],
+  "bonuses": [
+    {
+      "text": "Arriba con la primera alarma",
+      "if": {
+        "notFlag": "pospuso_cali"
+      }
+    },
+    {
+      "text": "Le hiciste caso a doña Mery (paraguas)",
+      "if": {
+        "flag": "paraguas_usado"
+      }
+    },
+    {
+      "text": "Fideos al dente",
+      "if": {
+        "flag": "fideos_perfectos"
+      }
+    },
+    {
+      "text": "Clase perfecta de Modelación Logística",
+      "if": {
+        "flag": "clase_perfecta"
+      }
+    },
+    {
+      "text": "Hiciste un gol",
+      "if": {
+        "flag": "gol_propio"
+      }
+    },
+    {
+      "text": "Hat-trick en la cancha de la U",
+      "if": {
+        "flag": "hat_trick"
+      }
+    },
+    {
+      "text": "Conociste a todo el grupo",
+      "if": {
+        "flag": [
+          "hablo_alvaro",
+          "hablo_iker",
+          "hablo_pau",
+          "hablo_sergio",
+          "hablo_antoine",
+          "hablo_lucas",
+          "hablo_mathieu",
+          "hablo_hugo",
+          "hablo_diego",
+          "hablo_nacho"
+        ]
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "flag": "secreto_iguana",
+      "name": "La iguana del lago"
+    },
+    {
+      "flag": "secreto_terraza",
+      "name": "La terraza del Cedro Rosado"
+    },
+    {
+      "flag": "secreto_salsa",
+      "name": "Clase de salsa en Bienestar"
+    },
+    {
+      "flag": "secreto_pavo",
+      "name": "Los pavos reales del campus"
+    },
+    {
+      "flag": "secreto_konami",
+      "name": "Arriba, arriba, abajo, abajo..."
+    }
+  ],
+  "endings": [
+    {
+      "id": "rooftop",
+      "name": "Campeones en el rooftop",
+      "if": {
+        "flag": "gano_partido"
+      }
+    },
+    {
+      "id": "derrota",
+      "name": "Derrota con aguapanela"
+    }
+  ]
+}

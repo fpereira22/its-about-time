@@ -1,0 +1,66 @@
+{
+  "id": "piscinas_camerino",
+  "name": "Camerinos",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 14,
+  "height": 8,
+  "background": "#101018",
+  "music": "piscina",
+  "legend": {
+    "^": "muro_techo",
+    "L": "locker",
+    ".": "piso_camerino",
+    "B": "banca_camerino",
+    "W": "casa_muro",
+    "D": "puerta",
+    "u": "ducha_piscina"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^",
+    "^LLLLLL^LLLLL^",
+    "^......^.....^",
+    "^.BBBB.^.BBB.^",
+    "^......^.....^",
+    "^...........u^",
+    "^WWWWWDWWWWWW^",
+    "^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {
+      "name": "Camerinos",
+      "subtitle": "Centro Deportivo · PUCC",
+      "x": 0,
+      "y": 0,
+      "w": 14,
+      "h": 8
+    }
+  ],
+  "spawns": {
+    "puerta": {
+      "x": 6,
+      "y": 5,
+      "dir": "up"
+    }
+  },
+  "warps": [
+    {
+      "x": 6,
+      "y": 6,
+      "to": "pucc_piscina",
+      "spawn": "camerino",
+      "if": {
+        "any": [
+          {
+            "flag": "en_bano",
+            "notFlag": "m5_nado"
+          },
+          {
+            "flag": "m5_vestido_post"
+          }
+        ]
+      },
+      "blockedDialogue": "m5_camerino_no_salir"
+    }
+  ]
+}

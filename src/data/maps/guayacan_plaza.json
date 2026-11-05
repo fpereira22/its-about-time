@@ -1,0 +1,74 @@
+{
+ "id": "guayacan_plaza",
+ "name": "C.C. Guayacán Plaza",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 28,
+ "height": 14,
+ "music": "aeropuerto",
+ "background": "#14141c",
+ "legend": {
+  "0": "tienda_0",
+  "1": "tienda_1",
+  "2": "tienda_2",
+  "3": "tienda_3",
+  "^": "muro_techo",
+  "W": "mall_muro",
+  ".": "mall_piso",
+  "=": "mall_piso_b",
+  "O": "atrio",
+  "p": "planta",
+  "B": "banca_mall",
+  "C": "pantalla_cine",
+  "P": "puerta"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+  "W00000W11111WCCCW22222W3333W",
+  "============================",
+  ".p........................p.",
+  "............................",
+  ".....B......pOOOOp......B...",
+  "............OOOOOO..........",
+  "............OOOOOO..........",
+  ".....B......pOOOOp......B...",
+  "............................",
+  ".p........................p.",
+  "............................",
+  "WWWWWWWWWWWWPPWWWWWWWWWWWWWW",
+  "^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+ ],
+ "spawns": {
+  "puerta": {
+   "x": 12,
+   "y": 11,
+   "dir": "up"
+  }
+ },
+ "warps": [
+  {
+   "x": 12,
+   "y": 12,
+   "to": "universidades",
+   "spawn": "mall"
+  },
+  {
+   "x": 13,
+   "y": 12,
+   "to": "universidades",
+   "spawn": "mall"
+  }
+ ],
+ "crowd": {
+  "lines": "cali",
+  "areas": [
+   {
+    "x": 1,
+    "y": 3,
+    "w": 26,
+    "h": 8,
+    "count": 7
+   }
+  ]
+ }
+}
