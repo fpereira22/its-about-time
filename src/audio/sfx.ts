@@ -76,7 +76,14 @@ export type SfxName =
   | 'linterna' // clic de la linterna del celular
   | 'teclas' // la máquina de escribir del poeta
   | 'salto' // saltar en la persecución
-  | 'golpe'; // chocar con algo (persecución)
+  | 'golpe' // chocar con algo (persecución)
+  | 'toc_toc' // misión 7: tocan la puerta del depa
+  | 'cuchillo' // picar en la tabla
+  | 'sarten' // el sofrito chisporroteando
+  | 'destapar' // abrir una gaseosa (pssst)
+  | 'beso' // el beso (suave, con campanita)
+  | 'caja_registradora' // ¡tlin! la caja de la farmacia
+  | 'tele'; // prender la tele (el zumbido del encendido)
 
 /** Pistas de música de fondo. */
 export type MusicTrack =
@@ -102,6 +109,9 @@ export type MusicTrack =
   | 'colina' // la Colina de San Antonio de noche: guitarra y misterio
   | 'persecucion' // ¡al ladrón! (rápida, tensa)
   | 'natacion' // la clase de natación con Sira (juguetona, con burbujas)
+  | 'depa' // misión 7: el depa del piso 8 (bossa tranquila, cálida)
+  | 'ascensor' // la música del ascensor (bossa de ascensor, obvio)
+  | 'cocina' // la boloñesa con Sira (cumbia juguetona)
   ;
 
 /** Sonido ambiente en loop: la lluvia (más fuerte en la tormenta). `indoor` la apaga como detrás de una ventana. */

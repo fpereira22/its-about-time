@@ -10,6 +10,8 @@ export interface VehicleArt {
   doors?: { style: DoorStyleId; rects: Array<{ x: number; y: number; w: number; h: number }> };
   /** Se dibuja espejado (mira a la izquierda: va hacia el poniente). Las puertas ya vienen espejadas. */
   mirror?: boolean;
+  /** Se dibuja dado vuelta de arriba abajo (visto desde arriba, va hacia el norte). */
+  flipY?: boolean;
 }
 
 /** Interior que se ve cuando se abre una puerta. */
@@ -228,6 +230,8 @@ export const VEHICLE_ART: Record<string, VehicleArt> = {
   },
   /** El mismo visto desde arriba, bajando por la Calle 18 (el frente abajo). */
   bus_cali_v: { w: 22, h: 50, draw: busTop },
+  /** Misión 7: el mismo subiendo por la Calle 18 hacia el norte (el frente arriba), por la pista oriente. */
+  bus_cali_v_n: { w: 22, h: 50, flipY: true, draw: busTop },
   /** Misión 6: el bus troncal articulado (T31), hacia el oriente y hacia el poniente. */
   articulado: { w: 112, h: 24, draw: articulado, doors: { style: 'bus', rects: ART_DOORS } },
   articulado_izq: {

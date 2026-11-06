@@ -1,0 +1,106 @@
+{
+ "id": "bobo_lobby",
+ "name": "Lobby del Bobo Unic Living",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 18,
+ "height": 12,
+ "background": "#14121a",
+ "music": "depa",
+ "legend": {
+  "^": "muro_techo",
+  "M": "lobby_muro",
+  "c": "lobby_cuadro",
+  "v": "lobby_ventanal",
+  "e": "ascensor",
+  "E": "escalera_edificio",
+  ".": "lobby_piso",
+  "a": "lobby_alfombra",
+  "R": "recepcion",
+  "r": "recepcion_timbre",
+  "x": "buzones",
+  "s": "lobby_sofa",
+  "m": "lobby_mesa",
+  "p": "lobby_planta",
+  "D": "lobby_puerta"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^^^",
+  "^xxMMcMMvvMMMeMeE^",
+  "^................^",
+  "^RRrR..........p.^",
+  "^................^",
+  "^................^",
+  "^....ssss........^",
+  "^....mmmm........^",
+  "^p...aaaaaa....p.^",
+  "^................^",
+  "^MMMMMMMMDMMMMMMM^",
+  "^^^^^^^^^^^^^^^^^^"
+ ],
+ "spawns": {
+  "entrada": {
+   "x": 9,
+   "y": 9,
+   "dir": "up"
+  },
+  "ascensor": {
+   "x": 14,
+   "y": 2,
+   "dir": "down"
+  }
+ },
+ "warps": [
+  {
+   "x": 9,
+   "y": 10,
+   "to": "bobo_cuadra",
+   "spawn": "lobby"
+  }
+ ],
+ "enter": [
+  {
+   "id": "primera",
+   "dialogue": "m7_lobby_primera",
+   "once": true,
+   "if": {
+    "mission": "mission07"
+   }
+  },
+  {
+   "id": "salida",
+   "dialogue": "m7_lobby_salida",
+   "once": true,
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_rumbo_farmadia",
+    "notFlag": "m7_bebida_elegida"
+   }
+  },
+  {
+   "id": "juntos",
+   "dialogue": "m7_lobby_juntos",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_bebida_elegida",
+    "notFlag": "m7_lobby_juntos"
+   }
+  },
+  {
+   "id": "noche",
+   "dialogue": "m7_lobby_noche",
+   "once": true,
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_rumbo_paradero"
+   }
+  }
+ ],
+ "labels": [
+  {
+   "x": 2.5,
+   "y": 2.2,
+   "text": "RECEPCIÓN"
+  }
+ ]
+}

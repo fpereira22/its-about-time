@@ -95,6 +95,9 @@ const FLAG_DOG_FOLLOWS = 'quiltro_sigue';
 /** Misión 6: Sira camina contigo (por la feria, a la heladería, la colina). Tiene prioridad sobre el quiltro. */
 const FLAG_SIRA_FOLLOWS = 'm6_sira_sigue';
 const SIRA_FOLLOWER_SPRITE = 'sira_feria';
+/** Misión 7: Sira camina contigo por la U, la cuadra, el lobby, la farmacia y el pasillo (también en interiores). */
+const FLAG_SIRA_FOLLOWS_M7 = 'm7_sira_sigue';
+const SIRA_FOLLOWER_SPRITE_M7 = 'sira_m7';
 
 /** Escena del tipo de mapa (overworld/interior) que corresponde a cada `kind`. */
 const SCENE_FOR_KIND = { overworld: 'Overworld', interior: 'Interior' } as const;
@@ -219,6 +222,8 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     // Misión 6: la clase de natación con Sira y la persecución del ladrón en el Bulevar.
     EventSystem.onScene(this, 'open-natacion', ({ done }) => this.launchMinigame('Natacion', {}, done));
     EventSystem.onScene(this, 'open-persecucion', ({ done }) => this.launchMinigame('Persecucion', {}, done));
+    // Misión 7: la boloñesa en el depa.
+    EventSystem.onScene(this, 'open-cocina', ({ part, done }) => this.launchMinigame('Cocina', { part }, done));
 
     if (!this.scene.isActive('UI')) this.scene.launch('UI');
     this.scene.bringToTop('UI');
@@ -685,8 +690,15 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
 
   /** Crea o quita al que sigue al jugador (el quiltro, o Sira en la misión 6), solo en la calle. */
   private syncFollower(): void {
-    const sprite = StoryState.hasFlag(FLAG_SIRA_FOLLOWS) ? SIRA_FOLLOWER_SPRITE : StoryState.hasFlag(FLAG_DOG_FOLLOWS) ? 'quiltro' : '';
-    const want = sprite !== '' && this.map.data.kind === 'overworld';
+    const m7 = StoryState.hasFlag(FLAG_SIRA_FOLLOWS_M7);
+    const sprite = m7
+      ? SIRA_FOLLOWER_SPRITE_M7
+      : StoryState.hasFlag(FLAG_SIRA_FOLLOWS)
+        ? SIRA_FOLLOWER_SPRITE
+        : StoryState.hasFlag(FLAG_DOG_FOLLOWS)
+          ? 'quiltro'
+          : '';
+    const want = sprite !== '' && (this.map.data.kind === 'overworld' || m7);
     if (this.follower && sprite !== this.followerSprite) {
       this.follower.destroy();
       this.follower = null;

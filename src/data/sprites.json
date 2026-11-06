@@ -1285,6 +1285,120 @@
           "mustache"
         ]
       }
+    },
+    "sira_m7": {
+      "look": {
+        "skin": "#f8e2d4",
+        "hair": "#5a3424",
+        "shirt": "#9cc8a0",
+        "pants": "#3a5a8a",
+        "shoes": "#f4efe4",
+        "hairStyle": "long",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#e8c070"
+      }
+    },
+    "majo": {
+      "look": {
+        "skin": "#c08a60",
+        "hair": "#2a1c14",
+        "shirt": "#e8b030",
+        "pants": "#5a3c6c",
+        "shoes": "#e8e8e0",
+        "hairStyle": "long",
+        "extras": [
+          "backpack"
+        ],
+        "accent": "#2c5cb0"
+      }
+    },
+    "cata": {
+      "look": {
+        "skin": "#f0d0b8",
+        "hair": "#a83c3c",
+        "shirt": "#2a2a30",
+        "pants": "#3a4a78",
+        "shoes": "#d83c3c",
+        "hairStyle": "bun",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "heladero": {
+      "look": {
+        "skin": "#a87050",
+        "hair": "#e8e8e0",
+        "shirt": "#f8f8f0",
+        "pants": "#3a3c44",
+        "shoes": "#2a2a30",
+        "hairStyle": "cap",
+        "cap": "#f8f8f0",
+        "extras": [
+          "mustache"
+        ]
+      }
+    },
+    "wilmer": {
+      "look": {
+        "skin": "#8a5a3a",
+        "hair": "#141010",
+        "shirt": "#2a4a7a",
+        "pants": "#2a2a38",
+        "shoes": "#141418",
+        "hairStyle": "fade",
+        "extras": [
+          "mustache",
+          "glasses",
+          "tie"
+        ],
+        "accent": "#e8c040"
+      }
+    },
+    "isa": {
+      "look": {
+        "skin": "#e0b088",
+        "hair": "#3a2418",
+        "shirt": "#e85a8a",
+        "pants": "#3a5a8a",
+        "shoes": "#f8f8f0",
+        "hairStyle": "long"
+      }
+    },
+    "pao": {
+      "look": {
+        "skin": "#d8a070",
+        "hair": "#5a3a20",
+        "shirt": "#58b868",
+        "pants": "#e8e0d0",
+        "shoes": "#8a5a3a",
+        "hairStyle": "bun"
+      }
+    },
+    "cajera_farma": {
+      "look": {
+        "skin": "#c89068",
+        "hair": "#2a1c14",
+        "shirt": "#d83c3c",
+        "pants": "#2a2a38",
+        "shoes": "#141418",
+        "hairStyle": "bun"
+      }
+    },
+    "vecino_807": {
+      "look": {
+        "skin": "#f0c8a0",
+        "hair": "#c8a040",
+        "shirt": "#f4f0e0",
+        "pants": "#5a6c4a",
+        "shoes": "#8a5a3a",
+        "hairStyle": "mullet",
+        "extras": [
+          "beard"
+        ]
+      }
     }
   },
   "objects": [
@@ -1363,7 +1477,19 @@
     "estatua",
     "tablero_rutas",
     "piedra",
-    "mazorcas"
+    "mazorcas",
+    "carrito_helados",
+    "cono_helado",
+    "maqueta",
+    "foto_pavo",
+    "bolsa_mercado",
+    "ropa_tirada",
+    "botella_calena",
+    "botella_kola",
+    "botella_rojo",
+    "crispetas",
+    "chocolatina",
+    "olla_fideos"
   ],
   "sheets": {}
 }

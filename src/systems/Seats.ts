@@ -55,6 +55,13 @@ export const SEAT_POSES: Record<string, SeatPose> = {
   helado_silla: { dir: 'up', rows: 12, dy: -1 },
   helado_silla_n: { dir: 'down', rows: 13, dy: 2 },
   grada_piedra: { dir: 'up', rows: 12, dy: -1 },
+  // Misión 7: el depa del piso 8 (sillas de la mesa, el sofá frente a la tele y la cama doble), el sofá del lobby.
+  depa_silla: { dir: 'up', rows: 12, dy: -1 },
+  depa_silla_n: { dir: 'down', rows: 13, dy: 2 },
+  depa_sofa: { dir: 'up', rows: 12, dy: -1 },
+  depa_cama_i: { dir: 'down', rows: 8, dy: 0 },
+  depa_cama_d: { dir: 'down', rows: 8, dy: 0 },
+  lobby_sofa: { dir: 'down', rows: 13, dy: 2 },
 };
 
 export function seatPoseAt(map: GameMap, x: number, y: number): SeatPose | undefined {

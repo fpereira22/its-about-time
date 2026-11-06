@@ -478,4 +478,46 @@ export const SFX: Record<SfxName, SfxFn> = {
     tone(ctx, { type: 'triangle', freq: 160, freqEnd: 60, start: t, dur: 0.15, vol: 0.4, dest: out });
     noise(ctx, { start: t, dur: 0.08, vol: 0.2, filter: 'lowpass', freq: 1200, dest: out });
   },
+
+  // --- Misión 7 ---
+  toc_toc: (ctx, t, out) => {
+    // Tres golpes en la puerta de madera (el segundo más suave).
+    for (const [d, v] of [[0, 0.42], [0.16, 0.3], [0.32, 0.45]] as const) {
+      tone(ctx, { type: 'triangle', freq: 190, freqEnd: 90, start: t + d, dur: 0.09, vol: v, dest: out });
+      noise(ctx, { start: t + d, dur: 0.04, vol: 0.18, filter: 'lowpass', freq: 900, dest: out });
+    }
+  },
+
+  cuchillo: (ctx, t, out) => {
+    noise(ctx, { start: t, dur: 0.05, vol: 0.28, filter: 'bandpass', freq: 2600, q: 2, dest: out });
+    tone(ctx, { type: 'triangle', freq: 240, freqEnd: 120, start: t, dur: 0.06, vol: 0.25, dest: out });
+  },
+
+  sarten: (ctx, t, out) => {
+    // Chisporroteo: ruido agudo que crece y se apaga, con crepitar.
+    noise(ctx, { start: t, dur: 0.9, vol: 0.12, filter: 'highpass', freq: 4000, swell: true, dest: out });
+    for (let i = 0; i < 6; i++) noise(ctx, { start: t + 0.1 + Math.random() * 0.7, dur: 0.02, vol: 0.14, filter: 'highpass', freq: 5000, dest: out });
+  },
+
+  destapar: (ctx, t, out) => {
+    tone(ctx, { type: 'sine', freq: 620, freqEnd: 300, start: t, dur: 0.05, vol: 0.2, dest: out });
+    noise(ctx, { start: t + 0.03, dur: 0.6, vol: 0.2, filter: 'highpass', freq: 3500, freqEnd: 6000, dest: out });
+    for (let i = 0; i < 5; i++) tone(ctx, { type: 'sine', freq: 1800 + Math.random() * 1500, start: t + 0.2 + i * 0.08, dur: 0.03, vol: 0.03, dest: out });
+  },
+
+  beso: (ctx, t, out) => {
+    noise(ctx, { start: t, dur: 0.07, vol: 0.12, filter: 'bandpass', freq: 1500, q: 3, dest: out });
+    notes(ctx, out, t + 0.12, ['E6', 'G#6', 'B6', 'E7'], 0.09, 'sine', 0.06);
+  },
+
+  caja_registradora: (ctx, t, out) => {
+    noise(ctx, { start: t, dur: 0.12, vol: 0.18, filter: 'bandpass', freq: 1800, dest: out });
+    notes(ctx, out, t + 0.12, ['E6', 'C7'], 0.1, 'triangle', 0.08);
+  },
+
+  tele: (ctx, t, out) => {
+    tone(ctx, { type: 'sine', freq: 15000, start: t, dur: 0.4, vol: 0.02, dest: out });
+    noise(ctx, { start: t, dur: 0.25, vol: 0.1, filter: 'highpass', freq: 2500, freqEnd: 800, dest: out });
+    tone(ctx, { type: 'triangle', freq: 70, start: t, dur: 0.2, vol: 0.2, dest: out });
+  },
 };

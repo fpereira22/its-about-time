@@ -1,0 +1,457 @@
+{
+  "id": "mission07",
+  "number": 7,
+  "title": "Lluvia en el piso 8",
+  "start": {
+    "map": "bobo_piso8",
+    "spawn": "inicio"
+  },
+  "objective": "Baja al lobby y cruza a la U: el carrito de helados de la Plaza Central",
+  "startMoney": 150000,
+  "startFlags": [
+    "mision7_iniciada",
+    "despierto",
+    "banado",
+    "vestido",
+    "tiene_mochila",
+    "m7_quimica_visible"
+  ],
+  "clock": "mar 14:35",
+  "weather": "despejado",
+  "destinations": [
+    {
+      "map": "bobo_piso8",
+      "x": 8,
+      "y": 2,
+      "name": "Ascensor (al lobby)",
+      "if": {
+        "flag": "m7_rumbo_paradero",
+        "map": "bobo_piso8"
+      }
+    },
+    {
+      "map": "bobo_lobby",
+      "x": 9,
+      "y": 9,
+      "name": "Salida a la Calle 18",
+      "if": {
+        "flag": "m7_rumbo_paradero",
+        "map": "bobo_lobby"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 7,
+      "y": 27,
+      "name": "Paradero de la Calle 18",
+      "if": {
+        "flag": "m7_rumbo_paradero"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 4,
+      "y": 7,
+      "name": "Sira (en la cocina)",
+      "if": {
+        "flag": "m7_vuelta_depa"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 6,
+      "y": 3,
+      "name": "Depa 805",
+      "if": {
+        "flag": "m7_ascensor_juntos"
+      }
+    },
+    {
+      "map": "bobo_lobby",
+      "x": 14,
+      "y": 2,
+      "name": "El ascensor",
+      "if": {
+        "flag": "m7_pago",
+        "map": "bobo_lobby"
+      }
+    },
+    {
+      "map": "farmadia",
+      "x": 7,
+      "y": 10,
+      "name": "Salida",
+      "if": {
+        "flag": "m7_pago",
+        "map": "farmadia"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 18,
+      "y": 33,
+      "name": "Entrada del Bobo Unic Living",
+      "if": {
+        "flag": "m7_pago",
+        "map": "bobo_cuadra"
+      }
+    },
+    {
+      "map": "bobo_lobby",
+      "x": 14,
+      "y": 2,
+      "name": "El ascensor",
+      "if": {
+        "flag": "m7_pago"
+      }
+    },
+    {
+      "map": "farmadia",
+      "x": 9,
+      "y": 10,
+      "name": "La caja",
+      "if": {
+        "flag": "m7_bebida_elegida"
+      }
+    },
+    {
+      "map": "farmadia",
+      "x": 7,
+      "y": 2,
+      "name": "La nevera de las bebidas",
+      "if": {
+        "flag": "m7_rumbo_farmadia",
+        "map": "farmadia"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 8,
+      "y": 2,
+      "name": "Ascensor (al lobby)",
+      "if": {
+        "flag": "m7_rumbo_farmadia",
+        "map": "bobo_piso8"
+      }
+    },
+    {
+      "map": "bobo_lobby",
+      "x": 9,
+      "y": 9,
+      "name": "Salida a la Calle 18",
+      "if": {
+        "flag": "m7_rumbo_farmadia",
+        "map": "bobo_lobby"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 11,
+      "y": 44,
+      "name": "Farmadía (esquina de la Carrera 122)",
+      "if": {
+        "flag": "m7_rumbo_farmadia"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 4,
+      "y": 7,
+      "name": "Sira (en la cocina)",
+      "if": {
+        "flag": "m7_sira_entro"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 6,
+      "y": 5,
+      "name": "La puerta (Sira está afuera)",
+      "if": {
+        "flag": "m7_toc"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 3,
+      "y": 7,
+      "name": "La cocina (poner el agua)",
+      "if": {
+        "flag": "m7_viernes"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 78,
+      "y": 26,
+      "name": "Calle 18 (hacia el Bobo)",
+      "if": {
+        "flag": "m7_dia_u",
+        "map": "pucc_campus"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 18,
+      "y": 33,
+      "name": "Entrada del Bobo Unic Living",
+      "if": {
+        "flag": "m7_dia_u",
+        "map": "bobo_cuadra"
+      }
+    },
+    {
+      "map": "bobo_lobby",
+      "x": 14,
+      "y": 2,
+      "name": "El ascensor",
+      "if": {
+        "flag": "m7_dia_u",
+        "map": "bobo_lobby"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 14,
+      "y": 11,
+      "name": "Tu cama",
+      "if": {
+        "flag": "m7_dia_u"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 56,
+      "y": 11,
+      "name": "La maqueta (frente a Palmas)",
+      "if": {
+        "flag": "m7_con_sira",
+        "notFlag": "m7_act_maqueta"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 48,
+      "y": 18,
+      "name": "Cafetería Central (almuerzo)",
+      "if": {
+        "flag": "m7_con_sira",
+        "notFlag": "m7_act_almuerzo"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 36,
+      "y": 13,
+      "name": "El pavo real (cerca del lago)",
+      "if": {
+        "flag": "m7_con_sira",
+        "notFlag": "m7_act_pavo"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 33,
+      "y": 10,
+      "name": "El lago (al atardecer)",
+      "if": {
+        "flag": "m7_con_sira"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 8,
+      "y": 2,
+      "name": "Ascensor (al lobby)",
+      "if": {
+        "flag": "m7_jueves",
+        "map": "bobo_piso8"
+      }
+    },
+    {
+      "map": "bobo_lobby",
+      "x": 9,
+      "y": 9,
+      "name": "Salida a la Calle 18",
+      "if": {
+        "flag": "m7_jueves",
+        "map": "bobo_lobby"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 1,
+      "y": 9,
+      "name": "Portería de la U (cruzando la Calle 18)",
+      "if": {
+        "flag": "m7_jueves",
+        "map": "bobo_cuadra"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 66,
+      "y": 23,
+      "name": "Sira (en la portería)",
+      "if": {
+        "flag": "m7_jueves"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 8,
+      "y": 2,
+      "name": "Ascensor (al lobby)",
+      "if": {
+        "map": "bobo_piso8"
+      }
+    },
+    {
+      "map": "bobo_lobby",
+      "x": 9,
+      "y": 9,
+      "name": "Salida a la Calle 18",
+      "if": {
+        "map": "bobo_lobby"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 1,
+      "y": 9,
+      "name": "Portería de la U (cruzando la Calle 18)",
+      "if": {
+        "map": "bobo_cuadra"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 51,
+      "y": 23,
+      "name": "Carrito de helados (Plaza Central)"
+    }
+  ],
+  "victoryEvent": "mision7_final",
+  "routes": [
+    {
+      "id": "pie",
+      "name": "A pie (todo queda a una cuadra)",
+      "if": {
+        "flag": "mision7_iniciada"
+      }
+    }
+  ],
+  "defaultRoute": "A pie",
+  "walkedSuffix": {
+    "if": {
+      "flag": "nunca"
+    },
+    "text": ""
+  },
+  "collectibles": [
+    "helado_carrito",
+    "foto_pavo",
+    "crispetas",
+    "chocolatina"
+  ],
+  "bonuses": [
+    {
+      "text": "Los tres planes del jueves",
+      "if": {
+        "flag": "m7_tres_planes"
+      }
+    },
+    {
+      "text": "Chat perfecto hasta las 3:12",
+      "if": {
+        "flag": "m7_chat_perfecto"
+      }
+    },
+    {
+      "text": "El depa ordenado antes de que llegara",
+      "if": {
+        "flag": [
+          "m7_ordenado",
+          "m7_loza"
+        ]
+      }
+    },
+    {
+      "text": "Boloñesa perfecta (sin un error)",
+      "if": {
+        "flag": "m7_cocina_perfecta"
+      }
+    },
+    {
+      "text": "Fideos al dente",
+      "if": {
+        "flag": "m7_al_dente"
+      }
+    },
+    {
+      "text": "Elegiste La Caleña",
+      "if": {
+        "flag": "m7_bebida_calena"
+      }
+    },
+    {
+      "text": "Le prestaste el paraguas de doña Mery",
+      "if": {
+        "flag": "m7_paraguas_sira"
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "flag": "secreto_wilmer_fantasma",
+      "name": "El fantasma de la piscina (según Wilmer)"
+    },
+    {
+      "flag": "secreto_banderita",
+      "name": "La banderita chilena en la maqueta"
+    },
+    {
+      "flag": "secreto_selfie_pavo",
+      "name": "Selfie con el pavo real"
+    },
+    {
+      "flag": "secreto_vecino_807",
+      "name": "El vecino del 807"
+    },
+    {
+      "flag": "secreto_perfume_m7",
+      "name": "Demasiado perfume (otra vez)"
+    },
+    {
+      "flag": "secreto_peli_pinguinos",
+      "name": "Casi ven el documental de pingüinos"
+    },
+    {
+      "flag": "secreto_amigas",
+      "name": "Las amigas mudas"
+    }
+  ],
+  "endings": [
+    {
+      "id": "calena",
+      "name": "La Caleña, la lluvia y el beso",
+      "if": {
+        "flag": [
+          "m7_bebida_calena",
+          "m7_final_alta"
+        ]
+      }
+    },
+    {
+      "id": "lluvia",
+      "name": "Lluvia en el piso 8",
+      "if": {
+        "flag": "m7_final_alta"
+      }
+    },
+    {
+      "id": "porfin",
+      "name": "Por fin"
+    }
+  ]
+}

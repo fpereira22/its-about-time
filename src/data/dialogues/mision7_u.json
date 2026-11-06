@@ -1,0 +1,1497 @@
+{
+ "m7_intro": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Hace dos semanas dejaste la casa de doña Mery en Pance. Lloraron los dos (ella más). Te mandó con una olla, tres arepas congeladas y la bendición.",
+    "next": "bobo"
+   },
+   "bobo": {
+    "text": "Ahora vives en el Bobo Unic Living, la residencia de ladrillo naranjo que está al lado del PrecioClub, justo al frente de la U. Piso 8. Depa 805.",
+    "effects": [
+     {
+      "vineta": "m7_mudanza"
+     }
+    ],
+    "next": "vista"
+   },
+   "vista": {
+    "text": "Desde el ventanal se ven los Farallones, el techo de paneles solares de la bodega y la Calle 18. Todavía hay cajas sin abrir. Una dice MANJAR.",
+    "next": "cel"
+   },
+   "cel": {
+    "text": "Vibra el celular.",
+    "effects": [
+     {
+      "vineta": ""
+     },
+     {
+      "message": "m7_sira_martes"
+     },
+     {
+      "sfx": "notify"
+     }
+    ],
+    "next": "leer"
+   },
+   "leer": {
+    "text": "Es Sira. Hace semanas que se ven casi todos los días: la piscina de los jueves, cafecitos, mensajes hasta tarde. Nada «oficial». Nada de nada, en realidad.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "«Las de Taller» son sus amigas de Arquitectura. Te van a interrogar. Lo sabes.",
+    "effects": [
+     {
+      "objective": "Baja al lobby (ascensor del pasillo) y cruza a la U: el carrito de helados de la Plaza Central"
+     },
+     {
+      "clockMax": "mar 15:25"
+     }
+    ]
+   }
+  }
+ },
+ "m7_cuadra_martes": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La Calle 18 a las tres de la tarde: el sol rajando, el tótem azul del PrecioClub, los buses alimentadores y, al otro lado, la portería de la U. Un minuto a pie. El mejor depa del mundo."
+   }
+  }
+ },
+ "m7_campus_martes": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La PUCC un martes por la tarde. Los pavos reales en lo suyo. Huele a pasto cortado y a buñuelo.",
+    "effects": [
+     {
+      "objective": "El carrito de helados de la Plaza Central: Sira y sus amigas"
+     }
+    ]
+   }
+  }
+ },
+ "m7_campus_jueves": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La U en semana de receso: casi vacía. Un jardinero, dos pavos reales y ningún profe. Es como tener el campus para ustedes dos.",
+    "effects": [
+     {
+      "objective": "La portería: Sira te espera"
+     }
+    ]
+   }
+  }
+ },
+ "m7_heladero": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "martes",
+      "if": {
+       "mission": "mission07",
+       "notFlag": "m7_helado_martes"
+      }
+     },
+     {
+      "goto": "otro"
+     }
+    ]
+   },
+   "martes": {
+    "speaker": "Don Efraín",
+    "text": "¡Helado de paila, de crema y paleta! El de lulo es el que más sale. Pero vaya primero donde la niña, que lo está esperando hace rato... y las amigas también, ¿oyó?"
+   },
+   "otro": {
+    "speaker": "Don Efraín",
+    "text": "¿Otra vez por aquí? A usted lo veo con cara de cliente fijo. Y de enamorado. Las dos cosas son buenas para el negocio."
+   }
+  }
+ },
+ "m7_sira_martes": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sira",
+    "text": "¡Llegaste! Ellas son Majo y Cata, de Taller 5. Majo habla por las dos. Cata dibuja todo lo que ve. No les tengas miedo. Bueno, un poquito.",
+    "next": "majo"
+   },
+   "majo": {
+    "speaker": "Majo",
+    "text": "¡Por fin! El famoso chileno de la piscina. Sira nos ha hablado TANTO de ti. Tanto, tanto...",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "Majo. MAJO.",
+    "next": "helado"
+   },
+   "helado": {
+    "speaker": "Sira",
+    "text": "...¿Pedimos los helados o qué?",
+    "effects": [
+     {
+      "event": "helado_martes"
+     }
+    ]
+   }
+  }
+ },
+ "m7_majo": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "antes",
+      "if": {
+       "notFlag": "m7_helado_martes"
+      }
+     },
+     {
+      "goto": "jueves"
+     }
+    ]
+   },
+   "antes": {
+    "speaker": "Majo",
+    "text": "¿Y tú qué haces aquí parado? Ve a saludar a Sira, que se arregló el pelo tres veces."
+   },
+   "jueves": {
+    "speaker": "Majo",
+    "text": "Yo no estoy aquí. No me viste. Disfruta."
+   }
+  }
+ },
+ "m7_cata": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Cata",
+    "text": "Cata te mira, mira a Sira y dibuja algo en su croquera. Son dos monitos con un corazón. Lo tapa con la mano y sonríe."
+   }
+  }
+ },
+ "m7_helado_pedir": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Don Efraín",
+    "text": "Don Efraín abre el carrito. Sale un vapor frío que da gusto. ¿Qué helado pides?",
+    "choices": [
+     {
+      "label": "Lulo (el que más sale)",
+      "effects": [
+       {
+        "setFlag": "m7_sabor_lulo"
+       }
+      ],
+      "goto": "lulo"
+     },
+     {
+      "label": "Mora de Castilla",
+      "effects": [
+       {
+        "setFlag": "m7_sabor_mora"
+       }
+      ],
+      "goto": "mora"
+     },
+     {
+      "label": "Coco",
+      "effects": [
+       {
+        "setFlag": "m7_sabor_coco"
+       }
+      ],
+      "goto": "coco"
+     },
+     {
+      "label": "Arequipe (el de toda la vida)",
+      "effects": [
+       {
+        "setFlag": "m7_sabor_arequipe"
+       }
+      ],
+      "goto": "arequipe"
+     }
+    ]
+   },
+   "lulo": {
+    "text": "Lulo. Ácido y dulce a la vez. Majo: «Uy, sabe elegir».",
+    "next": "ella"
+   },
+   "mora": {
+    "text": "Mora. Te mancha los dedos al instante. Cata te pasa una servilleta sin mirarte.",
+    "next": "ella"
+   },
+   "coco": {
+    "text": "Coco. Don Efraín te echa un poquito de coco rallado encima «por ser usted».",
+    "next": "ella"
+   },
+   "arequipe": {
+    "text": "Arequipe: el manjar de aquí. Te sientes en casa. Casi.",
+    "next": "ella"
+   },
+   "ella": {
+    "text": "¿Y para Sira?",
+    "choices": [
+     {
+      "label": "Preguntarle cuál quiere",
+      "effects": [
+       {
+        "setFlag": "m7_q_helado_pregunta"
+       }
+      ],
+      "goto": "pregunta"
+     },
+     {
+      "label": "Adivinar: maracuyá (como en San Antonio)",
+      "goto": "maracuya"
+     },
+     {
+      "label": "Pedirle lo mismo que tú",
+      "goto": "mismo"
+     }
+    ]
+   },
+   "pregunta": {
+    "speaker": "Tú",
+    "text": "¿Cuál quieres? Invito yo.",
+    "next": "pregunta2"
+   },
+   "pregunta2": {
+    "speaker": "Sira",
+    "text": "Mmm... hoy, de maracuyá. Gracias, chileno.",
+    "next": "pagar"
+   },
+   "maracuya": {
+    "speaker": "Sira",
+    "text": "Te acordaste. ¿Ves, Majo? Se acordó.",
+    "effects": [
+     {
+      "setFlag": "m7_q_helado_pregunta"
+     }
+    ],
+    "next": "majo_mar"
+   },
+   "majo_mar": {
+    "speaker": "Majo",
+    "text": "Ay, no. Qué cosa más linda. Me va a dar diabetes y no es por el helado.",
+    "next": "pagar"
+   },
+   "mismo": {
+    "speaker": "Sira",
+    "text": "Bueno... me arriesgo. Si no me gusta, me como el tuyo.",
+    "next": "pagar"
+   },
+   "pagar": {
+    "text": "Don Efraín te pasa los conos. Majo y Cata «se olvidaron la billetera». Pagas los cuatro.",
+    "effects": [
+     {
+      "pay": 12000
+     },
+     {
+      "giveItem": "helado_carrito"
+     },
+     {
+      "vineta": "m7_helado"
+     }
+    ]
+   }
+  }
+ },
+ "m7_helado_charla": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Se sientan en el borde de la pileta de la plaza. Majo se acomoda frente a ti como si fuera a hacerte una entrevista de trabajo.",
+    "effects": [
+     {
+      "vineta": "m7_helado"
+     }
+    ],
+    "next": "p1"
+   },
+   "p1": {
+    "speaker": "Majo",
+    "text": "Primera pregunta: ¿qué haces tú con Sira todos los jueves en la piscina? Y no me digas «nadar».",
+    "choices": [
+     {
+      "label": "Ella me enseña a nadar. Yo intento no ahogarme",
+      "effects": [
+       {
+        "setFlag": "m7_q_majo"
+       }
+      ],
+      "goto": "p1_a"
+     },
+     {
+      "label": "Nadar. Solo nadar. ¿Qué más?",
+      "goto": "p1_b"
+     },
+     {
+      "label": "Lo mejor de mi semana, la verdad",
+      "effects": [
+       {
+        "setFlag": "m7_q_majo"
+       }
+      ],
+      "goto": "p1_c"
+     }
+    ]
+   },
+   "p1_a": {
+    "speaker": "Majo",
+    "text": "Jajaja. Es verdad, ¿ah? Sira dice que nadas como un perrito asustado.",
+    "next": "sira1"
+   },
+   "p1_b": {
+    "speaker": "Majo",
+    "text": "«Nadar»... Cata, anota: «dice que solo nadan».",
+    "next": "sira1"
+   },
+   "p1_c": {
+    "text": "Majo abre la boca y no dice nada. Primera vez en la historia. Sira se pone del color del helado de mora.",
+    "next": "sira1"
+   },
+   "sira1": {
+    "speaker": "Sira",
+    "text": "Ya, ya, Majo. Siguiente pregunta. O mejor, ninguna.",
+    "next": "p2"
+   },
+   "p2": {
+    "speaker": "Cata",
+    "text": "Cata deja de dibujar y te mira por encima de los lentes. Habla bajito: «¿Y cuándo te vuelves a Chile?».",
+    "choices": [
+     {
+      "label": "En junio. Pero no quiero pensar en eso",
+      "effects": [
+       {
+        "setFlag": "m7_q_cata"
+       }
+      ],
+      "goto": "p2_a"
+     },
+     {
+      "label": "En junio... si no me quedo",
+      "effects": [
+       {
+        "setFlag": "m7_q_cata"
+       }
+      ],
+      "goto": "p2_b"
+     },
+     {
+      "label": "No sé. Cambiemos de tema",
+      "goto": "p2_c"
+     }
+    ]
+   },
+   "p2_a": {
+    "text": "Cata asiente despacio y vuelve a su croquera. Sira mira su helado. Se derrite un poquito.",
+    "next": "majo2"
+   },
+   "p2_b": {
+    "text": "«Si no me quedo». Majo y Cata se miran. Sira se atora con el helado y tose para disimular.",
+    "next": "majo2"
+   },
+   "p2_c": {
+    "text": "Cata se encoge de hombros. «Bueno», dice, y dibuja un avión.",
+    "next": "majo2"
+   },
+   "majo2": {
+    "speaker": "Majo",
+    "text": "Bueno, bueno. El chileno aprobó. Sira, te lo puedes quedar. Por ahora.",
+    "next": "fin"
+   },
+   "fin": {
+    "speaker": "Sira",
+    "text": "¡MAJO!"
+   }
+  }
+ },
+ "m7_helado_fin": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Conversan hasta que el helado se acaba y las sombras de los samanes se alargan. Majo cuenta la vez que Sira se quedó dormida encima de su maqueta y se despertó con un árbol de esponja pegado en la cara.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "Eso nunca pasó. Bueno, pasó una vez. ¡Mañana se repite, chileno! Mismo carrito, misma hora."
+   }
+  }
+ },
+ "m7_miercoles": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": [
+     "Miércoles. Mismo carrito, misma hora. Don Efraín ya ni pregunta: te pasa el de lulo y el de maracuyá apenas te ve.",
+     "A los cinco minutos, Majo «se acuerda» de que tiene que imprimir unos planos. Cata «se acuerda» de que tiene que acompañarla. Se van mirando para atrás y riéndose."
+    ],
+    "effects": [
+     {
+      "vineta": "m7_helado_2"
+     }
+    ],
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "Son pésimas disimulando. Las quiero, pero son pésimas.",
+    "next": "sira2"
+   },
+   "sira2": {
+    "speaker": "Sira",
+    "text": "...Oye. Mañana no hay clases, es receso. ¿Me enseñas TU U? Digo, mi U. Bueno, la U. Pasemos el día ahí.",
+    "next": "tu"
+   },
+   "tu": {
+    "choices": [
+     {
+      "label": "Obvio. ¿A qué hora?",
+      "goto": "ok"
+     },
+     {
+      "label": "¿Todo el día? ¿Conmigo? ¿Segura?",
+      "goto": "segura"
+     }
+    ]
+   },
+   "ok": {
+    "speaker": "Sira",
+    "text": "A las diez en la portería. Puntual, chileno. Bueno, a la chilena: diez y cinco.",
+    "next": "fin"
+   },
+   "segura": {
+    "speaker": "Sira",
+    "text": "Segurísima. A las diez en la portería. Y no lo pienses tanto, que se te nota.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Esa noche te cuesta dormir. Es solo un día en la U. Solo eso. ¿Cierto?"
+   }
+  }
+ },
+ "m7_jueves_despierta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Jueves, 8:40. La luz entra de lado por el ventanal. Hoy no hay clases.",
+    "effects": [
+     {
+      "message": "m7_sira_jueves"
+     }
+    ],
+    "next": "cel"
+   },
+   "cel": {
+    "text": "Un mensaje de Sira. Te levantas tan rápido que casi te vas de cara contra la caja del MANJAR.",
+    "effects": [
+     {
+      "objective": "La portería de la U a las 10: Sira te espera"
+     }
+    ]
+   }
+  }
+ },
+ "m7_sira_porteria": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Sira está apoyada en la caseta de la portería, mirando el celular. Levanta la vista y sonríe como si no te hubiera visto ayer.",
+    "next": "hola"
+   },
+   "hola": {
+    "speaker": "Sira",
+    "text": "Buenos días, chileno. Hoy la U es nuestra. ¿Plan? Te tengo tres: mi maqueta en el hall de Palmas, almorzar en la Cafetería Central, una selfie con un pavo real... y el lago al atardecer, que es lo mejor.",
+    "choices": [
+     {
+      "label": "Me gusta tu plan. Vamos",
+      "goto": "vamos"
+     },
+     {
+      "label": "¿Y si nos perdemos por ahí, sin plan?",
+      "goto": "sinplan"
+     }
+    ]
+   },
+   "vamos": {
+    "speaker": "Sira",
+    "text": "Un chileno obediente. Así me gusta. Bueno... así me gustas. Digo, así me gusta. ¡Vamos!",
+    "next": "fin"
+   },
+   "sinplan": {
+    "speaker": "Sira",
+    "text": "Perdernos en la U... me encanta. Pero al lago llegamos sí o sí, ¿ah?",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Sira camina a tu lado. A ratos sus hombros se tocan. A ratos no tanto, y los dos se dan cuenta.",
+    "effects": [
+     {
+      "setFlag": [
+       "m7_con_sira",
+       "m7_sira_sigue"
+      ]
+     },
+     {
+      "objective": "Un día en la U con Sira: la maqueta (Palmas), almorzar (Cafetería Central), el pavo real (cerca del lago)... y el lago al atardecer"
+     },
+     {
+      "clockMax": "jue 17:00"
+     }
+    ]
+   }
+  }
+ },
+ "m7_maqueta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "sola",
+      "if": {
+       "notFlag": "m7_sira_sigue"
+      }
+     },
+     {
+      "goto": "hecha",
+      "if": {
+       "flag": "m7_act_maqueta"
+      }
+     },
+     {
+      "goto": "ver"
+     }
+    ]
+   },
+   "sola": {
+    "text": "Una maqueta de cartón y palitos de balso sobre una mesa: «Mirador del río Pance». Hay un letrero: «Taller 5 · S. Martínez». Mejor la ves con ella."
+   },
+   "hecha": {
+    "text": "La maqueta de Sira. Ahora la ves distinta: los dos monitos en el mirador parecen más cerca que antes. ¿O será idea tuya?"
+   },
+   "ver": {
+    "speaker": "Sira",
+    "text": "Esta es. Mi proyecto del semestre: un mirador de madera sobre el río Pance, donde va la gente los domingos a hacer sancocho y meterse al agua.",
+    "effects": [
+     {
+      "vineta": "m7_maqueta"
+     }
+    ],
+    "next": "explica"
+   },
+   "explica": {
+    "speaker": "Sira",
+    "text": "La idea es que se pueda ver el río sin tocarlo, que no le hagan daño. El techo es de guadua. Y estos dos monitos... son de escala. Nada más. De escala.",
+    "choices": [
+     {
+      "label": "Es precioso. ¿Lo diseñaste tú sola?",
+      "effects": [
+       {
+        "setFlag": "m7_q_maqueta"
+       }
+      ],
+      "goto": "precioso"
+     },
+     {
+      "label": "¿Y esa banderita chilena en la esquina?",
+      "effects": [
+       {
+        "setFlag": "m7_q_maqueta"
+       },
+       {
+        "setFlag": "secreto_banderita"
+       }
+      ],
+      "goto": "banderita"
+     },
+     {
+      "label": "Le falta un tobogán",
+      "goto": "tobogan"
+     }
+    ]
+   },
+   "precioso": {
+    "speaker": "Sira",
+    "text": "Sola, sí. Bueno, Cata me ayudó con los árboles. Y Majo me hizo café. Gracias. Nadie me había dicho «precioso» de una maqueta.",
+    "next": "fin"
+   },
+   "banderita": {
+    "speaker": "Sira",
+    "text": "¿Qué banderita? ...Ay. Esa. Es... es que los monitos tenían que ser de alguna parte. Y uno de los dos es... ¡No me mires así!",
+    "effects": [
+     {
+      "vineta": "m7_maqueta"
+     }
+    ],
+    "next": "fin"
+   },
+   "tobogan": {
+    "speaker": "Sira",
+    "text": "¿Un tobogán? ¿Al río? ...Bueno, la profe de Taller diría que no. Yo digo que sí. Te lo pongo en la próxima versión.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Se quedan un rato mirando la maqueta, hombro con hombro, sin decir nada. Pasa un pavo real y la mira también, con desconfianza.",
+    "effects": [
+     {
+      "setFlag": "m7_act_maqueta"
+     },
+     {
+      "clockAdd": 45
+     }
+    ]
+   }
+  }
+ },
+ "m7_almuerzo": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La Cafetería Central casi vacía. Almuerzo ejecutivo: sopa de tortilla, arroz, fríjoles, carne asada y tres patacones. Se sientan junto a la ventana.",
+    "effects": [
+     {
+      "vineta": "m7_almuerzo"
+     }
+    ],
+    "next": "paga"
+   },
+   "paga": {
+    "text": "¿Quién paga?",
+    "choices": [
+     {
+      "label": "Yo invito (los helados del martes también fueron míos)",
+      "effects": [
+       {
+        "pay": 26000
+       }
+      ],
+      "goto": "yo"
+     },
+     {
+      "label": "Mitad y mitad",
+      "effects": [
+       {
+        "pay": 13000
+       },
+       {
+        "setFlag": "m7_q_almuerzo"
+       }
+      ],
+      "goto": "mitad"
+     },
+     {
+      "label": "Que pague el que pierda en piedra, papel o tijera",
+      "effects": [
+       {
+        "setFlag": "m7_q_almuerzo"
+       }
+      ],
+      "goto": "juego"
+     }
+    ]
+   },
+   "yo": {
+    "speaker": "Sira",
+    "text": "Bueno, pero la próxima invito yo. Y no se discute.",
+    "next": "patacon"
+   },
+   "mitad": {
+    "speaker": "Sira",
+    "text": "Mitad y mitad. Me gusta. Así nadie le debe nada a nadie. Bueno, yo te debo una maqueta.",
+    "next": "patacon"
+   },
+   "juego": {
+    "text": "Piedra, papel o tijera... ¡Tijera! Tú sacas piedra. Ella se ríe, paga la mitad igual y dice que ganó «moralmente».",
+    "effects": [
+     {
+      "pay": 13000
+     }
+    ],
+    "next": "patacon"
+   },
+   "patacon": {
+    "text": "A mitad del almuerzo, un tenedor cruza la mesa y se lleva un patacón de tu plato. Después otro.",
+    "next": "robo"
+   },
+   "robo": {
+    "speaker": "Sira",
+    "text": "¿Qué? Los patacones ajenos son más ricos. Es ciencia.",
+    "choices": [
+     {
+      "label": "Robarle uno de vuelta",
+      "goto": "devuelta"
+     },
+     {
+      "label": "Pasarle el último",
+      "effects": [
+       {
+        "setFlag": "m7_q_patacon"
+       }
+      ],
+      "goto": "ultimo"
+     }
+    ]
+   },
+   "devuelta": {
+    "speaker": "Sira",
+    "text": "Le robas uno. Ella abre la boca, ofendidísima... y se ríe tanto que el señor del aseo se ríe también."
+   },
+   "ultimo": {
+    "speaker": "Sira",
+    "text": "Le pasas el último patacón. Ella lo mira, te mira. «Esto es amor», dice, y después: «Al patacón. Amor al patacón»."
+   }
+  }
+ },
+ "m7_pavo_selfie": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "sola",
+      "if": {
+       "notFlag": "m7_sira_sigue"
+      }
+     },
+     {
+      "goto": "ver"
+     }
+    ]
+   },
+   "sola": {
+    "text": "Un pavo real con la cola abierta. Te mira como si le debieras plata."
+   },
+   "ver": {
+    "speaker": "Sira",
+    "text": "¡Mira! ¡Tiene la cola abierta! Rápido, la selfie, antes de que la cierre.",
+    "choices": [
+     {
+      "label": "Sacar la selfie con el pavo",
+      "goto": "selfie"
+     },
+     {
+      "label": "Tú saca la foto, yo me agacho",
+      "goto": "agacho"
+     }
+    ]
+   },
+   "selfie": {
+    "text": "Te acercas a ella para que quepan los dos. Mejilla con mejilla. El pavo real se pone justo detrás, como si supiera.",
+    "effects": [
+     {
+      "vineta": "m7_selfie"
+     },
+     {
+      "sfx": "camera"
+     }
+    ],
+    "next": "foto"
+   },
+   "agacho": {
+    "text": "Te agachas al lado del pavo. Ella se ríe tanto que la foto sale movida. «Otra, otra. Ven acá, conmigo.» Mejilla con mejilla.",
+    "effects": [
+     {
+      "vineta": "m7_selfie"
+     },
+     {
+      "sfx": "camera"
+     }
+    ],
+    "next": "foto"
+   },
+   "foto": {
+    "speaker": "Sira",
+    "text": "Salió perfecta. El pavo, en todo caso, salió mejor que ustedes. Te la manda al tiro.",
+    "effects": [
+     {
+      "giveItem": "foto_pavo"
+     },
+     {
+      "setFlag": "m7_q_selfie"
+     },
+     {
+      "setFlag": [
+       "m7_act_pavo",
+       "secreto_selfie_pavo"
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "m7_lago": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "tres",
+      "if": {
+       "flag": "m7_tres_planes"
+      }
+     },
+     {
+      "goto": "pocos",
+      "if": {
+       "not": {
+        "any": [
+         {
+          "flag": "m7_act_maqueta"
+         },
+         {
+          "flag": "m7_act_almuerzo"
+         },
+         {
+          "flag": "m7_act_pavo"
+         }
+        ]
+       }
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "tres": {
+    "text": "Maqueta, almuerzo, pavo real. Cumplieron el plan entero y todavía queda sol. Se sientan en el pasto, a la orilla del lago.",
+    "effects": [
+     {
+      "vineta": "m7_lago"
+     }
+    ],
+    "next": "hablan"
+   },
+   "pocos": {
+    "speaker": "Sira",
+    "text": "¿Directo al lago? Bueno... eso es muy romántico de tu parte, chileno. O muy flojo. Se sientan en el pasto, a la orilla.",
+    "effects": [
+     {
+      "vineta": "m7_lago"
+     }
+    ],
+    "next": "hablan"
+   },
+   "normal": {
+    "text": "Se les pasó la tarde sin darse cuenta. Se sientan en el pasto, a la orilla del lago, con el sol bajando detrás de los Farallones.",
+    "effects": [
+     {
+      "vineta": "m7_lago"
+     }
+    ],
+    "next": "hablan"
+   },
+   "hablan": {
+    "text": "Las tortugas sacan la cabeza del agua. Una garza se queda quieta en una pata. Sira se abraza las rodillas.",
+    "next": "pregunta"
+   },
+   "pregunta": {
+    "speaker": "Sira",
+    "text": "¿Sabes por qué estudio Arquitectura? Mi abuelo construía casas en Buenaventura. De madera, encima del agua. Decía que una casa buena es la que te hace sentir que ya llegaste.",
+    "choices": [
+     {
+      "label": "Yo me siento así aquí. Contigo",
+      "effects": [
+       {
+        "setFlag": "m7_q_lago"
+       }
+      ],
+      "goto": "contigo"
+     },
+     {
+      "label": "Tu abuelo tenía razón. ¿Me vas a diseñar una?",
+      "effects": [
+       {
+        "setFlag": "m7_q_lago"
+       }
+      ],
+      "goto": "disena"
+     },
+     {
+      "label": "Yo todavía no sé dónde es «llegar»",
+      "goto": "llegar"
+     }
+    ]
+   },
+   "contigo": {
+    "text": "Sira no dice nada. Arranca un pastito y lo enrolla en el dedo. Después, muy bajito: «Yo también».",
+    "next": "junio"
+   },
+   "disena": {
+    "speaker": "Sira",
+    "text": "¿Una casa para ti? ...Con ventanal grande, para que veas los cerros. Y una cocina donde quepan dos. Ya la estoy dibujando en la cabeza.",
+    "next": "junio"
+   },
+   "llegar": {
+    "speaker": "Sira",
+    "text": "Entonces todavía estás viajando. No pasa nada. Yo te acompaño mientras llegas.",
+    "next": "junio"
+   },
+   "junio": {
+    "speaker": "Sira",
+    "text": "...¿Junio, entonces? Lo dijo Cata y no me lo puedo sacar de la cabeza.",
+    "choices": [
+     {
+      "label": "No pensemos en junio. Pensemos en hoy",
+      "effects": [
+       {
+        "setFlag": "m7_q_lago_2"
+       }
+      ],
+      "goto": "hoy"
+     },
+     {
+      "label": "Junio queda lejísimos",
+      "goto": "lejos"
+     },
+     {
+      "label": "Si me das razones, me quedo",
+      "effects": [
+       {
+        "setFlag": "m7_q_lago_2"
+       }
+      ],
+      "goto": "razones"
+     }
+    ]
+   },
+   "hoy": {
+    "speaker": "Sira",
+    "text": "Hoy. Me gusta hoy. Hoy está bonito.",
+    "next": "casi"
+   },
+   "lejos": {
+    "speaker": "Sira",
+    "text": "Queda lejos... pero llega. Todo llega. Bueno, menos el T31 cuando uno tiene apuro.",
+    "next": "casi"
+   },
+   "razones": {
+    "speaker": "Sira",
+    "text": "¿Razones? ...Te voy a dar razones, chileno. Ya vas a ver.",
+    "next": "casi"
+   },
+   "casi": {
+    "text": "Se quedan mirándose. El sol pone todo naranjo. Ella se acerca un poquito. Tú también. Un poquito más..."
+   }
+  }
+ },
+ "m7_lago_pavo": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Pavo real",
+    "text": "¡¡AAAÓ!!",
+    "effects": [
+     {
+      "vineta": "m7_pavo_grito"
+     }
+    ],
+    "next": "susto"
+   },
+   "susto": {
+    "text": "Un pavo real, justo detrás de ustedes, pega el grito más fuerte de la historia de Pance. Sira salta, tú saltas, y terminan agarrados el uno del otro.",
+    "next": "risa"
+   },
+   "risa": {
+    "speaker": "Sira",
+    "text": "¡Este pavo me odia! Primero Grover en San Antonio, ahora un pavo real. El universo no quiere, chileno.",
+    "choices": [
+     {
+      "label": "El universo no, pero yo sí",
+      "effects": [
+       {
+        "setFlag": "m7_q_pavo"
+       }
+      ],
+      "goto": "yo"
+     },
+     {
+      "label": "Reírte con ella hasta que duela la guata",
+      "goto": "risa2"
+     }
+    ]
+   },
+   "yo": {
+    "text": "Sira te mira con los ojos muy abiertos. «¿Tú sí qué?» No alcanzas a contestar: el pavo grita otra vez, más cerca.",
+    "next": "fin"
+   },
+   "risa2": {
+    "text": "Se ríen tirados en el pasto hasta que les duele la guata. El pavo real los mira ofendido y se va.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Cuando se calman, el sol ya se escondió. Las luces de los caminos de la U se prenden de a una."
+   }
+  }
+ },
+ "m7_lago_fin": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sira",
+    "text": "Me tengo que ir. Mi bus pasa a las seis y media y mi mamá cree que estoy en la biblioteca.",
+    "next": "tu"
+   },
+   "tu": {
+    "choices": [
+     {
+      "label": "Te acompaño al paradero",
+      "effects": [
+       {
+        "setFlag": "m7_q_acompana"
+       }
+      ],
+      "goto": "acompana"
+     },
+     {
+      "label": "¿Tan pronto?",
+      "goto": "pronto"
+     }
+    ]
+   },
+   "acompana": {
+    "text": "Caminan despacio hasta la portería, más despacio que nunca.",
+    "next": "fin"
+   },
+   "pronto": {
+    "speaker": "Sira",
+    "text": "Pronto no: llevamos ocho horas, chileno. ...Pero sí, se pasó volando.",
+    "next": "fin"
+   },
+   "fin": {
+    "speaker": "Sira",
+    "text": "Gracias por hoy. Fue... fue un día bonito. De los que uno guarda."
+   }
+  }
+ },
+ "m7_lago_bus": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La acompañas al paradero de la portería. Sube al bus, se sienta en la ventana y hace corazones con las manos contra el vidrio hasta que el bus dobla en la Calle 18.",
+    "next": "casa"
+   },
+   "casa": {
+    "text": "Cruzas la calle hacia el Bobo. Son las seis y veinte y ya la extrañas. Es ridículo. Lo sabes. No importa.",
+    "effects": [
+     {
+      "objective": "Vuelve a tu depa (piso 8) y descansa: acuéstate en la cama"
+     }
+    ]
+   }
+  }
+ },
+ "m7_chat_1": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Te tiras en la cama. 22:40. Ibas a dormir temprano. Vibra el celular.",
+    "effects": [
+     {
+      "vineta": "m7_chat"
+     },
+     {
+      "message": "m7_c1_sira"
+     }
+    ],
+    "next": "resp"
+   },
+   "resp": {
+    "text": "Sira: «¿Ya llegaste a tu depa? Yo acabo de llegar. Todavía huelo a lago.»",
+    "choices": [
+     {
+      "label": "«Llegué. Todavía tengo el grito del pavo en los oídos»",
+      "effects": [
+       {
+        "message": "m7_c1_a"
+       },
+       {
+        "setFlag": "m7_q_chat_1"
+       }
+      ],
+      "goto": "a"
+     },
+     {
+      "label": "«Llegué, pero creo que una parte se quedó en el lago»",
+      "effects": [
+       {
+        "message": "m7_c1_b"
+       },
+       {
+        "setFlag": "m7_q_chat_1"
+       }
+      ],
+      "goto": "b"
+     },
+     {
+      "label": "«Sí! Buenas noches!»",
+      "effects": [
+       {
+        "message": "m7_c1_c"
+       }
+      ],
+      "goto": "c"
+     }
+    ]
+   },
+   "a": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c1_sira_a"
+     }
+    ]
+   },
+   "b": {
+    "text": "Escribiendo... borrando... escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c1_sira_b"
+     }
+    ]
+   },
+   "c": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c1_sira_c"
+     }
+    ]
+   }
+  }
+ },
+ "m7_chat_2": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "23:55. Ninguno de los dos se despide.",
+    "effects": [
+     {
+      "vineta": "m7_chat"
+     },
+     {
+      "message": "m7_c2_sira"
+     }
+    ],
+    "next": "resp"
+   },
+   "resp": {
+    "text": "Sira: «Pregunta seria: ¿qué es lo que más extrañas de Chile?»",
+    "choices": [
+     {
+      "label": "«Mi mamá. Y el pan. En ese orden (casi)»",
+      "effects": [
+       {
+        "message": "m7_c2_a"
+       },
+       {
+        "setFlag": "m7_q_chat_2"
+       }
+      ],
+      "goto": "a"
+     },
+     {
+      "label": "«Antes te decía que todo. Ahora no sé»",
+      "effects": [
+       {
+        "message": "m7_c2_b"
+       },
+       {
+        "setFlag": "m7_q_chat_2"
+       }
+      ],
+      "goto": "b"
+     },
+     {
+      "label": "«El frío. Aquí me derrito»",
+      "effects": [
+       {
+        "message": "m7_c2_c"
+       }
+      ],
+      "goto": "c"
+     }
+    ]
+   },
+   "a": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c2_sira_a"
+     }
+    ]
+   },
+   "b": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c2_sira_b"
+     }
+    ]
+   },
+   "c": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c2_sira_c"
+     }
+    ]
+   }
+  }
+ },
+ "m7_chat_3": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "1:30 de la mañana. Deberías dormir. No quieres.",
+    "effects": [
+     {
+      "vineta": "m7_chat"
+     },
+     {
+      "message": "m7_c3_sira"
+     },
+     {
+      "message": "m7_c3_foto"
+     }
+    ],
+    "next": "resp"
+   },
+   "resp": {
+    "text": "Sira: «¿Sigues despierto? Estoy viendo la foto del pavo jajaja».",
+    "choices": [
+     {
+      "label": "«Esa foto va a ser mi fondo de pantalla»",
+      "effects": [
+       {
+        "message": "m7_c3_a"
+       },
+       {
+        "setFlag": "m7_q_chat_3"
+       }
+      ],
+      "goto": "a"
+     },
+     {
+      "label": "«Yo tampoco puedo dormir. Me pregunto por qué»",
+      "effects": [
+       {
+        "message": "m7_c3_b"
+       },
+       {
+        "setFlag": "m7_q_chat_3"
+       }
+      ],
+      "goto": "b"
+     },
+     {
+      "label": "«El pavo salió mejor, sí»",
+      "effects": [
+       {
+        "message": "m7_c3_c"
+       }
+      ],
+      "goto": "c"
+     }
+    ]
+   },
+   "a": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c3_sira_a"
+     }
+    ]
+   },
+   "b": {
+    "text": "Escribiendo... escribiendo... escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c3_sira_b"
+     }
+    ]
+   },
+   "c": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c3_sira_c"
+     }
+    ]
+   }
+  }
+ },
+ "m7_chat_4": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "3:12. Los ojos te arden. La batería, al 9 %.",
+    "effects": [
+     {
+      "vineta": "m7_chat"
+     },
+     {
+      "message": "m7_c4_sira"
+     }
+    ],
+    "next": "resp"
+   },
+   "resp": {
+    "text": "Sira: «Son las 3:12. Mañana voy a ser un zombi. ¿Qué haces mañana?»",
+    "choices": [
+     {
+      "label": "«Ven a mi depa. Cocino yo»",
+      "effects": [
+       {
+        "message": "m7_c4_a"
+       },
+       {
+        "setFlag": [
+         "m7_q_chat_4",
+         "m7_q_invitacion"
+        ]
+       }
+      ],
+      "goto": "a"
+     },
+     {
+      "label": "«Nada... ¿y tú?»",
+      "effects": [
+       {
+        "message": "m7_c4_b"
+       }
+      ],
+      "goto": "b"
+     },
+     {
+      "label": "«Dormir hasta el mediodía»",
+      "effects": [
+       {
+        "message": "m7_c4_c"
+       }
+      ],
+      "goto": "c"
+     }
+    ]
+   },
+   "a": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c4_sira_a"
+     }
+    ],
+    "next": "salsa"
+   },
+   "b": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c4_sira_b"
+     }
+    ],
+    "next": "salsa"
+   },
+   "c": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c4_sira_c"
+     }
+    ],
+    "next": "salsa"
+   },
+   "salsa": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c4_sira_2"
+     }
+    ],
+    "next": "noches"
+   },
+   "noches": {
+    "text": "Escribiendo...",
+    "effects": [
+     {
+      "message": "m7_c4_sira_3"
+     }
+    ],
+    "next": "tu"
+   },
+   "tu": {
+    "choices": [
+     {
+      "label": "«Buenas noches, Sira»",
+      "effects": [
+       {
+        "message": "m7_c4_fin"
+       }
+      ],
+      "goto": "fin"
+     },
+     {
+      "label": "«Sueña conmigo (es broma) (no es broma)»",
+      "effects": [
+       {
+        "message": "m7_c4_fin_b"
+       },
+       {
+        "setFlag": "m7_q_suena"
+       }
+      ],
+      "goto": "fin"
+     }
+    ]
+   },
+   "fin": {
+    "text": "Dejas el celular en el pecho. Sonríes como idiota mirando el techo. Afuera pasa el último bus por la Calle 18.",
+    "effects": [
+     {
+      "vineta": "m7_chat"
+     }
+    ]
+   }
+  }
+ },
+ "m7_dormir": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Te quedas dormido con el celular en la mano, a las 3 y 20 de la mañana."
+   }
+  }
+ },
+ "m7_viernes_despierta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Viernes, 11:25. Dormiste ocho horas. No: cuatro. Tienes la marca de la almohada en la cara y una sonrisa que no se te quita.",
+    "next": "recuerda"
+   },
+   "recuerda": {
+    "text": "Te acuerdas de golpe: Sira viene a la una. A TU depa. Con la salsa de su abuela.",
+    "next": "mira"
+   },
+   "mira": {
+    "text": "Miras el depa: ropa tirada, la loza de anoche, las cajas de la mudanza. Faltan noventa minutos.",
+    "effects": [
+     {
+      "objective": "Ordena el depa y pon a hervir el agua para los fideos (la cocina). Sira llega a la 1"
+     }
+    ]
+   }
+  }
+ }
+}

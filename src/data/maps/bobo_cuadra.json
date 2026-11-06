@@ -1,0 +1,343 @@
+{
+ "id": "bobo_cuadra",
+ "name": "Calle 18 · Cañasgordas",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 40,
+ "height": 46,
+ "region": "cali",
+ "music": "depa",
+ "legend": {
+  "\"": "pasto",
+  "T": "arbol",
+  "y": "palmera",
+  "r": "reja",
+  "P": "adoquin",
+  ".": "vereda",
+  "t": "arbol_vereda",
+  "=": "calle",
+  "|": "calle_linea_v",
+  "-": "calle_linea_h",
+  "Z": "cebra_v",
+  "z": "cebra_h",
+  "S": "bodega_borde",
+  "s": "bodega_techo",
+  "W": "bodega_muro",
+  "E": "bodega_entrada",
+  "O": "bodega_totem",
+  "p": "parqueadero",
+  "q": "parqueadero_auto",
+  "Q": "parqueadero_auto_b",
+  "H": "boho_borde",
+  "h": "boho_techo",
+  "k": "boho_techo_equipo",
+  "L": "boho_ladrillo",
+  "B": "boho_blanco",
+  "b": "boho_base",
+  "o": "boho_ojo",
+  "N": "boho_letrero",
+  "D": "boho_puerta",
+  ",": "plazoleta",
+  "j": "jardinera",
+  "M": "muro_ladrillo",
+  "f": "piso_piscina",
+  "w": "agua_piscina",
+  "R": "reposera",
+  "K": "sombrilla",
+  "F": "farma_fachada",
+  "X": "farma_entrada",
+  "l": "local_fachada"
+ },
+ "rows": [
+  "r.==|==.................................",
+  "r.=====zz===============================",
+  "r.=====zz-------------------------------",
+  "r.=====zz===============================",
+  "r.==|==.................................",
+  "r.==|==..\"\"\"\"SSSSSSSSSSSSSSSSSSSSSSSSSST",
+  "r.==|==..\"y\"\"ssssssssssssssssssssssssss\"",
+  "r.==|==..\"\"\"\"ssssssssssssssssssssssssss\"",
+  "P.==|==..\"\"\"\"ssssssssssssssssssssssssssT",
+  "P.ZZZZZ..\"\"\"\"ssssssssssssssssssssssssss\"",
+  "P.==|==..\"y\"\"ssssssssssssssssssssssssss\"",
+  "r.==|==..\"\"\"\"ssssssssssssssssssssssssssT",
+  "r.==|==..\"\"\"\"WWWWWWWWWWWEEWWWWWWWWWWWWW\"",
+  "r.==|==..O\"pppppppppppppppppppppppppppp\"",
+  "r.==|==..\"ypQppqppQppqppQppqppQppqppQppT",
+  "r.==|==.t\"\"pppppppppppppppppppppppppppp\"",
+  "r.==|==..\"\"ppqppQppqppQppqppQppqppQppqp\"",
+  "r.==|==..\"\"ppppppppppppppppppppppppppppT",
+  "r.==|==..\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"",
+  "r.==|==..\"\"\"HHHHHHHHHHHHHHHHjffffffffffT",
+  "r.==|==..\"y\"hhhhhhhhhhhhhhhhjffffffffff\"",
+  "r.==|==.t\"\"\"hhkhhhhhhhhhkhhhjfbbbbbbbbf\"",
+  "r.==|==..\"\"\"hhhhhhhkhhhhhhhhjfwwwwwwwwfT",
+  "r.==|==..\"\"\"hhhhkhhhhhhhhhhhjfwwwwwwwwf\"",
+  "r.==|==..\"y\"hhhhhhhhhhhhhhhhjfwwwwwwwwf\"",
+  "r.==|==..\"\"\"LLLLLLLLLBBBBBBBjfwwwwwwwwfT",
+  "r.==|==..\"\"\"LLLLLLLLLBBBBBBBjfBBBBBBBBf\"",
+  "r.==|==..\"\"\"LLLLLLLLLBBBBBBBjffffffffff\"",
+  "r.==|==..\"y\"LLLLLLLLLBBBBBBBjfRfRffRfRfT",
+  "r.==|==..\"\"\"LLLLLLLLLBBBBBBBjffKffffKff\"",
+  "r.==|==..\"\"\"LLLLLLLLLBBBBBBBjffffffffff\"",
+  "r.==|==..\"\"\"LLLLLLLLLBBBBBBBjffffffffffT",
+  "r.==|==..\"\"\"bobbNbDbbbbbobbbMMMMM,MMMMMM",
+  "r.==|==.t\"\"\"j,,j,,,,,j,,j,,j,,,,,,,,,,,,",
+  "r.==|==..\"\"\",,,,,,,,,,,,,,,,,,j,,,,,j,,,",
+  "r.==|==.................................",
+  "r.=====zz===========zz==================",
+  "r.=====zz-----------zz------------------",
+  "r.=====zz===========zz==================",
+  "r.==|==.................................",
+  "r.==|==..HHHHHHHHHHHHHHHHHHHHHH\"\"\"\"\"\"\"\"\"",
+  "r.==|==..hhhhhhhhhhhhhhhhhhhhhh\"\"\"\"\"\"\"\"\"",
+  "r.==|==..hhhhhhhhhhhhhhhhhhhhhh\"T\"\"T\"\"T\"",
+  "r.==|==..FFXFFFllllllllllllllll\"\"\"\"\"\"\"\"\"",
+  "r.==|==.................................",
+  "r.==|==.t\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+ ],
+ "zones": [
+  {
+   "name": "Piscina del Bobo",
+   "subtitle": "Bobo Unic Living",
+   "x": 29,
+   "y": 19,
+   "w": 10,
+   "h": 13
+  },
+  {
+   "name": "Bobo Unic Living",
+   "subtitle": "Residencia estudiantil · Calle 18",
+   "x": 9,
+   "y": 18,
+   "w": 31,
+   "h": 17
+  },
+  {
+   "name": "PrecioClub Cañasgordas",
+   "subtitle": "Calle 18 con Carrera 121",
+   "x": 9,
+   "y": 5,
+   "w": 31,
+   "h": 13
+  },
+  {
+   "name": "Carrera 121",
+   "subtitle": "Cañasgordas · Pance",
+   "x": 7,
+   "y": 0,
+   "w": 33,
+   "h": 5
+  },
+  {
+   "name": "Esquina de la Carrera 122",
+   "subtitle": "Cañasgordas · Pance",
+   "x": 7,
+   "y": 35,
+   "w": 33,
+   "h": 11
+  },
+  {
+   "name": "Calle 18",
+   "subtitle": "Frente a la PUCC",
+   "x": 0,
+   "y": 0,
+   "w": 9,
+   "h": 46
+  }
+ ],
+ "spawns": {
+  "desde_u": {
+   "x": 1,
+   "y": 9,
+   "dir": "right"
+  },
+  "lobby": {
+   "x": 18,
+   "y": 33,
+   "dir": "down"
+  },
+  "farmadia": {
+   "x": 11,
+   "y": 44,
+   "dir": "down"
+  },
+  "paradero": {
+   "x": 7,
+   "y": 27,
+   "dir": "left"
+  },
+  "piscina": {
+   "x": 33,
+   "y": 31,
+   "dir": "up"
+  }
+ },
+ "warps": [
+  {
+   "x": 0,
+   "y": 8,
+   "to": "pucc_campus",
+   "spawn": "desde_bobo"
+  },
+  {
+   "x": 0,
+   "y": 9,
+   "to": "pucc_campus",
+   "spawn": "desde_bobo"
+  },
+  {
+   "x": 0,
+   "y": 10,
+   "to": "pucc_campus",
+   "spawn": "desde_bobo"
+  },
+  {
+   "x": 18,
+   "y": 32,
+   "to": "bobo_lobby",
+   "spawn": "entrada"
+  },
+  {
+   "x": 11,
+   "y": 43,
+   "to": "farmadia",
+   "spawn": "entrada",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission07"
+      }
+     },
+     {
+      "flag": "m7_rumbo_farmadia"
+     }
+    ]
+   },
+   "blockedDialogue": "m7_farmadia_cerrada"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "charla_1a",
+   "x": 7,
+   "y": 40,
+   "w": 2,
+   "h": 4,
+   "event": "dialogo:m7_charla_1",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_bebida_elegida",
+    "notFlag": "m7_charla_1"
+   }
+  },
+  {
+   "id": "charla_1b",
+   "x": 31,
+   "y": 40,
+   "w": 9,
+   "h": 4,
+   "event": "dialogo:m7_charla_1",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_bebida_elegida",
+    "notFlag": "m7_charla_1"
+   }
+  },
+  {
+   "id": "charla_2",
+   "x": 7,
+   "y": 36,
+   "w": 33,
+   "h": 3,
+   "event": "dialogo:m7_charla_2",
+   "if": {
+    "mission": "mission07",
+    "flag": [
+     "m7_bebida_elegida",
+     "m7_charla_1"
+    ],
+    "notFlag": "m7_charla_2"
+   }
+  },
+  {
+   "id": "charla_3",
+   "x": 9,
+   "y": 33,
+   "w": 31,
+   "h": 2,
+   "event": "dialogo:m7_charla_3",
+   "if": {
+    "mission": "mission07",
+    "flag": [
+     "m7_bebida_elegida",
+     "m7_charla_2"
+    ],
+    "notFlag": "m7_charla_3"
+   }
+  },
+  {
+   "id": "paradero",
+   "x": 7,
+   "y": 26,
+   "w": 1,
+   "h": 3,
+   "event": "paradero_m7",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_rumbo_paradero",
+    "notFlag": "m7_despedida"
+   }
+  }
+ ],
+ "enter": [
+  {
+   "id": "martes",
+   "dialogue": "m7_cuadra_martes",
+   "once": true,
+   "if": {
+    "mission": "mission07"
+   }
+  },
+  {
+   "id": "noche",
+   "dialogue": "m7_cuadra_noche",
+   "once": true,
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_rumbo_paradero"
+   }
+  }
+ ],
+ "labels": [
+  {
+   "x": 25.5,
+   "y": 9,
+   "text": "PRECIOCLUB",
+   "color": "#f8e070"
+  },
+  {
+   "x": 20,
+   "y": 22.5,
+   "text": "BOBO UNIC LIVING",
+   "color": "#ffd8b8"
+  },
+  {
+   "x": 11.5,
+   "y": 41.5,
+   "text": "FARMADÍA 24H",
+   "color": "#ffb0b0"
+  },
+  {
+   "x": 22.5,
+   "y": 41.5,
+   "text": "PANADERÍA LA ESPIGA"
+  },
+  {
+   "x": 1,
+   "y": 6.5,
+   "text": "← PUCC"
+  }
+ ]
+}

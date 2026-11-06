@@ -1,0 +1,203 @@
+{
+ "id": "bobo_piso8",
+ "name": "Piso 8 · Depa 805",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 20,
+ "height": 16,
+ "background": "#14121a",
+ "music": "depa",
+ "legend": {
+  "^": "muro_techo",
+  "P": "pasillo_muro",
+  "d": "puerta_depa",
+  "w": "ventana_pasillo",
+  "e": "ascensor",
+  ",": "pasillo_piso",
+  "5": "puerta_805",
+  "M": "depa_muro",
+  "V": "depa_ventanal",
+  "c": "depa_cama_pies_d",
+  "E": "depa_estante",
+  "O": "depa_closet",
+  "_": "depa_piso",
+  "a": "depa_alfombra",
+  "R": "depa_refri",
+  "k": "depa_meson",
+  "K": "depa_cocina",
+  "L": "depa_lavaplatos",
+  "t": "depa_tv",
+  "p": "depa_planta",
+  "n": "depa_silla_n",
+  "T": "depa_mesa",
+  "h": "depa_silla",
+  "S": "depa_sofa",
+  "B": "depa_cama_i",
+  "C": "depa_cama_d",
+  "b": "depa_cama_pies_i",
+  "v": "depa_velador",
+  "X": "depa_bano_muro",
+  "u": "depa_bano",
+  "Y": "ducha",
+  "U": "wc",
+  "l": "lavamanos"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^^^^^",
+  "^PdPdPwPePPdPdPPPPP^",
+  "^,,,,,,,,,,,,,,,,,,^",
+  "^,,,,,,,,,,,,,,,,,,^",
+  "^^^^^^5^^^^^^^^^^^^^",
+  "^MMMMM_MVVVVMMcMEOO^",
+  "^RkKLk______tt____p^",
+  "^__________aaaa____^",
+  "^__________aaaa____^",
+  "^__________SSSS____^",
+  "^__________________^",
+  "^XXXu^____nn___BCv_^",
+  "^Y,,,^____TT___bc__^",
+  "^U,,l^____hh_______^",
+  "^,,,,^_____________^",
+  "^^^^^^^^^^^^^^^^^^^^"
+ ],
+ "zones": [
+  {
+   "name": "Pasillo del piso 8",
+   "subtitle": "Bobo Unic Living",
+   "x": 0,
+   "y": 0,
+   "w": 20,
+   "h": 4
+  },
+  {
+   "name": "Baño",
+   "subtitle": "Depa 805",
+   "x": 1,
+   "y": 11,
+   "w": 4,
+   "h": 4
+  },
+  {
+   "name": "Depa 805",
+   "subtitle": "Bobo Unic Living · piso 8",
+   "x": 0,
+   "y": 5,
+   "w": 20,
+   "h": 11
+  }
+ ],
+ "spawns": {
+  "inicio": {
+   "x": 9,
+   "y": 6,
+   "dir": "up"
+  },
+  "cama": {
+   "x": 15,
+   "y": 11,
+   "dir": "down"
+  },
+  "cama_lado": {
+   "x": 14,
+   "y": 11,
+   "dir": "right"
+  },
+  "puerta_dentro": {
+   "x": 6,
+   "y": 6,
+   "dir": "up"
+  },
+  "pasillo_puerta": {
+   "x": 6,
+   "y": 3,
+   "dir": "down"
+  },
+  "ascensor": {
+   "x": 8,
+   "y": 2,
+   "dir": "down"
+  },
+  "cocina": {
+   "x": 3,
+   "y": 7,
+   "dir": "up"
+  },
+  "mesa": {
+   "x": 3,
+   "y": 10,
+   "dir": "up"
+  },
+  "sofa": {
+   "x": 12,
+   "y": 9,
+   "dir": "up"
+  }
+ },
+ "triggers": [
+  {
+   "id": "chat",
+   "x": 15,
+   "y": 11,
+   "w": 1,
+   "h": 1,
+   "event": "chat_noche_m7",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_dia_u",
+    "notFlag": "m7_chat_hecho"
+   }
+  },
+  {
+   "id": "pasillo_juntos",
+   "x": 1,
+   "y": 2,
+   "w": 18,
+   "h": 2,
+   "event": "dialogo:m7_pasillo_vuelta",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_ascensor_juntos",
+    "notFlag": "m7_pasillo_vuelta"
+   }
+  },
+  {
+   "id": "vuelta",
+   "x": 1,
+   "y": 5,
+   "w": 18,
+   "h": 10,
+   "event": "dialogo:m7_vuelta_depa",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_ascensor_juntos",
+    "notFlag": "m7_vuelta_depa"
+   }
+  }
+ ],
+ "enter": [
+  {
+   "id": "intro",
+   "dialogue": "m7_intro",
+   "once": true,
+   "if": {
+    "mission": "mission07"
+   }
+  },
+  {
+   "id": "jueves",
+   "dialogue": "m7_jueves_despierta",
+   "once": true,
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_jueves"
+   }
+  }
+ ],
+ "labels": [
+  {
+   "x": 6,
+   "y": 0.6,
+   "text": "805"
+  }
+ ]
+}

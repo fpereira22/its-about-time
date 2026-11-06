@@ -1,17 +1,16 @@
-import { PHONE } from '../systems/Phone';
 import { Dialogue } from '../systems/DialogueManager';
-import { playerLook } from '../systems/PlayerLook';
 import { StoryState } from '../systems/StoryState';
+import { playerLook } from '../systems/PlayerLook';
 import { makeText } from '../ui/theme';
 import type { VinetaBuilder } from '../ui/Vineta';
 import { shade } from './palette';
 import { disc, hex } from './vinetas';
-import { addG, flat, floatHeart, lerp, outlined, popText, sparkle, type G } from './vinetas_kit';
+import { addG, floatHeart, lerp, outlined, popText, sparkle, type G } from './vinetas_kit';
 import { bust, floatNote, INK, lookOf, side } from './vinetas_m5';
 
 /**
- * Viñetas de la misión 6 (primera parte): la clase de natación del jueves, el chat con Sira (con la ubicación
- * compartida), el sábado con doña Mery (el consejo, el sancocho, el separador de guayacán), el viaje al centro
+ * Viñetas de la misión 6 (primera parte): la clase de natación del jueves (el chat con Sira está en
+ * vinetas_m6_chat.ts), el sábado con doña Mery (el consejo, el sancocho, el separador de guayacán), el viaje al centro
  * (el lustrabotas, la ruta del T31, el rapero, el bus varado) y la feria del libro en el Bulevar del Río.
  * Panel de 220 × 108 px.
  */
@@ -89,86 +88,6 @@ const borde: VinetaBuilder = (kit) => {
   kit.after(1500, () => kit.progress(900, (q) => (her.body.setX(lerp(112, 106, q)), her.arm.setX(lerp(112, 106, q))), undefined, 'Sine.InOut'));
   kit.every(2300, () => floatHeart(kit, stage, 100 + Math.random() * 8, 32));
   kit.every(900, () => sparkle(kit, stage, Math.random() * 220, 80 + Math.random() * 20));
-};
-
-// ---------------------------------------------------------------------------
-// El chat con Sira (con ubicación compartida)
-// ---------------------------------------------------------------------------
-
-/** Dónde estás tú (según el mapa o la estación del viaje) y dónde está Sira (según la historia). */
-function whereAmI(): string {
-  const map = StoryState.location?.map ?? '';
-  const est = Dialogue.vars.get('estacion');
-  if (map === 'articulado') return `T31 · ${est ?? 'en camino'}`;
-  if (map === 'bus_cali') return 'P47 · Calle 18';
-  if (map === 'universidades' || map === 'guayacan_plaza') return 'Universidades';
-  if (map === 'centro_cali') return 'Torre de Cali';
-  if (map === 'taxi_m6') return 'Taxi a Pance';
-  return 'Pance';
-}
-
-function whereIsShe(): string {
-  if (StoryState.hasFlag('m6_mirador')) return 'San Fernando';
-  if (StoryState.hasFlag('m6_t31_cerca') || StoryState.location?.map === 'articulado') return 'La Ermita';
-  if (StoryState.hasFlag('m6_llego_universidades')) return 'En camino';
-  return 'Su casa';
-}
-
-/** El celular con el chat de Sira (los últimos mensajes reales de la conversación) y el mapita de ubicaciones. */
-const chat: VinetaBuilder = (kit) => {
-  const stage = kit.framed((g, x, y, w, h) => {
-    g.fillStyle(hex('#2a2f45'), 1).fillRect(x, y, w, h);
-    for (let i = 0; i < w; i += 10) g.fillStyle(hex('#323853'), 1).fillRect(x + i, y, 5, h);
-  });
-  const phone = addG(kit, stage);
-  outlined(phone, [[18, 2, 96, 104, '#1c1c24']]);
-  flat(phone, [[22, 8, 88, 92, '#ece5dc'], [22, 8, 88, 12, '#3c9c6c'], [56, 4, 20, 2, '#3a3a44']]);
-  const av = addG(kit, stage);
-  disc(av, 30, 14, 4, '#e8a0b8');
-  stage.add(makeText(kit.scene, 37, 9, 'Sira', { fontSize: '7px', fontStyle: '600', color: '#ffffff' }));
-  const typing = makeText(kit.scene, 37, 15, 'en línea', { fontSize: '5px', color: '#d8f4e4' });
-  stage.add(typing);
-  // Los últimos mensajes de la conversación (los tuyos a la derecha).
-  const ids = StoryState.phone.map((e) => e.id).filter((id) => PHONE.messages[id]?.from === 'sira').slice(-4);
-  let y = 22;
-  const bubbles = addG(kit, stage);
-  ids.forEach((id, i) => {
-    const m = PHONE.messages[id];
-    const mine = m.mine === true;
-    const text = makeText(kit.scene, mine ? 40 : 26, y + 2, m.text, { fontSize: '5px', color: INK, wordWrap: { width: 62, useAdvancedWrap: true } });
-    const bh = Math.min(22, Math.ceil(text.height) + 4);
-    bubbles.fillStyle(hex(mine ? '#d4f4c4' : '#ffffff'), 1).fillRoundedRect(mine ? 38 : 24, y, 68, bh, 3);
-    text.setAlpha(0);
-    stage.add(text);
-    kit.after(150 + i * 250, () => kit.tween({ targets: text, alpha: 1, duration: 200 }));
-    y += bh + 3;
-    if (y > 92) text.setVisible(false);
-  });
-  // «Escribiendo...» que parpadea.
-  kit.every(500, () => typing.setText(typing.text === 'escribiendo...' ? 'en línea' : 'escribiendo...'));
-  // La ubicación compartida: tu puntito y el de ella.
-  const map = addG(kit, stage);
-  outlined(map, [[122, 14, 92, 80, '#dfe8d8']]);
-  map.fillStyle(hex('#5a8c8c'), 1).fillRect(122, 52, 92, 4);
-  map.fillStyle(hex('#ffffff'), 1).fillRect(122, 34, 92, 2).fillRect(150, 14, 2, 80).fillRect(190, 14, 2, 80);
-  stage.add(makeText(kit.scene, 124, 16, 'Ubicación en vivo', { fontSize: '5px', fontStyle: '600', color: INK }));
-  const pins = addG(kit, stage);
-  const meLabel = makeText(kit.scene, 130, 80, `Tú: ${whereAmI()}`, { fontSize: '5px', color: '#2f6fd0' });
-  const herLabel = makeText(kit.scene, 130, 87, `Sira: ${whereIsShe()}`, { fontSize: '5px', color: '#c84868' });
-  stage.add([meLabel, herLabel]);
-  let t = 0;
-  kit.every(60, () => {
-    t += 0.06;
-    pins.clear();
-    const pulse = 2 + Math.sin(t * 4);
-    pins.fillStyle(0x2f6fd0, 0.3).fillCircle(140, 66, 4 + pulse).fillStyle(0x2f6fd0, 1).fillCircle(140, 66, 3);
-    pins.fillStyle(0xe8607a, 0.3).fillCircle(198, 40, 4 + pulse).fillStyle(0xe8607a, 1).fillCircle(198, 40, 3);
-    pins.lineStyle(1, 0x8a96b8, 0.7);
-    for (let i = 0; i < 8; i++) {
-      const a = i / 8;
-      if (i % 2 === 0) pins.lineBetween(140 + (198 - 140) * a, 66 + (40 - 66) * a, 140 + (198 - 140) * (a + 0.0625), 66 + (40 - 66) * (a + 0.0625));
-    }
-  });
 };
 
 // ---------------------------------------------------------------------------
@@ -673,7 +592,6 @@ const atardecer: VinetaBuilder = (kit) => {
 export const M6_VINETAS: Record<string, VinetaBuilder> = {
   m6_clase_manos: claseManos,
   m6_borde: borde,
-  m6_chat: chat,
   m6_mery_consejo: meryConsejo,
   m6_sancocho: sancocho,
   m6_separador: separador,

@@ -65,6 +65,20 @@ const M6_COLINA_FLAGS = [
   'enter_centro_cali_llegada', 'enter_san_antonio_llegada', 'enter_heladeria_corazones_llegada', 'm6_q_rescate', 'm6_q_puntual', 'm6_q_cumplido',
 ];
 
+/** Misión 7: martes, jueves y el chat de la madrugada hechos; el viernes a las 12:45 en el depa. */
+const M7_VIERNES_FLAGS = [
+  'm7_helado_martes', 'm7_jueves', 'm7_con_sira', 'm7_act_maqueta', 'm7_act_almuerzo', 'm7_act_pavo', 'm7_tres_planes',
+  'm7_dia_u', 'm7_chat_hecho', 'm7_invitada', 'm7_viernes', 'enter_bobo_piso8_intro', 'enter_bobo_piso8_jueves',
+  'enter_bobo_lobby_primera', 'enter_bobo_cuadra_martes', 'enter_pucc_campus_m7_martes', 'enter_pucc_campus_m7_jueves',
+  'm7_q_majo', 'm7_q_maqueta', 'm7_q_lago', 'm7_q_chat_1', 'm7_q_chat_4', 'm7_q_invitacion',
+];
+/** Y después: la primera parte de la boloñesa y la Farmadía hechas (con La Caleña); de vuelta frente al Bobo. */
+const M7_VUELTA_FLAGS = [
+  'm7_agua', 'm7_toc', 'm7_sira_entro', 'm7_cocina1', 'm7_rumbo_farmadia', 'm7_choque', 'm7_bebida_calena', 'm7_bebida_elegida',
+  'm7_pago', 'm7_charla_1', 'm7_charla_2', 'm7_charla_3', 'enter_farmadia_llegada', 'enter_bobo_lobby_salida', 'm7_q_puerta', 'm7_q_calena',
+  'm7_q_calena_2', 'm7_sira_sigue',
+];
+
 /**
  * Atajo de prueba: Ctrl + < adelanta la misión 2 hasta la llegada a Manuel Montt
  * (casa, tren y metro hechos; pasajes descontados de la Bip!), la misión 3 hasta el aeropuerto
@@ -85,6 +99,7 @@ class DevSkipImpl {
       else if (StoryState.missionId === 'mission04') this.skipMission4(game);
       else if (StoryState.missionId === 'mission05') this.skipMission5(game);
       else if (StoryState.missionId === 'mission06') this.skipMission6(game);
+      else if (StoryState.missionId === 'mission07') this.skipMission7(game);
       else this.skipMission2(game);
     });
   }
@@ -165,6 +180,27 @@ class DevSkipImpl {
     StoryState.setClock(parseClock('sáb 19:25'), parseClock('sáb 21:30'));
     StoryState.setObjective('Sube con Sira a la Colina de San Antonio (la escalinata de la Carrera 10)');
     scene.goTo('san_antonio', 'escalinata');
+  }
+
+  /** Ctrl + < en la misión 7: primero al viernes en el depa (antes de que llegue Sira); después, de vuelta de la Farmadía. */
+  private skipMission7(game: Phaser.Game): void {
+    const scene = this.freeScene(game);
+    if (!scene || StoryState.hasFlag('m7_pago')) return;
+    StoryState.setWeather('nublado');
+    for (const f of M7_VIERNES_FLAGS) StoryState.setFlag(f);
+    StoryState.setFlag('m7_sira_sigue', false);
+    StoryState.setFlag('en_pijama', false);
+    if (!StoryState.hasFlag('m7_sira_entro')) {
+      StoryState.setClock(parseClock('vie 12:45'), parseClock('vie 12:55'));
+      StoryState.setObjective('Ordena el depa y pon a hervir el agua para los fideos (la cocina). Sira llega a la 1');
+      scene.goTo('bobo_piso8', 'inicio');
+      return;
+    }
+    for (const f of M7_VUELTA_FLAGS) StoryState.setFlag(f);
+    if (!StoryState.hasItem('la_calena')) StoryState.addItem('la_calena');
+    StoryState.setClock(parseClock('vie 14:15'), parseClock('vie 14:30'));
+    StoryState.setObjective('Vuelvan caminando al Bobo (la salsa los espera)');
+    scene.goTo('bobo_cuadra', 'lobby');
   }
 
   private skipMission2(game: Phaser.Game): void {

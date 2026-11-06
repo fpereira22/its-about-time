@@ -1,0 +1,1020 @@
+{
+ "m7_cuadra_noche": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La Calle 18 de noche, mojada. Los faroles se reflejan en el asfalto como en un río. Llovizna fino, de esa que no moja pero empapa.",
+    "next": "sira"
+   },
+   "sira": {
+    "text": "Sira se te pega al brazo. «Qué frío más rico», dice. En Cali, 19 grados son frío."
+   }
+  }
+ },
+ "m7_precioclub": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "PrecioClub Cañasgordas: la bodega de los paquetes gigantes. Solo para socios. Una vez entraste con Grover y salieron con 48 rollos de papel higiénico y un televisor que nadie necesitaba."
+   }
+  }
+ },
+ "m7_precioclub_totem": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "El tótem azul del PrecioClub. Desde el piso 8 se ve iluminado toda la noche, como un faro de las ofertas."
+   }
+  }
+ },
+ "m7_letrero_bobo": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "«BOBO UNIC LIVING». Tus amigos de Chile creen que es un chiste. No es un chiste. Bueno, un poquito."
+   }
+  }
+ },
+ "m7_ojo": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La ventana redonda del podio de ladrillo. Adentro se ve el gimnasio de la residencia: una caminadora, dos pesas y un chico dormido en el banco de abdominales."
+   }
+  }
+ },
+ "m7_panaderia": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Panadería La Espiga: pandebono calientito, pan de bono, pan de yuca y un letrero que dice «HOY: PAN CHILENO». Es pan de molde."
+   }
+  }
+ },
+ "m7_paradero_obj": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "noche",
+      "if": {
+       "flag": "m7_rumbo_paradero"
+      }
+     },
+     {
+      "goto": "dia"
+     }
+    ]
+   },
+   "dia": {
+    "text": "El paradero de la Calle 18, frente al Bobo. Pasan los alimentadores y los buses hacia el norte, hacia San Fernando. Ahí vive Sira."
+   },
+   "noche": {
+    "text": "El paradero. Bajo el techito, el banco está seco. Párate al lado, en la vereda, para esperar el bus con ella."
+   }
+  }
+ },
+ "m7_vecina_piscina": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "noche",
+      "if": {
+       "flag": "m7_noche"
+      }
+     },
+     {
+      "goto": "dia"
+     }
+    ]
+   },
+   "dia": {
+    "speaker": "Vecina del 412",
+    "text": "¡Hola, vecino! Del 412. Yo me paso el día aquí, es mi oficina. ¿Sabías que en las noches alguien se tira a la piscina? Wilmer dice que es un fantasma. Yo digo que es Wilmer."
+   },
+   "noche": {
+    "text": "La piscina de noche, con la lluvia picando el agua."
+   }
+  }
+ },
+ "m7_farmadia_cerrada": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La Farmadía 24H de la esquina. Por ahora no necesitas nada de aquí."
+   }
+  }
+ },
+ "m7_farmadia_llegada": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Ding-dong. El aire acondicionado de la Farmadía te recibe como un abrazo polar. Suena una versión en salsa de una canción de los ochenta.",
+    "next": "cajera"
+   },
+   "cajera": {
+    "speaker": "Cajera",
+    "text": "¡Bienvenidos a Farmadía! Las bebidas frías, al fondo en la nevera. Las ofertas, en todas partes.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "Yo me pierdo en las farmacias. Me encanta mirar las cremas que nunca voy a comprar. Vamos a la nevera.",
+    "effects": [
+     {
+      "objective": "La nevera de las bebidas (al fondo de la Farmadía)"
+     }
+    ]
+   }
+  }
+ },
+ "m7_farmadia_no_salir": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "pagar",
+      "if": {
+       "flag": "m7_bebida_elegida"
+      }
+     },
+     {
+      "goto": "nada"
+     }
+    ]
+   },
+   "nada": {
+    "text": "¿Sin nada para tomar? Sira te jala de la manga: «La nevera, chileno. Al fondo»."
+   },
+   "pagar": {
+    "text": "La cajera carraspea. «Joven, eso se paga.» Primero la caja."
+   }
+  }
+ },
+ "m7_choque": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "El pasillo de las vitaminas es angosto. Sira se da vuelta para mostrarte algo justo cuando tú te das vuelta para mostrarle algo a ella.",
+    "effects": [
+     {
+      "vineta": "m7_choque"
+     }
+    ],
+    "next": "choque"
+   },
+   "choque": {
+    "text": "Chocan. Se caen dos frascos de vitamina C y una caja de curitas. Quedan nariz con nariz, sus manos en tu pecho, las tuyas en sus brazos.",
+    "choices": [
+     {
+      "label": "«Perdón» (sin moverte ni un centímetro)",
+      "effects": [
+       {
+        "setFlag": "m7_q_choque"
+       }
+      ],
+      "goto": "quieto"
+     },
+     {
+      "label": "Correrte a un lado, rojo como un tomate",
+      "goto": "rojo"
+     },
+     {
+      "label": "«Hay un tráfico terrible en este pasillo»",
+      "effects": [
+       {
+        "setFlag": "m7_q_choque"
+       }
+      ],
+      "goto": "trafico"
+     }
+    ]
+   },
+   "quieto": {
+    "text": "«Perdón», dices. No te mueves. Ella tampoco. Tres segundos. Cuatro. La cajera tose desde la caja. Se separan riéndose.",
+    "next": "fin"
+   },
+   "rojo": {
+    "text": "Te corres a un lado. Ella se ríe de lo rojo que estás. «Ay, chileno. Ni que te hubiera mordido.»",
+    "next": "fin"
+   },
+   "trafico": {
+    "text": "«Peor que el T31 en hora punta», dice ella, sin soltarte. Se ríen. Recogen los frascos juntos y sus manos se tocan otra vez. A propósito, esta vez.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Siguen hacia la nevera. Ella va adelante. Mira para atrás dos veces."
+   }
+  }
+ },
+ "m7_nevera": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "ya",
+      "if": {
+       "flag": "m7_bebida_elegida"
+      }
+     },
+     {
+      "goto": "elegir"
+     }
+    ]
+   },
+   "ya": {
+    "text": "Ya tienen la bebida. La nevera zumba, satisfecha."
+   },
+   "elegir": {
+    "text": "La nevera de las bebidas. Tres botellas de litro y medio te miran desde la repisa del medio.",
+    "effects": [
+     {
+      "vineta": "m7_bebidas"
+     }
+    ],
+    "next": "opciones"
+   },
+   "opciones": {
+    "text": "¿Cuál llevan?",
+    "choices": [
+     {
+      "label": "La Caleña (la dorada, «sabor a fiesta»)",
+      "effects": [
+       {
+        "setFlag": [
+         "m7_bebida_calena",
+         "m7_bebida_elegida"
+        ]
+       },
+       {
+        "giveItem": "la_calena"
+       },
+       {
+        "setFlag": [
+         "m7_q_calena",
+         "m7_q_calena_2"
+        ]
+       }
+      ],
+      "goto": "calena"
+     },
+     {
+      "label": "Coca-Kola",
+      "effects": [
+       {
+        "setFlag": [
+         "m7_bebida_kola",
+         "m7_bebida_elegida"
+        ]
+       },
+       {
+        "giveItem": "coca_kola"
+       }
+      ],
+      "goto": "kola"
+     },
+     {
+      "label": "Rojosazón (la roja, de manzana)",
+      "effects": [
+       {
+        "setFlag": [
+         "m7_bebida_rojo",
+         "m7_bebida_elegida"
+        ]
+       },
+       {
+        "giveItem": "rojosazon"
+       }
+      ],
+      "goto": "rojo"
+     },
+     {
+      "label": "Preguntarle a Sira cuál quiere",
+      "goto": "pregunta"
+     }
+    ]
+   },
+   "pregunta": {
+    "speaker": "Sira",
+    "text": "Mmm... sorpréndeme, chileno. Tú elige.",
+    "next": "opciones"
+   },
+   "calena": {
+    "text": "Sacas La Caleña de la nevera. Sira se queda paralizada.",
+    "effects": [
+     {
+      "vineta": "m7_calena"
+     }
+    ],
+    "next": "calena2"
+   },
+   "calena2": {
+    "speaker": "Sira",
+    "text": "¡¿Cómo supiste?! ¡Es mi favorita desde chiquita! Mi abuelo me la compraba los domingos en el río Pance, después del sancocho. ¡Nadie la elige nunca!",
+    "choices": [
+     {
+      "label": "«Intuición chilena»",
+      "goto": "intuicion"
+     },
+     {
+      "label": "«Tienes cara de Caleña»",
+      "goto": "cara"
+     },
+     {
+      "label": "«No sabía. Fue suerte» (la verdad)",
+      "goto": "suerte"
+     }
+    ]
+   },
+   "intuicion": {
+    "speaker": "Sira",
+    "text": "«Intuición chilena»... Ya no te creo nada. Seguro me espiaste el Instagram. ...No tengo fotos con La Caleña. ¿O sí? Ay, no sé. Me encantas.",
+    "next": "calena_fin"
+   },
+   "cara": {
+    "speaker": "Sira",
+    "text": "¿Cara de Caleña? ¿Dorada y burbujeante? ...Voy a hacer como que eso fue un piropo.",
+    "next": "calena_fin"
+   },
+   "suerte": {
+    "speaker": "Sira",
+    "text": "¿Suerte? Entonces eres de buena suerte. Me quedo contigo. Digo... con la gaseosa. Bueno, con los dos.",
+    "next": "calena_fin"
+   },
+   "calena_fin": {
+    "text": "Abraza la botella como si fuera un peluche. Así se va hasta la caja.",
+    "effects": [
+     {
+      "objective": "Paguen en la caja"
+     }
+    ]
+   },
+   "kola": {
+    "speaker": "Sira",
+    "text": "Coca-Kola. Clásico. Nunca falla. Bueno, está bien.",
+    "effects": [
+     {
+      "objective": "Paguen en la caja"
+     }
+    ]
+   },
+   "rojo": {
+    "speaker": "Sira",
+    "text": "¡Uy, la roja! Hace años que no tomaba. Me trae recuerdos de cumpleaños infantiles. Buena.",
+    "effects": [
+     {
+      "objective": "Paguen en la caja"
+     }
+    ]
+   }
+  }
+ },
+ "m7_crispetas": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "ya",
+      "if": {
+       "hasItem": "crispetas"
+      }
+     },
+     {
+      "goto": "ya",
+      "if": {
+       "flag": "m7_crispetas_comidas"
+      }
+     },
+     {
+      "goto": "ver"
+     }
+    ]
+   },
+   "ya": {
+    "text": "Crispetas para microondas, sabor mantequilla. Ya llevan unas."
+   },
+   "ver": {
+    "text": "Crispetas para microondas, sabor mantequilla. «Para ver una peli», dice la caja.",
+    "choices": [
+     {
+      "label": "Llevar unas (por si acaso)",
+      "effects": [
+       {
+        "giveItem": "crispetas"
+       }
+      ],
+      "goto": "llevar"
+     },
+     {
+      "label": "No"
+     }
+    ]
+   },
+   "llevar": {
+    "speaker": "Sira",
+    "text": "¿Peli? ¿Hay peli? Nadie me había dicho nada de una peli. ...Me apunto."
+   }
+  }
+ },
+ "m7_chocolatinas": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "ya",
+      "if": {
+       "hasItem": "chocolatina"
+      }
+     },
+     {
+      "goto": "ver"
+     }
+    ]
+   },
+   "ya": {
+    "text": "Las chocolatinas de al lado de la caja. Ya llevas una."
+   },
+   "ver": {
+    "text": "Chocolatinas con maní al lado de la caja, puestas ahí para tentarte. Funciona.",
+    "choices": [
+     {
+      "label": "Llevar una para compartir",
+      "effects": [
+       {
+        "giveItem": "chocolatina"
+       }
+      ],
+      "goto": "llevar"
+     },
+     {
+      "label": "No"
+     }
+    ]
+   },
+   "llevar": {
+    "speaker": "Sira",
+    "text": "La mitad es mía, ¿ah? La mitad grande."
+   }
+  }
+ },
+ "m7_vitaminas": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sira",
+    "text": "Vitamina C efervescente. Sira: «Para el chileno que se resfría con 22 grados»."
+   }
+  }
+ },
+ "m7_bloqueador": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Bloqueador solar 50+.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "Tú lo necesitas. Estás rojo.",
+    "next": "tu"
+   },
+   "tu": {
+    "speaker": "Tú",
+    "text": "Es el calor.",
+    "next": "sira2"
+   },
+   "sira2": {
+    "speaker": "Sira",
+    "text": "Ajá. El calor. Aquí adentro, con aire acondicionado. Ajá."
+   }
+  }
+ },
+ "m7_caja": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "listo",
+      "if": {
+       "flag": "m7_pago"
+      }
+     },
+     {
+      "goto": "pagar",
+      "if": {
+       "flag": "m7_bebida_elegida"
+      }
+     },
+     {
+      "goto": "nada"
+     }
+    ]
+   },
+   "nada": {
+    "speaker": "Cajera",
+    "text": "¿Qué van a llevar? La nevera de las bebidas está al fondo, mi amor."
+   },
+   "pagar": {
+    "speaker": "Cajera",
+    "text": "¿Algo más? ¿Bolsa? ¿Puntos? ¿Recarga? ¿Donación para los perritos?",
+    "effects": [
+     {
+      "event": "pagar_m7"
+     }
+    ]
+   },
+   "listo": {
+    "speaker": "Cajera",
+    "text": "Que disfruten la tarde, muchachos. Se ve que la van a disfrutar."
+   }
+  }
+ },
+ "m7_caja_pagar": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Cajera",
+    "text": "Son {total}. ¿Efectivo o tarjeta?",
+    "choices": [
+     {
+      "label": "Pagar todo (en efectivo)",
+      "goto": "yo"
+     },
+     {
+      "label": "Dejar que Sira pague las crispetas",
+      "if": {
+       "hasItem": "crispetas"
+      },
+      "effects": [
+       {
+        "setFlag": "m7_sira_pago"
+       }
+      ],
+      "goto": "ella"
+     }
+    ]
+   },
+   "yo": {
+    "text": "Pagas. Sira protesta: «La próxima invito yo». Ya van tres «próximas»."
+   },
+   "ella": {
+    "text": "Sira saca su billetera de gatito y paga las crispetas. «Lo justo es justo.»"
+   }
+  }
+ },
+ "m7_caja_fin": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Cajera",
+    "text": "¡Tlin! La cajera les pasa la bolsa y les guiña un ojo.",
+    "effects": [
+     {
+      "objective": "Vuelvan caminando al Bobo (la salsa los espera)"
+     }
+    ]
+   }
+  }
+ },
+ "m7_charla_1": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Caminan de vuelta por la vereda, sin apuro, aunque la salsa espera.",
+    "effects": [
+     {
+      "setFlag": "m7_charla_1"
+     }
+    ],
+    "next": "pregunta"
+   },
+   "pregunta": {
+    "speaker": "Sira",
+    "text": "Oye, chileno. ¿Qué es lo más loco que has hecho en tu vida?",
+    "choices": [
+     {
+      "label": "«Venirme a Cali sin conocer a nadie»",
+      "effects": [
+       {
+        "setFlag": "m7_q_charla_1"
+       }
+      ],
+      "goto": "cali"
+     },
+     {
+      "label": "«Comerme un completo de un metro en Paine»",
+      "goto": "completo"
+     },
+     {
+      "label": "«Esto. Ahora. Caminar contigo con una gaseosa»",
+      "effects": [
+       {
+        "setFlag": "m7_q_charla_1"
+       }
+      ],
+      "goto": "esto"
+     }
+    ]
+   },
+   "cali": {
+    "speaker": "Sira",
+    "text": "Eso es valiente, no loco. Bueno, un poco loco. A mí me da miedo hasta irme a Bogotá. ...Me alegra que estés loco."
+   },
+   "completo": {
+    "speaker": "Sira",
+    "text": "¿Un metro? ¿De pan con salchicha? ...Ustedes los chilenos son raros. Raros lindos. Pero raros."
+   },
+   "esto": {
+    "speaker": "Sira",
+    "text": "¿Esto es lo más loco? Ay, chileno. Entonces todavía no has visto nada."
+   }
+  }
+ },
+ "m7_charla_2": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Cruzan la Carrera 122. Un bus alimentador pasa tocando la bocina por nada.",
+    "effects": [
+     {
+      "setFlag": "m7_charla_2"
+     }
+    ],
+    "next": "pregunta"
+   },
+   "pregunta": {
+    "speaker": "Sira",
+    "text": "Pregunta de vida o muerte: ¿manjar o arequipe?",
+    "choices": [
+     {
+      "label": "«Manjar. Obvio»",
+      "goto": "manjar"
+     },
+     {
+      "label": "«Son lo mismo»",
+      "goto": "mismo"
+     },
+     {
+      "label": "«Arequipe... si me lo das tú»",
+      "effects": [
+       {
+        "setFlag": "m7_q_charla_2"
+       }
+      ],
+      "goto": "tu"
+     }
+    ]
+   },
+   "manjar": {
+    "speaker": "Sira",
+    "text": "¡Traidor! Bueno, no: eres chileno, es tu deber. Te perdono. Esta vez."
+   },
+   "mismo": {
+    "speaker": "Sira",
+    "text": "¡¿Lo mismo?! ¡Blasfemia! ...Bueno, sí son lo mismo. Pero no lo digas en voz alta en Cali. Te pueden deportar.",
+    "effects": [
+     {
+      "setFlag": "m7_q_charla_2"
+     }
+    ]
+   },
+   "tu": {
+    "text": "Sira se detiene en la mitad del cruce. Te mira. «Eso fue muy cursi.» Sigue caminando. Sonríe hasta la otra vereda."
+   }
+  }
+ },
+ "m7_charla_3": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Frente al Bobo, Sira se detiene y mira para arriba, a la torre de ladrillo.",
+    "effects": [
+     {
+      "setFlag": "m7_charla_3"
+     }
+    ],
+    "next": "ventana"
+   },
+   "ventana": {
+    "speaker": "Sira",
+    "text": "¿Cuál es tu ventana?",
+    "next": "senala"
+   },
+   "senala": {
+    "text": "Le señalas el piso 8. La única ventana con la luz de la cocina prendida (dejaron la salsa al fuego).",
+    "next": "ella"
+   },
+   "ella": {
+    "speaker": "Sira",
+    "text": "Desde ahí se ve la portería de la U, ¿cierto? ...Entonces cuando yo salga de clase, me vas a poder ver. Y yo voy a mirar para arriba.",
+    "choices": [
+     {
+      "label": "«Te voy a saludar todos los días»",
+      "effects": [
+       {
+        "setFlag": "m7_q_charla_3"
+       }
+      ],
+      "goto": "saludar"
+     },
+     {
+      "label": "«Con binoculares»",
+      "goto": "binoculares"
+     }
+    ]
+   },
+   "saludar": {
+    "speaker": "Sira",
+    "text": "¿Todos los días? ...Más te vale. Yo me voy a acordar."
+   },
+   "binoculares": {
+    "speaker": "Sira",
+    "text": "¡Qué miedo! Wilmer te va a denunciar. ...Bueno, solo un poquito de binoculares."
+   }
+  }
+ },
+ "m7_paradero": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Se paran bajo el techito del paradero. La Calle 18 brilla de agua. Del otro lado, la portería de la U, oscura. Arriba, el piso 8, con la luz de la cocina prendida.",
+    "next": "ella"
+   },
+   "ella": {
+    "text": "Ella se abraza a tu brazo para el frío. No dice nada por un rato. Tú tampoco.",
+    "next": "opciones"
+   },
+   "opciones": {
+    "choices": [
+     {
+      "label": "Prestarle el paraguas de doña Mery",
+      "if": {
+       "hasItem": "paraguas"
+      },
+      "effects": [
+       {
+        "setFlag": "m7_q_paraguas"
+       },
+       {
+        "setFlag": "m7_paraguas_sira"
+       },
+       {
+        "takeItem": "paraguas"
+       }
+      ],
+      "goto": "paraguas"
+     },
+     {
+      "label": "«Sira... ¿qué somos?»",
+      "effects": [
+       {
+        "setFlag": "m7_q_somos"
+       }
+      ],
+      "goto": "somos"
+     },
+     {
+      "label": "Abrazarla fuerte, sin decir nada",
+      "effects": [
+       {
+        "setFlag": "m7_q_abrazo_paradero"
+       }
+      ],
+      "goto": "abrazo"
+     }
+    ]
+   },
+   "paraguas": {
+    "speaker": "Sira",
+    "text": "Le pasas el paraguas negro de doña Mery. «¿Y tú?» «Yo vivo a cincuenta metros.» «Me lo quedo, entonces. Así tengo que volver a devolvértelo.»",
+    "next": "jueves"
+   },
+   "somos": {
+    "speaker": "Sira",
+    "text": "¿Que qué somos? ...Somos lo que pasó hoy, chileno. ¿Tú qué crees que somos?",
+    "next": "somos2"
+   },
+   "somos2": {
+    "text": "Antes de que contestes, te da un beso corto. «Eso somos», dice. «Lo demás lo vamos viendo.»",
+    "next": "jueves"
+   },
+   "abrazo": {
+    "text": "La abrazas fuerte. Ella mete la cara en tu cuello. Huele a maracuyá y a boloñesa. «No quiero irme», dice bajito. «No te vayas», dices. «Mi mamá», dice. «Tu mamá», dices.",
+    "next": "jueves"
+   },
+   "jueves": {
+    "speaker": "Sira",
+    "text": "El jueves: piscina. Y después, si quieres... me cocinas tú. Algo chileno. Lo que sea, menos completo de un metro."
+   }
+  }
+ },
+ "m7_bus_llega": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Llegan las luces del bus por la Calle 18, borrosas detrás de la llovizna.",
+    "next": "beso"
+   },
+   "beso": {
+    "text": "Sira se pone de puntitas y te da un beso. Uno de verdad. El chofer espera con la puerta abierta y cara de haberlo visto todo en esta vida.",
+    "next": "chao"
+   },
+   "chao": {
+    "speaker": "Sira",
+    "text": "Escríbeme cuando subas. Bueno, si subes. Igual escríbeme. Chao, chileno. Chao, Feli.",
+    "next": "sube"
+   },
+   "sube": {
+    "text": "Es la primera vez que te dice por tu nombre. Se sube al bus."
+   }
+  }
+ },
+ "m7_bus_ventana": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Desde la ventana empañada, dibuja un corazón con el dedo y te saluda con las dos manos, como en la piscina.",
+    "effects": [
+     {
+      "vineta": "m7_paradero"
+     }
+    ],
+    "next": "arranca"
+   },
+   "arranca": {
+    "text": "El bus arranca hacia el norte. La sigues con la mirada hasta que es un puntito de luz en la Calle 18."
+   }
+  }
+ },
+ "m7_final": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Te quedas solo en el paradero. La llovizna te moja el pelo y no te importa nada.",
+    "effects": [
+     {
+      "message": "m7_sira_bus"
+     }
+    ],
+    "next": "cel"
+   },
+   "cel": {
+    "text": "Vibra el celular. No han pasado ni dos minutos.",
+    "effects": [
+     {
+      "message": "m7_sira_bus_2"
+     }
+    ],
+    "next": "tono"
+   },
+   "tono": {
+    "branches": [
+     {
+      "goto": "calena",
+      "if": {
+       "flag": [
+        "m7_bebida_calena",
+        "m7_final_alta"
+       ]
+      }
+     },
+     {
+      "goto": "alta",
+      "if": {
+       "flag": "m7_final_alta"
+      }
+     },
+     {
+      "goto": "porfin"
+     }
+    ]
+   },
+   "calena": {
+    "text": "Miras para arriba: el piso 8, la luz de la cocina, el ventanal donde se largó la lluvia. En el mesón quedó la botella de La Caleña, vacía. Te la vas a quedar para siempre.",
+    "next": "fin"
+   },
+   "alta": {
+    "text": "Miras para arriba: el piso 8, la luz de la cocina, el ventanal donde se largó la lluvia. Mañana vas a mirar para abajo, a la portería, esperando verla salir.",
+    "next": "fin"
+   },
+   "porfin": {
+    "text": "Miras para arriba: el piso 8, la luz de la cocina. Por fin. Después de la piscina, la colina, el lago y un pavo real: por fin.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Cruzas la calle hacia el Bobo. Wilmer, desde la recepción, te levanta el pulgar sin abrir los ojos."
+   }
+  }
+ },
+ "usar_helado_carrito": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "El cono de don Efraín. Le das una lamida... y otra... y se acaba. Sabe a martes por la tarde.",
+    "effects": [
+     {
+      "takeItem": "helado_carrito"
+     },
+     {
+      "sfx": "eat"
+     }
+    ]
+   }
+  }
+ },
+ "usar_foto_pavo": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La selfie con el pavo real: Sira y tú mejilla con mejilla, el pavo con la cola abierta detrás. El pavo salió mejor. Es tu fondo de pantalla.",
+    "effects": [
+     {
+      "vineta": "m7_selfie"
+     }
+    ]
+   }
+  }
+ },
+ "usar_bebida_m7": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Mejor guardarla para la comida. Está heladita."
+   }
+  }
+ },
+ "m7_llamar_grover": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "despues",
+      "if": {
+       "flag": "m7_noche"
+      }
+     },
+     {
+      "goto": "antes"
+     }
+    ]
+   },
+   "antes": {
+    "speaker": "Grover",
+    "text": "¡Cumpa! ¿Qué pasó? ¿Estás con la nadadora? No me digás nada, que me pongo nervioso. Si necesitás el cacharro, la llama del tablero ya funciona. Bueno, prende."
+   },
+   "despues": {
+    "speaker": "Grover",
+    "text": "¿Cumpa? Te escucho raro. Feliz. ¿Por qué te escucho tan feliz? ...¡NO! ¡¿EN SERIO?! ¡VOY PARA ALLÁ CON LA MORENADA!",
+    "next": "no"
+   },
+   "no": {
+    "speaker": "Tú",
+    "text": "No, Grover. No vengas con la morenada.",
+    "next": "ok"
+   },
+   "ok": {
+    "speaker": "Grover",
+    "text": "Bueno, bueno. Mañana me contás todo. TODO, ¿eh? ¡Cumpa, qué orgullo!"
+   }
+  }
+ },
+ "m7_llamar_mery": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Doña Mery",
+    "text": "¡Mijo! ¿Cómo está? ¿Está comiendo bien? ¿Se acuerda de que la arepa se calienta en la sartén y no en el microondas?",
+    "next": "tu"
+   },
+   "tu": {
+    "choices": [
+     {
+      "label": "Contarle de Sira",
+      "goto": "sira"
+     },
+     {
+      "label": "Decirle que la extraña",
+      "goto": "extrana"
+     }
+    ]
+   },
+   "sira": {
+    "speaker": "Doña Mery",
+    "text": "¡La nadadora! ¡Yo sabía! Tráigamela un domingo, que le hago sancocho. Y péinese, mijo, que esas cosas se notan."
+   },
+   "extrana": {
+    "speaker": "Doña Mery",
+    "text": "Ay, mijo, yo también. La casa está muy callada sin usted. Venga el domingo, que hay sancocho. Y traiga a la nadadora, que yo sé que hay nadadora."
+   }
+  }
+ }
+}

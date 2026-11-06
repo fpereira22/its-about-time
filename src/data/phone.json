@@ -348,6 +348,172 @@
       "from": "sira",
       "text": "Ya voy, ya voy",
       "mine": true
+    },
+    "m7_sira_martes": {
+      "from": "sira",
+      "text": "¡Chileno! Estamos con las de Taller en el carrito de helados de la Plaza Central. ¿Vienes? Majo quiere conocerte (perdón de antemano)."
+    },
+    "m7_sira_jueves": {
+      "from": "sira",
+      "text": "Buenos días. Hoy no hay clases (receso, bendito sea). Te espero a las 10 en la portería. Puntual, chileno."
+    },
+    "m7_c1_sira": {
+      "from": "sira",
+      "text": "¿Ya llegaste a tu depa? Yo acabo de llegar. Todavía huelo a lago."
+    },
+    "m7_c1_a": {
+      "from": "sira",
+      "text": "Llegué. Todavía tengo el grito del pavo en los oídos",
+      "mine": true
+    },
+    "m7_c1_b": {
+      "from": "sira",
+      "text": "Llegué, pero creo que una parte se quedó en el lago",
+      "mine": true
+    },
+    "m7_c1_c": {
+      "from": "sira",
+      "text": "Sí! Buenas noches!",
+      "mine": true
+    },
+    "m7_c1_sira_a": {
+      "from": "sira",
+      "text": "Jajaja. Ese pavo nos tenía envidia. Lo vi en sus ojitos."
+    },
+    "m7_c1_sira_b": {
+      "from": "sira",
+      "text": "...Qué bonito eso. Yo creo que la mía también se quedó ahí. Junto a la tuya."
+    },
+    "m7_c1_sira_c": {
+      "from": "sira",
+      "text": "¿Ya? ¿Tan rápido? Yo no tengo nada de sueño..."
+    },
+    "m7_c2_sira": {
+      "from": "sira",
+      "text": "Pregunta seria: ¿qué es lo que más extrañas de Chile?"
+    },
+    "m7_c2_a": {
+      "from": "sira",
+      "text": "Mi mamá. Y el pan. En ese orden (casi)",
+      "mine": true
+    },
+    "m7_c2_b": {
+      "from": "sira",
+      "text": "Antes te decía que todo. Ahora no sé",
+      "mine": true
+    },
+    "m7_c2_c": {
+      "from": "sira",
+      "text": "El frío. Aquí me derrito",
+      "mine": true
+    },
+    "m7_c2_sira_a": {
+      "from": "sira",
+      "text": "Algún día me llevas a conocer ese pan. Y a tu mamá. En ese orden (casi)."
+    },
+    "m7_c2_sira_b": {
+      "from": "sira",
+      "text": "¿Ahora no sabes? ...¿Y eso por qué será? (no contestes, me da vergüenza)"
+    },
+    "m7_c2_sira_c": {
+      "from": "sira",
+      "text": "Jajaja ¡si aquí hace frío! Ayer me puse chaqueta. Con 23 grados."
+    },
+    "m7_c3_sira": {
+      "from": "sira",
+      "text": "¿Sigues despierto? Yo no puedo dormir. Estoy viendo la foto del pavo jajaja"
+    },
+    "m7_c3_foto": {
+      "from": "sira",
+      "text": "[foto] Nosotros + el pavo real. El pavo salió mejor."
+    },
+    "m7_c3_a": {
+      "from": "sira",
+      "text": "Esa foto va a ser mi fondo de pantalla",
+      "mine": true
+    },
+    "m7_c3_b": {
+      "from": "sira",
+      "text": "Yo tampoco puedo dormir. Me pregunto por qué",
+      "mine": true
+    },
+    "m7_c3_c": {
+      "from": "sira",
+      "text": "El pavo salió mejor, sí",
+      "mine": true
+    },
+    "m7_c3_sira_a": {
+      "from": "sira",
+      "text": "Ya la puse de fondo de pantalla yo primero. Te gané."
+    },
+    "m7_c3_sira_b": {
+      "from": "sira",
+      "text": "Mmm... yo también me pregunto. Creo que sé la respuesta. Creo que tú también."
+    },
+    "m7_c3_sira_c": {
+      "from": "sira",
+      "text": "¡Oye! Yo salí bonita. Tú saliste con los ojos cerrados. El pavo, perfecto."
+    },
+    "m7_c4_sira": {
+      "from": "sira",
+      "text": "Son las 3:12. Mañana voy a ser un zombi. ¿Qué haces mañana?"
+    },
+    "m7_c4_a": {
+      "from": "sira",
+      "text": "Ven a mi depa. Cocino yo",
+      "mine": true
+    },
+    "m7_c4_b": {
+      "from": "sira",
+      "text": "Nada... ¿y tú?",
+      "mine": true
+    },
+    "m7_c4_c": {
+      "from": "sira",
+      "text": "Dormir hasta el mediodía",
+      "mine": true
+    },
+    "m7_c4_sira_a": {
+      "from": "sira",
+      "text": "¿Tú cocinas? ¿Algo que no sea huevo revuelto? ...Acepto."
+    },
+    "m7_c4_sira_b": {
+      "from": "sira",
+      "text": "¿Y si me invitas a tu depa famoso? Quiero ver la vista del piso 8."
+    },
+    "m7_c4_sira_c": {
+      "from": "sira",
+      "text": "Entonces a la una en tu depa. Despiértate. No acepto un no."
+    },
+    "m7_c4_sira_2": {
+      "from": "sira",
+      "text": "Yo llevo lo de la salsa: boloñesa de verdad, la de mi abuela. Tú pones los fideos. A la 1."
+    },
+    "m7_c4_sira_3": {
+      "from": "sira",
+      "text": "Buenas noches, chileno. (Ahora sí.)"
+    },
+    "m7_c4_fin": {
+      "from": "sira",
+      "text": "Buenas noches, Sira.",
+      "mine": true
+    },
+    "m7_c4_fin_b": {
+      "from": "sira",
+      "text": "Sueña conmigo (es broma) (no es broma)",
+      "mine": true
+    },
+    "m7_sira_bus": {
+      "from": "sira",
+      "text": "Ya te extraño. Y el bus ni siquiera ha salido de Pance."
+    },
+    "m7_sira_bus_2": {
+      "from": "sira",
+      "text": "Pd: dile a don Wilmer que gracias. Él sabe por qué."
+    },
+    "m7_grover_viernes": {
+      "from": "grover",
+      "text": "Cumpa! Fútbol hoy a las 5?? Falta uno. Contestá. CONTESTÁ."
     }
   },
   "calls": {
@@ -667,9 +833,33 @@
       },
       "afterMs": 60000,
       "call": "grover_m6_sabado"
+    },
+    {
+      "mission": "mission07",
+      "id": "m7_grover_viernes",
+      "if": {
+        "flag": "m7_viernes",
+        "notFlag": "m7_toc"
+      },
+      "afterMs": 1500,
+      "message": "m7_grover_viernes"
     }
   ],
   "outgoing": [
+    {
+      "to": "grover",
+      "if": {
+        "mission": "mission07"
+      },
+      "dialogue": "m7_llamar_grover"
+    },
+    {
+      "to": "mery",
+      "if": {
+        "mission": "mission07"
+      },
+      "dialogue": "m7_llamar_mery"
+    },
     {
       "to": "mery",
       "if": {

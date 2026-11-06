@@ -8,6 +8,12 @@ import { StoryState, type PhoneEntry } from './StoryState';
 
 export const PHONE = phoneData as unknown as PhoneData;
 
+/** Estado de la UI del celular que comparten las viñetas y la notificación. */
+export const phoneUi = {
+  /** El chat de Sira está abierto como viñeta (misión 6): ella anima los mensajes y sus sonidos. */
+  chatOpen: false,
+};
+
 /**
  * Celular: mensajes y llamadas de la historia (src/data/phone.json).
  * - Los mensajes llegan al instante (notificación + bandeja en StoryState.phone).
@@ -29,12 +35,15 @@ class PhoneImpl {
       return;
     }
     StoryState.receiveMessage(id, clockMinutes());
+    // Con el chat abierto en pantalla, el sonido (y la notificación) los pone la viñeta a su tiempo.
+    const live = phoneUi.chatOpen && msg.from === 'sira';
     if (msg.mine) {
       // Lo mandaste tú: queda leído y suena el «fiu» de enviado, sin notificación.
       StoryState.markRead([id]);
-      playSfx('enviado');
+      if (!live) playSfx('enviado');
       return;
     }
+    if (live) return;
     playSfx('notify');
     EventSystem.emit('phone-message', { id });
   }

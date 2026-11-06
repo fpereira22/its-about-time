@@ -110,6 +110,9 @@ const FERIA_CHORDS = ['D', 'G', 'A', 'D', 'Bm', 'G', 'A', 'D'];
 const COLINA_CHORDS = ['Em', 'C', 'Am', 'B', 'Em', 'C', 'D', 'B'];
 const PERSE_CHORDS = ['Am', 'Am', 'F', 'E', 'Am', 'Am', 'F', 'E'];
 const NADO_CHORDS = ['F', 'C', 'Dm', 'A#', 'F', 'C', 'A#', 'C'];
+const DEPA_CHORDS = ['F', 'Dm', 'A#', 'C', 'F', 'Dm', 'Gm', 'C'];
+const ASCENSOR_CHORDS = ['C', 'Am', 'Dm', 'G', 'C', 'Am', 'Dm', 'G'];
+const COCINA_CHORDS = ['G', 'C', 'D', 'G', 'Em', 'C', 'D', 'G'];
 
 /** Bajo de cumbia: la fundamental en el 1 y la quinta en el 3, con un repique al final. */
 function cumbiaBass(chords: string[]): string[] {
@@ -136,6 +139,83 @@ function tumbao(chords: string[]): string[] {
 }
 
 export const TRACKS: Record<MusicTrack, TrackDef> = {
+  /** Misión 7, el depa del piso 8: bossa tranquila, el bajo caminando despacito y una melodía cálida. */
+  depa: {
+    bpm: 84,
+    loop: true,
+    echo: 0.2,
+    channels: [
+      {
+        wave: 'triangle',
+        vol: 0.12,
+        tokens: bars(
+          'A5 - - - C6 - A5 - G5 - - - F5 - - -',
+          'F5 - - - A5 - - - D5 - - - . . . .',
+          'D6 - - - C6 - A#5 - A5 - - - G5 - - -',
+          'G5 - - - - - - - E5 - - - . . . .',
+          'A5 - - - C6 - A5 - G5 - - - F5 - A5 -',
+          'D6 - - - C6 - - - A5 - - - . . . .',
+          'A#5 - - - A5 - G5 - F5 - - - G5 - - -',
+          'E5 - - - - - - - C5 - - - . . . .',
+        ),
+      },
+      { wave: 'square', vol: 0.014, tokens: arp(DEPA_CHORDS, 2, 4) },
+      { wave: 'triangle', vol: 0.15, tokens: bass(DEPA_CHORDS, 'twostep') },
+      { wave: 'drums', vol: 0.04, tokens: repeat('k . h . . h k . h . k h . . h .', 8) },
+    ],
+  },
+
+  /** Misión 7, esperando el ascensor (y adentro): la bossa de ascensor de toda la vida. */
+  ascensor: {
+    bpm: 96,
+    loop: true,
+    echo: 0.15,
+    channels: [
+      {
+        wave: 'sine',
+        vol: 0.14,
+        tokens: bars(
+          'E5 - G5 - C6 - - - B5 - A5 - G5 - - -',
+          'A5 - - - E5 - - - . . . . . . . .',
+          'F5 - A5 - D6 - - - C6 - B5 - A5 - - -',
+          'B5 - - - G5 - - - . . . . . . . .',
+          'E5 - G5 - C6 - - - E6 - D6 - C6 - - -',
+          'A5 - - - C6 - - - . . . . . . . .',
+          'D6 - C6 - B5 - A5 - G5 - - - F5 - - -',
+          'G5 - - - - - - - . . . . . . . .',
+        ),
+      },
+      { wave: 'square', vol: 0.012, tokens: arp(ASCENSOR_CHORDS, 2, 4) },
+      { wave: 'triangle', vol: 0.13, tokens: bass(ASCENSOR_CHORDS, 'twostep') },
+      { wave: 'drums', vol: 0.035, tokens: repeat('k . h . h k h . k . h . h k h .', 8) },
+    ],
+  },
+
+  /** Misión 7, la boloñesa con Sira: cumbia juguetona, con el bajo saltarín y palmas. */
+  cocina: {
+    bpm: 112,
+    loop: true,
+    channels: [
+      {
+        wave: 'square',
+        vol: 0.045,
+        tokens: bars(
+          'B5 . D6 . G6 - - . F#6 . E6 . D6 - - .',
+          'E6 . G6 . C7 - - . B6 . A6 . G6 - - .',
+          'A6 . F#6 . D6 - - . E6 . F#6 . A6 - - .',
+          'G6 - - . D6 - - . B5 - - . . . . .',
+          'B5 . D6 . G6 - - . A6 . B6 . G6 - - .',
+          'C7 . B6 . A6 . G6 . E6 - - . . . . .',
+          'D6 . E6 . F#6 . A6 . G6 . F#6 . E6 . D6 .',
+          'G6 - - . . . B6 . G6 - - . . . . .',
+        ),
+      },
+      { wave: 'triangle', vol: 0.18, tokens: cumbiaBass(COCINA_CHORDS) },
+      { wave: 'square', vol: 0.014, tokens: arp(COCINA_CHORDS, 2, 4) },
+      { wave: 'drums', vol: 0.07, tokens: repeat('k . h s k . h s k . h s k h s h', 8) },
+    ],
+  },
+
   title: {
     bpm: 132,
     loop: true,

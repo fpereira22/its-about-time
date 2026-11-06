@@ -361,5 +361,55 @@
     "name": "Cilantro y mazorcas",
     "description": "El encargo de doña Mery para el sancocho, envuelto en la página de deportes.",
     "icon": "mazorcas"
+  },
+  "helado_carrito": {
+    "name": "Cono de don Efraín",
+    "description": "Helado del carrito de la Plaza Central, en cono de galleta. Se derrite más rápido que tú cuando Sira se ríe.",
+    "icon": "cono_helado",
+    "collectible": true,
+    "use": "usar_helado_carrito",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "foto_pavo": {
+    "name": "Selfie con el pavo real",
+    "description": "Sira y tú, mejilla con mejilla, y un pavo real con la cola abierta detrás. El pavo salió mejor.",
+    "icon": "foto_pavo",
+    "collectible": true,
+    "use": "usar_foto_pavo",
+    "useLabel": "Mirar"
+  },
+  "crispetas": {
+    "name": "Crispetas de microondas",
+    "description": "Sabor mantequilla. «Para ver una peli», dice la caja. Ojalá.",
+    "icon": "crispetas",
+    "collectible": true
+  },
+  "chocolatina": {
+    "name": "Chocolatina con maní",
+    "description": "Para compartir. La mitad grande es de Sira (eso dijo).",
+    "icon": "chocolatina",
+    "collectible": true
+  },
+  "la_calena": {
+    "name": "La Caleña",
+    "description": "Gaseosa dorada «sabor a fiesta», de litro y medio. Etiqueta roja con una palmita.",
+    "icon": "botella_calena",
+    "use": "usar_bebida_m7",
+    "useLabel": "Mirar"
+  },
+  "coca_kola": {
+    "name": "Coca-Kola",
+    "description": "La de toda la vida. Litro y medio, bien helada.",
+    "icon": "botella_kola",
+    "use": "usar_bebida_m7",
+    "useLabel": "Mirar"
+  },
+  "rojosazon": {
+    "name": "Rojosazón",
+    "description": "La gaseosa roja de manzana. Sabe a cumpleaños infantil.",
+    "icon": "botella_rojo",
+    "use": "usar_bebida_m7",
+    "useLabel": "Mirar"
   }
 }

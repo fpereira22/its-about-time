@@ -1,0 +1,2019 @@
+{
+ "m7_ascensor_8": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "noche_u",
+      "if": {
+       "flag": "m7_dia_u",
+       "notFlag": "m7_chat_hecho"
+      }
+     },
+     {
+      "goto": "sira_puerta",
+      "if": {
+       "flag": "m7_toc",
+       "notFlag": "m7_rumbo_farmadia"
+      }
+     },
+     {
+      "goto": "salsa",
+      "if": {
+       "flag": "m7_vuelta_depa",
+       "notFlag": "m7_rumbo_paradero"
+      }
+     },
+     {
+      "goto": "viernes_antes",
+      "if": {
+       "flag": "m7_viernes",
+       "notFlag": "m7_toc"
+      }
+     },
+     {
+      "goto": "bajar"
+     }
+    ]
+   },
+   "noche_u": {
+    "text": "Ya es de noche y mañana es viernes. Lo único que queda por hacer hoy es tirarse en la cama."
+   },
+   "sira_puerta": {
+    "text": "¿Y dejar a Sira sola con la boloñesa? Ni loco."
+   },
+   "salsa": {
+    "text": "La salsa está lista y Sira te espera adentro. El lobby puede esperar."
+   },
+   "viernes_antes": {
+    "text": "Sira llega a la una. No es momento de pasear: hay que ordenar y poner el agua."
+   },
+   "bajar": {
+    "text": "El ascensor del piso 8. Un espejo, un letrero de «Máx. 8 personas» y una mancha de helado que nadie limpia.",
+    "choices": [
+     {
+      "label": "Bajar al lobby",
+      "effects": [
+       {
+        "event": "ascensor_m7",
+        "data": {
+         "to": "lobby"
+        }
+       }
+      ]
+     },
+     {
+      "label": "Quedarte en el piso"
+     }
+    ]
+   }
+  }
+ },
+ "m7_ascensor_lobby": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "juntos",
+      "if": {
+       "flag": "m7_bebida_elegida",
+       "notFlag": "m7_ascensor_juntos"
+      }
+     },
+     {
+      "goto": "paradero",
+      "if": {
+       "flag": "m7_rumbo_paradero"
+      }
+     },
+     {
+      "goto": "farmadia",
+      "if": {
+       "flag": "m7_rumbo_farmadia",
+       "notFlag": "m7_bebida_elegida"
+      }
+     },
+     {
+      "goto": "u",
+      "if": {
+       "flag": "m7_jueves",
+       "notFlag": "m7_dia_u"
+      }
+     },
+     {
+      "goto": "martes",
+      "if": {
+       "notFlag": "m7_helado_martes"
+      }
+     },
+     {
+      "goto": "subir"
+     }
+    ]
+   },
+   "juntos": {
+    "text": "Aprietas el botón. Sira se pone a tu lado con la bolsa de la Farmadía.",
+    "effects": [
+     {
+      "event": "ascensor_m7",
+      "data": {
+       "to": "piso8"
+      }
+     }
+    ]
+   },
+   "paradero": {
+    "text": "Primero hay que llevar a Sira al paradero. Después tendrás toda la noche para subir y bajar."
+   },
+   "farmadia": {
+    "text": "Faltan las bebidas. La Farmadía está en la esquina de la Carrera 122."
+   },
+   "u": {
+    "text": "Sira te espera en la portería de la U. ¡No la dejes plantada!"
+   },
+   "martes": {
+    "text": "Sira y sus amigas te esperan en la U. Sube después, que el helado se derrite."
+   },
+   "subir": {
+    "text": "Los dos ascensores del Bobo. Uno funciona. El otro tiene un letrero escrito a mano: «Lento pero seguro».",
+    "choices": [
+     {
+      "label": "Subir al piso 8",
+      "effects": [
+       {
+        "event": "ascensor_m7",
+        "data": {
+         "to": "piso8"
+        }
+       }
+      ]
+     },
+     {
+      "label": "Quedarte en el lobby"
+     }
+    ]
+   }
+  }
+ },
+ "m7_escalera": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La escalera de emergencia. Ocho pisos. Ni loco: para eso hay ascensor (aunque sea lento)."
+   }
+  }
+ },
+ "m7_ascensor_espera": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Aprietan el botón. El indicador dice 8. El ascensor está arriba del todo... y empieza a bajar. Despacio. Muy, muy despacio.",
+    "effects": [
+     {
+      "vineta": "m7_ascensor"
+     }
+    ],
+    "next": "musica"
+   },
+   "musica": {
+    "text": "Por el parlante del lobby suena la música de ascensor de toda la vida. Sira la tararea bajito sin darse cuenta.",
+    "next": "silencio"
+   },
+   "silencio": {
+    "text": "Siete. Seis. Ninguno de los dos dice nada. En el acero de la puerta se ven los dos reflejados, uno al lado del otro, como en una foto.",
+    "choices": [
+     {
+      "label": "Tararear con ella la música del ascensor",
+      "effects": [
+       {
+        "setFlag": "m7_q_ascensor"
+       }
+      ],
+      "goto": "tararear"
+     },
+     {
+      "label": "Mirarla de reojo... y que te pille",
+      "effects": [
+       {
+        "setFlag": "m7_q_ascensor"
+       }
+      ],
+      "goto": "reojo"
+     },
+     {
+      "label": "«Este es el ascensor más lento de Cali»",
+      "goto": "lento"
+     }
+    ]
+   },
+   "tararear": {
+    "text": "Tarareas con ella. Ella se ríe y sube el volumen. Terminan cantando la música de ascensor a dúo, muy serios, como si fuera un bolero.",
+    "next": "ding"
+   },
+   "reojo": {
+    "text": "La miras de reojo. Ella te está mirando de reojo. Los dos miran al frente al mismo tiempo, rojos. El ascensor sigue bajando como si nada.",
+    "next": "ding"
+   },
+   "lento": {
+    "text": "«No es lento», dice ella. «Es romántico. Te da tiempo de pensar cosas.» «¿Qué cosas?» «Cosas.»",
+    "next": "ding"
+   },
+   "ding": {
+    "text": "Tres... dos... uno... ¡Ding!",
+    "effects": [
+     {
+      "sfx": "elevator"
+     }
+    ]
+   }
+  }
+ },
+ "m7_ascensor_adentro": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Se cierran las puertas. Ella aprieta el 8. Suben pegados a la pared del fondo, aunque el ascensor está vacío.",
+    "effects": [
+     {
+      "vineta": "m7_ascensor"
+     }
+    ],
+    "next": "wilmer"
+   },
+   "wilmer": {
+    "speaker": "Sira",
+    "text": "Oye... ¿le contaste a Wilmer que yo venía hoy?",
+    "choices": [
+     {
+      "label": "No. Él solito se dio cuenta",
+      "goto": "solito"
+     },
+     {
+      "label": "Le conté que venía alguien especial",
+      "effects": [
+       {
+        "setFlag": "m7_q_especial"
+       }
+      ],
+      "goto": "especial"
+     }
+    ]
+   },
+   "solito": {
+    "speaker": "Sira",
+    "text": "Ese hombre lo sabe todo. Es como el Buziraco, pero buena gente.",
+    "next": "fin"
+   },
+   "especial": {
+    "speaker": "Sira",
+    "text": "¿«Alguien especial»? ...Ay, chileno. Ahora no sé dónde meterme. Y en este ascensor no hay dónde.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Ocho. ¡Ding!"
+   }
+  }
+ },
+ "m7_puerta_801": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Depa 801. Detrás de la puerta suena reguetón a todo volumen. Son las tres de la tarde de un martes. O de cualquier día: siempre suena."
+   }
+  }
+ },
+ "m7_puerta_803": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Depa 803. Huele a arepa con queso. Se te hace agua la boca. Tocas... nadie abre, pero el olor sigue."
+   }
+  }
+ },
+ "m7_puerta_807": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Depa 807. Tocas. La puerta se abre diez centímetros: un ojo, un mullet y una barba te miran.",
+    "effects": [
+     {
+      "vineta": "m7_vecino"
+     },
+     {
+      "setFlag": "secreto_vecino_807"
+     }
+    ],
+    "next": "vecino"
+   },
+   "vecino": {
+    "speaker": "El del 807",
+    "text": "¿Ustedes también escucharon un pavo real? Toda la noche. Un pavo real. En el piso 8.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Cierra la puerta antes de que puedas contestar. Nadie en el Bobo sabe cómo se llama."
+   }
+  }
+ },
+ "m7_puerta_809": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Depa 809. Un letrero pegado con cinta: «NO MOLESTAR. TESIS. ES EN SERIO». Debajo, más chiquito: «Si es domicilio, sí molestar»."
+   }
+  }
+ },
+ "m7_ventana_pasillo": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "noche",
+      "if": {
+       "flag": "m7_noche"
+      }
+     },
+     {
+      "goto": "dia"
+     }
+    ]
+   },
+   "dia": {
+    "text": "La ventana del pasillo da a la U: se ven los samanes, el techo de la Biblioteca y, si achinas los ojos, el lago."
+   },
+   "noche": {
+    "text": "Llueve sobre la U. Los faroles de los caminos se ven borrosos y dorados."
+   }
+  }
+ },
+ "m7_pasillo_vuelta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Al salir del ascensor, la puerta del 807 se abre diez centímetros. Un ojo, un mullet y una barba los miran.",
+    "effects": [
+     {
+      "vineta": "m7_vecino"
+     },
+     {
+      "setFlag": "m7_pasillo_vuelta"
+     }
+    ],
+    "next": "vecino"
+   },
+   "vecino": {
+    "speaker": "El del 807",
+    "text": "...Ah. Pensé que era el pavo real.",
+    "next": "cierra"
+   },
+   "cierra": {
+    "text": "Y cierra la puerta.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "¿Quién es ese?",
+    "next": "tu"
+   },
+   "tu": {
+    "speaker": "Tú",
+    "text": "El del 807. Nadie sabe cómo se llama. Ni Wilmer.",
+    "effects": [
+     {
+      "setFlag": "secreto_vecino_807"
+     }
+    ]
+   }
+  }
+ },
+ "m7_vuelta_depa": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Sira deja la bolsa de la Farmadía en el mesón y se va derecho a revolver la salsa, que lleva veinte minutos burbujeando a fuego lento. Huele a gloria.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "¡Perfecta! Ahora los fideos, chef. Ven, que los fideos son tuyos.",
+    "effects": [
+     {
+      "setFlag": "m7_vuelta_depa"
+     },
+     {
+      "clearFlag": "m7_sira_sigue"
+     },
+     {
+      "objective": "Terminen la comida: habla con Sira en la cocina"
+     }
+    ]
+   }
+  }
+ },
+ "m7_cocina": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "agua",
+      "if": {
+       "flag": "m7_viernes",
+       "notFlag": "m7_agua"
+      }
+     },
+     {
+      "goto": "hierve",
+      "if": {
+       "flag": "m7_agua",
+       "notFlag": "m7_sira_entro"
+      }
+     },
+     {
+      "goto": "salsa",
+      "if": {
+       "flag": "m7_cocina1",
+       "notFlag": "m7_cocina2"
+      }
+     },
+     {
+      "goto": "ella",
+      "if": {
+       "flag": "m7_sira_entro",
+       "notFlag": "m7_cocina1"
+      }
+     },
+     {
+      "goto": "otro"
+     }
+    ]
+   },
+   "agua": {
+    "text": "La cocina de dos platos. Ya tienes los fideos en el mesón (medio kilo, por si acaso).",
+    "choices": [
+     {
+      "label": "Poner el agua a hervir para los fideos",
+      "effects": [
+       {
+        "event": "agua_m7"
+       }
+      ]
+     },
+     {
+      "label": "Todavía no"
+     }
+    ]
+   },
+   "hierve": {
+    "text": "El agua ya hierve. Y alguien tocó la puerta. ¿No vas a abrir?"
+   },
+   "salsa": {
+    "text": "La boloñesa burbujea despacito, a fuego lento. Plop. Plop. Huele a domingo en casa de abuela."
+   },
+   "ella": {
+    "text": "Sira ya está en la cocina, arremangada. Háblale."
+   },
+   "otro": {
+    "text": "Tu cocina de dos platos. Aquí aprendiste a hacer huevos revueltos sin que se te quemen. A veces."
+   }
+  }
+ },
+ "m7_agua_puesta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Llenas la olla de doña Mery (la que te regaló al irte), le echas sal y la pones al fuego. En diez minutos hierve.",
+    "effects": [
+     {
+      "vineta": ""
+     }
+    ],
+    "next": "hora"
+   },
+   "hora": {
+    "text": "Son las 12:50. Tienes tiempo de sobra. Tiempo de sobra. Tiempo de..."
+   }
+  }
+ },
+ "m7_toc_toc": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Tocan la puerta. Son las 12:58. Llegó temprano.",
+    "effects": [
+     {
+      "vineta": "m7_toc_toc"
+     }
+    ],
+    "next": "nervios"
+   },
+   "nervios": {
+    "text": "Se te para el corazón. Te miras en el reflejo del refrigerador. Te arreglas el pelo. Lo empeoras.",
+    "effects": [
+     {
+      "objective": "Abre la puerta: Sira está en el pasillo"
+     }
+    ]
+   }
+  }
+ },
+ "m7_refri": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "post",
+      "if": {
+       "flag": "m7_cocina1"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "normal": {
+    "text": "Tu refrigerador: agua de la llave en una botella, medio limón, salsa de tomate y tres arepas congeladas de doña Mery. Lo mínimo para sobrevivir."
+   },
+   "post": {
+    "text": "Sigue igual de vacío. El limón te mira con lástima."
+   }
+  }
+ },
+ "m7_lavaplatos": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "lavar",
+      "if": {
+       "flag": "m7_viernes",
+       "notFlag": "m7_loza"
+      }
+     },
+     {
+      "goto": "limpio"
+     }
+    ]
+   },
+   "lavar": {
+    "text": "La loza de anoche: un plato, una taza, una olla con restos de huevo revuelto (quemado).",
+    "choices": [
+     {
+      "label": "Lavarla toda",
+      "effects": [
+       {
+        "setFlag": "m7_loza"
+       },
+       {
+        "sfx": "splash"
+       },
+       {
+        "clockAdd": 8
+       }
+      ],
+      "goto": "ok"
+     },
+     {
+      "label": "Después"
+     }
+    ]
+   },
+   "ok": {
+    "text": "Reluciente. Hasta la olla quedó como nueva. Bueno, como seminueva."
+   },
+   "limpio": {
+    "text": "El lavaplatos, limpio. Por ahora."
+   }
+  }
+ },
+ "m7_meson": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "El mesón de la cocina. Una tabla de picar, un cuchillo, sal, aceite y medio kilo de fideos."
+   }
+  }
+ },
+ "m7_ropa": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Ropa tirada en el piso: una polera, unos jeans, dos calcetines que no son pareja y la toalla de la piscina.",
+    "choices": [
+     {
+      "label": "Recogerla y meterla al closet",
+      "effects": [
+       {
+        "setFlag": "m7_ordenado"
+       },
+       {
+        "setFlag": "m7_q_ordenado"
+       },
+       {
+        "clockAdd": 6
+       }
+      ],
+      "goto": "ok"
+     },
+     {
+      "label": "Esconderla debajo de la cama",
+      "effects": [
+       {
+        "setFlag": "m7_ordenado"
+       }
+      ],
+      "goto": "cama"
+     },
+     {
+      "label": "Dejarla así"
+     }
+    ]
+   },
+   "ok": {
+    "text": "Al closet. El depa ya parece de alguien que tiene su vida bajo control."
+   },
+   "cama": {
+    "text": "Debajo de la cama. Nadie va a mirar debajo de la cama. ¿Cierto?"
+   }
+  }
+ },
+ "m7_ducha": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "duchar",
+      "if": {
+       "flag": "m7_viernes",
+       "notFlag": "m7_ducha"
+      }
+     },
+     {
+      "goto": "otra"
+     }
+    ]
+   },
+   "duchar": {
+    "text": "¿Te duchas?",
+    "choices": [
+     {
+      "label": "Sí, con agua caliente (aquí sí hay)",
+      "effects": [
+       {
+        "setFlag": "m7_ducha"
+       },
+       {
+        "sfx": "ducha"
+       },
+       {
+        "clockAdd": 12
+       }
+      ],
+      "goto": "ok"
+     },
+     {
+      "label": "No hay tiempo"
+     }
+    ]
+   },
+   "ok": {
+    "text": "Ducha caliente. En la casa de doña Mery era fría siempre. Esto es el lujo. El Bobo Unic Living, señores."
+   },
+   "otra": {
+    "text": "La ducha del depa. Con agua caliente. Todavía te emociona."
+   }
+  }
+ },
+ "m7_wc": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "El baño. Hay un letrero de la residencia: «Por favor no botar el papel al inodoro». En Chile sí se bota. Cada día aprendes algo."
+   }
+  }
+ },
+ "m7_perfume": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "perfume",
+      "if": {
+       "flag": "m7_viernes",
+       "notFlag": "m7_perfume"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "normal": {
+    "text": "El lavamanos y el espejo. Tienes cara de alguien que vive solo hace dos semanas."
+   },
+   "perfume": {
+    "text": "Junto al lavamanos, el perfume que te regaló tu mamá «para las ocasiones especiales».",
+    "choices": [
+     {
+      "label": "Dos gotitas",
+      "effects": [
+       {
+        "setFlag": "m7_perfume"
+       }
+      ],
+      "goto": "poco"
+     },
+     {
+      "label": "Medio frasco (es una ocasión MUY especial)",
+      "effects": [
+       {
+        "setFlag": [
+         "m7_perfume",
+         "m7_perfume_exceso",
+         "secreto_perfume_m7"
+        ]
+       }
+      ],
+      "goto": "mucho"
+     },
+     {
+      "label": "Nada"
+     }
+    ]
+   },
+   "poco": {
+    "text": "Dos gotitas. Discreto. Elegante. Tu mamá estaría orgullosa."
+   },
+   "mucho": {
+    "text": "Medio frasco. Se te llenan los ojos de lágrimas. Una mosca que pasaba por el baño cae al suelo."
+   }
+  }
+ },
+ "m7_ventanal": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "lluvia",
+      "if": {
+       "flag": "m7_noche"
+      }
+     },
+     {
+      "goto": "nublado",
+      "if": {
+       "flag": "m7_viernes"
+      }
+     },
+     {
+      "goto": "dia"
+     }
+    ]
+   },
+   "dia": {
+    "text": "El ventanal del piso 8: los Farallones con su sombrero de nubes, el techo de paneles del PrecioClub y la U al otro lado de la Calle 18. Si te asomas, ves la portería."
+   },
+   "nublado": {
+    "text": "Hoy está nublado sobre los Farallones. Huele a que va a llover. En Cali siempre huele a que va a llover."
+   },
+   "lluvia": {
+    "text": "Llueve sobre Pance. Las gotas bajan por el vidrio como carreritas. Abajo, la Calle 18 brilla."
+   }
+  }
+ },
+ "m7_cuadro": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Un póster de Valparaíso con sus cerros de colores. Lo colgaste el primer día, para no extrañar tanto. Ahora lo miras y extrañas un poquito menos."
+   }
+  }
+ },
+ "m7_estante": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Tu estante: el libro de Optimización (intacto), una bandera chilena chiquita, el carnet de la PUCC y un frasco de manjar a medio comer."
+   }
+  }
+ },
+ "m7_closet": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "paraguas",
+      "if": {
+       "notItem": "paraguas"
+      }
+     },
+     {
+      "goto": "ropa"
+     }
+    ]
+   },
+   "paraguas": {
+    "text": "En el closet, entre las poleras, está el paraguas negro de doña Mery. Nunca se lo devolviste. Ella dijo que te lo quedaras: «en Cali llueve de repente, mijo».",
+    "effects": [
+     {
+      "giveItem": "paraguas"
+     }
+    ]
+   },
+   "ropa": {
+    "text": "Tu ropa, más o menos doblada. La polera azul de la PUCC (la del 14) ocupa el lugar de honor."
+   }
+  }
+ },
+ "m7_tv": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "despues",
+      "if": {
+       "flag": "m7_viernes"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "normal": {
+    "text": "La tele que venía con el depa. Tiene CineFlix con la cuenta de alguien que ya no vive aquí. Nadie ha cambiado la clave."
+   },
+   "despues": {
+    "text": "La tele. «¿Y si después vemos una peli?», piensas. Ojalá."
+   }
+  }
+ },
+ "m7_planta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Una mata de sábila que te regaló doña Mery: «Para las malas energías, mijo. Y si se le pone amarilla, me llama»."
+   }
+  }
+ },
+ "m7_velador": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "El velador: el reloj despertador, el cargador y una foto de tu familia en el aeropuerto de Santiago. Tu hermano chico sale con los ojos cerrados."
+   }
+  }
+ },
+ "m7_sira_puerta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Abres la puerta. Es Sira, con el pelo suelto, una bolsa de mercado en cada mano y la sonrisa de siempre.",
+    "effects": [
+     {
+      "vineta": "m7_toc_toc"
+     }
+    ],
+    "next": "hola"
+   },
+   "hola": {
+    "speaker": "Sira",
+    "text": "¡Llegué temprano! Perdón. Bueno, no perdón: es que tenía ganas de venir.",
+    "next": "perfume"
+   },
+   "perfume": {
+    "branches": [
+     {
+      "goto": "mucho",
+      "if": {
+       "flag": "m7_perfume_exceso"
+      }
+     },
+     {
+      "goto": "abrazo"
+     }
+    ]
+   },
+   "mucho": {
+    "speaker": "Sira",
+    "text": "...¿Por qué huele tanto a perfume en este pasillo? Ay, chileno. ¿Te echaste el frasco entero? ...Me gusta. Pero respira.",
+    "next": "abrazo"
+   },
+   "abrazo": {
+    "text": "Deja las bolsas en el suelo.",
+    "choices": [
+     {
+      "label": "Abrazarla",
+      "effects": [
+       {
+        "setFlag": "m7_q_puerta"
+       }
+      ],
+      "goto": "abrazar"
+     },
+     {
+      "label": "«¡Pasa, pasa!» (todo nervioso)",
+      "goto": "pasa"
+     }
+    ]
+   },
+   "abrazar": {
+    "text": "La abrazas. Ella te abraza más fuerte. Se quedan así en la puerta del 805, un segundo más de lo normal. Dos. Tres. Un tomate se escapa de la bolsa y se va rodando por el pasillo.",
+    "effects": [
+     {
+      "vineta": "m7_abrazo"
+     }
+    ],
+    "next": "tomate"
+   },
+   "pasa": {
+    "text": "Ella se ríe y te abraza igual, con bolsas y todo. «Hola, ¿ah? Primero se saluda.» Un tomate se escapa de la bolsa y se va rodando por el pasillo.",
+    "effects": [
+     {
+      "vineta": "m7_abrazo"
+     }
+    ],
+    "next": "tomate"
+   },
+   "tomate": {
+    "speaker": "Sira",
+    "text": "¡Mi tomate! ...Bueno, ese se lo dejamos al del 807.",
+    "next": "bolsa"
+   },
+   "bolsa": {
+    "text": "Entra. Mira el depa entero, despacio: el ventanal, los Farallones, el póster de Valparaíso, las cajas de la mudanza.",
+    "next": "opina"
+   },
+   "opina": {
+    "branches": [
+     {
+      "goto": "ordenado",
+      "if": {
+       "flag": [
+        "m7_ordenado",
+        "m7_loza"
+       ]
+      }
+     },
+     {
+      "goto": "desorden",
+      "if": {
+       "not": {
+        "any": [
+         {
+          "flag": "m7_ordenado"
+         },
+         {
+          "flag": "m7_loza"
+         }
+        ]
+       }
+      }
+     },
+     {
+      "goto": "masomenos"
+     }
+    ]
+   },
+   "ordenado": {
+    "speaker": "Sira",
+    "text": "Qué bonito, chileno. Y qué ordenado. ¿Siempre es así o limpiaste por mí? ...No me contestes.",
+    "next": "ingredientes"
+   },
+   "desorden": {
+    "speaker": "Sira",
+    "text": "Uy. Se nota que vives solo hace dos semanas. ...Me encanta. Se siente que vive alguien.",
+    "next": "ingredientes"
+   },
+   "masomenos": {
+    "speaker": "Sira",
+    "text": "Qué lindo tu depa. Y esa vista... con esa vista yo no saldría nunca de aquí.",
+    "next": "ingredientes"
+   },
+   "ingredientes": {
+    "speaker": "Sira",
+    "text": "Bueno. Aquí está lo de la boloñesa de mi abuela: tomates, zanahoria, cebolla, ajo, carne molida, laurel y albahaca. Tú pusiste los fideos, ¿cierto? ...Y el agua ya hierve. Bien, chef.",
+    "effects": [
+     {
+      "vineta": "m7_ingredientes"
+     }
+    ],
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Se arremanga y se va a la cocina como si viviera aquí.",
+    "effects": [
+     {
+      "setFlag": "m7_sira_entro"
+     },
+     {
+      "objective": "Cocinen la boloñesa: habla con Sira en la cocina"
+     }
+    ]
+   }
+  }
+ },
+ "m7_sira_cocina": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sira",
+    "text": "¿Listo, chef? Yo dirijo, tú picas. La receta de mi abuela no se negocia.",
+    "choices": [
+     {
+      "label": "¡A cocinar!",
+      "effects": [
+       {
+        "event": "cocina_m7_1"
+       }
+      ]
+     },
+     {
+      "label": "Dame un minuto"
+     }
+    ]
+   }
+  }
+ },
+ "m7_post_cocina_1": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La salsa ya está en la olla: el sofrito, la carne, los tomates, el laurel. Sira la prueba con la cuchara de palo y cierra los ojos.",
+    "next": "prueba"
+   },
+   "prueba": {
+    "branches": [
+     {
+      "goto": "bien",
+      "if": {
+       "flag": "m7_cocina1_perfecta"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "bien": {
+    "speaker": "Sira",
+    "text": "Mmm. Mi abuela estaría orgullosa. Y un poco celosa.",
+    "next": "sed"
+   },
+   "normal": {
+    "speaker": "Sira",
+    "text": "Mmm. Está... está bien. Veinte minutos a fuego lento y queda perfecta. La boloñesa perdona todo.",
+    "next": "sed"
+   },
+   "sed": {
+    "speaker": "Sira",
+    "text": "Oye, ¿y qué vamos a tomar? Tengo una sed...",
+    "next": "nevera"
+   },
+   "nevera": {
+    "text": "Abres el refrigerador. Agua de la llave, medio limón y la salsa de tomate. Sira se asoma por encima de tu hombro.",
+    "effects": [
+     {
+      "vineta": "m7_nevera"
+     }
+    ],
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "...Chileno. ¿Tú cómo sobrevives?",
+    "choices": [
+     {
+      "label": "A base de arepas congeladas y amor propio",
+      "goto": "arepas"
+     },
+     {
+      "label": "Bajemos a la Farmadía de la esquina",
+      "goto": "farma"
+     }
+    ]
+   },
+   "arepas": {
+    "speaker": "Sira",
+    "text": "Jajaja. Bueno, el amor propio no se toma. Vamos a la Farmadía de la esquina, que tiene de todo.",
+    "next": "fin"
+   },
+   "farma": {
+    "speaker": "Sira",
+    "text": "Dale. La salsa se queda a fuego lento. Veinte minutos y volvemos.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Ella toma tu brazo para salir. Como si nada. Como si siempre.",
+    "effects": [
+     {
+      "objective": "Bajen a la Farmadía (la esquina de la Carrera 122) a comprar algo de tomar"
+     }
+    ]
+   }
+  }
+ },
+ "m7_sira_cocina_2": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sira",
+    "text": "La salsa está lista. Ahora los fideos: tú, chef. Al dente, ¿ah? Si me los dejas blanditos, me voy.",
+    "choices": [
+     {
+      "label": "Vamos con los fideos",
+      "effects": [
+       {
+        "event": "cocina_m7_2"
+       }
+      ]
+     },
+     {
+      "label": "Un segundo"
+     }
+    ]
+   }
+  }
+ },
+ "m7_post_cocina_2": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Dos platos humeantes sobre el mesón. Sira saca una foto. Después otra, con tu mano en el encuadre. «Para el recuerdo», dice.",
+    "next": "mesa"
+   },
+   "mesa": {
+    "speaker": "Sira",
+    "text": "¡A la mesa!"
+   }
+  }
+ },
+ "m7_sira_mesa": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sira",
+    "text": "Sira enrolla los fideos con el tenedor como una experta. Tiene salsa en la comisura del labio y no se ha dado cuenta."
+   }
+  }
+ },
+ "m7_sira_sofa": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sira",
+    "text": "Sira se acomoda en el sofá con las piernas cruzadas y un cojín abrazado."
+   }
+  }
+ },
+ "m7_sira_cama": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sira",
+    "text": "Sira te mira desde la otra almohada."
+   }
+  }
+ },
+ "m7_comida": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Se sientan frente a frente en la mesita del depa. Sirves las gaseosas en los dos únicos vasos que tienes (uno dice «Paine»).",
+    "effects": [
+     {
+      "vineta": "m7_brindis"
+     }
+    ],
+    "next": "brindis"
+   },
+   "brindis": {
+    "branches": [
+     {
+      "goto": "calena",
+      "if": {
+       "flag": "m7_bebida_calena"
+      }
+     },
+     {
+      "goto": "rojo",
+      "if": {
+       "flag": "m7_bebida_rojo"
+      }
+     },
+     {
+      "goto": "kola"
+     }
+    ]
+   },
+   "calena": {
+    "speaker": "Sira",
+    "text": "Por el chileno que adivina las cosas. ¡Salud!",
+    "effects": [
+     {
+      "sfx": "brindis"
+     }
+    ],
+    "next": "prueba"
+   },
+   "rojo": {
+    "speaker": "Sira",
+    "text": "Por los viernes. ¡Salud!",
+    "effects": [
+     {
+      "sfx": "brindis"
+     }
+    ],
+    "next": "prueba"
+   },
+   "kola": {
+    "speaker": "Sira",
+    "text": "Por la boloñesa de mi abuela. ¡Salud!",
+    "effects": [
+     {
+      "sfx": "brindis"
+     }
+    ],
+    "next": "prueba"
+   },
+   "prueba": {
+    "text": "Pruebas la boloñesa. Es... es la mejor salsa que has comido en tu vida. Lo dice tu cara antes que tu boca.",
+    "choices": [
+     {
+      "label": "«Está increíble. Tu abuela es una genia»",
+      "effects": [
+       {
+        "setFlag": "m7_q_comida"
+       }
+      ],
+      "goto": "abuela"
+     },
+     {
+      "label": "«Casi tan rica como la compañía»",
+      "effects": [
+       {
+        "setFlag": "m7_q_comida"
+       }
+      ],
+      "goto": "compania"
+     },
+     {
+      "label": "«Le falta manjar»",
+      "goto": "manjar"
+     }
+    ]
+   },
+   "abuela": {
+    "speaker": "Sira",
+    "text": "Se la voy a contar. Le va a encantar que un chileno le diga genia. Le voy a decir que eres... un amigo. Bueno. Ya veremos qué le digo.",
+    "next": "charla"
+   },
+   "compania": {
+    "text": "Sira se ríe con la boca llena y casi se atora. «¡No me digas esas cosas mientras como!»",
+    "next": "charla"
+   },
+   "manjar": {
+    "text": "Te tira una servilleta a la cara. «Ni se te ocurra. Te saco de aquí. Bueno, es tu depa. Me saco yo.»",
+    "next": "charla"
+   },
+   "charla": {
+    "text": "Hablan de todo: de su abuelo y sus casas sobre el agua en Buenaventura, de tu hermano chico y su dibujo, del Cinco, de la colina, de Grover y su videollamada en el peor momento posible.",
+    "next": "salsa"
+   },
+   "salsa": {
+    "speaker": "Tú",
+    "text": "Sira, tienes salsa aquí.",
+    "choices": [
+     {
+      "label": "Limpiársela con la servilleta",
+      "effects": [
+       {
+        "setFlag": "m7_q_salsa"
+       }
+      ],
+      "goto": "servilleta"
+     },
+     {
+      "label": "Señalarle dónde",
+      "goto": "senala"
+     }
+    ]
+   },
+   "servilleta": {
+    "text": "Le limpias la comisura del labio con la servilleta. Ella se queda quieta. Muy quieta. Te mira. «Gracias», dice bajito, y el aire de la mesita se pone espeso.",
+    "next": "fin"
+   },
+   "senala": {
+    "text": "Ella se limpia el lado equivocado. Después el otro. Después se ríe y se limpia con el dorso de la mano, como niña chica.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Se comen todo. Ella raspa la olla con el último pedazo de pan."
+   }
+  }
+ },
+ "m7_comida_fin": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "crispetas",
+      "if": {
+       "hasItem": "crispetas"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "crispetas": {
+    "speaker": "Sira",
+    "text": "¿Y ahora? ...¡Ya sé! Para eso compramos las crispetas. Peli, chileno. Pon una peli.",
+    "effects": [
+     {
+      "takeItem": "crispetas"
+     },
+     {
+      "setFlag": "m7_crispetas_comidas"
+     },
+     {
+      "sfx": "sarten"
+     }
+    ],
+    "next": "micro"
+   },
+   "micro": {
+    "text": "Las crispetas revientan en el microondas. Plop. Plopplop. El depa entero huele a cine."
+   },
+   "normal": {
+    "speaker": "Sira",
+    "text": "¿Y ahora? ...Estoy tan llena que no me puedo mover. ¿Vemos una peli? Así no me muevo."
+   }
+  }
+ },
+ "m7_peli_elegir": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Se tiran en el sofá. Prendes la tele: CineFlix, con la cuenta de alguien que ya no vive aquí. ¿Qué ven?",
+    "choices": [
+     {
+      "label": "«Tu nombre bajo el cometa» (anime japonés)",
+      "effects": [
+       {
+        "setFlag": "m7_q_peli"
+       }
+      ],
+      "goto": "anime"
+     },
+     {
+      "label": "«Rápidos y Furiosos 23: Furia en Marte»",
+      "goto": "rapidos"
+     },
+     {
+      "label": "«La vida secreta de los pingüinos» (documental)",
+      "effects": [
+       {
+        "setFlag": "secreto_peli_pinguinos"
+       }
+      ],
+      "goto": "pinguinos"
+     }
+    ]
+   },
+   "anime": {
+    "speaker": "Sira",
+    "text": "¡Esa! La vi en el colegio y lloré como tres días. Te va a encantar. Bueno, te va a destruir. Pero te va a encantar."
+   },
+   "rapidos": {
+    "speaker": "Sira",
+    "text": "¿La 23? ¿En Marte? ...No. Veto. Pon esta, la del cometa. Confía en mí."
+   },
+   "pinguinos": {
+    "speaker": "Sira",
+    "text": "¿Pingüinos? ¿Es por Chile? ...Me encanta que hayas pensado en eso. Pero otro día. Hoy: esta. La del cometa. Confía en mí."
+   }
+  }
+ },
+ "m7_peli": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "«Tu nombre bajo el cometa». Dos chicos que no se conocen empiezan a despertarse, algunas mañanas, en el cuerpo del otro: ella en un pueblo junto a un lago, él en una ciudad enorme.",
+    "effects": [
+     {
+      "vineta": "m7_peli"
+     }
+    ],
+    "next": "cometa"
+   },
+   "cometa": {
+    "text": "Se escriben notas en las manos para no olvidarse. Arriba, un cometa cruza el cielo partido en dos. Un hilo rojo los une aunque no se acuerden de sus nombres.",
+    "next": "hombro"
+   },
+   "hombro": {
+    "text": "A la mitad de la peli, Sira apoya la cabeza en tu hombro. Su pelo huele a maracuyá.",
+    "choices": [
+     {
+      "label": "Quedarte quieto (que no se mueva nunca)",
+      "effects": [
+       {
+        "setFlag": "m7_q_hombro"
+       }
+      ],
+      "goto": "quieto"
+     },
+     {
+      "label": "Pasarle el brazo por los hombros",
+      "effects": [
+       {
+        "setFlag": "m7_q_hombro"
+       },
+       {
+        "setFlag": "m7_brazo"
+       }
+      ],
+      "goto": "brazo"
+     },
+     {
+      "label": "Comentar la peli en voz baja",
+      "goto": "comenta"
+     }
+    ]
+   },
+   "quieto": {
+    "text": "No te mueves. No respiras, casi. Se te duerme el brazo y no te importa. Ella se acomoda más cerca.",
+    "next": "final"
+   },
+   "brazo": {
+    "text": "Le pasas el brazo por los hombros. Ella se acurruca sin decir nada, como si estuviera esperando eso desde el ascensor.",
+    "next": "final"
+   },
+   "comenta": {
+    "text": "«¿Por qué no se escriben el nombre y listo?» Ella te tapa la boca con la mano, sin dejar de mirar la tele. «Shhh. Mira.»",
+    "next": "final"
+   },
+   "final": {
+    "text": "Afuera, el cielo se pone gris. La peli llega a la parte del puente, cuando por fin se encuentran..."
+   }
+  }
+ },
+ "m7_peli_fin": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Al final, los dos lloran. Ella dice que no está llorando, que es la cebolla de antes. Tú dices que tú tampoco, que es el perfume.",
+    "next": "nombre"
+   },
+   "nombre": {
+    "speaker": "Sira",
+    "text": "¿Te imaginas olvidarte del nombre de alguien que te importa? ...Yo el tuyo no me lo olvido. Aunque te diga «chileno»."
+   }
+  }
+ },
+ "m7_sueno": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Bostezas. Ella bosteza. Las 3:12 de la mañana pasan la cuenta.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "Me muero de sueño. Es culpa tuya, por tenerme chateando hasta las tres. ¿Una siesta? Una cortita.",
+    "choices": [
+     {
+      "label": "Una siesta en la cama (hay espacio para los dos)",
+      "goto": "cama"
+     },
+     {
+      "label": "Tú en la cama, yo en el sofá",
+      "effects": [
+       {
+        "setFlag": "m7_q_caballero"
+       }
+      ],
+      "goto": "sofa"
+     }
+    ]
+   },
+   "cama": {
+    "speaker": "Sira",
+    "text": "Dale. Pero si roncas, te despierto."
+   },
+   "sofa": {
+    "speaker": "Sira",
+    "text": "Ay, qué caballero. No seas tonto: ven. La cama es grande y yo no muerdo. ...Casi nunca."
+   }
+  }
+ },
+ "m7_cama": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Se acuestan encima de la frazada azul, frente a frente. Las cabezas en la misma almohada. La luz gris de la tarde entra por el ventanal.",
+    "effects": [
+     {
+      "vineta": "m7_cama"
+     }
+    ],
+    "next": "abrazo"
+   },
+   "abrazo": {
+    "text": "Ella se acerca y te abraza. Te quedas con la nariz en su pelo. Afuera, sobre los Farallones, se juntan las nubes.",
+    "next": "ella"
+   },
+   "ella": {
+    "speaker": "Sira",
+    "text": "¿Sabes qué me gustó de ti el primer día, en la piscina? Que nadabas pésimo y no te importaba. Te reías de ti mismo con la boca llena de agua.",
+    "choices": [
+     {
+      "label": "«A mí me gustó tu risa cuando me ahogaba»",
+      "effects": [
+       {
+        "setFlag": "m7_q_cama"
+       }
+      ],
+      "goto": "risa"
+     },
+     {
+      "label": "«Que me digas chileno como si fuera un nombre»",
+      "effects": [
+       {
+        "setFlag": "m7_q_cama"
+       }
+      ],
+      "goto": "nombre"
+     },
+     {
+      "label": "«Me gustaste antes de que me hablaras»",
+      "goto": "antes"
+     }
+    ]
+   },
+   "risa": {
+    "speaker": "Sira",
+    "text": "Es que te ahogabas con tanto estilo... Ay. Me gusta estar así. Contigo. Así de simple.",
+    "next": "silencio"
+   },
+   "nombre": {
+    "speaker": "Sira",
+    "text": "Es que es tu nombre. Para mí sí. Chileno. Mi chileno. ...Ay, se me salió.",
+    "next": "silencio"
+   },
+   "antes": {
+    "speaker": "Sira",
+    "text": "¿Antes? ¿Desde el carril seis? ...Yo también. Pero no le digas a Majo, que me molesta un año.",
+    "next": "silencio"
+   },
+   "silencio": {
+    "text": "Se quedan en silencio. No es un silencio incómodo: es de esos en los que se escucha el corazón del otro."
+   }
+  }
+ },
+ "m7_confesion": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Y entonces lo dices. Por fin. Lo que llevas guardado desde la piscina.",
+    "choices": [
+     {
+      "label": "Decírselo todo, de una",
+      "goto": "decir"
+     },
+     {
+      "label": "Decírselo bajito, casi temblando",
+      "goto": "decir"
+     }
+    ]
+   },
+   "decir": {
+    "speaker": "Tú",
+    "text": [
+     "Sira... yo quiero estar contigo. De verdad. No solo los jueves en la piscina. No solo de helado en helado.",
+     "Hasta el loco de la recepción dice que nos vemos lindos juntos. Y Wilmer nunca se equivoca.",
+     "Y me muero por besarte. Desde la colina. Desde el lago. Desde siempre, creo."
+    ],
+    "next": "ella"
+   },
+   "ella": {
+    "text": "Ella te mira mucho rato. Le brillan los ojos. Sonríe despacito.",
+    "next": "espera"
+   },
+   "espera": {
+    "speaker": "Sira",
+    "text": "...¿Y qué estás esperando, chileno?"
+   }
+  }
+ },
+ "m7_beso": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Y ahí, por fin. Sin pavos reales. Sin Grover. Sin apagón. Ella cierra los ojos. Tú también. Y se besan.",
+    "effects": [
+     {
+      "vineta": "m7_beso"
+     }
+    ],
+    "next": "lluvia"
+   },
+   "lluvia": {
+    "text": "Afuera, como si Cali hubiera estado esperando este momento, se larga la lluvia. Un aguacero de los de verdad, que golpea el ventanal del piso 8.",
+    "next": "rie"
+   },
+   "rie": {
+    "text": "Ella se ríe contra tu boca. «Ahora sí el universo quiere», dice. Y te vuelve a besar.",
+    "next": "todo"
+   },
+   "todo": {
+    "text": "Y ahí ocurre todo."
+   }
+  }
+ },
+ "m7_horas": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Pasan las horas.",
+    "effects": [
+     {
+      "vineta": "m7_dormidos"
+     }
+    ],
+    "next": "lluvia"
+   },
+   "lluvia": {
+    "text": "Afuera llueve y llueve. Adentro, dos personas duermen abrazadas, enredadas en la frazada azul, como si se conocieran de toda la vida.",
+    "next": "reloj"
+   },
+   "reloj": {
+    "text": "El reloj del velador va marcando la tarde que se va: 17:40... 18:52... 20:05..."
+   }
+  }
+ },
+ "m7_despiertan": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "20:35. Ya es de noche. La lluvia afloja, pero no para.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "...¿Qué hora es? ¡¿LAS OCHO Y MEDIA?! Mi mamá me va a matar. Le dije que estaba donde Majo.",
+    "next": "zapatos"
+   },
+   "zapatos": {
+    "text": "Se ríe, te da un beso rápido, se pone los zapatos al revés, se los cambia, te da otro beso.",
+    "next": "bus"
+   },
+   "bus": {
+    "speaker": "Sira",
+    "text": "¿Me acompañas al paradero? El bus pasa por la Calle 18, frente al Bobo.",
+    "effects": [
+     {
+      "objective": "Acompaña a Sira al paradero de la Calle 18 (frente a la torre). Llueve: el paraguas está en el closet"
+     }
+    ]
+   }
+  }
+ },
+ "m7_lobby_primera": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Wilmer",
+    "text": "¡Chileeeno! ¡El rey del 805! ¿Cómo amaneció mi hermano? ¿Durmió bien? ¿Soñó conmigo? Yo soñé con un mango gigante. Usted no salía.",
+    "next": "presenta"
+   },
+   "presenta": {
+    "text": "Wilmer, el de la recepción del Bobo. Lentes de sol en la cabeza (siempre, incluso de noche), corbata de piña y una radio chiquita que solo agarra salsa de los setenta.",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     }
+    ],
+    "next": "fantasma"
+   },
+   "fantasma": {
+    "speaker": "Wilmer",
+    "text": "Oiga, ¿ya le conté del fantasma de la piscina?",
+    "choices": [
+     {
+      "label": "¿Qué fantasma?",
+      "goto": "cuento"
+     },
+     {
+      "label": "Otro día, Wilmer, me esperan en la U",
+      "goto": "chao"
+     }
+    ]
+   },
+   "cuento": {
+    "speaker": "Wilmer",
+    "text": [
+     "Todas las noches, a las tres y doce, alguien se tira un piquero en la piscina. ¡PLAF! Yo salgo con la linterna... y no hay nadie. Solo las ondas en el agua.",
+     "Yo digo que es un estudiante de Ingeniería que se fue sin pagar la administración. Ahora nada para siempre. Pobrecito."
+    ],
+    "effects": [
+     {
+      "setFlag": "secreto_wilmer_fantasma"
+     }
+    ],
+    "next": "chao2"
+   },
+   "chao2": {
+    "speaker": "Wilmer",
+    "text": "Vaya, vaya, que lo están esperando. Se le nota en la cara, chileno. A usted todo se le nota en la cara."
+   },
+   "chao": {
+    "speaker": "Wilmer",
+    "text": "¡Uy, lo esperan! Vaya, vaya. Se le nota en la cara, chileno. A usted todo se le nota en la cara."
+   }
+  }
+ },
+ "m7_wilmer": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "noche",
+      "if": {
+       "flag": "m7_rumbo_paradero"
+      }
+     },
+     {
+      "goto": "juntos",
+      "if": {
+       "flag": "m7_lobby_juntos"
+      }
+     },
+     {
+      "goto": "salida",
+      "if": {
+       "flag": "m7_rumbo_farmadia",
+       "notFlag": "m7_bebida_elegida"
+      }
+     },
+     {
+      "goto": "viernes",
+      "if": {
+       "flag": "m7_viernes"
+      }
+     },
+     {
+      "goto": "noche_u",
+      "if": {
+       "flag": "m7_dia_u"
+      }
+     },
+     {
+      "goto": "jueves",
+      "if": {
+       "flag": "m7_jueves"
+      }
+     },
+     {
+      "goto": "martes"
+     }
+    ]
+   },
+   "martes": {
+    "speaker": "Wilmer",
+    "text": "¡Vaya, chileno! Que el helado se derrite y el amor también. Bueno, el amor no. El helado sí.",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     }
+    ]
+   },
+   "jueves": {
+    "speaker": "Wilmer",
+    "text": "¿Pa' dónde tan bañadito y tan peinado un jueves sin clases? No me diga nada. Yo sé. Wilmer sabe.",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     }
+    ]
+   },
+   "noche_u": {
+    "speaker": "Wilmer",
+    "text": "¡Uy, esa cara! Esa cara es de lago. Yo conozco esa cara. Yo tuve esa cara en el 78.",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     }
+    ]
+   },
+   "viernes": {
+    "speaker": "Wilmer",
+    "text": "Buenas tardes, mi rey. Si viene alguien a visitarlo, yo la hago pasar derechito. ¿Es alguien? ¿Es la nadadora? ¡No me diga! Sí me diga.",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     }
+    ]
+   },
+   "salida": {
+    "speaker": "Wilmer",
+    "text": "¡Ajá! ¡El chileno acompañado! Buenas tardes, señorita. Bienvenida al Bobo. Cuídemelo, que es de exportación.",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     }
+    ]
+   },
+   "juntos": {
+    "speaker": "Wilmer",
+    "text": "Suban, suban, que se les enfría la comida. Y el amor no se enfría, pero igual.",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     }
+    ]
+   },
+   "noche": {
+    "speaker": "Wilmer",
+    "text": "Wilmer abre un ojo detrás del mesón. «Yo no vi nada. Yo duermo con los ojos abiertos.» Y lo vuelve a cerrar."
+   }
+  }
+ },
+ "m7_timbre": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "¡Ding!",
+    "effects": [
+     {
+      "sfx": "chime"
+     }
+    ],
+    "next": "wil"
+   },
+   "wil": {
+    "speaker": "Wilmer",
+    "text": "¿Sí, mi rey? ¿Un tinto? ¿Un consejo? ¿Una canción? Las tres cosas son gratis."
+   }
+  }
+ },
+ "m7_buzones": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Los buzones del Bobo. El tuyo, el 805, tiene un volante de pizzas, la cuenta de la luz y una carta de tu mamá que todavía no abres (porque te va a hacer llorar)."
+   }
+  }
+ },
+ "m7_letrero_lobby": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "«BOBO UNIC LIVING · Vive, estudia, conecta». Alguien le agregó con lápiz: «y no te enamores del vecino»."
+   }
+  }
+ },
+ "m7_lobby_salida": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Wilmer",
+    "text": "¡Ajá! ¡El chileno acompañado! Buenas tardes, señorita. Bienvenida al Bobo.",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     }
+    ],
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "Buenas tardes, don Wilmer.",
+    "next": "don"
+   },
+   "don": {
+    "speaker": "Wilmer",
+    "text": "¿«Don»? ¡Qué elegancia! Pasen, pasen. Cuídemelo, señorita, que este es de exportación."
+   }
+  }
+ },
+ "m7_lobby_juntos": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Entran al lobby con la bolsa de la Farmadía. En el sofá, como en una emboscada, están Valentina (tu compañera de equipo), Isa y Pao, del curso de Modelación. Tus amigas.",
+    "next": "mudas"
+   },
+   "mudas": {
+    "text": "Las tres los ven. Los ven juntos. Los ven juntos con la bolsa de las compras.",
+    "effects": [
+     {
+      "vineta": "m7_amigas"
+     }
+    ],
+    "next": "nada"
+   },
+   "nada": {
+    "text": "Nadie dice nada. Nada. A Valentina se le queda la cucharita del yogur a medio camino. A Isa se le resbala el celular. Pao abre la boca y la vuelve a cerrar.",
+    "next": "nada2"
+   },
+   "nada2": {
+    "text": "Los ojos de las tres los siguen por todo el lobby, de izquierda a derecha, como en un partido de tenis.",
+    "next": "wilmer"
+   },
+   "wilmer": {
+    "speaker": "Wilmer",
+    "text": "¡Ay, pero miren esto! ¡Qué cosa tan linda! ¡Ustedes dos se ven lindísimos juntos, parecen de novela de las nueve! ¿Cierto, muchachas?",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     },
+     {
+      "setFlag": "m7_loco_dijo"
+     }
+    ],
+    "next": "asienten"
+   },
+   "asienten": {
+    "text": "Las tres asienten. En silencio. Despacio. Al mismo tiempo.",
+    "next": "sira"
+   },
+   "sira": {
+    "text": "Sira se pone roja hasta las orejas, te agarra del brazo y te lleva hacia los ascensores. «Ascensor. Ya. Ahora.»",
+    "effects": [
+     {
+      "setFlag": "m7_lobby_juntos"
+     },
+     {
+      "objective": "Esperen el ascensor (al fondo del lobby)"
+     }
+    ]
+   }
+  }
+ },
+ "m7_amigas_mudas": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "noche",
+      "if": {
+       "flag": "m7_noche"
+      }
+     },
+     {
+      "goto": "mudas"
+     }
+    ]
+   },
+   "mudas": {
+    "text": "Valentina te mira. Mira a Sira. Te mira otra vez. Levanta el pulgar, despacito. No dice nada. Isa y Pao tampoco. Nadie dice nada.",
+    "effects": [
+     {
+      "setFlag": "secreto_amigas"
+     }
+    ]
+   },
+   "noche": {
+    "text": "Ya no están."
+   }
+  }
+ },
+ "m7_lobby_noche": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "El lobby de noche. Wilmer ronca sobre el mesón con la radio puesta bajito. Las amigas ya no están. En la mesita del sofá dejaron un papel doblado.",
+    "next": "papel"
+   },
+   "papel": {
+    "text": "«VALE + ISA + PAO: ¡¡¡¿¿¿SIRA???!!! Nos debes un café. Y una explicación. Y un café.»",
+    "next": "wilmer"
+   },
+   "wilmer": {
+    "speaker": "Wilmer",
+    "text": "Wilmer abre un ojo. «Yo no vi nada. Que llegue bien a su casa, señorita.» Y lo cierra otra vez.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "Gracias, don Wilmer."
+   }
+  }
+ }
+}

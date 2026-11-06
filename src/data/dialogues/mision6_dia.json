@@ -14,6 +14,9 @@
           },
           {
             "setFlag": "m6_jueves_visto"
+          },
+          {
+            "vineta": "m6_piscina_noche"
           }
         ],
         "next": "sira"
@@ -228,6 +231,11 @@
           "Esa noche sueñas que nadas en el río Cali y que los peces te piden que respires cada tres brazadas.",
           "Viernes: clases, un taller de Modelación, Grover mandando audios de cuatro minutos sobre caporales.",
           "Y llega el sábado."
+        ],
+        "effects": [
+          {
+            "vineta": "m6_sueno"
+          }
         ]
       }
     }
@@ -741,6 +749,9 @@
         "effects": [
           {
             "setFlag": "m6_q_manualidad"
+          },
+          {
+            "vineta": "m6_separador_listo"
           }
         ]
       }
@@ -955,6 +966,9 @@
         "effects": [
           {
             "setFlag": "m6_salio_casa"
+          },
+          {
+            "vineta": "m6_p47_pance"
           }
         ]
       }
@@ -1010,7 +1024,12 @@
     "start": "inicio",
     "nodes": {
       "inicio": {
-        "text": "Av. Cañasgordas: conjuntos con portería, árboles enormes, un señor vendiendo mangos con sal a pleno sol. El bus frena en cada semáforo como si fuera la primera vez."
+        "text": "Av. Cañasgordas: conjuntos con portería, árboles enormes, un señor vendiendo mangos con sal a pleno sol. El bus frena en cada semáforo como si fuera la primera vez.",
+        "effects": [
+          {
+            "vineta": "m6_mango"
+          }
+        ]
       }
     }
   },
@@ -1018,7 +1037,12 @@
     "start": "inicio",
     "nodes": {
       "inicio": {
-        "text": "El P47 entra a la Av. Carrera 100. Al frente, un techo larguísimo de lámina con un letrero: UNIVERSIDADES. La estación grande."
+        "text": "El P47 entra a la Av. Carrera 100. Al frente, un techo larguísimo de lámina con un letrero: UNIVERSIDADES. La estación grande.",
+        "effects": [
+          {
+            "vineta": "m6_estacion_univ"
+          }
+        ]
       }
     }
   },
@@ -2041,6 +2065,11 @@
           {
             "label": "Esperar el próximo"
           }
+        ],
+        "effects": [
+          {
+            "vineta": "m6_t31_llega"
+          }
         ]
       },
       "subir": {
@@ -2056,6 +2085,9 @@
         "effects": [
           {
             "objective": "Bájate en Torre de Cali (la puerta se abre en cada estación)"
+          },
+          {
+            "vineta": "m6_tiron"
           }
         ]
       }
@@ -2299,7 +2331,12 @@
     "start": "inicio",
     "nodes": {
       "inicio": {
-        "text": "Estación Estadio. Se suben unos hinchas con camisetas rojas cantando. Uno te ofrece la mitad de su empanada. La aceptas. Cali."
+        "text": "Estación Estadio. Se suben unos hinchas con camisetas rojas cantando. Uno te ofrece la mitad de su empanada. La aceptas. Cali.",
+        "effects": [
+          {
+            "vineta": "m6_hinchas"
+          }
+        ]
       }
     }
   },
@@ -2307,7 +2344,12 @@
     "start": "inicio",
     "nodes": {
       "inicio": {
-        "text": "Estación Santa Librada. Una abuelita te mira y dice: «¿Va para La Ermita? Ahí me casé yo, en el 72. Llovió. Fue lo más bonito». Y se baja."
+        "text": "Estación Santa Librada. Una abuelita te mira y dice: «¿Va para La Ermita? Ahí me casé yo, en el 72. Llovió. Fue lo más bonito». Y se baja.",
+        "effects": [
+          {
+            "vineta": "m6_abuelita"
+          }
+        ]
       }
     }
   },
@@ -2345,7 +2387,12 @@
     "start": "inicio",
     "nodes": {
       "inicio": {
-        "text": "¡Estación Torre de Cali! Por la ventana se ve la torre del hotel, altísima, y entre los edificios, el río. Bájate por la puerta."
+        "text": "¡Estación Torre de Cali! Por la ventana se ve la torre del hotel, altísima, y entre los edificios, el río. Bájate por la puerta.",
+        "effects": [
+          {
+            "vineta": "m6_torre_cali"
+          }
+        ]
       }
     }
   },

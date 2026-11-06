@@ -22,6 +22,10 @@ import { M5_VINETAS } from '../art/vinetas_m5';
 import { M5_VINETAS_2 } from '../art/vinetas_m5_2';
 import { M6_VINETAS } from '../art/vinetas_m6';
 import { M6_VINETAS_2 } from '../art/vinetas_m6_2';
+import { LIVE_VINETAS, M6_CHAT_VINETAS } from '../art/vinetas_m6_chat';
+import { M6_VINETAS_3 } from '../art/vinetas_m6_3';
+import { M7_VINETAS } from '../art/vinetas_m7';
+import { M7_VINETAS_2 } from '../art/vinetas_m7_2';
 import { CALLE_VINETAS } from '../art/vinetas_calle';
 import { CASA_VINETAS } from '../art/vinetas_casa';
 import { COMIDA_VINETAS } from '../art/vinetas_comida';
@@ -141,6 +145,10 @@ const VINETAS: Record<string, VinetaBuilder> = {
   ...M5_VINETAS_2,
   ...M6_VINETAS,
   ...M6_VINETAS_2,
+  ...M6_VINETAS_3,
+  ...M6_CHAT_VINETAS,
+  ...M7_VINETAS,
+  ...M7_VINETAS_2,
 };
 
 /** Ids de viñeta válidos (para el efecto `vineta` de los diálogos). */
@@ -156,6 +164,7 @@ function lookOf(who: CastMember['who']): HumanLook {
  */
 export class Vineta {
   private root: Phaser.GameObjects.Container | null = null;
+  private currentId = '';
   private timers: Phaser.Time.TimerEvent[] = [];
   private tweens: Phaser.Tweens.Tween[] = [];
 
@@ -177,7 +186,10 @@ export class Vineta {
   }
 
   show(id: string): void {
+    // Una viñeta en vivo (el chat) que ya está abierta sigue como está: no se rearma.
+    if (this.root && id === this.currentId && LIVE_VINETAS.has(id)) return;
     this.destroy();
+    this.currentId = id;
     const build = VINETAS[id];
     if (!build) {
       console.error(`Viñeta "${id}" no existe (hay: ${VINETA_IDS.join(', ')})`);

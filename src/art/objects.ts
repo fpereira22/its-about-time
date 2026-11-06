@@ -538,4 +538,87 @@ export const OBJECT_ART: Record<string, () => PixelGrid> = {
     g.rect(3, 6, 1, 5, '#68b848').rect(12, 6, 1, 5, '#68b848').rect(7, 1, 2, 6, '#3c9050');
     return g.outline(PAL.outline);
   },
+
+  // --- Misión 7 ---
+  carrito_helados: () => {
+    // El carrito de don Efraín: caja blanca con la sombrilla de rayas y las ruedas.
+    const g = new PixelGrid();
+    g.rect(1, 1, 14, 3, '#e85a7a').rect(3, 1, 2, 3, '#f8f8f0').rect(7, 1, 2, 3, '#f8f8f0').rect(11, 1, 2, 3, '#f8f8f0');
+    g.rect(7, 4, 1, 4, PAL.metalDark);
+    g.rect(2, 8, 12, 5, '#f8f8f0').rect(2, 8, 12, 1, '#c8e4f0').rect(4, 9, 3, 2, '#f0c830').rect(8, 9, 3, 2, '#e8a0b8');
+    g.rect(3, 13, 3, 3, '#3a3a44').rect(10, 13, 3, 3, '#3a3a44');
+    return g.outline(PAL.outline);
+  },
+  cono_helado: () => {
+    const g = new PixelGrid();
+    g.circle(8, 5, 4, '#c8884c').rect(6, 3, 2, 1, '#e8b880');
+    g.rect(5, 8, 6, 2, '#d8a058').rect(6, 10, 4, 2, '#d8a058').rect(7, 12, 2, 2, '#d8a058').set(8, 14, '#d8a058');
+    g.set(6, 9, '#a87838').set(9, 10, '#a87838');
+    return g.outline(PAL.outline);
+  },
+  maqueta: () => {
+    // La maqueta del mirador sobre el río Pance: base de cartón, el río, el mirador de palitos y una banderita.
+    const g = new PixelGrid();
+    g.rect(1, 8, 14, 6, '#e8d8b0').rect(1, 13, 14, 1, '#b8a880');
+    g.rect(1, 10, 14, 2, '#6aa8d8');
+    g.rect(5, 3, 6, 6, '#f4efe4').rect(5, 3, 6, 1, '#a87048').rect(6, 4, 1, 4, '#a87048').rect(9, 4, 1, 4, '#a87048');
+    g.rect(12, 4, 1, 5, '#5a5a64').rect(13, 4, 2, 1, '#d83c3c').rect(13, 5, 2, 1, '#f8f8f0');
+    g.rect(2, 6, 2, 3, '#58a048').rect(3, 5, 1, 1, '#58a048');
+    return g.outline(PAL.outline);
+  },
+  foto_pavo: () => {
+    const g = new PixelGrid();
+    g.rect(2, 2, 12, 12, '#f8f8f0').rect(3, 3, 10, 8, '#3c7c58');
+    g.circle(8, 7, 3.2, '#2c8c9c').set(8, 7, '#f0c830');
+    g.rect(4, 8, 2, 3, '#f8e2d4').rect(10, 8, 2, 3, '#f0c8a0');
+    return g.outline(PAL.outline);
+  },
+  bolsa_mercado: () => {
+    const g = new PixelGrid();
+    g.rect(3, 6, 10, 9, '#e8dcc0').rect(3, 6, 10, 1, '#c8bca0').rect(5, 3, 1, 4, '#c8bca0').rect(10, 3, 1, 4, '#c8bca0');
+    g.circle(6, 5, 2, '#d83c3c').rect(9, 2, 1, 5, '#e88838').rect(9, 1, 1, 1, '#58a048').rect(11, 3, 2, 3, '#58a048');
+    return g.outline(PAL.outline);
+  },
+  ropa_tirada: () => {
+    const g = new PixelGrid();
+    g.rect(1, 9, 7, 5, '#2050a8').rect(2, 8, 5, 1, '#2050a8').rect(8, 10, 6, 3, '#3a3c44').rect(10, 13, 4, 2, '#3a3c44');
+    g.rect(4, 14, 3, 1, '#f8f8f0').rect(12, 7, 3, 3, '#e8e8e0');
+    return g.outline(PAL.outline);
+  },
+  botella_calena: () => {
+    // La Caleña: gaseosa dorada «sabor a fiesta», etiqueta roja con una palmita.
+    const g = new PixelGrid();
+    g.rect(7, 0, 2, 3, '#d83c3c').rect(6, 3, 4, 2, '#e8b030').rect(5, 5, 6, 10, '#e8b030');
+    g.rect(5, 8, 6, 4, '#d83c3c').rect(7, 9, 1, 2, '#58a048').rect(8, 9, 1, 1, '#58a048').rect(6, 5, 1, 3, '#f8d880');
+    return g.outline(PAL.outline);
+  },
+  botella_kola: () => {
+    const g = new PixelGrid();
+    g.rect(7, 0, 2, 3, '#d83c3c').rect(6, 3, 4, 2, '#3a2418').rect(5, 5, 6, 10, '#3a2418');
+    g.rect(5, 8, 6, 3, '#d83c3c').rect(6, 9, 4, 1, '#f8f8f0').rect(6, 5, 1, 3, '#7a4c30');
+    return g.outline(PAL.outline);
+  },
+  botella_rojo: () => {
+    const g = new PixelGrid();
+    g.rect(7, 0, 2, 3, '#2c9c4c').rect(6, 3, 4, 2, '#d83c3c').rect(5, 5, 6, 10, '#d83c3c');
+    g.rect(5, 8, 6, 4, '#f8f8f0').circle(8, 10, 1.6, '#d83c3c').set(8, 8, '#2c9c4c').rect(6, 5, 1, 3, '#f08080');
+    return g.outline(PAL.outline);
+  },
+  crispetas: () => {
+    const g = new PixelGrid();
+    g.rect(4, 6, 8, 9, '#f8f8f0').rect(4, 6, 2, 9, '#d83c3c').rect(8, 6, 2, 9, '#d83c3c');
+    for (const [x, y] of [[4, 4], [6, 3], [8, 4], [10, 3], [11, 5], [5, 5], [9, 2], [7, 5]] as const) g.rect(x, y, 2, 2, '#fff4c8');
+    return g.outline(PAL.outline);
+  },
+  chocolatina: () => {
+    const g = new PixelGrid();
+    g.rect(2, 5, 12, 6, '#5a2a18').rect(2, 5, 12, 2, '#e8c040').rect(2, 9, 12, 2, '#e8c040').rect(6, 7, 4, 2, '#8a4a28');
+    return g.outline(PAL.outline);
+  },
+  olla_fideos: () => {
+    const g = new PixelGrid();
+    g.rect(3, 6, 10, 8, '#9ca4b0').rect(3, 6, 10, 1, '#c8d0dc').rect(1, 7, 2, 1, '#3a3a44').rect(13, 7, 2, 1, '#3a3a44');
+    g.rect(4, 4, 2, 2, '#e8ecf0').rect(9, 3, 2, 2, '#e8ecf0').rect(6, 1, 2, 2, '#e8ecf0');
+    return g.outline(PAL.outline);
+  },
 };

@@ -335,6 +335,16 @@
    "x": 59,
    "y": 74,
    "dir": "left"
+  },
+  "desde_bobo": {
+   "x": 78,
+   "y": 26,
+   "dir": "left"
+  },
+  "orilla_lago": {
+   "x": 32,
+   "y": 11,
+   "dir": "left"
   }
  },
  "warps": [
@@ -453,6 +463,60 @@
     "mission": "mission05"
    },
    "blockedDialogue": "m5_piscina_cerrada"
+  },
+  {
+   "x": 79,
+   "y": 22,
+   "to": "bobo_cuadra",
+   "spawn": "desde_u",
+   "if": {
+    "mission": "mission07"
+   }
+  },
+  {
+   "x": 79,
+   "y": 23,
+   "to": "bobo_cuadra",
+   "spawn": "desde_u",
+   "if": {
+    "mission": "mission07"
+   }
+  },
+  {
+   "x": 79,
+   "y": 24,
+   "to": "bobo_cuadra",
+   "spawn": "desde_u",
+   "if": {
+    "mission": "mission07"
+   }
+  },
+  {
+   "x": 79,
+   "y": 25,
+   "to": "bobo_cuadra",
+   "spawn": "desde_u",
+   "if": {
+    "mission": "mission07"
+   }
+  },
+  {
+   "x": 79,
+   "y": 26,
+   "to": "bobo_cuadra",
+   "spawn": "desde_u",
+   "if": {
+    "mission": "mission07"
+   }
+  },
+  {
+   "x": 79,
+   "y": 27,
+   "to": "bobo_cuadra",
+   "spawn": "desde_u",
+   "if": {
+    "mission": "mission07"
+   }
   }
  ],
  "labels": [
@@ -716,6 +780,23 @@
     "flag": "m5_grover_visto",
     "notFlag": "m5_en_deportivo"
    }
+  },
+  {
+   "id": "m7_martes",
+   "dialogue": "m7_campus_martes",
+   "once": true,
+   "if": {
+    "mission": "mission07"
+   }
+  },
+  {
+   "id": "m7_jueves",
+   "dialogue": "m7_campus_jueves",
+   "once": true,
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_jueves"
+   }
   }
  ],
  "triggers": [
@@ -755,6 +836,32 @@
       "notFlag": "partido_jugado"
      }
     ]
+   }
+  },
+  {
+   "id": "m7_lago",
+   "x": 32,
+   "y": 9,
+   "w": 2,
+   "h": 3,
+   "event": "lago_m7",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_sira_sigue",
+    "notFlag": "m7_dia_u"
+   }
+  },
+  {
+   "id": "m7_almuerzo",
+   "x": 47,
+   "y": 18,
+   "w": 3,
+   "h": 1,
+   "event": "almuerzo_m7",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_sira_sigue",
+    "notFlag": "m7_act_almuerzo"
    }
   }
  ],

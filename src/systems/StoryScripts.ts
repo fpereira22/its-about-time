@@ -9,6 +9,7 @@ import { advanceClock, formatClock, parseClock } from './Mission';
 import { StoryState } from './StoryState';
 import { M5_SCRIPTS } from './StoryScripts5';
 import { M6_SCRIPTS } from './StoryScripts6';
+import { M7_SCRIPTS } from './StoryScripts7';
 
 /** Lo que un script puede hacer con la escena de mapa activa (lo implementa MapScene). */
 export interface ScriptHost {
@@ -562,6 +563,9 @@ export const SCRIPTS: Record<string, Script> = {
 
   // --- Misión 6 (src/systems/StoryScripts6.ts) ---
   ...M6_SCRIPTS,
+
+  // --- Misión 7 (src/systems/StoryScripts7.ts) ---
+  ...M7_SCRIPTS,
 };
 
 /** Espera (sin bloquear al jugador) a que el reloj de la historia llegue a `at`. */

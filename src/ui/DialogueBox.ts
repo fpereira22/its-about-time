@@ -14,6 +14,12 @@ const CHARS_PER_SECOND = 55;
 const CHOICE_ROW = 13;
 
 /** Caja de diálogo con efecto máquina de escribir y lista de opciones (W/S + E). */
+/** Lo que otras piezas de UI necesitan saber de la caja de diálogo (ej. el chat de Sira, para no quedar tapado). */
+export const dialogueUi = {
+  /** Borde superior (px de pantalla) del cuadro de opciones mientras se ve; null si no hay opciones. */
+  choicesTop: null as number | null,
+};
+
 export class DialogueBox implements DialoguePresenter {
   private readonly root: Phaser.GameObjects.Container;
   private readonly nameTag: Phaser.GameObjects.Container;
@@ -204,6 +210,7 @@ export class DialogueBox implements DialoguePresenter {
     this.choiceRoot.setPosition(x, y + 4).setAlpha(0).setVisible(true);
     this.scene.tweens.add({ targets: this.choiceRoot, alpha: 1, y, duration: 120, ease: 'Cubic.Out' });
     this.choicesVisible = true;
+    dialogueUi.choicesTop = y;
     this.select(0);
   }
 
@@ -218,6 +225,7 @@ export class DialogueBox implements DialoguePresenter {
 
   private hideChoices(): void {
     this.choicesVisible = false;
+    dialogueUi.choicesTop = null;
     this.selected = 0;
     this.cursor = null;
     this.choiceRoot.removeAll(true).setVisible(false);

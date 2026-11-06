@@ -8,19 +8,26 @@ import { makeText } from './theme';
  * Misión 6: el medidor de «química» con Sira, debajo del HUD de la izquierda. Cada flag `m6_q_<algo>`
  * (una buena respuesta, un detalle, un gesto) suma medio corazón; se ve desde que la conoces en la piscina
  * (flag `m6_quimica_visible`). Al subir, el corazón late.
+ *
+ * Misión 7: el mismo medidor, con sus propias flags (`m7_q_<algo>`, visible con `m7_quimica_visible`).
  */
 
 export const QUIMICA_PREFIX = 'm6_q_';
 export const QUIMICA_MAX = 14;
-const FLAG_VISIBLE = 'm6_quimica_visible';
+/** Prefijo de las flags de química y flag que muestra el medidor, por misión. */
+const BY_MISSION: Record<string, { prefix: string; visible: string }> = {
+  mission06: { prefix: QUIMICA_PREFIX, visible: 'm6_quimica_visible' },
+  mission07: { prefix: 'm7_q_', visible: 'm7_quimica_visible' },
+};
 const HEARTS = QUIMICA_MAX / 2;
 const X = 4;
 const Y = 35;
 const DEPTH = 41;
 
-/** Cuántos puntos de química llevas (flags `m6_q_*`). */
+/** Cuántos puntos de química llevas en la misión en curso (flags `m6_q_*` o `m7_q_*`). */
 export function quimica(): number {
-  return StoryState.allFlags().filter((f) => f.startsWith(QUIMICA_PREFIX)).length;
+  const prefix = BY_MISSION[StoryState.missionId]?.prefix ?? QUIMICA_PREFIX;
+  return StoryState.allFlags().filter((f) => f.startsWith(prefix)).length;
 }
 
 export class QuimicaMeter {
@@ -37,7 +44,8 @@ export class QuimicaMeter {
   }
 
   private refresh(first: boolean): void {
-    const visible = StoryState.missionId === 'mission06' && StoryState.hasFlag(FLAG_VISIBLE);
+    const def = BY_MISSION[StoryState.missionId];
+    const visible = def !== undefined && StoryState.hasFlag(def.visible);
     this.g.setVisible(visible);
     this.label.setVisible(visible);
     if (!visible) return;

@@ -1,0 +1,101 @@
+{
+ "id": "farmadia",
+ "name": "Farmadía 24H",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 16,
+ "height": 13,
+ "background": "#14121a",
+ "music": "depa",
+ "legend": {
+  "^": "muro_techo",
+  "F": "farma_muro",
+  "L": "farma_letrero",
+  "n": "farma_nevera",
+  ",": "farma_piso",
+  "E": "farma_estante_b",
+  "e": "farma_estante",
+  "C": "farma_caja",
+  "M": "farma_mostrador",
+  "D": "farma_puerta"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^",
+  "^FFLFFnnnnFFFLF^",
+  "^,,,,,,,,,,,,,,^",
+  "^,EEEE,EEEEE,,,^",
+  "^,,,,,,,,,,,,,,^",
+  "^,eeee,eeeee,,,^",
+  "^,,,,,,,,,,,,,,^",
+  "^,EEEE,EEEEE,,,^",
+  "^,,,,,,,,,,,,,,^",
+  "^,,,,,,,,CMM,,,^",
+  "^,,,,,,,,,,,,,,^",
+  "^FFFFFFDFFFFFFF^",
+  "^^^^^^^^^^^^^^^^"
+ ],
+ "spawns": {
+  "entrada": {
+   "x": 7,
+   "y": 10,
+   "dir": "up"
+  }
+ },
+ "warps": [
+  {
+   "x": 7,
+   "y": 11,
+   "to": "bobo_cuadra",
+   "spawn": "farmadia",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission07"
+      }
+     },
+     {
+      "flag": "m7_pago"
+     },
+     {
+      "notFlag": "m7_rumbo_farmadia"
+     }
+    ]
+   },
+   "blockedDialogue": "m7_farmadia_no_salir"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "choque",
+   "x": 2,
+   "y": 4,
+   "w": 10,
+   "h": 1,
+   "event": "choque_m7",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_rumbo_farmadia",
+    "notFlag": "m7_choque"
+   }
+  }
+ ],
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m7_farmadia_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_rumbo_farmadia"
+   }
+  }
+ ],
+ "labels": [
+  {
+   "x": 7.5,
+   "y": 0.6,
+   "text": "BEBIDAS FRÍAS"
+  }
+ ]
+}

@@ -40,6 +40,8 @@ export interface GameEvents {
   'open-natacion': [{ done: (result: { lessons: number; perfect: boolean; wonRace: boolean; held: boolean }) => void }];
   /** Misión 6: la persecución del ladrón por el Bulevar (PersecucionScene); `done` dice si lo alcanzaste. */
   'open-persecucion': [{ done: (result: { caught: boolean; hits: number; dodges: number }) => void }];
+  /** Misión 7: la boloñesa con Sira en el depa (CocinaScene); parte 1 = picar y sofreír, parte 2 = los fideos y emplatar. */
+  'open-cocina': [{ part: 1 | 2; done: (result: { score: number; total: number; perfect: boolean; cried: boolean; teamwork: boolean }) => void }];
   /** Abrir el mapa interactivo de la Línea 1 (escena UI). */
   'open-line-map': [];
   /** Abrir el ropero (elegir la ropa del jugador). */

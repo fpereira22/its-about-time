@@ -100,6 +100,7 @@ export function generateTextures(scene: Phaser.Scene): void {
     if (!tex) throw new Error(`No se pudo crear la textura ${key}`);
     const ctx = tex.getContext();
     if (art.mirror) ctx.setTransform(-1, 0, 0, 1, art.w, 0);
+    else if (art.flipY) ctx.setTransform(1, 0, 0, -1, 0, art.h);
     art.draw(new Painter(ctx, 0, 0, Math.max(art.w, art.h)));
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     tex.refresh();

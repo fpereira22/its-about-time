@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { BASE_WIDTH } from '../config/display';
 import { EventSystem } from '../systems/EventSystem';
-import { PHONE } from '../systems/Phone';
+import { PHONE, phoneUi } from '../systems/Phone';
 import { fitText, makeText, THEME } from './theme';
 
 const W = 132;
@@ -14,7 +14,8 @@ export class PhoneToast {
   private current: Phaser.GameObjects.Container | null = null;
 
   constructor(private readonly scene: Phaser.Scene) {
-    EventSystem.onScene(scene, 'phone-message', ({ id }) => this.show(id));
+    // Un frame después: si el mensaje abrió el chat como viñeta, ahí ya se ve (la notificación lo taparía).
+    EventSystem.onScene(scene, 'phone-message', ({ id }) => scene.time.delayedCall(30, () => !phoneUi.chatOpen && this.show(id)));
   }
 
   private show(id: string): void {

@@ -7,7 +7,12 @@
           "San Antonio: casas de un piso con teja de barro, puertas de madera pintadas de azul y verde, calles de ladrillo que suben y bajan. Arriba, en la colina, la capillita blanca de 1747.",
           "Huele a café, a pan y a algo que se está cocinando en alguna casa con la puerta abierta. Alguien toca guitarra en una esquina."
         ],
-        "next": "sira"
+        "next": "sira",
+        "effects": [
+          {
+            "vineta": "m6_san_antonio"
+          }
+        ]
       },
       "sira": {
         "speaker": "Sira",
@@ -633,7 +638,12 @@
     "nodes": {
       "inicio": {
         "text": "Algo se mueve entre las matas. Dos puntitos brillantes... ¡MIAAAAU! Un gato negro salta frente a ustedes y desaparece colina arriba.",
-        "next": "sira"
+        "next": "sira",
+        "effects": [
+          {
+            "vineta": "m6_gato"
+          }
+        ]
       },
       "sira": {
         "speaker": "Sira",
@@ -1219,7 +1229,12 @@
           "Bajan la colina despacio. Ahora sí con todas las luces prendidas, los faroles amarillos y la gente volviendo a las aceras.",
           "En la esquina de la Calle 2, Sira para un taxi para ella (vive en San Fernando, a diez minutos) y te para otro a ti."
         ],
-        "next": "sira"
+        "next": "sira",
+        "effects": [
+          {
+            "vineta": "m6_dos_taxis"
+          }
+        ]
       },
       "sira": {
         "speaker": "Sira",
@@ -1298,7 +1313,12 @@
     "nodes": {
       "inicio": {
         "speaker": "Taxista",
-        "text": "El taxista te mira por el espejo. «¿Viene de una cita, joven? Se le nota en la sonrisa. Así llegué yo a mi casa en el 98. Y me casé.»"
+        "text": "El taxista te mira por el espejo. «¿Viene de una cita, joven? Se le nota en la sonrisa. Así llegué yo a mi casa en el 98. Y me casé.»",
+        "effects": [
+          {
+            "vineta": "m6_taxista"
+          }
+        ]
       }
     }
   },
@@ -1349,6 +1369,9 @@
         "effects": [
           {
             "objective": "Entra a la casa de doña Mery"
+          },
+          {
+            "vineta": "m6_porche"
           }
         ]
       }

@@ -1,0 +1,870 @@
+[
+  {
+    "id": "m7_ascensor_8",
+    "map": "bobo_piso8",
+    "x": 8,
+    "y": 1,
+    "dialogue": "m7_ascensor_8",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_puerta_801",
+    "map": "bobo_piso8",
+    "x": 2,
+    "y": 1,
+    "dialogue": "m7_puerta_801",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_puerta_803",
+    "map": "bobo_piso8",
+    "x": 4,
+    "y": 1,
+    "dialogue": "m7_puerta_803",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_puerta_807",
+    "map": "bobo_piso8",
+    "x": 11,
+    "y": 1,
+    "dialogue": "m7_puerta_807",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_puerta_809",
+    "map": "bobo_piso8",
+    "x": 13,
+    "y": 1,
+    "dialogue": "m7_puerta_809",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ventana_pasillo",
+    "map": "bobo_piso8",
+    "x": 6,
+    "y": 1,
+    "dialogue": "m7_ventana_pasillo",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_refri",
+    "map": "bobo_piso8",
+    "x": 1,
+    "y": 6,
+    "dialogue": "m7_refri",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_meson",
+    "map": "bobo_piso8",
+    "x": 2,
+    "y": 6,
+    "dialogue": "m7_meson",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_meson_2",
+    "map": "bobo_piso8",
+    "x": 5,
+    "y": 6,
+    "dialogue": "m7_meson",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_olla",
+    "map": "bobo_piso8",
+    "x": 3,
+    "y": 6,
+    "object": "olla_fideos",
+    "dialogue": "m7_cocina",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_agua",
+      "notFlag": "m7_cocina2"
+    }
+  },
+  {
+    "id": "m7_cocina",
+    "map": "bobo_piso8",
+    "x": 3,
+    "y": 6,
+    "dialogue": "m7_cocina",
+    "if": {
+      "mission": "mission07",
+      "not": {
+        "flag": "m7_agua",
+        "notFlag": "m7_cocina2"
+      }
+    }
+  },
+  {
+    "id": "m7_lavaplatos",
+    "map": "bobo_piso8",
+    "x": 4,
+    "y": 6,
+    "dialogue": "m7_lavaplatos",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ventanal_8",
+    "map": "bobo_piso8",
+    "x": 8,
+    "y": 5,
+    "dialogue": "m7_ventanal",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ventanal_9",
+    "map": "bobo_piso8",
+    "x": 9,
+    "y": 5,
+    "dialogue": "m7_ventanal",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ventanal_10",
+    "map": "bobo_piso8",
+    "x": 10,
+    "y": 5,
+    "dialogue": "m7_ventanal",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ventanal_11",
+    "map": "bobo_piso8",
+    "x": 11,
+    "y": 5,
+    "dialogue": "m7_ventanal",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_cuadro",
+    "map": "bobo_piso8",
+    "x": 14,
+    "y": 5,
+    "dialogue": "m7_cuadro",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_estante",
+    "map": "bobo_piso8",
+    "x": 16,
+    "y": 5,
+    "dialogue": "m7_estante",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_closet",
+    "map": "bobo_piso8",
+    "x": 17,
+    "y": 5,
+    "dialogue": "m7_closet",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_closet_2",
+    "map": "bobo_piso8",
+    "x": 18,
+    "y": 5,
+    "dialogue": "m7_closet",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_tv",
+    "map": "bobo_piso8",
+    "x": 12,
+    "y": 6,
+    "dialogue": "m7_tv",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_tv_2",
+    "map": "bobo_piso8",
+    "x": 13,
+    "y": 6,
+    "dialogue": "m7_tv",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_planta",
+    "map": "bobo_piso8",
+    "x": 18,
+    "y": 6,
+    "dialogue": "m7_planta",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_velador",
+    "map": "bobo_piso8",
+    "x": 17,
+    "y": 11,
+    "dialogue": "m7_velador",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ducha",
+    "map": "bobo_piso8",
+    "x": 1,
+    "y": 12,
+    "dialogue": "m7_ducha",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_wc",
+    "map": "bobo_piso8",
+    "x": 1,
+    "y": 13,
+    "dialogue": "m7_wc",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_lavamanos",
+    "map": "bobo_piso8",
+    "x": 4,
+    "y": 13,
+    "dialogue": "m7_perfume",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ropa",
+    "map": "bobo_piso8",
+    "x": 10,
+    "y": 10,
+    "object": "ropa_tirada",
+    "dialogue": "m7_ropa",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_viernes",
+      "notFlag": "m7_ordenado"
+    },
+    "solid": false
+  },
+  {
+    "id": "m7_sira_puerta",
+    "map": "bobo_piso8",
+    "x": 6,
+    "y": 4,
+    "sprite": "sira_m7",
+    "dir": "down",
+    "dialogue": "m7_sira_puerta",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_toc",
+      "notFlag": "m7_sira_entro"
+    }
+  },
+  {
+    "id": "m7_sira_cocina",
+    "map": "bobo_piso8",
+    "x": 5,
+    "y": 7,
+    "sprite": "sira_m7",
+    "dir": "left",
+    "dialogue": "m7_sira_cocina",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_sira_entro",
+      "notFlag": "m7_rumbo_farmadia"
+    }
+  },
+  {
+    "id": "m7_sira_cocina_2",
+    "map": "bobo_piso8",
+    "x": 5,
+    "y": 7,
+    "sprite": "sira_m7",
+    "dir": "left",
+    "dialogue": "m7_sira_cocina_2",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_vuelta_depa",
+      "notFlag": "m7_cocina2"
+    }
+  },
+  {
+    "id": "m7_sira_mesa",
+    "map": "bobo_piso8",
+    "x": 3,
+    "y": 8,
+    "sprite": "sira_m7",
+    "dir": "down",
+    "dialogue": "m7_sira_mesa",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_sira_mesa"
+    }
+  },
+  {
+    "id": "m7_sira_sofa",
+    "map": "bobo_piso8",
+    "x": 13,
+    "y": 9,
+    "sprite": "sira_m7",
+    "dir": "up",
+    "dialogue": "m7_sira_sofa",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_sira_sofa"
+    }
+  },
+  {
+    "id": "m7_sira_cama",
+    "map": "bobo_piso8",
+    "x": 16,
+    "y": 11,
+    "sprite": "sira_m7",
+    "dir": "down",
+    "dialogue": "m7_sira_cama",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_sira_cama"
+    }
+  },
+  {
+    "id": "m7_wilmer",
+    "map": "bobo_lobby",
+    "x": 2,
+    "y": 2,
+    "sprite": "wilmer",
+    "dir": "down",
+    "dialogue": "m7_wilmer",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_recepcion",
+    "map": "bobo_lobby",
+    "x": 2,
+    "y": 3,
+    "dialogue": "m7_wilmer",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_recepcion_2",
+    "map": "bobo_lobby",
+    "x": 1,
+    "y": 3,
+    "dialogue": "m7_wilmer",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_recepcion_4",
+    "map": "bobo_lobby",
+    "x": 4,
+    "y": 3,
+    "dialogue": "m7_wilmer",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_timbre",
+    "map": "bobo_lobby",
+    "x": 3,
+    "y": 3,
+    "dialogue": "m7_timbre",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ascensor_l1",
+    "map": "bobo_lobby",
+    "x": 13,
+    "y": 1,
+    "dialogue": "m7_ascensor_lobby",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ascensor_l2",
+    "map": "bobo_lobby",
+    "x": 15,
+    "y": 1,
+    "dialogue": "m7_ascensor_lobby",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ascensor_boton",
+    "map": "bobo_lobby",
+    "x": 14,
+    "y": 1,
+    "dialogue": "m7_ascensor_lobby",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_escalera",
+    "map": "bobo_lobby",
+    "x": 16,
+    "y": 1,
+    "dialogue": "m7_escalera",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_buzones",
+    "map": "bobo_lobby",
+    "x": 1,
+    "y": 1,
+    "dialogue": "m7_buzones",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_buzones_2",
+    "map": "bobo_lobby",
+    "x": 2,
+    "y": 1,
+    "dialogue": "m7_buzones",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_letrero_lobby",
+    "map": "bobo_lobby",
+    "x": 5,
+    "y": 1,
+    "dialogue": "m7_letrero_lobby",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_amiga_valentina",
+    "map": "bobo_lobby",
+    "x": 5,
+    "y": 6,
+    "sprite": "valentina",
+    "dir": "down",
+    "dialogue": "m7_amigas_mudas",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_bebida_elegida",
+      "notFlag": "m7_rumbo_paradero"
+    }
+  },
+  {
+    "id": "m7_amiga_isa",
+    "map": "bobo_lobby",
+    "x": 6,
+    "y": 6,
+    "sprite": "isa",
+    "dir": "down",
+    "dialogue": "m7_amigas_mudas",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_bebida_elegida",
+      "notFlag": "m7_rumbo_paradero"
+    }
+  },
+  {
+    "id": "m7_amiga_pao",
+    "map": "bobo_lobby",
+    "x": 7,
+    "y": 6,
+    "sprite": "pao",
+    "dir": "down",
+    "dialogue": "m7_amigas_mudas",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_bebida_elegida",
+      "notFlag": "m7_rumbo_paradero"
+    }
+  },
+  {
+    "id": "m7_paradero",
+    "map": "bobo_cuadra",
+    "x": 8,
+    "y": 26,
+    "object": "paradero_cali",
+    "dialogue": "m7_paradero_obj",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_totem",
+    "map": "bobo_cuadra",
+    "x": 9,
+    "y": 13,
+    "dialogue": "m7_precioclub_totem",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_precioclub",
+    "map": "bobo_cuadra",
+    "x": 24,
+    "y": 12,
+    "dialogue": "m7_precioclub",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_precioclub_2",
+    "map": "bobo_cuadra",
+    "x": 25,
+    "y": 12,
+    "dialogue": "m7_precioclub",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_letrero_bobo",
+    "map": "bobo_cuadra",
+    "x": 16,
+    "y": 32,
+    "dialogue": "m7_letrero_bobo",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ojo",
+    "map": "bobo_cuadra",
+    "x": 13,
+    "y": 32,
+    "dialogue": "m7_ojo",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_ojo_2",
+    "map": "bobo_cuadra",
+    "x": 24,
+    "y": 32,
+    "dialogue": "m7_ojo",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_panaderia",
+    "map": "bobo_cuadra",
+    "x": 18,
+    "y": 43,
+    "dialogue": "m7_panaderia",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_panaderia_2",
+    "map": "bobo_cuadra",
+    "x": 22,
+    "y": 43,
+    "dialogue": "m7_panaderia",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_vecina_412",
+    "map": "bobo_cuadra",
+    "x": 33,
+    "y": 29,
+    "sprite": "universitaria",
+    "dir": "down",
+    "dialogue": "m7_vecina_piscina",
+    "if": {
+      "mission": "mission07",
+      "notFlag": "m7_noche"
+    }
+  },
+  {
+    "id": "m7_heladero",
+    "map": "pucc_campus",
+    "x": 53,
+    "y": 20,
+    "sprite": "heladero",
+    "dir": "down",
+    "dialogue": "m7_heladero",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_carrito",
+    "map": "pucc_campus",
+    "x": 54,
+    "y": 20,
+    "object": "carrito_helados",
+    "dialogue": "m7_heladero",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_sira_martes",
+    "map": "pucc_campus",
+    "x": 51,
+    "y": 21,
+    "sprite": "sira_m7",
+    "dir": "down",
+    "dialogue": "m7_sira_martes",
+    "if": {
+      "mission": "mission07",
+      "notFlag": "m7_helado_martes"
+    }
+  },
+  {
+    "id": "m7_majo",
+    "map": "pucc_campus",
+    "x": 52,
+    "y": 22,
+    "sprite": "majo",
+    "dir": "left",
+    "dialogue": "m7_majo",
+    "if": {
+      "mission": "mission07",
+      "notFlag": "m7_helado_martes"
+    }
+  },
+  {
+    "id": "m7_cata",
+    "map": "pucc_campus",
+    "x": 50,
+    "y": 22,
+    "sprite": "cata",
+    "dir": "right",
+    "dialogue": "m7_cata",
+    "if": {
+      "mission": "mission07",
+      "notFlag": "m7_helado_martes"
+    }
+  },
+  {
+    "id": "m7_sira_porteria",
+    "map": "pucc_campus",
+    "x": 65,
+    "y": 23,
+    "sprite": "sira_m7",
+    "dir": "right",
+    "dialogue": "m7_sira_porteria",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_jueves",
+      "notFlag": "m7_con_sira"
+    }
+  },
+  {
+    "id": "m7_maqueta",
+    "map": "pucc_campus",
+    "x": 56,
+    "y": 10,
+    "object": "maqueta",
+    "dialogue": "m7_maqueta",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_jueves",
+      "notFlag": "m7_dia_u"
+    }
+  },
+  {
+    "id": "m7_pavo",
+    "map": "pucc_campus",
+    "x": 35,
+    "y": 13,
+    "sprite": "pavo_real_cola",
+    "dir": "down",
+    "dialogue": "m7_pavo_selfie",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_jueves",
+      "notFlag": "m7_act_pavo"
+    }
+  },
+  {
+    "id": "m7_sira_lago",
+    "map": "pucc_campus",
+    "x": 32,
+    "y": 10,
+    "sprite": "sira_m7",
+    "dir": "left",
+    "dialogue": "m7_lago_fin",
+    "if": {
+      "mission": "mission07",
+      "flag": "m7_en_lago"
+    }
+  },
+  {
+    "id": "m7_cajera",
+    "map": "farmadia",
+    "x": 9,
+    "y": 8,
+    "sprite": "cajera_farma",
+    "dir": "down",
+    "dialogue": "m7_caja",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_caja",
+    "map": "farmadia",
+    "x": 9,
+    "y": 9,
+    "dialogue": "m7_caja",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_caja_2",
+    "map": "farmadia",
+    "x": 10,
+    "y": 9,
+    "dialogue": "m7_caja",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_nevera_6",
+    "map": "farmadia",
+    "x": 6,
+    "y": 1,
+    "dialogue": "m7_nevera",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_nevera_7",
+    "map": "farmadia",
+    "x": 7,
+    "y": 1,
+    "dialogue": "m7_nevera",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_nevera_8",
+    "map": "farmadia",
+    "x": 8,
+    "y": 1,
+    "dialogue": "m7_nevera",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_nevera_9",
+    "map": "farmadia",
+    "x": 9,
+    "y": 1,
+    "dialogue": "m7_nevera",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_crispetas",
+    "map": "farmadia",
+    "x": 3,
+    "y": 3,
+    "dialogue": "m7_crispetas",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_chocolatinas",
+    "map": "farmadia",
+    "x": 11,
+    "y": 9,
+    "dialogue": "m7_chocolatinas",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_vitaminas",
+    "map": "farmadia",
+    "x": 8,
+    "y": 5,
+    "dialogue": "m7_vitaminas",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_bloqueador",
+    "map": "farmadia",
+    "x": 3,
+    "y": 7,
+    "dialogue": "m7_bloqueador",
+    "if": {
+      "mission": "mission07"
+    }
+  }
+]
