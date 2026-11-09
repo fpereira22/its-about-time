@@ -108,6 +108,19 @@ class DialogueManagerImpl {
     });
   }
 
+  /** Selector de etapas: abandona el diálogo sin aplicar efectos pendientes ni despertar al script que lo esperaba. */
+  abort(): void {
+    if (!this.active) return;
+    this.tree = null;
+    this.steps = [];
+    this.choices = [];
+    this.after = null;
+    this.deferred = [];
+    this.resolve = null;
+    this.presenter?.close();
+    EventSystem.emit('dialogue-close');
+  }
+
   /** La UI terminó de mostrar el paso actual (sin opciones). */
   advance(): void {
     if (!this.active) return;

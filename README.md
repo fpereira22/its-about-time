@@ -39,12 +39,11 @@ npm run preview              # sirve el build de dist/
 
 Mientras hay un diálogo abierto el jugador no se mueve.
 
-## Guardado, misiones bloqueadas y modo admin
+## Guardado
 
 - **Partida automática** (`santiago-laberinto:save`): se guarda sola con cada cambio; es la de *Continuar* en el título. Guarda el mapa y el último spawn, no el tile exacto.
 - **Espacios de guardado** (`santiago-laberinto:slots`, `src/systems/SaveSlots.ts`): 3 espacios, como los *save states* de un emulador. Desde la pausa, **Guardar** y **Cargar**; desde el título, **Cargar partida** (aparece si hay alguno ocupado). Guardan la partida entera más el tile exacto y hacia dónde mira el jugador. Solo se puede guardar con el jugador libre en un mapa: no en diálogos, viajes en metro o micro ni minijuegos (`MapScene.saveBlockedReason`). Cargar uno reemplaza la partida automática.
 - **Misiones bloqueadas:** en *Nueva partida* solo está disponible el Prólogo y las misiones cuya anterior se completó alguna vez (según `santiago-laberinto:records`, el mismo registro de *Progreso*). Las bloqueadas salen como "???  (bloqueada)".
-- **Modo admin** (`src/systems/Admin.ts`): desbloquea todas las misiones y el atajo **Ctrl + <**. Con `npm run dev` está siempre activo. En el juego publicado se activa o desactiva tecleando **colibri** en la pantalla de título (la palabra no usa teclas del juego); queda guardado en el navegador (`santiago-laberinto:admin`) y se ve la etiqueta ADMIN. No es seguridad real: sin servidor, cualquiera puede editar localStorage.
 
 ## Misión 1: "De Baquedano al Costanera"
 
@@ -81,7 +80,6 @@ Viernes 20:30. La despedida antes del intercambio en Cali, Colombia (vuelo CA 74
 6. **Aeropuerto de Cali:** Migración Colombia, la cinta de equipaje y la aduana del ICA. Si el SAG te advirtió de algo y no le hiciste caso, en Cali te lo decomisan.
 7. **En furgón** con don Jairo desde Palmira, por la recta Cali–Palmira, el río Cauca y Cali, hasta **Pance**. Toca la puerta de la casa y llama a tu mamá para terminar.
 
-Atajo de prueba (modo admin): **Ctrl + <** salta al aeropuerto con la cena, la maleta (23 kg) y el viaje en auto hechos.
 
 ## Misión 4: "Primer día en la U"
 
@@ -99,8 +97,6 @@ Lunes 6:00 en Pance, Cali, en la casa de doña Mery. El HUD muestra el **clima y
 
 En el campus andan sueltos **dos pavos reales** que aparecen en un lugar distinto cada vez que entras (campo `fauna` del mapa): deambulan, de vez en cuando abren la cola y gritan, y si les hablas hay viñeta. Con lluvia, si llevas el paraguas de doña Mery caminas debajo de él; si no, vas goteando. Casi todo lo que se toca en la casa (cuadro, hamaca, ducha, ventana, ventilador, nevera, lavamanos, reloj, mochila), lo que se come y los recuerdos del viaje tienen su viñeta.
 
-Atajo de prueba (modo admin): **Ctrl + <** salta a la cancha, justo antes del partido.
-
 ## Misión 5: "Un martes cualquiera"
 
 Martes 7:00 en Pance. Un día "normal" en Cali que termina con un Instagram.
@@ -117,7 +113,6 @@ Martes 7:00 en Pance. Un día "normal" en Cali que termina con un Instagram.
 10. **El Cinco** (escena propia, `CincoScene`), el juego de Camilo: cinco jugadores, mismo color o número, «¡Quieto!», «¡Pa'trás!», +2, comodín y «Aguacero» (+4). **F**: gritar «¡CINCO!» con una carta (o pillar al que no gritó: roba dos). Cuando sale un 5, todos golpean la mesa (**E**): el último roba.
 11. **El coqueteo** a solas y su Instagram (@sira.mtz, en la app ficticia Fotogram). En casa, un mensaje de Sira y fin. Finales: «Flechazo en Pance» (las tres buenas impresiones) o «Despacito, pero con Instagram».
 
-Atajo de prueba (modo admin): **Ctrl + <** salta al borde de la piscina (antes del Marco Polo); después de nadar, a Pance Burger.
 
 ## Misión 6: "Letras sobre el río"
 
@@ -134,7 +129,6 @@ Sigue el hilo de la misión 5 («Jueves 7pm en la piscina»): la clase de nataci
 9. **La colina de noche**: subiendo la escalinata **se va la luz** en todo el barrio: oscuridad con la linterna del celular (F), que se gasta (cuando se acaba, Sira prende la suya), un gato negro, Sira agarrada de tu brazo. Los cuenteros con velas cuentan la leyenda del **Buziraco** (y el susto). En el **mirador** vuelve la luz y Cali se prende barrio por barrio. El «casi»... y suena el celular: **Grover**, en videollamada. Fuegos artificiales sobre Siloé. Nada hasta ahí.
 10. Taxi a Pance, el mensaje de Sira y doña Mery esperando despierta. Finales según la química: «Química pura (y nada hasta ahí)», «Casi, casi» o «Amigos que se miran mucho».
 
-Atajo de prueba (modo admin): **Ctrl + <** salta a Torre de Cali (justo antes de encontrarte con Sira); con Sira ya encontrada, a la colina de noche.
 
 ## Misión 7: "Lluvia en el piso 8"
 
@@ -151,8 +145,6 @@ En pantalla, «Misión 6». Sira y el jugador se ven casi todos los días, pero 
 9. **La vuelta caminando** (tres conversaciones en el camino: lo más loco que has hecho, manjar o arequipe, cuál es tu ventana), **las amigas mudas** en el sofá del lobby (Valentina, Isa y Pao: no dicen nada, solo miran) y Wilmer: «¡Ustedes dos se ven lindísimos juntos!». La espera del **ascensor** (con su música) y el vecino del 807.
 10. **La comida** (el brindis), **la peli** del cometa en CineFlix (anime inventado, «Tu nombre bajo el cometa»; ella apoya la cabeza en tu hombro), la siesta de trasnochados, **la confesión** («hasta el loco de la recepción dice que nos vemos lindos juntos»), **el beso**... y afuera se larga la lluvia. Pasan las horas dormidos abrazados.
 11. **De noche, el paradero** de la Calle 18 con llovizna (el paraguas de doña Mery está en el closet: se lo puedes prestar), el bus hacia el norte, el corazón en el vidrio empañado y su mensaje. Finales según la química: «La Caleña, la lluvia y el beso», «Lluvia en el piso 8» o «Por fin».
-
-Atajo de prueba (modo admin): **Ctrl + <** salta al viernes en el depa (antes de que llegue Sira); con Sira ya adentro, a la vuelta de la Farmadía (con La Caleña), frente al Bobo.
 
 ### Ropa del jugador
 
@@ -228,8 +220,6 @@ Cada partida parte con la ropa por defecto. Se cambia en el ropero de la casa (m
 | `Seats` | Tiles de asiento y cómo se ve alguien sentado en cada uno (jugador, NPCs y pasajeros) |
 | `StoryScripts` | Escenas animadas con nombre (micro que pasa llena, llegada del tren) |
 | `Mission` | Registro de misiones (`missions/*.json`), misión en curso, reloj de la historia y resumen final |
-| `DevSkip` | Atajo Ctrl + < de las misiones 2 a 7 (solo en modo admin) |
-| `Admin` | Modo admin: misiones desbloqueadas y Ctrl + < (siempre en dev; en el build, tecleando *colibri* en el título) |
 | `SaveSlots` | Los 3 espacios de guardado manuales (posición exacta incluida) |
 | `PlayerLook` | Ropa del jugador y textura generada según ropa, pijama y mochila (la polera azul de la PUCC aparece en el ropero solo si la tienes) |
 | `Darkness` | Apagón (misión 6): oscuridad con un círculo alrededor del jugador y la linterna del celular (F), que se gasta; flags `m6_apagon` y `_linterna` |

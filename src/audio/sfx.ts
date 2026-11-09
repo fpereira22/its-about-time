@@ -83,7 +83,8 @@ export type SfxName =
   | 'destapar' // abrir una gaseosa (pssst)
   | 'beso' // el beso (suave, con campanita)
   | 'caja_registradora' // ¡tlin! la caja de la farmacia
-  | 'tele'; // prender la tele (el zumbido del encendido)
+  | 'tele' // prender la tele (el zumbido del encendido)
+  | 'paraguas'; // ¡fop! se abre el paraguas
 
 /** Pistas de música de fondo. */
 export type MusicTrack =

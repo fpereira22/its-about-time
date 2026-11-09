@@ -62,6 +62,8 @@ export interface MapSceneData {
   intro?: string;
   /** Espacio de guardado: aparece en este tile exacto (en vez del spawn, que sigue siendo la "ubicación" guardada). */
   pos?: { x: number; y: number; facing: Direction };
+  /** Selector de etapas: script (o "dialogo:<id>") que parte apenas termina la llegada. */
+  adminRun?: string;
 }
 
 /** Al mirar en otra dirección estando quieto, cuánto hay que mantener la tecla para empezar a caminar. */
@@ -98,6 +100,9 @@ const SIRA_FOLLOWER_SPRITE = 'sira_feria';
 /** Misión 7: Sira camina contigo por la U, la cuadra, el lobby, la farmacia y el pasillo (también en interiores). */
 const FLAG_SIRA_FOLLOWS_M7 = 'm7_sira_sigue';
 const SIRA_FOLLOWER_SPRITE_M7 = 'sira_m7';
+/** Misión 7: con tu polera de la PUCC puesta (la que le prestas al volver mojados). */
+const SIRA_FOLLOWER_SPRITE_M7_POLERA = 'sira_m7_polera';
+const FLAG_SIRA_POLERA = 'm7_polera';
 
 /** Escena del tipo de mapa (overworld/interior) que corresponde a cada `kind`. */
 const SCENE_FOR_KIND = { overworld: 'Overworld', interior: 'Interior' } as const;
@@ -117,6 +122,9 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
   protected darkness?: DarknessView;
   private umbrella: Phaser.GameObjects.Graphics | null = null;
   private dripTimer = 0;
+  /** Sira debajo del mismo paraguas: dónde va, relativo al jugador. */
+  private umbrellaOffset = { x: 0, y: 0 };
+  private umbrellaShared = false;
   /** Animales del mapa y cuándo vuelven a mostrar la cola. */
   private fauna: Array<{ npc: Npc; def: MapFauna; timer: number; showing: number }> = [];
   private follower: Actor | null = null;
@@ -139,6 +147,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
       resume: data.resume,
       intro: data.intro,
       pos: data.pos,
+      adminRun: data.adminRun,
     };
     this.turnTimer = 0;
     this.walking = false;
@@ -151,6 +160,8 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     this.dizzy = false;
     this.umbrella = null;
     this.dripTimer = 0;
+    this.umbrellaOffset = { x: 0, y: 0 };
+    this.umbrellaShared = false;
     this.fauna = [];
   }
 
@@ -224,6 +235,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     EventSystem.onScene(this, 'open-persecucion', ({ done }) => this.launchMinigame('Persecucion', {}, done));
     // Misión 7: la boloñesa en el depa.
     EventSystem.onScene(this, 'open-cocina', ({ part, done }) => this.launchMinigame('Cocina', { part }, done));
+    EventSystem.onScene(this, 'open-salsa', ({ done }) => this.launchMinigame('Salsa', {}, done));
 
     if (!this.scene.isActive('UI')) this.scene.launch('UI');
     this.scene.bringToTop('UI');
@@ -568,6 +580,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
       // Si el diálogo cambió de mapa, esta escena ya no sigue.
       if (this.transitioning) return;
     }
+    if (this.sceneData.adminRun) this.runScript(this.sceneData.adminRun, undefined);
   }
 
   private checkZone(force: boolean): void {
@@ -692,7 +705,9 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
   private syncFollower(): void {
     const m7 = StoryState.hasFlag(FLAG_SIRA_FOLLOWS_M7);
     const sprite = m7
-      ? SIRA_FOLLOWER_SPRITE_M7
+      ? StoryState.hasFlag(FLAG_SIRA_POLERA)
+        ? SIRA_FOLLOWER_SPRITE_M7_POLERA
+        : SIRA_FOLLOWER_SPRITE_M7
       : StoryState.hasFlag(FLAG_SIRA_FOLLOWS)
         ? SIRA_FOLLOWER_SPRITE
         : StoryState.hasFlag(FLAG_DOG_FOLLOWS)
@@ -788,15 +803,30 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     }
   }
 
-  /** Afuera con lluvia: el paraguas sobre la cabeza si lo tienes; si no (o si llegaste mojado), gotitas que caen del pelo. */
+  /**
+   * Afuera con lluvia: el paraguas se abre solo si lo tienes (si no, o si llegaste mojado, gotitas que caen del pelo).
+   * Sira, si te acompaña, se mete debajo: camina pegada a ti y el paraguas se agranda y queda entre los dos.
+   */
   private updateRainGear(delta: number): void {
     const raining = this.map.data.kind === 'overworld' && (StoryState.weather === 'lluvia' || StoryState.weather === 'tormenta');
     const sprite = this.player.sprite;
     const show = raining && StoryState.hasItem(UMBRELLA_ITEM) && sprite.visible && !this.player.seated;
-    if (show && !this.umbrella) this.umbrella = this.createUmbrella();
+    if (show && !this.umbrella) {
+      this.umbrella = this.createUmbrella();
+      playSfx('paraguas');
+    }
+    const buddy = show && StoryState.hasFlag(FLAG_SIRA_FOLLOWS_M7) && this.follower?.sprite.visible ? this.follower : null;
+    if (buddy) this.tuckUnderUmbrella(buddy, delta);
+    else if (this.umbrellaShared) this.releaseFromUmbrella();
     if (this.umbrella) {
       this.umbrella.setVisible(show);
-      if (show) this.umbrella.setPosition(Math.round(sprite.x), Math.round(sprite.y - 13)).setDepth(sprite.depth + 0.5);
+      if (show) {
+        const o = this.umbrellaOffset;
+        this.umbrella
+          .setScale(buddy ? 1.7 : 1, buddy ? 1.1 : 1)
+          .setPosition(Math.round(sprite.x + o.x / 2), Math.round(sprite.y - (buddy ? 23 : 13) + o.y / 2))
+          .setDepth(Math.max(sprite.depth, buddy?.sprite.depth ?? 0) + 0.5);
+      }
     }
     const dripping = (raining && !show) || StoryState.hasFlag('mojado');
     if (!dripping || !sprite.visible) return;
@@ -806,6 +836,32 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     const x = sprite.x + Phaser.Math.Between(-5, 4);
     const drop = this.add.rectangle(x, sprite.y - 14, 1, 2, 0xa8d8ff).setDepth(sprite.depth + 1);
     this.tweens.add({ targets: drop, y: drop.y + 10, alpha: 0, duration: 420, onComplete: () => drop.destroy() });
+  }
+
+  /** Pone a Sira al lado del jugador (hombro con hombro), aunque en los tiles venga un paso atrás. */
+  private tuckUnderUmbrella(buddy: Actor, delta: number): void {
+    const sprite = this.player.sprite;
+    const f = this.player.facing;
+    const target = f === 'left' ? { x: 11, y: 2 } : f === 'right' ? { x: -11, y: 2 } : { x: 11, y: 0 };
+    const o = this.umbrellaOffset;
+    if (!this.umbrellaShared) {
+      // Parte desde donde venía caminando, para que se acerque en vez de teletransportarse.
+      o.x = buddy.sprite.x - sprite.x;
+      o.y = buddy.sprite.y - sprite.y;
+      this.umbrellaShared = true;
+    }
+    const a = Math.min(1, delta / 110);
+    o.x += (target.x - o.x) * a;
+    o.y += (target.y - o.y) * a;
+    buddy.sprite.setPosition(Math.round(sprite.x + o.x), Math.round(sprite.y + o.y));
+    buddy.sprite.setDepth(buddy.sprite.y);
+    if (!buddy.moving) buddy.face(f);
+  }
+
+  private releaseFromUmbrella(): void {
+    this.umbrellaShared = false;
+    this.umbrellaOffset = { x: 0, y: 0 };
+    if (this.follower) this.follower.setTile(this.follower.tileX, this.follower.tileY);
   }
 
   /** Paraguas negro visto desde arriba (la copa con sus varillas y el mango hacia la mano). */

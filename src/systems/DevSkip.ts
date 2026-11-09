@@ -76,7 +76,7 @@ const M7_VIERNES_FLAGS = [
 const M7_VUELTA_FLAGS = [
   'm7_agua', 'm7_toc', 'm7_sira_entro', 'm7_cocina1', 'm7_rumbo_farmadia', 'm7_choque', 'm7_bebida_calena', 'm7_bebida_elegida',
   'm7_pago', 'm7_charla_1', 'm7_charla_2', 'm7_charla_3', 'enter_farmadia_llegada', 'enter_bobo_lobby_salida', 'm7_q_puerta', 'm7_q_calena',
-  'm7_q_calena_2', 'm7_sira_sigue',
+  'm7_q_calena_2', 'm7_sira_sigue', 'm7_llovizna', 'm7_charco', 'm7_pan', 'enter_bobo_cuadra_lluvia',
 ];
 
 /**
@@ -197,6 +197,8 @@ class DevSkipImpl {
       return;
     }
     for (const f of M7_VUELTA_FLAGS) StoryState.setFlag(f);
+    StoryState.setWeather('lluvia');
+    if (!StoryState.hasItem('paraguas')) StoryState.addItem('paraguas');
     if (!StoryState.hasItem('la_calena')) StoryState.addItem('la_calena');
     StoryState.setClock(parseClock('vie 14:15'), parseClock('vie 14:30'));
     StoryState.setObjective('Vuelvan caminando al Bobo (la salsa los espera)');

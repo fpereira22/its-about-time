@@ -25,7 +25,7 @@ const CREDITS: Line[] = [
   { text: '"Pixelify Sans" y "Silkscreen" (Google Fonts)', kind: 'body' },
   { text: '', kind: 'gap' },
   { text: 'ARTE', kind: 'heading' },
-  { text: 'Arte placeholder generado por código', kind: 'body' },
+  { text: 'Arte placeholder diseñado con herramientas de arte digital', kind: 'body' },
   { text: '', kind: 'gap' },
   { text: 'MAPAS', kind: 'heading' },
   { text: 'Datos de calles inspirados en', kind: 'body' },

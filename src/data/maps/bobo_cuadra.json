@@ -196,7 +196,23 @@
    "x": 18,
    "y": 32,
    "to": "bobo_lobby",
-   "spawn": "entrada"
+   "spawn": "entrada",
+   "if": {
+    "any": [
+     {
+      "not": {
+       "mission": "mission07"
+      }
+     },
+     {
+      "notFlag": "m7_pago"
+     },
+     {
+      "flag": "m7_pan"
+     }
+    ]
+   },
+   "blockedDialogue": "m7_falta_pan"
   },
   {
    "x": 11,
@@ -289,9 +305,35 @@
     "flag": "m7_rumbo_paradero",
     "notFlag": "m7_despedida"
    }
+  },
+  {
+   "id": "charco",
+   "x": 7,
+   "y": 36,
+   "w": 33,
+   "h": 3,
+   "event": "charco_m7",
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_rumbo_farmadia",
+    "notFlag": [
+     "m7_bebida_elegida",
+     "m7_charco"
+    ]
+   }
   }
  ],
  "enter": [
+  {
+   "id": "lluvia",
+   "dialogue": "m7_cuadra_lluvia",
+   "once": true,
+   "if": {
+    "mission": "mission07",
+    "flag": "m7_rumbo_farmadia",
+    "notFlag": "m7_bebida_elegida"
+   }
+  },
   {
    "id": "martes",
    "dialogue": "m7_cuadra_martes",

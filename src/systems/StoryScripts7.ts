@@ -1,6 +1,7 @@
 import { playMusic, playSfx } from '../audio/sfx';
 import { TILE } from '../config/display';
 import type { CocinaResult } from '../scenes/CocinaScene';
+import type { SalsaResult } from '../scenes/SalsaScene';
 import { quimica } from '../ui/QuimicaMeter';
 import { Dialogue } from './DialogueManager';
 import { EventSystem } from './EventSystem';
@@ -12,7 +13,7 @@ import type { ScriptHost } from './StoryScripts';
  * Scripts de la misión 7 («Lluvia en el piso 8»): el ascensor del Bobo Unic Living, los helados del martes con las
  * amigas de Sira, el jueves los dos solos en la U (la maqueta, el almuerzo, el pavo real y el lago), el chat hasta
  * las 3 de la mañana, y el viernes en el depa del piso 8: la puerta, la boloñesa (CocinaScene), la Farmadía, el
- * ascensor con Sira, la comida, la peli, la siesta, el beso, la lluvia y el paradero de la Calle 18.
+ * ascensor con Sira, la comida, la loza, las cajas, la salsa, la peli, la siesta, el beso, la lluvia y el paradero.
  * Se suman a SCRIPTS en StoryScripts.ts.
  */
 
@@ -164,6 +165,7 @@ export const M7_SCRIPTS: Record<string, Script> = {
     await host.fade(false, 900);
     playMusic('depa');
     await host.say('m7_viernes_despierta');
+    await host.say('m7_v_chat_1');
     host.setLocked(false);
   },
 
@@ -174,8 +176,10 @@ export const M7_SCRIPTS: Record<string, Script> = {
     set('m7_agua');
     playSfx('hervir');
     await host.say('m7_agua_puesta');
+    clockAt('vie 12:52', 'vie 12:58');
+    await host.say('m7_v_chat_2');
     clockAt('vie 12:57', 'vie 12:58');
-    await host.wait(1400);
+    await host.wait(900);
     playSfx('toc_toc');
     host.shake(120, 0.002);
     await host.wait(500);
@@ -204,8 +208,22 @@ export const M7_SCRIPTS: Record<string, Script> = {
     playMusic('depa');
     await host.wait(400);
     await host.say('m7_post_cocina_1');
+    // Empieza la llovizna: la historia la cuenta y sale el paraguas.
+    StoryState.setWeather('lluvia');
+    await host.say('m7_llovizna');
     set('m7_rumbo_farmadia', 'm7_sira_sigue');
     StoryState.setClock(StoryState.clock, parseClock('vie 14:30'));
+    host.setLocked(false);
+  },
+
+  /** Yendo a la Farmadía: un alimentador y el charco más grande de Cañasgordas. */
+  async charco_m7(host) {
+    if (StoryState.hasFlag('m7_charco')) return;
+    host.setLocked(true);
+    set('m7_charco');
+    playSfx('splash');
+    host.shake(200, 0.005);
+    await host.say('m7_charco');
     host.setLocked(false);
   },
 
@@ -241,6 +259,8 @@ export const M7_SCRIPTS: Record<string, Script> = {
   async cocina_m7_2(host) {
     if (StoryState.hasFlag('m7_cocina2')) return;
     host.setLocked(true);
+    // Mientras cocinan, escampa (el aguacero de verdad queda para el final).
+    StoryState.setWeather('nublado');
     host.placePlayer('cocina');
     const r = await new Promise<CocinaResult>((done) => EventSystem.emit('open-cocina', { part: 2, done }));
     set('m7_cocina2');
@@ -255,6 +275,37 @@ export const M7_SCRIPTS: Record<string, Script> = {
     await host.wait(300);
     await host.say('m7_post_cocina_2');
     await comida(host);
+  },
+
+  /** Cada caja que se abre pasa por aquí; con las tres abiertas, suena la salsa. */
+  async cajas_m7(host) {
+    if (StoryState.hasFlag('m7_salsa_hecha')) return;
+    if (!['m7_caja_manjar_ok', 'm7_caja_varios_ok', 'm7_caja_carta_ok'].every((f) => StoryState.hasFlag(f))) return;
+    host.setLocked(true);
+    set('m7_salsa_hecha');
+    clear('m7_sira_sigue');
+    clockAt('vie 15:50', 'vie 15:50');
+    await host.say('m7_salsa_intro');
+    const r = await new Promise<SalsaResult>((done) => EventSystem.emit('open-salsa', { done }));
+    if (r.score >= 2) {
+      set('m7_salsa_bien');
+      q('salsa');
+    }
+    if (r.perfect) {
+      set('m7_salsa_perfecta');
+      q('salsa_perfecta');
+    }
+    clockAt('vie 16:10', 'vie 16:10');
+    playMusic('depa');
+    host.placePlayer('sofa');
+    await host.wait(300);
+    await host.say('m7_salsa_fin');
+    await peliYFinal(host);
+  },
+
+  /** Selector de etapas (admin): la peli, la siesta y el beso, sin pasar por las cajas ni la salsa. */
+  async peli_final_m7(host) {
+    await peliYFinal(host);
   },
 
   /** El paradero de la Calle 18, de noche y con llovizna: el bus de Sira. Fin. */
@@ -288,7 +339,7 @@ export const M7_SCRIPTS: Record<string, Script> = {
   },
 };
 
-/** La mesa (el brindis, la boloñesa y la conversación), la peli en el sofá, la siesta... y el beso. */
+/** La mesa (el brindis y la boloñesa) y la loza juntos. Después el depa queda libre: las tres cajas de la mudanza. */
 async function comida(host: ScriptHost): Promise<void> {
   host.setLocked(true);
   await host.fade(true, 500);
@@ -297,20 +348,31 @@ async function comida(host: ScriptHost): Promise<void> {
   await host.fade(false, 500);
   playSfx('destapar');
   await host.say('m7_comida');
-  await clockTo(host, 'vie 15:30', 1400);
+  await clockTo(host, 'vie 15:10', 1400);
   await host.say('m7_comida_fin');
-  // El sofá y la peli.
-  await host.fade(true, 600);
+  await host.fade(true, 500);
   clear('m7_sira_mesa');
+  host.placePlayer('cocina');
+  await host.fade(false, 500);
+  await host.say('m7_loza_juntos');
+  set('m7_sira_sigue');
+  StoryState.setClock(Math.max(StoryState.clock, parseClock('vie 15:20')), parseClock('vie 15:50'));
+  host.setLocked(false);
+}
+
+/** La peli en el sofá, la siesta, el beso y el aguacero. */
+async function peliYFinal(host: ScriptHost): Promise<void> {
+  host.setLocked(true);
+  await host.fade(true, 600);
   set('m7_sira_sofa');
   host.placePlayer('sofa');
   await host.fade(false, 600);
   await host.say('m7_peli_elegir');
   playSfx('tele');
   await host.say('m7_peli');
-  await clockTo(host, 'vie 17:20', 2200);
+  await clockTo(host, 'vie 17:50', 2200);
   host.cry('player', 1800);
-  host.cry('m7_sira_sofa', 2200);
+  host.cry(StoryState.hasFlag('m7_polera') ? 'm7_sira_sofa_polera' : 'm7_sira_sofa', 2200);
   await host.say('m7_peli_fin');
   // La siesta (trasnochados desde las 3 y 12).
   await host.say('m7_sueno');
@@ -327,14 +389,15 @@ async function comida(host: ScriptHost): Promise<void> {
   }
   await host.say('m7_confesion');
   playSfx('beso');
-  // Y justo ahí, afuera, se larga la lluvia.
-  StoryState.setWeather('lluvia');
+  // Y justo ahí, afuera, se larga el aguacero (la llovizna del mediodía fue solo el aviso).
+  StoryState.setWeather('tormenta');
   playSfx('trueno');
   await host.say('m7_beso');
   await host.fade(true, 1600);
   playMusic(null);
   StoryState.setClock(parseClock('vie 20:35'), parseClock('vie 21:30'));
   await host.say('m7_horas');
+  StoryState.setWeather('lluvia');
   await host.fade(false, 1200);
   playMusic('depa');
   await host.say('m7_despiertan');

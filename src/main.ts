@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { AudioManager } from './audio/AudioManager';
 import { BASE_HEIGHT, BASE_WIDTH, computeZoom, getZoom, setZoom, ZOOM_CHANGED } from './config/display';
+import { AdminWarpScene } from './scenes/AdminWarpScene';
 import { BootScene } from './scenes/BootScene';
 import { CreditsScene } from './scenes/CreditsScene';
 import { FutbolScene } from './scenes/FutbolScene';
@@ -9,6 +10,7 @@ import { CincoScene } from './scenes/CincoScene';
 import { NatacionScene } from './scenes/NatacionScene';
 import { PersecucionScene } from './scenes/PersecucionScene';
 import { CocinaScene } from './scenes/CocinaScene';
+import { SalsaScene } from './scenes/SalsaScene';
 import { InteriorScene } from './scenes/InteriorScene';
 import { MissionCompleteScene } from './scenes/MissionCompleteScene';
 import { OverworldScene } from './scenes/OverworldScene';
@@ -40,7 +42,7 @@ const game = new Phaser.Game({
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
   input: { keyboard: false, gamepad: false },
-  scene: [BootScene, PreloadScene, TitleScene, OverworldScene, InteriorScene, UIScene, FutbolScene, PiscinaScene, CincoScene, NatacionScene, PersecucionScene, CocinaScene, MissionCompleteScene, ProgressScene, CreditsScene],
+  scene: [BootScene, PreloadScene, TitleScene, OverworldScene, InteriorScene, UIScene, FutbolScene, PiscinaScene, CincoScene, NatacionScene, PersecucionScene, CocinaScene, SalsaScene, MissionCompleteScene, ProgressScene, CreditsScene, AdminWarpScene],
 });
 
 Controls.attach(game);

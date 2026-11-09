@@ -6,7 +6,7 @@ const ADMIN_KEY = 'santiago-laberinto:admin';
 const ADMIN_CODE = 'colibri';
 
 /**
- * Modo admin: todas las misiones desbloqueadas y el atajo Ctrl + < (DevSkip).
+ * Modo admin: todas las misiones desbloqueadas, el atajo Ctrl + < (DevSkip) y el selector de etapas (F2).
  * Con `npm run dev` está siempre activo. En el juego publicado se activa (y desactiva) tecleando
  * ADMIN_CODE en el título; queda guardado en este navegador.
  *
@@ -26,12 +26,29 @@ class AdminImpl {
     if (this.attached) return;
     this.attached = true;
     window.addEventListener('keydown', (e) => {
+      if (e.code === 'F2' && this.active) {
+        e.preventDefault();
+        if (!e.repeat) this.toggleWarp(game);
+        return;
+      }
       if (e.key.length !== 1) return;
       this.typed = (this.typed + e.key.toLowerCase()).slice(-ADMIN_CODE.length);
       if (this.typed !== ADMIN_CODE || !game.scene.isActive('Title')) return;
       this.typed = '';
       this.toggle(game);
     });
+  }
+
+  /** Abre el selector de etapas (AdminWarpScene), o lo cierra si ya está abierto. */
+  toggleWarp(game: Phaser.Game): void {
+    if (game.scene.isActive('AdminWarp')) {
+      (game.scene.getScene('AdminWarp') as unknown as { close(): void }).close();
+      return;
+    }
+    // Todavía cargando: las texturas se generan en Boot/Preload.
+    if (game.scene.getScenes(true).every((s) => s.scene.key === 'Boot' || s.scene.key === 'Preload')) return;
+    game.scene.start('AdminWarp');
+    game.scene.bringToTop('AdminWarp');
   }
 
   private toggle(game: Phaser.Game): void {

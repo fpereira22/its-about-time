@@ -32,8 +32,8 @@ function submenuY(rows: number): number {
   return Math.min(MENU_Y - 6, BASE_HEIGHT - 15 - (rows * 13 + 9));
 }
 
-/** Partida nueva desde el comienzo de la misión `m` (título o "Siguiente misión"). */
-export function startMission(scene: Phaser.Scene, m: MissionDef): void {
+/** Deja la partida como al comienzo de la misión `m`, sin cambiar de escena. */
+export function resetForMission(m: MissionDef): void {
   StoryState.newGame(m.id, {
     money: m.startMoney,
     flags: m.startFlags,
@@ -42,6 +42,11 @@ export function startMission(scene: Phaser.Scene, m: MissionDef): void {
   });
   Secrets.syncNewGame();
   StoryState.setObjective(m.objective);
+}
+
+/** Partida nueva desde el comienzo de la misión `m` (título o "Siguiente misión"). */
+export function startMission(scene: Phaser.Scene, m: MissionDef): void {
+  resetForMission(m);
   const key = SCENE_FOR_KIND[GameMap.get(m.start.map).data.kind];
   scene.scene.start(key, { mapId: m.start.map, spawn: m.start.spawn, intro: m.introDialogue });
 }
@@ -84,7 +89,7 @@ export class TitleScene extends BaseScene {
       .setDepth(6);
 
     if (Admin.active) {
-      this.addText(BASE_WIDTH - 4, 4, 'ADMIN', { fontFamily: FONT_HUD, fontSize: '8px', color: '#ff8a5c' })
+      this.addText(BASE_WIDTH - 4, 4, 'ADMIN · F2: ETAPAS', { fontFamily: FONT_HUD, fontSize: '8px', color: '#ff8a5c' })
         .setOrigin(1, 0)
         .setDepth(10);
     }

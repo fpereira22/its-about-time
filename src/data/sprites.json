@@ -1399,6 +1399,17 @@
           "beard"
         ]
       }
+    },
+    "sira_m7_polera": {
+      "look": {
+        "skin": "#f8e2d4",
+        "hair": "#5a3424",
+        "shirt": "#2f6fd0",
+        "pants": "#3a5a8a",
+        "shoes": "#f4efe4",
+        "hairStyle": "long",
+        "accent": "#e8c070"
+      }
     }
   },
   "objects": [
@@ -1489,7 +1500,8 @@
     "botella_rojo",
     "crispetas",
     "chocolatina",
-    "olla_fideos"
+    "olla_fideos",
+    "caja_mudanza"
   ],
   "sheets": {}
 }

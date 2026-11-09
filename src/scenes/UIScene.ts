@@ -58,6 +58,9 @@ export class UIScene extends BaseScene {
     Dialogue.setPresenter(this.dialogueBox);
     const banner = new Banner(this);
     EventSystem.onScene(this, 'banner', ({ title, subtitle }) => banner.show(title, subtitle));
+    EventSystem.onScene(this, 'vineta', (id) => {
+      if (id) banner.dismiss();
+    });
     this.menu = new PauseMenu(this);
     this.inventory = new InventoryScreen(this);
     this.lineMap = new LineMapOverlay(this);
@@ -89,7 +92,7 @@ export class UIScene extends BaseScene {
     });
     // Recordatorio de que el modo admin está activo (misiones desbloqueadas, Ctrl + <).
     if (Admin.active) {
-      makeText(this, 3, BASE_HEIGHT - 2, 'ADMIN', {
+      makeText(this, 3, BASE_HEIGHT - 2, 'ADMIN · F2', {
         fontFamily: FONT_HUD,
         fontSize: '8px',
         color: '#ff8a5c',

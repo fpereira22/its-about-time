@@ -3,11 +3,16 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "La Calle 18 de noche, mojada. Los faroles se reflejan en el asfalto como en un río. Llovizna fino, de esa que no moja pero empapa.",
-    "next": "sira"
+    "text": "La Calle 18 de noche, mojada. Los faroles se reflejan en el asfalto como en un río. Abres el paraguas de doña Mery y Sira se mete debajo sin que le digas nada.",
+    "next": "sira",
+    "effects": [
+     {
+      "vineta": "m7_paraguas_noche"
+     }
+    ]
    },
    "sira": {
-    "text": "Sira se te pega al brazo. «Qué frío más rico», dice. En Cali, 19 grados son frío."
+    "text": "Se te pega al brazo. «Qué frío más rico», dice. En Cali, 19 grados son frío."
    }
   }
  },
@@ -15,7 +20,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "PrecioClub Cañasgordas: la bodega de los paquetes gigantes. Solo para socios. Una vez entraste con Grover y salieron con 48 rollos de papel higiénico y un televisor que nadie necesitaba."
+    "text": "PrecioClub Cañasgordas: la bodega de los paquetes gigantes. Solo para socios. Una vez entraste con Grover y salieron con 48 rollos de papel higiénico y un televisor que nadie necesitaba.",
+    "effects": [
+     {
+      "vineta": "m7_precioclub"
+     }
+    ]
    }
   }
  },
@@ -23,7 +33,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "El tótem azul del PrecioClub. Desde el piso 8 se ve iluminado toda la noche, como un faro de las ofertas."
+    "text": "El tótem azul del PrecioClub. Desde el piso 8 se ve iluminado toda la noche, como un faro de las ofertas.",
+    "effects": [
+     {
+      "vineta": "m7_precioclub"
+     }
+    ]
    }
   }
  },
@@ -31,7 +46,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "«BOBO UNIC LIVING». Tus amigos de Chile creen que es un chiste. No es un chiste. Bueno, un poquito."
+    "text": "«BOBO UNIC LIVING». Tus amigos de Chile creen que es un chiste. No es un chiste. Bueno, un poquito.",
+    "effects": [
+     {
+      "vineta": "m7_letrero_bobo"
+     }
+    ]
    }
   }
  },
@@ -39,7 +59,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "La ventana redonda del podio de ladrillo. Adentro se ve el gimnasio de la residencia: una caminadora, dos pesas y un chico dormido en el banco de abdominales."
+    "text": "La ventana redonda del podio de ladrillo. Adentro se ve el gimnasio de la residencia: una caminadora, dos pesas y un chico dormido en el banco de abdominales.",
+    "effects": [
+     {
+      "vineta": "m7_ojo"
+     }
+    ]
    }
   }
  },
@@ -47,7 +72,136 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Panadería La Espiga: pandebono calientito, pan de bono, pan de yuca y un letrero que dice «HOY: PAN CHILENO». Es pan de molde."
+    "branches": [
+     {
+      "goto": "comprar",
+      "if": {
+       "flag": "m7_pago",
+       "notFlag": "m7_pan"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "normal": {
+    "text": "Panadería La Espiga: pandebono calientito, pan de bono, pan de yuca y un letrero que dice «HOY: PAN CHILENO». Es pan de molde.",
+    "effects": [
+     {
+      "vineta": "m7_panaderia"
+     }
+    ]
+   },
+   "comprar": {
+    "text": "Se meten bajo el toldo de La Espiga justo cuando la llovizna se pone seria. Adentro huele a pandebono recién sacado.",
+    "effects": [
+     {
+      "vineta": "m7_panaderia"
+     }
+    ],
+    "next": "pide"
+   },
+   "pide": {
+    "speaker": "Doña Rubiela",
+    "text": "¿Qué les empaco, mis niños?",
+    "choices": [
+     {
+      "label": "Pandebono, calientito",
+      "effects": [
+       {
+        "pay": 4000
+       },
+       {
+        "setFlag": [
+         "m7_pan",
+         "m7_q_pan"
+        ]
+       }
+      ],
+      "goto": "pandebono"
+     },
+     {
+      "label": "Pan de yuca",
+      "effects": [
+       {
+        "pay": 3500
+       },
+       {
+        "setFlag": "m7_pan"
+       }
+      ],
+      "goto": "yuca"
+     },
+     {
+      "label": "«HOY: PAN CHILENO» (el del letrero)",
+      "effects": [
+       {
+        "pay": 2500
+       },
+       {
+        "setFlag": [
+         "m7_pan",
+         "secreto_pan_chileno"
+        ]
+       }
+      ],
+      "goto": "chileno"
+     }
+    ]
+   },
+   "pandebono": {
+    "text": "Pandebono. Sira te roba uno de la bolsa antes de pagar. «Control de calidad.»",
+    "next": "toldo"
+   },
+   "yuca": {
+    "text": "Pan de yuca. Sira asiente, como si le hubieras dado la respuesta correcta en un examen.",
+    "next": "toldo"
+   },
+   "chileno": {
+    "text": "Doña Rubiela te pasa un pan de molde con toda la solemnidad del mundo. Sira no para de reírse hasta la vereda.",
+    "next": "toldo"
+   },
+   "toldo": {
+    "text": "Se quedan debajo del toldo, con la bolsa caliente entre los dos. La lluvia sube un poco. Nadie tiene apuro.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "Mi abuelo decía que si llueve y estás con alguien bajo un techo chiquito, eso ya es un plan.",
+    "choices": [
+     {
+      "label": "«Buen plan»",
+      "effects": [
+       {
+        "setFlag": "m7_q_toldo"
+       }
+      ],
+      "goto": "plan"
+     },
+     {
+      "label": "«La salsa se va a quemar»",
+      "goto": "salsa"
+     }
+    ]
+   },
+   "plan": {
+    "speaker": "Sira",
+    "text": "Buen plan, ¿cierto? ...Cinco minutitos más.",
+    "next": "fin"
+   },
+   "salsa": {
+    "speaker": "Sira",
+    "text": "Ay, chileno. Eres de los que apagan la tele antes de los créditos.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Amaina lo justo para seguir. Abres el paraguas otra vez.",
+    "effects": [
+     {
+      "objective": "Vuelvan caminando al Bobo bajo el paraguas (la salsa los espera)"
+     }
+    ]
    }
   }
  },
@@ -68,10 +222,20 @@
     ]
    },
    "dia": {
-    "text": "El paradero de la Calle 18, frente al Bobo. Pasan los alimentadores y los buses hacia el norte, hacia San Fernando. Ahí vive Sira."
+    "text": "El paradero de la Calle 18, frente al Bobo. Pasan los alimentadores y los buses hacia el norte, hacia San Fernando. Ahí vive Sira.",
+    "effects": [
+     {
+      "vineta": "m7_paradero_techo"
+     }
+    ]
    },
    "noche": {
-    "text": "El paradero. Bajo el techito, el banco está seco. Párate al lado, en la vereda, para esperar el bus con ella."
+    "text": "El paradero. Bajo el techito, el banco está seco. Párate al lado, en la vereda, para esperar el bus con ella.",
+    "effects": [
+     {
+      "vineta": "m7_paradero_techo"
+     }
+    ]
    }
   }
  },
@@ -93,10 +257,20 @@
    },
    "dia": {
     "speaker": "Vecina del 412",
-    "text": "¡Hola, vecino! Del 412. Yo me paso el día aquí, es mi oficina. ¿Sabías que en las noches alguien se tira a la piscina? Wilmer dice que es un fantasma. Yo digo que es Wilmer."
+    "text": "¡Hola, vecino! Del 412. Yo me paso el día aquí, es mi oficina. ¿Sabías que en las noches alguien se tira a la piscina? Wilmer dice que es un fantasma. Yo digo que es Wilmer.",
+    "effects": [
+     {
+      "vineta": "m7_piscina"
+     }
+    ]
    },
    "noche": {
-    "text": "La piscina de noche, con la lluvia picando el agua."
+    "text": "La piscina de noche, con la lluvia picando el agua.",
+    "effects": [
+     {
+      "vineta": "m7_piscina"
+     }
+    ]
    }
   }
  },
@@ -104,7 +278,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "La Farmadía 24H de la esquina. Por ahora no necesitas nada de aquí."
+    "text": "La Farmadía 24H de la esquina. Por ahora no necesitas nada de aquí.",
+    "effects": [
+     {
+      "vineta": "m7_farmadia"
+     }
+    ]
    }
   }
  },
@@ -112,8 +291,13 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Ding-dong. El aire acondicionado de la Farmadía te recibe como un abrazo polar. Suena una versión en salsa de una canción de los ochenta.",
-    "next": "cajera"
+    "text": "Ding-dong. Sacudes el paraguas en la entrada y dejas un charquito. El aire acondicionado de la Farmadía te recibe como un abrazo polar. Suena una versión en salsa de una canción de los ochenta.",
+    "next": "cajera",
+    "effects": [
+     {
+      "vineta": "m7_farmadia"
+     }
+    ]
    },
    "cajera": {
     "speaker": "Cajera",
@@ -148,10 +332,20 @@
     ]
    },
    "nada": {
-    "text": "¿Sin nada para tomar? Sira te jala de la manga: «La nevera, chileno. Al fondo»."
+    "text": "¿Sin nada para tomar? Sira te jala de la manga: «La nevera, chileno. Al fondo».",
+    "effects": [
+     {
+      "vineta": "m7_caja_farma"
+     }
+    ]
    },
    "pagar": {
-    "text": "La cajera carraspea. «Joven, eso se paga.» Primero la caja."
+    "text": "La cajera carraspea. «Joven, eso se paga.» Primero la caja.",
+    "effects": [
+     {
+      "vineta": "m7_caja_farma"
+     }
+    ]
    }
   }
  },
@@ -228,7 +422,12 @@
     ]
    },
    "ya": {
-    "text": "Ya tienen la bebida. La nevera zumba, satisfecha."
+    "text": "Ya tienen la bebida. La nevera zumba, satisfecha.",
+    "effects": [
+     {
+      "vineta": "m7_bebidas"
+     }
+    ]
    },
    "elegir": {
     "text": "La nevera de las bebidas. Tres botellas de litro y medio te miran desde la repisa del medio.",
@@ -397,7 +596,12 @@
     ]
    },
    "ya": {
-    "text": "Crispetas para microondas, sabor mantequilla. Ya llevan unas."
+    "text": "Crispetas para microondas, sabor mantequilla. Ya llevan unas.",
+    "effects": [
+     {
+      "vineta": "m7_crispetas"
+     }
+    ]
    },
    "ver": {
     "text": "Crispetas para microondas, sabor mantequilla. «Para ver una peli», dice la caja.",
@@ -413,6 +617,11 @@
      },
      {
       "label": "No"
+     }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_crispetas"
      }
     ]
    },
@@ -439,7 +648,12 @@
     ]
    },
    "ya": {
-    "text": "Las chocolatinas de al lado de la caja. Ya llevas una."
+    "text": "Las chocolatinas de al lado de la caja. Ya llevas una.",
+    "effects": [
+     {
+      "vineta": "m7_chocolatina"
+     }
+    ]
    },
    "ver": {
     "text": "Chocolatinas con maní al lado de la caja, puestas ahí para tentarte. Funciona.",
@@ -456,6 +670,11 @@
      {
       "label": "No"
      }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_chocolatina"
+     }
     ]
    },
    "llevar": {
@@ -469,7 +688,12 @@
   "nodes": {
    "inicio": {
     "speaker": "Sira",
-    "text": "Vitamina C efervescente. Sira: «Para el chileno que se resfría con 22 grados»."
+    "text": "Vitamina C efervescente. Sira: «Para el chileno que se resfría con 22 grados».",
+    "effects": [
+     {
+      "vineta": "m7_estante_farma"
+     }
+    ]
    }
   }
  },
@@ -478,7 +702,12 @@
   "nodes": {
    "inicio": {
     "text": "Bloqueador solar 50+.",
-    "next": "sira"
+    "next": "sira",
+    "effects": [
+     {
+      "vineta": "m7_estante_farma"
+     }
+    ]
    },
    "sira": {
     "speaker": "Sira",
@@ -520,12 +749,20 @@
    },
    "nada": {
     "speaker": "Cajera",
-    "text": "¿Qué van a llevar? La nevera de las bebidas está al fondo, mi amor."
+    "text": "¿Qué van a llevar? La nevera de las bebidas está al fondo, mi amor.",
+    "effects": [
+     {
+      "vineta": "m7_caja_farma"
+     }
+    ]
    },
    "pagar": {
     "speaker": "Cajera",
     "text": "¿Algo más? ¿Bolsa? ¿Puntos? ¿Recarga? ¿Donación para los perritos?",
     "effects": [
+     {
+      "vineta": "m7_caja_farma"
+     },
      {
       "event": "pagar_m7"
      }
@@ -533,7 +770,12 @@
    },
    "listo": {
     "speaker": "Cajera",
-    "text": "Que disfruten la tarde, muchachos. Se ve que la van a disfrutar."
+    "text": "Que disfruten la tarde, muchachos. Se ve que la van a disfrutar.",
+    "effects": [
+     {
+      "vineta": "m7_caja_farma"
+     }
+    ]
    }
   }
  },
@@ -560,6 +802,11 @@
       ],
       "goto": "ella"
      }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_caja_farma"
+     }
     ]
    },
    "yo": {
@@ -578,9 +825,17 @@
     "text": "¡Tlin! La cajera les pasa la bolsa y les guiña un ojo.",
     "effects": [
      {
-      "objective": "Vuelvan caminando al Bobo (la salsa los espera)"
+      "vineta": "m7_caja_farma"
+     },
+     {
+      "objective": "Compren pan en La Espiga, al lado de la Farmadía"
      }
-    ]
+    ],
+    "next": "pan"
+   },
+   "pan": {
+    "speaker": "Sira",
+    "text": "¿Y con qué vamos a raspar la olla? Pan, chileno. La Espiga está aquí al lado."
    }
   }
  },
@@ -588,8 +843,11 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Caminan de vuelta por la vereda, sin apuro, aunque la salsa espera.",
+    "text": "Caminan de vuelta bajo el paraguas, sin apuro, aunque la salsa espera. La bolsa de la Farmadía te golpea la pierna en cada paso.",
     "effects": [
+     {
+      "vineta": "m7_bajo_paraguas"
+     },
      {
       "setFlag": "m7_charla_1"
      }
@@ -642,8 +900,11 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Cruzan la Carrera 122. Un bus alimentador pasa tocando la bocina por nada.",
+    "text": "Cruzan la Carrera 122 esquivando charcos. Sira salta uno y aterriza en otro. Un alimentador pasa tocando la bocina por nada.",
     "effects": [
+     {
+      "vineta": "m7_bajo_paraguas"
+     },
      {
       "setFlag": "m7_charla_2"
      }
@@ -695,8 +956,11 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Frente al Bobo, Sira se detiene y mira para arriba, a la torre de ladrillo.",
+    "text": "Frente al Bobo, Sira se detiene debajo del paraguas y mira para arriba, a la torre de ladrillo. Le caen gotitas en la frente.",
     "effects": [
+     {
+      "vineta": "m7_torre"
+     },
      {
       "setFlag": "m7_charla_3"
      }
@@ -746,7 +1010,12 @@
   "nodes": {
    "inicio": {
     "text": "Se paran bajo el techito del paradero. La Calle 18 brilla de agua. Del otro lado, la portería de la U, oscura. Arriba, el piso 8, con la luz de la cocina prendida.",
-    "next": "ella"
+    "next": "ella",
+    "effects": [
+     {
+      "vineta": "m7_paradero_noche"
+     }
+    ]
    },
    "ella": {
     "text": "Ella se abraza a tu brazo para el frío. No dice nada por un rato. Tú tampoco.",
@@ -794,7 +1063,7 @@
    },
    "paraguas": {
     "speaker": "Sira",
-    "text": "Le pasas el paraguas negro de doña Mery. «¿Y tú?» «Yo vivo a cincuenta metros.» «Me lo quedo, entonces. Así tengo que volver a devolvértelo.»",
+    "text": "Le pasas el paraguas negro de doña Mery. «¿Y tú?» «Yo vivo a cincuenta metros.» «Me lo quedo, entonces. Junto con la polera. Así tengo que volver a devolverte las dos cosas.»",
     "next": "jueves"
    },
    "somos": {
@@ -821,11 +1090,21 @@
   "nodes": {
    "inicio": {
     "text": "Llegan las luces del bus por la Calle 18, borrosas detrás de la llovizna.",
-    "next": "beso"
+    "next": "beso",
+    "effects": [
+     {
+      "vineta": "m7_paradero_noche"
+     }
+    ]
    },
    "beso": {
     "text": "Sira se pone de puntitas y te da un beso. Uno de verdad. El chofer espera con la puerta abierta y cara de haberlo visto todo en esta vida.",
-    "next": "chao"
+    "next": "chao",
+    "effects": [
+     {
+      "vineta": "m7_beso_bus"
+     }
+    ]
    },
    "chao": {
     "speaker": "Sira",
@@ -860,6 +1139,9 @@
    "inicio": {
     "text": "Te quedas solo en el paradero. La llovizna te moja el pelo y no te importa nada.",
     "effects": [
+     {
+      "vineta": "m7_chat"
+     },
      {
       "message": "m7_sira_bus"
      }
@@ -899,15 +1181,30 @@
    },
    "calena": {
     "text": "Miras para arriba: el piso 8, la luz de la cocina, el ventanal donde se largó la lluvia. En el mesón quedó la botella de La Caleña, vacía. Te la vas a quedar para siempre.",
-    "next": "fin"
+    "next": "fin",
+    "effects": [
+     {
+      "vineta": "m7_final"
+     }
+    ]
    },
    "alta": {
     "text": "Miras para arriba: el piso 8, la luz de la cocina, el ventanal donde se largó la lluvia. Mañana vas a mirar para abajo, a la portería, esperando verla salir.",
-    "next": "fin"
+    "next": "fin",
+    "effects": [
+     {
+      "vineta": "m7_final"
+     }
+    ]
    },
    "porfin": {
     "text": "Miras para arriba: el piso 8, la luz de la cocina. Por fin. Después de la piscina, la colina, el lago y un pavo real: por fin.",
-    "next": "fin"
+    "next": "fin",
+    "effects": [
+     {
+      "vineta": "m7_final"
+     }
+    ]
    },
    "fin": {
     "text": "Cruzas la calle hacia el Bobo. Wilmer, desde la recepción, te levanta el pulgar sin abrir los ojos."
@@ -920,6 +1217,9 @@
    "inicio": {
     "text": "El cono de don Efraín. Le das una lamida... y otra... y se acaba. Sabe a martes por la tarde.",
     "effects": [
+     {
+      "vineta": "m7_efrain"
+     },
      {
       "takeItem": "helado_carrito"
      },
@@ -947,7 +1247,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Mejor guardarla para la comida. Está heladita."
+    "text": "Mejor guardarla para la comida. Está heladita.",
+    "effects": [
+     {
+      "vineta": "m7_bebidas"
+     }
+    ]
    }
   }
  },
@@ -969,12 +1274,22 @@
    },
    "antes": {
     "speaker": "Grover",
-    "text": "¡Cumpa! ¿Qué pasó? ¿Estás con la nadadora? No me digás nada, que me pongo nervioso. Si necesitás el cacharro, la llama del tablero ya funciona. Bueno, prende."
+    "text": "¡Cumpa! ¿Qué pasó? ¿Estás con la nadadora? No me digás nada, que me pongo nervioso. Si necesitás el cacharro, la llama del tablero ya funciona. Bueno, prende.",
+    "effects": [
+     {
+      "vineta": "m7_llamada_grover"
+     }
+    ]
    },
    "despues": {
     "speaker": "Grover",
     "text": "¿Cumpa? Te escucho raro. Feliz. ¿Por qué te escucho tan feliz? ...¡NO! ¡¿EN SERIO?! ¡VOY PARA ALLÁ CON LA MORENADA!",
-    "next": "no"
+    "next": "no",
+    "effects": [
+     {
+      "vineta": "m7_llamada_grover"
+     }
+    ]
    },
    "no": {
     "speaker": "Tú",
@@ -993,7 +1308,12 @@
    "inicio": {
     "speaker": "Doña Mery",
     "text": "¡Mijo! ¿Cómo está? ¿Está comiendo bien? ¿Se acuerda de que la arepa se calienta en la sartén y no en el microondas?",
-    "next": "tu"
+    "next": "tu",
+    "effects": [
+     {
+      "vineta": "m7_llamada_mery"
+     }
+    ]
    },
    "tu": {
     "choices": [
@@ -1014,6 +1334,119 @@
    "extrana": {
     "speaker": "Doña Mery",
     "text": "Ay, mijo, yo también. La casa está muy callada sin usted. Venga el domingo, que hay sancocho. Y traiga a la nadadora, que yo sé que hay nadadora."
+   }
+  }
+ },
+ "m7_cuadra_lluvia": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La Calle 18 brilla. Cae una llovizna fina, de las que no parecen nada y te dejan empapado. Abres el paraguas de doña Mery: ¡fop!",
+    "effects": [
+     {
+      "vineta": "m7_paraguas_abre"
+     }
+    ],
+    "next": "debajo"
+   },
+   "debajo": {
+    "text": "Sira se mete debajo y te agarra del brazo. El paraguas es para una persona y media.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "No me sueltes, ¿ah? Si se me moja el pelo, te cobro la peluquería.",
+    "choices": [
+     {
+      "label": "Inclinar el paraguas hacia su lado",
+      "effects": [
+       {
+        "setFlag": "m7_q_paraguas_lado"
+       }
+      ],
+      "goto": "lado"
+     },
+     {
+      "label": "«Camina más cerca, entonces»",
+      "effects": [
+       {
+        "setFlag": "m7_q_paraguas_lado"
+       }
+      ],
+      "goto": "cerca"
+     },
+     {
+      "label": "«El del paraguas manda»",
+      "goto": "manda"
+     }
+    ]
+   },
+   "lado": {
+    "text": "Te mojas el hombro entero. Ella se da cuenta y endereza el paraguas. Tú lo vuelves a inclinar. Así, tres veces, sin decir nada."
+   },
+   "cerca": {
+    "text": "Se pega más. No parecía físicamente posible, y lo logró."
+   },
+   "manda": {
+    "speaker": "Sira",
+    "text": "¿Ah, sí? Entonces mandón, camina, que te vas a quedar con el paraguas y sin compañía."
+   }
+  }
+ },
+ "m7_charco": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "En la Carrera 122, un alimentador agarra a toda velocidad el charco más grande de Cañasgordas. Viene derecho a ustedes.",
+    "effects": [
+     {
+      "vineta": "m7_charco"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Ponerte delante y taparla con el paraguas",
+      "effects": [
+       {
+        "setFlag": [
+         "m7_q_charco",
+         "mojado"
+        ]
+       }
+      ],
+      "goto": "tapar"
+     },
+     {
+      "label": "Saltar con ella para atrás",
+      "goto": "saltar"
+     }
+    ]
+   },
+   "tapar": {
+    "text": "¡SPLASH! El agua te llega del pecho para abajo. A ella no le cae ni una gota en la cara. Te mira, chorreando, y se muere de la risa.",
+    "next": "fin"
+   },
+   "saltar": {
+    "text": "¡SPLASH! Saltan casi a tiempo: a ti te cae en los zapatos y a ella en las rodillas.",
+    "next": "fin"
+   },
+   "fin": {
+    "speaker": "Sira",
+    "text": "Ese chofer tiene algo personal contigo, chileno."
+   }
+  }
+ },
+ "m7_falta_pan": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sira",
+    "text": "¡El pan, chileno! Boloñesa sin pan para raspar la olla es un delito. La Espiga, al lado de la Farmadía.",
+    "effects": [
+     {
+      "vineta": "m7_panaderia"
+     }
+    ]
    }
   }
  }

@@ -45,6 +45,11 @@ export class Banner {
     });
   }
 
+  /** Se va al tiro (se abrió una viñeta y si no quedaría encima). */
+  dismiss(): void {
+    this.hide(false);
+  }
+
   private hide(immediate: boolean): void {
     const box = this.current;
     if (!box) return;

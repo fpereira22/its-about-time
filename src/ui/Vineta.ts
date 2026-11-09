@@ -26,6 +26,8 @@ import { LIVE_VINETAS, M6_CHAT_VINETAS } from '../art/vinetas_m6_chat';
 import { M6_VINETAS_3 } from '../art/vinetas_m6_3';
 import { M7_VINETAS } from '../art/vinetas_m7';
 import { M7_VINETAS_2 } from '../art/vinetas_m7_2';
+import { M7_VINETAS_3 } from '../art/vinetas_m7_3';
+import { M7_VINETAS_4 } from '../art/vinetas_m7_4';
 import { CALLE_VINETAS } from '../art/vinetas_calle';
 import { CASA_VINETAS } from '../art/vinetas_casa';
 import { COMIDA_VINETAS } from '../art/vinetas_comida';
@@ -149,6 +151,8 @@ const VINETAS: Record<string, VinetaBuilder> = {
   ...M6_CHAT_VINETAS,
   ...M7_VINETAS,
   ...M7_VINETAS_2,
+  ...M7_VINETAS_3,
+  ...M7_VINETAS_4,
 };
 
 /** Ids de viñeta válidos (para el efecto `vineta` de los diálogos). */

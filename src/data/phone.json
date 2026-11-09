@@ -514,6 +514,67 @@
     "m7_grover_viernes": {
       "from": "grover",
       "text": "Cumpa! Fútbol hoy a las 5?? Falta uno. Contestá. CONTESTÁ."
+    },
+    "m7_v1_sira": {
+      "from": "sira",
+      "text": "¿Sigues vivo, chef? Yo ya fui al mercado por lo de la salsa. 3:12 no perdona."
+    },
+    "m7_v1_a": {
+      "from": "sira",
+      "text": "Vivo. Con cuatro horas de sueño y mucho amor propio",
+      "mine": true
+    },
+    "m7_v1_b": {
+      "from": "sira",
+      "text": "Soñé contigo y con una boloñesa. En ese orden",
+      "mine": true
+    },
+    "m7_v1_c": {
+      "from": "sira",
+      "text": "¿Quién habla?",
+      "mine": true
+    },
+    "m7_v1_sira_a": {
+      "from": "sira",
+      "text": "Con eso no se cocina. Toma agua y no te cortes un dedo."
+    },
+    "m7_v1_sira_b": {
+      "from": "sira",
+      "text": "...En ese orden (casi). Ya, no me pongas nerviosa que estoy comprando tomates."
+    },
+    "m7_v1_sira_c": {
+      "from": "sira",
+      "text": "La que te va a dejar sin boloñesa, chileno. A la 1."
+    },
+    "m7_v1_lista": {
+      "from": "sira",
+      "text": "[foto] La receta de mi abuela. No se la muestres a nadie."
+    },
+    "m7_v2_bus": {
+      "from": "sira",
+      "text": "Me subí al bus. Vino vacío, así que voy a llegar antes. Perdón. Bueno, no perdón."
+    },
+    "m7_v2_a": {
+      "from": "sira",
+      "text": "¿¿Ya?? ¡Dijiste a la una!",
+      "mine": true
+    },
+    "m7_v2_b": {
+      "from": "sira",
+      "text": "Aquí te espero. Con el agua puesta",
+      "mine": true
+    },
+    "m7_v2_sira_a": {
+      "from": "sira",
+      "text": "Es que venía ansiosa. Digo, apurada. Digo, el bus."
+    },
+    "m7_v2_sira_b": {
+      "from": "sira",
+      "text": "Mira qué organizado. Espero que hayas recogido la ropa del piso."
+    },
+    "m7_v2_lobby": {
+      "from": "sira",
+      "text": "Estoy abajo. Don Wilmer me preguntó mi signo y si «vengo en son de paz». Subo."
     }
   },
   "calls": {
@@ -841,7 +902,7 @@
         "flag": "m7_viernes",
         "notFlag": "m7_toc"
       },
-      "afterMs": 1500,
+      "afterMs": 45000,
       "message": "m7_grover_viernes"
     }
   ],

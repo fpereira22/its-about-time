@@ -1,6 +1,3 @@
-import Phaser from 'phaser';
-import { playSfx } from '../audio/sfx';
-import { PHONE, phoneUi } from '../systems/Phone';
 import { playerLook } from '../systems/PlayerLook';
 import { StoryState } from '../systems/StoryState';
 import { makeText } from '../ui/theme';
@@ -18,7 +15,7 @@ import { bust, floatNote, INK, lookOf, side } from './vinetas_m5';
  * Panel de 220 × 108 px.
  */
 
-export const SIRA = (): HumanLook => lookOf('sira_m7');
+export const SIRA = (): HumanLook => lookOf(StoryState.hasFlag('m7_polera') ? 'sira_m7_polera' : 'sira_m7');
 
 /** Número pseudoaleatorio estable (0..1). */
 export const rnd = (n: number): number => {
@@ -421,87 +418,6 @@ const pavoGrito: VinetaBuilder = (kit) => {
   bust(us, SIRA(), 54, 84, 2.2, { mouth: 'o', eyes: 'closed' });
 };
 
-// ---------------------------------------------------------------------------
-// El chat hasta las 3 y 12 de la mañana
-// ---------------------------------------------------------------------------
-
-/** Los mensajes del chat con Sira de esta misión (los tuyos y los de ella), en orden de llegada. */
-function chatLines(): Array<{ key: string; mine: boolean; text: string }> {
-  return StoryState.phone
-    .filter((e) => e.id.startsWith('m7_') && PHONE.messages[e.id]?.from === 'sira')
-    .map((e) => ({ key: `${e.id}@${e.at}`, mine: PHONE.messages[e.id].mine === true, text: PHONE.messages[e.id].text }));
-}
-
-/** El chat de la madrugada: la pieza a oscuras, la cara iluminada por el celular y la hora que vuela. */
-const chat: VinetaBuilder = (kit) => {
-  const stage = kit.framed((g, x, y, w, h) => {
-    g.fillStyle(hex('#0c1020'), 1).fillRect(x, y, w, h);
-    // El ventanal con las luces de Cali de noche.
-    g.fillStyle(hex('#1c2440'), 1).fillRect(x + 150, y + 6, 64, 44);
-    for (let i = 0; i < 40; i++) g.fillStyle([0xf0c060, 0xf8e0a0, 0xa8c8f0][i % 3], 0.7).fillRect(x + 152 + Math.floor(rnd(i) * 60), y + 30 + Math.floor(rnd(i + 99) * 18), 1, 1);
-    g.fillStyle(hex('#e8ecf0'), 1).fillCircle(x + 200, y + 16, 4);
-  });
-  // Tú en la cama, de lado, con la cara iluminada.
-  const bed = addG(kit, stage);
-  bed.fillStyle(hex('#425e98'), 1).fillRect(150, 70, 70, 38);
-  bed.fillStyle(hex('#f0f2f8'), 1).fillRect(150, 62, 30, 10);
-  const me = addG(kit, stage);
-  bust(me, sinGorro(playerLook()), 166, 64, 2, { mouth: 'smile' });
-  me.fillStyle(0x9cc8f8, 0.25).fillCircle(166, 64, 16);
-  // El celular con el chat.
-  const ph = addG(kit, stage);
-  outlined(ph, [[8, 4, 130, 100, '#1c1c24']]);
-  ph.fillStyle(hex('#f0ece4'), 1).fillRect(12, 8, 122, 92);
-  ph.fillStyle(hex('#e8a0b8'), 1).fillRect(12, 8, 122, 12);
-  stage.add(makeText(kit.scene, 18, 10, 'Sira', { fontSize: '7px', fontStyle: '600', color: '#2a1824' }));
-  const clock = makeText(kit.scene, 128, 10, '', { fontSize: '7px', color: '#2a1824' }).setOrigin(1, 0);
-  stage.add(clock);
-  const texts: Phaser.GameObjects.Text[] = [];
-  const bubbles = addG(kit, stage);
-  const draw = (): void => {
-    const m = Math.floor(StoryState.clock % 1440);
-    clock.setText(`${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`);
-    for (const t of texts) t.destroy();
-    texts.length = 0;
-    bubbles.clear();
-    const lines = chatLines().slice(-4);
-    let y = 96;
-    for (let i = lines.length - 1; i >= 0; i--) {
-      const l = lines[i];
-      const t = makeText(kit.scene, 0, 0, l.text, { fontSize: '6px', color: '#2a2433', wordWrap: { width: 84 } });
-      const bh = t.height + 4;
-      y -= bh + 3;
-      if (y < 22) {
-        t.destroy();
-        break;
-      }
-      const bw = Math.min(90, t.width + 6);
-      const bx = l.mine ? 130 - bw : 16;
-      bubbles.fillStyle(hex(l.mine ? '#b8e8a8' : '#ffffff'), 1).fillRoundedRect(bx, y, bw, bh, 3);
-      t.setPosition(bx + 3, y + 2);
-      stage.add(t);
-      texts.push(t);
-    }
-  };
-  draw();
-  // Con la viñeta abierta, ella pone los sonidos (y el celular no muestra la notificación encima).
-  phoneUi.chatOpen = true;
-  stage.once(Phaser.GameObjects.Events.DESTROY, () => (phoneUi.chatOpen = false));
-  let count = chatLines().length;
-  kit.every(200, () => {
-    const lines = chatLines();
-    if (lines.length !== count) {
-      const fresh = lines.slice(count);
-      count = lines.length;
-      playSfx(fresh.some((l) => !l.mine) ? 'notify' : 'enviado');
-      draw();
-    } else {
-      const m = Math.floor(StoryState.clock % 1440);
-      clock.setText(`${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`);
-    }
-  });
-};
-
 export const M7_VINETAS: Record<string, VinetaBuilder> = {
   m7_mudanza: mudanza,
   m7_wilmer: wilmer,
@@ -512,5 +428,4 @@ export const M7_VINETAS: Record<string, VinetaBuilder> = {
   m7_selfie: selfie,
   m7_lago: lago,
   m7_pavo_grito: pavoGrito,
-  m7_chat: chat,
 };

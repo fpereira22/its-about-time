@@ -329,20 +329,57 @@
     "if": {
       "mission": "mission07",
       "flag": "m7_vuelta_depa",
+      "notFlag": [
+        "m7_cocina2",
+        "m7_polera"
+      ]
+    }
+  },
+  {
+    "id": "m7_sira_cocina_2_polera",
+    "map": "bobo_piso8",
+    "x": 5,
+    "y": 7,
+    "sprite": "sira_m7_polera",
+    "dir": "left",
+    "dialogue": "m7_sira_cocina_2",
+    "if": {
+      "mission": "mission07",
+      "flag": [
+        "m7_vuelta_depa",
+        "m7_polera"
+      ],
       "notFlag": "m7_cocina2"
     }
   },
   {
     "id": "m7_sira_mesa",
     "map": "bobo_piso8",
-    "x": 3,
-    "y": 8,
+    "x": 11,
+    "y": 11,
     "sprite": "sira_m7",
     "dir": "down",
     "dialogue": "m7_sira_mesa",
     "if": {
       "mission": "mission07",
-      "flag": "m7_sira_mesa"
+      "flag": "m7_sira_mesa",
+      "notFlag": "m7_polera"
+    }
+  },
+  {
+    "id": "m7_sira_mesa_polera",
+    "map": "bobo_piso8",
+    "x": 11,
+    "y": 11,
+    "sprite": "sira_m7_polera",
+    "dir": "down",
+    "dialogue": "m7_sira_mesa",
+    "if": {
+      "mission": "mission07",
+      "flag": [
+        "m7_sira_mesa",
+        "m7_polera"
+      ]
     }
   },
   {
@@ -355,7 +392,24 @@
     "dialogue": "m7_sira_sofa",
     "if": {
       "mission": "mission07",
-      "flag": "m7_sira_sofa"
+      "flag": "m7_sira_sofa",
+      "notFlag": "m7_polera"
+    }
+  },
+  {
+    "id": "m7_sira_sofa_polera",
+    "map": "bobo_piso8",
+    "x": 13,
+    "y": 9,
+    "sprite": "sira_m7_polera",
+    "dir": "up",
+    "dialogue": "m7_sira_sofa",
+    "if": {
+      "mission": "mission07",
+      "flag": [
+        "m7_sira_sofa",
+        "m7_polera"
+      ]
     }
   },
   {
@@ -368,7 +422,24 @@
     "dialogue": "m7_sira_cama",
     "if": {
       "mission": "mission07",
-      "flag": "m7_sira_cama"
+      "flag": "m7_sira_cama",
+      "notFlag": "m7_polera"
+    }
+  },
+  {
+    "id": "m7_sira_cama_polera",
+    "map": "bobo_piso8",
+    "x": 16,
+    "y": 11,
+    "sprite": "sira_m7_polera",
+    "dir": "down",
+    "dialogue": "m7_sira_cama",
+    "if": {
+      "mission": "mission07",
+      "flag": [
+        "m7_sira_cama",
+        "m7_polera"
+      ]
     }
   },
   {
@@ -865,6 +936,42 @@
     "dialogue": "m7_bloqueador",
     "if": {
       "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_caja_manjar",
+    "map": "bobo_piso8",
+    "x": 7,
+    "y": 7,
+    "object": "caja_mudanza",
+    "dialogue": "m7_caja_manjar",
+    "if": {
+      "mission": "mission07",
+      "notFlag": "m7_caja_manjar_ok"
+    }
+  },
+  {
+    "id": "m7_caja_varios",
+    "map": "bobo_piso8",
+    "x": 9,
+    "y": 8,
+    "object": "caja_mudanza",
+    "dialogue": "m7_caja_varios",
+    "if": {
+      "mission": "mission07",
+      "notFlag": "m7_caja_varios_ok"
+    }
+  },
+  {
+    "id": "m7_caja_carta",
+    "map": "bobo_piso8",
+    "x": 6,
+    "y": 9,
+    "object": "caja_mudanza",
+    "dialogue": "m7_caja_carta",
+    "if": {
+      "mission": "mission07",
+      "notFlag": "m7_caja_carta_ok"
     }
   }
 ]

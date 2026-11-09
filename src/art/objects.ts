@@ -579,6 +579,11 @@ export const OBJECT_ART: Record<string, () => PixelGrid> = {
     g.circle(6, 5, 2, '#d83c3c').rect(9, 2, 1, 5, '#e88838').rect(9, 1, 1, 1, '#58a048').rect(11, 3, 2, 3, '#58a048');
     return g.outline(PAL.outline);
   },
+  caja_mudanza: () => {
+    const g = new PixelGrid();
+    g.rect(1, 3, 14, 12, '#c89c6c').rect(1, 3, 14, 1, '#e0b88c').rect(7, 3, 2, 12, '#e8d8a8').rect(3, 9, 3, 2, '#7a4c30').rect(10, 9, 3, 2, '#7a4c30');
+    return g.outline(PAL.outline);
+  },
   ropa_tirada: () => {
     const g = new PixelGrid();
     g.rect(1, 9, 7, 5, '#2050a8').rect(2, 8, 5, 1, '#2050a8').rect(8, 10, 6, 3, '#3a3c44').rect(10, 13, 4, 2, '#3a3c44');

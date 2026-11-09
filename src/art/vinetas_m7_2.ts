@@ -520,7 +520,7 @@ const dormidos: VinetaBuilder = (kit) => {
   g.fillStyle(hex(playerLook().shirt), 1).fillRect(97, 75, 28, 4);
   // El reloj digital del velador.
   const clock = addG(kit, stage);
-  const times = ['17:40', '18:15', '18:52', '19:30', '20:05', '20:35'];
+  const times = ['18:40', '18:58', '19:22', '19:45', '20:05', '20:35'];
   let i = 0;
   const show = (): void => {
     clock.clear();

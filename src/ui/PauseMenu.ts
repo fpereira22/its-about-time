@@ -3,6 +3,7 @@ import { playSfx } from '../audio/sfx';
 import { objKey } from '../art/SpriteRegistry';
 import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD } from '../config/display';
 import type { MapScene } from '../scenes/MapScene';
+import { Admin } from '../systems/Admin';
 import { Controls } from '../systems/Controls';
 import { EventSystem } from '../systems/EventSystem';
 import { missionSummary } from '../systems/Mission';
@@ -14,9 +15,15 @@ import { drawPanel, drawTriangle, fitText, makeText, THEME } from './theme';
 type View = 'main' | 'mission' | 'confirm' | 'slots';
 
 const MAIN_OPTIONS = ['Misión actual', 'Inventario', 'Ropa', 'Guardar', 'Cargar', 'Volver', 'Salir'];
+const OPT_ADMIN = 'Ir a etapa';
 const OPT_SAVE = MAIN_OPTIONS.indexOf('Guardar');
 const OPT_LOAD = MAIN_OPTIONS.indexOf('Cargar');
 const OPT_QUIT = MAIN_OPTIONS.indexOf('Salir');
+
+/** El modo admin se puede activar con el juego abierto: por eso no es una constante. */
+function mainOptions(): string[] {
+  return Admin.active ? [...MAIN_OPTIONS, OPT_ADMIN] : MAIN_OPTIONS;
+}
 /** Alto de cada espacio en la lista de guardar/cargar. */
 const SLOT_ROW = 38;
 const CONFIRM_OPTIONS = ['Sí', 'No'];
@@ -101,12 +108,12 @@ export class PauseMenu {
 
     switch (this.view) {
       case 'main':
-        if (up || down) this.move(down, MAIN_OPTIONS.length);
+        if (up || down) this.move(down, mainOptions().length);
         if (back) {
           playSfx('close');
           return this.close();
         }
-        if (ok) this.chooseMain(MAIN_OPTIONS[this.selected]);
+        if (ok) this.chooseMain(mainOptions()[this.selected]);
         return;
       case 'mission':
         if (ok || back) this.back(0);
@@ -166,6 +173,8 @@ export class PauseMenu {
       case 'Volver':
         playSfx('close');
         return this.close();
+      case OPT_ADMIN:
+        return Admin.toggleWarp(this.scene.game);
       case 'Salir':
         return this.ask(
           '¿Volver al título? Tu partida queda guardada.',
@@ -285,12 +294,13 @@ export class PauseMenu {
 
   private buildMain(): void {
     const w = 104;
-    const h = MAIN_OPTIONS.length * ROW + 24;
+    const options = mainOptions();
+    const h = options.length * ROW + 24;
     const x = BASE_WIDTH - w - 8;
     const y = 22;
     this.panel(x, y, w, h);
     this.add(makeText(this.scene, x + 10, y + 7, 'PAUSA', { fontFamily: FONT_HUD, fontSize: '8px', color: THEME.accentCss }));
-    this.options(MAIN_OPTIONS, x + 18, y + 20);
+    this.options(options, x + 18, y + 20);
     // El aviso (ej. por qué no se puede guardar) va en la línea de ayuda de abajo.
     this.hint(this.note || 'W/S: mover · E: elegir · Esc: cerrar');
   }

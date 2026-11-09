@@ -38,16 +38,36 @@
     ]
    },
    "noche_u": {
-    "text": "Ya es de noche y mañana es viernes. Lo único que queda por hacer hoy es tirarse en la cama."
+    "text": "Ya es de noche y mañana es viernes. Lo único que queda por hacer hoy es tirarse en la cama.",
+    "effects": [
+     {
+      "vineta": "m7_boton"
+     }
+    ]
    },
    "sira_puerta": {
-    "text": "¿Y dejar a Sira sola con la boloñesa? Ni loco."
+    "text": "¿Y dejar a Sira sola con la boloñesa? Ni loco.",
+    "effects": [
+     {
+      "vineta": "m7_boton"
+     }
+    ]
    },
    "salsa": {
-    "text": "La salsa está lista y Sira te espera adentro. El lobby puede esperar."
+    "text": "La salsa está lista y Sira te espera adentro. El lobby puede esperar.",
+    "effects": [
+     {
+      "vineta": "m7_boton"
+     }
+    ]
    },
    "viernes_antes": {
-    "text": "Sira llega a la una. No es momento de pasear: hay que ordenar y poner el agua."
+    "text": "Sira llega a la una. No es momento de pasear: hay que ordenar y poner el agua.",
+    "effects": [
+     {
+      "vineta": "m7_boton"
+     }
+    ]
    },
    "bajar": {
     "text": "El ascensor del piso 8. Un espejo, un letrero de «Máx. 8 personas» y una mancha de helado que nadie limpia.",
@@ -65,6 +85,11 @@
      },
      {
       "label": "Quedarte en el piso"
+     }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_boton"
      }
     ]
    }
@@ -117,6 +142,9 @@
     "text": "Aprietas el botón. Sira se pone a tu lado con la bolsa de la Farmadía.",
     "effects": [
      {
+      "vineta": "m7_boton"
+     },
+     {
       "event": "ascensor_m7",
       "data": {
        "to": "piso8"
@@ -125,16 +153,36 @@
     ]
    },
    "paradero": {
-    "text": "Primero hay que llevar a Sira al paradero. Después tendrás toda la noche para subir y bajar."
+    "text": "Primero hay que llevar a Sira al paradero. Después tendrás toda la noche para subir y bajar.",
+    "effects": [
+     {
+      "vineta": "m7_boton"
+     }
+    ]
    },
    "farmadia": {
-    "text": "Faltan las bebidas. La Farmadía está en la esquina de la Carrera 122."
+    "text": "Faltan las bebidas. La Farmadía está en la esquina de la Carrera 122.",
+    "effects": [
+     {
+      "vineta": "m7_boton"
+     }
+    ]
    },
    "u": {
-    "text": "Sira te espera en la portería de la U. ¡No la dejes plantada!"
+    "text": "Sira te espera en la portería de la U. ¡No la dejes plantada!",
+    "effects": [
+     {
+      "vineta": "m7_boton"
+     }
+    ]
    },
    "martes": {
-    "text": "Sira y sus amigas te esperan en la U. Sube después, que el helado se derrite."
+    "text": "Sira y sus amigas te esperan en la U. Sube después, que el helado se derrite.",
+    "effects": [
+     {
+      "vineta": "m7_boton"
+     }
+    ]
    },
    "subir": {
     "text": "Los dos ascensores del Bobo. Uno funciona. El otro tiene un letrero escrito a mano: «Lento pero seguro».",
@@ -153,6 +201,11 @@
      {
       "label": "Quedarte en el lobby"
      }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_boton"
+     }
     ]
    }
   }
@@ -161,7 +214,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "La escalera de emergencia. Ocho pisos. Ni loco: para eso hay ascensor (aunque sea lento)."
+    "text": "La escalera de emergencia. Ocho pisos. Ni loco: para eso hay ascensor (aunque sea lento).",
+    "effects": [
+     {
+      "vineta": "m7_escalera"
+     }
+    ]
    }
   }
  },
@@ -280,7 +338,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Depa 801. Detrás de la puerta suena reguetón a todo volumen. Son las tres de la tarde de un martes. O de cualquier día: siempre suena."
+    "text": "Depa 801. Detrás de la puerta suena reguetón a todo volumen. Son las tres de la tarde de un martes. O de cualquier día: siempre suena.",
+    "effects": [
+     {
+      "vineta": "m7_puerta_801"
+     }
+    ]
    }
   }
  },
@@ -288,7 +351,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Depa 803. Huele a arepa con queso. Se te hace agua la boca. Tocas... nadie abre, pero el olor sigue."
+    "text": "Depa 803. Huele a arepa con queso. Se te hace agua la boca. Tocas... nadie abre, pero el olor sigue.",
+    "effects": [
+     {
+      "vineta": "m7_puerta_803"
+     }
+    ]
    }
   }
  },
@@ -321,7 +389,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Depa 809. Un letrero pegado con cinta: «NO MOLESTAR. TESIS. ES EN SERIO». Debajo, más chiquito: «Si es domicilio, sí molestar»."
+    "text": "Depa 809. Un letrero pegado con cinta: «NO MOLESTAR. TESIS. ES EN SERIO». Debajo, más chiquito: «Si es domicilio, sí molestar».",
+    "effects": [
+     {
+      "vineta": "m7_puerta_809"
+     }
+    ]
    }
   }
  },
@@ -337,15 +410,40 @@
       }
      },
      {
+      "goto": "llovizna",
+      "if": {
+       "flag": "m7_llovizna",
+       "notFlag": "m7_cocina2"
+      }
+     },
+     {
       "goto": "dia"
      }
     ]
    },
    "dia": {
-    "text": "La ventana del pasillo da a la U: se ven los samanes, el techo de la Biblioteca y, si achinas los ojos, el lago."
+    "text": "La ventana del pasillo da a la U: se ven los samanes, el techo de la Biblioteca y, si achinas los ojos, el lago.",
+    "effects": [
+     {
+      "vineta": "m7_ventana"
+     }
+    ]
    },
    "noche": {
-    "text": "Llueve sobre la U. Los faroles de los caminos se ven borrosos y dorados."
+    "text": "Llueve sobre la U. Los faroles de los caminos se ven borrosos y dorados.",
+    "effects": [
+     {
+      "vineta": "m7_ventana"
+     }
+    ]
+   },
+   "llovizna": {
+    "text": "Llovizna sobre la U. Los pavos reales se metieron debajo de los samanes, indignados.",
+    "effects": [
+     {
+      "vineta": "m7_ventana"
+     }
+    ]
    }
   }
  },
@@ -394,7 +492,15 @@
   "nodes": {
    "inicio": {
     "text": "Sira deja la bolsa de la Farmadía en el mesón y se va derecho a revolver la salsa, que lleva veinte minutos burbujeando a fuego lento. Huele a gloria.",
-    "next": "sira"
+    "next": "manga",
+    "effects": [
+     {
+      "vineta": "m7_olla_salsa"
+     },
+     {
+      "clearFlag": "mojado"
+     }
+    ]
    },
    "sira": {
     "speaker": "Sira",
@@ -410,6 +516,51 @@
       "objective": "Terminen la comida: habla con Sira en la cocina"
      }
     ]
+   },
+   "manga": {
+    "text": "Sira se mira la manga y el hombro, empapados: el paraguas de doña Mery no da para dos. «¿Me prestas algo seco?»",
+    "choices": [
+     {
+      "label": "Pasarle la polera azul de la PUCC, la del 14",
+      "effects": [
+       {
+        "setFlag": [
+         "m7_polera",
+         "m7_q_polera"
+        ]
+       }
+      ],
+      "goto": "catorce"
+     },
+     {
+      "label": "«Lo que quieras, menos la del 14»",
+      "effects": [
+       {
+        "setFlag": "m7_polera"
+       }
+      ],
+      "goto": "menos"
+     }
+    ]
+   },
+   "catorce": {
+    "speaker": "Sira",
+    "text": "¿La del 14? ¿La de la suerte? ...Ay, chileno. No me la vas a volver a ver. Te lo advierto.",
+    "effects": [
+     {
+      "vineta": "m7_polera"
+     }
+    ],
+    "next": "sira"
+   },
+   "menos": {
+    "text": "Se mete al closet y sale, por supuesto, con la del 14 puesta. Le queda grande. Se arremanga. «¿Decías?»",
+    "effects": [
+     {
+      "vineta": "m7_polera"
+     }
+    ],
+    "next": "sira"
    }
   }
  },
@@ -465,19 +616,44 @@
      {
       "label": "Todavía no"
      }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_olla_salsa"
+     }
     ]
    },
    "hierve": {
-    "text": "El agua ya hierve. Y alguien tocó la puerta. ¿No vas a abrir?"
+    "text": "El agua ya hierve. Y alguien tocó la puerta. ¿No vas a abrir?",
+    "effects": [
+     {
+      "vineta": "m7_olla_salsa"
+     }
+    ]
    },
    "salsa": {
-    "text": "La boloñesa burbujea despacito, a fuego lento. Plop. Plop. Huele a domingo en casa de abuela."
+    "text": "La boloñesa burbujea despacito, a fuego lento. Plop. Plop. Huele a domingo en casa de abuela.",
+    "effects": [
+     {
+      "vineta": "m7_olla_salsa"
+     }
+    ]
    },
    "ella": {
-    "text": "Sira ya está en la cocina, arremangada. Háblale."
+    "text": "Sira ya está en la cocina, arremangada. Háblale.",
+    "effects": [
+     {
+      "vineta": "m7_olla_salsa"
+     }
+    ]
    },
    "otro": {
-    "text": "Tu cocina de dos platos. Aquí aprendiste a hacer huevos revueltos sin que se te quemen. A veces."
+    "text": "Tu cocina de dos platos. Aquí aprendiste a hacer huevos revueltos sin que se te quemen. A veces.",
+    "effects": [
+     {
+      "vineta": "m7_olla_salsa"
+     }
+    ]
    }
   }
  },
@@ -488,7 +664,7 @@
     "text": "Llenas la olla de doña Mery (la que te regaló al irte), le echas sal y la pones al fuego. En diez minutos hierve.",
     "effects": [
      {
-      "vineta": ""
+      "vineta": "m7_olla_agua"
      }
     ],
     "next": "hora"
@@ -537,10 +713,20 @@
     ]
    },
    "normal": {
-    "text": "Tu refrigerador: agua de la llave en una botella, medio limón, salsa de tomate y tres arepas congeladas de doña Mery. Lo mínimo para sobrevivir."
+    "text": "Tu refrigerador: agua de la llave en una botella, medio limón, salsa de tomate y tres arepas congeladas de doña Mery. Lo mínimo para sobrevivir.",
+    "effects": [
+     {
+      "vineta": "m7_nevera"
+     }
+    ]
    },
    "post": {
-    "text": "Sigue igual de vacío. El limón te mira con lástima."
+    "text": "Sigue igual de vacío. El limón te mira con lástima.",
+    "effects": [
+     {
+      "vineta": "m7_nevera"
+     }
+    ]
    }
   }
  },
@@ -553,7 +739,10 @@
       "goto": "lavar",
       "if": {
        "flag": "m7_viernes",
-       "notFlag": "m7_loza"
+       "notFlag": [
+        "m7_loza",
+        "m7_sira_entro"
+       ]
       }
      },
      {
@@ -582,13 +771,23 @@
      {
       "label": "Después"
      }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_loza"
+     }
     ]
    },
    "ok": {
     "text": "Reluciente. Hasta la olla quedó como nueva. Bueno, como seminueva."
    },
    "limpio": {
-    "text": "El lavaplatos, limpio. Por ahora."
+    "text": "El lavaplatos, limpio. Por ahora.",
+    "effects": [
+     {
+      "vineta": "m7_loza"
+     }
+    ]
    }
   }
  },
@@ -596,7 +795,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "El mesón de la cocina. Una tabla de picar, un cuchillo, sal, aceite y medio kilo de fideos."
+    "text": "El mesón de la cocina. Una tabla de picar, un cuchillo, sal, aceite y medio kilo de fideos.",
+    "effects": [
+     {
+      "vineta": "m7_meson"
+     }
+    ]
    }
   }
  },
@@ -632,6 +836,11 @@
      },
      {
       "label": "Dejarla así"
+     }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_ropa"
      }
     ]
    },
@@ -681,13 +890,23 @@
      {
       "label": "No hay tiempo"
      }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_ducha"
+     }
     ]
    },
    "ok": {
     "text": "Ducha caliente. En la casa de doña Mery era fría siempre. Esto es el lujo. El Bobo Unic Living, señores."
    },
    "otra": {
-    "text": "La ducha del depa. Con agua caliente. Todavía te emociona."
+    "text": "La ducha del depa. Con agua caliente. Todavía te emociona.",
+    "effects": [
+     {
+      "vineta": "m7_ducha"
+     }
+    ]
    }
   }
  },
@@ -695,7 +914,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "El baño. Hay un letrero de la residencia: «Por favor no botar el papel al inodoro». En Chile sí se bota. Cada día aprendes algo."
+    "text": "El baño. Hay un letrero de la residencia: «Por favor no botar el papel al inodoro». En Chile sí se bota. Cada día aprendes algo.",
+    "effects": [
+     {
+      "vineta": "m7_wc"
+     }
+    ]
    }
   }
  },
@@ -717,7 +941,12 @@
     ]
    },
    "normal": {
-    "text": "El lavamanos y el espejo. Tienes cara de alguien que vive solo hace dos semanas."
+    "text": "El lavamanos y el espejo. Tienes cara de alguien que vive solo hace dos semanas.",
+    "effects": [
+     {
+      "vineta": "m7_perfume"
+     }
+    ]
    },
    "perfume": {
     "text": "Junto al lavamanos, el perfume que te regaló tu mamá «para las ocasiones especiales».",
@@ -747,6 +976,11 @@
      {
       "label": "Nada"
      }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_perfume"
+     }
     ]
    },
    "poco": {
@@ -769,6 +1003,13 @@
       }
      },
      {
+      "goto": "llovizna",
+      "if": {
+       "flag": "m7_llovizna",
+       "notFlag": "m7_cocina2"
+      }
+     },
+     {
       "goto": "nublado",
       "if": {
        "flag": "m7_viernes"
@@ -780,13 +1021,36 @@
     ]
    },
    "dia": {
-    "text": "El ventanal del piso 8: los Farallones con su sombrero de nubes, el techo de paneles del PrecioClub y la U al otro lado de la Calle 18. Si te asomas, ves la portería."
+    "text": "El ventanal del piso 8: los Farallones con su sombrero de nubes, el techo de paneles del PrecioClub y la U al otro lado de la Calle 18. Si te asomas, ves la portería.",
+    "effects": [
+     {
+      "vineta": "m7_ventana"
+     }
+    ]
    },
    "nublado": {
-    "text": "Hoy está nublado sobre los Farallones. Huele a que va a llover. En Cali siempre huele a que va a llover."
+    "text": "Hoy está nublado sobre los Farallones. Huele a que va a llover. En Cali siempre huele a que va a llover.",
+    "effects": [
+     {
+      "vineta": "m7_ventana"
+     }
+    ]
    },
    "lluvia": {
-    "text": "Llueve sobre Pance. Las gotas bajan por el vidrio como carreritas. Abajo, la Calle 18 brilla."
+    "text": "Llueve sobre Pance. Las gotas bajan por el vidrio como carreritas. Abajo, la Calle 18 brilla.",
+    "effects": [
+     {
+      "vineta": "m7_ventana"
+     }
+    ]
+   },
+   "llovizna": {
+    "text": "Llovizna fino sobre la Calle 18. Desde el piso 8 se ven los paraguas, chiquitos, cruzando hacia la U.",
+    "effects": [
+     {
+      "vineta": "m7_ventana"
+     }
+    ]
    }
   }
  },
@@ -794,7 +1058,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Un póster de Valparaíso con sus cerros de colores. Lo colgaste el primer día, para no extrañar tanto. Ahora lo miras y extrañas un poquito menos."
+    "text": "Un póster de Valparaíso con sus cerros de colores. Lo colgaste el primer día, para no extrañar tanto. Ahora lo miras y extrañas un poquito menos.",
+    "effects": [
+     {
+      "vineta": "m7_poster"
+     }
+    ]
    }
   }
  },
@@ -802,7 +1071,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Tu estante: el libro de Optimización (intacto), una bandera chilena chiquita, el carnet de la PUCC y un frasco de manjar a medio comer."
+    "text": "Tu estante: el libro de Optimización (intacto), una bandera chilena chiquita, el carnet de la PUCC y un frasco de manjar a medio comer.",
+    "effects": [
+     {
+      "vineta": "m7_estante"
+     }
+    ]
    }
   }
  },
@@ -811,6 +1085,12 @@
   "nodes": {
    "inicio": {
     "branches": [
+     {
+      "goto": "percha",
+      "if": {
+       "flag": "m7_polera"
+      }
+     },
      {
       "goto": "paraguas",
       "if": {
@@ -826,12 +1106,28 @@
     "text": "En el closet, entre las poleras, está el paraguas negro de doña Mery. Nunca se lo devolviste. Ella dijo que te lo quedaras: «en Cali llueve de repente, mijo».",
     "effects": [
      {
+      "vineta": "m7_closet"
+     },
+     {
       "giveItem": "paraguas"
      }
     ]
    },
    "ropa": {
-    "text": "Tu ropa, más o menos doblada. La polera azul de la PUCC (la del 14) ocupa el lugar de honor."
+    "text": "Tu ropa, más o menos doblada. La polera azul de la PUCC (la del 14) ocupa el lugar de honor.",
+    "effects": [
+     {
+      "vineta": "m7_closet"
+     }
+    ]
+   },
+   "percha": {
+    "text": "La percha de la polera del 14 está vacía. Sospechas quién la tiene.",
+    "effects": [
+     {
+      "vineta": "m7_closet"
+     }
+    ]
    }
   }
  },
@@ -852,10 +1148,20 @@
     ]
    },
    "normal": {
-    "text": "La tele que venía con el depa. Tiene CineFlix con la cuenta de alguien que ya no vive aquí. Nadie ha cambiado la clave."
+    "text": "La tele que venía con el depa. Tiene CineFlix con la cuenta de alguien que ya no vive aquí. Nadie ha cambiado la clave.",
+    "effects": [
+     {
+      "vineta": "m7_cineflix"
+     }
+    ]
    },
    "despues": {
-    "text": "La tele. «¿Y si después vemos una peli?», piensas. Ojalá."
+    "text": "La tele. «¿Y si después vemos una peli?», piensas. Ojalá.",
+    "effects": [
+     {
+      "vineta": "m7_cineflix"
+     }
+    ]
    }
   }
  },
@@ -863,7 +1169,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Una mata de sábila que te regaló doña Mery: «Para las malas energías, mijo. Y si se le pone amarilla, me llama»."
+    "text": "Una mata de sábila que te regaló doña Mery: «Para las malas energías, mijo. Y si se le pone amarilla, me llama».",
+    "effects": [
+     {
+      "vineta": "m7_sabila"
+     }
+    ]
    }
   }
  },
@@ -871,7 +1182,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "El velador: el reloj despertador, el cargador y una foto de tu familia en el aeropuerto de Santiago. Tu hermano chico sale con los ojos cerrados."
+    "text": "El velador: el reloj despertador, el cargador y una foto de tu familia en el aeropuerto de Santiago. Tu hermano chico sale con los ojos cerrados.",
+    "effects": [
+     {
+      "vineta": "m7_velador"
+     }
+    ]
    }
   }
  },
@@ -1042,6 +1358,11 @@
      {
       "label": "Dame un minuto"
      }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_sira_chef"
+     }
     ]
    }
   }
@@ -1051,7 +1372,12 @@
   "nodes": {
    "inicio": {
     "text": "La salsa ya está en la olla: el sofrito, la carne, los tomates, el laurel. Sira la prueba con la cuchara de palo y cierra los ojos.",
-    "next": "prueba"
+    "next": "prueba",
+    "effects": [
+     {
+      "vineta": "m7_olla_salsa"
+     }
+    ]
    },
    "prueba": {
     "branches": [
@@ -1142,6 +1468,11 @@
      {
       "label": "Un segundo"
      }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_sira_chef"
+     }
     ]
    }
   }
@@ -1151,11 +1482,20 @@
   "nodes": {
    "inicio": {
     "text": "Dos platos humeantes sobre el mesón. Sira saca una foto. Después otra, con tu mano en el encuadre. «Para el recuerdo», dice.",
-    "next": "mesa"
+    "next": "escampo",
+    "effects": [
+     {
+      "vineta": "m7_platos"
+     }
+    ]
    },
    "mesa": {
     "speaker": "Sira",
     "text": "¡A la mesa!"
+   },
+   "escampo": {
+    "text": "Por el ventanal ya no cae nada. Escampó, pero el cielo se quedó gris y pesado, como si estuviera pensando en algo.",
+    "next": "mesa"
    }
   }
  },
@@ -1164,7 +1504,12 @@
   "nodes": {
    "inicio": {
     "speaker": "Sira",
-    "text": "Sira enrolla los fideos con el tenedor como una experta. Tiene salsa en la comisura del labio y no se ha dado cuenta."
+    "text": "Sira enrolla los fideos con el tenedor como una experta. Tiene salsa en la comisura del labio y no se ha dado cuenta.",
+    "effects": [
+     {
+      "vineta": "m7_platos"
+     }
+    ]
    }
   }
  },
@@ -1173,7 +1518,12 @@
   "nodes": {
    "inicio": {
     "speaker": "Sira",
-    "text": "Sira se acomoda en el sofá con las piernas cruzadas y un cojín abrazado."
+    "text": "Sira se acomoda en el sofá con las piernas cruzadas y un cojín abrazado.",
+    "effects": [
+     {
+      "vineta": "m7_peli"
+     }
+    ]
    }
   }
  },
@@ -1182,7 +1532,12 @@
   "nodes": {
    "inicio": {
     "speaker": "Sira",
-    "text": "Sira te mira desde la otra almohada."
+    "text": "Sira te mira desde la otra almohada.",
+    "effects": [
+     {
+      "vineta": "m7_cama"
+     }
+    ]
    }
   }
  },
@@ -1344,6 +1699,9 @@
     "text": "¿Y ahora? ...¡Ya sé! Para eso compramos las crispetas. Peli, chileno. Pon una peli.",
     "effects": [
      {
+      "vineta": "m7_crispetas_micro"
+     },
+     {
       "takeItem": "crispetas"
      },
      {
@@ -1360,7 +1718,12 @@
    },
    "normal": {
     "speaker": "Sira",
-    "text": "¿Y ahora? ...Estoy tan llena que no me puedo mover. ¿Vemos una peli? Así no me muevo."
+    "text": "¿Y ahora? ...Estoy tan llena que no me puedo mover. ¿Vemos una peli? Así no me muevo.",
+    "effects": [
+     {
+      "vineta": "m7_platos"
+     }
+    ]
    }
   }
  },
@@ -1391,6 +1754,11 @@
        }
       ],
       "goto": "pinguinos"
+     }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_cineflix"
      }
     ]
    },
@@ -1467,7 +1835,7 @@
     "next": "final"
    },
    "final": {
-    "text": "Afuera, el cielo se pone gris. La peli llega a la parte del puente, cuando por fin se encuentran..."
+    "text": "Afuera, el cielo gris se pone casi negro. La peli llega a la parte del puente, cuando por fin se encuentran..."
    }
   }
  },
@@ -1476,7 +1844,12 @@
   "nodes": {
    "inicio": {
     "text": "Al final, los dos lloran. Ella dice que no está llorando, que es la cebolla de antes. Tú dices que tú tampoco, que es el perfume.",
-    "next": "nombre"
+    "next": "nombre",
+    "effects": [
+     {
+      "vineta": "m7_llorando"
+     }
+    ]
    },
    "nombre": {
     "speaker": "Sira",
@@ -1489,7 +1862,12 @@
   "nodes": {
    "inicio": {
     "text": "Bostezas. Ella bosteza. Las 3:12 de la mañana pasan la cuenta.",
-    "next": "sira"
+    "next": "sira",
+    "effects": [
+     {
+      "vineta": "m7_bostezo"
+     }
+    ]
    },
    "sira": {
     "speaker": "Sira",
@@ -1598,6 +1976,11 @@
       "label": "Decírselo bajito, casi temblando",
       "goto": "decir"
      }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_confesion"
+     }
     ]
    },
    "decir": {
@@ -1632,7 +2015,7 @@
     "next": "lluvia"
    },
    "lluvia": {
-    "text": "Afuera, como si Cali hubiera estado esperando este momento, se larga la lluvia. Un aguacero de los de verdad, que golpea el ventanal del piso 8.",
+    "text": "Afuera, como si Cali hubiera estado esperando este momento, se larga la lluvia. No la llovizna del mediodía: un aguacero de los de verdad, que golpea el ventanal del piso 8.",
     "next": "rie"
    },
    "rie": {
@@ -1661,7 +2044,7 @@
     "next": "reloj"
    },
    "reloj": {
-    "text": "El reloj del velador va marcando la tarde que se va: 17:40... 18:52... 20:05..."
+    "text": "El reloj del velador va marcando la tarde que se va: 18:40... 19:22... 20:05..."
    }
   }
  },
@@ -1670,7 +2053,12 @@
   "nodes": {
    "inicio": {
     "text": "20:35. Ya es de noche. La lluvia afloja, pero no para.",
-    "next": "sira"
+    "next": "sira",
+    "effects": [
+     {
+      "vineta": "m7_zapatos"
+     }
+    ]
    },
    "sira": {
     "speaker": "Sira",
@@ -1686,7 +2074,7 @@
     "text": "¿Me acompañas al paradero? El bus pasa por la Calle 18, frente al Bobo.",
     "effects": [
      {
-      "objective": "Acompaña a Sira al paradero de la Calle 18 (frente a la torre). Llueve: el paraguas está en el closet"
+      "objective": "Acompaña a Sira al paradero de la Calle 18 (frente a la torre). Llueve: van los dos bajo el paraguas"
      }
     ]
    }
@@ -1698,7 +2086,12 @@
    "inicio": {
     "speaker": "Wilmer",
     "text": "¡Chileeeno! ¡El rey del 805! ¿Cómo amaneció mi hermano? ¿Durmió bien? ¿Soñó conmigo? Yo soñé con un mango gigante. Usted no salía.",
-    "next": "presenta"
+    "next": "presenta",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     }
+    ]
    },
    "presenta": {
     "text": "Wilmer, el de la recepción del Bobo. Lentes de sol en la cabeza (siempre, incluso de noche), corbata de piña y una radio chiquita que solo agarra salsa de los setenta.",
@@ -1849,7 +2242,12 @@
    },
    "noche": {
     "speaker": "Wilmer",
-    "text": "Wilmer abre un ojo detrás del mesón. «Yo no vi nada. Yo duermo con los ojos abiertos.» Y lo vuelve a cerrar."
+    "text": "Wilmer abre un ojo detrás del mesón. «Yo no vi nada. Yo duermo con los ojos abiertos.» Y lo vuelve a cerrar.",
+    "effects": [
+     {
+      "vineta": "m7_wilmer"
+     }
+    ]
    }
   }
  },
@@ -1859,6 +2257,9 @@
    "inicio": {
     "text": "¡Ding!",
     "effects": [
+     {
+      "vineta": "m7_wilmer"
+     },
      {
       "sfx": "chime"
      }
@@ -1875,7 +2276,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Los buzones del Bobo. El tuyo, el 805, tiene un volante de pizzas, la cuenta de la luz y una carta de tu mamá que todavía no abres (porque te va a hacer llorar)."
+    "text": "Los buzones del Bobo. El tuyo, el 805, tiene un volante de pizzas y la cuenta de la luz. Nada de cartas: la de tu mamá la trajiste tú mismo, en una caja que dice NO ABRIR.",
+    "effects": [
+     {
+      "vineta": "m7_buzones"
+     }
+    ]
    }
   }
  },
@@ -1883,7 +2289,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "«BOBO UNIC LIVING · Vive, estudia, conecta». Alguien le agregó con lápiz: «y no te enamores del vecino»."
+    "text": "«BOBO UNIC LIVING · Vive, estudia, conecta». Alguien le agregó con lápiz: «y no te enamores del vecino».",
+    "effects": [
+     {
+      "vineta": "m7_letrero_bobo"
+     }
+    ]
    }
   }
  },
@@ -1916,7 +2327,12 @@
   "nodes": {
    "inicio": {
     "text": "Entran al lobby con la bolsa de la Farmadía. En el sofá, como en una emboscada, están Valentina (tu compañera de equipo), Isa y Pao, del curso de Modelación. Tus amigas.",
-    "next": "mudas"
+    "next": "mudas",
+    "effects": [
+     {
+      "vineta": "m7_lobby"
+     }
+    ]
    },
    "mudas": {
     "text": "Las tres los ven. Los ven juntos. Los ven juntos con la bolsa de las compras.",
@@ -1985,12 +2401,20 @@
     "text": "Valentina te mira. Mira a Sira. Te mira otra vez. Levanta el pulgar, despacito. No dice nada. Isa y Pao tampoco. Nadie dice nada.",
     "effects": [
      {
+      "vineta": "m7_amigas"
+     },
+     {
       "setFlag": "secreto_amigas"
      }
     ]
    },
    "noche": {
-    "text": "Ya no están."
+    "text": "Ya no están.",
+    "effects": [
+     {
+      "vineta": "m7_amigas"
+     }
+    ]
    }
   }
  },
@@ -1999,7 +2423,12 @@
   "nodes": {
    "inicio": {
     "text": "El lobby de noche. Wilmer ronca sobre el mesón con la radio puesta bajito. Las amigas ya no están. En la mesita del sofá dejaron un papel doblado.",
-    "next": "papel"
+    "next": "papel",
+    "effects": [
+     {
+      "vineta": "m7_nota_amigas"
+     }
+    ]
    },
    "papel": {
     "text": "«VALE + ISA + PAO: ¡¡¡¿¿¿SIRA???!!! Nos debes un café. Y una explicación. Y un café.»",
@@ -2013,6 +2442,623 @@
    "sira": {
     "speaker": "Sira",
     "text": "Gracias, don Wilmer."
+   }
+  }
+ },
+ "m7_v_chat_1": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Vibra el celular. Tienes tres mensajes de hace rato y una sonrisa boba.",
+    "effects": [
+     {
+      "vineta": "m7_chat"
+     },
+     {
+      "message": "m7_v1_sira"
+     }
+    ],
+    "next": "resp"
+   },
+   "resp": {
+    "text": "¿Qué le contestas?",
+    "choices": [
+     {
+      "label": "«Vivo. Con cuatro horas de sueño y mucho amor propio»",
+      "effects": [
+       {
+        "message": "m7_v1_a"
+       }
+      ],
+      "goto": "a"
+     },
+     {
+      "label": "«Soñé contigo y con una boloñesa. En ese orden»",
+      "effects": [
+       {
+        "message": "m7_v1_b"
+       },
+       {
+        "setFlag": "m7_q_chat_v1"
+       }
+      ],
+      "goto": "b"
+     },
+     {
+      "label": "«¿Quién habla?»",
+      "effects": [
+       {
+        "message": "m7_v1_c"
+       }
+      ],
+      "goto": "c"
+     }
+    ]
+   },
+   "a": {
+    "text": "Sira está escribiendo...",
+    "effects": [
+     {
+      "message": "m7_v1_sira_a"
+     }
+    ],
+    "next": "lista"
+   },
+   "b": {
+    "text": "Sira está escribiendo... borrando... escribiendo...",
+    "effects": [
+     {
+      "message": "m7_v1_sira_b"
+     }
+    ],
+    "next": "lista"
+   },
+   "c": {
+    "text": "Sira está escribiendo...",
+    "effects": [
+     {
+      "message": "m7_v1_sira_c"
+     }
+    ],
+    "next": "lista"
+   },
+   "lista": {
+    "text": "Te llega una foto.",
+    "effects": [
+     {
+      "message": "m7_v1_lista"
+     }
+    ],
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Una lista escrita a mano por su abuela, con una mancha de salsa de 1987. Mejor ponte a ordenar.",
+    "effects": [
+     {
+      "objective": "Ordena el depa (ropa, loza, ducha, perfume) y pon a hervir el agua. Sira llega a la 1"
+     }
+    ]
+   }
+  }
+ },
+ "m7_v_chat_2": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Vibra otra vez. Son recién las 12:52.",
+    "effects": [
+     {
+      "vineta": "m7_chat"
+     },
+     {
+      "message": "m7_v2_bus"
+     }
+    ],
+    "next": "resp"
+   },
+   "resp": {
+    "text": "El puntito rosado viene bajando por la Calle 5. Hacia ti. ¿Qué le contestas?",
+    "choices": [
+     {
+      "label": "«¿¿Ya?? ¡Dijiste a la una!»",
+      "effects": [
+       {
+        "message": "m7_v2_a"
+       }
+      ],
+      "goto": "a"
+     },
+     {
+      "label": "«Aquí te espero. Con el agua puesta»",
+      "effects": [
+       {
+        "message": "m7_v2_b"
+       },
+       {
+        "setFlag": "m7_q_chat_v2"
+       }
+      ],
+      "goto": "b"
+     }
+    ]
+   },
+   "a": {
+    "text": "Sira está escribiendo...",
+    "effects": [
+     {
+      "message": "m7_v2_sira_a"
+     }
+    ],
+    "next": "lobby"
+   },
+   "b": {
+    "text": "Sira está escribiendo...",
+    "effects": [
+     {
+      "message": "m7_v2_sira_b"
+     }
+    ],
+    "next": "lobby"
+   },
+   "lobby": {
+    "text": "Miras el depa. Miras la hora. El puntito ya casi toca el tuyo.",
+    "effects": [
+     {
+      "message": "m7_v2_lobby"
+     }
+    ],
+    "next": "fin"
+   },
+   "fin": {
+    "text": "«Recepción del Bobo». Está abajo. ESTÁ ABAJO."
+   }
+  }
+ },
+ "m7_llovizna": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Antes de salir se asoman al ventanal. El vidrio se llenó de puntitos: empezó a lloviznar sobre la Calle 18.",
+    "effects": [
+     {
+      "vineta": "m7_llovizna"
+     },
+     {
+      "setFlag": "m7_llovizna"
+     }
+    ],
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "Mira eso. ¿Tienes paraguas, chileno? ¿O vas a salir con tu amor propio?",
+    "next": "tiene"
+   },
+   "tiene": {
+    "branches": [
+     {
+      "goto": "mochila",
+      "if": {
+       "hasItem": "paraguas"
+      }
+     },
+     {
+      "goto": "closet"
+     }
+    ]
+   },
+   "mochila": {
+    "text": "Sacas de la mochila el paraguas negro de doña Mery, el de la varilla chueca.",
+    "effects": [
+     {
+      "vineta": "m7_closet"
+     }
+    ],
+    "next": "uno"
+   },
+   "closet": {
+    "text": "En el closet, entre las poleras, sigue el paraguas negro de doña Mery. «En Cali llueve de repente, mijo». Doña Mery siempre tiene razón.",
+    "effects": [
+     {
+      "vineta": "m7_closet"
+     },
+     {
+      "giveItem": "paraguas"
+     }
+    ],
+    "next": "uno"
+   },
+   "uno": {
+    "speaker": "Sira",
+    "text": "Uno solo. ...Bueno. Nos va a tocar pegaditos. Qué lástima.",
+    "effects": [
+     {
+      "objective": "Bajen a la Farmadía (la esquina de la Carrera 122) a comprar algo de tomar. Llovizna: van bajo el paraguas"
+     }
+    ]
+   }
+  }
+ },
+ "m7_loza_juntos": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "speaker": "Sira",
+    "text": "Regla de mi abuela: el que cocina, no lava. Pero cocinamos los dos, así que... tú lavas y yo seco.",
+    "effects": [
+     {
+      "vineta": "m7_loza_juntos"
+     }
+    ],
+    "next": "plato"
+   },
+   "plato": {
+    "text": "Le pasas un plato. Ella te pasa una mirada. Tienes las manos llenas de espuma y una idea.",
+    "choices": [
+     {
+      "label": "Ponerle espuma en la nariz",
+      "effects": [
+       {
+        "setFlag": "m7_q_espuma"
+       }
+      ],
+      "goto": "nariz"
+     },
+     {
+      "label": "Seguir lavando, muy concentrado",
+      "goto": "serio"
+     }
+    ]
+   },
+   "nariz": {
+    "text": "Se la pones. Se queda quieta. Se mira la nariz, bizca. Después te llena la cara entera. Es la guerra.",
+    "next": "fin"
+   },
+   "serio": {
+    "text": "Vas muy concentrado cuando sientes algo frío en la oreja. Espuma. «Ibas muy serio», dice ella, sin mirarte.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Terminan con el piso mojado y la olla de doña Mery reluciente.",
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "¿Y esas cajas? ¿Dos semanas y todavía con cajas? Eso no es vivir aquí, chileno: eso es estar de paso. Hoy las abrimos.",
+    "effects": [
+     {
+      "vineta": "m7_cajas"
+     },
+     {
+      "setFlag": "m7_cajas"
+     },
+     {
+      "objective": "Abran las tres cajas de la mudanza (MANJAR, VARIOS y NO ABRIR)"
+     }
+    ]
+   }
+  }
+ },
+ "m7_caja_manjar": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "abrir",
+      "if": {
+       "flag": "m7_cajas"
+      }
+     },
+     {
+      "goto": "antes"
+     }
+    ]
+   },
+   "antes": {
+    "text": "Una caja de la mudanza, todavía cerrada con cinta de embalaje. Dice MANJAR con plumón. Es exactamente lo que crees.",
+    "effects": [
+     {
+      "vineta": "m7_cajas"
+     }
+    ]
+   },
+   "abrir": {
+    "text": "Seis frascos de manjar envueltos en calcetines. Tu mamá no confía en las aduanas colombianas.",
+    "effects": [
+     {
+      "vineta": "m7_caja_manjar"
+     }
+    ],
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "A ver si es verdad que es tan distinto del arequipe.",
+    "choices": [
+     {
+      "label": "Darle una cucharada",
+      "effects": [
+       {
+        "setFlag": "m7_q_manjar"
+       }
+      ],
+      "goto": "cuchara"
+     },
+     {
+      "label": "Pasarle el frasco",
+      "goto": "frasco"
+     }
+    ]
+   },
+   "cuchara": {
+    "text": "Se la das. Cierra los ojos. «Es arequipe», dice. «Es manjar», dices. Se come otra para estar segura. Y otra.",
+    "next": "fin"
+   },
+   "frasco": {
+    "text": "Mete el dedo en el frasco sin pedir permiso. «Arequipe.» Vuelve a meter el dedo. «Arequipe chileno, entonces.»",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Un frasco va a la nevera. Por fin hay algo adentro.",
+    "effects": [
+     {
+      "setFlag": "m7_caja_manjar_ok"
+     },
+     {
+      "clockAdd": 8
+     },
+     {
+      "event": "cajas_m7"
+     }
+    ]
+   }
+  }
+ },
+ "m7_caja_varios": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "abrir",
+      "if": {
+       "flag": "m7_cajas"
+      }
+     },
+     {
+      "goto": "antes"
+     }
+    ]
+   },
+   "antes": {
+    "text": "Una caja de la mudanza, todavía cerrada con cinta de embalaje. Dice VARIOS, que es lo que uno escribe cuando ya no puede más.",
+    "effects": [
+     {
+      "vineta": "m7_cajas"
+     }
+    ]
+   },
+   "abrir": {
+    "text": "Cables, un adaptador que no sirve aquí, tu cuaderno de primero... y una hoja doblada en cuatro. Sira la abre antes de que alcances a decir nada.",
+    "effects": [
+     {
+      "vineta": "dibujo"
+     }
+    ],
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "«VUELVE PRONTO». ¿Quién dibujó esto? ...La N está al revés.",
+    "choices": [
+     {
+      "label": "«Mi hermano chico. Me lo pasó en el aeropuerto»",
+      "effects": [
+       {
+        "setFlag": "m7_q_dibujo"
+       }
+      ],
+      "goto": "hermano"
+     },
+     {
+      "label": "«Es de cuando era niño» (mentira)",
+      "goto": "mentira"
+     }
+    ]
+   },
+   "hermano": {
+    "text": "Se queda callada, mirando el dibujo. Después lo pega en el refrigerador con cinta, bien derecho. «Aquí. Para que lo veas todos los días.»",
+    "next": "fin"
+   },
+   "mentira": {
+    "speaker": "Sira",
+    "text": "¿Tú? ¿Con un avión de Sky y tu nombre en la cola? ...No importa. Sé quién fue. Ponlo donde se vea.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Lo dejan en la puerta del refrigerador. La cocina ya parece una casa.",
+    "effects": [
+     {
+      "setFlag": "m7_caja_varios_ok"
+     },
+     {
+      "clockAdd": 8
+     },
+     {
+      "event": "cajas_m7"
+     }
+    ]
+   }
+  }
+ },
+ "m7_caja_carta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "abrir",
+      "if": {
+       "flag": "m7_cajas"
+      }
+     },
+     {
+      "goto": "antes"
+     }
+    ]
+   },
+   "antes": {
+    "text": "Una caja de la mudanza, todavía cerrada con cinta de embalaje. Dice NO ABRIR, con la letra de tu mamá.",
+    "effects": [
+     {
+      "vineta": "m7_cajas"
+     }
+    ]
+   },
+   "abrir": {
+    "text": "Dice NO ABRIR y abajo, más chiquito: «hasta que extrañes». Adentro hay una carta. La abres con Sira al lado.",
+    "effects": [
+     {
+      "vineta": "m7_carta"
+     }
+    ],
+    "next": "carta"
+   },
+   "carta": {
+    "text": [
+     "«Hijo: si estás leyendo esto, ya estás extrañando. Yo también. Come bien, abrígate aunque haga calor y llama los domingos.",
+     "Y si conoces a alguien, tráela a la casa, que yo cocino. Te quiere, tu mamá. P.D.: el manjar no es para regalar.»"
+    ],
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "...Se me metió algo en el ojo. Es la cebolla de antes.",
+    "choices": [
+     {
+      "label": "«A ti te va a querer»",
+      "effects": [
+       {
+        "setFlag": "m7_q_carta"
+       }
+      ],
+      "goto": "mama"
+     },
+     {
+      "label": "Doblar la carta sin decir nada",
+      "goto": "doblar"
+     }
+    ]
+   },
+   "mama": {
+    "speaker": "Sira",
+    "text": "¿Tú crees? ...Le voy a decir que el manjar es arequipe. Para que me conozca bien desde el principio.",
+    "next": "fin"
+   },
+   "doblar": {
+    "text": "La doblas. Ella te aprieta la mano un segundo y la suelta.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Al fondo de la caja queda un parlante chiquito, de los baratos.",
+    "effects": [
+     {
+      "setFlag": "m7_caja_carta_ok"
+     },
+     {
+      "clockAdd": 8
+     },
+     {
+      "event": "cajas_m7"
+     }
+    ]
+   }
+  }
+ },
+ "m7_salsa_intro": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Sira conecta el parlante a su celular, lo mete en un vaso para que suene más, y el piso 8 se llena de trompetas.",
+    "effects": [
+     {
+      "vineta": "m7_salsa_intro"
+     }
+    ],
+    "next": "sira"
+   },
+   "sira": {
+    "speaker": "Sira",
+    "text": "¿Tú sabes bailar, chileno?",
+    "choices": [
+     {
+      "label": "«No. Pero aprendo»",
+      "effects": [
+       {
+        "setFlag": "m7_q_bailar"
+       }
+      ],
+      "goto": "no"
+     },
+     {
+      "label": "«Claro» (mentira)",
+      "goto": "si"
+     }
+    ]
+   },
+   "no": {
+    "speaker": "Sira",
+    "text": "Por lo menos eres honesto. Estás en Cali: aquí no saber bailar es ilegal. Ven, te enseño.",
+    "next": "fin"
+   },
+   "si": {
+    "speaker": "Sira",
+    "text": "¿Claro? Vamos a ver. ...Ven acá, «claro».",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Corre la mesa de centro con el pie. Te agarra de las dos manos."
+   }
+  }
+ },
+ "m7_salsa_fin": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "goto": "bien",
+      "if": {
+       "flag": "m7_salsa_bien"
+      }
+     },
+     {
+      "goto": "mal"
+     }
+    ]
+   },
+   "bien": {
+    "text": "Termina la canción y siguen bailando un compás de más, sin música. Se dan cuenta al mismo tiempo. Ninguno se suelta primero.",
+    "effects": [
+     {
+      "vineta": "m7_salsa_fin"
+     }
+    ],
+    "next": "fin"
+   },
+   "mal": {
+    "text": "Termina la canción. Tienes los dedos de los pies destruidos, los de ella también, y no paran de reírse.",
+    "effects": [
+     {
+      "vineta": "m7_salsa_fin"
+     }
+    ],
+    "next": "fin"
+   },
+   "fin": {
+    "speaker": "Sira",
+    "text": "Me dejaste sin aire. ¿Y si ahora nos tiramos en el sofá? Tengo una peli que te va a destruir."
    }
   }
  }

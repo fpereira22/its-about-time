@@ -57,6 +57,7 @@ const P = {
   ermita: { lat: 3.4527, lon: -76.5333 },
   torre: { lat: 3.4565, lon: -76.5318 },
   taxi: { lat: 3.398, lon: -76.531 },
+  bobo: { lat: 3.3505, lon: -76.529 },
 } satisfies Record<string, Place>;
 
 /** Las paradas del T31 (mismo orden que rides.json), con su posición aproximada sobre la Calle 5. */
@@ -103,6 +104,15 @@ function mix(a: Place, b: Place, t: number): Place {
 interface Spot {
   at: Place;
   label: string;
+}
+
+/** Cómo se llenan el chat y el mapa en cada misión. */
+interface ChatConfig {
+  isChat: (id: string) => boolean;
+  mySpot: () => Spot;
+  herSpot: () => Spot;
+  /** Rutas y nombres que se dibujan en el mapa. */
+  drawRoutes: (kit: VinetaKit, stage: Layer, g: G) => void;
 }
 
 /** Tu posición: según el mapa en que vas y lo que ya pasó en la historia. */
@@ -162,7 +172,7 @@ function polyline(g: G, pts: Place[], width: number, color: number, alpha = 1): 
   g.strokePath();
 }
 
-function drawMap(kit: VinetaKit, stage: Layer): void {
+function drawMap(kit: VinetaKit, stage: Layer, cfg: ChatConfig): void {
   const g = addG(kit, stage);
   // Marco y fondo (la ciudad, gris clarito).
   g.fillStyle(hex(INK), 1).fillRect(MAP.x - 1, MAP.y - 1, MAP.w + 2, MAP.h + 2);
@@ -183,6 +193,17 @@ function drawMap(kit: VinetaKit, stage: Layer): void {
   // Ríos: el Cali (cruza el centro) y el Pance (abajo).
   polyline(g, [{ lat: 3.452, lon: -76.566 }, { lat: 3.451, lon: -76.545 }, { lat: 3.455, lon: -76.534 }, { lat: 3.46, lon: -76.522 }, { lat: 3.462, lon: -76.512 }], 2, 0x4a9ad8);
   polyline(g, [{ lat: 3.33, lon: -76.566 }, { lat: 3.333, lon: -76.548 }, { lat: 3.338, lon: -76.53 }, { lat: 3.343, lon: -76.508 }], 1, 0x4a9ad8);
+  cfg.drawRoutes(kit, stage, g);
+  // Barra de título.
+  g.fillStyle(hex('#3c9c6c'), 1).fillRect(MAP.x, MAP.y, MAP.w, 8);
+  stage.add(makeText(kit.scene, MAP.x + 7, MAP.y + 1, 'Ubicación en vivo', { fontSize: '5px', fontStyle: '600', color: '#ffffff' }));
+  // Brújula.
+  stage.add(makeText(kit.scene, MAP.x + MAP.w - 6, MAP.y + 10, 'N', { fontSize: '5px', fontStyle: '600', color: INK }));
+  g.fillStyle(hex(INK), 1).fillTriangle(MAP.x + MAP.w - 5, MAP.y + 19, MAP.x + MAP.w - 4, MAP.y + 16, MAP.x + MAP.w - 3, MAP.y + 19);
+}
+
+/** Rutas de la misión 6: el P47, el T31, La Ermita y la casita de Pance. */
+function routesM6(kit: VinetaKit, stage: Layer, g: G): void {
   // Rutas: el P47 (naranjo, punteado) y el T31 por la Calle 5 (verde MIO).
   polyline(g, P47, 1, 0xe8903c);
   polyline(g, T31.map(([, p]) => p), 2, 0x2c8c5c);
@@ -205,16 +226,59 @@ function drawMap(kit: VinetaKit, stage: Layer): void {
     const q = toMap(p);
     stage.add(makeText(kit.scene, Math.round(q.x + ox), Math.round(q.y - 3), txt, small));
   }
-  // Barra de título.
-  g.fillStyle(hex('#3c9c6c'), 1).fillRect(MAP.x, MAP.y, MAP.w, 8);
-  stage.add(makeText(kit.scene, MAP.x + 7, MAP.y + 1, 'Ubicación en vivo', { fontSize: '5px', fontStyle: '600', color: '#ffffff' }));
-  // Brújula.
-  stage.add(makeText(kit.scene, MAP.x + MAP.w - 6, MAP.y + 10, 'N', { fontSize: '5px', fontStyle: '600', color: INK }));
-  g.fillStyle(hex(INK), 1).fillTriangle(MAP.x + MAP.w - 5, MAP.y + 19, MAP.x + MAP.w - 4, MAP.y + 16, MAP.x + MAP.w - 3, MAP.y + 19);
 }
 
+/** La ruta del bus de Sira en la misión 7: de San Fernando por la Calle 5 hasta la U y el Bobo. */
+const RUTA_SIRA: Place[] = [P.sanFernando, { lat: 3.429, lon: -76.541 }, ...T31.slice(0, 11).map(([, p]) => p).reverse(), P.pucc, P.bobo];
+
+function routesM7(kit: VinetaKit, stage: Layer, g: G): void {
+  polyline(g, RUTA_SIRA, 2, 0x2c8c5c);
+  const b = toMap(P.bobo);
+  g.fillStyle(0xa86a4c, 1).fillRect(Math.round(b.x) - 2, Math.round(b.y) - 7, 5, 8);
+  g.fillStyle(0xf8e070, 1).fillRect(Math.round(b.x) - 1, Math.round(b.y) - 5, 1, 1).fillRect(Math.round(b.x) + 1, Math.round(b.y) - 3, 1, 1);
+  const small = { fontSize: '5px', color: '#7a7488' };
+  for (const [txt, p, ox] of [['S. Fernando', P.sanFernando, -24], ['Bobo', P.bobo, 5], ['Pance', P.casa, 6]] as const) {
+    const q = toMap(p);
+    stage.add(makeText(kit.scene, Math.round(q.x + ox), Math.round(q.y - 3), txt, small));
+  }
+}
+
+const M6_CHAT: ChatConfig = { isChat: isSiraChat, mySpot, herSpot, drawRoutes: routesM6 };
+
+/** Misión 7: dónde estás tú, según el mapa. */
+function mySpotM7(): Spot {
+  switch (StoryState.location?.map) {
+    case 'pucc_campus':
+      return { at: P.pucc, label: 'La U' };
+    case 'bobo_cuadra':
+      return { at: P.bobo, label: 'Calle 18' };
+    case 'bobo_lobby':
+      return { at: P.bobo, label: 'Lobby del Bobo' };
+    case 'farmadia':
+      return { at: P.bobo, label: 'Farmadía' };
+    default:
+      return { at: P.bobo, label: 'Bobo · piso 8' };
+  }
+}
+
+/** Misión 7: dónde va Sira, según lo que te ha escrito. */
+function herSpotM7(): Spot {
+  if (received('m7_sira_bus')) return { at: mix(P.bobo, P.sanFernando, 0.12), label: 'En el bus' };
+  if (received('m7_v2_lobby')) return { at: P.bobo, label: 'Recepción del Bobo' };
+  if (received('m7_v2_bus')) return { at: mix(P.sanFernando, P.bobo, 0.72), label: 'Bus · Calle 5' };
+  if (!StoryState.hasFlag('m7_helado_martes') && received('m7_sira_martes')) return { at: P.pucc, label: 'Plaza Central' };
+  return { at: P.sanFernando, label: 'En su casa' };
+}
+
+const M7_CHAT: ChatConfig = {
+  isChat: (id) => id.startsWith('m7_') && isSiraChat(id),
+  mySpot: mySpotM7,
+  herSpot: herSpotM7,
+  drawRoutes: routesM7,
+};
+
 /** Pines (con pulso), la línea punteada entre los dos y la leyenda de abajo. Devuelve cómo refrescarlos. */
-function livePins(kit: VinetaKit, stage: Layer): () => void {
+function livePins(kit: VinetaKit, stage: Layer, cfg: ChatConfig): () => void {
   const pins = addG(kit, stage);
   const rec = addG(kit, stage);
   const legend = addG(kit, stage);
@@ -225,12 +289,12 @@ function livePins(kit: VinetaKit, stage: Layer): () => void {
   legend.fillStyle(0x2f6fd0, 1).fillCircle(MAP.x + 1, MAP.y + MAP.h + 6, 2);
   legend.fillStyle(0xe8607a, 1).fillCircle(MAP.x + 1, MAP.y + MAP.h + 13, 2);
 
-  let me = toMap(mySpot().at);
-  let her = toMap(herSpot().at);
+  let me = toMap(cfg.mySpot().at);
+  let her = toMap(cfg.herSpot().at);
   let target = { me, her };
   const refresh = (): void => {
-    const a = mySpot();
-    const b = herSpot();
+    const a = cfg.mySpot();
+    const b = cfg.herSpot();
     target = { me: toMap(a.at), her: toMap(b.at) };
     fitText(meText, `Tú: ${a.label}`, MAP.w - 4);
     fitText(herText, `Sira: ${b.label}`, MAP.w - 4);
@@ -276,7 +340,7 @@ interface Bubble {
   ticks?: Phaser.GameObjects.Text;
 }
 
-const chat: VinetaBuilder = (kit) => {
+const makeChat = (cfg: ChatConfig): VinetaBuilder => (kit) => {
   const scene = kit.scene;
   const stage = kit.framed((g, x, y, w, h) => {
     g.fillStyle(hex('#2a2f45'), 1).fillRect(x, y, w, h);
@@ -475,7 +539,7 @@ const chat: VinetaBuilder = (kit) => {
 
   // --- Lo que ya estaba en la conversación ---
   const known = new Set<string>();
-  const entries = StoryState.phone.filter((e) => isSiraChat(e.id));
+  const entries = StoryState.phone.filter((e) => cfg.isChat(e.id));
   for (const e of entries) {
     known.add(keyOf(e));
     const fresh = !animated.has(keyOf(e)) && StoryState.playTimeMs - e.at < RECENT_MS;
@@ -492,13 +556,13 @@ const chat: VinetaBuilder = (kit) => {
     layout(false);
   }
 
-  drawMap(kit, stage);
-  const refreshPins = livePins(kit, stage);
+  drawMap(kit, stage, cfg);
+  const refreshPins = livePins(kit, stage, cfg);
 
   // --- En vivo: cada mensaje nuevo del chat entra a la cola ---
   const onChange = (): void => {
     for (const e of StoryState.phone) {
-      if (!isSiraChat(e.id) || known.has(keyOf(e))) continue;
+      if (!cfg.isChat(e.id) || known.has(keyOf(e))) continue;
       known.add(keyOf(e));
       queue.push(e);
     }
@@ -526,8 +590,9 @@ const chat: VinetaBuilder = (kit) => {
 };
 
 export const M6_CHAT_VINETAS: Record<string, VinetaBuilder> = {
-  m6_chat: chat,
+  m6_chat: makeChat(M6_CHAT),
+  m7_chat: makeChat(M7_CHAT),
 };
 
 /** Viñetas «en vivo»: si el diálogo vuelve a pedir la misma, no se rearma (sigue la conversación). */
-export const LIVE_VINETAS = new Set(['m6_chat']);
+export const LIVE_VINETAS = new Set(['m6_chat', 'm7_chat']);

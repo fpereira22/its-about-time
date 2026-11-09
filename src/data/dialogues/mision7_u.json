@@ -4,7 +4,12 @@
   "nodes": {
    "inicio": {
     "text": "Hace dos semanas dejaste la casa de doña Mery en Pance. Lloraron los dos (ella más). Te mandó con una olla, tres arepas congeladas y la bendición.",
-    "next": "bobo"
+    "next": "bobo",
+    "effects": [
+     {
+      "vineta": "m7_olla_mery"
+     }
+    ]
    },
    "bobo": {
     "text": "Ahora vives en el Bobo Unic Living, la residencia de ladrillo naranjo que está al lado del PrecioClub, justo al frente de la U. Piso 8. Depa 805.",
@@ -20,22 +25,19 @@
     "next": "cel"
    },
    "cel": {
-    "text": "Vibra el celular.",
+    "text": "Vibra el celular. Es Sira.",
     "effects": [
      {
-      "vineta": ""
+      "vineta": "m7_chat"
      },
      {
       "message": "m7_sira_martes"
-     },
-     {
-      "sfx": "notify"
      }
     ],
     "next": "leer"
    },
    "leer": {
-    "text": "Es Sira. Hace semanas que se ven casi todos los días: la piscina de los jueves, cafecitos, mensajes hasta tarde. Nada «oficial». Nada de nada, en realidad.",
+    "text": "Hace semanas que se ven casi todos los días: la piscina de los jueves, cafecitos, mensajes hasta tarde. Nada «oficial». Nada de nada, en realidad.",
     "next": "fin"
    },
    "fin": {
@@ -55,7 +57,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "La Calle 18 a las tres de la tarde: el sol rajando, el tótem azul del PrecioClub, los buses alimentadores y, al otro lado, la portería de la U. Un minuto a pie. El mejor depa del mundo."
+    "text": "La Calle 18 a las tres de la tarde: el sol rajando, el tótem azul del PrecioClub, los buses alimentadores y, al otro lado, la portería de la U. Un minuto a pie. El mejor depa del mundo.",
+    "effects": [
+     {
+      "vineta": "m7_calle_dia"
+     }
+    ]
    }
   }
  },
@@ -65,6 +72,9 @@
    "inicio": {
     "text": "La PUCC un martes por la tarde. Los pavos reales en lo suyo. Huele a pasto cortado y a buñuelo.",
     "effects": [
+     {
+      "vineta": "m7_campus"
+     },
      {
       "objective": "El carrito de helados de la Plaza Central: Sira y sus amigas"
      }
@@ -78,6 +88,9 @@
    "inicio": {
     "text": "La U en semana de receso: casi vacía. Un jardinero, dos pavos reales y ningún profe. Es como tener el campus para ustedes dos.",
     "effects": [
+     {
+      "vineta": "m7_campus"
+     },
      {
       "objective": "La portería: Sira te espera"
      }
@@ -104,11 +117,21 @@
    },
    "martes": {
     "speaker": "Don Efraín",
-    "text": "¡Helado de paila, de crema y paleta! El de lulo es el que más sale. Pero vaya primero donde la niña, que lo está esperando hace rato... y las amigas también, ¿oyó?"
+    "text": "¡Helado de paila, de crema y paleta! El de lulo es el que más sale. Pero vaya primero donde la niña, que lo está esperando hace rato... y las amigas también, ¿oyó?",
+    "effects": [
+     {
+      "vineta": "m7_efrain"
+     }
+    ]
    },
    "otro": {
     "speaker": "Don Efraín",
-    "text": "¿Otra vez por aquí? A usted lo veo con cara de cliente fijo. Y de enamorado. Las dos cosas son buenas para el negocio."
+    "text": "¿Otra vez por aquí? A usted lo veo con cara de cliente fijo. Y de enamorado. Las dos cosas son buenas para el negocio.",
+    "effects": [
+     {
+      "vineta": "m7_efrain"
+     }
+    ]
    }
   }
  },
@@ -118,7 +141,12 @@
    "inicio": {
     "speaker": "Sira",
     "text": "¡Llegaste! Ellas son Majo y Cata, de Taller 5. Majo habla por las dos. Cata dibuja todo lo que ve. No les tengas miedo. Bueno, un poquito.",
-    "next": "majo"
+    "next": "majo",
+    "effects": [
+     {
+      "vineta": "m7_las_de_taller"
+     }
+    ]
    },
    "majo": {
     "speaker": "Majo",
@@ -159,11 +187,21 @@
    },
    "antes": {
     "speaker": "Majo",
-    "text": "¿Y tú qué haces aquí parado? Ve a saludar a Sira, que se arregló el pelo tres veces."
+    "text": "¿Y tú qué haces aquí parado? Ve a saludar a Sira, que se arregló el pelo tres veces.",
+    "effects": [
+     {
+      "vineta": "m7_las_de_taller"
+     }
+    ]
    },
    "jueves": {
     "speaker": "Majo",
-    "text": "Yo no estoy aquí. No me viste. Disfruta."
+    "text": "Yo no estoy aquí. No me viste. Disfruta.",
+    "effects": [
+     {
+      "vineta": "m7_las_de_taller"
+     }
+    ]
    }
   }
  },
@@ -172,7 +210,12 @@
   "nodes": {
    "inicio": {
     "speaker": "Cata",
-    "text": "Cata te mira, mira a Sira y dibuja algo en su croquera. Son dos monitos con un corazón. Lo tapa con la mano y sonríe."
+    "text": "Cata te mira, mira a Sira y dibuja algo en su croquera. Son dos monitos con un corazón. Lo tapa con la mano y sonríe.",
+    "effects": [
+     {
+      "vineta": "m7_croquera"
+     }
+    ]
    }
   }
  },
@@ -218,6 +261,11 @@
        }
       ],
       "goto": "arequipe"
+     }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_efrain"
      }
     ]
    },
@@ -420,7 +468,12 @@
   "nodes": {
    "inicio": {
     "text": "Conversan hasta que el helado se acaba y las sombras de los samanes se alargan. Majo cuenta la vez que Sira se quedó dormida encima de su maqueta y se despertó con un árbol de esponja pegado en la cara.",
-    "next": "sira"
+    "next": "sira",
+    "effects": [
+     {
+      "vineta": "m7_helado"
+     }
+    ]
    },
    "sira": {
     "speaker": "Sira",
@@ -487,7 +540,7 @@
     "text": "Jueves, 8:40. La luz entra de lado por el ventanal. Hoy no hay clases.",
     "effects": [
      {
-      "message": "m7_sira_jueves"
+      "vineta": "m7_despertar"
      }
     ],
     "next": "cel"
@@ -495,6 +548,12 @@
    "cel": {
     "text": "Un mensaje de Sira. Te levantas tan rápido que casi te vas de cara contra la caja del MANJAR.",
     "effects": [
+     {
+      "vineta": "m7_chat"
+     },
+     {
+      "message": "m7_sira_jueves"
+     },
      {
       "objective": "La portería de la U a las 10: Sira te espera"
      }
@@ -507,7 +566,12 @@
   "nodes": {
    "inicio": {
     "text": "Sira está apoyada en la caseta de la portería, mirando el celular. Levanta la vista y sonríe como si no te hubiera visto ayer.",
-    "next": "hola"
+    "next": "hola",
+    "effects": [
+     {
+      "vineta": "m7_porteria"
+     }
+    ]
    },
    "hola": {
     "speaker": "Sira",
@@ -575,10 +639,20 @@
     ]
    },
    "sola": {
-    "text": "Una maqueta de cartón y palitos de balso sobre una mesa: «Mirador del río Pance». Hay un letrero: «Taller 5 · S. Martínez». Mejor la ves con ella."
+    "text": "Una maqueta de cartón y palitos de balso sobre una mesa: «Mirador del río Pance». Hay un letrero: «Taller 5 · S. Martínez». Mejor la ves con ella.",
+    "effects": [
+     {
+      "vineta": "m7_maqueta"
+     }
+    ]
    },
    "hecha": {
-    "text": "La maqueta de Sira. Ahora la ves distinta: los dos monitos en el mirador parecen más cerca que antes. ¿O será idea tuya?"
+    "text": "La maqueta de Sira. Ahora la ves distinta: los dos monitos en el mirador parecen más cerca que antes. ¿O será idea tuya?",
+    "effects": [
+     {
+      "vineta": "m7_maqueta"
+     }
+    ]
    },
    "ver": {
     "speaker": "Sira",
@@ -770,7 +844,12 @@
     ]
    },
    "sola": {
-    "text": "Un pavo real con la cola abierta. Te mira como si le debieras plata."
+    "text": "Un pavo real con la cola abierta. Te mira como si le debieras plata.",
+    "effects": [
+     {
+      "vineta": "m7_pavo"
+     }
+    ]
    },
    "ver": {
     "speaker": "Sira",
@@ -783,6 +862,11 @@
      {
       "label": "Tú saca la foto, yo me agacho",
       "goto": "agacho"
+     }
+    ],
+    "effects": [
+     {
+      "vineta": "m7_pavo"
      }
     ]
    },
@@ -1041,7 +1125,12 @@
    "inicio": {
     "speaker": "Sira",
     "text": "Me tengo que ir. Mi bus pasa a las seis y media y mi mamá cree que estoy en la biblioteca.",
-    "next": "tu"
+    "next": "tu",
+    "effects": [
+     {
+      "vineta": "m7_lago"
+     }
+    ]
    },
    "tu": {
     "choices": [
@@ -1080,7 +1169,12 @@
   "nodes": {
    "inicio": {
     "text": "La acompañas al paradero de la portería. Sube al bus, se sienta en la ventana y hace corazones con las manos contra el vidrio hasta que el bus dobla en la Calle 18.",
-    "next": "casa"
+    "next": "casa",
+    "effects": [
+     {
+      "vineta": "m7_bus_corazones"
+     }
+    ]
    },
    "casa": {
     "text": "Cruzas la calle hacia el Bobo. Son las seis y veinte y ya la extrañas. Es ridículo. Lo sabes. No importa.",
@@ -1108,7 +1202,7 @@
     "next": "resp"
    },
    "resp": {
-    "text": "Sira: «¿Ya llegaste a tu depa? Yo acabo de llegar. Todavía huelo a lago.»",
+    "text": "Sira te escribió. ¿Qué le contestas?",
     "choices": [
      {
       "label": "«Llegué. Todavía tengo el grito del pavo en los oídos»",
@@ -1146,7 +1240,7 @@
     ]
    },
    "a": {
-    "text": "Escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c1_sira_a"
@@ -1154,7 +1248,7 @@
     ]
    },
    "b": {
-    "text": "Escribiendo... borrando... escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c1_sira_b"
@@ -1162,7 +1256,7 @@
     ]
    },
    "c": {
-    "text": "Escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c1_sira_c"
@@ -1187,7 +1281,7 @@
     "next": "resp"
    },
    "resp": {
-    "text": "Sira: «Pregunta seria: ¿qué es lo que más extrañas de Chile?»",
+    "text": "¿Qué le contestas?",
     "choices": [
      {
       "label": "«Mi mamá. Y el pan. En ese orden (casi)»",
@@ -1225,7 +1319,7 @@
     ]
    },
    "a": {
-    "text": "Escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c2_sira_a"
@@ -1233,7 +1327,7 @@
     ]
    },
    "b": {
-    "text": "Escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c2_sira_b"
@@ -1241,7 +1335,7 @@
     ]
    },
    "c": {
-    "text": "Escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c2_sira_c"
@@ -1269,7 +1363,7 @@
     "next": "resp"
    },
    "resp": {
-    "text": "Sira: «¿Sigues despierto? Estoy viendo la foto del pavo jajaja».",
+    "text": "Te mandó la foto. ¿Qué le contestas?",
     "choices": [
      {
       "label": "«Esa foto va a ser mi fondo de pantalla»",
@@ -1307,7 +1401,7 @@
     ]
    },
    "a": {
-    "text": "Escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c3_sira_a"
@@ -1315,7 +1409,7 @@
     ]
    },
    "b": {
-    "text": "Escribiendo... escribiendo... escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c3_sira_b"
@@ -1323,7 +1417,7 @@
     ]
    },
    "c": {
-    "text": "Escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c3_sira_c"
@@ -1348,7 +1442,7 @@
     "next": "resp"
    },
    "resp": {
-    "text": "Sira: «Son las 3:12. Mañana voy a ser un zombi. ¿Qué haces mañana?»",
+    "text": "¿Qué le contestas?",
     "choices": [
      {
       "label": "«Ven a mi depa. Cocino yo»",
@@ -1386,7 +1480,7 @@
     ]
    },
    "a": {
-    "text": "Escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c4_sira_a"
@@ -1395,7 +1489,7 @@
     "next": "salsa"
    },
    "b": {
-    "text": "Escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c4_sira_b"
@@ -1404,7 +1498,7 @@
     "next": "salsa"
    },
    "c": {
-    "text": "Escribiendo...",
+    "text": "Sira está escribiendo...",
     "effects": [
      {
       "message": "m7_c4_sira_c"
@@ -1413,7 +1507,7 @@
     "next": "salsa"
    },
    "salsa": {
-    "text": "Escribiendo...",
+    "text": "Sira sigue escribiendo...",
     "effects": [
      {
       "message": "m7_c4_sira_2"
@@ -1422,7 +1516,7 @@
     "next": "noches"
    },
    "noches": {
-    "text": "Escribiendo...",
+    "text": "Sira sigue escribiendo...",
     "effects": [
      {
       "message": "m7_c4_sira_3"
@@ -1453,7 +1547,8 @@
       ],
       "goto": "fin"
      }
-    ]
+    ],
+    "text": "¿Con qué te despides?"
    },
    "fin": {
     "text": "Dejas el celular en el pecho. Sonríes como idiota mirando el techo. Afuera pasa el último bus por la Calle 18.",
@@ -1469,7 +1564,12 @@
   "start": "inicio",
   "nodes": {
    "inicio": {
-    "text": "Te quedas dormido con el celular en la mano, a las 3 y 20 de la mañana."
+    "text": "Te quedas dormido con el celular en la mano, a las 3 y 20 de la mañana.",
+    "effects": [
+     {
+      "vineta": "m7_dormir"
+     }
+    ]
    }
   }
  },
@@ -1478,7 +1578,12 @@
   "nodes": {
    "inicio": {
     "text": "Viernes, 11:25. Dormiste ocho horas. No: cuatro. Tienes la marca de la almohada en la cara y una sonrisa que no se te quita.",
-    "next": "recuerda"
+    "next": "recuerda",
+    "effects": [
+     {
+      "vineta": "m7_despertar"
+     }
+    ]
    },
    "recuerda": {
     "text": "Te acuerdas de golpe: Sira viene a la una. A TU depa. Con la salsa de su abuela.",
@@ -1487,6 +1592,9 @@
    "mira": {
     "text": "Miras el depa: ropa tirada, la loza de anoche, las cajas de la mudanza. Faltan noventa minutos.",
     "effects": [
+     {
+      "vineta": "m7_desorden"
+     },
      {
       "objective": "Ordena el depa y pon a hervir el agua para los fideos (la cocina). Sira llega a la 1"
      }

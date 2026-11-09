@@ -6,6 +6,7 @@ import { drawSideArm, drawSideBody, type SideFigureOpts } from '../art/vinetas';
 import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD } from '../config/display';
 import { Controls } from '../systems/Controls';
 import { playerLook } from '../systems/PlayerLook';
+import { StoryState } from '../systems/StoryState';
 import { THEME } from '../ui/theme';
 import { BaseScene } from './BaseScene';
 
@@ -98,6 +99,8 @@ export class CocinaScene extends BaseScene {
   private score = 0;
   private cried = false;
   private teamwork = false;
+  /** Ya se apretó para salir: machacar E no reinicia el fundido. */
+  private leaving = false;
 
   private g!: Phaser.GameObjects.Graphics;
   private figs!: Phaser.GameObjects.Graphics;
@@ -166,6 +169,7 @@ export class CocinaScene extends BaseScene {
     this.teamwork = false;
     this.floats = [];
     this.t = 0;
+    this.leaving = false;
   }
 
   create(): void {
@@ -176,7 +180,7 @@ export class CocinaScene extends BaseScene {
     this.hud = this.add.graphics().setDepth(10);
     this.blur = this.add.graphics().setDepth(9);
     this.meLook = playerLook();
-    this.siraLook = (characterLook('sira_m7') as HumanLook | undefined) ?? this.meLook;
+    this.siraLook = (characterLook(StoryState.hasFlag('m7_polera') ? 'sira_m7_polera' : 'sira_m7') as HumanLook | undefined) ?? this.meLook;
     this.titleText = this.addText(6, 4, '', { fontFamily: FONT_HUD, fontSize: '8px', color: '#f8e070' }).setDepth(11);
     this.hintText = this.addText(BASE_WIDTH / 2, BASE_HEIGHT - 11, '', { fontSize: '8px', color: '#dfe6f4' }).setOrigin(0.5, 0).setDepth(11);
     this.sayText = this.addText(0, 0, '', {
@@ -275,6 +279,8 @@ export class CocinaScene extends BaseScene {
   }
 
   private finish(): void {
+    if (this.leaving) return;
+    this.leaving = true;
     const result: CocinaResult = {
       score: this.score,
       total: this.stages.length,

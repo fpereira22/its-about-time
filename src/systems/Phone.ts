@@ -8,6 +8,9 @@ import { StoryState, type PhoneEntry } from './StoryState';
 
 export const PHONE = phoneData as unknown as PhoneData;
 
+/** Selector de etapas: las reglas con al menos esta espera siguen su curso después del salto. */
+const LIVE_AFTER_MS = 5000;
+
 /** Estado de la UI del celular que comparten las viñetas y la notificación. */
 export const phoneUi = {
   /** El chat de Sira está abierto como viñeta (misión 6): ella anima los mensajes y sus sonidos. */
@@ -93,6 +96,23 @@ class PhoneImpl {
   /** Llamar a un contacto (app Teléfono): devuelve el diálogo de la conversación, o null si no contesta. */
   dial(contact: string): string | null {
     return PHONE.outgoing.find((o) => o.to === contact && check(o.if))?.dialogue ?? null;
+  }
+
+  /**
+   * Selector de etapas: lo que ya debería haber llegado a estas alturas de la misión queda en la bandeja,
+   * leído y sin avisar (si no, sonarían todos los mensajes juntos al aparecer). Los que tardan quedan vivos.
+   */
+  silencePast(): void {
+    const mission = currentMission().id;
+    for (const t of PHONE.triggers) {
+      if ((t.mission && t.mission !== mission) || (t.afterMs ?? 0) >= LIVE_AFTER_MS || !check(t.if)) continue;
+      StoryState.setFlag(`tel_${t.id}`);
+      if (t.message) {
+        StoryState.receiveMessage(t.message, clockMinutes());
+        StoryState.markRead([t.message]);
+      }
+      if (t.call) StoryState.setFlag(`llamada_${t.call}`);
+    }
   }
 
   reset(): void {

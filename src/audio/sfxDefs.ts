@@ -510,6 +510,11 @@ export const SFX: Record<SfxName, SfxFn> = {
     notes(ctx, out, t + 0.12, ['E6', 'G#6', 'B6', 'E7'], 0.09, 'sine', 0.06);
   },
 
+  paraguas: (ctx, t, out) => {
+    noise(ctx, { start: t, dur: 0.05, vol: 0.14, filter: 'bandpass', freq: 900, q: 2, dest: out });
+    noise(ctx, { start: t + 0.06, dur: 0.16, vol: 0.2, filter: 'bandpass', freq: 420, q: 1, dest: out });
+  },
+
   caja_registradora: (ctx, t, out) => {
     noise(ctx, { start: t, dur: 0.12, vol: 0.18, filter: 'bandpass', freq: 1800, dest: out });
     notes(ctx, out, t + 0.12, ['E6', 'C7'], 0.1, 'triangle', 0.08);
