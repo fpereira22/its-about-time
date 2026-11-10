@@ -31,7 +31,7 @@ Los tests están en `tests/` y corren con Vitest sobre jsdom (`vitest.config.ts`
 - **Lógica:** condiciones (`conditions.test.ts`), partida y migración de guardados (`saveData.test.ts`) y ajustes (`settings.test.ts`).
 - **Integridad del contenido** (`content.test.ts`): cada `next` / `goto` / `branches` apunta a un nodo que existe; los efectos nombran viñetas, ítems, mapas y spawns, mensajes, llamadas y sonidos que existen; warps, `enter` y fauna de los mapas; NPCs; ítems con `use`; inicio y coleccionables de cada misión. Si agregas contenido con un typo, `npm test` dice dónde (antes solo aparecía en la consola al jugar justo esa parte).
 
-`.github/workflows/ci.yml` corre tipos, tests y build en cada push a `main` y en cada pull request.
+`.github/workflows/ci.yml` corre tipos, tests y build en cada push (a cualquier rama) y en cada pull request.
 
 ### Build y app instalable
 

@@ -1,9 +1,8 @@
 name: CI
 
-# En cada push y pull request: tipos, tests (lógica + integridad de diálogos, mapas y misiones) y build.
+# En cada push (cualquier rama) y pull request: tipos, tests (lógica + integridad de diálogos, mapas y misiones) y build.
 on:
   push:
-    branches: [main]
   pull_request:
 
 permissions:
