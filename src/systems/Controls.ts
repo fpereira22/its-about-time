@@ -29,7 +29,8 @@ const KEY_MAP: Record<string, Action> = {
 const DIRECTION_ACTIONS = new Set<Action>(['up', 'down', 'left', 'right']);
 
 /**
- * Entrada de teclado centralizada para todas las escenas.
+ * Entrada centralizada para todas las escenas: teclado y, en celulares, los controles táctiles
+ * (src/systems/TouchControls.ts), que pulsan las mismas acciones.
  *
  * Las pulsaciones se "consumen": si el diálogo consume `interact`, el mundo ya no lo ve
  * en el mismo frame. Lo que nadie consumió se descarta al final del frame.
@@ -72,11 +73,9 @@ class ControlsImpl {
     this.dirStack = [];
   }
 
-  private onKeyDown(e: KeyboardEvent): void {
-    const action = KEY_MAP[e.code];
-    if (!action) return;
-    e.preventDefault();
-    if (e.repeat) return;
+  /** Pulsa una acción desde otra fuente (los controles táctiles). Igual que una tecla. */
+  press(action: Action): void {
+    if (this.held.has(action)) return;
     this.held.add(action);
     this.pressed.add(action);
     if (DIRECTION_ACTIONS.has(action)) {
@@ -86,13 +85,27 @@ class ControlsImpl {
     }
   }
 
-  private onKeyUp(e: KeyboardEvent): void {
-    const action = KEY_MAP[e.code];
-    if (!action) return;
+  /** Suelta una acción pulsada con `press`. */
+  release(action: Action): void {
     this.held.delete(action);
     if (DIRECTION_ACTIONS.has(action)) {
       this.dirStack = this.dirStack.filter((d) => d !== action);
     }
+  }
+
+  private onKeyDown(e: KeyboardEvent): void {
+    const action = KEY_MAP[e.code];
+    if (!action) return;
+    e.preventDefault();
+    if (e.repeat) return;
+    this.held.delete(action);
+    this.press(action);
+  }
+
+  private onKeyUp(e: KeyboardEvent): void {
+    const action = KEY_MAP[e.code];
+    if (!action) return;
+    this.release(action);
   }
 }
 

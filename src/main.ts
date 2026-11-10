@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { AudioManager } from './audio/AudioManager';
-import { BASE_HEIGHT, BASE_WIDTH, computeZoom, getZoom, setZoom, ZOOM_CHANGED } from './config/display';
+import { BASE_HEIGHT, BASE_WIDTH, computeDisplay, getZoom, setZoom, ZOOM_CHANGED } from './config/display';
 import { AdminWarpScene } from './scenes/AdminWarpScene';
 import { BootScene } from './scenes/BootScene';
 import { CreditsScene } from './scenes/CreditsScene';
@@ -26,8 +26,13 @@ import { Secrets } from './systems/Secrets';
 import { Dialogue } from './systems/DialogueManager';
 import { EventSystem } from './systems/EventSystem';
 import { StoryState } from './systems/StoryState';
+import { TouchControls } from './systems/TouchControls';
 
-const zoom = getZoom();
+// Los controles táctiles (si corresponden) definen cuánto espacio le queda al juego: van antes del zoom.
+TouchControls.mount();
+const initial = computeDisplay();
+setZoom(initial.zoom);
+const zoom = initial.zoom;
 
 const game = new Phaser.Game({
   type: Phaser.AUTO,
@@ -57,15 +62,26 @@ if (import.meta.env.DEV) {
   Object.assign(window, { __dev: { game, state: StoryState, dialogue: Dialogue, events: EventSystem } });
 }
 
-// Escalado entero: al cambiar el tamaño de la ventana se recalcula el mayor zoom que cabe.
-let resizeTimer = 0;
-window.addEventListener('resize', () => {
-  window.clearTimeout(resizeTimer);
-  resizeTimer = window.setTimeout(() => {
-    const z = computeZoom();
-    if (z === getZoom()) return;
+/**
+ * Recalcula el tamaño del juego: zoom entero en escritorio; con controles táctiles, el espacio que
+ * dejan libre. Se llama al cambiar la ventana (o girar el celular) y al cambiar el modo táctil.
+ */
+function relayout(): void {
+  TouchControls.layout();
+  const { zoom: z, cssScale } = computeDisplay();
+  if (z !== getZoom()) {
     setZoom(z);
     game.scale.resize(BASE_WIDTH * z, BASE_HEIGHT * z);
     game.events.emit(ZOOM_CHANGED, z);
-  }, 100);
+  }
+  TouchControls.sizeCanvas(cssScale);
+}
+
+TouchControls.attach(game, relayout);
+TouchControls.sizeCanvas(initial.cssScale);
+
+let resizeTimer = 0;
+window.addEventListener('resize', () => {
+  window.clearTimeout(resizeTimer);
+  resizeTimer = window.setTimeout(relayout, 100);
 });

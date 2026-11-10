@@ -10,6 +10,7 @@ import { currentMission, formatDayClock, missionFullLabel, MISSIONS, parseClock 
 import { Phone } from '../systems/Phone';
 import { currentOutfit } from '../systems/PlayerLook';
 import { StoryState } from '../systems/StoryState';
+import { TouchControls } from '../systems/TouchControls';
 import { drawPanel, drawTriangle, fitText, makeText, THEME } from '../ui/theme';
 import type { MissionDef } from '../types/mission';
 import { BaseScene } from './BaseScene';
@@ -19,6 +20,9 @@ const PANEL = { x: 10, y: 5, w: BASE_WIDTH - 20, h: 160 };
 const LIST_Y = PANEL.y + 24;
 const ROW = 11;
 const VISIBLE_ROWS = 11;
+/** Páginas después de las misiones: todos los mapas y herramientas. */
+const pageMaps = (): number => MISSIONS.length;
+const pageTools = (): number => MISSIONS.length + 1;
 const SCENE_FOR_KIND = { overworld: 'Overworld', interior: 'Interior' } as const;
 
 /** Una fila de la lista: qué dice, qué se ve abajo al marcarla y qué hace. */
@@ -30,11 +34,12 @@ interface Row {
 
 /**
  * Selector de pruebas del modo admin (F2 o "Ir a etapa" en la pausa): salta a cualquier etapa de
- * cualquier misión, o a cualquier mapa sin tocar la partida. Pausa lo que esté corriendo, así que
+ * cualquier misión, o a cualquier mapa sin tocar la partida. La última página tiene herramientas
+ * (p. ej. forzar los controles táctiles para probarlos en el PC). Pausa lo que esté corriendo, así que
  * se puede abrir en el título, en pleno diálogo o dentro de un minijuego.
  */
 export class AdminWarpScene extends BaseScene {
-  /** Página elegida: una por misión y la última para todos los mapas (se recuerda entre aperturas). */
+  /** Página elegida: una por misión, luego todos los mapas y herramientas (se recuerda entre aperturas). */
   private page = -1;
   private cursor = 0;
   /** Mapa cuyos puntos de aparición se están listando (página de mapas). */
@@ -81,7 +86,7 @@ export class AdminWarpScene extends BaseScene {
     if (this.leaving) return;
     if (Controls.consume('menu')) return this.back();
 
-    const pages = MISSIONS.length + 1;
+    const pages = pageTools() + 1;
     const step = Controls.consume('left') ? -1 : Controls.consume('right') ? 1 : 0;
     if (step !== 0 && this.spawnsOf === null) {
       playSfx('cursor');
@@ -121,8 +126,24 @@ export class AdminWarpScene extends BaseScene {
 
   private rows(): Row[] {
     if (this.spawnsOf !== null) return this.spawnRows(this.spawnsOf);
+    if (this.page === pageTools()) return this.toolRows();
     const m = MISSIONS[this.page];
     return m ? this.stageRows(m) : mapRows((id) => this.openMap(id));
+  }
+
+  /** Ajustes de prueba: cambian algo y se quedan en el selector. */
+  private toolRows(): Row[] {
+    return [
+      {
+        label: `Controles táctiles: ${TouchControls.modeLabel()}`,
+        detail: 'E cambia: AUTO (solo celulares) · SIEMPRE (también PC) · NUNCA · atajo F3',
+        go: () => {
+          playSfx('select');
+          TouchControls.cycleMode();
+          this.render();
+        },
+      },
+    ];
   }
 
   private stageRows(m: MissionDef): Row[] {
@@ -201,7 +222,8 @@ export class AdminWarpScene extends BaseScene {
     };
     const cx = BASE_WIDTH / 2;
     const m = MISSIONS[this.page];
-    const heading = this.spawnsOf ?? (m ? missionFullLabel(m) : 'Todos los mapas (sin cambiar la partida)');
+    const heading =
+      this.spawnsOf ?? (m ? missionFullLabel(m) : this.page === pageMaps() ? 'Todos los mapas (sin cambiar la partida)' : 'Herramientas');
     const title = text(cx, PANEL.y + 5, heading, { fontSize: '11px', fontStyle: '600', color: THEME.ink }).setOrigin(0.5, 0);
     if (this.spawnsOf === null) {
       const ay = title.y + title.height / 2;

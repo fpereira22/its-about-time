@@ -1,20 +1,29 @@
 import type Phaser from 'phaser';
 import { playSfx } from '../audio/sfx';
+import { TouchControls } from './TouchControls';
 
 const ADMIN_KEY = 'santiago-laberinto:admin';
 /** Palabra que, tecleada en el título, activa o desactiva el modo admin (sin teclas del juego: WASD, E, F, M, Q, V). */
 const ADMIN_CODE = 'colibri';
+/** En el celular (sin teclado): toques seguidos sobre el logo del título que activan o desactivan el modo. */
+const LOGO_TAPS = 7;
+/** Pausa máxima entre toques del logo antes de empezar a contar de nuevo. */
+const LOGO_TAP_GAP_MS = 1200;
 
 /**
- * Modo admin: todas las misiones desbloqueadas, el atajo Ctrl + < (DevSkip) y el selector de etapas (F2).
+ * Modo admin: todas las misiones desbloqueadas, el atajo Ctrl + < (DevSkip), el selector de etapas (F2)
+ * y F3, que fuerza los controles táctiles en cualquier equipo (Auto → Siempre → Nunca).
  * Con `npm run dev` está siempre activo. En el juego publicado se activa (y desactiva) tecleando
- * ADMIN_CODE en el título; queda guardado en este navegador.
+ * ADMIN_CODE en el título, o en el celular tocando el logo LOGO_TAPS veces seguidas; queda guardado
+ * en este navegador.
  *
  * No es seguridad real: sin servidor, cualquiera puede editar localStorage. Solo evita que un
  * jugador normal se salte misiones sin querer.
  */
 class AdminImpl {
   private typed = '';
+  private logoTaps = 0;
+  private lastLogoTap = 0;
   private attached = false;
   private stored = readStored();
 
@@ -29,6 +38,14 @@ class AdminImpl {
       if (e.code === 'F2' && this.active) {
         e.preventDefault();
         if (!e.repeat) this.toggleWarp(game);
+        return;
+      }
+      if (e.code === 'F3' && this.active) {
+        e.preventDefault();
+        if (!e.repeat) {
+          TouchControls.cycleMode();
+          playSfx('select');
+        }
         return;
       }
       if (e.key.length !== 1) return;
@@ -49,6 +66,16 @@ class AdminImpl {
     if (game.scene.getScenes(true).every((s) => s.scene.key === 'Boot' || s.scene.key === 'Preload')) return;
     game.scene.start('AdminWarp');
     game.scene.bringToTop('AdminWarp');
+  }
+
+  /** Un toque al logo del título: al séptimo seguido, activa o desactiva el modo admin. */
+  tapLogo(game: Phaser.Game): void {
+    const now = performance.now();
+    this.logoTaps = now - this.lastLogoTap > LOGO_TAP_GAP_MS ? 1 : this.logoTaps + 1;
+    this.lastLogoTap = now;
+    if (this.logoTaps < LOGO_TAPS) return;
+    this.logoTaps = 0;
+    this.toggle(game);
   }
 
   private toggle(game: Phaser.Game): void {

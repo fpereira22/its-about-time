@@ -89,9 +89,12 @@ export class TitleScene extends BaseScene {
       .setDepth(6);
 
     if (Admin.active) {
-      this.addText(BASE_WIDTH - 4, 4, 'ADMIN · F2: ETAPAS', { fontFamily: FONT_HUD, fontSize: '8px', color: '#ff8a5c' })
+      // Tocarla abre el selector de etapas (en el celular no hay F2).
+      this.addText(BASE_WIDTH - 4, 4, 'ADMIN · F2: ETAPAS · F3: TÁCTIL', { fontFamily: FONT_HUD, fontSize: '8px', color: '#ff8a5c' })
         .setOrigin(1, 0)
-        .setDepth(10);
+        .setDepth(10)
+        .setInteractive({ useHandCursor: true })
+        .on('pointerdown', () => !this.leaving && Admin.toggleWarp(this.game));
     }
 
     this.setupZoom();
@@ -282,6 +285,8 @@ export class TitleScene extends BaseScene {
       .setOrigin(0.5)
       .setShadow(0, 2, '#0a0e18', 0, false, true)
       .setDepth(10);
+    // Secreto: tocarlo 7 veces seguidas activa o desactiva el modo admin (para el celular, sin teclado).
+    title.setInteractive().on('pointerdown', () => !this.leaving && Admin.tapLogo(this.game));
     const plate = this.add.graphics().setDepth(9);
     const pw = Math.ceil(title.width) + 28;
     plate.fillStyle(THEME.accent, 1).fillRect(cx - pw / 2 + 14, 45, pw - 28, 2);
