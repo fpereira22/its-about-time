@@ -680,7 +680,7 @@
   {
     "id": "m7_panaderia",
     "map": "bobo_cuadra",
-    "x": 18,
+    "x": 22,
     "y": 43,
     "dialogue": "m7_panaderia",
     "if": {
@@ -690,7 +690,17 @@
   {
     "id": "m7_panaderia_2",
     "map": "bobo_cuadra",
-    "x": 22,
+    "x": 21,
+    "y": 43,
+    "dialogue": "m7_panaderia",
+    "if": {
+      "mission": "mission07"
+    }
+  },
+  {
+    "id": "m7_panaderia_3",
+    "map": "bobo_cuadra",
+    "x": 23,
     "y": 43,
     "dialogue": "m7_panaderia",
     "if": {

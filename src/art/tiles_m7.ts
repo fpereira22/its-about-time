@@ -21,6 +21,34 @@ function sidewalk(p: Painter): void {
   p.rect(3, 0, 1, 7, PAL.walkDark).rect(11, 8, 1, 7, PAL.walkDark);
 }
 
+const ESP = {
+  wall: '#e8d8b8',
+  red: '#d83c3c',
+  redDark: '#a82828',
+  cream: '#f4f0e4',
+  glow: '#f8ecd0',
+  shelf: '#a07848',
+  bread: '#f0d088',
+  breadDark: '#d8a058',
+  crumb: '#fff4d8',
+  wood: '#8c5a34',
+  woodLight: '#b07c4c',
+  handle: '#e8c070',
+  sign: '#3c8c5c',
+  inside: '#ffe6a0',
+  insideFloor: '#e0b870',
+  counter: '#a07848',
+  mat: '#6a4a30',
+  matLight: '#a8784c',
+};
+
+/** Muro crema de La Espiga con su toldo a rayas rojo y crema, que termina en festón. */
+function espigaFront(p: Painter): void {
+  p.fill(ESP.wall);
+  for (let x = 0; x < 16; x += 4) p.rect(x, 0, 2, 4, ESP.red).rect(x + 2, 0, 2, 4, ESP.cream);
+  for (let x = 0; x < 16; x += 4) p.rect(x, 4, 2, 1, ESP.redDark).rect(x + 2, 4, 2, 1, ESP.cream).px(x + 1, 5, ESP.redDark).px(x + 3, 5, ESP.cream);
+}
+
 // ---------------------------------------------------------------------------
 // La bodega PrecioClub (techo de paneles solares, como en la foto)
 // ---------------------------------------------------------------------------
@@ -389,6 +417,42 @@ export function m7Tiles(): TileDef[] {
         p.fill('#e8d8b8');
         for (let x = 0; x < 16; x += 4) p.rect(x, 1, 2, 4, '#3c8c5c').rect(x + 2, 1, 2, 4, PAL.white);
         p.rect(1, 7, 14, 8, '#7a5c3c').rect(2, 8, 12, 6, PAL.glass).rect(3, 8, 2, 3, PAL.glassLight);
+      },
+    },
+    // La Espiga: toldo a rayas rojo y crema (el de la viñeta), vitrina iluminada con pan y una puerta que se lee como tal.
+    {
+      key: 'espiga_vitrina',
+      solid: true,
+      draw: (p) => {
+        espigaFront(p);
+        p.rect(1, 7, 14, 8, PAL.outline).rect(2, 8, 12, 6, ESP.glow).rect(2, 11, 12, 1, ESP.shelf);
+        p.rect(3, 9, 3, 2, ESP.bread).rect(7, 9, 3, 2, ESP.breadDark).rect(11, 9, 2, 2, ESP.bread);
+        p.rect(3, 12, 2, 2, ESP.breadDark).rect(6, 12, 3, 2, ESP.bread).rect(10, 12, 3, 2, ESP.breadDark);
+        p.px(4, 9, ESP.crumb).px(8, 9, ESP.crumb).px(7, 12, ESP.crumb);
+      },
+    },
+    {
+      key: 'espiga_puerta',
+      solid: true,
+      draw: (p) => {
+        espigaFront(p);
+        // La puerta abierta: el marco oscuro, el local iluminado por dentro y la hoja de madera abierta hacia un lado,
+        // para que se lea como entrada y no como otra vitrina.
+        p.rect(2, 5, 12, 11, PAL.outline).rect(3, 6, 10, 10, ESP.inside).rect(3, 13, 10, 3, ESP.insideFloor);
+        p.rect(7, 9, 5, 3, ESP.counter).rect(8, 8, 1, 1, ESP.bread).rect(10, 8, 1, 1, ESP.breadDark);
+        p.rect(3, 6, 3, 10, ESP.wood).rect(3, 6, 1, 10, ESP.woodLight).rect(5, 10, 1, 2, ESP.handle);
+        // El cartelito verde de ABIERTO colgando del marco.
+        p.rect(8, 5, 4, 2, ESP.sign).rect(9, 5, 2, 1, '#ffffff');
+      },
+    },
+    {
+      // El felpudo frente a la puerta de La Espiga: marca dónde pararse para entrar.
+      key: 'espiga_felpudo',
+      solid: false,
+      draw: (p) => {
+        sidewalk(p);
+        p.rect(2, 1, 12, 9, PAL.outline).rect(3, 2, 10, 7, ESP.mat).rect(4, 3, 8, 5, ESP.matLight);
+        p.rect(5, 4, 1, 3, ESP.mat).rect(7, 4, 2, 3, ESP.mat).rect(10, 4, 1, 3, ESP.mat);
       },
     },
 

@@ -46,7 +46,10 @@
   "K": "sombrilla",
   "F": "farma_fachada",
   "X": "farma_entrada",
-  "l": "local_fachada"
+  "l": "local_fachada",
+  "V": "espiga_vitrina",
+  "Y": "espiga_puerta",
+  "U": "espiga_felpudo"
  },
  "rows": [
   "r.==|==.................................",
@@ -92,8 +95,8 @@
   "r.==|==..HHHHHHHHHHHHHHHHHHHHHH\"\"\"\"\"\"\"\"\"",
   "r.==|==..hhhhhhhhhhhhhhhhhhhhhh\"\"\"\"\"\"\"\"\"",
   "r.==|==..hhhhhhhhhhhhhhhhhhhhhh\"T\"\"T\"\"T\"",
-  "r.==|==..FFXFFFllllllllllllllll\"\"\"\"\"\"\"\"\"",
-  "r.==|==.................................",
+  "r.==|==..FFXFFFlllVVVVYVVVVllll\"\"\"\"\"\"\"\"\"",
+  "r.==|==...............U.................",
   "r.==|==.t\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
  ],
  "zones": [
