@@ -4,6 +4,7 @@ import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD } from '../config/display';
 import { ADMIN_STAGES, type AdminStage } from '../systems/AdminStages';
 import { BusRideManager } from '../systems/BusRideManager';
 import { Controls } from '../systems/Controls';
+import { Content } from '../systems/Content';
 import { Dialogue } from '../systems/DialogueManager';
 import { GameMap } from '../systems/GameMap';
 import { currentMission, formatDayClock, missionFullLabel, MISSIONS, parseClock } from '../systems/Mission';
@@ -209,7 +210,9 @@ export class AdminWarpScene extends BaseScene {
     for (const s of this.game.scene.getScenes(false)) {
       if (s !== this && (s.sys.isActive() || s.sys.isPaused() || s.sys.isSleeping())) this.scene.stop(s.scene.key);
     }
-    jump();
+    // Desde el título puede ser antes de que lleguen los diálogos y viñetas (ver Content).
+    if (Content.ready) jump();
+    else void Content.load().then(jump, () => (this.leaving = false));
   }
 
   private render(): void {

@@ -1,46 +1,15 @@
 import itemsData from '../data/items.json';
 import type { ItemDef, Outfit } from '../types/story';
 import { EventSystem } from './EventSystem';
+import { migrateSave, SAVE_VERSION, type PhoneEntry, type SaveData, type Weather } from './SaveData';
 
 export const ITEMS = itemsData as Record<string, ItemDef>;
 
 const SAVE_KEY = 'santiago-laberinto:save';
-const SAVE_VERSION = 1;
+
+export { WEATHERS, type PhoneEntry, type SaveData, type Weather } from './SaveData';
 
 export const START_MONEY = 3000;
-
-export interface SaveData {
-  version: number;
-  flags: string[];
-  items: Record<string, number>;
-  money: number;
-  bip: number;
-  playTimeMs: number;
-  objective: string;
-  location: { map: string; spawn: string } | null;
-  /** Mensajes recibidos en el celular (opcional: partidas antiguas no lo tienen). */
-  phone?: PhoneEntry[];
-  /** Misión en curso (partidas antiguas: la 1). */
-  mission?: string;
-  /** Reloj de la historia y su tope (minutos desde el domingo 00:00). */
-  clock?: number;
-  clockMax?: number;
-  outfit?: Outfit | null;
-  weather?: Weather;
-}
-
-export interface PhoneEntry {
-  id: string;
-  read: boolean;
-  /** Tiempo de partida (ms) en que llegó. */
-  at: number;
-  /** Hora del celular (minutos) en que llegó, en misiones con reloj de la historia. */
-  min?: number;
-}
-
-/** Clima de la historia (misión 4): lo dibuja src/systems/Weather.ts. */
-export type Weather = 'despejado' | 'nublado' | 'lluvia' | 'tormenta';
-export const WEATHERS: readonly Weather[] = ['despejado', 'nublado', 'lluvia', 'tormenta'];
 
 /** Minutos de juego que avanza el reloj de la historia por cada minuto real (ms reales por minuto de juego). */
 export const MS_PER_CLOCK_MINUTE = 4000;
@@ -264,9 +233,13 @@ class StoryStateImpl {
     return data !== null && this.restore(data);
   }
 
-  /** Reemplaza la partida en curso por `data` (y la deja como partida automática). */
-  restore(data: SaveData): boolean {
-    if (data.version !== SAVE_VERSION) return false;
+  /**
+   * Reemplaza la partida en curso por `data` (y la deja como partida automática). Las partidas de
+   * versiones anteriores se migran (ver SaveData.ts); devuelve false si no se puede usar.
+   */
+  restore(raw: SaveData): boolean {
+    const data = migrateSave(raw);
+    if (!data) return false;
     this.flags = new Set(data.flags);
     this.items = new Map(Object.entries(data.items));
     this.money = data.money;
@@ -274,12 +247,12 @@ class StoryStateImpl {
     this.playTimeMs = data.playTimeMs;
     this.objective = data.objective;
     this.location = data.location;
-    this.phone = (data.phone ?? []).map((p) => ({ ...p }));
-    this.missionId = data.mission ?? 'mission01';
-    this.clock = data.clock ?? 0;
-    this.clockMax = data.clockMax ?? this.clock;
-    this.outfit = data.outfit ?? null;
-    this.weather = data.weather ?? 'despejado';
+    this.phone = data.phone.map((p) => ({ ...p }));
+    this.missionId = data.mission;
+    this.clock = data.clock;
+    this.clockMax = data.clockMax;
+    this.outfit = data.outfit;
+    this.weather = data.weather;
     this.clockPaused = false;
     this.changed();
     return true;
@@ -302,9 +275,7 @@ class StoryStateImpl {
 function readStorage(): SaveData | null {
   try {
     const raw = window.localStorage.getItem(SAVE_KEY);
-    if (!raw) return null;
-    const data = JSON.parse(raw) as SaveData;
-    return data.version === SAVE_VERSION ? data : null;
+    return raw ? migrateSave(JSON.parse(raw)) : null;
   } catch {
     return null;
   }

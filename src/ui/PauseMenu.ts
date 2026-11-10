@@ -10,15 +10,17 @@ import { missionSummary } from '../systems/Mission';
 import { SaveSlots, SLOT_COUNT } from '../systems/SaveSlots';
 import { StoryState } from '../systems/StoryState';
 import { InventoryScreen } from './InventoryScreen';
+import { SettingsPanel } from './SettingsPanel';
 import { drawPanel, drawTriangle, fitText, makeText, THEME } from './theme';
 
-type View = 'main' | 'mission' | 'confirm' | 'slots';
+type View = 'main' | 'mission' | 'confirm' | 'slots' | 'settings';
 
-const MAIN_OPTIONS = ['Misión actual', 'Inventario', 'Ropa', 'Guardar', 'Cargar', 'Volver', 'Salir'];
+const MAIN_OPTIONS = ['Misión actual', 'Inventario', 'Ropa', 'Guardar', 'Cargar', 'Ajustes', 'Volver', 'Salir'];
 const OPT_ADMIN = 'Ir a etapa';
 const OPT_SAVE = MAIN_OPTIONS.indexOf('Guardar');
 const OPT_LOAD = MAIN_OPTIONS.indexOf('Cargar');
 const OPT_QUIT = MAIN_OPTIONS.indexOf('Salir');
+const OPT_SETTINGS = MAIN_OPTIONS.indexOf('Ajustes');
 
 /** El modo admin se puede activar con el juego abierto: por eso no es una constante. */
 function mainOptions(): string[] {
@@ -58,6 +60,7 @@ export class PauseMenu {
   private confirmData: Confirm | null = null;
   /** Aviso corto bajo las opciones (ej. por qué no se puede guardar). */
   private note = '';
+  private settings: SettingsPanel | null = null;
 
   constructor(private readonly scene: Phaser.Scene) {
     this.overlay = scene.add
@@ -87,6 +90,8 @@ export class PauseMenu {
 
   close(): void {
     this.view = null;
+    this.settings?.destroy();
+    this.settings = null;
     this.root.removeAll(true);
     this.scene.tweens.killTweensOf(this.overlay);
     this.scene.tweens.add({
@@ -101,6 +106,11 @@ export class PauseMenu {
 
   update(): void {
     if (!this.view || this.leaving) return;
+    if (this.view === 'settings') {
+      // El panel consume su propia entrada (incluido Esc, que vuelve aquí).
+      this.settings?.update();
+      return;
+    }
     const up = Controls.consume('up');
     const down = Controls.consume('down');
     const ok = Controls.consume('interact');
@@ -170,6 +180,8 @@ export class PauseMenu {
         }
         this.slotMode = 'load';
         return this.enter('slots', 0);
+      case 'Ajustes':
+        return this.openSettings();
       case 'Volver':
         playSfx('close');
         return this.close();
@@ -182,6 +194,19 @@ export class PauseMenu {
           () => this.show('main', OPT_QUIT),
         );
     }
+  }
+
+  private openSettings(): void {
+    playSfx('select');
+    this.view = 'settings';
+    this.root.removeAll(true);
+    this.settings = new SettingsPanel(this.scene, {
+      depth: 202,
+      onClose: () => {
+        this.settings = null;
+        this.show('main', OPT_SETTINGS);
+      },
+    });
   }
 
   private chooseSlot(i: number): void {
@@ -297,7 +322,8 @@ export class PauseMenu {
     const options = mainOptions();
     const h = options.length * ROW + 24;
     const x = BASE_WIDTH - w - 8;
-    const y = 22;
+    // Bajo el HUD si cabe; con la opción extra del modo admin sube para no tapar la ayuda de abajo.
+    const y = Math.min(22, BASE_HEIGHT - h - 14);
     this.panel(x, y, w, h);
     this.add(makeText(this.scene, x + 10, y + 7, 'PAUSA', { fontFamily: FONT_HUD, fontSize: '8px', color: THEME.accentCss }));
     this.options(options, x + 18, y + 20);

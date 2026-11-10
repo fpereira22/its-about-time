@@ -20,6 +20,7 @@ import { TitleScene } from './scenes/TitleScene';
 import { UIScene } from './scenes/UIScene';
 import { Controls } from './systems/Controls';
 import { Admin } from './systems/Admin';
+import { Content } from './systems/Content';
 import { DevSkip } from './systems/DevSkip';
 import { Records } from './systems/Records';
 import { Secrets } from './systems/Secrets';
@@ -27,6 +28,10 @@ import { Dialogue } from './systems/DialogueManager';
 import { EventSystem } from './systems/EventSystem';
 import { StoryState } from './systems/StoryState';
 import { TouchControls } from './systems/TouchControls';
+
+// Diálogos y viñetas vienen en chunks aparte: se piden ya, para que lleguen mientras carga el título.
+// Si fallan (sin red), el título lo vuelve a intentar al elegir una opción.
+Content.load().catch(() => undefined);
 
 // Los controles táctiles (si corresponden) definen cuánto espacio le queda al juego: van antes del zoom.
 TouchControls.mount();
@@ -79,6 +84,14 @@ function relayout(): void {
 
 TouchControls.attach(game, relayout);
 TouchControls.sizeCanvas(initial.cssScale);
+
+// App instalable y sin internet (solo el build: en desarrollo el caché estorbaría a la recarga de Vite).
+// El service worker sale de pwa/service-worker.js (ver el plugin en vite.config.ts).
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => undefined);
+  });
+}
 
 let resizeTimer = 0;
 window.addEventListener('resize', () => {

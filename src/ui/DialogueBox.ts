@@ -3,6 +3,7 @@ import { playSfx } from '../audio/sfx';
 import { FONT_TEXT } from '../config/display';
 import { Controls } from '../systems/Controls';
 import { Dialogue, type DialoguePresenter, type DialogueStep } from '../systems/DialogueManager';
+import { Settings } from '../systems/Settings';
 import { drawPanel, drawTriangle, makeText, THEME } from './theme';
 
 const BOX = { x: 8, y: 124, w: 304, h: 50 };
@@ -10,7 +11,6 @@ const PAD_X = 11;
 const PAD_Y = 7;
 const LINES_PER_PAGE = 3;
 const LINE_SPACING = 2;
-const CHARS_PER_SECOND = 55;
 const CHOICE_ROW = 13;
 
 /** Caja de diálogo con efecto máquina de escribir y lista de opciones (W/S + E). */
@@ -112,10 +112,12 @@ export class DialogueBox implements DialoguePresenter {
     if (this.shown < this.chars.length) {
       this.arrow.setVisible(false);
       const before = Math.floor(this.shown);
-      if (Controls.consume('interact')) {
+      // Velocidad del texto de los ajustes; "Instantánea" muestra la página entera sin blips.
+      const cps = Settings.charsPerSecond();
+      if (!Number.isFinite(cps) || Controls.consume('interact')) {
         this.shown = this.chars.length;
       } else {
-        this.shown = Math.min(this.chars.length, this.shown + (CHARS_PER_SECOND * delta) / 1000);
+        this.shown = Math.min(this.chars.length, this.shown + (cps * delta) / 1000);
         this.typeSound(before, Math.floor(this.shown));
       }
       this.body.setText(this.chars.slice(0, Math.floor(this.shown)).join(''));

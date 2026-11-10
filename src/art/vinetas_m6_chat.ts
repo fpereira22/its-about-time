@@ -595,4 +595,3 @@ export const M6_CHAT_VINETAS: Record<string, VinetaBuilder> = {
 };
 
 /** Viñetas «en vivo»: si el diálogo vuelve a pedir la misma, no se rearma (sigue la conversación). */
-export const LIVE_VINETAS = new Set(['m6_chat', 'm7_chat']);

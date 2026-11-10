@@ -3,18 +3,27 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Juego 2D top-down en pixel art ambientado en Santiago de Chile.",
+  "description": "Juego 2D top-down en pixel art ambientado en Santiago de Chile y Cali.",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run typecheck && npm test && vite build",
+    "icons": "node scripts/make-icons.mjs"
   },
   "dependencies": {
     "phaser": "3.90.0"
   },
   "devDependencies": {
+    "jsdom": "^26.1.0",
     "typescript": "~5.9.3",
-    "vite": "~7.3.0"
+    "vite": "~7.3.0",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=20.12"
   }
 }

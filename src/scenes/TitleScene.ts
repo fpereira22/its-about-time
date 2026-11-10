@@ -6,6 +6,7 @@ import { Controls } from '../systems/Controls';
 import { GameMap } from '../systems/GameMap';
 import { GAME_TITLE } from '../config/game';
 import { Admin } from '../systems/Admin';
+import { Content } from '../systems/Content';
 import { currentMission, missionFullLabel, missionLabel, MISSIONS, parseClock } from '../systems/Mission';
 import type { MissionDef } from '../types/mission';
 import { Records } from '../systems/Records';
@@ -16,6 +17,7 @@ import { StoryState } from '../systems/StoryState';
 import { drawPanel, makeText, THEME } from '../ui/theme';
 import { BaseScene } from './BaseScene';
 import { MenuList } from '../ui/MenuList';
+import { SettingsPanel } from '../ui/SettingsPanel';
 
 /** Mapa que se ve de fondo en el título, y desde qué fila. */
 const BACKDROP_MAP = 'providencia';
@@ -60,6 +62,7 @@ export class TitleScene extends BaseScene {
   private panMax = 0;
   private leaving = false;
   private canContinue = false;
+  private settings: SettingsPanel | null = null;
 
   constructor() {
     super('Title');
@@ -70,6 +73,7 @@ export class TitleScene extends BaseScene {
     this.leaving = false;
     this.menu = null;
     this.confirm = null;
+    this.settings = null;
     if (this.scene.isActive('UI')) this.scene.stop('UI');
     this.cameras.main.setBackgroundColor('#1c2a48');
 
@@ -108,6 +112,10 @@ export class TitleScene extends BaseScene {
     this.backdrop.x = -Math.round(this.panX);
 
     if (this.leaving) return;
+    if (this.settings) {
+      this.settings.update();
+      return;
+    }
     if (this.confirm) {
       if (Controls.consume('menu')) this.closeConfirm();
       else this.confirm.menu.update();
@@ -128,9 +136,26 @@ export class TitleScene extends BaseScene {
       { label: 'Nueva partida', action: () => this.chooseMission() },
       ...(SaveSlots.any ? [{ label: 'Cargar partida', action: () => this.chooseSlot() }] : []),
       { label: 'Progreso', action: () => this.go(() => this.scene.start('Progress')) },
+      { label: 'Ajustes', action: () => this.openSettings() },
       { label: 'Créditos', action: () => this.go(() => this.scene.start('Credits')) },
     ];
-    this.menu = new MenuList(this, items, { x: BASE_WIDTH / 2, y: MENU_Y, minWidth: 108 });
+    // Bajo el logo; con todas las opciones (Continuar y Cargar) sube lo justo para no tapar el pie.
+    const y = Math.min(MENU_Y, BASE_HEIGHT - 15 - (items.length * 13 + 9));
+    this.menu = new MenuList(this, items, { x: BASE_WIDTH / 2, y, minWidth: 108 });
+  }
+
+  private openSettings(): void {
+    this.hideMainMenu();
+    this.settings = new SettingsPanel(this, {
+      depth: 31,
+      onClose: () => {
+        this.settings = null;
+        if (this.menu) {
+          this.menu.enabled = true;
+          this.menu.container.setVisible(true);
+        }
+      },
+    });
   }
 
   /** Submenú: qué misión empezar. Se desbloquean en orden (todas en modo admin). */
@@ -240,11 +265,30 @@ export class TitleScene extends BaseScene {
     this.go(() => this.scene.start(target.scene, { mapId: target.map, spawn: target.spawn }));
   }
 
+  /**
+   * Funde a negro y ejecuta `action`. Antes espera el contenido de la historia (diálogos y viñetas,
+   * ver Content): normalmente ya llegó mientras se veía el título; si no, avisa que está cargando.
+   */
   private go(action: () => void): void {
     if (this.leaving) return;
     this.leaving = true;
-    this.cameras.main.fadeOut(280, 0, 0, 0);
-    this.cameras.main.once('camerafadeoutcomplete', action);
+    const status = Content.ready
+      ? null
+      : this.addText(BASE_WIDTH / 2, BASE_HEIGHT - 20, 'Cargando la historia...', { fontSize: '9px', color: '#f0d048' })
+          .setOrigin(0.5)
+          .setDepth(40);
+    Content.load().then(
+      () => {
+        status?.destroy();
+        this.cameras.main.fadeOut(280, 0, 0, 0);
+        this.cameras.main.once('camerafadeoutcomplete', action);
+      },
+      () => {
+        status?.setText('No se pudo cargar. Revisa tu conexión y vuelve a intentar.').setColor('#ff8a5c');
+        this.time.delayedCall(2500, () => status?.destroy());
+        this.leaving = false;
+      },
+    );
   }
 
   private createBackdrop(): void {

@@ -193,7 +193,18 @@ class TouchControlsImpl {
 
   /** Auto → Siempre → Nunca → Auto. Devuelve el modo nuevo. */
   cycleMode(): TouchMode {
-    this.mode = MODES[(MODES.indexOf(this.mode) + 1) % MODES.length];
+    this.setMode(MODES[(MODES.indexOf(this.mode) + 1) % MODES.length]);
+    return this.mode;
+  }
+
+  /** Modo elegido (no si se ven: eso es `enabled`). */
+  get currentMode(): TouchMode {
+    return this.mode;
+  }
+
+  /** Fija el modo, lo recuerda en este navegador y reacomoda el juego. */
+  setMode(mode: TouchMode): void {
+    this.mode = mode;
     try {
       if (this.mode === 'auto') window.localStorage.removeItem(MODE_KEY);
       else window.localStorage.setItem(MODE_KEY, this.mode);
@@ -202,7 +213,6 @@ class TouchControlsImpl {
     }
     this.relayout();
     this.showToast(`Controles táctiles: ${this.modeLabel()}`);
-    return this.mode;
   }
 
   /**

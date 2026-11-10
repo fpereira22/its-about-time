@@ -37,8 +37,14 @@ import type { FutbolResult } from './FutbolScene';
 const npcModules = import.meta.glob<NpcDef[]>('../data/npcs/*.json', { eager: true, import: 'default' });
 const NPCS: NpcDef[] = [...(npcData as NpcDef[]), ...Object.values(npcModules).flat(), ...CAMPUS_NPCS, ...PUCC_NPCS];
 
-/** En desarrollo, avisa de NPCs o warps que apuntan a diálogos inexistentes. */
-if (import.meta.env.DEV) {
+/**
+ * En desarrollo, avisa de NPCs o warps que apuntan a diálogos inexistentes. Corre al crear el primer
+ * mapa (los diálogos llegan aparte, ver Content). Los tests revisan lo mismo en `npm test`.
+ */
+let contentChecked = false;
+function checkContentOnce(): void {
+  if (contentChecked || !import.meta.env.DEV) return;
+  contentChecked = true;
   for (const npc of NPCS) {
     if (!Dialogue.exists(npc.dialogue)) console.error(`npcs.json: "${npc.id}" usa el diálogo inexistente "${npc.dialogue}"`);
   }
@@ -49,6 +55,11 @@ if (import.meta.env.DEV) {
       }
     }
   }
+}
+
+/** Todos los NPCs (también los generados del campus), para validar datos en los tests. */
+export function allNpcs(): readonly NpcDef[] {
+  return NPCS;
 }
 
 export interface MapSceneData {
@@ -166,6 +177,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
   }
 
   create(): void {
+    checkContentOnce();
     const { mapId, spawn: spawnId } = this.sceneData;
     this.map = GameMap.get(mapId);
     this.cameras.main.setBackgroundColor(this.map.data.background ?? '#101018');

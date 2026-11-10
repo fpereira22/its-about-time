@@ -1,16 +1,18 @@
 import Phaser from 'phaser';
 import { Controls } from '../systems/Controls';
 import { EventSystem } from '../systems/EventSystem';
+import { Settings } from '../systems/Settings';
 import { StoryState } from '../systems/StoryState';
 import { TRACKS, TrackPlayer } from './music';
 import type { AmbientState, MusicTrack, SfxName, SkylineAmbient } from './sfx';
 import { noiseLoop } from './synth';
 import { SFX } from './sfxDefs';
 
-const MUTE_KEY = 'santiago-laberinto:mute';
+/** Volúmenes al máximo de los ajustes (Settings escala música y efectos de 0 a 1). */
 const MASTER_VOLUME = 0.8;
 const MUSIC_VOLUME = 0.35;
 const SFX_VOLUME = 0.6;
+const GAIN_RAMP_S = 0.15;
 /** Música más baja mientras un menú tiene el juego en pausa. */
 const DUCKED = 0.5;
 const LOOKAHEAD_S = 0.12;
@@ -39,9 +41,10 @@ class AudioManagerImpl {
   private master: GainNode | null = null;
   private musicBus: GainNode | null = null;
   private sfxBus: GainNode | null = null;
+  /** Lluvia y viento: siguen el volumen de los efectos. */
+  private ambientBus: GainNode | null = null;
   private player: TrackPlayer | null = null;
   private track: MusicTrack | null = null;
-  private muted = false;
   private ducked = false;
   private sfxCount = 0;
   private readonly lastSfx = new Map<SfxName, number>();
@@ -59,12 +62,12 @@ class AudioManagerImpl {
 
   attach(game: Phaser.Game): void {
     this.game = game;
-    this.muted = readMuted();
     EventSystem.on('sfx', (name) => this.play(name));
     EventSystem.on('music', (track) => this.setMusic(track));
     EventSystem.on('ambient', (state) => this.setAmbient(state));
     EventSystem.on('skyline-ambient', (state) => this.setSkyline(state));
     EventSystem.on('state-changed', () => this.watchFlags());
+    EventSystem.on('settings-changed', () => this.applyVolumes());
 
     const unlock = (): void => this.unlock();
     window.addEventListener('keydown', unlock, true);
@@ -83,7 +86,7 @@ class AudioManagerImpl {
             state: this.ctx?.state ?? 'none',
             track: this.track,
             playing: Boolean(this.player && !this.player.finished),
-            muted: this.muted,
+            muted: Settings.get('muted'),
             ducked: this.ducked,
             sfxCount: this.sfxCount,
           }),
@@ -97,14 +100,14 @@ class AudioManagerImpl {
       if (!this.ctx) {
         this.ctx = new AudioContext();
         this.master = this.ctx.createGain();
-        this.master.gain.value = this.muted ? 0 : MASTER_VOLUME;
         this.master.connect(this.ctx.destination);
         this.musicBus = this.ctx.createGain();
-        this.musicBus.gain.value = MUSIC_VOLUME;
         this.musicBus.connect(this.master);
         this.sfxBus = this.ctx.createGain();
-        this.sfxBus.gain.value = SFX_VOLUME;
         this.sfxBus.connect(this.master);
+        this.ambientBus = this.ctx.createGain();
+        this.ambientBus.connect(this.master);
+        this.applyVolumes(0);
         this.startTrack(this.track);
         this.startAmbient();
       }
@@ -139,13 +142,14 @@ class AudioManagerImpl {
 
   /** La lluvia suena siempre (en silencio si no llueve): así solo se ajusta su volumen. */
   private startAmbient(): void {
-    if (!this.ctx || !this.master) return;
+    if (!this.ctx || !this.ambientBus) return;
+    const out = this.ambientBus;
     const src = noiseLoop(this.ctx);
     this.ambientFilter = this.ctx.createBiquadFilter();
     this.ambientFilter.type = 'lowpass';
     this.ambientGain = this.ctx.createGain();
     this.ambientGain.gain.value = 0;
-    src.connect(this.ambientFilter).connect(this.ambientGain).connect(this.master);
+    src.connect(this.ambientFilter).connect(this.ambientGain).connect(out);
     src.start();
     this.applyAmbient(0.05);
 
@@ -170,9 +174,9 @@ class AudioManagerImpl {
     this.whistleGain = gain();
     const humFilter = band('lowpass', 170, 0.5);
     this.humGain = gain();
-    wind.connect(this.windBand).connect(this.windGain).connect(this.master);
-    wind.connect(this.whistleBand).connect(this.whistleGain).connect(this.master);
-    wind.connect(humFilter).connect(this.humGain).connect(this.master);
+    wind.connect(this.windBand).connect(this.windGain).connect(out);
+    wind.connect(this.whistleBand).connect(this.whistleGain).connect(out);
+    wind.connect(humFilter).connect(this.humGain).connect(out);
     wind.start(0, 0.37);
     this.applySkyline(0.05);
   }
@@ -227,20 +231,11 @@ class AudioManagerImpl {
     this.player.schedule(this.ctx.currentTime + LOOKAHEAD_S);
   }
 
+  /** La tecla M: el silencio queda en los ajustes (y applyVolumes lo aplica). */
   private toggleMute(): void {
-    this.muted = !this.muted;
-    try {
-      window.localStorage.setItem(MUTE_KEY, this.muted ? '1' : '0');
-    } catch {
-      // Sin almacenamiento: la preferencia dura solo esta sesión.
-    }
-    if (this.ctx && this.master) {
-      const now = this.ctx.currentTime;
-      this.master.gain.cancelScheduledValues(now);
-      this.master.gain.setValueAtTime(this.master.gain.value, now);
-      this.master.gain.linearRampToValueAtTime(this.muted ? 0 : MASTER_VOLUME, now + 0.15);
-    }
-    EventSystem.emit('banner', { title: this.muted ? 'Sonido: silenciado' : 'Sonido: activado', subtitle: 'Tecla M' });
+    const muted = !Settings.get('muted');
+    Settings.set('muted', muted);
+    EventSystem.emit('banner', { title: muted ? 'Sonido: silenciado' : 'Sonido: activado', subtitle: 'Tecla M' });
   }
 
   private updateDuck(): void {
@@ -249,10 +244,29 @@ class AudioManagerImpl {
     const ducked = MAP_SCENES.some((key) => game.scene.isPaused(key));
     if (ducked === this.ducked) return;
     this.ducked = ducked;
-    const now = this.ctx.currentTime;
-    this.musicBus.gain.cancelScheduledValues(now);
-    this.musicBus.gain.setValueAtTime(this.musicBus.gain.value, now);
-    this.musicBus.gain.linearRampToValueAtTime(MUSIC_VOLUME * (ducked ? DUCKED : 1), now + 0.2);
+    this.applyVolumes(0.2);
+  }
+
+  /** Lleva los buses al volumen de los ajustes (silencio, música con su "duck" en pausa, efectos). */
+  private applyVolumes(ramp = GAIN_RAMP_S): void {
+    const ctx = this.ctx;
+    if (!ctx || !this.master || !this.musicBus || !this.sfxBus || !this.ambientBus) return;
+    const targets: Array<[AudioParam, number]> = [
+      [this.master.gain, Settings.get('muted') ? 0 : MASTER_VOLUME],
+      [this.musicBus.gain, MUSIC_VOLUME * Settings.musicGain() * (this.ducked ? DUCKED : 1)],
+      [this.sfxBus.gain, SFX_VOLUME * Settings.sfxGain()],
+      [this.ambientBus.gain, Settings.sfxGain()],
+    ];
+    const now = ctx.currentTime;
+    for (const [param, value] of targets) {
+      param.cancelScheduledValues(now);
+      if (ramp <= 0) {
+        param.setValueAtTime(value, now);
+        continue;
+      }
+      param.setValueAtTime(param.value, now);
+      param.linearRampToValueAtTime(value, now + ramp);
+    }
   }
 
   private watchFlags(): void {
@@ -261,14 +275,6 @@ class AudioManagerImpl {
       if (on && !this.flagState.get(flag)) this.play(sfx);
       this.flagState.set(flag, on);
     }
-  }
-}
-
-function readMuted(): boolean {
-  try {
-    return window.localStorage.getItem(MUTE_KEY) === '1';
-  } catch {
-    return false;
   }
 }
 

@@ -71,6 +71,8 @@ export interface GameEvents {
   'sign-mark': ['ok' | 'bad'];
   /** Estado del viaje en micro para la UI y botones de vista. */
   'bus-ride-status': [{ active: boolean; mode?: 'interior' | 'exterior'; rideId?: string; line?: string }];
+  /** Cambió un ajuste del jugador (volúmenes, silencio, velocidad del texto): ver src/systems/Settings.ts. */
+  'settings-changed': [];
 }
 
 type Handler<K extends keyof GameEvents> = (...args: GameEvents[K]) => void;

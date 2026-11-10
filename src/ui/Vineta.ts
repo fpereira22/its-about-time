@@ -14,25 +14,6 @@ import {
   TEAR_COLOR,
   type SideFigureOpts,
 } from '../art/vinetas';
-import { AUTO_VINETAS } from '../art/vinetas_auto';
-import { CALI_VINETAS } from '../art/vinetas_cali';
-import { CALI_VINETAS_2 } from '../art/vinetas_cali_2';
-import { FUTBOL_VINETAS } from '../art/vinetas_futbol';
-import { M5_VINETAS } from '../art/vinetas_m5';
-import { M5_VINETAS_2 } from '../art/vinetas_m5_2';
-import { M6_VINETAS } from '../art/vinetas_m6';
-import { M6_VINETAS_2 } from '../art/vinetas_m6_2';
-import { LIVE_VINETAS, M6_CHAT_VINETAS } from '../art/vinetas_m6_chat';
-import { M6_VINETAS_3 } from '../art/vinetas_m6_3';
-import { M7_VINETAS } from '../art/vinetas_m7';
-import { M7_VINETAS_2 } from '../art/vinetas_m7_2';
-import { M7_VINETAS_3 } from '../art/vinetas_m7_3';
-import { M7_VINETAS_4 } from '../art/vinetas_m7_4';
-import { CALLE_VINETAS } from '../art/vinetas_calle';
-import { CASA_VINETAS } from '../art/vinetas_casa';
-import { COMIDA_VINETAS } from '../art/vinetas_comida';
-import { PIEZA_VINETAS } from '../art/vinetas_pieza';
-import { VUELO_VINETAS } from '../art/vinetas_vuelo';
 import { BASE_HEIGHT, BASE_WIDTH } from '../config/display';
 import { EventSystem } from '../systems/EventSystem';
 import { playerLook } from '../systems/PlayerLook';
@@ -47,7 +28,7 @@ const FADE_MS = 160;
 
 // ---------------------------------------------------------------------------
 // Registro de viñetas: id → builder. Para agregar viñetas de otra misión, se escribe un
-// `Record<string, VinetaBuilder>` en src/art/vinetas_<lugar>.ts y se suma a VINETAS.
+// `Record<string, VinetaBuilder>` en src/art/vinetas_<lugar>.ts y se suma a PLACE_VINETAS (src/art/vinetas_index.ts).
 // ---------------------------------------------------------------------------
 
 /** Fondo de una viñeta, dibujado en coordenadas locales del panel (x, y = 0, 0). */
@@ -130,33 +111,40 @@ const HUGS: Record<string, HugDef> = {
   },
 };
 
-/** Todas las viñetas del juego. */
+/**
+ * Viñetas del juego. Las del Prólogo (abrazos y el dibujo del hermano) vienen en el bundle principal;
+ * las de cada lugar (src/art/vinetas_<lugar>.ts) llegan en un chunk aparte con loadVinetas(), que
+ * Content.load() pide al arrancar. Nadie muestra una viñeta antes: el título espera a que carguen.
+ */
 const VINETAS: Record<string, VinetaBuilder> = {
   ...Object.fromEntries(Object.entries(HUGS).map(([id, def]) => [id, (kit: VinetaKit) => buildHug(kit, def)])),
   dibujo: buildDrawing,
-  ...CASA_VINETAS,
-  ...PIEZA_VINETAS,
-  ...AUTO_VINETAS,
-  ...VUELO_VINETAS,
-  ...CALLE_VINETAS,
-  ...COMIDA_VINETAS,
-  ...CALI_VINETAS,
-  ...CALI_VINETAS_2,
-  ...FUTBOL_VINETAS,
-  ...M5_VINETAS,
-  ...M5_VINETAS_2,
-  ...M6_VINETAS,
-  ...M6_VINETAS_2,
-  ...M6_VINETAS_3,
-  ...M6_CHAT_VINETAS,
-  ...M7_VINETAS,
-  ...M7_VINETAS_2,
-  ...M7_VINETAS_3,
-  ...M7_VINETAS_4,
 };
 
-/** Ids de viñeta válidos (para el efecto `vineta` de los diálogos). */
-export const VINETA_IDS = Object.keys(VINETAS);
+/** Viñetas "en vivo" (el chat): si ya están abiertas no se rearman al volver a pedirlas. */
+const LIVE_VINETAS = new Set(['m6_chat', 'm7_chat']);
+
+let vinetasLoad: Promise<void> | null = null;
+
+/** Carga el chunk con las viñetas de cada lugar (una sola vez). */
+export function loadVinetas(): Promise<void> {
+  vinetasLoad ??= import('../art/vinetas_index').then(({ PLACE_VINETAS }) => {
+    for (const [id, build] of Object.entries(PLACE_VINETAS)) {
+      if (id in VINETAS) console.error(`Viñeta "${id}" duplicada`);
+      VINETAS[id] = build;
+    }
+  }).catch((err: unknown) => {
+    // Sin red (u otro error): la próxima llamada vuelve a intentar.
+    vinetasLoad = null;
+    throw err;
+  });
+  return vinetasLoad;
+}
+
+/** Ids de viñeta válidos (para el efecto `vineta` de los diálogos). Completo después de loadVinetas(). */
+export function vinetaIds(): string[] {
+  return Object.keys(VINETAS);
+}
 
 function lookOf(who: CastMember['who']): HumanLook {
   return who === 'player' ? playerLook() : (characterLook(who) as HumanLook);
@@ -196,7 +184,7 @@ export class Vineta {
     this.currentId = id;
     const build = VINETAS[id];
     if (!build) {
-      console.error(`Viñeta "${id}" no existe (hay: ${VINETA_IDS.join(', ')})`);
+      console.error(`Viñeta "${id}" no existe (hay: ${vinetaIds().join(', ')})`);
       return;
     }
     const root = this.scene.add.container(0, 0).setDepth(DEPTH).setAlpha(0);

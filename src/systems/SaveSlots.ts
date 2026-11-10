@@ -5,6 +5,7 @@ import { GameMap } from './GameMap';
 import { formatDayClock, getMission, hasStoryClock, missionLabel, MISSIONS } from './Mission';
 import { Phone } from './Phone';
 import { Secrets } from './Secrets';
+import { migrateSave } from './SaveData';
 import { formatTime, StoryState, type SaveData } from './StoryState';
 
 const SLOTS_KEY = 'santiago-laberinto:slots';
@@ -66,7 +67,7 @@ class SaveSlotsImpl {
 
   /**
    * Carga el espacio `i` en StoryState y devuelve a qué escena ir. Null si está vacío o no sirve
-   * (el mapa ya no existe, versión de guardado vieja).
+   * (el mapa ya no existe). Las partidas de versiones anteriores ya vienen migradas (readSlot).
    */
   load(i: number): { scene: string; data: Partial<MapSceneData> } | null {
     const s = this.slots[i];
@@ -75,7 +76,7 @@ class SaveSlotsImpl {
     let scene: string;
     try {
       const map = GameMap.get(loc.map);
-      getMission(s.state.mission ?? 'mission01');
+      getMission(s.state.mission);
       scene = SCENE_FOR_KIND[map.data.kind];
     } catch {
       return null;
@@ -104,11 +105,22 @@ function readSlots(): Array<SlotData | null> {
   try {
     const raw = window.localStorage.getItem(SLOTS_KEY);
     if (!raw) return empty;
-    const data = JSON.parse(raw) as Array<SlotData | null>;
-    return empty.map((_, i) => data[i] ?? null);
+    const data = JSON.parse(raw) as unknown;
+    if (!Array.isArray(data)) return empty;
+    return empty.map((_, i) => readSlot(data[i]));
   } catch {
     return empty;
   }
+}
+
+/** Un espacio guardado, con la partida migrada a la versión actual (null si no sirve). */
+function readSlot(raw: unknown): SlotData | null {
+  if (typeof raw !== 'object' || raw === null) return null;
+  const slot = raw as Partial<SlotData>;
+  const state = migrateSave(slot.state);
+  const pos = slot.pos;
+  if (!state || !pos || typeof pos.x !== 'number' || typeof pos.y !== 'number') return null;
+  return { state, pos, place: typeof slot.place === 'string' ? slot.place : '', savedAt: Number(slot.savedAt) || 0 };
 }
 
 export const SaveSlots = new SaveSlotsImpl();

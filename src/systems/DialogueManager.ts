@@ -6,15 +6,44 @@ import { EventSystem } from './EventSystem';
 import { clockMinutes, formatClock } from './Mission';
 import { formatMoney, formatTime, StoryState } from './StoryState';
 
-const files = import.meta.glob<DialogueFile>('../data/dialogues/*.json', { eager: true, import: 'default' });
-
 const trees = new Map<string, DialogueTree>();
-// Las botoneras de los ascensores de la PUCC se generan con sus edificios (src/data/campus_cali.ts).
-for (const [path, file] of [...Object.entries(files), ['campus_cali.ts', PUCC_DIALOGUES] as const]) {
+
+function addTrees(path: string, file: DialogueFile): void {
   for (const [id, tree] of Object.entries(file)) {
     if (trees.has(id)) console.error(`Diálogo "${id}" duplicado (${path})`);
     trees.set(id, tree);
   }
+}
+
+// Las botoneras de los ascensores de la PUCC se generan con sus edificios (src/data/campus_cali.ts).
+addTrees('campus_cali.ts', PUCC_DIALOGUES);
+
+let dialoguesLoad: Promise<void> | null = null;
+
+/**
+ * Descarga todos los diálogos (una sola vez). Content.load() lo pide al arrancar el juego y el título
+ * lo espera antes de entrar a un mapa, así que el resto del código puede usarlos sin esperar.
+ */
+export function loadDialogues(): Promise<void> {
+  // src/data/dialogues.ts junta los JSON: al importarlo de forma dinámica, el build lo deja en un chunk aparte.
+  dialoguesLoad ??= import('../data/dialogues').then(({ DIALOGUE_FILES }) => {
+    for (const [path, file] of Object.entries(DIALOGUE_FILES)) addTrees(path, file);
+  }).catch((err: unknown) => {
+    // Sin red (u otro error): la próxima llamada vuelve a intentar.
+    dialoguesLoad = null;
+    throw err;
+  });
+  return dialoguesLoad;
+}
+
+/** Ids de todos los diálogos cargados (para validar datos en los tests). */
+export function dialogueIds(): string[] {
+  return [...trees.keys()];
+}
+
+/** Árbol de un diálogo (solo lectura: los tests recorren nodos y efectos). */
+export function dialogueTree(id: string): DialogueTree | undefined {
+  return trees.get(id);
 }
 
 export interface ChoiceView {
