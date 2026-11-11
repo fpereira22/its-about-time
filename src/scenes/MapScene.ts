@@ -84,6 +84,11 @@ const SIT_MS = 160;
 /** Mínimo entre dos sonidos de choque al empujar una pared. */
 const BUMP_COOLDOWN_MS = 280;
 const FADE_MS = 250;
+/**
+ * Franja de la pantalla (px) que no tapa la UI: bajo el panel de lugar y objetivo del Hud
+ * (arriba, hasta y = 32) y sobre la caja de diálogo (desde y = 124).
+ */
+const FREE_BAND = { top: 32, bottom: 124 };
 /** Lluvia afuera con el paraguas de doña Mery: el jugador camina debajo de él. */
 const UMBRELLA_ITEM = 'paraguas';
 /** Mojado (o lloviendo sin paraguas): cada cuánto le cae una gota del pelo. */
@@ -914,10 +919,12 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     const cam = this.cameras.main;
     const w = this.map.width * TILE;
     const h = this.map.height * TILE;
-    // Los mapas más chicos que la pantalla quedan centrados en X y arriba en Y,
-    // para que la caja de diálogo no tape el piso del vagón o la micro.
+    // Los mapas más chicos que la pantalla quedan centrados en X. En Y, los bajos (micro, taxi,
+    // furgón) se centran en la franja libre entre el panel de objetivos y la caja de diálogo;
+    // los más altos quedan arriba (a lo más 14 px), para que el diálogo no tape el piso.
     const bx = w < BASE_WIDTH ? (w - BASE_WIDTH) / 2 : 0;
-    const by = h < BASE_HEIGHT ? -Math.min(14, (BASE_HEIGHT - h) / 2) : 0;
+    const top = Math.max(Math.min(14, (BASE_HEIGHT - h) / 2), FREE_BAND.top + (FREE_BAND.bottom - FREE_BAND.top - h) / 2);
+    const by = h < BASE_HEIGHT ? -top : 0;
     cam.setBounds(Math.floor(bx), Math.floor(by), Math.max(w, BASE_WIDTH), Math.max(h, BASE_HEIGHT));
     cam.startFollow(this.player.sprite, true);
     cam.setFollowOffset(0, TILE / 2);

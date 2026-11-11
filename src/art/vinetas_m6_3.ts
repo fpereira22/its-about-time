@@ -273,7 +273,7 @@ const mangoSemaforo: VinetaBuilder = (kit) => {
       phase = 'red';
       t = 0;
       // ¡Frenazo! Todo el bus se sacude.
-      kit.progress(260, (q) => stage.setX(Math.round(Math.sin(q * 20) * (1 - q) * 3)));
+      kit.progress(260, (q) => stage.setX(kit.panel.x + Math.round(Math.sin(q * 20) * (1 - q) * 3)));
       popText(kit, stage, 60, 74, '¡FRENAZO!', '#c83c3c', 9, 700);
     }
     speed = phase === 'green' ? Math.min(3, speed + 0.25) : Math.max(0, speed - 0.6);
@@ -614,7 +614,7 @@ const gato: VinetaBuilder = (kit) => {
     popText(kit, stage, 110, 30, '¡MIAAAAU!', '#d8f048', 12, 1000);
     kit.after(500, () => {
       popText(kit, stage, 70, 54, '¡AAAAH!', '#ff9cb4', 10, 0);
-      kit.progress(300, (q) => stage.setX(Math.round(Math.sin(q * 24) * (1 - q) * 3)));
+      kit.progress(300, (q) => stage.setX(kit.panel.x + Math.round(Math.sin(q * 24) * (1 - q) * 3)));
     });
   });
 };
