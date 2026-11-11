@@ -19,6 +19,7 @@ import { ProgressScene } from './scenes/ProgressScene';
 import { TitleScene } from './scenes/TitleScene';
 import { UIScene } from './scenes/UIScene';
 import { Controls } from './systems/Controls';
+import { attachFullscreenKey } from './systems/Fullscreen';
 import { Admin } from './systems/Admin';
 import { Content } from './systems/Content';
 import { DevSkip } from './systems/DevSkip';
@@ -49,7 +50,9 @@ const game = new Phaser.Game({
   roundPixels: true,
   scale: {
     mode: Phaser.Scale.NONE,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
+    // El centrado lo hace el CSS (#game es flex en index.html). Si Phaser también centra, le suma un
+    // margen al canvas y el juego queda corrido a la derecha y abajo.
+    autoCenter: Phaser.Scale.NO_CENTER,
   },
   input: { keyboard: false, gamepad: false },
   scene: [BootScene, PreloadScene, TitleScene, OverworldScene, InteriorScene, UIScene, FutbolScene, PiscinaScene, CincoScene, NatacionScene, PersecucionScene, CocinaScene, SalsaScene, MissionCompleteScene, ProgressScene, CreditsScene, AdminWarpScene],
@@ -61,6 +64,7 @@ Secrets.attach();
 Records.attach();
 Admin.attach(game);
 DevSkip.attach(game);
+attachFullscreenKey();
 
 if (import.meta.env.DEV) {
   // Acceso de depuración desde la consola del navegador: __dev.state.allFlags(), etc.

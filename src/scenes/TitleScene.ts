@@ -7,6 +7,8 @@ import { GameMap } from '../systems/GameMap';
 import { GAME_TITLE } from '../config/game';
 import { Admin } from '../systems/Admin';
 import { Content } from '../systems/Content';
+import { canFullscreen, isFullscreen, toggleFullscreen } from '../systems/Fullscreen';
+import { TouchControls } from '../systems/TouchControls';
 import { currentMission, missionFullLabel, missionLabel, MISSIONS, parseClock } from '../systems/Mission';
 import type { MissionDef } from '../types/mission';
 import { Records } from '../systems/Records';
@@ -101,6 +103,7 @@ export class TitleScene extends BaseScene {
         .on('pointerdown', () => !this.leaving && Admin.toggleWarp(this.game));
     }
 
+    this.setupFullscreenHint();
     this.setupZoom();
     this.cameras.main.fadeIn(350, 0, 0, 0);
     playMusic('title');
@@ -122,6 +125,22 @@ export class TitleScene extends BaseScene {
       return;
     }
     this.menu?.update();
+  }
+
+  /**
+   * Aviso "P: pantalla completa" para el PC (la tecla es global, ver Fullscreen.ts). Con controles
+   * táctiles no sale: ahí está el botón "pantalla" del panel.
+   */
+  private setupFullscreenHint(): void {
+    if (!canFullscreen() || TouchControls.enabled) return;
+    const label = (): string => (isFullscreen() ? 'P: SALIR DE PANTALLA COMPLETA' : 'P: PANTALLA COMPLETA');
+    const hint = this.addText(4, 4, label(), { fontFamily: FONT_HUD, fontSize: '8px', color: '#c8d0e0' })
+      .setDepth(10)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => toggleFullscreen());
+    const onChange = (): void => void hint.setText(label());
+    document.addEventListener('fullscreenchange', onChange);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => document.removeEventListener('fullscreenchange', onChange));
   }
 
   /** Revisa (cargando la partida) si hay algo que continuar. */

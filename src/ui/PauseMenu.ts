@@ -5,6 +5,8 @@ import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD } from '../config/display';
 import type { MapScene } from '../scenes/MapScene';
 import { Admin } from '../systems/Admin';
 import { Controls } from '../systems/Controls';
+import { canFullscreen } from '../systems/Fullscreen';
+import { TouchControls } from '../systems/TouchControls';
 import { EventSystem } from '../systems/EventSystem';
 import { missionSummary } from '../systems/Mission';
 import { SaveSlots, SLOT_COUNT } from '../systems/SaveSlots';
@@ -328,7 +330,7 @@ export class PauseMenu {
     this.add(makeText(this.scene, x + 10, y + 7, 'PAUSA', { fontFamily: FONT_HUD, fontSize: '8px', color: THEME.accentCss }));
     this.options(options, x + 18, y + 20);
     // El aviso (ej. por qué no se puede guardar) va en la línea de ayuda de abajo.
-    this.hint(this.note || 'W/S: mover · E: elegir · Esc: cerrar');
+    this.hint(this.note || `W/S: mover · E: elegir · Esc: cerrar${canFullscreen() && !TouchControls.enabled ? ' · P: pantalla' : ''}`);
   }
 
   private buildSlots(): void {

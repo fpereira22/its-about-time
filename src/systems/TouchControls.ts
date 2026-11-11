@@ -2,6 +2,7 @@ import type Phaser from 'phaser';
 import { BASE_HEIGHT, BASE_WIDTH, setTouchBox } from '../config/display';
 import type { Direction } from '../types/map';
 import { Controls, type Action } from './Controls';
+import { canFullscreen, toggleFullscreen } from './Fullscreen';
 
 /** auto: solo en celulares y tablets · on: siempre (para probar en el PC) · off: nunca. */
 export type TouchMode = 'auto' | 'on' | 'off';
@@ -269,8 +270,7 @@ class TouchControlsImpl {
       const top = this.band.top + Math.max(0, (this.band.height - gh) * 0.4);
       host.style.setProperty('--tc-top', `${Math.round(top)}px`);
     }
-    // Phaser recalcula el centrado y las medidas en pantalla (el toque sobre el canvas las usa:
-    // maletas, mapa de la línea); si no, al salir del modo táctil el canvas queda corrido.
+    // Phaser recalcula las medidas en pantalla (el toque sobre el canvas las usa: maletas, mapa de la línea).
     window.requestAnimationFrame(() => this.game?.scale.refresh());
   }
 
@@ -425,25 +425,6 @@ function safeInsets(): { top: number; right: number; bottom: number; left: numbe
   };
   probe.remove();
   return out;
-}
-
-function canFullscreen(): boolean {
-  return Boolean(document.fullscreenEnabled && document.documentElement.requestFullscreen);
-}
-
-function toggleFullscreen(): void {
-  if (document.fullscreenElement) {
-    void document.exitFullscreen().catch(() => {});
-    return;
-  }
-  document.documentElement
-    .requestFullscreen({ navigationUI: 'hide' })
-    .then(() => {
-      // En Android se puede fijar la horizontal (iOS no lo permite: ahí el juego se adapta solo).
-      const orientation = screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> };
-      return orientation.lock?.('landscape');
-    })
-    .catch(() => {});
 }
 
 /** Vibración cortita al pulsar (solo donde existe, p. ej. Android). */
