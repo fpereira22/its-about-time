@@ -27,10 +27,10 @@ export interface HumanLook {
   /** `fade`: degradado (costados rapados); `mullet`: corto adelante y largo atrás. */
   hairStyle?: 'short' | 'long' | 'bun' | 'cap' | 'bald' | 'fade' | 'mullet';
   cap?: string;
-  /** Contextura: "heavy" ensancha el torso. */
-  build?: 'normal' | 'heavy';
-  /** Barba, bigote y monoceja (misión 5: el barbero y Grover). */
-  extras?: Array<'tie' | 'glasses' | 'backpack' | 'beard' | 'mustache' | 'unibrow'>;
+  /** Contextura: "heavy" ensancha el torso; "small" lo hace más bajito (Richi) y "tall", más alto (Juanpa), misión 8. */
+  build?: 'normal' | 'heavy' | 'small' | 'tall';
+  /** Barba, bigote y monoceja (misión 5: el barbero y Grover); pecas (misión 8). */
+  extras?: Array<'tie' | 'glasses' | 'backpack' | 'beard' | 'mustache' | 'unibrow' | 'freckles'>;
   accent?: string;
 }
 
@@ -113,7 +113,16 @@ function humanFrame(dir: 'down' | 'up' | 'left', step: 0 | 1 | 2, look: HumanLoo
   const heavy = look.build === 'heavy';
   const body = dir === 'left' ? (heavy ? BODY_SIDE_HEAVY : BODY_SIDE) : heavy ? BODY_FRONT_HEAVY : BODY_FRONT;
   const legs = dir === 'left' ? LEGS_SIDE[step] : LEGS_FRONT[step];
-  const g = toGrid([...head, ...body, ...legs]);
+  // Bajito: dos filas menos de torso y pantalón, y todo baja dos píxeles (los pies siguen en el suelo).
+  const small = look.build === 'small';
+  // Alto: la cabeza sube un píxel (la fila vacía de arriba) y el torso crece una fila.
+  const tall = look.build === 'tall';
+  const parts = small
+    ? [...head, body[0], body[2], body[3], legs[1], legs[2]]
+    : tall
+      ? [...head.slice(1), body[0], body[1], body[1], body[2], body[3], ...legs]
+      : [...head, ...body, ...legs];
+  const g = toGrid(parts);
 
   const style = look.hairStyle ?? 'short';
   if (style === 'long') {
@@ -203,6 +212,12 @@ function humanFrame(dir: 'down' | 'up' | 'left', step: 0 | 1 | 2, look: HumanLoo
     else if (dir === 'left') for (let y = 9; y <= 11; y++) (put(g, 11, y, 'k'), put(g, 12, y, 'o'));
   }
 
+  if (extras.includes('freckles')) {
+    if (dir === 'down') (put(g, 4, 7, 'F'), put(g, 5, 7, 'F'), put(g, 10, 7, 'F'), put(g, 11, 7, 'F'));
+    else if (dir === 'left') (put(g, 4, 7, 'F'), put(g, 6, 7, 'F'));
+  }
+  if (small) g.unshift('................'.split(''), '................'.split(''));
+
   const shirtShade = shade(look.shirt, -0.22);
   const cap = look.cap ?? PAL.red;
   return PixelGrid.fromTemplate(
@@ -221,6 +236,7 @@ function humanFrame(dir: 'down' | 'up' | 'left', step: 0 | 1 | 2, look: HumanLoo
       g: PAL.glassLight,
       f: mix(look.hair, look.skin, 0.55),
       m: '#8a3a3a',
+      F: shade(look.skin, -0.22),
       w: PAL.white,
       t: look.accent ?? PAL.red,
       k: look.accent ?? '#c87830',

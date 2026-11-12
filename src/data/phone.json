@@ -72,6 +72,18 @@
       "name": "Sira",
       "color": "#e8a0b8",
       "callable": false
+    },
+    "intercambio": {
+      "name": "Intercambio PUCC 🌎",
+      "color": "#5a90e8"
+    },
+    "richi": {
+      "name": "Richi",
+      "color": "#5a90e8"
+    },
+    "tami": {
+      "name": "Tami",
+      "color": "#e8607a"
     }
   },
   "messages": {
@@ -575,6 +587,26 @@
     "m7_v2_lobby": {
       "from": "sira",
       "text": "Estoy abajo. Don Wilmer me preguntó mi signo y si «vengo en son de paz». Subo."
+    },
+    "m8_sira_buenosdias": {
+      "from": "sira",
+      "text": "buenos días, chileno ☔ ¿dormiste?"
+    },
+    "m8_grupo_bus": {
+      "from": "intercambio",
+      "text": "Danilo: Bus 1:30 pm, plataforma 14 de la terminal. El que llegue tarde paga las polas 🍻"
+    },
+    "m8_grupo_parque": {
+      "from": "intercambio",
+      "text": "Juanpa: PARCE LAS ARGENTINAS ESTÁN EN EL KRATER 🎢🎢🎢"
+    },
+    "m8_tami_noche": {
+      "from": "tami",
+      "text": "¿Dónde se metieron vos y Danilo? 👀"
+    },
+    "m8_sira_tinto": {
+      "from": "sira",
+      "text": "¿qué haces? 🌧️ ¿vamos por un tinto?"
     }
   },
   "calls": {
@@ -904,6 +936,26 @@
       },
       "afterMs": 45000,
       "message": "m7_grover_viernes"
+    },
+    {
+      "mission": "mission08",
+      "id": "m8_grupo_parque",
+      "if": {
+        "flag": "m8_en_parque",
+        "notFlag": "m8_krater"
+      },
+      "afterMs": 15000,
+      "message": "m8_grupo_parque"
+    },
+    {
+      "mission": "mission08",
+      "id": "m8_tami_noche",
+      "if": {
+        "flag": "m8_disco_vista",
+        "notFlag": "m8_pool"
+      },
+      "afterMs": 5000,
+      "message": "m8_tami_noche"
     }
   ],
   "outgoing": [

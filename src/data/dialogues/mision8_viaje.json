@@ -1,0 +1,3378 @@
+{
+ "m8_intro": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Sábado. Anoche llovió como si el cielo tuviera algo que decir. Todavía te acuerdas del beso. Del bus. Del corazón en el vidrio empañado.",
+    "effects": [
+     {
+      "vineta": "m8_depa_sabado"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Vibra el celular. Es Sira: «buenos días, chileno ☔ ¿dormiste?». Le contestas con tres caritas. Después borras dos. Después las vuelves a poner.",
+    "effects": [
+     {
+      "vineta": "m8_cel_sira"
+     },
+     {
+      "message": "m8_sira_buenosdias"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Otra notificación. Fotogram: «Tus recuerdos de hace tres semanas». Una foto: la plaza de Salento de noche, gente abrazada, un vasito de tequila en primer plano.",
+    "effects": [
+     {
+      "vineta": "m8_fotogram_recuerdo"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Salento. El paseo de los de intercambio. El bus con Richi, la casita de los camarotes, el Parque del Café, el pool con Danilo...",
+    "next": "n4"
+   },
+   "n4": {
+    "text": "...y esa noche en la plaza, con los mexicanos y una española que hablaba como si el mundo entero fuera su barrio.",
+    "next": "n5"
+   },
+   "n5": {
+    "text": "Te quedas mirando la foto. Y te acuerdas de todo, desde el principio.",
+    "effects": [
+     {
+      "objective": "Recuerda..."
+     },
+     {
+      "event": "recuerdo_m8"
+     }
+    ]
+   }
+  }
+ },
+ "m8_bus_subir": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Viernes, una y media. Terminal de Cali, plataforma 14. El bus del Expreso Cafetero huele a ambientador de vainilla y a pandebono.",
+    "effects": [
+     {
+      "vineta": "m8_terminal_cali"
+     },
+     {
+      "message": "m8_grupo_bus"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "¡Ah ve! ¡Por fin! Pensé que te habías quedado dormido. Subite, subite, que este señor sale puntual. Es el único en Colombia.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_hola"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Adentro está media gente de intercambio: Nacho, Antoine con la guitarra, Iker comiendo, Renzo —un peruano de otra universidad que nadie sabe muy bien quién invitó— y Juanpa con un parlante.",
+    "effects": [
+     {
+      "vineta": "m8_bus_adentro"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Richi",
+    "text": "¡Ve, chileno! ¡Acá! Te guardé puesto en la ventana... bueno, la ventana es mía, pero el de al lado es todo tuyo.",
+    "effects": [
+     {
+      "vineta": "m8_richi_saluda"
+     },
+     {
+      "objective": "Siéntate con Richi (al medio del bus, junto a la ventana)"
+     }
+    ]
+   }
+  }
+ },
+ "m8_bus_sentarse": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Richi",
+    "text": "¡Así me gusta! Vos y yo, los del taller de fútbol. Los demás que se peleen.",
+    "effects": [
+     {
+      "vineta": "m8_bus_richi"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Richi es chiquito —te llega al hombro estirándose— pero tiene la risa más grande del bus. Es de Pasto, juega de cinco en el taller y presta los guayos sin preguntar.",
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Richi",
+    "text": "Vamos a despejarnos, chileno. Que la U está pesada y vos tenés cara de parcial."
+   }
+  }
+ },
+ "m8_viaje_1": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El bus sale de Cali. Por la ventana pasa la recta a Palmira, plana, con cañaduzales y garzas.",
+    "effects": [
+     {
+      "vineta": "m8_ventana_cana"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Richi",
+    "text": "¿Vos conocés Pasto? Hace un frío... ¡achichay! Así decimos cuando hace frío. Achichay. Repetí.",
+    "effects": [
+     {
+      "vineta": "m8_richi_achichay"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "choices": [
+     {
+      "label": "«¡Achichay!»",
+      "effects": [
+       {
+        "setFlag": "m8_achichay"
+       }
+      ],
+      "goto": "bien"
+     },
+     {
+      "label": "«¿Achi... qué?»",
+      "goto": "mal"
+     },
+     {
+      "label": "«En Chile decimos \"¡qué frío, weón!\"»",
+      "goto": "chile"
+     }
+    ]
+   },
+   "bien": {
+    "speaker": "Richi",
+    "text": "¡Ala, perfecto! Ya sos medio pastuso. Y si algo te da asco, decís «¡atatay!». Y si algo te duele, «¡ayayay!». Con eso sobrevivís en Pasto.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ]
+   },
+   "mal": {
+    "speaker": "Richi",
+    "text": "A-CHI-CHAY. No te preocupés, en Salento vas a aprender a decirlo de verdad. Allá hace frío de montaña.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ]
+   },
+   "chile": {
+    "speaker": "Richi",
+    "text": "¡Jajaja! Es igualito, pero con más cariño. Achichay es un frío con cariño.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_viaje_2": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "En Buga, a lo lejos, la Basílica del Señor de los Milagros. Una señora del bus se persigna. Richi también. Tú, por si acaso, también.",
+    "effects": [
+     {
+      "vineta": "m8_basilica_buga"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Sube un vendedor: «¡Pandebono, rosquillas, maní, chicharrón, gaseosa!». Richi saca de su mochila una bolsa misteriosa.",
+    "effects": [
+     {
+      "vineta": "m8_vendedor_bus"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Richi",
+    "text": "Mi mamá me mandó empanadas de pipián desde Pasto. Llegaron un poquito aplastadas, pero el amor no se aplasta. ¿Querés una, o le comprás al señor?",
+    "effects": [
+     {
+      "vineta": "m8_empanada_pipian"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Empanada de pipián (la de la mamá de Richi)",
+      "effects": [
+       {
+        "setFlag": "m8_pipian"
+       },
+       {
+        "sfx": "eat"
+       }
+      ],
+      "goto": "pipian"
+     },
+     {
+      "label": "Pandebono del vendedor ($2.000)",
+      "if": {
+       "minMoney": 2000
+      },
+      "effects": [
+       {
+        "pay": 2000
+       },
+       {
+        "sfx": "eat"
+       }
+      ],
+      "goto": "pandebono"
+     }
+    ]
+   },
+   "pipian": {
+    "text": "Mmm... tiene papa, maní y algo que no sabes qué es pero que querrías comer toda la vida. Richi te mira como si le hubieras aprobado la tesis.",
+    "next": "fin"
+   },
+   "pandebono": {
+    "text": "El pandebono está tibio. Richi te mira con la empanada en la mano y cara de «tú te lo perdiste».",
+    "effects": [
+     {
+      "vineta": "m8_vendedor_bus"
+     }
+    ],
+    "next": "fin"
+   },
+   "fin": {
+    "speaker": "Richi",
+    "text": "¡Atatay! Iker se está comiendo un chicharrón entero atrás. Eso no es comida de bus, eso es comida de matrimonio.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_viaje_3": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Tuluá, Andalucía, La Paila. Juanpa pone reguetón en el parlante. Antoine responde con un bambuco en la guitarra. Gana Antoine, por cansancio.",
+    "effects": [
+     {
+      "vineta": "m8_bus_musica"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Richi saca unos audífonos con un solo lado bueno. Te pasa el bueno.",
+    "effects": [
+     {
+      "vineta": "m8_audifonos"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Richi",
+    "text": "¿Qué ponemos? Yo tengo de todo: Bomba Estéreo, Grupo Niche, un man de Pasto que canta en la ducha y que subió un disco...",
+    "choices": [
+     {
+      "label": "Salsa: Grupo Niche",
+      "effects": [
+       {
+        "setFlag": "m8_cancion_niche"
+       }
+      ],
+      "goto": "niche"
+     },
+     {
+      "label": "El man de Pasto que canta en la ducha",
+      "effects": [
+       {
+        "setFlag": "m8_cancion_pasto"
+       }
+      ],
+      "goto": "pasto"
+     },
+     {
+      "label": "Algo chileno: Los Jaivas",
+      "effects": [
+       {
+        "setFlag": "m8_cancion_jaivas"
+       }
+      ],
+      "goto": "jaivas"
+     }
+    ]
+   },
+   "niche": {
+    "text": "Suena «Cali Pachanguero» y medio bus se pone a cantar sin que nadie haya puesto parlante. Así es Colombia: la música se contagia por el aire.",
+    "effects": [
+     {
+      "vineta": "m8_bus_musica"
+     }
+    ]
+   },
+   "pasto": {
+    "text": "El man de Pasto canta horrible. Precioso, pero horrible. Richi canta encima, más horrible todavía. Es la mejor canción del viaje."
+   },
+   "jaivas": {
+    "text": "«Todos juntos». Richi la escucha con los ojos cerrados. «Ve, esto suena a cordillera», dice. Tiene razón: afuera ya se ven las montañas.",
+    "effects": [
+     {
+      "setFlag": "m8_richi_jaivas"
+     }
+    ]
+   }
+  }
+ },
+ "m8_viaje_4": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El bus empieza a subir. Curvas, neblina, guaduales a la orilla de la carretera. Se te tapan los oídos.",
+    "effects": [
+     {
+      "vineta": "m8_cordillera"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Richi",
+    "text": "Oí, chileno... ¿y vos cómo estás? Pero de verdad. No el «bien, bien» que le decís a todo el mundo.",
+    "effects": [
+     {
+      "vineta": "m8_richi_serio"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "choices": [
+     {
+      "label": "«Extraño a mi familia. A veces un montón.»",
+      "effects": [
+       {
+        "setFlag": "m8_richi_familia"
+       }
+      ],
+      "goto": "familia"
+     },
+     {
+      "label": "«Bien... aunque la U me tiene reventado.»",
+      "goto": "u"
+     },
+     {
+      "label": "«Bien, bien.» (sonrisa)",
+      "goto": "bien"
+     }
+    ]
+   },
+   "familia": {
+    "speaker": "Richi",
+    "text": "Ya sé. Yo también. Allá en Pasto mi mamá me llama todos los días a las siete, y si no contesto llama a mi tía, y mi tía llama al portero. Así es la familia: un call center del amor.",
+    "effects": [
+     {
+      "vineta": "m8_richi_serio"
+     }
+    ],
+    "next": "richi"
+   },
+   "u": {
+    "speaker": "Richi",
+    "text": "Por eso nos vamos a despejar. Nada de Optimización, nada de parciales. Dos días de montaña.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ],
+    "next": "richi"
+   },
+   "bien": {
+    "speaker": "Richi",
+    "text": "...Ajá. «Bien, bien». Ya te voy a sacar la verdad en Salento, ve. Con un canelazo hablás.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ],
+    "next": "richi"
+   },
+   "richi": {
+    "text": "Afuera la carretera se mete en una nube. Richi se queda callado un rato, mirando la ventana. Es raro estar lejos de casa, piensas. Pero es menos raro si alguien más lo siente igual.",
+    "effects": [
+     {
+      "vineta": "m8_cordillera"
+     }
+    ]
+   }
+  }
+ },
+ "m8_viaje_5": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Armenia. El bus para en la terminal y se baja la mitad de la gente que no era del paseo. Suben unos señores con ruana.",
+    "effects": [
+     {
+      "vineta": "m8_armenia"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Richi se quedó dormido. En tu hombro. Ronca bajito, como un gatito con gripe.",
+    "effects": [
+     {
+      "vineta": "m8_richi_duerme"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Danilo se da vuelta desde el asiento de adelante y les toma una foto. «Pa' la historia, ve. Esto es amistad sana. Muy sana.»",
+    "effects": [
+     {
+      "vineta": "m8_danilo_foto"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Tami, dos asientos más atrás, se ríe. Te saluda con la mano. Tami es caleña, estudia con Danilo, y desde la terminal está buscando cualquier excusa para hablarte.",
+    "effects": [
+     {
+      "vineta": "m8_tami_saluda"
+     },
+     {
+      "setFlag": "m8_tami_vista"
+     }
+    ]
+   }
+  }
+ },
+ "m8_viaje_6": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Boquía. El río Quindío corre al lado de la carretera, entre piedras. La neblina baja hasta los techos.",
+    "effects": [
+     {
+      "vineta": "m8_boquia"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Richi",
+    "text": "...¿Ya llegamos? ¿Me dormí? No me digás que babeé. ¡Atatay! Perdón, chileno. Te debo una camisa.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "El bus entra a Salento. Casas blancas con puertas de colores, balcones de madera, faroles amarillos. Y un frío que se cuela por la puerta apenas se abre.",
+    "effects": [
+     {
+      "vineta": "m8_llegada_salento"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Richi",
+    "text": "¡ACHICHAY! ¡Ahora sí, chileno! ¡Decilo conmigo!",
+    "effects": [
+     {
+      "vineta": "m8_richi_achichay"
+     }
+    ]
+   }
+  }
+ },
+ "m8_salento_llegada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Terminal de Salento, siete de la tarde. Doce grados. Todos sacan la chaqueta que no trajeron.",
+    "effects": [
+     {
+      "vineta": "m8_terminal_salento"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Bueno, ve parce, la casita queda detrás de la iglesia, en la Carrera 7. Bajamos por la plaza. Todos juntos, ¿oyeron? Que nadie se pierda, que yo no hago terapia de grupo.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_guia"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Tami",
+    "text": "Yo voy al lado del chileno, que él no conoce. Por seguridad.",
+    "effects": [
+     {
+      "vineta": "m8_tami_saluda"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Renzo",
+    "text": "Causa, ¿alguien sabe si en Salento venden ají? Llevo seis horas sin ají. Me estoy muriendo.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Caminan en fila por las calles empedradas. Parecen un trencito de turistas. Lo son.",
+    "effects": [
+     {
+      "vineta": "m8_fila_salento"
+     },
+     {
+      "objective": "Baja con el grupo hasta la plaza y la casita (Hostal La Casita, detrás de la parroquia, en la Carrera 7)"
+     }
+    ]
+   }
+  }
+ },
+ "m8_casita_llegada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Hostal La Casita: una casa vieja de bahareque con piso de madera que cruje, un patio con una mesa de pimpón y olor a café recién colado.",
+    "effects": [
+     {
+      "vineta": "m8_casita_entrada"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Doña Rubiela",
+    "text": "¡Bienvenidos, muchachos! Yo soy Rubiela. Tres reglas: zapatos afuera de la pieza, nada de fiestas después de las doce... y el que se tome mi aguapanela, lava la olla.",
+    "effects": [
+     {
+      "vineta": "m8_rubiela"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Doña Rubiela",
+    "text": "Los muchachos duermen en la pieza de los camarotes. Las muchachas, en la del fondo. Y el wifi es «cafecito123». Todo en minúscula, que si no, no entra.",
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Richi",
+    "text": "¡Yo quiero el de arriba! Pa' sentirme alto por una vez en la vida.",
+    "effects": [
+     {
+      "vineta": "m8_camarotes"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Juanpa ya se tiró en el de abajo de Richi. Renzo en el del rincón. Danilo eligió el más lejos de Renzo «por razones clínicas». Te queda un camarote libre: arriba o abajo.",
+    "effects": [
+     {
+      "objective": "Elige tu camarote en la pieza (arriba o abajo) y acuéstate. Antes puedes recorrer la casita"
+     },
+     {
+      "clearFlag": [
+       "m8_sigue_richi",
+       "m8_sigue_juanpa",
+       "m8_sigue_renzo",
+       "m8_sigue_danilo",
+       "m8_sigue_tami"
+      ]
+     },
+     {
+      "setFlag": "m8_en_casita"
+     }
+    ]
+   }
+  }
+ },
+ "m8_noche_camarotes": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Se apaga la luz. La pieza queda a oscuras, salvo el celular de Juanpa iluminándole la cara desde abajo.",
+    "effects": [
+     {
+      "vineta": "m8_camarotes_noche"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Richi",
+    "text": "Chileno... ¿estás despierto?",
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Ah ve, ¿y vos estás pensando en alguien? Así, en general. Pregunto como profesional.",
+    "choices": [
+     {
+      "label": "«En nadie.» (mentira)",
+      "effects": [
+       {
+        "setFlag": "m8_nadie"
+       }
+      ],
+      "goto": "nadie"
+     },
+     {
+      "label": "«En alguien... pero no te voy a decir.»",
+      "effects": [
+       {
+        "setFlag": "m8_menciona_alguien"
+       }
+      ],
+      "goto": "sira"
+     },
+     {
+      "label": "«En mi cama de Chile.»",
+      "goto": "cama"
+     }
+    ]
+   },
+   "nadie": {
+    "speaker": "Danilo",
+    "text": "Ajá. «En nadie». Así empiezan todos los pacientes. Buenas noches, ve.",
+    "next": "renzo"
+   },
+   "sira": {
+    "speaker": "Danilo",
+    "text": "¡Uuuh! ¡Hay alguien! Vojabés que eso se le nota a uno en la cara, ¿cierto? ...Bueno, bueno. No pregunto. Mañana seguimos la sesión.",
+    "next": "renzo"
+   },
+   "cama": {
+    "speaker": "Danilo",
+    "text": "Jajaja. Eso es nostalgia de colchón. Tiene nombre técnico, pero no te lo voy a cobrar.",
+    "next": "renzo"
+   },
+   "renzo": {
+    "text": "Renzo, desde el rincón, ya dormido: «...rocoto... rocoto relleno... mamá...».",
+    "effects": [
+     {
+      "vineta": "m8_renzo_suena"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "text": "Juanpa empieza a roncar. No un ronquido normal: un ronquido con bajo, como un parlante de bus. Richi se ríe tanto que se le mueve el camarote entero.",
+    "effects": [
+     {
+      "vineta": "m8_juanpa_ronca"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "speaker": "Richi",
+    "text": "Buenas noches, chileno. Qué bueno que viniste.",
+    "effects": [
+     {
+      "vineta": "m8_camarotes_noche"
+     }
+    ]
+   }
+  }
+ },
+ "m8_noche_sueno": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Te quedas dormido con el frío en la nariz, el ronquido de Juanpa y una sensación rara: que esta casita, por una noche, es tu casa.",
+    "effects": [
+     {
+      "vineta": "m8_noche_zzz"
+     }
+    ]
+   }
+  }
+ },
+ "m8_sabado_despierta": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Sábado. Siete cuarenta y cinco. La luz entra por la ventana y el agua de la ducha está... ¡ACHICHAY!",
+    "effects": [
+     {
+      "vineta": "m8_ducha_fria"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Juanpa",
+    "text": "¡Ve, parce, arriba! Vamos a la plaza con Renzo. A caminar, a comer, a ver qué hay. Los demás se quedan durmiendo.",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Renzo",
+    "text": "Yo desayuno en la calle, causa. Y busco ají. No me rindo.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Juanpa es caleño como Danilo, altísimo —para hablar con Richi se tiene que agachar— y dice «ve» y «parce» cada tres palabras. Renzo es de Arequipa, grande y redondo como un oso de peluche, y está convencido de que todo lo de Colombia es «rico, pero le falta picante».",
+    "effects": [
+     {
+      "vineta": "m8_juanpa_renzo"
+     },
+     {
+      "objective": "Sal con Juanpa y Renzo: la plaza, el mercado campesino de la Calle Real... comer, caminar y hablar con gente. A las 12:30, la trucha"
+     }
+    ]
+   }
+  }
+ },
+ "m8_aun_no_dormir": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Todavía no tienes sueño. (Termina lo que estás haciendo primero.)",
+    "effects": [
+     {
+      "vineta": "m8_camarotes"
+     }
+    ]
+   }
+  }
+ },
+ "m8_c_rubiela": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Doña Rubiela",
+    "text": "Mijo, ¿quiere aguapanela? Está caliente. Con queso adentro, como se debe.",
+    "effects": [
+     {
+      "vineta": "m8_aguapanela"
+     },
+     {
+      "sfx": "eat"
+     },
+     {
+      "setFlag": "m8_aguapanela"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Doña Rubiela",
+    "text": "Este hostal era la casa de mi abuela. Ella tostaba café en el patio. Todavía, cuando llueve, huele a eso.",
+    "effects": [
+     {
+      "vineta": "m8_rubiela"
+     }
+    ]
+   }
+  }
+ },
+ "m8_c_hamaca": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Una hamaca de colores. Te acuestas un rato. Te meces. Por un minuto no existen los parciales.",
+    "effects": [
+     {
+      "vineta": "m8_hamaca"
+     }
+    ]
+   }
+  }
+ },
+ "m8_c_cuadro": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Un cuadro del valle de Cocora: palmas de cera altísimas y neblina. Alguien escribió abajo, con lápiz: «aquí me enamoré». No dice de quién.",
+    "effects": [
+     {
+      "vineta": "m8_cuadro_cocora"
+     }
+    ]
+   }
+  }
+ },
+ "m8_c_ventana": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Por la ventana se ven los techos de teja de Salento, uno tras otro, y el humo de una chimenea que sube derechito.",
+    "effects": [
+     {
+      "vineta": "m8_ventana_tejas"
+     }
+    ]
+   }
+  }
+ },
+ "m8_c_cocina": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "En la cocina hay una olla de café siempre lista y un letrero: «EL QUE LO TERMINA, LO HACE». Debajo, con otra letra: «JUANPA, ESTO ES PARA TI».",
+    "effects": [
+     {
+      "vineta": "m8_cocina_casita"
+     }
+    ]
+   }
+  }
+ },
+ "m8_c_nevera": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La nevera tiene un queso campesino, tres limones, una bolsa de arepas y un táper que dice «RENZO - NO TOCAR - AJÍ (ojalá)». Está vacío.",
+    "effects": [
+     {
+      "vineta": "m8_nevera_casita"
+     }
+    ]
+   }
+  }
+ },
+ "m8_c_pinpon_cerrado": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La mesa de pimpón del patio. Tiene una paleta rota y otra con cinta. Doña Rubiela dice que el domingo hay torneo. Que se preparen.",
+    "effects": [
+     {
+      "vineta": "m8_mesa_pinpon"
+     }
+    ]
+   }
+  }
+ },
+ "m8_c_ducha": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La ducha. Tiene dos llaves: una dice C y la otra F. Las dos son F.",
+    "effects": [
+     {
+      "vineta": "m8_ducha_fria"
+     }
+    ]
+   }
+  }
+ },
+ "m8_c_cama_ocupada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Ese camarote ya tiene dueño (y una mochila encima).",
+    "effects": [
+     {
+      "vineta": "m8_camarotes"
+     }
+    ]
+   }
+  }
+ },
+ "m8_c_tami_pasillo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Tami",
+    "text": "Ey, chileno. ¿Viste que hay mesa de pimpón? Mañana te reto. Si gano, me invitás un café. Si ganás... también me invitás un café.",
+    "effects": [
+     {
+      "vineta": "m8_tami_saluda"
+     },
+     {
+      "setFlag": "m8_tami_cafe"
+     }
+    ]
+   }
+  }
+ },
+ "m8_salento_sabado": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Salento de día: los balcones rojos, azules y amarillos, los Willys estacionados en la plaza, el olor a café y a arepa. Hace frío, pero el sol pica.",
+    "effects": [
+     {
+      "vineta": "m8_salento_dia"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Juanpa",
+    "text": "Parce, Salento es como un pesebre de verdad. Mirá esos balcones. Mi mamá se muere acá.",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     },
+     {
+      "setFlag": "m8_sabado_calle"
+     }
+    ]
+   }
+  }
+ },
+ "m8_willys": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "effects": [
+     {
+      "vineta": "m8_willys"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "domingo",
+      "if": {
+       "flag": "m8_domingo"
+      }
+     },
+     {
+      "goto": "sabado"
+     }
+    ]
+   },
+   "sabado": {
+    "speaker": "Don Hernando",
+    "text": "¡Cocora, Cocora! ¡Valle de Cocora, palmas de cera, colibríes! Salimos cuando se llene el Willys: ocho adentro y tres colgados atrás.",
+    "choices": [
+     {
+      "label": "«¿Tres colgados atrás?»",
+      "goto": "colgados"
+     },
+     {
+      "label": "«Otro día, don Hernando.»",
+      "goto": "otro"
+     }
+    ]
+   },
+   "colgados": {
+    "speaker": "Don Hernando",
+    "text": "¡Claro! Los de atrás van parados en el estribo, agarrados del techo. Es la mejor parte, mijo: el viento en la cara y la vida en las manos. Cuatro mil por cabeza.",
+    "effects": [
+     {
+      "vineta": "m8_willys_colgado"
+     },
+     {
+      "setFlag": "secreto_m8_willys"
+     }
+    ],
+    "next": "otro"
+   },
+   "otro": {
+    "speaker": "Don Hernando",
+    "text": "Aquí estamos todos los días, mijo. El Willys no se cansa. Yo sí, pero él no.",
+    "effects": [
+     {
+      "vineta": "m8_willys"
+     }
+    ]
+   },
+   "domingo": {
+    "speaker": "Don Hernando",
+    "text": "¿Hoy tampoco va pa' Cocora? Usted va a ser el único que vino a Salento y no vio las palmas. ¡Quedará pa' la próxima!"
+   }
+  }
+ },
+ "m8_aristobulo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Don Aristóbulo",
+    "text": "Buenos días, joven. ¿Sabe por qué la palma de cera es tan alta? Porque está buscando el sol por encima de la neblina. Sesenta metros buscándolo.",
+    "effects": [
+     {
+      "vineta": "m8_aristobulo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Don Aristóbulo",
+    "text": "Yo tengo noventa y dos años y todavía lo estoy buscando. Ahí vamos, la palma y yo.",
+    "effects": [
+     {
+      "vineta": "m8_palma_cera"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Renzo",
+    "text": "Causa... qué profundo el abuelo. Yo nomás busco ají.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     },
+     {
+      "setFlag": "m8_hablo_aristobulo"
+     }
+    ]
+   }
+  }
+ },
+ "m8_gringos": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Mochilera",
+    "text": "¡Hola! ¿Uste-des... sa-ben dónde... está el... Cocora? Nosotros somos de Holanda. Hablamos muy... bien el español.",
+    "effects": [
+     {
+      "vineta": "m8_gringos"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Indicarles los Willys de la plaza",
+      "effects": [
+       {
+        "setFlag": "m8_ayudo_gringos"
+       }
+      ],
+      "goto": "willys"
+     },
+     {
+      "label": "Hablarles en chileno",
+      "effects": [
+       {
+        "setFlag": "secreto_m8_gringos"
+       }
+      ],
+      "goto": "chileno"
+     }
+    ]
+   },
+   "willys": {
+    "speaker": "Mochilera",
+    "text": "¡Ah, los yips! ¡Gracias! Usted habla muy... claro. ¿Es colombiano?",
+    "next": "fin"
+   },
+   "chileno": {
+    "text": "«Ya po, al tiro, los Willys están ahí no más, cachai, en la esquina, ¿ya?» La holandesa anota «cachai» en una libreta. Se va feliz. Nunca va a encontrar esa palabra en el diccionario.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Juanpa: «Parce, usted acaba de exportar el chileno a Holanda.»",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_palomas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Un niño persigue a las palomas por la plaza. Las palomas no se van: dan dos pasitos y lo miran con cara de «¿otra vez?».",
+    "effects": [
+     {
+      "vineta": "m8_palomas"
+     }
+    ]
+   }
+  }
+ },
+ "m8_iglesia": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La parroquia Nuestra Señora del Carmen: blanca, con sus ventanas azules. Adentro huele a cera y hay una señora rezando bajito. Renzo se persigna dos veces «por si acaso, causa».",
+    "effects": [
+     {
+      "vineta": "m8_iglesia"
+     }
+    ]
+   }
+  }
+ },
+ "m8_palma_plaza": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Una palma de cera, el árbol nacional de Colombia. El tronco es lisito y gris, como si estuviera hecho de vela. Arriba, muy arriba, el penacho se mueve con el viento.",
+    "effects": [
+     {
+      "vineta": "m8_palma_cera"
+     }
+    ]
+   }
+  }
+ },
+ "m8_banca": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Te sientas un momento en la banca. Pasa un perro, pasa un Willys, pasa una señora con un ramo de flores. Salento pasa despacio.",
+    "effects": [
+     {
+      "vineta": "m8_salento_dia"
+     }
+    ]
+   }
+  }
+ },
+ "m8_obleas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Doña Fanny",
+    "text": "¡Obleas, obleas! Con arequipe, mora, queso, crema, chispitas... ¿Cuál le hago, mijo?",
+    "effects": [
+     {
+      "vineta": "m8_obleas"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "ya",
+      "if": {
+       "hasItem": "oblea_salento"
+      }
+     },
+     {
+      "goto": "menu"
+     }
+    ]
+   },
+   "menu": {
+    "choices": [
+     {
+      "label": "Oblea con arequipe y mora ($4.000)",
+      "if": {
+       "minMoney": 4000
+      },
+      "effects": [
+       {
+        "pay": 4000
+       },
+       {
+        "giveItem": "oblea_salento"
+       }
+      ],
+      "goto": "comprar"
+     },
+     {
+      "label": "Después vuelvo",
+      "goto": "chao"
+     }
+    ]
+   },
+   "comprar": {
+    "text": "Dos galletas finitas, arequipe, mora y una lluvia de queso rallado. Juanpa pide una «con todo». Le llega una oblea del tamaño de un timón.",
+    "effects": [
+     {
+      "vineta": "m8_obleas"
+     }
+    ]
+   },
+   "chao": {
+    "speaker": "Doña Fanny",
+    "text": "Aquí estoy, mijo. Las obleas no se van.",
+    "effects": [
+     {
+      "vineta": "m8_obleas"
+     }
+    ]
+   },
+   "ya": {
+    "speaker": "Doña Fanny",
+    "text": "¿Otra? Usted es de los míos. Pero primero termínese esa."
+   }
+  }
+ },
+ "m8_arepas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Doña Marleny",
+    "text": "¡Arepa de choclo con quesito! ¡Calientica! Y ají de la casa, el que quiera.",
+    "effects": [
+     {
+      "vineta": "m8_arepa_choclo"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "aji",
+      "if": {
+       "flag": "m8_aji_pista",
+       "notFlag": "m8_aji_encontrado"
+      }
+     },
+     {
+      "goto": "ya",
+      "if": {
+       "hasItem": "arepa_choclo"
+      }
+     },
+     {
+      "goto": "menu"
+     }
+    ]
+   },
+   "menu": {
+    "choices": [
+     {
+      "label": "Arepa de choclo con quesito ($5.000)",
+      "if": {
+       "minMoney": 5000
+      },
+      "effects": [
+       {
+        "pay": 5000
+       },
+       {
+        "giveItem": "arepa_choclo"
+       }
+      ],
+      "goto": "comprar"
+     },
+     {
+      "label": "Después vuelvo",
+      "goto": "chao"
+     }
+    ]
+   },
+   "comprar": {
+    "text": "Dulce, con queso derretido encima y un pedazo de mantequilla. Es como comerse un abrazo de abuela.",
+    "effects": [
+     {
+      "vineta": "m8_arepa_choclo"
+     }
+    ]
+   },
+   "chao": {
+    "speaker": "Doña Marleny",
+    "text": "Aquí la espero, mijo.",
+    "effects": [
+     {
+      "vineta": "m8_arepa_choclo"
+     }
+    ]
+   },
+   "ya": {
+    "speaker": "Doña Marleny",
+    "text": "¿Le gustó la arepa? Se le nota en la cara."
+   },
+   "aji": {
+    "speaker": "Doña Marleny",
+    "text": "¿Ají? ¡Claro, mijo! El ají de la casa: cebolla, cilantro, limón y un ají pajarito que me trae mi compadre de la finca.",
+    "effects": [
+     {
+      "vineta": "m8_aji_casa"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "text": "Renzo prueba una cucharada. Silencio. Se le ponen los ojos rojos. Le sale una lágrima.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_llora"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Renzo",
+    "text": "...Causa. Esto... esto no pica nada. (Llora.) Nada. (Llora más.) Doña Marleny, cásese conmigo.",
+    "effects": [
+     {
+      "setFlag": "m8_aji_encontrado"
+     },
+     {
+      "giveItem": "aji_casa",
+      "silent": true
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "speaker": "Doña Marleny",
+    "text": "¡Jajaja! Llévese un frasquito, mijo. Pa' que no extrañe tanto.",
+    "effects": [
+     {
+      "vineta": "m8_aji_casa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_solteritas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Don Wilson",
+    "text": "¡Solteritas! ¡Las solteritas del Quindío! Galletica crocante, arequipe y coco. Se llaman así porque son tan ricas que nadie se las quiere compartir con nadie.",
+    "effects": [
+     {
+      "vineta": "m8_solteritas"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "ya",
+      "if": {
+       "hasItem": "solterita"
+      }
+     },
+     {
+      "goto": "menu"
+     }
+    ]
+   },
+   "menu": {
+    "choices": [
+     {
+      "label": "Una solterita ($2.500)",
+      "if": {
+       "minMoney": 2500
+      },
+      "effects": [
+       {
+        "pay": 2500
+       },
+       {
+        "giveItem": "solterita"
+       }
+      ],
+      "goto": "comprar"
+     },
+     {
+      "label": "«¿Y si uno la comparte?»",
+      "goto": "compartir"
+     },
+     {
+      "label": "Después",
+      "goto": "chao"
+     }
+    ]
+   },
+   "comprar": {
+    "text": "Cruje, se derrite y te deja coco en la nariz. Juanpa te mira: «Parce, tiene coco en la nariz.» Tú: «Lo sé.»",
+    "effects": [
+     {
+      "vineta": "m8_solteritas"
+     }
+    ]
+   },
+   "compartir": {
+    "speaker": "Don Wilson",
+    "text": "Si uno la comparte, deja de ser solterita, mijo. Ahí ya es una casadita. ¡Y esas sí que no las vendo!",
+    "effects": [
+     {
+      "vineta": "m8_solteritas"
+     }
+    ],
+    "next": "menu"
+   },
+   "chao": {
+    "speaker": "Don Wilson",
+    "text": "Usted vuelve. Todos vuelven.",
+    "effects": [
+     {
+      "vineta": "m8_solteritas"
+     }
+    ]
+   },
+   "ya": {
+    "speaker": "Don Wilson",
+    "text": "Esa solterita está esperando. No la deje esperando."
+   }
+  }
+ },
+ "m8_cafe_plaza": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Barista",
+    "text": "Café de origen, del Quindío. Le recomiendo el de la finca El Edén: notas de panela y naranja. Se lo hago filtrado, con calma.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_filtrado"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "ya",
+      "if": {
+       "flag": "m8_tomo_cafe"
+      }
+     },
+     {
+      "goto": "menu"
+     }
+    ]
+   },
+   "menu": {
+    "choices": [
+     {
+      "label": "Un café filtrado ($4.000)",
+      "if": {
+       "minMoney": 4000
+      },
+      "effects": [
+       {
+        "pay": 4000
+       },
+       {
+        "setFlag": "m8_tomo_cafe"
+       },
+       {
+        "sfx": "eat"
+       }
+      ],
+      "goto": "comprar"
+     },
+     {
+      "label": "«¿Y un Nescafé?»",
+      "goto": "nescafe"
+     },
+     {
+      "label": "Después",
+      "goto": "chao"
+     }
+    ]
+   },
+   "comprar": {
+    "text": "El café cae gota a gota por un filtro de tela. Huele a panela de verdad. Por primera vez entiendes por qué los colombianos se ofenden con el café de máquina.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_filtrado"
+     }
+    ]
+   },
+   "nescafe": {
+    "text": "El barista te mira como si le hubieras pedido ketchup para el sushi. Juanpa te saca de la cafetería antes de que pase algo.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_filtrado"
+     },
+     {
+      "setFlag": "secreto_m8_nescafe"
+     }
+    ]
+   },
+   "chao": {
+    "speaker": "Barista",
+    "text": "Aquí estamos, joven.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_filtrado"
+     }
+    ]
+   },
+   "ya": {
+    "speaker": "Barista",
+    "text": "¿Le gustó? Es el mejor café del mundo, y no lo digo yo: lo dice mi mamá."
+   }
+  }
+ },
+ "m8_mercado_llegada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El mercado campesino: toldos de colores en la Calle Real, canastos de frutas que nunca has visto, quesos, café en grano, plantas y gente del campo que vino desde las veredas.",
+    "effects": [
+     {
+      "vineta": "m8_mercado"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Renzo",
+    "text": "¡Mercado, causa! Aquí tiene que haber ají. En todo mercado del mundo hay ají. Es ley.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     },
+     {
+      "setFlag": "m8_vio_mercado"
+     }
+    ]
+   }
+  }
+ },
+ "m8_frutas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Doña Ofelia",
+    "text": "¡Lulo, mora, uchuva, granadilla, gulupa, guanábana! ¿Qué le doy, mijo? Pruebe esta uchuva, que es como un tomatico dulce.",
+    "effects": [
+     {
+      "vineta": "m8_frutas"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "aji",
+      "if": {
+       "flag": "m8_vio_mercado",
+       "notFlag": "m8_aji_pista"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "aji": {
+    "speaker": "Doña Ofelia",
+    "text": "¿Ají? No, mijo, aquí solo fruta. Pero pregúntele a don Abelardo, el del queso: él sabe dónde está todo en este pueblo.",
+    "effects": [
+     {
+      "setFlag": "m8_aji_ofelia"
+     }
+    ],
+    "next": "normal"
+   },
+   "normal": {
+    "choices": [
+     {
+      "label": "Probar la uchuva",
+      "effects": [
+       {
+        "sfx": "eat"
+       }
+      ],
+      "goto": "uchuva"
+     },
+     {
+      "label": "Comprar una granadilla ($1.500)",
+      "if": {
+       "minMoney": 1500
+      },
+      "effects": [
+       {
+        "pay": 1500
+       },
+       {
+        "sfx": "eat"
+       },
+       {
+        "setFlag": "m8_granadilla"
+       }
+      ],
+      "goto": "granadilla"
+     },
+     {
+      "label": "Seguir",
+      "goto": "chao"
+     }
+    ]
+   },
+   "uchuva": {
+    "text": "Ácida, dulce, explota en la boca. Renzo se come seis «para probar». Doña Ofelia le cobra cuatro, por simpático.",
+    "effects": [
+     {
+      "vineta": "m8_frutas"
+     }
+    ]
+   },
+   "granadilla": {
+    "text": "La rompes con los dedos: adentro, semillitas en gelatina. Se come con cuchara o directo. Juanpa: «Parce, eso parecen mocos dulces.» Doña Ofelia: «¡Respete la granadilla!»",
+    "effects": [
+     {
+      "vineta": "m8_granadilla"
+     }
+    ]
+   },
+   "chao": {
+    "speaker": "Doña Ofelia",
+    "text": "¡Que le vaya bien, mijo!",
+    "effects": [
+     {
+      "vineta": "m8_frutas"
+     }
+    ]
+   }
+  }
+ },
+ "m8_queso": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Don Abelardo",
+    "text": "Queso campesino, quesillo, cuajada fresquita. De mis vacas, de la vereda Llano Grande.",
+    "effects": [
+     {
+      "vineta": "m8_queso"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "aji",
+      "if": {
+       "flag": "m8_aji_ofelia",
+       "notFlag": "m8_aji_pista"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "aji": {
+    "speaker": "Don Abelardo",
+    "text": "¿Ají, dice? Ese peruano lo anda buscando por todo el pueblo, ya me contaron. Vaya donde doña Marleny, la de las arepas de la plaza. Su ají de la casa hace llorar a los machos.",
+    "effects": [
+     {
+      "setFlag": "m8_aji_pista"
+     }
+    ],
+    "next": "renzo"
+   },
+   "renzo": {
+    "speaker": "Renzo",
+    "text": "¡Causa! ¡CAUSA! ¡Vamos ya!",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     }
+    ]
+   },
+   "normal": {
+    "choices": [
+     {
+      "label": "Probar la cuajada con melao",
+      "effects": [
+       {
+        "sfx": "eat"
+       }
+      ],
+      "goto": "probar"
+     },
+     {
+      "label": "Seguir",
+      "goto": "chao"
+     }
+    ]
+   },
+   "probar": {
+    "text": "Cuajada blanda con melao de panela por encima. Don Abelardo: «Eso es lo que comen los ángeles cuando bajan al Quindío.»",
+    "effects": [
+     {
+      "vineta": "m8_queso"
+     }
+    ]
+   },
+   "chao": {
+    "speaker": "Don Abelardo",
+    "text": "Dios lo acompañe, joven.",
+    "effects": [
+     {
+      "vineta": "m8_queso"
+     }
+    ]
+   }
+  }
+ },
+ "m8_cafe_grano": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Don Ramiro",
+    "text": "Café en grano, tostado aquí mismo. Libra de caturra, libra de castillo. Y este de acá es un geisha que me salió de chiripa.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_grano"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "ya",
+      "if": {
+       "hasItem": "cafe_salento"
+      }
+     },
+     {
+      "goto": "menu"
+     }
+    ]
+   },
+   "menu": {
+    "choices": [
+     {
+      "label": "Una libra para llevar ($18.000)",
+      "if": {
+       "minMoney": 18000
+      },
+      "effects": [
+       {
+        "pay": 18000
+       },
+       {
+        "giveItem": "cafe_salento"
+       }
+      ],
+      "goto": "comprar"
+     },
+     {
+      "label": "«¿Qué es un geisha?»",
+      "goto": "geisha"
+     },
+     {
+      "label": "Después",
+      "goto": "chao"
+     }
+    ]
+   },
+   "comprar": {
+    "text": "Don Ramiro te lo muele «medio, pa' greca». Tu mochila va a oler a café durante tres semanas. No te vas a quejar.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_grano"
+     }
+    ]
+   },
+   "geisha": {
+    "speaker": "Don Ramiro",
+    "text": "Una variedad finita, mijo. Sabe a flores, a té, a fruta. Si se lo da a su mamá, le perdona todo lo que haya hecho en la vida.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_grano"
+     }
+    ],
+    "next": "menu"
+   },
+   "chao": {
+    "speaker": "Don Ramiro",
+    "text": "Aquí estoy hasta las dos.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_grano"
+     }
+    ]
+   },
+   "ya": {
+    "speaker": "Don Ramiro",
+    "text": "¿Ya lo probó? Hágale con agua que no esté hirviendo, que se quema."
+   }
+  }
+ },
+ "m8_artesanias": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Artesana",
+    "text": "Sombreros aguadeños, mochilas, aretes de semilla, llaveros de palma de cera, ruanas... Todo hecho a mano, mijo.",
+    "effects": [
+     {
+      "vineta": "m8_artesanias"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "juanpa",
+      "if": {
+       "notFlag": "m8_sombrero_juanpa"
+      }
+     },
+     {
+      "goto": "menu"
+     }
+    ]
+   },
+   "juanpa": {
+    "text": "Juanpa se prueba un sombrero aguadeño. Le queda enorme. Se mira en el espejito. «Parce, me veo como un caficultor exitoso.» Se lo compra.",
+    "effects": [
+     {
+      "vineta": "m8_sombrero_juanpa"
+     },
+     {
+      "setFlag": "m8_sombrero_juanpa"
+     }
+    ],
+    "next": "menu"
+   },
+   "menu": {
+    "choices": [
+     {
+      "label": "Llavero de palma de cera para doña Mery ($6.000)",
+      "if": {
+       "minMoney": 6000,
+       "notItem": "llavero_palma"
+      },
+      "effects": [
+       {
+        "pay": 6000
+       },
+       {
+        "giveItem": "llavero_palma"
+       }
+      ],
+      "goto": "llavero"
+     },
+     {
+      "label": "Seguir mirando",
+      "goto": "chao"
+     }
+    ]
+   },
+   "llavero": {
+    "text": "Una palmita tallada en madera, chiquita, con su penacho pintado de verde. Doña Mery la va a colgar en la cocina, al lado del Divino Niño. Lo sabes.",
+    "effects": [
+     {
+      "vineta": "m8_llavero"
+     }
+    ]
+   },
+   "chao": {
+    "speaker": "Artesana",
+    "text": "Vuelva cuando quiera, mijo.",
+    "effects": [
+     {
+      "vineta": "m8_artesanias"
+     }
+    ]
+   }
+  }
+ },
+ "m8_plantas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Viverista",
+    "text": "Orquídeas, anturios, una mata de café en bolsita... Esta orquídea es la flor nacional, mijo: la Cattleya. Pero no se la lleve en el avión, que en el aeropuerto se la quitan.",
+    "effects": [
+     {
+      "vineta": "m8_plantas"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Te acuerdas del SAG y del beagle. Dejas la orquídea donde está.",
+    "effects": [
+     {
+      "setFlag": "secreto_m8_orquidea"
+     }
+    ]
+   }
+  }
+ },
+ "m8_escalera": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Renzo",
+    "text": "Causa... ¿cuántos escalones son? ...¿Doscientos cincuenta? ¿Quién hizo esto? ¿Por qué? Para, para, que me siento un ratito. Cada veinte escalones me siento un ratito.",
+    "effects": [
+     {
+      "vineta": "m8_escalera_renzo"
+     }
+    ]
+   }
+  }
+ },
+ "m8_mirador": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El Alto de la Cruz. Abajo, el valle de Cocora: potreros verdísimos, la neblina entrando por las cañadas y, salpicadas por todas partes, las palmas de cera, altas y flacas, como fósforos gigantes.",
+    "effects": [
+     {
+      "vineta": "m8_vista_cocora"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Juanpa se queda callado por primera vez desde Cali. Renzo llega diez minutos después, sudando, y dice: «...ya. Valió la pena. Pero no se lo digan a mis piernas.»",
+    "next": "n2"
+   },
+   "n2": {
+    "choices": [
+     {
+      "label": "Tomar una foto",
+      "effects": [
+       {
+        "sfx": "camera"
+       },
+       {
+        "setFlag": "m8_foto_mirador"
+       }
+      ],
+      "goto": "foto"
+     },
+     {
+      "label": "Solo mirar",
+      "goto": "mirar"
+     }
+    ]
+   },
+   "foto": {
+    "text": "La foto sale con Renzo tirado en el piso, Juanpa con el sombrero y el valle atrás. Es la mejor foto del viaje. Todavía no lo sabes.",
+    "effects": [
+     {
+      "vineta": "m8_foto_mirador"
+     },
+     {
+      "setFlag": "m8_subio_mirador"
+     }
+    ]
+   },
+   "mirar": {
+    "text": "Te quedas mirando. Piensas en la cordillera de Chile, que también es así, pero con nieve. Te dan ganas de mandarle esto a tu mamá. Se lo mandas.",
+    "effects": [
+     {
+      "vineta": "m8_vista_cocora"
+     },
+     {
+      "setFlag": "m8_subio_mirador"
+     },
+     {
+      "setFlag": "m8_mama_mirador"
+     }
+    ]
+   }
+  }
+ },
+ "m8_truchera": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Doña Leonor",
+    "text": "¡Trucha, trucha! ¡Trucha con patacón! ¡Pasen, que hay mesa!",
+    "effects": [
+     {
+      "vineta": "m8_trucha_local"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "ya",
+      "if": {
+       "flag": "m8_almorzo"
+      }
+     },
+     {
+      "goto": "temprano",
+      "if": {
+       "flag": "m8_parque_ya"
+      }
+     },
+     {
+      "goto": "comer"
+     }
+    ]
+   },
+   "comer": {
+    "choices": [
+     {
+      "label": "Almorzar con Juanpa y Renzo",
+      "effects": [
+       {
+        "event": "almuerzo_m8"
+       }
+      ],
+      "goto": "si"
+     },
+     {
+      "label": "Todavía no",
+      "goto": "chao"
+     }
+    ]
+   },
+   "si": {
+    "speaker": "Doña Leonor",
+    "text": "¡Siéntense, siéntense!",
+    "effects": [
+     {
+      "vineta": "m8_trucha_local"
+     }
+    ]
+   },
+   "chao": {
+    "speaker": "Doña Leonor",
+    "text": "Aquí los espero, que la trucha no se va: está en el estanque nadando.",
+    "effects": [
+     {
+      "vineta": "m8_trucha_local"
+     }
+    ]
+   },
+   "ya": {
+    "speaker": "Doña Leonor",
+    "text": "¿Cómo estaba la trucha, mijo? ¡Vuelva!"
+   },
+   "temprano": {
+    "speaker": "Doña Leonor",
+    "text": "Mijo, ya cerramos la cocina. Vuelvan mañana."
+   }
+  }
+ },
+ "m8_trucha": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Les sirven el patacón: un plátano aplastado del tamaño de una pizza, crocante, con hogao encima. Y la trucha entera, con cabeza y todo, mirándote.",
+    "effects": [
+     {
+      "vineta": "m8_trucha"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Doña Leonor",
+    "text": "¿Cómo la quiere, mijo? ¿Al ajillo, a la criolla o gratinada?",
+    "choices": [
+     {
+      "label": "Al ajillo",
+      "effects": [
+       {
+        "setFlag": "m8_trucha_ajillo"
+       }
+      ],
+      "goto": "ajillo"
+     },
+     {
+      "label": "A la criolla",
+      "effects": [
+       {
+        "setFlag": "m8_trucha_criolla"
+       }
+      ],
+      "goto": "criolla"
+     },
+     {
+      "label": "Gratinada",
+      "effects": [
+       {
+        "setFlag": "m8_trucha_gratinada"
+       }
+      ],
+      "goto": "gratinada"
+     }
+    ]
+   },
+   "ajillo": {
+    "text": "Ajo, mantequilla y perejil. Renzo te pide «un pedacito nomás» y se come la mitad.",
+    "next": "charla"
+   },
+   "criolla": {
+    "text": "Con hogao de tomate y cebolla. Renzo le echa el ají de doña Marleny encima. «Ahora sí, causa. Ahora sí es comida.»",
+    "next": "charla"
+   },
+   "gratinada": {
+    "text": "Gratinada con queso derretido. Juanpa: «Parce, eso no es trucha, eso es una lasaña con escamas.»",
+    "next": "charla"
+   },
+   "charla": {
+    "text": "Hablan de todo: de las mamás, de la comida de cada país, de por qué en Colombia el desayuno parece almuerzo y en Chile la once parece desayuno.",
+    "effects": [
+     {
+      "vineta": "m8_charla_mesa"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Juanpa",
+    "text": "Parce, ¿y en Chile qué es lo que más extraña? Así, de comida.",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«El pan de mi casa. La marraqueta.»",
+      "goto": "pan"
+     },
+     {
+      "label": "«El completo, con harta palta.»",
+      "goto": "completo"
+     },
+     {
+      "label": "«La cazuela de mi mamá.»",
+      "effects": [
+       {
+        "setFlag": "m8_extrana_mama"
+       }
+      ],
+      "goto": "cazuela"
+     }
+    ]
+   },
+   "pan": {
+    "speaker": "Juanpa",
+    "text": "¿Marraqueta? ¿Eso con qué se come? ¿Con más pan? Ustedes los chilenos y el pan, parce. Son como los franceses, pero con más palta."
+   },
+   "completo": {
+    "speaker": "Juanpa",
+    "text": "¿Un perro caliente con aguacate? ...Parce, eso suena a crimen. Pero a crimen rico."
+   },
+   "cazuela": {
+    "speaker": "Renzo",
+    "text": "Uy, la comida de la mamá. Eso no se le gana con nada, causa. Ni con trucha. Ni con rocoto. Bueno, con rocoto un poquito.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     }
+    ]
+   }
+  }
+ },
+ "m8_trucha_fin": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Juanpa",
+    "text": "Parce, a la una y media sale la chiva al Parque del Café. Es en la plaza, al lado de los Willys. ¡Y dicen que van unas argentinas!",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Renzo pide la cuenta. Le pregunta a doña Leonor si la trucha viene con postre. Viene con un tinto. Renzo lo acepta como postre.",
+    "effects": [
+     {
+      "vineta": "m8_charla_mesa"
+     },
+     {
+      "objective": "A la una y media sale la chiva al Parque del Café (al sur de la plaza, junto a los Willys)"
+     }
+    ]
+   }
+  }
+ },
+ "m8_chivero": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Don Jairo",
+    "text": "¡Parque del Café! ¡Sale la chiva, sale la chiva! ¡Suban, que no espero!",
+    "effects": [
+     {
+      "vineta": "m8_chiva_afuera"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "subir",
+      "if": {
+       "flag": "m8_almorzo"
+      }
+     },
+     {
+      "goto": "temprano"
+     }
+    ]
+   },
+   "subir": {
+    "choices": [
+     {
+      "label": "Subirse a la chiva",
+      "effects": [
+       {
+        "event": "chiva_m8"
+       }
+      ],
+      "goto": "vamos"
+     },
+     {
+      "label": "Esperar un poco",
+      "goto": "espera"
+     }
+    ]
+   },
+   "vamos": {
+    "speaker": "Don Jairo",
+    "text": "¡Vámonos que nos deja el tren! Bueno, la chiva.",
+    "effects": [
+     {
+      "vineta": "m8_chiva_afuera"
+     }
+    ]
+   },
+   "espera": {
+    "speaker": "Don Jairo",
+    "text": "Cinco minuticos, joven. Cinco minuticos colombianos. O sea, veinte.",
+    "effects": [
+     {
+      "vineta": "m8_chiva_afuera"
+     }
+    ]
+   },
+   "temprano": {
+    "speaker": "Don Jairo",
+    "text": "La chiva sale después del almuerzo, mijo. Primero coman, que el Parque del Café no se recorre con hambre."
+   }
+  }
+ },
+ "m8_ciclista": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Ciclista",
+    "text": "Guten Tag! Llevo tres meses en bicicleta desde Ushuaia. Me faltan dos meses hasta Alaska. Ustedes, colombianos, me han dado comida en cada pueblo.",
+    "effects": [
+     {
+      "vineta": "m8_ciclista"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Ciclista",
+    "text": "¿Chile? ¡Yo pasé por Chile! El viento en Patagonia... nunca lo voy a olvidar. Ni a la señora de Puerto Natales que me prestó su sofá.",
+    "effects": [
+     {
+      "setFlag": "m8_ciclista"
+     }
+    ]
+   }
+  }
+ },
+ "m8_paisas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Señora paisa",
+    "text": "¡Ay, qué muchachos tan queridos! ¿Ustedes son de intercambio? ¡Bienvenidos a Colombia, mijos! ¡Coman mucho, que están muy flacos! Bueno, usted no, mijo. Usted está bien.",
+    "effects": [
+     {
+      "vineta": "m8_paisas"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Renzo",
+    "text": "...Gracias, señora. Creo.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     }
+    ]
+   }
+  }
+ },
+ "m8_domingo_despierta": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Domingo. Llueve bajito sobre las tejas: esa lluvia finita que no moja pero empapa. Juanpa sigue roncando. Danilo duerme con antifaz.",
+    "effects": [
+     {
+      "vineta": "m8_domingo_lluvia"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Richi",
+    "text": "Chileno, ¿me acompañás al mercado? Quiero llevarle algo a mi mamá. Y a mi abuela. Y a mi tía la del portero.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     },
+     {
+      "setFlag": "m8_sigue_richi"
+     },
+     {
+      "objective": "Domingo: acompaña a Richi al mercado de la Calle Real (el puesto de artesanías) a comprarle algo a su mamá. A mediodía, el pimpón"
+     }
+    ]
+   }
+  }
+ },
+ "m8_salento_domingo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Salento con llovizna: las calles brillan, los Willys tienen el techo de lona puesto y los vendedores del mercado taparon todo con plástico.",
+    "effects": [
+     {
+      "vineta": "m8_salento_lluvia"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Richi",
+    "text": "Esto no es lluvia, chileno. En Pasto a esto le decimos «sereno». Lluvia es la de Pasto.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_mercado_domingo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Richi",
+    "text": "Ve, chileno, ¡ahí está el mercado! Vamos al puesto de artesanías, el del toldo morado. Quiero llevarle algo a mi mamá.",
+    "effects": [
+     {
+      "vineta": "m8_mercado"
+     },
+     {
+      "objective": "El puesto de artesanías del mercado (toldo morado, Calle Real): el regalo para la mamá de Richi"
+     }
+    ]
+   }
+  }
+ },
+ "m8_richi_regalo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Richi se para frente a los aretes de semilla de café. Los mira, los toca, mira el precio, los vuelve a mirar.",
+    "effects": [
+     {
+      "vineta": "m8_artesanias"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Richi",
+    "text": "¿Cuáles le llevo a mi mamá? Ella es de las que usan aretes hasta pa' ir a misa a las seis de la mañana.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Los de semilla de café roja",
+      "effects": [
+       {
+        "setFlag": "m8_regalo_richi"
+       },
+       {
+        "objective": "Vuelve a la casita (Carrera 7): el torneo de pimpón en el patio. Antes, si quieres, Tami está en la plaza"
+       }
+      ],
+      "goto": "rojos"
+     },
+     {
+      "label": "Los de palmita de cera",
+      "effects": [
+       {
+        "setFlag": "m8_regalo_richi"
+       },
+       {
+        "objective": "Vuelve a la casita (Carrera 7): el torneo de pimpón en el patio. Antes, si quieres, Tami está en la plaza"
+       }
+      ],
+      "goto": "palma"
+     },
+     {
+      "label": "Los dos. Tu mamá se lo merece.",
+      "effects": [
+       {
+        "setFlag": [
+         "m8_regalo_richi",
+         "m8_richi_dos"
+        ]
+       },
+       {
+        "objective": "Vuelve a la casita (Carrera 7): el torneo de pimpón en el patio. Antes, si quieres, Tami está en la plaza"
+       }
+      ],
+      "goto": "dos"
+     }
+    ]
+   },
+   "rojos": {
+    "speaker": "Richi",
+    "text": "¡Esos! Rojos como el café maduro. Mi mamá va a decir «¿y esto cuánto te costó?» y después no se los va a quitar nunca."
+   },
+   "palma": {
+    "speaker": "Richi",
+    "text": "¡La palmita! Así se acuerda de Salento sin haber venido. Y me pregunta qué es, y le cuento todo. Ella ama que le cuente."
+   },
+   "dos": {
+    "speaker": "Richi",
+    "text": "¡Ala, chileno! Me vas a dejar sin plata... pero tenés razón. Los dos. Uno pa' cada oreja y uno pa' cada domingo."
+   }
+  }
+ },
+ "m8_tami_mercado": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Tami está en la plaza, debajo del alero de la iglesia, con un paraguas transparente. Te ve y sonríe como si te estuviera esperando. Probablemente te estaba esperando.",
+    "effects": [
+     {
+      "vineta": "m8_tami_paraguas"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Tami",
+    "text": "Chileno. Me debés un café. Del pimpón. Bueno, todavía no jugamos, pero igual me lo debés.",
+    "branches": [
+     {
+      "goto": "cafe",
+      "if": {
+       "flag": "m8_tami_cafe"
+      }
+     },
+     {
+      "goto": "nocafe"
+     }
+    ]
+   },
+   "cafe": {
+    "choices": [
+     {
+      "label": "Invitarle un tinto en la esquina",
+      "if": {
+       "minMoney": 1500
+      },
+      "effects": [
+       {
+        "setFlag": "m8_tami_tinto"
+       },
+       {
+        "pay": 1500
+       }
+      ],
+      "goto": "tinto"
+     },
+     {
+      "label": "«Después del torneo.»",
+      "goto": "despues"
+     }
+    ]
+   },
+   "tinto": {
+    "text": "Se toman un tinto parados bajo el alero. Ella te cuenta que estudia Psicología con Danilo, que ama la salsa y que odia que le digan «mona». «Soy rubia, no mona. Es distinto.»",
+    "effects": [
+     {
+      "vineta": "m8_tami_tinto"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Tami",
+    "text": "Vos sos distinto, chileno. Hablás poquito, pero cuando hablás... no sé. Me gusta."
+   },
+   "despues": {
+    "speaker": "Tami",
+    "text": "Después del torneo, entonces. Pero si perdés, son dos cafés.",
+    "effects": [
+     {
+      "vineta": "m8_tami_paraguas"
+     }
+    ]
+   },
+   "nocafe": {
+    "speaker": "Tami",
+    "text": "Bueno, no me debés nada. Pero igual podrías invitarme algo. Por cortesía chilena. ¿Existe eso?",
+    "choices": [
+     {
+      "label": "Invitarle un tinto",
+      "if": {
+       "minMoney": 1500
+      },
+      "effects": [
+       {
+        "setFlag": "m8_tami_tinto"
+       },
+       {
+        "pay": 1500
+       }
+      ],
+      "goto": "tinto"
+     },
+     {
+      "label": "«Existe, pero está de vacaciones.»",
+      "goto": "despues"
+     }
+    ]
+   }
+  }
+ },
+ "m8_pinpon_mesa": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "torneo",
+      "if": {
+       "flag": "m8_domingo",
+       "notFlag": "m8_pinpon"
+      }
+     },
+     {
+      "goto": "cerrado"
+     }
+    ]
+   },
+   "torneo": {
+    "text": "La mesa de pimpón. Doña Rubiela ya escribió el cuadro del torneo en una cartulina: Renzo, Juanpa, Richi... y tú.",
+    "effects": [
+     {
+      "vineta": "m8_mesa_pinpon"
+     }
+    ],
+    "choices": [
+     {
+      "label": "¡Que empiece el torneo!",
+      "effects": [
+       {
+        "event": "pinpon_m8"
+       }
+      ],
+      "goto": "si"
+     },
+     {
+      "label": "Todavía no",
+      "goto": "no"
+     }
+    ]
+   },
+   "si": {
+    "text": "Doña Rubiela toca una olla con una cuchara: ¡TORNEO!"
+   },
+   "no": {
+    "text": "Juanpa calienta haciendo sombra con la paleta. Le está pegando a nada con mucha técnica."
+   },
+   "cerrado": {
+    "text": "La mesa de pimpón. La paleta con cinta tiene una abolladura nueva. Fue Renzo.",
+    "effects": [
+     {
+      "vineta": "m8_mesa_pinpon"
+     }
+    ]
+   }
+  }
+ },
+ "m8_pinpon_intro": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Doña Rubiela",
+    "text": "¡Torneo de pimpón de La Casita! Tres partidos a cinco puntos. El campeón no lava la loza esta noche.",
+    "effects": [
+     {
+      "vineta": "m8_mesa_pinpon"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Richi",
+    "text": "Ve, chileno, te advierto: en Pasto me decían «la pared». Todo lo devuelvo. Hasta los mensajes de mi ex.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_pinpon_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Ganaste {ganados} de 3.",
+    "effects": [
+     {
+      "vineta": "m8_mesa_pinpon"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "campeon",
+      "if": {
+       "flag": "m8_pinpon_campeon"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "campeon": {
+    "text": "Doña Rubiela te pone una corona de cartulina que dice «CAMPEÓN». Richi te levanta el brazo. Renzo pide revancha. No hay revancha.",
+    "effects": [
+     {
+      "vineta": "m8_corona"
+     },
+     {
+      "giveItem": "corona_carton",
+      "silent": true
+     }
+    ],
+    "next": "tarde"
+   },
+   "normal": {
+    "text": "Richi sale campeón. Se sube a una silla para recibir la corona. Con la silla queda de tu altura. Lo aplauden de pie.",
+    "effects": [
+     {
+      "vineta": "m8_richi_campeon"
+     }
+    ],
+    "next": "tarde"
+   },
+   "tarde": {
+    "speaker": "Danilo",
+    "text": "Ah ve, en la tarde descansen, que hoy en la noche salimos. Es domingo, no sé qué vamos a encontrar abierto, pero salimos. Avísenme cuando estén listos: estoy en la sala.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_guia"
+     },
+     {
+      "clearFlag": "m8_sigue_richi"
+     },
+     {
+      "objective": "Tarde libre: el tejo con Juanpa (Los Compadres, al norte de la Calle Real) si quieres. Cuando estés listo, habla con Danilo en la sala de la casita"
+     }
+    ]
+   }
+  }
+ },
+ "m8_juanpa_tejo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "hecho",
+      "if": {
+       "flag": "m8_tejo"
+      }
+     },
+     {
+      "goto": "invita"
+     }
+    ]
+   },
+   "invita": {
+    "speaker": "Juanpa",
+    "text": "Parce, ¿jugamos tejo? Es el deporte nacional. Se tira un disco de metal a una cancha de greda con mechas de pólvora. Si revienta, ¡PUM!",
+    "effects": [
+     {
+      "vineta": "m8_tejo"
+     }
+    ],
+    "choices": [
+     {
+      "label": "¡Vamos!",
+      "effects": [
+       {
+        "event": "tejo_m8"
+       }
+      ],
+      "goto": "si"
+     },
+     {
+      "label": "Otro día",
+      "goto": "no"
+     }
+    ]
+   },
+   "si": {
+    "speaker": "Juanpa",
+    "text": "¡Eso, parce! Primera cerveza la pongo yo. Segunda, el que pierda."
+   },
+   "no": {
+    "speaker": "Juanpa",
+    "text": "Vos te lo perdés, parce. El tejo es como la vida: uno tira y ¡pum!"
+   },
+   "hecho": {
+    "speaker": "Juanpa",
+    "text": "Todavía me zumban los oídos de la mecha. Qué chimba, parce.",
+    "effects": [
+     {
+      "vineta": "m8_tejo"
+     }
+    ]
+   }
+  }
+ },
+ "m8_tejo_intro": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Los Compadres: un galpón con techo de zinc, cuatro canchas de tejo, una rocola con música de despecho y un señor que lleva treinta años tirando tejo con la misma gorra.",
+    "effects": [
+     {
+      "vineta": "m8_tejo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Don Efrén",
+    "text": "Las mechas son esos triangulitos de papel, mijo. Tienen pólvora. Si les pega, revientan. Y el bocín es el aro del medio. Fácil. Bueno, fácil no."
+   }
+  }
+ },
+ "m8_tejo_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Puntos: {puntos}.",
+    "effects": [
+     {
+      "vineta": "m8_tejo"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "mecha",
+      "if": {
+       "flag": "m8_tejo_mecha"
+      }
+     },
+     {
+      "goto": "nada"
+     }
+    ]
+   },
+   "mecha": {
+    "text": "Don Efrén te da la mano: «Usted reventó mecha la primera vez. Eso no lo hace cualquiera. Vuelva cuando quiera.»",
+    "effects": [
+     {
+      "vineta": "m8_tejo_mecha"
+     }
+    ]
+   },
+   "nada": {
+    "text": "Don Efrén: «Tranquilo, mijo. Yo me demoré un año en reventar la primera. Y eso que soy de acá.»"
+   }
+  }
+ },
+ "m8_tejo_puerta": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Los Compadres: tejo, cerveza fría y música de despecho. (Juanpa juega acá el domingo en la tarde.)",
+    "effects": [
+     {
+      "vineta": "m8_tejo"
+     }
+    ]
+   }
+  }
+ },
+ "m8_salir_noche": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "¿Listo, parce? Ah ve, vamos a buscar dónde tomarnos algo. Domingo en Salento... vamos a ver qué milagro encontramos.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_guia"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¡Vamos!»",
+      "effects": [
+       {
+        "clock": "dom+ 20:30",
+        "max": "dom+ 22:10"
+       },
+       {
+        "weather": "despejado"
+       },
+       {
+        "setFlag": "m8_noche_domingo"
+       },
+       {
+        "setFlag": [
+         "m8_sigue_richi",
+         "m8_sigue_juanpa",
+         "m8_sigue_renzo",
+         "m8_sigue_danilo",
+         "m8_sigue_tami"
+        ]
+       },
+       {
+        "objective": "La Calle Real de noche: busquen dónde tomar algo (la tienda de doña Gladys)"
+       }
+      ],
+      "goto": "vamos"
+     },
+     {
+      "label": "Todavía no",
+      "goto": "no"
+     }
+    ]
+   },
+   "vamos": {
+    "speaker": "Danilo",
+    "text": "¡Eso! Que nadie se quede. Rubiela, ¡no nos espere!"
+   },
+   "no": {
+    "speaker": "Danilo",
+    "text": "Tranqui. Acá estoy, analizando a Juanpa mientras duerme."
+   }
+  }
+ },
+ "m8_puesto_artesanias": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m8_domingo",
+       "notFlag": "m8_regalo_richi"
+      },
+      "goto": "r_n0"
+     },
+     {
+      "goto": "a_n0"
+     }
+    ]
+   },
+   "r_n0": {
+    "text": "Richi se para frente a los aretes de semilla de café. Los mira, los toca, mira el precio, los vuelve a mirar.",
+    "effects": [
+     {
+      "vineta": "m8_artesanias"
+     }
+    ],
+    "next": "r_n1"
+   },
+   "r_n1": {
+    "speaker": "Richi",
+    "text": "¿Cuáles le llevo a mi mamá? Ella es de las que usan aretes hasta pa' ir a misa a las seis de la mañana.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Los de semilla de café roja",
+      "effects": [
+       {
+        "setFlag": "m8_regalo_richi"
+       },
+       {
+        "objective": "Vuelve a la casita (Carrera 7): el torneo de pimpón en el patio. Antes, si quieres, Tami está en la plaza"
+       }
+      ],
+      "goto": "r_rojos"
+     },
+     {
+      "label": "Los de palmita de cera",
+      "effects": [
+       {
+        "setFlag": "m8_regalo_richi"
+       },
+       {
+        "objective": "Vuelve a la casita (Carrera 7): el torneo de pimpón en el patio. Antes, si quieres, Tami está en la plaza"
+       }
+      ],
+      "goto": "r_palma"
+     },
+     {
+      "label": "Los dos. Tu mamá se lo merece.",
+      "effects": [
+       {
+        "setFlag": [
+         "m8_regalo_richi",
+         "m8_richi_dos"
+        ]
+       },
+       {
+        "objective": "Vuelve a la casita (Carrera 7): el torneo de pimpón en el patio. Antes, si quieres, Tami está en la plaza"
+       }
+      ],
+      "goto": "r_dos"
+     }
+    ]
+   },
+   "r_rojos": {
+    "speaker": "Richi",
+    "text": "¡Esos! Rojos como el café maduro. Mi mamá va a decir «¿y esto cuánto te costó?» y después no se los va a quitar nunca."
+   },
+   "r_palma": {
+    "speaker": "Richi",
+    "text": "¡La palmita! Así se acuerda de Salento sin haber venido. Y me pregunta qué es, y le cuento todo. Ella ama que le cuente."
+   },
+   "r_dos": {
+    "speaker": "Richi",
+    "text": "¡Ala, chileno! Me vas a dejar sin plata... pero tenés razón. Los dos. Uno pa' cada oreja y uno pa' cada domingo."
+   },
+   "a_n0": {
+    "speaker": "Artesana",
+    "text": "Sombreros aguadeños, mochilas, aretes de semilla, llaveros de palma de cera, ruanas... Todo hecho a mano, mijo.",
+    "effects": [
+     {
+      "vineta": "m8_artesanias"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "a_juanpa",
+      "if": {
+       "notFlag": "m8_sombrero_juanpa"
+      }
+     },
+     {
+      "goto": "a_menu"
+     }
+    ]
+   },
+   "a_juanpa": {
+    "text": "Juanpa se prueba un sombrero aguadeño. Le queda enorme. Se mira en el espejito. «Parce, me veo como un caficultor exitoso.» Se lo compra.",
+    "effects": [
+     {
+      "vineta": "m8_sombrero_juanpa"
+     },
+     {
+      "setFlag": "m8_sombrero_juanpa"
+     }
+    ],
+    "next": "a_menu"
+   },
+   "a_menu": {
+    "choices": [
+     {
+      "label": "Llavero de palma de cera para doña Mery ($6.000)",
+      "if": {
+       "minMoney": 6000,
+       "notItem": "llavero_palma"
+      },
+      "effects": [
+       {
+        "pay": 6000
+       },
+       {
+        "giveItem": "llavero_palma"
+       }
+      ],
+      "goto": "a_llavero"
+     },
+     {
+      "label": "Seguir mirando",
+      "goto": "a_chao"
+     }
+    ]
+   },
+   "a_llavero": {
+    "text": "Una palmita tallada en madera, chiquita, con su penacho pintado de verde. Doña Mery la va a colgar en la cocina, al lado del Divino Niño. Lo sabes.",
+    "effects": [
+     {
+      "vineta": "m8_llavero"
+     }
+    ]
+   },
+   "a_chao": {
+    "speaker": "Artesana",
+    "text": "Vuelva cuando quiera, mijo.",
+    "effects": [
+     {
+      "vineta": "m8_artesanias"
+     }
+    ]
+   }
+  }
+ },
+ "m8_richi_cama": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Richi",
+    "text": "Desde aquí arriba se ve todo, chileno. Bueno, se ve el techo. Pero de cerca.",
+    "effects": [
+     {
+      "vineta": "m8_camarotes_noche"
+     }
+    ]
+   }
+  }
+ },
+ "m8_juanpa_cama": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Juanpa",
+    "text": "Parce, si ronco me tira una almohada. Pero suavecito, que soy sensible.",
+    "effects": [
+     {
+      "vineta": "m8_camarotes_noche"
+     }
+    ]
+   }
+  }
+ },
+ "m8_renzo_cama": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Renzo",
+    "text": "Causa, ¿tú crees que en el desayuno den ají? ...No me contestes. Déjame soñar.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_suena"
+     }
+    ]
+   }
+  }
+ },
+ "m8_danilo_cama": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Ah ve, los sueños son el camino real al inconsciente. Freud. Buenas noches. No me despierten antes de las nueve.",
+    "effects": [
+     {
+      "vineta": "m8_camarotes_noche"
+     }
+    ]
+   }
+  }
+ },
+ "m8_antoine": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Antoine",
+    "text": "Ce soir, je joue «Colombia, tierra querida». Avec l'accent. Bueno, con mi acento. Es lo que hay.",
+    "effects": [
+     {
+      "vineta": "m8_guitarra_antoine"
+     }
+    ]
+   }
+  }
+ },
+ "m8_renzo_patio": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Renzo",
+    "text": "Causa, hoy te gano en pimpón. Desayuné cuatro arepas. Tengo energía para una semana.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     }
+    ]
+   }
+  }
+ },
+ "m8_juanpa_patio": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Juanpa",
+    "text": "Ve, parce, yo practico con la sombra. Mirá: ¡tas! ¡tas! ...Le gané a la sombra.",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_pasajero": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Pasajero",
+    "text": "Salento, ¿no? Lleve chaqueta, mijo. Allá arriba hace un frío que muerde.",
+    "effects": [
+     {
+      "vineta": "m8_bus_adentro"
+     }
+    ]
+   }
+  }
+ },
+ "m8_nacho_bus": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Nacho",
+    "text": "¡Compadre! Dos chilenos en Salento. Vamos a tener que hacer un asado. ¿Hay carbón en Salento? Debe haber.",
+    "effects": [
+     {
+      "vineta": "m8_bus_adentro"
+     }
+    ]
+   }
+  }
+ },
+ "m8_antoine_bus": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Antoine",
+    "text": "Je vais jouer un bambuco. Juanpa va a poner reguetón. On verra qui gagne.",
+    "effects": [
+     {
+      "vineta": "m8_bus_musica"
+     }
+    ]
+   }
+  }
+ },
+ "m8_iker_bus": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Iker",
+    "text": "¿Quieres chicharrón? Lo compré en la terminal. Es enorme. Como mi hambre.",
+    "effects": [
+     {
+      "vineta": "m8_bus_adentro"
+     }
+    ]
+   }
+  }
+ },
+ "m8_juanpa_bus": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Juanpa",
+    "text": "¡Parce! Traje parlante. Y batería extra. Esto va a ser épico.",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_renzo_bus": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Renzo",
+    "text": "Hola, causa. Soy Renzo. No sé bien quién me invitó, pero vine. ¿Tú sabes si en Salento hay ají?",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     }
+    ]
+   }
+  }
+ },
+ "m8_danilo_bus": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Ve parce, sentate con Richi, que te guardó puesto desde las doce. Eso es amor. Amor de amigo, pero amor.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_hola"
+     }
+    ]
+   }
+  }
+ },
+ "m8_bus_tami": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Tami",
+    "text": "Ey, chileno. ¿Te sentás conmigo? Tengo el puesto de la ventana y unas galletas de avena que hizo mi mamá.",
+    "effects": [
+     {
+      "vineta": "m8_tami_saluda"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Le prometí a Richi. ¿En la vuelta?»",
+      "effects": [
+       {
+        "setFlag": "m8_tami_bus"
+       }
+      ],
+      "goto": "vuelta"
+     },
+     {
+      "label": "«¿De qué son las galletas?»",
+      "goto": "galletas"
+     }
+    ]
+   },
+   "vuelta": {
+    "speaker": "Tami",
+    "text": "Uy. Bueno. Pero en la vuelta te toca conmigo. Lo anoto."
+   },
+   "galletas": {
+    "speaker": "Tami",
+    "text": "De avena con pasas. Sí, con pasas. Antes de que digás algo: las pasas son ricas. Tomá una. Y después andá con Richi, que te está haciendo señas.",
+    "effects": [
+     {
+      "sfx": "eat"
+     }
+    ]
+   }
+  }
+ },
+ "m8_richi_bus": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Richi",
+    "text": "¡Acá, chileno! Ese es tu puesto: el del pasillo, al lado mío.",
+    "effects": [
+     {
+      "vineta": "m8_richi_saluda"
+     }
+    ]
+   }
+  }
+ },
+ "usar_oblea_salento": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Arequipe, mora y queso. Se te pega todo en los dedos. Valió cada peso.",
+    "effects": [
+     {
+      "vineta": "m8_obleas"
+     },
+     {
+      "takeItem": "oblea_salento"
+     }
+    ]
+   }
+  }
+ },
+ "usar_arepa_choclo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Dulce, calentita, con el quesito derretido. Como un abrazo de abuela, pero comestible.",
+    "effects": [
+     {
+      "vineta": "m8_arepa_choclo"
+     },
+     {
+      "takeItem": "arepa_choclo"
+     }
+    ]
+   }
+  }
+ },
+ "usar_solterita": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Cruje, se derrite y te deja coco en la nariz. Otra vez.",
+    "effects": [
+     {
+      "vineta": "m8_solteritas"
+     },
+     {
+      "takeItem": "solterita"
+     }
+    ]
+   }
+  }
+ },
+ "usar_aji_casa": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Pruebas una gotita del ají de doña Marleny. Te lloran los ojos. Renzo tenía razón: es amor.",
+    "effects": [
+     {
+      "vineta": "m8_aji_casa"
+     }
+    ]
+   }
+  }
+ },
+ "usar_cafe_salento": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Hueles la bolsa de café. Panela, naranja, montaña. Todavía estás en Salento, un poquito.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_grano"
+     }
+    ]
+   }
+  }
+ }
+}

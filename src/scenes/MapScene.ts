@@ -119,6 +119,13 @@ const SIRA_FOLLOWER_SPRITE_M7 = 'sira_m7';
 /** Misión 7: con tu polera de la PUCC puesta (la que le prestas al volver mojados). */
 const SIRA_FOLLOWER_SPRITE_M7_POLERA = 'sira_m7_polera';
 const FLAG_SIRA_POLERA = 'm7_polera';
+/**
+ * Misión 8 (Salento): los amigos que caminan contigo en fila, detrás del jugador (flag `m8_sigue_<id>`, el id es
+ * también el personaje de sprites.json). Van en este orden y también entran a los interiores.
+ */
+const CREW_M8 = ['richi', 'juanpa', 'renzo', 'danilo', 'tami', 'laura'];
+/** Misión 8: todo pasa en un recuerdo. Con esta flag la cámara se ve un poco sepia y con el borde oscuro. */
+const FLAG_MEMORY = 'm8_recuerdo';
 
 /** Escena del tipo de mapa (overworld/interior) que corresponde a cada `kind`. */
 const SCENE_FOR_KIND = { overworld: 'Overworld', interior: 'Interior' } as const;
@@ -146,6 +153,12 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
   private follower: Actor | null = null;
   /** Personaje del que sigue al jugador (quiltro o Sira), para cambiarlo si cambia la flag. */
   private followerSprite = '';
+  /** Los que caminan en fila detrás del jugador (misión 8), con su personaje. */
+  private crew: Array<{ id: string; actor: Actor }> = [];
+  /** Últimos tiles por los que pasó el jugador (el más reciente primero): la fila los va pisando. */
+  private trail: Array<{ x: number; y: number }> = [];
+  /** Efectos de cámara del recuerdo (misión 8), si están puestos. */
+  private memoryFx: unknown[] = [];
   private transitioning = false;
   private turnTimer = 0;
   private walking = false;
@@ -171,6 +184,9 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     this.transitioning = false;
     this.follower = null;
     this.followerSprite = '';
+    this.crew = [];
+    this.trail = [];
+    this.memoryFx = [];
     this.zoneName = undefined;
     this.seatReturn = null;
     this.dizzy = false;
@@ -204,6 +220,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     );
     this.spawnFauna(blocked);
     this.syncFollower();
+    this.syncCrew();
     this.createCrowd();
     this.weatherView = new WeatherView(this, this.map, this.map.data.lights);
     this.skyline = this.map.data.skyline
@@ -232,6 +249,8 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     EventSystem.onScene(this, 'state-changed', () => {
       this.npcs.forEach((n) => n.refresh());
       this.syncFollower();
+      this.syncCrew();
+      this.syncMemoryLook();
       const skin = playerTexture(this);
       if (this.player.sprite.texture.key !== skin) this.player.sprite.setTexture(skin, this.player.sprite.frame.name);
     });
@@ -252,12 +271,17 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     EventSystem.onScene(this, 'open-persecucion', ({ done }) => this.launchMinigame('Persecucion', {}, done));
     // Misión 7: la boloñesa en el depa.
     EventSystem.onScene(this, 'open-cocina', ({ part, done }) => this.launchMinigame('Cocina', { part }, done));
-    EventSystem.onScene(this, 'open-salsa', ({ done }) => this.launchMinigame('Salsa', {}, done));
+    EventSystem.onScene(this, 'open-salsa', ({ partner, done }) => this.launchMinigame('Salsa', { partner }, done));
+    // Misión 8: el pool, el pimpón y las atracciones (y el tejo).
+    EventSystem.onScene(this, 'open-pool', ({ done }) => this.launchMinigame('Pool', {}, done));
+    EventSystem.onScene(this, 'open-pinpon', ({ done }) => this.launchMinigame('Pinpon', {}, done));
+    EventSystem.onScene(this, 'open-atraccion', ({ mode, done }) => this.launchMinigame('Atraccion', { mode }, done));
 
     if (!this.scene.isActive('UI')) this.scene.launch('UI');
     this.scene.bringToTop('UI');
 
     this.setupCamera();
+    this.syncMemoryLook();
     this.setupZoom();
     this.cameras.main.fadeIn(FADE_MS, 0, 0, 0);
     playMusic(this.musicTrack());
@@ -384,6 +408,35 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     this.seatReturn = null;
     if (pose) this.player.sitAt(s.x, s.y, pose);
     else this.player.standAt(s.x, s.y, s.dir);
+    this.regroupCrew();
+  }
+
+  /** El recuerdo (misión 8): un poco de sepia y el borde oscuro, como una foto vieja. Solo con WebGL. */
+  private syncMemoryLook(): void {
+    const want = StoryState.hasFlag(FLAG_MEMORY);
+    const fx = this.renderer.type === Phaser.WEBGL ? this.cameras.main.postFX : undefined;
+    if (!fx) return;
+    if (want && this.memoryFx.length === 0) {
+      const cm = fx.addColorMatrix();
+      cm.sepia();
+      cm.alpha = 0.45;
+      this.memoryFx = [cm, fx.addVignette(0.5, 0.5, 0.86, 0.4)];
+    } else if (!want && this.memoryFx.length > 0) {
+      for (const f of this.memoryFx) fx.remove(f as Phaser.FX.Controller);
+      this.memoryFx = [];
+    }
+  }
+
+  /** Pone la fila de amigos (misión 8) detrás del jugador otra vez, después de moverlo de golpe. */
+  private regroupCrew(): void {
+    this.trail = [];
+    if (this.crew.length === 0) return;
+    const spots = this.crewSpots(this.crew.length + (this.follower ? 1 : 0)).slice(this.follower ? 1 : 0);
+    this.crew.forEach((c, i) => {
+      const s = spots[i] ?? { x: this.player.tileX, y: this.player.tileY };
+      c.actor.setTile(s.x, s.y);
+      c.actor.face(this.player.facing);
+    });
   }
 
   /** Sacude la cámara (despegue, turbulencia, baches del camino). */
@@ -715,7 +768,16 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
       this.lastBump = this.time.now;
       playSfx('bump');
     }
-    if (this.walking) this.followTo(prevX, prevY);
+    if (this.walking) {
+      this.followTo(prevX, prevY);
+      this.trail.unshift({ x: prevX, y: prevY });
+      this.trail.length = Math.min(this.trail.length, CREW_M8.length + 2);
+      const lead = this.follower ? 1 : 0;
+      this.crew.forEach((c, i) => {
+        const spot = this.trail[i + lead];
+        if (spot) this.stepActorTo(c.actor, spot.x, spot.y);
+      });
+    }
   }
 
   /** Crea o quita al que sigue al jugador (el quiltro, o Sira en la misión 6), solo en la calle. */
@@ -756,9 +818,57 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     }
   }
 
+  /** Crea o quita a los amigos que caminan en fila (misión 8), según sus flags `m8_sigue_<id>`. */
+  private syncCrew(): void {
+    const want = CREW_M8.filter((id) => StoryState.hasFlag(`m8_sigue_${id}`));
+    const same = want.length === this.crew.length && want.every((id, i) => this.crew[i].id === id);
+    if (same) return;
+    const keep = new Map(this.crew.map((c) => [c.id, c.actor]));
+    for (const c of this.crew) if (!want.includes(c.id)) c.actor.destroy();
+    const spots = this.crewSpots(want.length + (this.follower ? 1 : 0)).slice(this.follower ? 1 : 0);
+    this.crew = want.map((id, i) => {
+      const actor = keep.get(id);
+      if (actor) return { id, actor };
+      const s = spots[i] ?? { x: this.player.tileX, y: this.player.tileY };
+      return { id, actor: new Actor(this, `${id}_fila`, charKey(id), s.x, s.y, this.player.facing, () => false) };
+    });
+  }
+
+  /**
+   * Dónde se para la fila: detrás del jugador si se puede y, si no (una pared, un borde), en los tiles libres
+   * más cercanos, cada uno en el suyo.
+   */
+  private crewSpots(n: number): Array<{ x: number; y: number }> {
+    const out: Array<{ x: number; y: number }> = [];
+    const seen = new Set<string>([`${this.player.tileX},${this.player.tileY}`]);
+    const back = DIR_VECTORS[OPPOSITE[this.player.facing]];
+    const order = [back, ...Object.values(DIR_VECTORS).filter((d) => d !== back)];
+    let frontier = [{ x: this.player.tileX, y: this.player.tileY }];
+    while (out.length < n && frontier.length > 0) {
+      const next: Array<{ x: number; y: number }> = [];
+      for (const p of frontier) {
+        for (const d of order) {
+          const q = { x: p.x + d.x, y: p.y + d.y };
+          const key = `${q.x},${q.y}`;
+          if (seen.has(key) || this.map.isSolid(q.x, q.y)) continue;
+          seen.add(key);
+          next.push(q);
+          if (out.length < n) out.push(q);
+        }
+      }
+      frontier = next;
+    }
+    return out;
+  }
+
   private followTo(x: number, y: number): void {
     const f = this.follower;
-    if (!f || (f.tileX === x && f.tileY === y)) return;
+    if (f) this.stepActorTo(f, x, y);
+  }
+
+  /** Lleva a alguien de la fila a (x, y): un paso si está al lado, o directo si quedó lejos. */
+  private stepActorTo(f: Actor, x: number, y: number): void {
+    if (f.tileX === x && f.tileY === y) return;
     const dx = x - f.tileX;
     const dy = y - f.tileY;
     if (Math.abs(dx) + Math.abs(dy) !== 1 || f.moving) {

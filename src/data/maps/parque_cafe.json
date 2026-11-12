@@ -1,0 +1,424 @@
+{
+ "id": "parque_cafe",
+ "name": "Parque del Café",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 72,
+ "height": 110,
+ "background": "#3c6a34",
+ "music": "parque",
+ "legend": {
+  ".": "agua",
+  "=": "alero",
+  "-": "arbol",
+  ":": "bandera_0",
+  "\"": "bandera_1",
+  "#": "bandera_2",
+  "a": "bandera_3",
+  "b": "bandera_4",
+  "c": "bandera_5",
+  "d": "barco_00",
+  "e": "barco_01",
+  "f": "barco_10",
+  "g": "barco_11",
+  "h": "barco_20",
+  "i": "barco_21",
+  "j": "cafetal",
+  "k": "camino_parque",
+  "l": "chocones_borde",
+  "m": "chocones_piso",
+  "n": "guadual",
+  "o": "kiosko_comida",
+  "p": "pasto",
+  "q": "pasto_flor",
+  "r": "piedra",
+  "s": "rapidos",
+  "t": "rapidos_b",
+  "u": "riel_h",
+  "v": "riel_v",
+  "w": "rueda_00",
+  "x": "rueda_01",
+  "y": "rueda_02",
+  "z": "rueda_10",
+  "A": "rueda_11",
+  "B": "rueda_12",
+  "C": "rueda_20",
+  "D": "rueda_21",
+  "E": "rueda_22",
+  "F": "sal_ventana_amarillo",
+  "G": "sal_ventana_azul",
+  "H": "sal_ventana_morado",
+  "I": "sal_ventana_naranja",
+  "J": "sal_ventana_rojo",
+  "K": "sal_ventana_turquesa",
+  "L": "sal_ventana_verde",
+  "M": "show_cafe",
+  "N": "soporte_krater",
+  "O": "taquilla_parque",
+  "P": "teja",
+  "Q": "teleferico",
+  "R": "torre_mirador",
+  "S": "tren_via"
+ },
+ "rows": [
+  "ppppppp-prrrpppppppppppkkppppppppppppppppppppppppppppppn-n-nnnnnnnn--npp",
+  "pppp-pppprrrppppppppppppkkpppp-pppppppppppppppppp--pppn-n----nn-n--npppp",
+  "pppppppprrrpk-kppppppppppkkppppp-pppppppppppp-pppppppnnn-----nn-nn-ppp--",
+  "ppp-ppprrrrkkkkppp-ppppppppppppppppppppp-ppppppppppppn--nn-nnnnn--nppn--",
+  "ppppI=rrkkkkkkkkpppppppppppppppppppppppppppppppppppp-nnnn--n-nn--npppn-n",
+  "ppPppHrrrpkkkkkkkpppppppppppppppppppppppppppppppppp-n-----nnnnnnnnpp-nn-",
+  "ppP=Krkrrkkkkkqkkppp-ppppppppppppppppppppppppppppppnn---n-nnnnn--ppp-n-n",
+  "pp=Jrrkkkkkkpkkkkkppp-pppp-pppppppppppppppppppppppn-nnnnnnn-nn-nnppn-n--",
+  "p=Grrrkkkkkpkkkkkkkppppppp-ppppppppppppppppppppppnnnn--n-nnn-n---ppnnnnn",
+  "pLrrrrpkkkkkkkkkkkkppppppppp-pppppppppppppppp-pp-n-nnnnn-nn--nnnpppnnnn-",
+  "FrrrrRRpkkkkkkOOOOkk-pp-ppppppppppp-pppppppppppp-n-n-nnnnn-n-n-----nn-nn",
+  "prrrpRRpppkkkkkkkkkkkppppppppp-ppppppppppppp-nppnn-n-n-nn-nn-nn-nnn--n-n",
+  "rrrrpRRpqqpkkkkkkkkkpppppppppppppppppppppppppn-pppn-nnnnnnn-nnn---n-nn-n",
+  "rrrkkkkqqqpqpkkkkkKpppp-pppppppppppppppppp-p-p--pppn-n-nnnnnnnn-nnnnnnpp",
+  "rrrkkkqqqpppqkkkkkkJJppppppp-pppppppppppppppppnnpppp--n--nnnn-nn-npppppp",
+  "rrrpkkkqqqpqqkkkpkkqqqqkkkkkpppppppppppppppppp-n-pppnnnnn--nn-nn-nP=-ppp",
+  "rrppkkqqqppqLkkpkkqqqqkkkkkkkkppppppppppppppp-nnnpppn-n-----n-nn-p=L==pp",
+  "rrppqkqppqqqkkpkkkqqqkkkkkkpkkkpppppppFppppppnnnnppp-nn-n-n---nnnpFpFF==",
+  "rrpqkkq==pqkkkkkkkkkkkqkkkjjpkk-pppppppppppp-n--nnnnnnn-nnn-nnnpSSSSSpII",
+  "rqqkkqqHH=qHkkkkqqkkqqqkkjjjpkkkppppppppppp-k-n--nn-nn----nnnpSSSjjjjSSp",
+  "rkkkqq=kjKKjjkkKkkkqqkkkjjjjjkpkppppppppppkkkkkknn--n-nn---nnSSjjuuuuuuS",
+  "kkkqqJJkkkkjjjJkkqqqkkjjjjjjkkpkkppp-pp-pkkk-n-kn-nk-n-nn--nSSjjjvNNNNvj",
+  "pppqjjkkkkkkkkkkqkkkkjjjjjjjkppPkkkpppppkknnn--kkkkkk-n---npSjjjjvNNNNvj",
+  "PPpjjjjkkjjkkkkkkkkjjjjjjjjkkMMMMpkkkkkkkkkn----nn.-kknn=nnSpjjjjuuuuuuj",
+  "==QQjjjjkjkkkkkqqqjjjjjjjjjkkMMMMkkpp-pkk-k--n----.nkknFFFkkkkjjkkkpp-jj",
+  "IIIkjjjjkkkqqqqqqqpjjjjjjjkkkkIkkkkkkkpk-nk--nnnn.nn-k--kkkkkkkdfhkkpp-j",
+  "kkkkkkkkkqkkqqqqqppjjjjjjjkkpkkHpkkkkkkk-kknn--n-.nn-kkkkkkkSpkegikkpqpj",
+  "pkkkkkqqkqkkqqqqqjjjjjjjjjkpppkkkkkkpkkp-kk--n--.n--nnkkkqkkSpKkkkkkpqpp",
+  "pppppqqqkqqqqqqqjjjjjjjjjjkppkkkkpkkkkkk-nkkkkkkkk-n--k:kakkSpppkkkkpqpj",
+  "-ppppqqqkkqqqqqjjjjjjjjjjkkpkk-ppppkkkkkknnnnnn.kkkkkkk\"kbkqSSppqkkpqqpj",
+  "ppppppqqkqjjjjjjjjjjjjjjkkkkkpppppkkkkkkkkkpppp.n---nqq#kckkkkk-pqqppppj",
+  "ppppppjjkkjjjjjjjjjjjjjjjkkk-ppkkkkpkkkkkkkkkpp.nnn--qqak:kkkFkkpppppppp",
+  "pppppp-jjkkkjjjjjjjjjjjjjkkkkkkkkkkkkjjjkkkpkkk.pn--n-qqkkkkkkkkkppppppS",
+  "ppppppppjjjkkjjjjjjjjjjjjjkkkkkkkpkkjjjjjkkpppkkkn--n-qkkkkkkkkkkk-ppppk",
+  "ppppppppppjjkkkjjjjjjjjjjjjppkkkpkkjjjjjjkkppppkkkppnqkkkkkkkkkkkkSppppk",
+  "pppppppppppjjkkkjjjjjjjjjjjpJkpppkkkjjjjjjkn--nn.kkkkqkkkkpqkkkkkkqSppSk",
+  "-pppppppp-ppjjkkkkjjjjjjjjjjjkkkkkkkjjjjj.knn--n.nkkkkkkkkpqpkQQqqqpSpkk",
+  "pppppppppppppjjkkkkjjjjjjjjjjjkkkjkkjjjppkkn-n-n.ppkkkkkkpqpqkkkkqqqSSkp",
+  "pppppppppppppppjjkkkkjjjjjjjjjkjjjkjjp...kk-nn..n-kkoooookkqkkkkkF=qSkkp",
+  "ppppppppppppppppjkkjkjjjjjjjjjkjjkkjpp...kk....nnkkkkkkkkkkkkkkqqqISSkkp",
+  "pppppppppppppppppjjjkkkkjjjjkkkjjkpppkkkkk.nnnnkkk--pHHkkkkkkkkqqqkkkkpp",
+  "pppppppppppppppppppjkkkkkkjjkkkjkkkppkkn-.n---kkknn--ppKK=kkkkkppkkSSppp",
+  "pp-pppppppppppp-pppjjkjkkkkkkkjkkkkkkknn.nn--kkn-n---nnppJJkkkkkpkSSpppp",
+  "ppppp-ppp-ppppppppjjjjjkjkkkjkkkkkpkppnn.nnn-kp-n--n--n-npkkkkkpkkSSpppp",
+  "pppppppppppppppppjjjjjjjjjjjjkkkkppnn-n.nnppkkpp-nn--n--n-kkk=ppkpSSpppp",
+  "pppppppppppppppppjjjjjjjjjjjjjkkppn-n-n.--ppkkppppn--n--nnnkkFpkkSSppppp",
+  "ppppppppppppppppjjjjjjjjjjjjjpp-pp---nn.nnnpkkSSppkn-n--n-nkkppkSSSppppp",
+  "pppp-ppppppppppjjjjjjjjjjjjjjjpppn-n-nn.-npSkkppSSSS--nnn--nkkpkSSppppp-",
+  "ppppppppppppppjjjjjjjjjjjjjjjjjjp-nn--.-n-pSkpppK=K-SSSn-kkkkkSSpSpppppp",
+  "ppppppppppppppjjjjjjjjjjjjjjjjjjjnnn-n.nnpSkkppppJpppp-SkkkkkSpppSpppppp",
+  "ppppppp-pppppjjjjjjjjjjjjjjjjjjjjn-nn-.nnpkkp-kkkp-=Ppp-kknnnn-pSppppppp",
+  "ppppppppppppjjjjjjjjjjjjjjjjjjjjjjnnnn.nppkkpkkkkpLL====kkkkn--pS-pppppp",
+  "pppp-ppppppjjjjjjjjjjjjjjjjjjjjjjjjnn-.ppSkpkkppkkkkFFFFqqkkknpSpppppppp",
+  "ppppppppppjjjjjjjjjjjjjjjjjjjjjjjjppp.pppSkkkpp==kkkkkkkkqqkkppSpppppppp",
+  "ppppppppppjjjjjjkkkkjjjjjjjjjjjjjjppp.pppSkkkp-HHkkp=kkkkkkkkpSppppppppp",
+  "pppppp-ppjjjjjjkkkkkkkjjjjjjjqjjjppp-.pppSppppppkkkqKKKqqkkkqpSppppnnppp",
+  "ppppppppjjjjjjkkpppkpkkkjjjqqqqqjpppp.pppSppppppkkqqpp-qqqqqqpSpppn---pp",
+  "pppppppjjjjjjjkpkkpppppkkkqstqqqqpp-pp.ppSppppppkkqqqqqqqqqqqppSppnnnnnp",
+  "pppp-ppjjjjjjkkkkkkppppppkktsqqqqppppp.-pSpppppp=qqqqqqqqqqqqppSSppp-nn-",
+  "ppppppjjjjjjjkkkkkkkpppppkkst.qqqppppp.pppSpppppFpqqqqqqqqqqqpppSppppnnn",
+  "pppppjjjjjjjkkkpppkkpppppkqts.qqqqpppp.pppSppppppPqqqqqqqqppqpppSpp-pnn-",
+  "ppppjjjjjuuuuuuuuuuukkppkkqstp.qqqpp-p.pppSSp-kkp=qqqpppppppppppS-pppnn-",
+  "ppppjjjjjvppNpppNppvkkpkkqqtsk.qqqpppp.ppppSpkkkKKKqpp--p-ppppppSpppnnnn",
+  "pppjjjpkkvppNpppNppvkkkkJkkstkqkqqqpp.pppppSSkkpppppppppppppppppSp-nn--n",
+  "ppjjkkkkkvppNpppNppvkkkkkkktskq.qqqppp.-ppppSpkpppppppp-ppppppppSppnn-nn",
+  "ppkkkkkkkvppNpppNppvkqkkkkkstqq.qqqp--..-ppppSkkppppppppppppppppSpp-nn-n",
+  "pkkpkkkkkvppNpppNppvqkkqkkktsqq...qqppp.pppppppkpppp-pppppppp-ppS-p-n-nn",
+  "pkkpkpppkvppNpppNppvkkqqkkkstp.q..qqpppp.ppppppkpppppp-pp-pppppS-pn-n-nn",
+  "kkpkkppkkvppNpppNppvkqqkkpptsp.q..qqpppp.-ppppkkpp-ppppppp-p-ppSp--nn-np",
+  "kppkppkkkuuuuuuuuuuuqqqkkqKst......qqpp-p.pppkk-pppp-pKppKK-ppSpn--ppp--",
+  "kpkkpppvkkkpkkkkkkkqqqqqkkqts.......q-ppp.ppppkkpppppp-pppppppSpn-pppppn",
+  "pppkpppvppkpppppkkqqqqqqkkqst.......qpppp.pp-kkkpppppppp=ppppSp-nnpppp--",
+  "p--kkppvp--ppppppppqqqqqkkqtsqq.....qppp.nnpkkkkpppppppLLpppSp--pppp-nn.",
+  "kpppkkkvppppppppppppqqqkkkqqqqqq....qppp.-npkkFppppppppppppSSppppn-....-",
+  "kkkkpkkvkpkkppppppppjj-kk--qqqqqqpqppn--.nnpkkppqpppppppppSSpppn...-nn--",
+  "pppkkkkvkkkpppppppppjjnkk--nqqqqqqppnnnn.nnpkpqppqppppppppSpppp-.-n--nn-",
+  "ppppppkkkkkkkpppp-pjjjjkkkn---qqqnnnn--.nnpkkpqpqppp-ppppSppp-p.--nn--nn",
+  "pppppppppppkkkkkpppjjjjjkknnn-qq-nnnnnn-.nkkppqpppppppppSppppp..nn-n----",
+  "pppppppppppppppkkkjjjjjjkkj-nnn-n-n---pnkkkpppp-pppppppSpppppp.p--n-nnnn",
+  "pppppppppppppppppkkpjjjjkkjnnn-n-n-nnpkkkk-nnpp-ppppppSpp-ppp.ppppn-n--n",
+  "pp-pppp-ppppppppppkpjjjjkkkjn-nnnnnppkkkn.n-n-ppppppSSppppppp.-pp-pnnn-n",
+  "ppppppppppp-ppppp-kkjjjjkkkjjj---npkkkpp-..n--npppSSpppppppp.p-ppppp-nnn",
+  "p-ppp-ppppppppppppkkkp-jkkkkkkjppppkkppp-nn.n-nnSSpppppppppp.pppppppp--n",
+  "ppp-ppppppppp-pppkkPkpppjkkkkkkpkkkkppppppn-.--SS-n--ppp-pp.pppppppppp--",
+  "ppppppppppppppppkkpPkkpppkkkkkkkkkkkp=pppppn.SSnnnnn-nppp..ppppppp-pppp-",
+  "p-pppppp--pppppkkppPkkPPpkknnnkkkkpppGpppppSS-nnnn-nnpppp.ppppppppp-pppn",
+  "ppppppppppppppkkppp=kkPPpkkk--nn-pppp-pp-pSS-.........pp.p-ppppppp-pnp--",
+  "pppppppppppppkkp-ppFkkPPppkk-pkkkpppp-pppS---n-n--n.pp..--ppppppppp----p",
+  "pppppppppppppkppppppkI==pSSkkkkpkkkppp-pSpn---n-nn.pppppp-ppppppppppnnpp",
+  "kpp-ppppppppkkppppppkkHHpSkkkkpkkkkkkppSpppn-nnn-n.ppppppppppppppppppppp",
+  "kkkpppppppppkppppppppkk-SpkkkkkkkkkkkpSSpppnnnn-nn.ppp-ppppppppp-ppppppp",
+  "ppkkkppppppkkppppppp==kkSppkkkkp...kkkSpppnnn-n-n-.ppppppppppppppppp-ppp",
+  "ppppkkk-pppkp--pppppGGkkkkkkkkk....kkkS-ppnnn-nnn.pppppppppppppppppppppp",
+  "ppppppkkkpkkppppppppppkkkkkkkkk....kkkSppp-nnnn-p.pppppppppppppppppppppp",
+  "ppppppppkkkppppppppppppkSFkkkkk....kkkSpppn--n--.ppppppppppppppppppppppp",
+  "ppppppppppkppppppppppppkSpkkkkwzCkkkkkSpp-n-nn-.p-ppppppppppppp-pppppp-p",
+  "pppppppppppppppppppppppkkkqpkkxADkkpkkSp-n--n-p.pppppppppppppppppppppppp",
+  "ppppppppppppppppppppppppSkpkkkyBEpppkpSppnnnn-.ppppppppp-pp-pppppppppppp",
+  "p-ppppppppppppppppp-ppppSkkkkkkkkkkkllllll-nnp.ppppppppppppppppppppppppp",
+  "ppppppppppppppppppppppppSpkkkkkkkkppmmmmmmnn-.ppppppppppppppppppppppp-pp",
+  "ppppppppppppppppppppppppSpkkkkkkkkkpmmmmmmn-..pppppppp-ppp-ppppppppppppp",
+  "ppppppppppppppppppppppppSppkk=kkkkkpmmmmmmnn.pppppppppppppppppppppppp-pp",
+  "pppp-pppppppppppppppppppSppIpIkkkkkpmmmmmmn.pppppppp-ppppppppppppppppppp",
+  "pppp--ppppppppppppppppppSp-pppppkkkpppSk---.-ppppppppppppp-ppppppppppppp",
+  "ppppppppppp-ppppppppppppSSppKKPPpppppSpp--p.pppppppppppppppppppppppppppp",
+  "-ppppppppppppppppppp--pppSpppp===ppppSpppn.ppppppppppppppppppppppppppppp",
+  "pppppppppppppppppp-ppppppSSpppGGGpppSpppppp.pppp--ppppppppppppp-ppppp-pp",
+  "ppppppppppppppppppp-pppppppSppppppSSppp-ppp.-ppppppppppppppppppppppppppp",
+  "ppppppppppp-ppppppppppp-ppppSSSSSSpppppppppp..ppppppppppppppppppppppp-pp",
+  "ppppppppppppppppp-pppp-pppppppppppppppppppppp.pppppppppppppppppppppppppp"
+ ],
+ "zones": [
+  {
+   "name": "Entrada y taquilla",
+   "subtitle": "Parque del Café · Montenegro",
+   "x": 0,
+   "y": 0,
+   "w": 22,
+   "h": 16
+  },
+  {
+   "name": "Show del Café",
+   "subtitle": "Danzas del Quindío",
+   "x": 26,
+   "y": 21,
+   "w": 10,
+   "h": 6
+  },
+  {
+   "name": "Plaza principal",
+   "subtitle": "Av. de las Banderas · Estación Armenia",
+   "x": 50,
+   "y": 24,
+   "w": 22,
+   "h": 20
+  },
+  {
+   "name": "Krater",
+   "subtitle": "Montaña rusa · 380 metros de riel",
+   "x": 6,
+   "y": 58,
+   "w": 16,
+   "h": 18
+  },
+  {
+   "name": "Los Rápidos",
+   "subtitle": "Te vas a mojar",
+   "x": 24,
+   "y": 56,
+   "w": 8,
+   "h": 18
+  },
+  {
+   "name": "Rueda Panorámica",
+   "subtitle": "Y los carros chocones",
+   "x": 26,
+   "y": 90,
+   "w": 18,
+   "h": 16
+  },
+  {
+   "name": "Cafetal",
+   "subtitle": "Recorrido cafetero",
+   "x": 10,
+   "y": 18,
+   "w": 20,
+   "h": 40
+  },
+  {
+   "name": "Bosque de guadua",
+   "subtitle": "El guadual",
+   "x": 40,
+   "y": 0,
+   "w": 32,
+   "h": 22
+  },
+  {
+   "name": "Parque del Café",
+   "subtitle": "Montenegro, Quindío",
+   "x": 0,
+   "y": 0,
+   "w": 72,
+   "h": 110
+  }
+ ],
+ "spawns": {
+  "llegada": {
+   "x": 9,
+   "y": 6,
+   "dir": "down"
+  },
+  "taquilla": {
+   "x": 16,
+   "y": 11,
+   "dir": "up"
+  },
+  "torre": {
+   "x": 6,
+   "y": 13,
+   "dir": "up"
+  },
+  "museo": {
+   "x": 13,
+   "y": 18,
+   "dir": "up"
+  },
+  "teleferico_o": {
+   "x": 3,
+   "y": 25,
+   "dir": "up"
+  },
+  "show": {
+   "x": 31,
+   "y": 25,
+   "dir": "up"
+  },
+  "barco": {
+   "x": 64,
+   "y": 27,
+   "dir": "up"
+  },
+  "banderas": {
+   "x": 56,
+   "y": 30,
+   "dir": "left"
+  },
+  "estacion": {
+   "x": 61,
+   "y": 33,
+   "dir": "up"
+  },
+  "comidas": {
+   "x": 54,
+   "y": 39,
+   "dir": "up"
+  },
+  "teleferico_e": {
+   "x": 62,
+   "y": 37,
+   "dir": "up"
+  },
+  "krater": {
+   "x": 14,
+   "y": 70,
+   "dir": "up"
+  },
+  "rapidos": {
+   "x": 29,
+   "y": 63,
+   "dir": "left"
+  },
+  "cafetal": {
+   "x": 24,
+   "y": 30,
+   "dir": "up"
+  },
+  "guadual": {
+   "x": 50,
+   "y": 46,
+   "dir": "up"
+  },
+  "rueda": {
+   "x": 31,
+   "y": 98,
+   "dir": "up"
+  },
+  "chocones": {
+   "x": 39,
+   "y": 103,
+   "dir": "up"
+  },
+  "fabulas": {
+   "x": 30,
+   "y": 92,
+   "dir": "up"
+  },
+  "yippe": {
+   "x": 19,
+   "y": 56,
+   "dir": "up"
+  }
+ },
+ "labels": [
+  {
+   "x": 16,
+   "y": 9.2,
+   "text": "TAQUILLA"
+  },
+  {
+   "x": 6,
+   "y": 9.2,
+   "text": "TORRE MIRADOR"
+  },
+  {
+   "x": 31,
+   "y": 22.2,
+   "text": "SHOW DEL CAFÉ"
+  },
+  {
+   "x": 64.5,
+   "y": 24.2,
+   "text": "BARCO DEL CAFÉ"
+  },
+  {
+   "x": 67.5,
+   "y": 19.2,
+   "text": "CICLÓN"
+  },
+  {
+   "x": 56,
+   "y": 27.2,
+   "text": "AV. DE LAS BANDERAS"
+  },
+  {
+   "x": 61,
+   "y": 31.6,
+   "text": "ESTACIÓN ARMENIA"
+  },
+  {
+   "x": 54,
+   "y": 37.2,
+   "text": "PLAZA DE COMIDAS"
+  },
+  {
+   "x": 14.5,
+   "y": 60.2,
+   "text": "KRATER",
+   "color": "#ff8a8a"
+  },
+  {
+   "x": 28,
+   "y": 56.2,
+   "text": "RÁPIDOS"
+  },
+  {
+   "x": 31,
+   "y": 94.2,
+   "text": "RUEDA PANORÁMICA"
+  },
+  {
+   "x": 39,
+   "y": 97.2,
+   "text": "CARROS CHOCONES"
+  },
+  {
+   "x": 3,
+   "y": 23.2,
+   "text": "TELEFÉRICO"
+  }
+ ],
+ "enter": [
+  {
+   "id": "m8_llegada",
+   "dialogue": "m8_parque_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission08"
+   }
+  }
+ ]
+}

@@ -10,6 +10,7 @@ import { makeText } from './theme';
  * (flag `m6_quimica_visible`). Al subir, el corazón late.
  *
  * Misión 7: el mismo medidor, con sus propias flags (`m7_q_<algo>`, visible con `m7_quimica_visible`).
+ * Misión 8: con Laura, en la plaza (`m8_q_<algo>`, visible con `m8_quimica_visible`).
  */
 
 export const QUIMICA_PREFIX = 'm6_q_';
@@ -18,6 +19,7 @@ export const QUIMICA_MAX = 14;
 const BY_MISSION: Record<string, { prefix: string; visible: string }> = {
   mission06: { prefix: QUIMICA_PREFIX, visible: 'm6_quimica_visible' },
   mission07: { prefix: 'm7_q_', visible: 'm7_quimica_visible' },
+  mission08: { prefix: 'm8_q_', visible: 'm8_quimica_visible' },
 };
 const HEARTS = QUIMICA_MAX / 2;
 const X = 4;

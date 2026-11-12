@@ -1,0 +1,51 @@
+{
+ "id": "chiva",
+ "name": "La chiva",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 14,
+ "height": 7,
+ "background": "#101018",
+ "music": "chiva",
+ "legend": {
+  "k": "auto_carroceria",
+  "L": "chiva_lado",
+  "T": "chiva_tablero",
+  "b": "chiva_banca",
+  ".": "chiva_piso"
+ },
+ "rows": [
+  "kkkkkkkkkkkkkk",
+  "kLLLLLLLLLLLLk",
+  "kTb.b.b.b.b.bk",
+  "kTb.b.b.b.b.bk",
+  "kTb.b.b.b.b.bk",
+  "kLLLLLLLLLLLLk",
+  "kkkkkkkkkkkkkk"
+ ],
+ "spawns": {
+  "asiento": {
+   "x": 6,
+   "y": 3,
+   "dir": "left"
+  }
+ },
+ "enter": [
+  {
+   "id": "ida",
+   "dialogue": "m8_chiva_ida",
+   "if": {
+    "mission": "mission08",
+    "notFlag": "m8_en_parque"
+   }
+  },
+  {
+   "id": "vuelta",
+   "dialogue": "m8_chiva_vuelta",
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_en_parque"
+   }
+  }
+ ]
+}

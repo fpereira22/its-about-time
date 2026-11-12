@@ -411,5 +411,71 @@
     "icon": "botella_rojo",
     "use": "usar_bebida_m7",
     "useLabel": "Mirar"
+  },
+  "oblea_salento": {
+    "name": "Oblea de Salento",
+    "description": "Dos galletas finitas con arequipe, mora y queso rallado. De doña Fanny, en la plaza de Salento.",
+    "icon": "oblea_salento",
+    "collectible": true,
+    "use": "usar_oblea_salento",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "arepa_choclo": {
+    "name": "Arepa de choclo",
+    "description": "Dulce, con quesito derretido encima. De doña Marleny.",
+    "icon": "arepa_choclo",
+    "collectible": true,
+    "use": "usar_arepa_choclo",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "solterita": {
+    "name": "Solterita",
+    "description": "Galleta crocante con arequipe y coco, típica del Quindío. No se comparte (por definición).",
+    "icon": "solterita",
+    "collectible": true,
+    "use": "usar_solterita",
+    "useLabel": "Comer",
+    "useSfx": "eat"
+  },
+  "cafe_salento": {
+    "name": "Café de Salento",
+    "description": "Una libra de café en grano de don Ramiro, molido «medio, pa' greca». La mochila huele a eso.",
+    "icon": "cafe_salento",
+    "collectible": true,
+    "use": "usar_cafe_salento",
+    "useLabel": "Oler"
+  },
+  "llavero_palma": {
+    "name": "Llavero de palma de cera",
+    "description": "Una palmita tallada en madera, para doña Mery.",
+    "icon": "llavero_palma",
+    "collectible": true
+  },
+  "foto_krater": {
+    "name": "Foto del Krater",
+    "description": "La foto de la bajada grande del Krater. Atrás tiene algo escrito con lápiz.",
+    "icon": "foto_krater",
+    "collectible": true,
+    "use": "usar_foto_krater",
+    "useLabel": "Mirar"
+  },
+  "aji_casa": {
+    "name": "Ají de la casa",
+    "description": "Un frasquito del ají de doña Marleny. Renzo lloró de felicidad.",
+    "icon": "aji_casa",
+    "use": "usar_aji_casa",
+    "useLabel": "Probar"
+  },
+  "manilla_parque": {
+    "name": "Manilla del Parque del Café",
+    "description": "Amarilla, dice «PASAPORTE». No te la quieres sacar.",
+    "icon": "manilla_parque"
+  },
+  "corona_carton": {
+    "name": "Corona de cartulina",
+    "description": "«CAMPEÓN», torneo de pimpón de La Casita. Hecha por doña Rubiela.",
+    "icon": "corona_carton"
   }
 }

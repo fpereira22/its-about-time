@@ -1,0 +1,1712 @@
+{
+ "m8_chiva_ida": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La chiva: un bus de madera pintado de amarillo, rojo, azul y verde, con bancas de lado a lado y sin vidrios. Arriba, en el techo, van las mochilas y un gallo de adorno.",
+    "effects": [
+     {
+      "vineta": "m8_chiva_adentro"
+     },
+     {
+      "event": "viaje_chiva_m8"
+     }
+    ]
+   }
+  }
+ },
+ "m8_chiva_vuelta": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La chiva de vuelta, de noche. Todos cansados, quemados por el sol, con la manilla del parque todavía puesta.",
+    "effects": [
+     {
+      "vineta": "m8_chiva_noche"
+     },
+     {
+      "event": "viaje_chiva_m8"
+     }
+    ]
+   }
+  }
+ },
+ "m8_chiva_1": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Tami se sienta a tu lado. No pregunta. Se sienta y ya.",
+    "effects": [
+     {
+      "vineta": "m8_tami_chiva"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Tami",
+    "text": "En el bus te sentaste con Richi. Acá me toca a mí. Es justicia caleña.",
+    "choices": [
+     {
+      "label": "«Me parece justo.»",
+      "effects": [
+       {
+        "setFlag": "m8_tami_chiva_bien"
+       }
+      ],
+      "goto": "justo"
+     },
+     {
+      "label": "«¿Y Richi?»",
+      "goto": "richi"
+     },
+     {
+      "label": "(Sonreír y mirar por la ventana que no tiene vidrio)",
+      "goto": "mirar"
+     }
+    ]
+   },
+   "justo": {
+    "speaker": "Tami",
+    "text": "¿Viste? Sos razonable. Eso me gusta en un hombre. Y en un chileno, que es más difícil."
+   },
+   "richi": {
+    "speaker": "Tami",
+    "text": "Richi va adelante cantando con Danilo. Está bien, chileno. No te va a extrañar. Yo sí, si te cambiás."
+   },
+   "mirar": {
+    "text": "Tami se ríe y te pega con el codo. El viento te despeina a los dos igual."
+   }
+  }
+ },
+ "m8_chiva_2": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Danilo se para en el pasillo de la chiva y grita: «¡¿Cómo está la chiva?!». Todos: «¡BIEEEN!». «¡No los oigo!». Todos: «¡BIEEEEEN!». Es la misma pregunta cada diez minutos.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_chiva"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Renzo está verde. «Causa, la chiva se mueve más que el Barco ese que dicen. Y no he subido al Barco todavía.»",
+    "effects": [
+     {
+      "vineta": "m8_renzo_mareado"
+     }
+    ]
+   }
+  }
+ },
+ "m8_chiva_3": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Montenegro, kilómetro 6. Al lado de la chiva pasa otra chiva, llena de gente cantando en otro acento.",
+    "effects": [
+     {
+      "vineta": "m8_chiva_adentro"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Juanpa",
+    "text": "Parce, ¿oyeron? «¡Che, boluda, mirá!» ¡Son argentinas! Del intercambio de la Pública del Valle. Parce, esta es nuestra tarde.",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Juanpa, eso que acabás de decir es un síntoma. Lo anoto.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_chiva"
+     }
+    ]
+   }
+  }
+ },
+ "m8_parque_llegada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El Parque del Café, en Montenegro: cafetales, guaduales, montañas rusas y una torre mirador. Hace calor: aquí abajo no hay frío de montaña.",
+    "effects": [
+     {
+      "vineta": "m8_parque_entrada"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Bueno, gente: Richi, Tami y yo vamos al Show del Café, que es cultura. Ustedes, los salvajes, vayan a las montañas rusas. Nos vemos en la salida a las seis.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_guia"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Juanpa",
+    "text": "Parce, el Krater. Está al sur, pasando el cafetal. Dicen que en la bajada te toman una foto. Y dicen que las argentinas van para allá.",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     },
+     {
+      "objective": "Recorre el Parque del Café: el Krater (al sur), el Barco del Café (plaza principal, al oriente), los chocones... y a las 17:20, la Rueda Panorámica (al fondo)"
+     },
+     {
+      "giveItem": "manilla_parque"
+     }
+    ]
+   }
+  }
+ },
+ "m8_argentinas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "ya",
+      "if": {
+       "flag": "m8_conoce_argentinas"
+      }
+     },
+     {
+      "goto": "hola"
+     }
+    ]
+   },
+   "hola": {
+    "text": "Dos chicas en la fila del Krater. Una rubia de crespos, con gafas de sol en la cabeza; la otra, morena, con un mate. Sí: un mate. En el Parque del Café.",
+    "effects": [
+     {
+      "vineta": "m8_argentinas"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Flor",
+    "text": "¡Hola! ¿Ustedes también son de intercambio? Yo soy Flor, de Córdoba. Ella es Meli, de Buenos Aires. Estamos en la Pública del Valle.",
+    "effects": [
+     {
+      "vineta": "m8_flor"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Flor",
+    "text": "¿Vos sos chileno? ¡No te puedo creer! Decí algo en chileno. Dale, decí «cachai».",
+    "choices": [
+     {
+      "label": "«¿Cachai? Ya po, cachai al tiro.»",
+      "effects": [
+       {
+        "setFlag": "m8_flor_cachai"
+       }
+      ],
+      "goto": "cachai"
+     },
+     {
+      "label": "«Solo si tú dices \"che, boludo\".»",
+      "effects": [
+       {
+        "setFlag": "m8_flor_trato"
+       }
+      ],
+      "goto": "trato"
+     },
+     {
+      "label": "«Me da vergüenza...»",
+      "goto": "verguenza"
+     }
+    ]
+   },
+   "cachai": {
+    "speaker": "Flor",
+    "text": "¡JAJAJA! ¡Es igual que en las películas! Meli, ¿escuchaste? «Al tiro». ¿Qué significa? No me digas, me encanta igual.",
+    "effects": [
+     {
+      "vineta": "m8_flor_risa"
+     }
+    ],
+    "next": "meli"
+   },
+   "trato": {
+    "speaker": "Flor",
+    "text": "¡Trato! Che, boludo. ¿Contento? Ahora vos: cachai. ...¡Ay, qué lindo! Somos un tratado de libre comercio.",
+    "effects": [
+     {
+      "vineta": "m8_flor_risa"
+     }
+    ],
+    "next": "meli"
+   },
+   "verguenza": {
+    "speaker": "Flor",
+    "text": "¿Vergüenza? ¡Ay, no! Un chileno tímido. Meli, encontré uno. Dicen que hay pocos.",
+    "effects": [
+     {
+      "vineta": "m8_flor_risa"
+     }
+    ],
+    "next": "meli"
+   },
+   "meli": {
+    "speaker": "Meli",
+    "text": "Flor tiene cuatro novios en Córdoba y ninguno sabe del otro. No le creas nada. ¿Mate?",
+    "effects": [
+     {
+      "vineta": "m8_meli"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "speaker": "Flor",
+    "text": "¡Meli! ...Bueno, dos. Dos novios. Que ya no son novios. ¿Te subís conmigo al Krater, chileno? Meli no se sube a nada que tenga loop.",
+    "effects": [
+     {
+      "vineta": "m8_flor"
+     },
+     {
+      "setFlag": "m8_conoce_argentinas"
+     }
+    ]
+   },
+   "ya": {
+    "speaker": "Flor",
+    "text": "¿Vamos o no vamos al Krater, chileno? Mirá que me arrepiento.",
+    "effects": [
+     {
+      "vineta": "m8_flor"
+     }
+    ]
+   }
+  }
+ },
+ "m8_krater_entrada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "hecho",
+      "if": {
+       "flag": "m8_krater"
+      }
+     },
+     {
+      "goto": "fila"
+     }
+    ]
+   },
+   "fila": {
+    "text": "Krater: 380 metros de riel, una subida eterna y una bajada que te deja el alma en la estación. El operario revisa las manillas.",
+    "effects": [
+     {
+      "vineta": "m8_krater_cartel"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Hacer la fila",
+      "effects": [
+       {
+        "event": "krater_m8"
+       }
+      ],
+      "goto": "subir"
+     },
+     {
+      "label": "Mejor después",
+      "goto": "despues"
+     }
+    ]
+   },
+   "subir": {
+    "speaker": "Operario",
+    "text": "¡Siguiente! Brazos adentro del carro, gafas guardadas y el alma bien amarrada."
+   },
+   "despues": {
+    "text": "Renzo: «Causa, yo te acompaño hasta la fila. Hasta la fila nomás.»",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     }
+    ]
+   },
+   "hecho": {
+    "text": "¿Otra vez? La fila ya está de una hora. Y Renzo dice que si te vuelves a subir, él se va caminando a Lima.",
+    "effects": [
+     {
+      "vineta": "m8_krater_cartel"
+     }
+    ]
+   }
+  }
+ },
+ "m8_krater_fila": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "conoce",
+      "if": {
+       "flag": "m8_conoce_argentinas"
+      }
+     },
+     {
+      "goto": "no"
+     }
+    ]
+   },
+   "no": {
+    "text": "En la fila, adelante, dos chicas hablan con un acento cantadito. Una se da vuelta: «¿Vos también tenés miedo?». Es Flor, de Córdoba. Su amiga Meli toma mate al lado.",
+    "effects": [
+     {
+      "vineta": "m8_argentinas"
+     },
+     {
+      "setFlag": "m8_conoce_argentinas"
+     }
+    ],
+    "next": "conoce"
+   },
+   "conoce": {
+    "text": "Flor se sube contigo al carro. Juanpa queda con Meli en el de atrás. Renzo se queda abajo «cuidando las mochilas».",
+    "effects": [
+     {
+      "vineta": "m8_krater_carro"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Flor",
+    "text": "Si grito, no te asustes. Si te agarro el brazo, tampoco. Es por la física, ¿eh? No es por otra cosa."
+   }
+  }
+ },
+ "m8_krater_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "cobarde",
+      "if": {
+       "flag": "m8_krater_cobarde"
+      }
+     },
+     {
+      "goto": "manos",
+      "if": {
+       "flag": "m8_foto_manos"
+      }
+     },
+     {
+      "goto": "grito",
+      "if": {
+       "flag": "m8_foto_grito"
+      }
+     },
+     {
+      "goto": "panico"
+     }
+    ]
+   },
+   "cobarde": {
+    "text": "Te bajaste antes de que arrancara. Flor se subió sola con un señor de Pereira. El señor gritó más que ella.",
+    "effects": [
+     {
+      "vineta": "m8_krater_cartel"
+     }
+    ],
+    "next": "fin"
+   },
+   "manos": {
+    "text": "En la pantalla de las fotos: tú con las manos arriba como un campeón, y Flor agarrada de tu brazo con los ojos cerrados. «¡Esa! ¡Esa la compramos!»",
+    "effects": [
+     {
+      "vineta": "m8_foto_krater"
+     }
+    ],
+    "next": "flor"
+   },
+   "grito": {
+    "text": "En la pantalla de las fotos: tú gritando con la boca del tamaño de un túnel. Flor, al lado, llorando de la risa. «¡No! ¡Es la mejor foto de la historia!»",
+    "effects": [
+     {
+      "vineta": "m8_foto_krater"
+     }
+    ],
+    "next": "flor"
+   },
+   "panico": {
+    "text": "En la pantalla de las fotos: tú con cara de haber visto un fantasma, agarrado del carro con las dos manos. Flor con las manos arriba. «Che... vos sos re miedoso. Me encanta.»",
+    "effects": [
+     {
+      "vineta": "m8_foto_krater"
+     }
+    ],
+    "next": "flor"
+   },
+   "flor": {
+    "text": "Flor compra dos fotos. Te pasa una. Atrás le escribe con un lápiz: «Flor, Córdoba. Krater, que no se repita (o sí)».",
+    "effects": [
+     {
+      "setFlag": "m8_flor_foto"
+     }
+    ],
+    "next": "fin"
+   },
+   "fin": {
+    "speaker": "Flor",
+    "text": "¿Y ahora? ¿Barco? ¿Chocones? Nosotras nos pegamos a ustedes, si no les molesta. A Meli no le molesta. A mí tampoco.",
+    "effects": [
+     {
+      "vineta": "m8_flor"
+     },
+     {
+      "objective": "Con Flor y Meli: el Barco del Café (plaza principal), los chocones (al fondo)... A las 17:20, la Rueda Panorámica con Flor"
+     }
+    ]
+   }
+  }
+ },
+ "m8_chocones_entrada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "hecho",
+      "if": {
+       "flag": "m8_chocones"
+      }
+     },
+     {
+      "goto": "fila"
+     }
+    ]
+   },
+   "fila": {
+    "text": "Carros chocones: una pista con piso de lata, antenitas que sacan chispas y unos carritos con nombres pintados: «Chocolatina», «Tinto», «Arequipe»...",
+    "effects": [
+     {
+      "vineta": "m8_chocones_cartel"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Subirse",
+      "effects": [
+       {
+        "event": "chocones_m8"
+       }
+      ],
+      "goto": "subir"
+     },
+     {
+      "label": "Después",
+      "goto": "despues"
+     }
+    ]
+   },
+   "subir": {
+    "speaker": "Operario",
+    "text": "¡Al que choque de frente lo saco! ...Mentira, mijo. Choque como quiera."
+   },
+   "despues": {
+    "text": "Desde la baranda, Flor ya eligió carro: el rosado. «Ese es mío. El que se meta con el rosado, se mete conmigo.»"
+   },
+   "hecho": {
+    "text": "Juanpa todavía tiene el cuello torcido del último choque. Valió la pena.",
+    "effects": [
+     {
+      "vineta": "m8_chocones_cartel"
+     }
+    ]
+   }
+  }
+ },
+ "m8_chocones_fila": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Te toca el carro «Tinto». Flor el rosado, Meli el amarillo, Juanpa el verde. Renzo se sube al naranja con un helado en la mano.",
+    "effects": [
+     {
+      "vineta": "m8_chocones_cartel"
+     }
+    ]
+   }
+  }
+ },
+ "m8_chocones_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Choques: {choques}. Renzo bajó con el helado intacto. Nadie sabe cómo.",
+    "effects": [
+     {
+      "vineta": "m8_chocones_cartel"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "flor",
+      "if": {
+       "flag": "m8_flor_chocones"
+      }
+     },
+     {
+      "goto": "no"
+     }
+    ]
+   },
+   "flor": {
+    "text": "Flor se baja riéndose y te empuja con el hombro: «Me chocaste a propósito. Tres veces. Esto ya es personal, chileno.»",
+    "effects": [
+     {
+      "vineta": "m8_flor_risa"
+     }
+    ]
+   },
+   "no": {
+    "text": "Flor: «¿Y a mí por qué no me chocaste? ¿No te caigo bien?» ...No sabes qué contestar. Meli se ríe con el mate en la boca.",
+    "effects": [
+     {
+      "vineta": "m8_flor"
+     }
+    ]
+   }
+  }
+ },
+ "m8_rueda_entrada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "hecho",
+      "if": {
+       "flag": "m8_rueda"
+      }
+     },
+     {
+      "goto": "flor",
+      "if": {
+       "flag": "m8_krater"
+      }
+     },
+     {
+      "goto": "sola"
+     }
+    ]
+   },
+   "flor": {
+    "text": "La Rueda Panorámica: veinte cabinas de colores girando despacito sobre el parque. Desde arriba se ve medio Quindío.",
+    "effects": [
+     {
+      "vineta": "m8_rueda_cartel"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Subirse con Flor (al atardecer)",
+      "effects": [
+       {
+        "event": "rueda_m8"
+       }
+      ],
+      "goto": "subir"
+     },
+     {
+      "label": "Todavía no",
+      "goto": "despues"
+     }
+    ]
+   },
+   "subir": {
+    "speaker": "Operaria",
+    "text": "¡Cabina siete! Dos personas. ¡Siguientes!"
+   },
+   "despues": {
+    "text": "La rueda gira despacio. No hay apuro: el atardecer llega a las cinco y media."
+   },
+   "sola": {
+    "text": "La Rueda Panorámica. Juanpa: «Parce, a esa uno se sube con alguien. Solo es triste.» (Primero, el Krater: ahí están las argentinas.)",
+    "effects": [
+     {
+      "vineta": "m8_rueda_cartel"
+     }
+    ]
+   },
+   "hecho": {
+    "text": "La rueda sigue girando. Ya bajaste. Ya pasó lo que pasó (o lo que no pasó).",
+    "effects": [
+     {
+      "vineta": "m8_rueda_cartel"
+     }
+    ]
+   }
+  }
+ },
+ "m8_rueda": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Cabina siete: tú y Flor, sentados frente a frente. Juanpa y Meli en la seis. Renzo solo en la ocho, comiéndose una mazorca.",
+    "effects": [
+     {
+      "vineta": "m8_rueda_cabina"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "La rueda sube. El parque se va haciendo chiquito: el Krater, el barco, los cafetales, la carretera a Montenegro... y las montañas, que se ponen naranjas.",
+    "effects": [
+     {
+      "vineta": "m8_rueda_vista"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Flor",
+    "text": "Che, ¿y a vos qué te trajo a Colombia? Así, de verdad. No me digas «la universidad».",
+    "effects": [
+     {
+      "vineta": "m8_rueda_cabina"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Quería saber quién era lejos de mi casa.»",
+      "effects": [
+       {
+        "setFlag": "m8_flor_honesto"
+       }
+      ],
+      "goto": "lejos"
+     },
+     {
+      "label": "«La universidad.» (sonrisa)",
+      "goto": "u"
+     },
+     {
+      "label": "«Me dijeron que acá la gente era linda. Era verdad.»",
+      "effects": [
+       {
+        "setFlag": "m8_flor_piropo"
+       }
+      ],
+      "goto": "piropo"
+     }
+    ]
+   },
+   "lejos": {
+    "speaker": "Flor",
+    "text": "...Uh. Qué lindo eso. Yo vine por lo mismo, creo. Para ver si sin Córdoba seguía siendo yo. Por ahora sí. Un poco más loca, nomás.",
+    "effects": [
+     {
+      "vineta": "m8_flor_seria"
+     }
+    ]
+   },
+   "u": {
+    "speaker": "Flor",
+    "text": "JAJAJA. Te dije que no me dijeras eso. Sos imposible. Imposible y simpático, que es lo peor.",
+    "effects": [
+     {
+      "vineta": "m8_flor_risa"
+     }
+    ]
+   },
+   "piropo": {
+    "speaker": "Flor",
+    "text": "...Ay. Ay, chileno. Eso fue un piropo. Un piropo con acento. Meli no me va a creer. Dejame que lo anote.",
+    "effects": [
+     {
+      "vineta": "m8_flor_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_rueda_arriba": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Arriba de todo, la rueda se detiene un momento. Se ve el sol metiéndose detrás de la cordillera. Flor se cambia de lado y se sienta al lado tuyo. «Para ver mejor», dice.",
+    "effects": [
+     {
+      "vineta": "m8_rueda_atardecer"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Se quedan callados. Ese silencio raro, el de cuando los dos están pensando lo mismo y ninguno lo dice.",
+    "choices": [
+     {
+      "label": "Acercarte un poquito",
+      "effects": [
+       {
+        "setFlag": "m8_rueda_acerco"
+       }
+      ],
+      "goto": "acercar"
+     },
+     {
+      "label": "Mirar el atardecer",
+      "goto": "mirar"
+     }
+    ]
+   },
+   "acercar": {
+    "text": "Ella también se acerca. Un centímetro. Dos. Huele a protector solar y a mate...",
+    "effects": [
+     {
+      "vineta": "m8_rueda_casi"
+     }
+    ]
+   },
+   "mirar": {
+    "text": "Flor apoya la cabeza en tu hombro. «Qué lindo es esto, ¿no?» Es lindo, sí."
+   }
+  }
+ },
+ "m8_rueda_frenazo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "¡CLONK! La rueda arranca de golpe. La cabina se mece. Desde la cabina ocho, Renzo grita con la mazorca en la mano:",
+    "effects": [
+     {
+      "vineta": "m8_rueda_renzo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Renzo",
+    "text": "¡¿ESTÁN VIVOS?! ¡CAUSA! ¡LA MAZORCA SE ME CAYÓ! ¡SE ME CAYÓ LA MAZORCA AL VACÍO!",
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Flor se ríe tanto que se tapa la cara. Tú también. Lo que iba a pasar, o no iba a pasar, se queda arriba, en la cabina siete. Quién sabe.",
+    "effects": [
+     {
+      "vineta": "m8_rueda_risa"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Flor",
+    "text": "Bueno, chileno. Eso fue... casi algo. Me encantan los casi algo. Tomá: mi Fotogram. Por si algún día venís a Córdoba. O yo a Chile.",
+    "effects": [
+     {
+      "vineta": "m8_flor"
+     },
+     {
+      "setFlag": "m8_flor_fotogram"
+     }
+    ]
+   }
+  }
+ },
+ "m8_parque_cierra": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Por los parlantes: «Señores visitantes, el Parque del Café cerrará sus puertas en treinta minutos». Las argentinas tienen que irse en su chiva a Armenia.",
+    "effects": [
+     {
+      "vineta": "m8_parque_atardecer"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Meli",
+    "text": "Fue un gusto, chilenos. Bueno, un chileno, un caleño altísimo y un peruano. Es como un chiste, pero sin remate.",
+    "effects": [
+     {
+      "vineta": "m8_meli"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Flor",
+    "text": "¡Chau, chileno! No te olvides de la foto. Si la perdés, te mato desde Córdoba.",
+    "effects": [
+     {
+      "vineta": "m8_flor"
+     },
+     {
+      "objective": "La salida del parque: la chiva de vuelta a Salento (don Jairo, en la entrada)"
+     },
+     {
+      "setFlag": "m8_parque_ya"
+     }
+    ]
+   }
+  }
+ },
+ "m8_chivero_parque": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "volver",
+      "if": {
+       "flag": "m8_parque_cerrando"
+      }
+     },
+     {
+      "goto": "temprano"
+     }
+    ]
+   },
+   "volver": {
+    "speaker": "Don Jairo",
+    "text": "¡La chiva pa' Salento! ¡Suban, que ya cerró el parque!",
+    "effects": [
+     {
+      "vineta": "m8_chiva_afuera"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Subirse a la chiva",
+      "effects": [
+       {
+        "event": "chiva_m8"
+       }
+      ],
+      "goto": "vamos"
+     },
+     {
+      "label": "Un momento",
+      "goto": "espera"
+     }
+    ]
+   },
+   "vamos": {
+    "speaker": "Don Jairo",
+    "text": "¡Vámonos, muchachos!"
+   },
+   "espera": {
+    "speaker": "Don Jairo",
+    "text": "Bueno, pero no se me pierdan."
+   },
+   "temprano": {
+    "speaker": "Don Jairo",
+    "text": "La chiva sale a las seis, mijo, cuando cierre el parque. Aproveche, que el parque no se acaba nunca.",
+    "effects": [
+     {
+      "vineta": "m8_chiva_afuera"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Seguir en el parque",
+      "goto": "espera"
+     },
+     {
+      "label": "Irme ya (sin la Rueda)",
+      "effects": [
+       {
+        "setFlag": [
+         "m8_rueda",
+         "m8_parque_ya",
+         "m8_parque_cerrando"
+        ]
+       },
+       {
+        "event": "chiva_m8"
+       }
+      ],
+      "goto": "yaya"
+     }
+    ]
+   },
+   "yaya": {
+    "speaker": "Don Jairo",
+    "text": "¿Ya? Bueno, mijo, usted manda. Lo llevo y vuelvo por los demás."
+   }
+  }
+ },
+ "m8_taquilla": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La taquilla del parque. Te ponen una manilla amarilla que dice «PASAPORTE». Renzo pide una «para el corazón». No le entienden.",
+    "effects": [
+     {
+      "vineta": "m8_parque_entrada"
+     }
+    ]
+   }
+  }
+ },
+ "m8_torre": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Torre Mirador: arriba se ve todo el parque, los cafetales en terrazas y, lejísimos, el nevado del Ruiz asomándose entre las nubes.",
+    "effects": [
+     {
+      "vineta": "m8_torre_vista"
+     }
+    ]
+   }
+  }
+ },
+ "m8_cafetal": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El Recorrido Cafetero: matas de café en fila, con granos rojos, amarillos y verdes. Un guía con sombrero aguadeño explica el proceso.",
+    "effects": [
+     {
+      "vineta": "m8_cafetal"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Guía",
+    "text": "A ver, los extranjeros: ¿qué color tiene el grano de café cuando ya está para coger?",
+    "choices": [
+     {
+      "label": "Rojo, como una cereza",
+      "effects": [
+       {
+        "setFlag": "m8_quiz_cafe"
+       }
+      ],
+      "goto": "bien"
+     },
+     {
+      "label": "Negro, como el tinto",
+      "goto": "mal"
+     },
+     {
+      "label": "Café, obvio",
+      "goto": "mal"
+     }
+    ]
+   },
+   "bien": {
+    "speaker": "Guía",
+    "text": "¡Bien! Rojito, rojito. Se coge a mano, uno por uno, y por eso el café de aquí es el mejor del mundo. Bueno, eso dicen los de aquí."
+   },
+   "mal": {
+    "speaker": "Guía",
+    "text": "¡No, mijo! Rojo, como una cereza. Por eso se llama «cereza» el fruto del café. Al tinto le falta mucho: secar, trillar, tostar, moler..."
+   }
+  }
+ },
+ "m8_museo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El Museo del Café: una casa de bahareque con máquinas viejas de tostar, costales de fique y una foto en blanco y negro de una familia de arrieros con sus mulas.",
+    "effects": [
+     {
+      "vineta": "m8_museo"
+     }
+    ]
+   }
+  }
+ },
+ "m8_show": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El Show del Café: bailarines con trajes de chapolera y arriero bailan un pasillo en una tarima de guadua. Richi, Tami y Danilo aplauden desde la primera fila.",
+    "effects": [
+     {
+      "vineta": "m8_show_cafe"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Una bailarina baja de la tarima y te tiende la mano. Tami grita: «¡Que baile el chileno!». Danilo: «¡Ah ve, exposición! ¡Es terapia de exposición, parce!»",
+    "choices": [
+     {
+      "label": "Subir a bailar",
+      "effects": [
+       {
+        "setFlag": "m8_show_bailo"
+       }
+      ],
+      "goto": "baila"
+     },
+     {
+      "label": "Esconderte detrás de Richi",
+      "goto": "esconde"
+     }
+    ]
+   },
+   "baila": {
+    "text": "Bailas un pasillo con una chapolera de verdad. No sabes los pasos. Ella te los dice al oído: «un, dos, tres, vuelta». El público aplaude. Tami aplaude más fuerte que todos.",
+    "effects": [
+     {
+      "vineta": "m8_show_baile"
+     },
+     {
+      "setFlag": "m8_tami_show"
+     }
+    ]
+   },
+   "esconde": {
+    "text": "Richi mide un metro cincuenta. Detrás de él no se esconde nadie. Igual te sacan a bailar. Bueno, a Richi lo sacan. Baila buenísimo.",
+    "effects": [
+     {
+      "vineta": "m8_show_baile"
+     },
+     {
+      "setFlag": "secreto_m8_richi_baila"
+     }
+    ]
+   }
+  }
+ },
+ "m8_teleferico_o": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El teleférico cruza el cañón del parque por encima del bosque de guadua. Las cabinas son amarillas, como las del Metrocable.",
+    "effects": [
+     {
+      "vineta": "m8_teleferico"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Cruzar al otro lado (plaza principal)",
+      "effects": [
+       {
+        "sfx": "elevator"
+       }
+      ],
+      "goto": "cruzar"
+     },
+     {
+      "label": "Quedarse",
+      "goto": "no"
+     }
+    ]
+   },
+   "cruzar": {
+    "text": "Se cierra la puerta de la cabina y ¡tac!: arranca. Salen de la estación y de golpe no hay piso.",
+    "effects": [
+     {
+      "vineta": "m8_teleferico_ida"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Abajo, el cañón: el río como una cinta café, el bosque de guadua, los techos rojos de las atracciones. Las otras cabinas pasan en sentido contrario y la gente saluda.",
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Renzo cierra los ojos todo el viaje. «Avísenme cuando lleguemos, causa.» Juanpa le toma una foto. Es la foto del viaje.",
+    "next": "n4"
+   },
+   "n4": {
+    "text": "La cabina frena en la estación del otro lado. Plaza principal: la Avenida de las Banderas y el Barco del Café.",
+    "effects": [
+     {
+      "warp": {
+       "map": "parque_cafe",
+       "spawn": "teleferico_e"
+      }
+     }
+    ]
+   },
+   "no": {
+    "text": "Otra vez será."
+   }
+  }
+ },
+ "m8_teleferico_e": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La estación del teleférico. Al otro lado del cañón, la torre mirador y la entrada del parque.",
+    "effects": [
+     {
+      "vineta": "m8_teleferico"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Cruzar de vuelta (entrada)",
+      "effects": [
+       {
+        "sfx": "elevator"
+       }
+      ],
+      "goto": "cruzar"
+     },
+     {
+      "label": "Quedarse",
+      "goto": "no"
+     }
+    ]
+   },
+   "cruzar": {
+    "text": "La cabina sale de la estación y se balancea sobre el vacío.",
+    "effects": [
+     {
+      "vineta": "m8_teleferico_vuelta"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Abajo pasa el Tren del Café pitando. Desde arriba parece de juguete. Un pájaro vuela más abajo que ustedes.",
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Llegan al otro lado: la entrada, la taquilla y la Torre Mirador.",
+    "effects": [
+     {
+      "warp": {
+       "map": "parque_cafe",
+       "spawn": "teleferico_o"
+      }
+     }
+    ]
+   },
+   "no": {
+    "text": "Mejor seguir por acá."
+   }
+  }
+ },
+ "m8_rapidos": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Los Rápidos: unos botes redondos que bajan por un río de mentira lleno de olas de verdad. El letrero dice: «USTED SE VA A MOJAR». En mayúsculas.",
+    "effects": [
+     {
+      "vineta": "m8_rapidos"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "ya",
+      "if": {
+       "flag": "m8_rapidos"
+      }
+     },
+     {
+      "goto": "fila"
+     }
+    ]
+   },
+   "fila": {
+    "choices": [
+     {
+      "label": "Subirse (te vas a mojar)",
+      "effects": [
+       {
+        "setFlag": [
+         "m8_rapidos",
+         "mojado"
+        ]
+       },
+       {
+        "sfx": "splash"
+       }
+      ],
+      "goto": "subir"
+     },
+     {
+      "label": "No, gracias",
+      "goto": "no"
+     }
+    ]
+   },
+   "subir": {
+    "text": "El bote gira, choca, sube... y una ola entera te cae encima. Quedas empapado de pies a cabeza. Renzo, a tu lado, sale seco. Seco. No hay explicación científica.",
+    "effects": [
+     {
+      "vineta": "m8_rapidos_moja"
+     }
+    ]
+   },
+   "no": {
+    "text": "Desde la baranda ves salir a un niño empapado y feliz. Te arrepientes un poquito.",
+    "effects": [
+     {
+      "vineta": "m8_rapidos"
+     }
+    ]
+   },
+   "ya": {
+    "text": "Todavía estás goteando. La chiva de vuelta va a ser fría.",
+    "effects": [
+     {
+      "vineta": "m8_rapidos_moja"
+     }
+    ]
+   }
+  }
+ },
+ "m8_banderas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Avenida de las Banderas: astas con banderas de todo el mundo, una al lado de la otra.",
+    "effects": [
+     {
+      "vineta": "m8_banderas"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Buscar la de Chile",
+      "effects": [
+       {
+        "setFlag": "secreto_m8_bandera"
+       }
+      ],
+      "goto": "chile"
+     },
+     {
+      "label": "Seguir",
+      "goto": "no"
+     }
+    ]
+   },
+   "chile": {
+    "text": "Ahí está: roja, blanca, azul, con su estrella. Le sacas una foto. Juanpa: «Parce, ¿está llorando?». «No, es el sol.» Es el sol, claro.",
+    "effects": [
+     {
+      "vineta": "m8_bandera_chile"
+     }
+    ]
+   },
+   "no": {
+    "text": "Las banderas se mueven con el viento, todas al mismo lado."
+   }
+  }
+ },
+ "m8_estacion": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Estación Armenia del Tren del Café: un trencito de madera que da la vuelta al parque pitando. Un niño le dice adiós a todo el mundo desde la ventana. Le dices adiós.",
+    "effects": [
+     {
+      "vineta": "m8_tren_cafe"
+     }
+    ]
+   }
+  }
+ },
+ "m8_comidas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Plaza de Comidas: lechona, arepas, mazorca asada, pollo frito, cholados... Huele a todo junto.",
+    "effects": [
+     {
+      "vineta": "m8_plaza_comidas"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Una mazorca asada para compartir ($6.000)",
+      "if": {
+       "minMoney": 6000
+      },
+      "effects": [
+       {
+        "pay": 6000
+       },
+       {
+        "sfx": "eat"
+       },
+       {
+        "setFlag": "m8_mazorca"
+       }
+      ],
+      "goto": "mazorca"
+     },
+     {
+      "label": "Un cholado ($8.000)",
+      "if": {
+       "minMoney": 8000
+      },
+      "effects": [
+       {
+        "pay": 8000
+       },
+       {
+        "sfx": "eat"
+       },
+       {
+        "setFlag": "m8_cholado"
+       }
+      ],
+      "goto": "cholado"
+     },
+     {
+      "label": "Nada por ahora",
+      "goto": "no"
+     }
+    ]
+   },
+   "mazorca": {
+    "text": "Mazorca con mantequilla y sal. Renzo pide una para él solo. «Para compartir» era una sugerencia, causa."
+   },
+   "cholado": {
+    "text": "Hielo raspado, frutas picadas, lechera, arequipe, galleta y un barquillo encima. Es un postre que tiene de todo menos moderación."
+   },
+   "no": {
+    "text": "Mejor después."
+   }
+  }
+ },
+ "m8_yippe": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El Yippe: una montaña rusa chiquita, para niños... y para Renzo, que se subió dos veces y gritó las dos.",
+    "effects": [
+     {
+      "vineta": "m8_krater_cartel"
+     }
+    ]
+   }
+  }
+ },
+ "m8_fabulas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El Lago de Fábulas: botes chocones que flotan, patos de verdad y patos de plástico. Los de verdad parecen más tranquilos.",
+    "effects": [
+     {
+      "vineta": "m8_fabulas"
+     }
+    ]
+   }
+  }
+ },
+ "m8_guadual": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El bosque de guadua: tallos verdes y gruesos que crujen con el viento, como si el bosque hablara bajito.",
+    "effects": [
+     {
+      "vineta": "m8_guadual"
+     }
+    ]
+   }
+  }
+ },
+ "m8_juanpa_parque": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Juanpa",
+    "text": "Parce, esto es como Disney pero con café. Y sin ratón. Bueno, vi un ratón en el baño. Entonces es igual a Disney.",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_renzo_parque": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Renzo",
+    "text": "Causa, he comido tres mazorcas, un cholado y medio pollo. ¿Tú crees que pueda subirme al Barco? ...No me contestes.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_mareado"
+     }
+    ]
+   }
+  }
+ },
+ "m8_meli_charla": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Meli",
+    "text": "¿Mate? Es amargo, sí. Como la vida. Pero tibio. Como la vida en Cali, que siempre está tibia.",
+    "effects": [
+     {
+      "vineta": "m8_meli"
+     },
+     {
+      "setFlag": "m8_meli_mate"
+     }
+    ]
+   }
+  }
+ },
+ "m8_salento_vuelta": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Salento de noche: los faroles amarillos, la plaza casi vacía y el frío otra vez. Las montañas son solo bultos negros con estrellas encima.",
+    "effects": [
+     {
+      "vineta": "m8_salento_noche"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Richi",
+    "text": "Chileno, doña Rubiela dijo que nos tenía comida. Vamos, vamos, que ¡achichay!",
+    "effects": [
+     {
+      "vineta": "m8_richi_achichay"
+     },
+     {
+      "objective": "Vuelve a la casita (Carrera 7, detrás de la parroquia)"
+     },
+     {
+      "clearFlag": "mojado"
+     }
+    ]
+   }
+  }
+ },
+ "m8_casita_sabado_noche": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "En la casita huele a frijoles. Doña Rubiela hizo una olla enorme, con arroz, aguacate y arepa. Antoine afina la guitarra en la sala.",
+    "effects": [
+     {
+      "vineta": "m8_cena_casita"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Comen todos en la mesa del patio, apretados, con las manos frías alrededor de la taza de aguapanela.",
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Bueno, gente: ronda de preguntas. Cada uno dice lo que más extraña de su casa. Empiezo yo: extraño el cholado de la Loma de la Cruz. Y a mi mamá. En ese orden, ve.",
+    "effects": [
+     {
+      "vineta": "m8_ronda_preguntas"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Richi",
+    "text": "Yo extraño el cuy de mi abuela. No me miren así.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Renzo",
+    "text": "Yo el rocoto relleno. Y a mi perro, el Firulais. Se llama Firulais. Sí.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_aji"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Tami",
+    "text": "¿Y vos, chileno?",
+    "effects": [
+     {
+      "vineta": "m8_ronda_preguntas"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«A mi mamá. Y a mi hermano chico.»",
+      "effects": [
+       {
+        "setFlag": "m8_ronda_familia"
+       }
+      ],
+      "goto": "familia"
+     },
+     {
+      "label": "«El pan. En serio, el pan.»",
+      "goto": "pan"
+     },
+     {
+      "label": "«Nada... estoy bien acá.»",
+      "goto": "nada"
+     }
+    ]
+   },
+   "familia": {
+    "text": "Se quedan todos callados un segundo. Después Richi te pasa la arepa sin decir nada. Es su manera de dar un abrazo.",
+    "effects": [
+     {
+      "vineta": "m8_cena_casita"
+     }
+    ],
+    "next": "guitarra"
+   },
+   "pan": {
+    "text": "Todos se ríen. Juanpa: «El chileno y el pan. Parce, le vamos a hacer un altar a la marraqueta.»",
+    "effects": [
+     {
+      "vineta": "m8_cena_casita"
+     }
+    ],
+    "next": "guitarra"
+   },
+   "nada": {
+    "text": "Danilo te mira por encima de la taza. No dice nada. Anota algo en una servilleta. Anota «nada» con comillas.",
+    "next": "guitarra"
+   },
+   "guitarra": {
+    "text": "Antoine toca «Colombia, tierra querida» con acento francés. Todos cantan el coro. Tami canta mirándote. Tú miras la guitarra.",
+    "effects": [
+     {
+      "vineta": "m8_guitarra_antoine"
+     },
+     {
+      "setFlag": "m8_cena_sabado"
+     },
+     {
+      "objective": "Acuéstate en tu camarote (la pieza de la izquierda)"
+     }
+    ]
+   }
+  }
+ },
+ "m8_noche_sabado": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Segunda noche en el camarote. Ya conoces todos los ruidos: el ronquido de Juanpa, el «rocoto» de Renzo, el crujido de la madera cuando Richi se da vuelta allá arriba.",
+    "effects": [
+     {
+      "vineta": "m8_camarotes_noche"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Richi",
+    "text": "Chileno... hoy fue un buen día. De esos que uno guarda."
+   }
+  }
+ },
+ "m8_operario": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Operario",
+    "text": "¡Bienvenidos al Parque del Café! Manillas a la vista, por favor.",
+    "effects": [
+     {
+      "vineta": "m8_parque_entrada"
+     }
+    ]
+   }
+  }
+ },
+ "usar_foto_krater": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La foto del Krater. Atrás, con lápiz: «Flor, Córdoba. Krater, que no se repita (o sí)».",
+    "effects": [
+     {
+      "vineta": "m8_foto_krater"
+     }
+    ]
+   }
+  }
+ },
+ "m8_tami_chiva_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Tami",
+    "text": "Shh. Estoy mirando el paisaje. Bueno, te estoy mirando a vos mirando el paisaje.",
+    "effects": [
+     {
+      "vineta": "m8_tami_chiva"
+     }
+    ]
+   }
+  }
+ },
+ "m8_danilo_chiva_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "¡¿CÓMO ESTÁ LA CHIVA?! ...Perdón, parce. Es un reflejo.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_chiva"
+     }
+    ]
+   }
+  }
+ },
+ "m8_chiva_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "¡Que viva la chiva! (Todos lo gritan cada diez minutos.)",
+    "effects": [
+     {
+      "vineta": "m8_chiva_adentro"
+     }
+    ]
+   }
+  }
+ }
+}

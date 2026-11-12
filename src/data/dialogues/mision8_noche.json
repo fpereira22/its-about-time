@@ -1,0 +1,2325 @@
+{
+ "m8_barco_entrada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "hecho",
+      "if": {
+       "flag": "m8_barco"
+      }
+     },
+     {
+      "goto": "fila"
+     }
+    ]
+   },
+   "fila": {
+    "text": "El Barco del Café: un barco pirata gigante que se mece de lado a lado hasta quedar casi de cabeza. En la proa, una mazorca de café pintada de dorado.",
+    "effects": [
+     {
+      "vineta": "m8_barco_cartel"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Subirse",
+      "effects": [
+       {
+        "event": "barco_m8"
+       }
+      ],
+      "goto": "subir"
+     },
+     {
+      "label": "Después",
+      "goto": "despues"
+     }
+    ]
+   },
+   "subir": {
+    "speaker": "Operaria",
+    "text": "¡Agárrense, que zarpamos!"
+   },
+   "despues": {
+    "text": "El barco sigue meciéndose. Desde abajo se oyen gritos. Felices, parece."
+   },
+   "hecho": {
+    "text": "Renzo mira el barco y se pone la mano en la panza. «Una vez en la vida, causa. Una sola.»",
+    "effects": [
+     {
+      "vineta": "m8_renzo_mareado"
+     }
+    ]
+   }
+  }
+ },
+ "m8_barco_fila": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Te sientas en la última fila del barco: la que más sube. Renzo al lado («para cuidarte, causa»). Meli al otro lado, con el mate guardado.",
+    "effects": [
+     {
+      "vineta": "m8_barco_cartel"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Meli",
+    "text": "La última fila es la peor. O la mejor, según cómo lo veas. Yo lo veo desde acá: la peor.",
+    "effects": [
+     {
+      "vineta": "m8_meli"
+     }
+    ]
+   }
+  }
+ },
+ "m8_barco_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "ok",
+      "if": {
+       "flag": "m8_barco_ok"
+      }
+     },
+     {
+      "goto": "mal"
+     }
+    ]
+   },
+   "ok": {
+    "text": "Bajas del barco caminando derecho. Renzo baja caminando en diagonal. Meli aplaude: «¡Chileno de fierro!»",
+    "effects": [
+     {
+      "vineta": "m8_renzo_mareado"
+     }
+    ]
+   },
+   "mal": {
+    "text": "Bajas del barco y el mundo sigue meciéndose cinco minutos más. Flor te pasa una botella de agua. «Tranqui. Respirá. Mirá un punto fijo. Mirame a mí, si querés.»",
+    "effects": [
+     {
+      "vineta": "m8_flor"
+     },
+     {
+      "setFlag": "m8_flor_agua"
+     }
+    ]
+   }
+  }
+ },
+ "m8_calle_noche": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Calle Real un domingo a las ocho y media: casi todo cerrado. La disco tiene la reja abajo. El bar de billar, también. Un perro duerme en la vereda.",
+    "effects": [
+     {
+      "vineta": "m8_calle_noche"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Juanpa",
+    "text": "Parce... no hay nada abierto. Es domingo. Salento duerme los domingos.",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Tranquilos, que la tienda de doña Gladys está abierta. Y donde hay tienda, hay rumba. Es ciencia.",
+    "effects": [
+     {
+      "vineta": "m8_tienda_gladys"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "La tienda de doña Gladys: una puerta abierta con luz amarilla, una nevera de cerveza, sillas de plástico afuera y un parlante que suena más fuerte de lo que debería.",
+    "effects": [
+     {
+      "clearFlag": [
+       "m8_sigue_richi",
+       "m8_sigue_juanpa",
+       "m8_sigue_renzo",
+       "m8_sigue_danilo",
+       "m8_sigue_tami"
+      ]
+     },
+     {
+      "setFlag": "m8_en_calle"
+     },
+     {
+      "objective": "Tómate algo con el grupo afuera de la tienda de doña Gladys e invita a alguien a bailar"
+     }
+    ]
+   }
+  }
+ },
+ "m8_gladys": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Doña Gladys",
+    "text": "¿Qué les doy, mijos? Cerveza Nevada bien fría, aguardiente Quindiano, gaseosa... y si se portan bien, unas papitas.",
+    "effects": [
+     {
+      "vineta": "m8_tienda_gladys"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Una Nevada ($4.000)",
+      "if": {
+       "minMoney": 4000
+      },
+      "effects": [
+       {
+        "pay": 4000
+       },
+       {
+        "setFlag": "m8_cerveza"
+       },
+       {
+        "sfx": "destapar"
+       }
+      ],
+      "goto": "cerveza"
+     },
+     {
+      "label": "Una ronda de aguardiente para todos ($20.000)",
+      "if": {
+       "minMoney": 20000
+      },
+      "effects": [
+       {
+        "pay": 20000
+       },
+       {
+        "setFlag": "m8_ronda_guaro"
+       },
+       {
+        "sfx": "chupito"
+       }
+      ],
+      "goto": "guaro"
+     },
+     {
+      "label": "Una gaseosa ($2.500)",
+      "if": {
+       "minMoney": 2500
+      },
+      "effects": [
+       {
+        "pay": 2500
+       },
+       {
+        "sfx": "destapar"
+       }
+      ],
+      "goto": "gaseosa"
+     },
+     {
+      "label": "«¿Bailamos, doña Gladys?»",
+      "goto": "baile"
+     },
+     {
+      "label": "Nada",
+      "goto": "no"
+     }
+    ]
+   },
+   "cerveza": {
+    "text": "Bien fría, como debe ser. Sale vapor de la botella. En Salento, hasta la cerveza tiene neblina.",
+    "effects": [
+     {
+      "vineta": "m8_cerveza"
+     }
+    ]
+   },
+   "guaro": {
+    "text": "Doña Gladys sirve siete copitas. Danilo levanta la suya: «¡Por los que están lejos de su casa!». Todos: «¡Salud!». El aguardiente baja quemando y sube calentando.",
+    "effects": [
+     {
+      "vineta": "m8_ronda_guaro"
+     }
+    ]
+   },
+   "gaseosa": {
+    "text": "Una Colombiana bien fría. Renzo te mira como si hubieras pedido agua en un bautizo."
+   },
+   "baile": {
+    "speaker": "Doña Gladys",
+    "text": "¡Ay, mijo! Hace años que nadie me saca a bailar. Bueno, pero un pasillo, ¿ah? Nada de esas cosas modernas.",
+    "effects": [
+     {
+      "vineta": "m8_gladys_baila"
+     },
+     {
+      "event": "baile_m8",
+      "data": {
+       "partner": "gladys"
+      }
+     }
+    ]
+   },
+   "no": {
+    "speaker": "Doña Gladys",
+    "text": "Aquí estoy, mijo."
+   }
+  }
+ },
+ "m8_tami_calle": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Tami está apoyada en la pared de la tienda, con una cerveza en la mano y los pies moviéndose solos con la música.",
+    "effects": [
+     {
+      "vineta": "m8_tami_calle"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Tami",
+    "text": "¿Qué, chileno? ¿Me vas a mirar toda la noche o me vas a sacar a bailar?",
+    "choices": [
+     {
+      "label": "«Te saco a bailar.»",
+      "effects": [
+       {
+        "event": "baile_m8",
+        "data": {
+         "partner": "tami"
+        }
+       }
+      ],
+      "goto": "baile"
+     },
+     {
+      "label": "«Te miro un rato más.»",
+      "effects": [
+       {
+        "setFlag": "m8_tami_mirar"
+       }
+      ],
+      "goto": "mirar"
+     }
+    ]
+   },
+   "baile": {
+    "speaker": "Tami",
+    "text": "¡Eso! Vení. Y no me pisés, que estrené tenis.",
+    "effects": [
+     {
+      "vineta": "m8_tami_baila"
+     }
+    ]
+   },
+   "mirar": {
+    "speaker": "Tami",
+    "text": "...Uy. Bueno. Mirá todo lo que quieras. Pero después me sacás."
+   }
+  }
+ },
+ "m8_renzo_calle": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Renzo",
+    "text": "Causa, ¿bailamos? Mira que nadie saca a bailar al gordito. Y el gordito baila. El gordito tiene ritmo.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_calle"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¡Vamos, Renzo!»",
+      "effects": [
+       {
+        "event": "baile_m8",
+        "data": {
+         "partner": "renzo"
+        }
+       }
+      ],
+      "goto": "baile"
+     },
+     {
+      "label": "«Después, causa.»",
+      "goto": "no"
+     }
+    ]
+   },
+   "baile": {
+    "speaker": "Renzo",
+    "text": "¡Eso! ¡Arequipa y Chile! ¡Hermanos del Pacífico!"
+   },
+   "no": {
+    "speaker": "Renzo",
+    "text": "Te espero, causa. El gordito siempre espera."
+   }
+  }
+ },
+ "m8_danilo_calle": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Ah ve, ¿sabías que bailar libera endorfinas? Es básicamente terapia gratis. ¿Me hacés el favor?",
+    "effects": [
+     {
+      "vineta": "m8_danilo_calle"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Bailemos, doctor.»",
+      "effects": [
+       {
+        "event": "baile_m8",
+        "data": {
+         "partner": "danilo"
+        }
+       }
+      ],
+      "goto": "baile"
+     },
+     {
+      "label": "«Prefiero la terapia normal.»",
+      "goto": "no"
+     }
+    ]
+   },
+   "baile": {
+    "speaker": "Danilo",
+    "text": "¡Uy! ¡Eso es apertura emocional! Vení."
+   },
+   "no": {
+    "speaker": "Danilo",
+    "text": "La terapia normal cuesta ochenta mil la hora, vojabés. Esta es gratis. Pensalo."
+   }
+  }
+ },
+ "m8_juanpa_calle": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "abre",
+      "if": {
+       "flag": "m8_bailo",
+       "notFlag": "m8_disco_abierta"
+      }
+     },
+     {
+      "goto": "ya",
+      "if": {
+       "flag": "m8_disco_abierta"
+      }
+     },
+     {
+      "goto": "antes"
+     }
+    ]
+   },
+   "antes": {
+    "speaker": "Juanpa",
+    "text": "Parce, la disco abre a las diez, dice doña Gladys. Mientras tanto, a bailar acá. ¡Sacá a alguien, ve, que se te van a enfriar los pies!",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ]
+   },
+   "abre": {
+    "speaker": "Juanpa",
+    "text": "¡Parce! ¡Abrieron la disco! La del lado de la plaza. ¡Vamos todos!",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "¡Vamos a la disco!",
+      "effects": [
+       {
+        "setFlag": "m8_disco_abierta"
+       },
+       {
+        "clock": "dom+ 22:20",
+        "max": "dom+ 22:30"
+       },
+       {
+        "setFlag": [
+         "m8_sigue_juanpa",
+         "m8_sigue_danilo",
+         "m8_sigue_tami",
+         "m8_sigue_renzo",
+         "m8_sigue_richi"
+        ]
+       },
+       {
+        "clearFlag": "m8_en_calle"
+       },
+       {
+        "objective": "La Disco El Bahareque (Calle Real, frente a la plaza)"
+       }
+      ],
+      "goto": "vamos"
+     },
+     {
+      "label": "Un rato más acá",
+      "goto": "no"
+     }
+    ]
+   },
+   "vamos": {
+    "speaker": "Juanpa",
+    "text": "¡Eso! ¡A la disco, que la noche es joven y Salento es viejo!"
+   },
+   "no": {
+    "speaker": "Juanpa",
+    "text": "Bueno, parce, pero no mucho, que nos la cierran."
+   },
+   "ya": {
+    "speaker": "Juanpa",
+    "text": "¡A la disco, parce!",
+    "effects": [
+     {
+      "vineta": "m8_juanpa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_richi_calle": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Richi",
+    "text": "Chileno, yo no bailo mucho, pero miro bonito. Ve, ¿y si bailás con Tami? No te ha quitado los ojos de encima desde Cali. Yo lo digo porque soy bajito: veo todo desde abajo.",
+    "effects": [
+     {
+      "vineta": "m8_richi_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_baile_post_tami": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Tami se ríe, despeinada, con las mejillas rojas. No te suelta la mano altiro.",
+    "effects": [
+     {
+      "vineta": "m8_tami_baila"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "bien",
+      "if": {
+       "flag": "m8_baile_bien"
+      }
+     },
+     {
+      "goto": "mal"
+     }
+    ]
+   },
+   "bien": {
+    "speaker": "Tami",
+    "text": "Vos bailás más rico de lo que decís, chileno. Eso es peligroso. Te lo digo como caleña.",
+    "effects": [
+     {
+      "setFlag": "m8_tami_baile_bien"
+     }
+    ]
+   },
+   "mal": {
+    "speaker": "Tami",
+    "text": "Me pisaste, ¿sabés? Pero con ritmo. Eso cuenta."
+   }
+  }
+ },
+ "m8_baile_post_renzo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Renzo",
+    "text": "¡Causa! Somos los reyes de la Calle Real. Doña Gladys nos aplaudió. Bueno, se rio, pero con las manos.",
+    "effects": [
+     {
+      "vineta": "m8_renzo_calle"
+     }
+    ]
+   }
+  }
+ },
+ "m8_baile_post_gladys": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Doña Gladys",
+    "text": "Ay, mijo, me hizo acordar de mi difunto Octavio. Él tampoco sabía bailar, pero me miraba así. Tome, una cerveza por la casa.",
+    "effects": [
+     {
+      "vineta": "m8_gladys_baila"
+     },
+     {
+      "setFlag": "m8_cerveza_gratis"
+     }
+    ]
+   }
+  }
+ },
+ "m8_baile_post_danilo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Ah ve... eso fue catártico. Liberaste cosas. Yo vi cosas. No te voy a decir qué cosas, pero las vi.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_calle"
+     }
+    ]
+   }
+  }
+ },
+ "m8_disco_cerrada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Disco El Bahareque. La reja está abajo. Un letrero escrito a mano: «Domingos abrimos a las 10 (si hay gente)».",
+    "effects": [
+     {
+      "vineta": "m8_disco_reja"
+     }
+    ]
+   }
+  }
+ },
+ "m8_bar_cerrado": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Billares El Arriero. Por la ventana se ven dos mesas de pool vacías y una rocola apagada. Está cerrado... por ahora.",
+    "effects": [
+     {
+      "vineta": "m8_bar_ventana"
+     }
+    ]
+   }
+  }
+ },
+ "m8_gladys_puerta": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La tienda de doña Gladys: arroz, panela, velas, cerveza, un santo con una veladora y un calendario de 2019 que nadie ha cambiado.",
+    "effects": [
+     {
+      "vineta": "m8_tienda_gladys"
+     }
+    ]
+   }
+  }
+ },
+ "m8_disco_llegada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Disco El Bahareque: una pieza con luces de colores, un parlante enorme y una bola de espejos con la mitad de los espejos.",
+    "effects": [
+     {
+      "vineta": "m8_disco"
+     },
+     {
+      "clearFlag": [
+       "m8_sigue_juanpa",
+       "m8_sigue_danilo",
+       "m8_sigue_tami",
+       "m8_sigue_renzo",
+       "m8_sigue_richi"
+      ]
+     },
+     {
+      "event": "disco_m8"
+     }
+    ]
+   }
+  }
+ },
+ "m8_disco": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Adentro hay: ustedes siete, el DJ, la señora de la barra y un señor de bigote bailando solo en el centro de la pista, con los ojos cerrados, en su mundo.",
+    "effects": [
+     {
+      "vineta": "m8_disco_senor"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "El DJ pone un reguetón. Después pone el mismo reguetón. Después, el mismo, pero «remix»: igual, con un pito.",
+    "effects": [
+     {
+      "vineta": "m8_disco_dj"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Juanpa se acerca a la cabina: «Parce, ¿tiene otra canción?». El DJ lo mira. Lo piensa. «No.»",
+    "effects": [
+     {
+      "setFlag": "secreto_m8_dj"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "El señor de bigote te toma de las manos y te hace dar una vuelta. Se va. Sigue bailando solo. Nunca más lo vuelves a ver.",
+    "effects": [
+     {
+      "vineta": "m8_disco_senor"
+     },
+     {
+      "setFlag": "secreto_m8_bigote"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Tami baila con Juanpa. Renzo y Richi se toman una foto con la bola de espejos. El piso se pega a los zapatos.",
+    "effects": [
+     {
+      "vineta": "m8_disco"
+     }
+    ]
+   }
+  }
+ },
+ "m8_disco_fin": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Ah ve... esto no es una disco. Esto es una sala de espera con luces. Vámonos al billar de al lado, que ya abrió. Un pool tranquilo, vos y yo. Los demás que bailen el mismo reguetón.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_disco"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Le avisas a Richi. Richi levanta el pulgar desde la pista, con los ojos cerrados, imitando al señor del bigote.",
+    "effects": [
+     {
+      "vineta": "m8_disco"
+     },
+     {
+      "objective": "Billares El Arriero (en la Calle Real, al lado): un pool con Danilo"
+     }
+    ]
+   }
+  }
+ },
+ "m8_disco_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Juanpa",
+    "text": "Seguimos acá, parce. Es el mismo reguetón, pero ya le estamos agarrando cariño.",
+    "effects": [
+     {
+      "vineta": "m8_disco"
+     }
+    ]
+   }
+  }
+ },
+ "m8_bigote": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El señor del bigote baila con los ojos cerrados. No necesita a nadie. Te da un poco de envidia.",
+    "effects": [
+     {
+      "vineta": "m8_disco_senor"
+     }
+    ]
+   }
+  }
+ },
+ "m8_dj": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "DJ",
+    "text": "¿Otra canción? ...No, hermano. Esta es la canción.",
+    "effects": [
+     {
+      "vineta": "m8_disco_dj"
+     }
+    ]
+   }
+  }
+ },
+ "m8_bar_llegada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Billares El Arriero: madera oscura, dos mesas de pool con paño verde, una rocola con música de despecho y un señor detrás de la barra que se parece a todos los señores de detrás de las barras.",
+    "effects": [
+     {
+      "vineta": "m8_bar"
+     },
+     {
+      "event": "pool_m8"
+     }
+    ]
+   }
+  }
+ },
+ "m8_pool_intro": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Dos cervezas, don Octavio. Y una mesa. ...Ah ve, ¿sabés lo bueno del pool? Que mientras uno apunta, habla. Y mientras uno habla, sana.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_pool"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "No es una sesión, ¿ah? Es un pool. Bueno, es un pool con preguntas."
+   }
+  }
+ },
+ "m8_pool_post_gano": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Me ganaste. Bueno. Lo acepto. Esto es lo que se llama «elaborar la pérdida». Lo estoy elaborando. Ya casi.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_pool"
+     }
+    ]
+   }
+  }
+ },
+ "m8_pool_post_perdio": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "¡Caleño a muerte, papá! Ah ve, pero tranqui: perder también enseña. ¿Qué te enseñó? ...Que yo soy mejor. Eso.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_pool"
+     }
+    ]
+   }
+  }
+ },
+ "m8_terapia": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Don Octavio pone otra canción de despecho en la rocola. Danilo se apoya en el taco, serio por primera vez en todo el viaje.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_serio"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Ve parce, en serio. ¿Cómo estás con lo de estar lejos? Vos sos de los que se guardan todo. Te vi la cara en la cena cuando hablaste de tu casa.",
+    "choices": [
+     {
+      "label": "«A veces me pega fuerte. En la noche, sobre todo.»",
+      "effects": [
+       {
+        "setFlag": "m8_terapia_honesto"
+       }
+      ],
+      "goto": "fuerte"
+     },
+     {
+      "label": "«Estoy bien. Es parte del intercambio.»",
+      "goto": "bien"
+     },
+     {
+      "label": "«¿Me vas a cobrar esto?»",
+      "goto": "cobrar"
+     }
+    ]
+   },
+   "fuerte": {
+    "speaker": "Danilo",
+    "text": "Vojabés que eso tiene nombre, ¿cierto? Nostalgia. Viene del griego: «nostos», volver a casa, y «algos», dolor. El dolor de querer volver. Lo raro sería no sentirla.",
+    "next": "consejo"
+   },
+   "bien": {
+    "speaker": "Danilo",
+    "text": "Ajá. «Es parte del intercambio». Eso es lo que se llama racionalización. Pero tranqui: no te voy a desarmar en un billar.",
+    "next": "consejo"
+   },
+   "cobrar": {
+    "speaker": "Danilo",
+    "text": "Jajaja. Ah ve, esta es gratis. La próxima, cuando seas ingeniero y ganes en dólares, te cobro todo junto.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_risa"
+     }
+    ],
+    "next": "consejo"
+   },
+   "consejo": {
+    "speaker": "Danilo",
+    "text": "Mi consejo de caleño, no de psicólogo, ve: no te pongás a esperar a que se te pase. Llenala. Con gente, con planes, con un pool un domingo. Que la nostalgia no te encuentre solo.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_serio"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "...Y hablando de llenar. ¿Y el corazón cómo va? Vojabés que te vi mirando a las argentinas. Y a Tami. Y a la señora de las obleas, pero esa no cuenta.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_pool"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Tranquilo. Por ahora, tranquilo.»",
+      "effects": [
+       {
+        "setFlag": "m8_corazon_tranquilo"
+       }
+      ],
+      "goto": "amiga"
+     },
+     {
+      "label": "«No sé. Hay algo, pero no sé qué es.»",
+      "effects": [
+       {
+        "setFlag": "m8_corazon_nose"
+       }
+      ],
+      "goto": "nose"
+     },
+     {
+      "label": "(Meter una bola para cambiar de tema)",
+      "goto": "cambia"
+     }
+    ]
+   },
+   "amiga": {
+    "speaker": "Danilo",
+    "text": "«Tranquilo». Ah ve. Esa palabra la usa la gente justo antes de que le pase algo. Yo solo digo.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_risa"
+     }
+    ],
+    "next": "cierre"
+   },
+   "nose": {
+    "speaker": "Danilo",
+    "text": "«No sé qué es». Esa es la frase más honesta que te he oído. Guardala. Algún día vas a saber, y te vas a acordar de este billar.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_serio"
+     }
+    ],
+    "next": "cierre"
+   },
+   "cambia": {
+    "text": "La bola rebota en tres bandas y no entra en ninguna parte. Danilo: «Ah ve, eso es un mecanismo de defensa. Y además estaba mal tirado, parce.»",
+    "effects": [
+     {
+      "vineta": "m8_danilo_risa"
+     }
+    ],
+    "next": "cierre"
+   },
+   "cierre": {
+    "speaker": "Danilo",
+    "text": "El amor y la nostalgia son primos, ¿sabés? Los dos te hacen mirar para otro lado. Uno pa' atrás y el otro pa' adelante. Lo difícil es mirar acá.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_serio"
+     }
+    ]
+   }
+  }
+ },
+ "m8_tami_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Se abre la puerta del bar. Es Tami. Tiene el pelo suelto, la chaqueta de Juanpa encima y las mejillas rojas del frío.",
+    "effects": [
+     {
+      "vineta": "m8_tami_puerta"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Tami",
+    "text": "¡Acá estaban! Los busqué por todo el pueblo. Bueno... te busqué a vos, chileno.",
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Tami",
+    "text": "Los demás se fueron a dormir. La disco cerró. Y yo no tengo sueño. ¿Me acompañás a caminar? Así, los dos. Hasta la escalera del mirador. De noche dicen que se ven todas las estrellas.",
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Danilo levanta las cejas, mira el techo y se pone a ponerle tiza al taco con muchísima concentración.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_tiza"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Irte con Tami",
+      "effects": [
+       {
+        "setFlag": "_whatif"
+       }
+      ],
+      "goto": "tami"
+     },
+     {
+      "label": "Quedarte con Danilo",
+      "goto": "danilo"
+     }
+    ]
+   },
+   "tami": {
+    "text": "Tami sonríe y te toma de la mano...",
+    "effects": [
+     {
+      "vineta": "m8_tami_puerta"
+     }
+    ]
+   },
+   "danilo": {
+    "text": "Le dices que no, con cariño: que te quedas con Danilo, que es su noche de amigos.",
+    "effects": [
+     {
+      "vineta": "m8_tami_puerta"
+     }
+    ]
+   }
+  }
+ },
+ "m8_whatif_tami": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "¿Y SI...? La Calle Real de noche, vacía. Tami camina a tu lado con las manos en los bolsillos de la chaqueta. Sus pasos y los tuyos suenan en el empedrado.",
+    "effects": [
+     {
+      "vineta": "m8_whatif_calle"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Tami",
+    "text": "¿Sabés qué me gusta de vos? Que no hacés show. En Cali todos hacen show. Vos no. Vos mirás.",
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Llegan a la escalera del Alto de la Cruz. Se sientan en un escalón. Arriba, las estrellas; abajo, el pueblo con sus faroles amarillos.",
+    "effects": [
+     {
+      "vineta": "m8_whatif_escalera"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Tami se acerca. Te mira. Tiene la nariz roja del frío y los ojos brillantes. No dice nada. No hace falta.",
+    "choices": [
+     {
+      "label": "Besarla",
+      "effects": [
+       {
+        "setFlag": "m8_whatif_algo"
+       }
+      ],
+      "goto": "algo"
+     },
+     {
+      "label": "«Tami... mejor no.»",
+      "effects": [
+       {
+        "setFlag": "m8_whatif_nada"
+       }
+      ],
+      "goto": "nada"
+     }
+    ]
+   },
+   "algo": {
+    "text": "La besas. Es un beso con frío, con olor a cerveza y a chaqueta ajena. Ella se ríe en medio. «Por fin, chileno», dice.",
+    "effects": [
+     {
+      "vineta": "m8_whatif_beso"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "text": "Se quedan ahí, abrazados en la escalera, hasta que el frío los echa. Al otro día, en el bus, ella se sienta a tu lado. Y después... ¿después qué? ¿Cali, la U, Chile en junio?"
+   },
+   "nada": {
+    "text": "Ella se queda quieta un segundo. Después sonríe, chiquito. «Lo sabía. Hay alguien, ¿no?» No contestas. No hace falta.",
+    "effects": [
+     {
+      "vineta": "m8_whatif_nada"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "text": "«Igual me gustó caminar con vos.» Se quedan un rato mirando las estrellas, cada uno en su escalón. Es raro y es lindo al mismo tiempo."
+   }
+  }
+ },
+ "m8_rebobinar": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Pero no fue así. Eso es lo que pudo haber pasado, si esa noche hubieras dicho que sí.",
+    "effects": [
+     {
+      "vineta": "m8_vhs"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "En el recuerdo de verdad, estás en el bar, con el taco en la mano, y Tami está en la puerta esperando una respuesta.",
+    "effects": [
+     {
+      "vineta": "m8_tami_puerta"
+     }
+    ]
+   }
+  }
+ },
+ "m8_tami_se_va": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Tami... me quedo con Danilo. Es nuestra noche de amigos. Pero gracias. De verdad.",
+    "effects": [
+     {
+      "vineta": "m8_tami_puerta"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Tami se queda quieta. Sonríe chiquito. «Bueno, chileno. Vos te lo perdés.» Te da un beso en la mejilla, rápido, y se va.",
+    "effects": [
+     {
+      "vineta": "m8_tami_mejilla"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Ah ve, parce... eso fue muy maduro. O muy tonto. La línea es delgada. Ahora vámonos a la plaza, que quiero tomarme el último aire antes de dormir.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_serio"
+     },
+     {
+      "objective": "La Plaza de Bolívar, con Danilo"
+     }
+    ]
+   }
+  }
+ },
+ "m8_mexicanos": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "En la plaza, debajo de una palma de cera, hay un grupito con una bandera de México amarrada en una banca, una botella de tequila, limones partidos y un salero.",
+    "effects": [
+     {
+      "vineta": "m8_mexicanos"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Chuy",
+    "text": "¡Órale! ¿Ustedes también son de intercambio? ¡Vénganse, güeyes! En unos minutos es 16 de septiembre: ¡día de la Independencia de México!",
+    "effects": [
+     {
+      "vineta": "m8_chuy"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Chuy",
+    "text": "Yo soy Chuy, de Guadalajara. Ellas son Ximena y Renata, de la Ciudad de México. Estamos de intercambio en Cali. Vinimos a ver las palmas.",
+    "effects": [
+     {
+      "vineta": "m8_mexicanos"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Ximena",
+    "text": "¡Ay, qué padre! ¡Un chileno! Neta que los chilenos hablan rapidísimo. Dime algo. ¡Algo chileno!",
+    "effects": [
+     {
+      "vineta": "m8_ximena"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Cachai?»",
+      "goto": "cachai"
+     },
+     {
+      "label": "«Al tiro.»",
+      "goto": "tiro"
+     },
+     {
+      "label": "«Bacán.»",
+      "goto": "bacan"
+     }
+    ]
+   },
+   "cachai": {
+    "speaker": "Ximena",
+    "text": "¿«Cachai»? ¡Qué chido! ¿Y eso qué es? ¿Como «¿me entiendes?»? ¡Me lo voy a robar!",
+    "next": "laura"
+   },
+   "tiro": {
+    "speaker": "Renata",
+    "text": "¿«Al tiro»? ¿Como un balazo? ¡No manches! ¡Los chilenos están locos!",
+    "next": "laura"
+   },
+   "bacan": {
+    "speaker": "Renata",
+    "text": "¿«Bacán»? Suena a algo que comes. «Pásame el bacán». ¡Me encanta!",
+    "next": "laura"
+   },
+   "laura": {
+    "speaker": "Chuy",
+    "text": "Y esta es Laura, nuestra española. Se nos pegó en Cali y ya no la soltamos.",
+    "effects": [
+     {
+      "vineta": "m8_mexicanos"
+     }
+    ]
+   }
+  }
+ },
+ "m8_laura": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Laura se da vuelta. Pelo castaño hasta los hombros, la piel clarita y llena de pecas, una bufanda roja y amarilla. Te mira de arriba abajo con una sonrisa de medio lado.",
+    "effects": [
+     {
+      "vineta": "m8_laura"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "¡Kaixo! Bueno, eso es «hola» en euskera. Soy Laura, de Bilbao. Bilbao, en el País Vasco. En España. Que no es lo mismo pero sí es lo mismo, ¿vale? Ya te lo explico otro día.",
+    "next": "n2"
+   },
+   "n2": {
+    "choices": [
+     {
+      "label": "«Kaixo» (lo leíste en el bus en el celular de Iker)",
+      "effects": [
+       {
+        "setFlag": "m8_q_kaixo"
+       }
+      ],
+      "goto": "kaixo"
+     },
+     {
+      "label": "«¿Bilbao? ¿Conoces a Iker? ¡Está en mi universidad!»",
+      "effects": [
+       {
+        "setFlag": "m8_q_iker"
+       },
+       {
+        "setFlag": "secreto_m8_iker"
+       }
+      ],
+      "goto": "iker"
+     },
+     {
+      "label": "«Encantado. Feli, de Chile.»",
+      "goto": "hola"
+     }
+    ]
+   },
+   "kaixo": {
+    "speaker": "Laura",
+    "text": "¡¿Kaixo?! ¡Hostia! ¡Un chileno que sabe euskera! ...Bueno, una palabra. Pero es la palabra correcta. Eskerrik asko, que es «gracias».",
+    "effects": [
+     {
+      "vineta": "m8_laura_risa"
+     }
+    ],
+    "next": "rrii"
+   },
+   "iker": {
+    "speaker": "Laura",
+    "text": "¿Iker? ¿Iker Etxeberria? ¿Uno grandote que come todo el día? ¡Bai, bai, ese! ¡Es de mi barrio! ¡De Deusto! ¿Y está en Cali? ¡Es que el mundo es un pañuelo, tío! Un pañuelo pequeñito.",
+    "effects": [
+     {
+      "vineta": "m8_laura_risa"
+     }
+    ],
+    "next": "rrii"
+   },
+   "hola": {
+    "speaker": "Laura",
+    "text": "Encantada, Feli. Mira qué formal. Los chilenos sois formales, ¿eh? Me gusta. En España somos un desastre: dos besos a todo el mundo, hasta al cartero.",
+    "effects": [
+     {
+      "vineta": "m8_laura"
+     }
+    ],
+    "next": "rrii"
+   },
+   "rrii": {
+    "speaker": "Laura",
+    "text": "Estudio Relaciones Internacionales. Estoy de intercambio en Cali. Hablo español, euskera, francés e inglés... y ahora un poquito de mexicano, por culpa de estos.",
+    "effects": [
+     {
+      "vineta": "m8_laura"
+     }
+    ]
+   }
+  }
+ },
+ "m8_tequila": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Chuy",
+    "text": "¡Bueno, bueno! ¡Hora del tequila! A ver, chileno, ¿tú sabes cómo es? Sal, tequila, limón. En ese orden. Si te equivocas, pagas la siguiente.",
+    "effects": [
+     {
+      "vineta": "m8_tequila_mesa"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Chuy te sirve un caballito. Laura te mira con los brazos cruzados, como jurado de un concurso. ¿Qué haces primero?",
+    "effects": [
+     {
+      "vineta": "m8_tequila_1"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Lamer la sal del dorso de la mano",
+      "effects": [
+       {
+        "setFlag": "m8_tq_sal"
+       }
+      ],
+      "goto": "sal"
+     },
+     {
+      "label": "Tomarte el tequila de un trago",
+      "goto": "tequila_mal"
+     },
+     {
+      "label": "Morder el limón",
+      "goto": "limon_mal"
+     }
+    ]
+   },
+   "sal": {
+    "text": "Bien... la sal. Ahora...",
+    "effects": [
+     {
+      "vineta": "m8_tequila_2"
+     }
+    ],
+    "choices": [
+     {
+      "label": "El tequila, de un trago",
+      "effects": [
+       {
+        "sfx": "chupito"
+       }
+      ],
+      "goto": "tequila"
+     },
+     {
+      "label": "El limón",
+      "goto": "limon_mal"
+     }
+    ]
+   },
+   "tequila": {
+    "text": "¡Glup! Quema bajando. Rápido...",
+    "effects": [
+     {
+      "vineta": "m8_tequila_3"
+     }
+    ],
+    "choices": [
+     {
+      "label": "¡El limón!",
+      "effects": [
+       {
+        "setFlag": "m8_tequila_perfecto"
+       },
+       {
+        "setFlag": "m8_q_tequila"
+       }
+      ],
+      "goto": "perfecto"
+     },
+     {
+      "label": "Toser",
+      "goto": "tos"
+     }
+    ]
+   },
+   "perfecto": {
+    "text": "Muerdes el limón y todo se ordena en el mundo. Chuy grita: «¡ESO, CHILENO!». Ximena aplaude. Laura levanta una ceja: «No está mal. Para ser del sur.»",
+    "effects": [
+     {
+      "vineta": "m8_tequila_ok"
+     }
+    ],
+    "next": "laura"
+   },
+   "tos": {
+    "text": "Toses como un tractor viejo. Renata te da palmaditas. Laura: «Respira, tío, respira. Así no se conquista a nadie.»",
+    "effects": [
+     {
+      "vineta": "m8_tequila_tos"
+     }
+    ],
+    "next": "laura"
+   },
+   "tequila_mal": {
+    "text": "Te tomas el tequila directo. Te arde hasta el alma. Chuy: «¡Nooo, güey! ¡Al revés! ¡Pagas la siguiente!» Laura se ríe tanto que se tapa la boca con la bufanda.",
+    "effects": [
+     {
+      "vineta": "m8_tequila_tos"
+     },
+     {
+      "setFlag": "m8_tequila_mal"
+     }
+    ],
+    "next": "laura"
+   },
+   "limon_mal": {
+    "text": "Muerdes el limón primero. Te mira todo el grupo. Ximena: «¿Y ahora qué, güey? ¿Ahora la sal?» Lo haces todo al revés. Sabe igual de raro.",
+    "effects": [
+     {
+      "vineta": "m8_tequila_tos"
+     },
+     {
+      "setFlag": "m8_tequila_mal"
+     }
+    ],
+    "next": "laura"
+   },
+   "laura": {
+    "text": "Laura se toma el suyo sin sal ni limón, de un trago, sin hacer una sola mueca. «¡Aupa! En Bilbao tomamos txakoli y cosas peores. Esto es agüita.»",
+    "effects": [
+     {
+      "vineta": "m8_laura_shot"
+     }
+    ]
+   }
+  }
+ },
+ "m8_laura_charla": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Los mexicanos ponen música en un parlante. Laura se sienta en la banca, al lado tuyo. El frío se siente menos.",
+    "effects": [
+     {
+      "vineta": "m8_laura_banca"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Oye, ¿y qué tal Colombia? ¿Te gusta? Porque yo estoy enamorada. Pero de España también, ¿eh? Yo a mi país lo quiero muchísimo. Que no se te olvide.",
+    "choices": [
+     {
+      "label": "«¿Qué es lo que más extrañas de España?»",
+      "effects": [
+       {
+        "setFlag": "m8_q_espana"
+       }
+      ],
+      "goto": "espana"
+     },
+     {
+      "label": "«¿Por qué Relaciones Internacionales?»",
+      "effects": [
+       {
+        "setFlag": "m8_q_rrii"
+       }
+      ],
+      "goto": "rrii"
+     }
+    ]
+   },
+   "espana": {
+    "speaker": "Laura",
+    "text": "Uf. La comida, lo primero. Los pintxos, la tortilla de patatas de mi ama... «ama» es mamá en euskera. Y el Athletic: mi equipo de fútbol. Solo juegan jugadores de allí. Es una locura y es precioso. ¡Aupa Athletic!",
+    "next": "lluvia"
+   },
+   "rrii": {
+    "speaker": "Laura",
+    "text": "Porque quiero entender por qué los países se pelean. Y porque quiero trabajar en una embajada, o en Naciones Unidas, y viajar, y que me paguen por hablar idiomas. Ambiciosa, ¿eh? Pues sí.",
+    "next": "lluvia"
+   },
+   "lluvia": {
+    "speaker": "Laura",
+    "text": "En Bilbao llueve así, ¿sabes? Finito, todo el día. Lo llamamos «sirimiri». Por eso esta mañana, con la lluvia de Salento, me sentí en casa un ratito.",
+    "effects": [
+     {
+      "vineta": "m8_laura_sirimiri"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "¿Y tú? ¿De dónde eres de Chile? Cuéntame. Y no me digas «de Santiago», que todos dicen «de Santiago».",
+    "effects": [
+     {
+      "vineta": "m8_laura_banca"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«De Paine. La capital de la sandía.»",
+      "effects": [
+       {
+        "setFlag": "m8_q_paine"
+       }
+      ],
+      "goto": "paine"
+     },
+     {
+      "label": "«De cerca de Santiago...» (risa)",
+      "goto": "santiago"
+     },
+     {
+      "label": "«De un pueblo con más cerros que gente.»",
+      "effects": [
+       {
+        "setFlag": "m8_q_cerros"
+       }
+      ],
+      "goto": "cerros"
+     }
+    ]
+   },
+   "paine": {
+    "speaker": "Laura",
+    "text": "¿La capital de la sandía? ¡Qué maravilla! Yo vengo de la capital del bacalao y tú de la capital de la sandía. Somos una ensalada muy rara.",
+    "effects": [
+     {
+      "vineta": "m8_laura_risa"
+     }
+    ],
+    "next": "nostalgia"
+   },
+   "santiago": {
+    "speaker": "Laura",
+    "text": "¡Te dije! ¡Te lo dije! Todos dicen «de Santiago». Venga, que te perdono. Pero solo por esta vez.",
+    "effects": [
+     {
+      "vineta": "m8_laura_risa"
+     }
+    ],
+    "next": "nostalgia"
+   },
+   "cerros": {
+    "speaker": "Laura",
+    "text": "Como mi caserío de mi aita, en Bizkaia. «Aita» es papá. Muchos montes, muchas vacas y tres bares. La vida perfecta, vamos.",
+    "next": "nostalgia"
+   },
+   "nostalgia": {
+    "speaker": "Laura",
+    "text": "¿Echas de menos tu casa? Así, de verdad. No me pongas cara de chileno duro.",
+    "effects": [
+     {
+      "vineta": "m8_laura_seria"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Sí. Hoy le dije a Danilo que me pega en las noches.»",
+      "effects": [
+       {
+        "setFlag": "m8_q_honesto"
+       }
+      ],
+      "goto": "si"
+     },
+     {
+      "label": "«A veces. Pero me gusta lo que estoy viviendo acá.»",
+      "effects": [
+       {
+        "setFlag": "m8_q_aveces"
+       }
+      ],
+      "goto": "aveces"
+     },
+     {
+      "label": "«No. Bueno... sí.»",
+      "goto": "nosi"
+     }
+    ]
+   },
+   "si": {
+    "speaker": "Laura",
+    "text": "Ya. Yo también. Lloré tres noches seguidas cuando llegué a Cali. Y después un día me desperté y pensé: «vale, Laura, ahora esta también es tu casa». No reemplaza, ¿eh? Suma.",
+    "next": "donde"
+   },
+   "aveces": {
+    "speaker": "Laura",
+    "text": "Esa es la buena. La nostalgia y las ganas a la vez. Así se viaja bien, creo yo. Con un pie en cada lado y el corazón donde le dé la gana.",
+    "next": "donde"
+   },
+   "nosi": {
+    "speaker": "Laura",
+    "text": "«No. Bueno, sí». Jajaja. Me encanta. Eso es lo más sincero que me han dicho en todo el viaje.",
+    "effects": [
+     {
+      "vineta": "m8_laura_risa"
+     },
+     {
+      "setFlag": "m8_q_sincero"
+     }
+    ],
+    "next": "donde"
+   },
+   "donde": {
+    "speaker": "Laura",
+    "text": "Oye, ¿y en Cali dónde vives? ¿Con una familia? ¿En un piso compartido con gente rara?",
+    "effects": [
+     {
+      "vineta": "m8_laura_banca"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«En una residencia. El Bobo Unic Living.»",
+      "goto": "bobo"
+     },
+     {
+      "label": "«En una residencia con un ascensor que funciona y otro que no.»",
+      "goto": "ascensor"
+     }
+    ]
+   },
+   "bobo": {
+    "speaker": "Laura",
+    "text": "Espera. Espera, espera. ¿El Bobo? ¿El Bobo Unic Living? ¿El de Wilmer en la recepción, con los lentes de sol en la cabeza?",
+    "effects": [
+     {
+      "vineta": "m8_laura_seria"
+     }
+    ],
+    "next": "piso"
+   },
+   "ascensor": {
+    "speaker": "Laura",
+    "text": "¿Uno que funciona y otro que no? ...No. No me digas. ¿El Bobo? ¿El de Wilmer en la recepción, con los lentes de sol en la cabeza?",
+    "effects": [
+     {
+      "vineta": "m8_laura_seria"
+     }
+    ],
+    "next": "piso"
+   },
+   "piso": {
+    "speaker": "Laura",
+    "text": "¡Que yo vivo ahí, tío! ¡En el piso 11!",
+    "effects": [
+     {
+      "vineta": "m8_laura_risa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Yo en el 8. En el 805.»",
+      "goto": "tres"
+     },
+     {
+      "label": "«No te creo.»",
+      "goto": "nocreo"
+     }
+    ]
+   },
+   "nocreo": {
+    "speaker": "Laura",
+    "text": "Que sí, que sí. El 11. El de la terraza con las plantas medio muertas. ¿Y tú?",
+    "choices": [
+     {
+      "label": "«En el 8. En el 805.»",
+      "goto": "tres"
+     }
+    ]
+   },
+   "tres": {
+    "speaker": "Laura",
+    "text": "¡Hostia! ¡Tres pisos! Tres pisos de distancia y nos venimos a conocer en Salento, a cinco horas de bus. Esto no me lo cree nadie en Bilbao.",
+    "effects": [
+     {
+      "vineta": "m8_laura_risa"
+     }
+    ],
+    "next": "uni"
+   },
+   "uni": {
+    "speaker": "Laura",
+    "text": "Vale, vale. Y ahora dime que no estudias en la Cristiana-Caleña, porque me da algo.",
+    "effects": [
+     {
+      "vineta": "m8_laura_seria"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«...En la Cristiana-Caleña.»",
+      "goto": "misma"
+     },
+     {
+      "label": "«¿Te miento o te digo la verdad?»",
+      "goto": "misma"
+     }
+    ]
+   },
+   "misma": {
+    "speaker": "Laura",
+    "text": "¡Bai! ¡Lo sabía! ¡La misma! ¿Y cómo no nos hemos visto nunca? Ni en el ascensor, ni en el campus, ni en el bus. ¡Nada!",
+    "effects": [
+     {
+      "vineta": "m8_laura_risa"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "iker",
+      "if": {
+       "flag": "m8_q_iker"
+      }
+     },
+     {
+      "goto": "cosas"
+     }
+    ]
+   },
+   "iker": {
+    "speaker": "Laura",
+    "text": "Y encima Iker también está ahí. Dos de Bilbao y un chileno en la misma universidad, y ninguno se entera. Lo de este viaje es de película, ¿eh?",
+    "next": "cosas"
+   },
+   "cosas": {
+    "choices": [
+     {
+      "label": "«Capaz que sí nos cruzamos y no nos fijamos.»",
+      "effects": [
+       {
+        "setFlag": "m8_q_vecinos"
+       }
+      ],
+      "goto": "fijamos"
+     },
+     {
+      "label": "«Cali es grande. El Bobo, no tanto.»",
+      "goto": "chico"
+     },
+     {
+      "label": "«Ahora me vas a ver hasta en la sopa.»",
+      "effects": [
+       {
+        "setFlag": "m8_q_vecinos"
+       }
+      ],
+      "goto": "sopa"
+     }
+    ]
+   },
+   "fijamos": {
+    "speaker": "Laura",
+    "text": "Puede. Pero yo me acordaría de ti, ¿eh? Por la cara de chileno perdido. ...Es broma. Un poco.",
+    "effects": [
+     {
+      "vineta": "m8_laura_palma"
+     }
+    ]
+   },
+   "chico": {
+    "speaker": "Laura",
+    "text": "Ya ves. Yo salgo a las siete para la uni y vuelvo tardísimo. Igual tú vives de noche y yo de día. Como dos relojes cambiados."
+   },
+   "sopa": {
+    "speaker": "Laura",
+    "text": "¡Aupa! Eso, eso. A partir de ahora te saludo en el ascensor. En el que funciona.",
+    "effects": [
+     {
+      "vineta": "m8_laura_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m8_cuenta_regresiva": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Chuy",
+    "text": "¡Ya casi! ¡Faltan diez segundos! ¡Todos con el caballito arriba!",
+    "effects": [
+     {
+      "vineta": "m8_cuenta"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "¡DIEZ! ¡NUEVE! ¡OCHO! Renata se sube a la banca. Ximena saca la bandera. Laura te agarra del brazo «para no caerse». No se está cayendo.",
+    "next": "n2"
+   },
+   "n2": {
+    "text": "¡TRES! ¡DOS! ¡UNO!"
+   }
+  }
+ },
+ "m8_grito": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Chuy",
+    "text": "¡MEXICANOS! ¡VIVA MÉXICO! —¡VIVA! —¡VIVA MÉXICO! —¡VIVA! —¡VIVA MÉXICO! —¡VIVAAA!",
+    "effects": [
+     {
+      "vineta": "m8_grito"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "El grito rebota en la iglesia y en los balcones de colores. Se prenden dos ventanas. Una señora se asoma en bata. Danilo le grita: «¡Es cultura, señora! ¡Es intercambio cultural!»",
+    "effects": [
+     {
+      "vineta": "m8_grito_ventanas"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Y empiezan a cantar, inventando la letra sobre la marcha: «¡Feliz, feliz día de la Independencia! ¡Feliz, feliz, desde Salento hasta Jalisco!». Tú cantas sin saber la letra. Nadie la sabe.",
+    "effects": [
+     {
+      "vineta": "m8_cantan"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "choices": [
+     {
+      "label": "Cantar a todo pulmón",
+      "effects": [
+       {
+        "setFlag": "m8_canto"
+       },
+       {
+        "setFlag": "m8_q_canto"
+       }
+      ],
+      "goto": "cantar"
+     },
+     {
+      "label": "Gritar «¡Viva Chile!» por error",
+      "effects": [
+       {
+        "setFlag": "secreto_m8_viva_chile"
+       }
+      ],
+      "goto": "chile"
+     }
+    ]
+   },
+   "cantar": {
+    "text": "Cantas tan fuerte que Chuy te abraza y te levanta del suelo. «¡Este chileno es mexicano honorario, güey!» Laura se ríe y canta encima, desafinando con orgullo.",
+    "effects": [
+     {
+      "vineta": "m8_cantan"
+     }
+    ]
+   },
+   "chile": {
+    "text": "Todos se quedan en silencio. Después Chuy grita «¡VIVA CHILE TAMBIÉN, CARNAL!» y la plaza entera aplaude. Danilo: «Eso es fraternidad latinoamericana, ve.»",
+    "effects": [
+     {
+      "vineta": "m8_cantan"
+     }
+    ]
+   }
+  }
+ },
+ "m8_laura_final": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Son las doce y media. Los mexicanos recogen los limones. Laura se queda un rato más en la banca contigo, mirando la palma de cera.",
+    "effects": [
+     {
+      "vineta": "m8_laura_palma"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Oye, chileno... me caes bien. Mucho. Y eso que yo a la gente le pongo examen. Has aprobado. Con nota, ¿eh?",
+    "branches": [
+     {
+      "goto": "alta",
+      "if": {
+       "any": [
+        {
+         "flag": "m8_q_honesto"
+        },
+        {
+         "flag": "m8_q_aveces"
+        },
+        {
+         "flag": "m8_q_sincero"
+        }
+       ]
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "alta": {
+    "speaker": "Laura",
+    "text": "Y mira: no te voy a pedir el número. Ni el Insta. Ni nada.",
+    "effects": [
+     {
+      "vineta": "m8_laura_destino"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Ni el Insta?»",
+      "goto": "ni_insta"
+     },
+     {
+      "label": "«Me parece. Que lo decida Cali.»",
+      "effects": [
+       {
+        "setFlag": "m8_q_destino"
+       }
+      ],
+      "goto": "cali"
+     }
+    ]
+   },
+   "normal": {
+    "speaker": "Laura",
+    "text": "Bueno, ya sabes dónde encontrarme: tres pisos más arriba. Si algún día coincidimos en el ascensor, me saludas, ¿vale? Ojalá nos veamos más adelante.",
+    "next": "agur"
+   },
+   "agur": {
+    "speaker": "Laura",
+    "text": "Agur, chileno. «Agur» es adiós en euskera. Pero un adiós de los que vuelven, ¿vale?",
+    "effects": [
+     {
+      "vineta": "m8_laura_agur"
+     }
+    ]
+   },
+   "ni_insta": {
+    "speaker": "Laura",
+    "text": "Ni el Insta. Vivimos a tres pisos y vamos a la misma uni. Si no nos volvemos a ver, es que no tenía que ser. Y si nos vemos... bueno, eso ya será otra historia.",
+    "effects": [
+     {
+      "vineta": "m8_laura_palma"
+     },
+     {
+      "setFlag": "m8_laura_alta"
+     }
+    ],
+    "next": "agur"
+   },
+   "cali": {
+    "speaker": "Laura",
+    "text": "Bai. Que lo decida Cali. O el ascensor, que es más caprichoso. Ojalá nos veamos más adelante, chileno. De verdad.",
+    "effects": [
+     {
+      "vineta": "m8_laura_palma"
+     },
+     {
+      "setFlag": "m8_laura_alta"
+     }
+    ],
+    "next": "agur"
+   }
+  }
+ },
+ "m8_despedidas": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Los mexicanos se van cantando hacia su hostal. Ximena se lleva la bandera de capa. Chuy te grita desde la esquina: «¡Cachai, carnal! ¡CACHAI!»",
+    "effects": [
+     {
+      "vineta": "m8_despedida_plaza"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Bueno, ve parce. A la casita. Que mañana sale el bus a las nueve y Rubiela nos va a sacar a escobazos.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_serio"
+     },
+     {
+      "objective": "Vuelve a la casita con Danilo y acuéstate en tu camarote"
+     }
+    ]
+   }
+  }
+ },
+ "m8_ultima_noche": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La pieza de los camarotes está a oscuras. Todos duermen. Danilo se acuesta en el camarote de al lado.",
+    "effects": [
+     {
+      "vineta": "m8_camarotes_noche"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Ve parce... ¿te puedo decir una cosa como amigo y no como psicólogo? Hoy te vi feliz. En la plaza. Cantando con unos mexicanos que no conocías. Eso no se finge.",
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "La nostalgia no se va, ¿sabés? Pero uno aprende a llevarla. Como la chaqueta: en Salento te la ponés, en Cali te la amarrás a la cintura. Pero siempre va con vos.",
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "...Y lo del corazón, sin afán. Cuando llegue, vas a saber. Vojabés. Buenas noches, ve.",
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Desde arriba, medio dormido, Richi: «...achichay...». Te duermes sonriendo.",
+    "effects": [
+     {
+      "vineta": "m8_noche_zzz"
+     }
+    ]
+   }
+  }
+ },
+ "m8_lunes": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Al otro día, el bus de vuelta. Richi en la ventana, tú al lado. Juanpa con el sombrero. Renzo con tres frascos de ají de doña Marleny. Tami dormida dos asientos atrás. Danilo anotando algo en una servilleta.",
+    "effects": [
+     {
+      "vineta": "m8_bus_vuelta"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Y una foto en el celular: la plaza de noche, los mexicanos, la bandera, un vasito de tequila... y en una esquina, borrosa, una chica con pecas y una bufanda roja y amarilla.",
+    "effects": [
+     {
+      "vineta": "m8_fotogram_recuerdo"
+     }
+    ]
+   }
+  }
+ },
+ "m8_presente_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "effects": [
+     {
+      "event": "presente_m8"
+     }
+    ]
+   }
+  }
+ },
+ "m8_presente": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Sábado otra vez. El de ahora. La foto sigue abierta en el celular. Afuera, Cali está limpia después de la lluvia.",
+    "effects": [
+     {
+      "vineta": "m8_depa_sabado"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Fue a la vuelta de Salento, en ese mismo bus, cuando volviste a hablar con Sira. Quién lo diría.",
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Vibra el celular. Es Sira: «¿qué haces? 🌧️ ¿vamos por un tinto?». Sonríes. Ahora sí sabes qué son.",
+    "effects": [
+     {
+      "vineta": "m8_cel_sira_tinto"
+     },
+     {
+      "message": "m8_sira_tinto"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Y también está lo otro. Piso 11. Tres pisos más arriba. Tres semanas, y ni una sola vez en el ascensor.",
+    "effects": [
+     {
+      "vineta": "m8_boton_11"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "alta",
+      "if": {
+       "flag": "m8_laura_alta"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "alta": {
+    "text": "«Que lo decida Cali», dijo. Cali todavía no decide. Pero a veces, en el ascensor, te quedas mirando el botón del 11 un segundo de más.",
+    "next": "fin"
+   },
+   "normal": {
+    "text": "A veces, cuando el ascensor se detiene en otro piso, te acuerdas de ella. Nunca es el 11. Todavía.",
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Te quedas mirando el techo un rato. Después dejas el celular boca abajo en la cama. Afuera, el sol. Adentro, una sensación rara: la de que algo está por empezar.",
+    "effects": [
+     {
+      "vineta": "m8_depa_sabado"
+     }
+    ]
+   }
+  }
+ },
+ "m8_octavio": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Don Octavio",
+    "text": "¿Otra polita, joven? La rocola está con monedas. Póngale algo de despecho, que el domingo es para eso.",
+    "effects": [
+     {
+      "vineta": "m8_bar"
+     }
+    ]
+   }
+  }
+ },
+ "m8_rocola": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La rocola: Darío Gómez, Jhonny Rivera, Helenita Vargas... Todo es despecho. Hasta la canción de cumpleaños suena triste aquí.",
+    "effects": [
+     {
+      "vineta": "m8_rocola"
+     }
+    ]
+   }
+  }
+ },
+ "m8_danilo_bar": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Te toca, ve. Y no me mirés así: es tu turno en el pool, no en terapia.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_pool"
+     }
+    ]
+   }
+  }
+ },
+ "m8_tami_bar": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Tami",
+    "text": "¿Entonces, chileno?",
+    "effects": [
+     {
+      "vineta": "m8_tami_puerta"
+     }
+    ]
+   }
+  }
+ },
+ "m8_laura_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "Agur, chileno. Y si me ves en el ascensor, me dices «kaixo», ¿eh?",
+    "effects": [
+     {
+      "vineta": "m8_laura_agur"
+     }
+    ]
+   }
+  }
+ },
+ "m8_chuy_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Chuy",
+    "text": "¡Viva México, carnal! Y viva Chile también, ¿cómo no?",
+    "effects": [
+     {
+      "vineta": "m8_chuy"
+     }
+    ]
+   }
+  }
+ },
+ "m8_ximena_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Ximena",
+    "text": "¡Cachai! ¡Ya me salió, güey! ¡Cachai, cachai!",
+    "effects": [
+     {
+      "vineta": "m8_ximena"
+     }
+    ]
+   }
+  }
+ },
+ "m8_renata_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Renata",
+    "text": "Mañana nos vamos a Cocora a las seis de la mañana. No sé quién tuvo esa idea. Fue Chuy. Siempre es Chuy.",
+    "effects": [
+     {
+      "vineta": "m8_ximena"
+     }
+    ]
+   }
+  }
+ },
+ "m8_danilo_plaza": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Ah ve, esto es lo que en psicología se llama «un buen momento». No lo analices. Vivilo.",
+    "effects": [
+     {
+      "vineta": "m8_danilo_serio"
+     }
+    ]
+   }
+  }
+ }
+}

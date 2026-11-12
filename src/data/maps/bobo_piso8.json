@@ -191,6 +191,15 @@
     "mission": "mission07",
     "flag": "m7_jueves"
    }
+  },
+  {
+   "id": "m8_presente",
+   "dialogue": "m8_presente_llega",
+   "once": true,
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_presente"
+   }
   }
  ],
  "labels": [

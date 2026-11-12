@@ -41,7 +41,11 @@ export interface GameEvents {
   /** Misión 6: la persecución del ladrón por el Bulevar (PersecucionScene); `done` dice si lo alcanzaste. */
   'open-persecucion': [{ done: (result: { caught: boolean; hits: number; dodges: number }) => void }];
   /** Misión 7: la boloñesa con Sira en el depa (CocinaScene); parte 1 = picar y sofreír, parte 2 = los fideos y emplatar. */
-  'open-salsa': [{ done: (result: { score: number; total: number; perfect: boolean; hits: number; notes: number }) => void }];
+  'open-salsa': [{ partner?: string; done: (result: { score: number; total: number; perfect: boolean; hits: number; notes: number }) => void }];
+  /** Misión 8: pool con Danilo, el torneo de pimpón y las atracciones del Parque del Café (y el tejo). */
+  'open-pool': [{ done: (result: import('../scenes/PoolScene').PoolResult) => void }];
+  'open-pinpon': [{ done: (result: import('../scenes/PinponScene').PinponResult) => void }];
+  'open-atraccion': [{ mode: import('../scenes/AtraccionScene').AtraccionMode; done: (result: import('../scenes/AtraccionScene').AtraccionResult) => void }];
   'open-cocina': [{ part: 1 | 2; done: (result: { score: number; total: number; perfect: boolean; cried: boolean; teamwork: boolean }) => void }];
   /** Abrir el mapa interactivo de la Línea 1 (escena UI). */
   'open-line-map': [];

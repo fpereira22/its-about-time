@@ -29,7 +29,9 @@ function temperature(weather: Weather, minutes: number): number {
   const h = (minutes / 60) % 24;
   const base = 25 + 5 * Math.sin(((h - 9) / 24) * Math.PI * 2);
   const drop: Record<Weather, number> = { despejado: 0, nublado: 2, lluvia: 5, tormenta: 7 };
-  return Math.round(base - drop[weather]);
+  // Misión 8: en Salento (y el Eje Cafetero) hace frío de montaña, unos 9 grados menos que en Cali.
+  const frio = StoryState.hasFlag('m8_frio') ? 9 : 0;
+  return Math.round(base - drop[weather] - frio);
 }
 
 function weatherIcon(weather: Weather, minutes: number): WeatherIcon {

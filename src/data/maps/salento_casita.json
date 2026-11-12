@@ -1,0 +1,171 @@
+{
+ "id": "salento_casita",
+ "name": "Hostal La Casita",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 22,
+ "height": 14,
+ "background": "#14121a",
+ "music": "casita",
+ "legend": {
+  "^": "muro_techo",
+  "M": "casa_muro",
+  "v": "casa_ventana",
+  "c": "casa_cuadro",
+  ".": "madera",
+  "t": "terracota",
+  "A": "camarote_alto",
+  "C": "camarote",
+  "P": "camarote_alto_pie",
+  "p": "camarote_pie",
+  "m": "casa_meson",
+  "e": "casa_estufa",
+  "n": "casa_nevera",
+  "T": "casa_mesa",
+  "s": "casa_silla",
+  "H": "hamaca",
+  "x": "pinpon_a",
+  "y": "pinpon_b",
+  "f": "matera",
+  "d": "casa_ducha",
+  "l": "casa_lavamanos",
+  "D": "casa_puerta"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^^^^^^^",
+  "^vMcMvMcMv^MvMmmenMcv^",
+  "^ACAC.ACAC^..........^",
+  "^PpPp.PpPp^...TTT....^",
+  "^.........^..sTTTs...^",
+  "^.............sss....^",
+  "^.........^..........^",
+  "^^^^^.^^^^^^^^^^.^^^^^",
+  "^MMvM.MMcM^ttttt.tttt^",
+  "^.H.......^fttxyttttf^",
+  "^..........tttttttttt^",
+  "^dl.......^fftttttHtf^",
+  "^MMMMDMMMM^MMMMMMMMMM^",
+  "^^^^^^^^^^^^^^^^^^^^^^"
+ ],
+ "spawns": {
+  "entrada": {
+   "x": 5,
+   "y": 11,
+   "dir": "up"
+  },
+  "cama": {
+   "x": 4,
+   "y": 2,
+   "dir": "down"
+  },
+  "cama_arriba": {
+   "x": 6,
+   "y": 2,
+   "dir": "down"
+  },
+  "pieza": {
+   "x": 5,
+   "y": 4,
+   "dir": "up"
+  },
+  "pinpon": {
+   "x": 14,
+   "y": 10,
+   "dir": "up"
+  },
+  "cocina": {
+   "x": 15,
+   "y": 2,
+   "dir": "up"
+  },
+  "mesa": {
+   "x": 13,
+   "y": 4,
+   "dir": "up"
+  },
+  "sala": {
+   "x": 4,
+   "y": 9,
+   "dir": "up"
+  },
+  "hamaca": {
+   "x": 2,
+   "y": 9,
+   "dir": "down"
+  }
+ },
+ "warps": [
+  {
+   "x": 5,
+   "y": 12,
+   "to": "salento",
+   "spawn": "casita"
+  }
+ ],
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m8_casita_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission08"
+   }
+  },
+  {
+   "id": "sabado_noche",
+   "dialogue": "m8_casita_sabado_noche",
+   "once": true,
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_vuelta_parque"
+   }
+  }
+ ],
+ "labels": [
+  {
+   "x": 5,
+   "y": 1.6,
+   "text": "CAMAROTES"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "cama_arriba",
+   "x": 6,
+   "y": 2,
+   "w": 1,
+   "h": 1,
+   "event": "dormir_arriba_m8",
+   "if": {
+    "mission": "mission08"
+   }
+  },
+  {
+   "id": "cama_abajo",
+   "x": 4,
+   "y": 2,
+   "w": 1,
+   "h": 1,
+   "event": "dormir_abajo_m8",
+   "if": {
+    "mission": "mission08"
+   }
+  },
+  {
+   "id": "hamaca",
+   "x": 2,
+   "y": 9,
+   "w": 1,
+   "h": 1,
+   "event": "dialogo:m8_c_hamaca"
+  },
+  {
+   "id": "hamaca2",
+   "x": 17,
+   "y": 11,
+   "w": 1,
+   "h": 1,
+   "event": "dialogo:m8_c_hamaca"
+  }
+ ]
+}

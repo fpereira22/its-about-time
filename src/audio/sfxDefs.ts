@@ -479,6 +479,60 @@ export const SFX: Record<SfxName, SfxFn> = {
     noise(ctx, { start: t, dur: 0.08, vol: 0.2, filter: 'lowpass', freq: 1200, dest: out });
   },
 
+
+  // --- Misión 8 ---
+  taco: (ctx, t, out) => {
+    tone(ctx, { type: 'triangle', freq: 900, freqEnd: 300, start: t, dur: 0.05, vol: 0.3, dest: out });
+    noise(ctx, { start: t, dur: 0.03, vol: 0.15, filter: 'bandpass', freq: 2500, q: 2, dest: out });
+  },
+
+  bola: (ctx, t, out) => {
+    tone(ctx, { type: 'sine', freq: 2400, freqEnd: 1800, start: t, dur: 0.06, vol: 0.18, dest: out });
+    noise(ctx, { start: t, dur: 0.02, vol: 0.2, filter: 'highpass', freq: 3000, dest: out });
+  },
+
+  tronera: (ctx, t, out) => {
+    for (const [d, f] of [[0, 220], [0.09, 180], [0.2, 150]] as const) tone(ctx, { type: 'triangle', freq: f, freqEnd: f * 0.7, start: t + d, dur: 0.08, vol: 0.25, dest: out });
+  },
+
+  pinpon: (ctx, t, out) => {
+    tone(ctx, { type: 'sine', freq: 1500, freqEnd: 1100, start: t, dur: 0.04, vol: 0.2, dest: out });
+    noise(ctx, { start: t, dur: 0.015, vol: 0.1, filter: 'highpass', freq: 4000, dest: out });
+  },
+
+  riel: (ctx, t, out) => {
+    for (let i = 0; i < 6; i++) noise(ctx, { start: t + i * 0.11, dur: 0.03, vol: 0.18, filter: 'bandpass', freq: 1200, q: 4, dest: out });
+  },
+
+  grito_mx: (ctx, t, out) => {
+    // «¡Ajúa!»: una voz que sube y cae, con el trino al final.
+    voice(ctx, out, t, [
+      { f0: 320, f0End: 420, f1: 700, f2: 1200, dur: 0.12 },
+      { f0: 520, f0End: 700, f1: 300, f2: 800, dur: 0.22 },
+      { f0: 700, f0End: 380, f1: 750, f2: 1250, dur: 0.32 },
+    ], 0.2);
+  },
+
+  chupito: (ctx, t, out) => {
+    tone(ctx, { type: 'triangle', freq: 520, freqEnd: 260, start: t, dur: 0.06, vol: 0.32, dest: out });
+    tone(ctx, { type: 'sine', freq: 3100, start: t + 0.01, dur: 0.12, vol: 0.04, dest: out });
+  },
+
+  mecha: (ctx, t, out) => {
+    noise(ctx, { start: t, dur: 0.35, vol: 0.5, filter: 'lowpass', freq: 900, dest: out });
+    tone(ctx, { type: 'triangle', freq: 120, freqEnd: 40, start: t, dur: 0.3, vol: 0.4, dest: out });
+  },
+
+  chocon: (ctx, t, out) => {
+    tone(ctx, { type: 'square', freq: 140, freqEnd: 70, start: t, dur: 0.12, vol: 0.14, dest: out });
+    noise(ctx, { start: t, dur: 0.06, vol: 0.18, filter: 'lowpass', freq: 800, dest: out });
+  },
+
+  rebobinar: (ctx, t, out) => {
+    tone(ctx, { type: 'sawtooth', freq: 1200, freqEnd: 200, start: t, dur: 0.7, vol: 0.05, dest: out });
+    noise(ctx, { start: t, dur: 0.7, vol: 0.08, filter: 'bandpass', freq: 3000, q: 1, dest: out });
+  },
+
   // --- Misión 7 ---
   toc_toc: (ctx, t, out) => {
     // Tres golpes en la puerta de madera (el segundo más suave).

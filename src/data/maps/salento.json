@@ -1,0 +1,519 @@
+{
+ "id": "salento",
+ "name": "Salento",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 106,
+ "height": 93,
+ "background": "#4c7a3c",
+ "music": "salento",
+ "legend": {
+  ".": "alero",
+  "=": "anden",
+  "-": "arbol_salento",
+  ":": "banca_salento",
+  "\"": "baranda_madera",
+  "#": "escalera_mirador",
+  "a": "farol_colonial",
+  "b": "guadua_pasto",
+  "c": "iglesia_muro",
+  "d": "iglesia_puerta",
+  "e": "iglesia_techo",
+  "f": "iglesia_torre",
+  "g": "jardin_plaza",
+  "h": "mirador_piso",
+  "i": "palma_cera",
+  "j": "pasto",
+  "k": "piedra",
+  "l": "plaza_piso",
+  "m": "sal_balcon_amarillo",
+  "n": "sal_balcon_azul",
+  "o": "sal_balcon_morado",
+  "p": "sal_balcon_naranja",
+  "q": "sal_balcon_rojo",
+  "r": "sal_balcon_turquesa",
+  "s": "sal_balcon_verde",
+  "t": "sal_bar",
+  "u": "sal_entrada",
+  "v": "sal_puerta_amarillo",
+  "w": "sal_puerta_azul",
+  "x": "sal_puerta_morado",
+  "y": "sal_puerta_naranja",
+  "z": "sal_puerta_rojo",
+  "A": "sal_puerta_turquesa",
+  "B": "sal_puerta_verde",
+  "C": "sal_ventana_amarillo",
+  "D": "sal_ventana_azul",
+  "E": "sal_ventana_morado",
+  "F": "sal_ventana_naranja",
+  "G": "sal_ventana_rojo",
+  "H": "sal_ventana_turquesa",
+  "I": "sal_ventana_verde",
+  "J": "teja",
+  "K": "teja_b",
+  "L": "tienda_artesanias",
+  "M": "trocha",
+  "N": "vista_cocora",
+  "O": "vista_cocora_b",
+  "P": "willys_azul_a",
+  "Q": "willys_azul_b",
+  "R": "willys_rojo_a",
+  "S": "willys_rojo_b",
+  "T": "willys_verde_a",
+  "U": "willys_verde_b"
+ },
+ "rows": [
+  "jjjbjj-j-j-bjjjjjj=JJJJJJJJj.j===kkkkkkCCIDj-jjjjjjjjjjj--jjjjjjjjjjjjjjjjjjjjj-jjjjjjjjjjjjj-jjjjjjj-jjj-",
+  "jjjjjbjjjjjjjjjjjj=JJJJJJJJjFM=kkkkkkkk=jjjj-jjjjjjjj-jjjjjjbj--jjj--jbj-jjjjjjjjjjjbbjjjj-jjjj-jjjjjjjjjj",
+  "jjjjjjjjjjj--jjjjj=IIIIIIIIMMFkk=kkkkkk=jjjjjjjjjjjjjjbjjjjjjjjjjjjjjjjjjjjjjjjjj-jjjjjjjjjjjjjjjjjjjjjjjj",
+  "j-jj-jjjjjjjjjbjjj=k====wjjjMMM=kkkkkk==jjjjjjjjjjjjjjjjjjjjjbjbjjjjjjjjjjjjjjjjjjjjjj-jj-jjj-jjjbj-jjjjjj",
+  "jjjjjb-jjbjjjbj-J.=k=kkkMMMM==kkkkkkkkJjjjjjjjjjbj-jjjjjjjj-j-jjjjjbjjjjjjjjjjjjjj-jbjjjbjjjjjjjjjjjjjjjjj",
+  "-jjjjj-jbj--jjjj.I=kkkkM====kkkkkkkkkJJjjjjjjjjjj-jjjjjjjjjjjjjjjj-jjbjjjjjj-jjjjj-jjbjjjjjjjjjjj=======jj",
+  "jjjjj--jjjjjjjjjwj=kk=====kkkkkkkkkkJJJjjj-jjjjjjjjjjjjjjjjjjjj--jjjjjjj-jjjjjjjjjjjjjj-bjjjjjj===kkkkk==j",
+  "jjjjjjjjj-jjjjj-jK=k====kkkkkk==kkkJJJJJJKKjjjjjjjjjjjjjjjjjjjjjjbjbjjjjjjjjjj-jjjjjjjjjjjjjjj==kkkkkkkk==",
+  "-jjjj-jjjjjjbjjjjK=k=kkkkkkk===JkkkJJJJJJK.jj====jjj-jjjjjjjjjjbjjjjj-jjjjjjjjjjj-jjjjjjj-jjj==kkkk===kkk=",
+  "jjjjjjjjjjjjjjjjjJ=kkkkkkk===jjJkkkJJJJJJKoKKKkk=jjjjj--jjjjjjjjjj-jjjjj-jjjjjjjjjj-jjjjjj-j==kkk===j==kk=",
+  "jjj-jjjjjjjjjjjj-.=kkkk====jjjjJkkkJJJJJJKEKK.kk.jjjjjjjjjjjjjjjjjjjjbjjj--jjjjjjbbjjjjjjjjj=kkk==jjjj=kkk",
+  "==jjjjjjjxEjjjjjjFkkkkK=jjjjbjjJkkkJ.JJJ..jJJ.kk.j.-jjjjjjjjjjjjbjjjjjjjjjj-jjjjjjj-bjjjbjjj=kk==jjjjj=kkk",
+  "k==jjjjjjjjAH-jjj=kkkzKKKjjJJjjJkkkJA..JHo...FkkCFF-jjjbjjjjjjjbjjjjjjjj-jjjjjjjjjjjjjjjjjj==kk=jj-jjj==kk",
+  "kk==jjjjjjjjjjjjDDkkk=KKK-jJJJJJkkkKjHHJjEEFykkk=jjjjjbjjjjjjjjjjj-jjjjjjjjjjjjjjjj-jjjjjjj=kkk=jjjjjj=kkk",
+  "kkk==jjjjjzjjjjjj=kkkJKKKKKJJJJJkkk.jjj.jjbj=kkk=jjjjjjjjj====jj-jjjjjjj--jjjjjjjj--jbjjjjj=kk==jjjjjj=kkk",
+  ".kkk.jjjjjjG-jjjj=kk.JJJKKKKJJJJkkk.jjjqjj-j=kkkKjj-j-jjjj=kk=jjjjjjj-jjj-jjjjjjbj-jjjjjjjj=kk=j====jj=kkk",
+  "ExkkD=..jjjj-jjJJCkky.JJ....JJJJkkkFjjjGjjjj=kk..jjjjjjjjj.kk=jjjjjjbjj-bjjj--jjjj-jjjjj-jj=kk===kk=jj=kkk",
+  "j=kkkGzGjjjjj....=kk=p..ssss....kkk=j.jjbjjj=kk..j.jjjjjjjEkk=jjjj-jjjjjjjjbjj-jjj-jjjjjjjj=kk=kkkk=jj=kk=",
+  "...kk=======yFxEEHkk=FCCIBIIDwDDkkk=EExEAH=GGkkGz=IDD===Cv=kk=jjjjjjjjjjjjjjbj-jjjjjjjjjjj==kkkk====jj=kkk",
+  "IBIkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk=====FF===jjjjjjjjjjjjjjjjjjj=kkkk==jjjjj==kk",
+  "MMMkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk===jjjbjbjjjjjjjbjj==kkk==jjjjjjj=kk",
+  "KKKkkKHHJFKFkKKK==kkJwD=I=C..xEJkkk====JJJ===kkJ==.kkkkkkkkkkkkkkkkkkkkk===jjjjjjjjjjjjj==kkkk=jJjjjjjj=kk",
+  "KKKkkKbj.jJ=k...K.kkrjjjjjjyFjj.kkk=jjKJJJjj=kkJvjyK=K.=.JJkk.==xE====kkkk==jjjjjjjjbjjj=kkkk==jJjjjjjj==k",
+  "K.KkkKjj.jJ=kooo.skkEjjj-jj-jjEEkkk=jj.JJJjj=kkKjjjJjKCjAKKkksjjjjjjj==kkkk===jjjjjjjjj==kkk==jjsjjjjjjj=k",
+  "KnKkkJFyEj.=kEExsBkk=jjjjjjjjjj=kk==jjr...-j=kk.jJJJj.jjj..kkIj-jjjbvC===kkkk===jjjjj===kkk==jjjIBjjjjjj==",
+  "KDKkkKjjjjC=kkk=Ikkk=jjjjj....KKkk=jjjAGzG-j=kkq.q..jnjjjqqkk=jJ..-jjjjj==kkkkk===j===kkkk==jjbjj-jjjjjjjj",
+  "K-JkkKjjjJj======kkk=jjjjjHHGwKKkk=jjjjjjjjj=kkGzGHHIIBjjGzkk=j.DDjjjjjjj===kkkkk===kkkkk==jjjj-j-jjjjjjjj",
+  "KjJkkK.jjJjjBIjD=kkk=jjbjK-jjjJJkk=jjjjjjjjj=kk=jj-j-jjjjj=kkGzG-jjjjjIjjjj===kkkkkkkkk===jj-jjjbjj-jjjj-j",
+  "JJJkkKCjjJjbjjjjKkkk=jjj-K-jjbJJkk=jjjjj-jjj=kkxjjjjjjjjjj=kk=jjj-jjjjj===jjj===kkkkk===jjjjjjjjj-jjjjj-jj",
+  "JJJkkKjjjJjjKKJjKkkk=jjbjKjjjjJJkk=jjjjjjjjj=kk=jjjjjjjjj.=kk=jj..jjjjJFk==jjjj=======jjjbjjjjjj--jjjjjjjj",
+  "JJJkkJJjjJ..J.Jj.kkk=j.-j.JJJj..kk=j-jjjjj-j=kk=jjjjjjjjjF=kkwDjHAj..jmkkk=jj-jjjjjjjjjj-jjjjjjjbjjjjjjjj-",
+  ".ppkk..jj.pI.n...kkk=j.jjq....mmkk.jjjjjjjjj=kk.j..jjjjjjj=kk=jjjjjppjv.kk=jjjjjjjjjj-jjjjjjjjjjjbjj-jjj-j",
+  "EFFkkDDGzAH=zGHEFkkkFCCDDHyFFCvCkkE===FFy====kkF=vC=IB=====kkHH=EE=yF==xkk===CyF==jj-jjjjjjjjjjjjbbjjjjjjj",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkE=HzG===j.J.j-jjj-jjjjj-j",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk=jDJwjjjjjjjj-jjjj",
+  ".HHkkF======FFC==kkkKwzJx...I.KKkkJJ..D...=HKkkDD==.=DDwIJJkk.CvBI===HH.kkFK===kkkkkkkkk=jjJjjjjj-jjjjjj-j",
+  "Fj=kk=jjJIvwjjjA=kkkJbjJjyFm-DJJkkJJBIjGHojjJkk=jj..Cjj-jmKkk.jjjjjjjjjEkk=.jj======.Fkk=IIKjjjjjjjjjjjjjj",
+  "jj=kk=jjJj-jjjjj=kkkJjjJj-jCGjJJkkJ.-jjjjEjjJkk=AjvCj-jjjCKkkHjjjjjjjGj=kkJ.jjjjjjjjE=kk=jj.jjjjjjjbjjjjjj",
+  "jj=kk==.Jjjjjjj..kkkK..o.jjj-EJ.kkKyjjjjjjjjJkk=jj-jj-jjjbJkk=jjjjjjjjj.kkJCjjjjjjj.=kkk=j.pjjj-jjjjjjjjjj",
+  "jj=kkkJvJjjjjjjExkkk.IFxEjjjjjJxkkKjjjjbjjjj.kkKjjKKK...jjJkkDw--jjjjjjnkk.jjjjjjjjD=kkk=jFFjbjjjjjjjjjjjj",
+  ".j=kkkJj.jjjjjjj=kkkqjjjjjjjjj.kkkKjjjjjj-jjEkkKjjKKKFFy-JJkk=jjjjjjjjjDkkDjjjjjjjbj=kkk=jjjCjj--jjjjjjbjj",
+  "wj==kkJjBj-jjjjj=kkkGj-jjjjjjjFkkkJJjjjjjjjj=kk..D.KKjjjjJJkk=jjjjjjjjj=kk=j-jjjjjjj=kkk=jjjjjbjjjjjjjjjjj",
+  "====kkKjjjjjGjjj.kkk=jjjjjjjjj=kkkJJjjjjjjjj=kk..brKKjjjjJJkk=jjjjj-jjj=kk=jjjjjjjjj=kkkHjjxJjjjjjjjjjjjjj",
+  "kkkkkkJJJj--jjjAHkkkCj-jjjjjj..kkk.njjjj-jjj=kkII-H..Exjjq.kk=.-jBIjjjj.kk=jbjjjjjbj=kk==JjjJjjjjj-jjjjjj-",
+  "kkkkkk...jj.jjjj=kkk=jj..-jjjppkkknw.j..jj.j=kk=jjj..jjjjwqkk=.jjjjjjjjCkk=jjjjj...Gzkk=.nj..jjjjjjjjjjjjj",
+  "====kkGzGFCvD==AHkkkB==DCzGGzEHkkkD=HExEExE=xkkGzExuEFy===IkkEH=========kkCv==I=wDD==kk=yF=xE====jjjjbjjjb",
+  "jjj=kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk=Mjjjjjjjj",
+  "jjj=kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkMMMMMjjjj",
+  "jjj=kkKJJJJH.=.FFkkkIBJJJ.KK.wDkkk....KyF.J..kkDD=..GHA..Exkk.yFCC===..JkkK=JJ..HH==zkk==wD.==kkkkk===MMMj",
+  "jjj=kkKJJJ.jzjwj=kkk=jqq.F.KCj=kkkDwzGKjjC.DDkk=jjzG-jjHEj=kkFjjjjjjjHHJkk.j..oobjjj=kk=jj-D.H.kkkkkk===MM",
+  "jjj=kkJJ.oF-jjj==kkk==GzE=.Jjj=kkk=jjjJjjjIj=kk=jjjjjjjbjj=kk=jjjjjjj-jJkk.jFFEEjjjj=kk=jjjjGjEkkkkkkkk==j",
+  "jjj=kkJ.nEjjjjj=kkkkkkkkk=IJ..JkkkBjjjKjjjjj=kk=jbjjjjjjjj=kkJJjbjbjjjj.kkFjjjjbjjjj=kk=jjjj-j==kkk=kkkk==",
+  "j-j=kk.zDjjjjjj==kkkkkkkkk=JAHKkkk=jjJJjjjjj=kk=jjjjjjjj-j=kkKKbjjjjjjzGkk=jjjjj-jjj=kk=jjjjjjj==kkk==kkk=",
+  "jjj=kkH=jjjjjjjJJkkkDxEF=k=.jjKkkk=jjJJjjjjj=kk=.JJKK..jbj=kkKKjjj-jjjj=kkKjj.-jj-jj=kk=jjjjjjjj==kkkkkkk=",
+  "jjj=kkkJjjjjAjjookkk=jjj===EjjKkkkHHAJJjjjjj=kkKxJKKKpF...=kkJJJJJjjjjj=kkJJ-CjjjjjJJkkJjjjj-jjjj=MkkkkkM=",
+  "jJj=kkkK-jjjjjjExkkk=jjjjjjjj.Kkkk=jjKKKKKKKKkkK-....IjCvC=kkJ....jjj-DJkkJJjjjjjjjsJkk..jjjjjjbyFM=zkk=Mj",
+  "j.j=kkkKjjjjjjjj=kkk=jjjjj-jFFKkkk.jJKKKKKKKKkkKjssssjjjj=kkkJGzGGj-jjjKkkJ.-jjjbjjIJkkIBjbjjjjjjjMj====Mj",
+  "jGJJkkkJjjjjJjjvJkkk=jjjjj-jjjJkkkpj.........kk.jIIBIjjbJJkkkJ-j-jjjj...kk.Djjjjjjjjpkk=jjjjjjjjjjMwjjjMjj",
+  "jj..kkksjjjjrjjjnkkk..jj.jjjjjskkkFjEnnnnnnnnkkrjjjjjjjj..kkk........ssskknj..j=====Fkk=jjjjjjjjjjjMjjMMjj",
+  "==Gz=kkIDDGHH===DkkkIBwDG=====Ikkk===wDDwDDwDkkGGzGwDDwDBIkkkCHEEIyvCIIBkkDGHE==kkkkkkk=j-jj-jjjbjCMjjMjjj",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk=jj-jjj-jjjjMIjMjjj",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk==jjjjjjjjjjMjjjMjjj",
+  "==KK=kk=..CvJII..kkkHAxyF==.DwDkkkJ==..====..kkzG.J=B=====kkk.=.=v===Gz=kkK=.JFyFF=====jjjjj--jjjjMjjjMjjj",
+  "jjJJkkk.CCjj.jjnGkkk=jjjjjjs-j=kkk.jjssjjjjppkk=jHJjjjj.KKkkkwj.jjjjjjj=kkKjE.jjjjjjjjjjjjjjjjjjjjMjjjMjjj",
+  "jj.JkkkxjjjjIDDD=kkk=jjjjjjv-KKkkkIjjHAjjjjvCkk=jjpj.jjEJJkkk=jDjjjjjjKKkkJJjIjjjjjjjj-jj-jjjjjjjjMMjjMjjj",
+  "FyFKkkk=Cj-jjjjj=kkk=jjjjjjjj.Kkkk=jjjjGbjjj=kkJJjyvCjj-JJkkk=jjjjjjjwJKkkJJjjjjjjj-jjjjjjbjbbjjjMjMMjMj-j",
+  "jjjKkkk=jjjjj-JJ=kkk=jjjjjjj...kkk=jj-jjjjjj=kkKq-jjjj..ppkkk.jjjjjj-jJ.kkJ.jjjjjjjjjjjjjj-jj-jbjMjjMjMjjj",
+  "jj.Kkk==jjjjjb.J.kkk=jjjjjjjFFskkkJJJJjj-j-j=kkKzjjjjjFyFFkkkGjjjjjjj..pkkJ.j-jjjjbjjjjjjjjjjjjjjMjjMjMjjj",
+  "jbv.kk=jjjjjj-G.rkkk=jjjKKjj-jIkkk..JJjjjjjj=kkK-jbjjjj-j=kkk=jjjjjjjEAHkk.AjKjjjjjjjbjjjjjjjjjjjMjjjMMjjj",
+  "j-jmkk=jjjJjjjjxEkkk=j-jKKjjjj=kkkBI.JjjjjjKKkkJJ-jjj-jjj=kkk=jjjj-jJjj=kkHjjJjjjjjjjjjjjjjjjjjjjjMjjjMjjj",
+  "jjjCkk=jjj..jjjj=kkk=jjj..jjJ..kkk=jIJjjjjj..kk..jjjjj..J=kkkJjjjjjjJ.j.kk=j...jjjj..bjjjjjj-j-jjjMj\"\"\"\"\"O",
+  "jjj=kk.jjj..jjjj.kkk.j..oojjJppkkk=jj....-jookkoo.....mn.=kkk.jjjjjj.m.nkk..mmmEjFjDDjjjjjjjjj-jjj#jhhhh\"N",
+  "=I==kkG===yF===HHkkkzGGtutHA.yFkkkHHLLwtutHLLkkxELLyFFuDLGkkkH======yvBwkkCvCCv=====jjbjjjjjjjbjjj##hhhh\"O",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkx==kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk=vkkIBjjjjjjjjjjjjjj#hhhh\"N",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk##################hhhh\"O",
+  "===JkkKBHE....wkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.jjjj############hhhh\"N",
+  "jj.JkkKjjjExzG=JJkkkalllllllllakkeeeeeee.kk.Jkkk===J=.....kkk.D.==A..A.Kkkk=.HykkFyFjjjjjjjjjjjjjjjjhhhh\"O",
+  "jjG.kkKjjjjjjjjKKkkklilllilllilkkeeeeeeeIkkDJkkk=jj.jBIIGGkkknjDjjjrrjxKkkk=Ej=kkk=jjjjjjjjjjbjjjjjjhhhh\"N",
+  "jjjqkk.jjjjjjjjKKkkkllll:l:llllkkeeeeeee=kk=Kkkk=jjzjjjjj=kkkwjj-jjHHjj.kkk=jj=kkk==jjjjjjjjjjjjjjjM\"\"\"\"\"O",
+  "jjjHkksjjjjjjjjKKkkkllgglllggllkkfeeeeef=kkJKkkk=jj-jjjjj==kD=jjjjjjjjjpkkk=jj=kkkk=jjjjjjjjjj-jjjjjMjjjjj",
+  "C.K=kkvCjbjj-jjKKkkklllllilllllkkfeeeeef=kkJ.kkk=j-jjj-jjj=M=jjjjjjjjjjykkk=jj=kkkk=jjj-jjjjjjjjjjjjMjbjjj",
+  "jEK=kk=jjjjjjjj.Kkkklllllllllllkkfccdccf=kk..kkkvjjjjjjjjjjMBIjjjj-j-jj=kkk=jj=kkkk==jjjjj-jjjjjbbjjMjjjjj",
+  "jjJJkk=jjjjj-j.mKkkkllgglllggllkklllllll=kkHvkkk=jjjjjjjjjjMjjj-jjj-jjj=kkk=jj=kkkkk==jjjjjjjbjjjjjjjMjjj-",
+  "j.nJkk=jjjjJJjvCKkkkllll:l:llllkklllllll=..==kkkGjjjjj-jjjjjMjjj-bjj--j=kkk=jj===Ikkk==jjjjjj-jbjjjjjjMjjj",
+  "jDDJkk=jjjjJJjjjJkkklilllilllilkkJJJJJJJxEEj=kkk=jD-jjj-j-jjMjjjjjjjjjj=kkk=jjjjj=kkkk==jjjjjj-bjjjjjjjMMM",
+  "jjj.kkFFjj.r.jj-.kkkalllllllllakk.......jjjj=kkk..jjjjjjjjjjMjjjjjj=====kkk=jjjjj==kkkk==jjjjjjjjjbjjjjjjj",
+  "IIBIkk===AHHGwDDIkkk==kRS=PQ=TUkkHHAHuAHFy==DkkkCC=========M========kkkkkk==jjjjjj==kkkk==jjbjjj-jjjjjjjjj",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk=jj-jjjjj==kkkk==jjjjj---jjjjjjj",
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk===jjbjjjjjj===kkk==jjj-jjjjjj-jjj",
+  "EJ=kkkCvBII.EEH=Gkk..zDJJD.KJJ=kk.=C..D....KK==G=..=======MM=============jjjjjbjjjjjjj==kkk==jjjjjjjjjjjjj",
+  "j.=.kk=jjjjFjjjj=kkA.jj..-F.JJ=kky=jIDjxEFF..jjjjHAjjjjjjjMjjjjjJjjjjjjjjjjjjjjjjbjjjjj==kkk===jjjjjjjjj-j",
+  "jDjzkk=jjjjjjjjzGkkkHjjwDjjprr=kkk=jjjjjjbjmm-jjxjjjjjjjjMjjjjjj.Fjjjjjjjjjjjj-jjj-jjjjj==kkkk==jjjjjjjjj-",
+  "jjj=kk=jjjjjjjjj=kkk=jjb-jjFHA=kkk=jGjjjjjDIIjjjjjjjjjjjMjjjjjjjyjjbjjjjj-jjjjjjjjjjjjjjj==kkkk=jjjjjjjj-j"
+ ],
+ "zones": [
+  {
+   "name": "Plaza de Bolívar",
+   "subtitle": "Salento, Quindío",
+   "x": 20,
+   "y": 76,
+   "w": 11,
+   "h": 11
+  },
+  {
+   "name": "Mirador Alto de la Cruz",
+   "subtitle": "El valle de Cocora",
+   "x": 100,
+   "y": 68,
+   "w": 6,
+   "h": 12
+  },
+  {
+   "name": "Escalera al Alto de la Cruz",
+   "subtitle": "Unos 250 escalones",
+   "x": 78,
+   "y": 71,
+   "w": 22,
+   "h": 6
+  },
+  {
+   "name": "Calle Real",
+   "subtitle": "Carrera 6 · artesanías y mercado",
+   "x": 33,
+   "y": 71,
+   "w": 45,
+   "h": 6
+  },
+  {
+   "name": "Terminal de Salento",
+   "subtitle": "Buses a Armenia y a Pereira",
+   "x": 12,
+   "y": 0,
+   "w": 30,
+   "h": 10
+  },
+  {
+   "name": "Carrera 7",
+   "subtitle": "Al sur de la plaza",
+   "x": 0,
+   "y": 86,
+   "w": 66,
+   "h": 4
+  },
+  {
+   "name": "Cancha de tejo",
+   "subtitle": "Los Compadres",
+   "x": 45,
+   "y": 44,
+   "w": 12,
+   "h": 4
+  },
+  {
+   "name": "Salento",
+   "subtitle": "Quindío · 1.895 m",
+   "x": 0,
+   "y": 0,
+   "w": 106,
+   "h": 93
+  }
+ ],
+ "spawns": {
+  "terminal": {
+   "x": 22,
+   "y": 3,
+   "dir": "down"
+  },
+  "casita": {
+   "x": 37,
+   "y": 87,
+   "dir": "up"
+  },
+  "disco": {
+   "x": 24,
+   "y": 73,
+   "dir": "up"
+  },
+  "bar": {
+   "x": 40,
+   "y": 73,
+   "dir": "up"
+  },
+  "gladys": {
+   "x": 54,
+   "y": 73,
+   "dir": "up"
+  },
+  "tejo": {
+   "x": 51,
+   "y": 46,
+   "dir": "up"
+  },
+  "plaza": {
+   "x": 25,
+   "y": 82,
+   "dir": "down"
+  },
+  "plaza_norte": {
+   "x": 25,
+   "y": 76,
+   "dir": "down"
+  },
+  "chiva": {
+   "x": 25,
+   "y": 87,
+   "dir": "up"
+  },
+  "mirador": {
+   "x": 102,
+   "y": 74,
+   "dir": "right"
+  }
+ },
+ "warps": [
+  {
+   "x": 37,
+   "y": 86,
+   "to": "salento_casita",
+   "spawn": "entrada"
+  },
+  {
+   "x": 24,
+   "y": 72,
+   "to": "disco_salento",
+   "spawn": "entrada",
+   "if": {
+    "flag": "m8_disco_abierta"
+   },
+   "blockedDialogue": "m8_disco_cerrada"
+  },
+  {
+   "x": 40,
+   "y": 72,
+   "to": "bar_billar",
+   "spawn": "entrada",
+   "if": {
+    "flag": "m8_bar_abierto"
+   },
+   "blockedDialogue": "m8_bar_cerrado"
+  },
+  {
+   "x": 54,
+   "y": 72,
+   "to": "salento",
+   "spawn": "gladys",
+   "if": {
+    "flag": "nunca"
+   },
+   "blockedDialogue": "m8_gladys_puerta"
+  },
+  {
+   "x": 51,
+   "y": 45,
+   "to": "salento",
+   "spawn": "tejo",
+   "if": {
+    "flag": "nunca"
+   },
+   "blockedDialogue": "m8_tejo_puerta"
+  }
+ ],
+ "labels": [
+  {
+   "x": 25.5,
+   "y": 75.2,
+   "text": "PLAZA DE BOLÍVAR"
+  },
+  {
+   "x": 36,
+   "y": 82.6,
+   "text": "PARROQUIA"
+  },
+  {
+   "x": 55,
+   "y": 70.6,
+   "text": "CALLE REAL"
+  },
+  {
+   "x": 102,
+   "y": 69.4,
+   "text": "ALTO DE LA CRUZ"
+  },
+  {
+   "x": 23,
+   "y": 0.4,
+   "text": "TERMINAL"
+  },
+  {
+   "x": 26.5,
+   "y": 88.6,
+   "text": "JEEPS A COCORA"
+  },
+  {
+   "x": 24,
+   "y": 70.6,
+   "text": "DISCO EL BAHAREQUE",
+   "color": "#f8a8d8"
+  },
+  {
+   "x": 40,
+   "y": 69.8,
+   "text": "BILLARES EL ARRIERO",
+   "color": "#f8e070"
+  },
+  {
+   "x": 54,
+   "y": 70.6,
+   "text": "TIENDA DOÑA GLADYS"
+  },
+  {
+   "x": 36.5,
+   "y": 88.6,
+   "text": "HOSTAL LA CASITA"
+  },
+  {
+   "x": 51,
+   "y": 43.6,
+   "text": "TEJO LOS COMPADRES"
+  }
+ ],
+ "enter": [
+  {
+   "id": "m8_llegada",
+   "dialogue": "m8_salento_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_en_salento",
+    "notFlag": "m8_sabado"
+   }
+  },
+  {
+   "id": "m8_sabado",
+   "dialogue": "m8_salento_sabado",
+   "once": true,
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_sabado",
+    "notFlag": [
+     "m8_en_parque",
+     "m8_vuelta_parque",
+     "m8_domingo"
+    ]
+   }
+  },
+  {
+   "id": "m8_vuelta",
+   "dialogue": "m8_salento_vuelta",
+   "once": true,
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_vuelta_parque",
+    "notFlag": "m8_domingo"
+   }
+  },
+  {
+   "id": "m8_domingo",
+   "dialogue": "m8_salento_domingo",
+   "once": true,
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_domingo",
+    "notFlag": "m8_noche_domingo"
+   }
+  }
+ ],
+ "triggers": [
+  {
+   "id": "m8_mercado",
+   "x": 42,
+   "y": 73,
+   "w": 1,
+   "h": 3,
+   "event": "dialogo:m8_mercado_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_sabado",
+    "notFlag": [
+     "m8_en_parque",
+     "m8_vuelta_parque",
+     "m8_domingo"
+    ]
+   }
+  },
+  {
+   "id": "m8_escalera",
+   "x": 86,
+   "y": 72,
+   "w": 1,
+   "h": 4,
+   "event": "dialogo:m8_escalera",
+   "once": true,
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_sigue_renzo"
+   }
+  },
+  {
+   "id": "m8_mirador",
+   "x": 100,
+   "y": 71,
+   "w": 4,
+   "h": 7,
+   "event": "dialogo:m8_mirador",
+   "once": true,
+   "if": {
+    "mission": "mission08"
+   }
+  },
+  {
+   "id": "m8_mercado_dom",
+   "x": 40,
+   "y": 73,
+   "w": 23,
+   "h": 3,
+   "event": "dialogo:m8_mercado_domingo",
+   "once": true,
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_domingo",
+    "notFlag": [
+     "m8_regalo_richi",
+     "m8_noche_domingo"
+    ]
+   }
+  },
+  {
+   "id": "m8_calle",
+   "x": 50,
+   "y": 73,
+   "w": 11,
+   "h": 3,
+   "event": "dialogo:m8_calle_noche",
+   "once": true,
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_noche_domingo"
+   }
+  },
+  {
+   "id": "m8_plaza",
+   "x": 20,
+   "y": 76,
+   "w": 11,
+   "h": 10,
+   "event": "plaza_m8",
+   "if": {
+    "mission": "mission08",
+    "flag": "m8_rumbo_plaza",
+    "notFlag": "m8_plaza"
+   }
+  }
+ ]
+}

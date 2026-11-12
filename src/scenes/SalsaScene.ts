@@ -30,6 +30,8 @@ export interface SalsaResult {
 
 export interface SalsaSceneData {
   done: (r: SalsaResult) => void;
+  /** Misión 8: bailar en la Calle Real de Salento, de noche, con quien invitaste (id de sprites.json). */
+  partner?: string;
 }
 
 type Step = 'left' | 'right' | 'interact';
@@ -93,6 +95,113 @@ const COUNTS = ['1', '2', '3', '4', '5', '6', '7', '8'];
 const MISS_LINES = ['¡Me pisaste!', '¡El cuatro se descansa!', 'Uno, dos, tres...', '¡Ay, mi pie!', 'Mírame a mí, no al piso'];
 const HIT_LINES = ['¡Eso!', '¡Así, chileno!', '¡Ahí está!', 'Ya casi eres caleño'];
 
+/** Con quién se baila: rondas, frases y cómo termina. Por defecto, Sira en el depa (misión 7). */
+interface DanceStyle {
+  name: string;
+  look: string;
+  rounds: Round[];
+  miss: string[];
+  hits: string[];
+  quit: string;
+  pass: string;
+  fail: string;
+  end: [perfect: string, some: string, none: string];
+  street: boolean;
+}
+
+const SIRA_STYLE: DanceStyle = {
+  name: 'Sira',
+  look: 'sira_m7_polera',
+  rounds: ROUNDS,
+  miss: MISS_LINES,
+  hits: HIT_LINES,
+  quit: 'Sira: «¿Te rendiste? Bueno, esa la bailo sola.»',
+  pass: 'Sira: «¡Eso, chileno!»',
+  fail: 'Sira: «Me pisaste, pero con cariño.»',
+  end: [
+    'Sira: «¿Y tú me dijiste que no sabías bailar? ...Mentiroso. Lindo, pero mentiroso.»',
+    'Sira: «Bueno. Ya no eres un peligro público. Eres un peligro de barrio.»',
+    'Sira: «Me pisaste once veces. Las conté. Igual no quiero parar.»',
+  ],
+  street: false,
+};
+
+/** Misión 8: en la Calle Real, con la música de la tienda de doña Gladys. Cada pareja baila distinto. */
+const CALLE_STYLES: Record<string, Omit<DanceStyle, 'look' | 'street'>> = {
+  tami: {
+    name: 'Tami',
+    rounds: [
+      { title: 'Salsa caleña', intro: 'Tami: «Acá se baila con los pies rápidos, chileno. Uno-dos-tres, cinco-seis-siete. Seguime.»\nA / D: pasos', hint: 'A / D cuando el paso llegue a la marca · Esc: saltar', beatMs: 520, build: () => repeat(BASIC) },
+      { title: 'La vuelta', intro: 'Tami: «Ahora me das la vuelta. Suave... ¡pero no tan suave!»\nA / D: pasos · E: la vuelta', hint: 'E: la vuelta en el 5 · Esc: saltar', beatMs: 480, build: () => repeat(TURN) },
+      { title: 'Caleño de verdad', intro: 'Tami: «La última es a lo caleño. Si me seguís esta, te adopto.»\nA / D: pasos · E: la vuelta', hint: 'No mires los pies · Esc: saltar', beatMs: 420, build: () => repeat(TURN) },
+    ],
+    miss: ['¡Ay, el pie!', 'Más rápido, más rápido', '¡Uy, chileno!', 'Seguime a mí'],
+    hits: ['¡Eso, papi!', '¡Así se baila en Cali!', '¡Uy, qué nivel!', 'Mmm... me gusta'],
+    quit: 'Tami: «¿Ya te cansaste? Yo apenas estaba calentando.»',
+    pass: 'Tami: «¡Eso! Vos tenés sabor.»',
+    fail: 'Tami: «Mmm. Hay que practicar. Conmigo, obvio.»',
+    end: [
+      'Tami: «Bailás demasiado rico para ser chileno. Ojo con eso.»',
+      'Tami: «No está mal. Con unas clases mías quedás listo.»',
+      'Tami: «Me pisaste toda. Igual me gustó el intento.»',
+    ],
+  },
+  renzo: {
+    name: 'Renzo',
+    rounds: [
+      { title: 'Huaylas (dice él)', intro: 'Renzo: «Esto no es salsa, causa: es un huaylas. Zapateas y ya.»\nA / D: zapateo', hint: 'A / D al ritmo · Esc: saltar', beatMs: 560, build: () => repeat(BASIC) },
+      { title: 'La vuelta peruana', intro: 'Renzo: «Ahora me haces girar. Con cuidado que tengo el chicharrón en la mano.»\nA / D · E: vuelta', hint: 'E: la vuelta · Esc: saltar', beatMs: 520, build: () => repeat(TURN) },
+      { title: 'El trencito', intro: 'Renzo: «Y cerramos con el trencito. Pero de dos. Es un trencito chiquito.»\nA / D · E', hint: 'Esc: saltar', beatMs: 480, build: () => repeat(TURN) },
+    ],
+    miss: ['¡Ay, mi juanete!', '¡Habla, causa!', '¡Ese pie es mío!', 'Asu mare...'],
+    hits: ['¡Eso, causa!', '¡Arequipa te saluda!', '¡Qué tal pasos!', '¡Chévere!'],
+    quit: 'Renzo: «Te entiendo, causa. Yo tampoco me aguanto.»',
+    pass: 'Renzo: «¡Chévere, causa!»',
+    fail: 'Renzo: «Bailamos como dos osos. Dos osos felices.»',
+    end: [
+      'Renzo: «Somos la pareja revelación de Salento. Que nadie nos diga nada.»',
+      'Renzo: «Nada mal. Doña Gladys nos aplaudió. Bueno, se rio. Es lo mismo.»',
+      'Renzo: «Asu, causa. Mejor nos quedamos con el tequila.»',
+    ],
+  },
+  gladys: {
+    name: 'Doña Gladys',
+    rounds: [
+      { title: 'Pasillo', intro: 'Doña Gladys: «Esto es un pasillo, mijo. Despacito y con elegancia, como en el Quindío.»\nA / D: pasos', hint: 'A / D · Esc: saltar', beatMs: 640, build: () => repeat(BASIC) },
+      { title: 'La vuelta de la abuela', intro: 'Doña Gladys: «Ahora me da la vueltica. Ojo con la cadera, que es de titanio.»\nA / D · E', hint: 'E: la vuelta · Esc: saltar', beatMs: 600, build: () => repeat(TURN) },
+      { title: 'Bambuco final', intro: 'Doña Gladys: «Y un bambuco para cerrar. Así bailaba yo con mi difunto.»\nA / D · E', hint: 'Esc: saltar', beatMs: 560, build: () => repeat(TURN) },
+    ],
+    miss: ['¡Ay, mijo!', 'Despacito...', 'Así no era mi difunto', '¡La cadera!'],
+    hits: ['¡Eso, mijo!', '¡Qué caballero!', '¡Ay, qué bonito!', 'Usted tiene escuela'],
+    quit: 'Doña Gladys: «Tranquilo, mijo, que yo también me canso.»',
+    pass: 'Doña Gladys: «¡Así se baila, mijo!»',
+    fail: 'Doña Gladys: «Le falta, pero tiene corazón.»',
+    end: [
+      'Doña Gladys: «Mijo, usted baila como mi difunto. Y eso es un piropo.»',
+      'Doña Gladys: «Muy bien. Le regalo una cerveza. Una sola, ¿oyó?»',
+      'Doña Gladys: «No sabe bailar, pero es muy educado. Algo es algo.»',
+    ],
+  },
+  danilo: {
+    name: 'Danilo',
+    rounds: [
+      { title: 'Salsa choke', intro: 'Danilo: «Ah ve, esto es salsa choke, parce. Es más de hombros que de pies. Es terapéutico.»\nA / D', hint: 'A / D · Esc: saltar', beatMs: 500, build: () => repeat(BASIC) },
+      { title: 'El paso del psicólogo', intro: 'Danilo: «Este paso lo inventé yo. Se llama «la catarsis». E para la vuelta.»\nA / D · E', hint: 'E: la vuelta · Esc: saltar', beatMs: 470, build: () => repeat(TURN) },
+      { title: 'Caleño a muerte', intro: 'Danilo: «Y el final: caleño a muerte. Si fallás, es por represión.»\nA / D · E', hint: 'Esc: saltar', beatMs: 430, build: () => repeat(TURN) },
+    ],
+    miss: ['¡Represión, ve!', 'Eso fue un acto fallido', 'Soltá los hombros', '¡Ve, el pie!'],
+    hits: ['¡Ahí está, parce!', '¡Catarsis!', '¡Ah ve, qué chimba!', 'Vojabés, eso es sanar'],
+    quit: 'Danilo: «Ah ve, huir del baile también es una respuesta.»',
+    pass: 'Danilo: «¡Eso, parce! Sanaste.»',
+    fail: 'Danilo: «Hay bloqueo. Lo trabajamos.»',
+    end: [
+      'Danilo: «Vos no necesitás terapia, necesitás una pista de baile.»',
+      'Danilo: «Bien, bien. Hay avance terapéutico.»',
+      'Danilo: «Mor, esto lo vamos a tener que trabajar en sesión.»',
+    ],
+  },
+};
+
 interface FloatText {
   t: Phaser.GameObjects.Text;
   life: number;
@@ -132,6 +241,7 @@ export class SalsaScene extends BaseScene {
   private noteLabels: Phaser.GameObjects.Text[] = [];
   private meLook!: HumanLook;
   private siraLook!: HumanLook;
+  private style: DanceStyle = SIRA_STYLE;
 
   constructor() {
     super('Salsa');
@@ -140,6 +250,8 @@ export class SalsaScene extends BaseScene {
 
   init(data: SalsaSceneData): void {
     this.done = data.done;
+    const calle = data.partner ? CALLE_STYLES[data.partner] : undefined;
+    this.style = calle && data.partner ? { ...calle, look: data.partner, street: true } : SIRA_STYLE;
     this.roundIdx = 0;
     this.score = 0;
     this.hits = 0;
@@ -157,7 +269,7 @@ export class SalsaScene extends BaseScene {
     this.figs = this.add.graphics().setDepth(2);
     this.hud = this.add.graphics().setDepth(10);
     this.meLook = playerLook();
-    this.siraLook = (characterLook('sira_m7_polera') as HumanLook | undefined) ?? this.meLook;
+    this.siraLook = (characterLook(this.style.look) as HumanLook | undefined) ?? this.meLook;
     this.titleText = this.addText(6, 4, '', { fontFamily: FONT_HUD, fontSize: '8px', color: '#f8e070' }).setDepth(11);
     this.hintText = this.addText(BASE_WIDTH / 2, BASE_HEIGHT - 11, '', { fontSize: '8px', color: '#dfe6f4' }).setOrigin(0.5, 0).setDepth(11);
     this.countText = this.addText(TARGET_X, LANE_Y + 16, '', { fontSize: '10px', fontStyle: '600', color: '#fbf6ee', stroke: '#14182a', strokeThickness: 3 })
@@ -171,10 +283,11 @@ export class SalsaScene extends BaseScene {
     this.bannerText = this.addText(BASE_WIDTH / 2, 88, '', { fontSize: '10px', fontStyle: '600', color: THEME.ink, align: 'center', wordWrap: { width: 270 } })
       .setOrigin(0.5)
       .setDepth(14);
-    this.drawRoom();
+    if (this.style.street) this.drawStreet();
+    else this.drawRoom();
     this.setupZoom();
     playMusic('salsa');
-    setAmbient({ rain: 'none', indoor: true });
+    setAmbient({ rain: 'none', indoor: !this.style.street });
     this.cameras.main.fadeIn(400, 0, 0, 0);
     this.startRound(0);
   }
@@ -184,7 +297,7 @@ export class SalsaScene extends BaseScene {
   // -------------------------------------------------------------------------
 
   private get round(): Round {
-    return ROUNDS[this.roundIdx];
+    return this.style.rounds[this.roundIdx];
   }
 
   private startRound(i: number): void {
@@ -196,7 +309,7 @@ export class SalsaScene extends BaseScene {
     this.roundHits = 0;
     this.streak = 0;
     this.notes = this.round.build().map(([beat, key]) => ({ beat, key, state: 'wait' }));
-    this.titleText.setText(`Ronda ${i + 1}/${ROUNDS.length} · ${this.round.title}`);
+    this.titleText.setText(`Ronda ${i + 1}/${this.style.rounds.length} · ${this.round.title}`);
     this.hintText.setText(this.round.hint);
     this.countText.setText('');
     this.banner(`${this.round.intro}\n(E para empezar)`);
@@ -220,24 +333,20 @@ export class SalsaScene extends BaseScene {
 
   private nextRound(): void {
     this.hideBanner();
-    if (this.roundIdx + 1 < ROUNDS.length) {
+    if (this.roundIdx + 1 < this.style.rounds.length) {
       this.startRound(this.roundIdx + 1);
       return;
     }
     this.phase = 'end';
-    const verdict =
-      this.score === ROUNDS.length
-        ? 'Sira: «¿Y tú me dijiste que no sabías bailar? ...Mentiroso. Lindo, pero mentiroso.»'
-        : this.score >= 1
-          ? 'Sira: «Bueno. Ya no eres un peligro público. Eres un peligro de barrio.»'
-          : 'Sira: «Me pisaste once veces. Las conté. Igual no quiero parar.»';
+    const [perfect, some, none] = this.style.end;
+    const verdict = this.score === this.style.rounds.length ? perfect : this.score >= 1 ? some : none;
     this.banner(`${verdict}\n(E para seguir)`);
   }
 
   private finish(): void {
     if (this.leaving) return;
     this.leaving = true;
-    const result: SalsaResult = { score: this.score, total: ROUNDS.length, perfect: this.score === ROUNDS.length, hits: this.hits, notes: this.total };
+    const result: SalsaResult = { score: this.score, total: this.style.rounds.length, perfect: this.score === this.style.rounds.length, hits: this.hits, notes: this.total };
     this.cameras.main.fadeOut(400, 0, 0, 0);
     this.cameras.main.once('camerafadeoutcomplete', () => this.done(result));
   }
@@ -280,7 +389,7 @@ export class SalsaScene extends BaseScene {
 
   private play(): void {
     if (Controls.consume('menu')) {
-      this.finishRound(false, 'Sira: «¿Te rendiste? Bueno, esa la bailo sola.»');
+      this.finishRound(false, this.style.quit);
       return;
     }
     const beatMs = this.round.beatMs;
@@ -303,7 +412,7 @@ export class SalsaScene extends BaseScene {
       const rate = this.roundHits / this.notes.length;
       const ok = rate >= PASS_RATE;
       const pct = Math.round(rate * 100);
-      this.finishRound(ok, ok ? `Sira: «¡Eso, chileno!» (${pct}% de los pasos)` : `Sira: «Me pisaste, pero con cariño.» (${pct}% de los pasos)`);
+      this.finishRound(ok, `${ok ? this.style.pass : this.style.fail} (${pct}% de los pasos)`);
     }
   }
 
@@ -336,7 +445,7 @@ export class SalsaScene extends BaseScene {
     } else playSfx('blip');
     const perfect = bestD <= PERFECT_MS;
     this.float(perfect ? '¡Perfecto!' : 'Bien', perfect ? '#f8e070' : '#a8e0a0', TARGET_X + 40, LANE_Y + 20);
-    if (this.streak > 0 && this.streak % 8 === 0) this.say(HIT_LINES[Math.floor(this.streak / 8 - 1) % HIT_LINES.length], 900);
+    if (this.streak > 0 && this.streak % 8 === 0) this.say(this.style.hits[Math.floor(this.streak / 8 - 1) % this.style.hits.length], 900);
   }
 
   private judgeMiss(n: Note): void {
@@ -346,7 +455,7 @@ export class SalsaScene extends BaseScene {
     this.float('¡Ups!', '#ff9c9c', TARGET_X + 40, LANE_Y + 20);
     if (Math.random() < 0.45) {
       playSfx('golpe');
-      this.say(MISS_LINES[Math.floor(Math.random() * MISS_LINES.length)], 800);
+      this.say(this.style.miss[Math.floor(Math.random() * this.style.miss.length)], 800);
     }
   }
 
@@ -377,6 +486,29 @@ export class SalsaScene extends BaseScene {
     g.fillStyle(0xa07c50, 1).fillRect(278, 94, 34, 44);
     g.fillStyle(0xc8e4f0, 1).fillRect(289, 80, 12, 15);
     g.fillStyle(0x1c1c24, 1).fillRect(292, 72, 6, 12);
+  }
+
+  /** Misión 8: la Calle Real de noche, con las casas de colores, la tienda de doña Gladys y las guirnaldas. */
+  private drawStreet(): void {
+    const g = this.bg;
+    g.fillStyle(0x141c34, 1).fillRect(0, 0, BASE_WIDTH, FLOOR_Y);
+    for (let i = 0; i < 30; i++) g.fillStyle(0xf8f4ec, 0.7).fillRect((i * 53) % BASE_WIDTH, (i * 29) % 40, 1, 1);
+    const colors = [0xc8303c, 0x2c64c0, 0x2c9c58, 0xe8b828, 0x7c3ca8, 0x1ca8a8];
+    for (let i = 0; i < 6; i++) {
+      const x = i * 56 - 8;
+      g.fillStyle(0x8c3a1c, 1).fillTriangle(x - 4, 52, x + 30, 34, x + 64, 52);
+      g.fillStyle(0xf4f0e6, 1).fillRect(x, 52, 56, FLOOR_Y - 52);
+      g.fillStyle(colors[i], 1).fillRect(x + 6, 62, 14, 22).fillRect(x + 32, 60, 18, 12).fillRect(x + 30, 72, 22, 3);
+      g.fillStyle(0xf8dc68, 0.8).fillRect(x + 34, 62, 14, 8);
+    }
+    // La tienda de doña Gladys, con la puerta abierta y el parlante.
+    g.fillStyle(0x3a2418, 1).fillRect(232, 84, 34, FLOOR_Y - 84);
+    g.fillStyle(0xf8e8a8, 0.85).fillRect(235, 88, 28, FLOOR_Y - 88);
+    g.fillStyle(0x1c1824, 1).fillRect(270, 104, 14, 34);
+    for (let x = 0; x < BASE_WIDTH; x += 12) g.fillStyle([0xf8dc68, 0xe868a8, 0x58d4d0][(x / 12) % 3], 1).fillRect(x, 46 + Math.round(Math.sin(x / 30) * 3), 2, 2);
+    g.fillStyle(0x6c6c70, 1).fillRect(0, FLOOR_Y, BASE_WIDTH, BASE_HEIGHT - FLOOR_Y);
+    for (let x = 0; x < BASE_WIDTH; x += 10) g.fillStyle(0x8c8c8c, 1).fillRect(x + ((x / 10) % 2) * 4, FLOOR_Y + 6, 6, 4).fillRect(x, FLOOR_Y + 22, 6, 4);
+    this.rain = [];
   }
 
   private drawScene(): void {
@@ -419,7 +551,7 @@ export class SalsaScene extends BaseScene {
     // Cinta de pasos.
     h.fillStyle(0x0c1020, 0.75).fillRect(0, 0, BASE_WIDTH, 15);
     h.fillStyle(0x0c1020, 0.75).fillRect(0, BASE_HEIGHT - 13, BASE_WIDTH, 13);
-    for (let i = 0; i < ROUNDS.length; i++) {
+    for (let i = 0; i < this.style.rounds.length; i++) {
       const on = i < this.score;
       h.fillStyle(on ? 0xf8e070 : 0x3a4060, 1).fillCircle(BASE_WIDTH - 40 + i * 12, 7, 4);
     }

@@ -1,0 +1,74 @@
+{
+ "id": "bar_billar",
+ "name": "Billares El Arriero",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 16,
+ "height": 11,
+ "background": "#14121a",
+ "music": "billar",
+ "legend": {
+  "^": "muro_techo",
+  "E": "estante_botellas",
+  "b": "bar_muro",
+  "R": "rocola",
+  ".": "bar_piso",
+  "B": "barra",
+  "t": "taburete",
+  "D": "casa_puerta",
+  "0": "billar_00",
+  "1": "billar_10",
+  "2": "billar_20",
+  "3": "billar_01",
+  "4": "billar_11",
+  "5": "billar_21"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^",
+  "^EEEEEbbRbbbbbb^",
+  "^..............^",
+  "^BBBBB.........^",
+  "^ttttt..012....^",
+  "^.......345....^",
+  "^..............^",
+  "^.......012....^",
+  "^.......345....^",
+  "^bbbbbDbbbbbbbb^",
+  "^^^^^^^^^^^^^^^^"
+ ],
+ "spawns": {
+  "entrada": {
+   "x": 6,
+   "y": 8,
+   "dir": "up"
+  },
+  "mesa": {
+   "x": 8,
+   "y": 6,
+   "dir": "up"
+  },
+  "barra": {
+   "x": 2,
+   "y": 4,
+   "dir": "up"
+  }
+ },
+ "warps": [
+  {
+   "x": 6,
+   "y": 9,
+   "to": "salento",
+   "spawn": "bar"
+  }
+ ],
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m8_bar_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission08"
+   }
+  }
+ ]
+}

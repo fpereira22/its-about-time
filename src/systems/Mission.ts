@@ -48,16 +48,18 @@ const DEFAULT_START_MINUTES = 17 * 60 + 32;
 
 /**
  * "lun 07:15" → minutos desde el domingo 00:00. Sin día ("07:15"), usa el día de `relativeTo`.
+ * Con "+" después del día ("dom+ 20:00"), es ese día de la semana siguiente (viajes que cruzan el domingo).
  */
 export function parseClock(text: string, relativeTo = StoryState.clock): number {
-  const m = /^\s*(?:([a-záéíóú]{3})\s+)?(\d{1,2}):(\d{2})\s*$/i.exec(text);
+  const m = /^\s*(?:([a-záéíóú]{3})(\+?)\s+)?(\d{1,2}):(\d{2})\s*$/i.exec(text);
   if (!m) {
     console.error(`Hora inválida "${text}" (usa "lun 07:15" o "07:15")`);
     return relativeTo;
   }
-  const day = m[1] ? DAYS.indexOf(m[1].toLowerCase()) : Math.floor(relativeTo / 1440);
-  if (day < 0) console.error(`Día inválido en "${text}" (usa ${DAYS.join(', ')})`);
-  return Math.max(0, day) * 1440 + Number(m[2]) * 60 + Number(m[3]);
+  const idx = m[1] ? DAYS.indexOf(m[1].toLowerCase()) : 0;
+  if (idx < 0) console.error(`Día inválido en "${text}" (usa ${DAYS.join(', ')})`);
+  const day = m[1] ? Math.max(0, idx) + (m[2] ? 7 : 0) : Math.floor(relativeTo / 1440);
+  return Math.max(0, day) * 1440 + Number(m[3]) * 60 + Number(m[4]);
 }
 
 /** ¿La misión usa la hora del día en vez del cronómetro? */

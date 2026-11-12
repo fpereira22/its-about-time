@@ -104,6 +104,7 @@ export function bust(g: G, look: HumanLook, cx: number, cy: number, s: number, o
     r(-3, 5, 6, 1.5, look.hair);
   }
   if (extras.includes('mustache')) r(-2, 2, 4, 1, look.hair);
+  if (extras.includes('freckles')) for (const [x, y] of [[-3.5, 0.8], [-2.5, 1.6], [-3.6, 2.2], [2.6, 0.8], [3.4, 1.6], [2.4, 2.2], [-0.4, 0.6]] as const) r(x, y, 0.6, 0.6, shade(look.skin, -0.3));
   const mouth = o.mouth ?? 'smile';
   if (mouth === 'open') r(-1, 2.5, 2, 2, '#7a2a2a');
   else if (mouth === 'teeth') r(-1.5, 2.5, 3, 1.5, '#f8f8f0');

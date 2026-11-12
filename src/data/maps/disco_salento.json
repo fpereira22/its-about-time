@@ -1,0 +1,64 @@
+{
+ "id": "disco_salento",
+ "name": "Disco El Bahareque",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 16,
+ "height": 11,
+ "background": "#0c0a12",
+ "music": "disco",
+ "legend": {
+  "^": "muro_techo",
+  "w": "disco_muro",
+  "P": "parlante",
+  "C": "cabina_dj",
+  ".": "bar_piso",
+  "d": "disco_piso",
+  "e": "disco_piso_b",
+  "B": "barra",
+  "D": "casa_puerta"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^",
+  "^wwPwwwCCwwwPww^",
+  "^..............^",
+  "^..dedededed...^",
+  "^..edededede...^",
+  "^..dedededed...^",
+  "^..edededede...^",
+  "^..............^",
+  "^BBB...........^",
+  "^wwwwwwDwwwwwww^",
+  "^^^^^^^^^^^^^^^^"
+ ],
+ "spawns": {
+  "entrada": {
+   "x": 7,
+   "y": 8,
+   "dir": "up"
+  },
+  "pista": {
+   "x": 7,
+   "y": 5,
+   "dir": "up"
+  }
+ },
+ "warps": [
+  {
+   "x": 7,
+   "y": 9,
+   "to": "salento",
+   "spawn": "disco"
+  }
+ ],
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m8_disco_llegada",
+   "once": true,
+   "if": {
+    "mission": "mission08"
+   }
+  }
+ ]
+}

@@ -1,0 +1,80 @@
+{
+ "id": "bus_salento",
+ "name": "Bus a Salento",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 21,
+ "height": 9,
+ "background": "#101018",
+ "music": "salento",
+ "legend": {
+  "k": "auto_carroceria",
+  "V": "bus_ventana",
+  "T": "micro_tablero",
+  "s": "micro_asiento",
+  ".": "micro_piso",
+  "P": "micro_puerta"
+ },
+ "rows": [
+  "kkkkkkkkkkkkkkkkkkkkk",
+  "kVVVVVVVVVVVVVVVVVVVk",
+  "kT..s.s.s.s.s.s.s.s.k",
+  "kT..s.s.s.s.s.s.s.s.k",
+  "kT..................k",
+  "kT..s.s.s.s.s.s.s.s.k",
+  "kT..s.s.s.s.s.s.s.s.k",
+  "kVPVVVVVVVVVVVVVVVVVk",
+  "kkkkkkkkkkkkkkkkkkkkk"
+ ],
+ "spawns": {
+  "puerta": {
+   "x": 2,
+   "y": 6,
+   "dir": "up"
+  },
+  "asiento": {
+   "x": 12,
+   "y": 3,
+   "dir": "left"
+  },
+  "pasillo": {
+   "x": 12,
+   "y": 4,
+   "dir": "up"
+  }
+ },
+ "triggers": [
+  {
+   "id": "richi",
+   "x": 12,
+   "y": 3,
+   "w": 1,
+   "h": 1,
+   "event": "bus_salento_m8",
+   "if": {
+    "notFlag": "m8_en_salento"
+   }
+  },
+  {
+   "id": "tami",
+   "x": 16,
+   "y": 6,
+   "w": 1,
+   "h": 1,
+   "event": "dialogo:m8_bus_tami",
+   "if": {
+    "notFlag": "m8_en_salento"
+   }
+  }
+ ],
+ "enter": [
+  {
+   "id": "subir",
+   "dialogue": "m8_bus_subir",
+   "once": true,
+   "if": {
+    "mission": "mission08"
+   }
+  }
+ ]
+}

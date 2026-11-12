@@ -62,6 +62,14 @@ export const SEAT_POSES: Record<string, SeatPose> = {
   depa_cama_i: { dir: 'down', rows: 8, dy: 0 },
   depa_cama_d: { dir: 'down', rows: 8, dy: 0 },
   lobby_sofa: { dir: 'down', rows: 13, dy: 2 },
+  // Misión 8: los camarotes de la casita (el de arriba se ve más alto), la hamaca, las sillas, las bancas de la
+  // chiva (mirando adelante, como el bus) y los taburetes del bar.
+  camarote: { dir: 'down', rows: 8, dy: 0 },
+  camarote_alto: { dir: 'down', rows: 8, dy: -5 },
+  hamaca: { dir: 'down', rows: 11, dy: 1 },
+  casa_silla: { dir: 'up', rows: 12, dy: -1 },
+  chiva_banca: { dir: 'left', rows: 13, dy: 1 },
+  taburete: { dir: 'up', rows: 12, dy: -1 },
 };
 
 export function seatPoseAt(map: GameMap, x: number, y: number): SeatPose | undefined {

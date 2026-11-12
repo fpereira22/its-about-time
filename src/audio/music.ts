@@ -113,6 +113,12 @@ const NADO_CHORDS = ['F', 'C', 'Dm', 'A#', 'F', 'C', 'A#', 'C'];
 const DEPA_CHORDS = ['F', 'Dm', 'A#', 'C', 'F', 'Dm', 'Gm', 'C'];
 const ASCENSOR_CHORDS = ['C', 'Am', 'Dm', 'G', 'C', 'Am', 'Dm', 'G'];
 const COCINA_CHORDS = ['G', 'C', 'D', 'G', 'Em', 'C', 'D', 'G'];
+const SALENTO_CHORDS = ['D', 'A', 'Bm', 'G', 'D', 'A', 'Em', 'A'];
+const PARQUE_CHORDS = ['C', 'F', 'G', 'C', 'Am', 'F', 'G', 'C'];
+const CHIVA_CHORDS = ['A', 'D', 'E', 'A', 'A', 'D', 'E', 'A'];
+const DISCO_CHORDS = ['Am', 'F', 'C', 'G', 'Am', 'F', 'C', 'G'];
+const MARIACHI_CHORDS = ['D', 'A', 'A', 'D', 'D', 'G', 'A', 'D'];
+const RECUERDO_CHORDS = ['F', 'Dm', 'A#', 'C', 'F', 'Am', 'A#', 'C'];
 
 /** Bajo de cumbia: la fundamental en el 1 y la quinta en el 3, con un repique al final. */
 function cumbiaBass(chords: string[]): string[] {
@@ -213,6 +219,206 @@ export const TRACKS: Record<MusicTrack, TrackDef> = {
       { wave: 'triangle', vol: 0.18, tokens: cumbiaBass(COCINA_CHORDS) },
       { wave: 'square', vol: 0.014, tokens: arp(COCINA_CHORDS, 2, 4) },
       { wave: 'drums', vol: 0.07, tokens: repeat('k . h s k . h s k . h s k h s h', 8) },
+    ],
+  },
+
+
+  /** Misión 8, Salento: pasillo con tiple, tranquilo y de montaña. */
+  salento: {
+    bpm: 100,
+    loop: true,
+    channels: [
+      {
+        wave: 'square',
+        vol: 0.045,
+        tokens: bars(
+          'F#5 - A5 - D6 - - - C#6 - B5 - A5 - - -',
+          'E5 - A5 - C#6 - - - B5 - A5 - G5 - - -',
+          'F#5 - B5 - D6 - - - C#6 - B5 - F#5 - - -',
+          'G5 - B5 - D6 - E6 - D6 - B5 - G5 - - -',
+          'A5 - F#5 - D5 - F#5 - A5 - D6 - F#6 - - -',
+          'E6 - C#6 - A5 - C#6 - E6 - D6 - C#6 - - -',
+          'B5 - G5 - E5 - G5 - B5 - A5 - G5 - E5 -',
+          'A5 - - - C#6 - - - D6 - - - . . . .',
+        ),
+      },
+      { wave: 'triangle', vol: 0.16, tokens: bass(SALENTO_CHORDS, 'twostep') },
+      { wave: 'square', vol: 0.016, tokens: arp(SALENTO_CHORDS, 2, 4) },
+      { wave: 'drums', vol: 0.04, tokens: repeat('k . . h . . s . k . . h . . s .', 8) },
+    ],
+  },
+
+  /** El Parque del Café: organito de feria, brillante. */
+  parque: {
+    bpm: 132,
+    loop: true,
+    channels: [
+      {
+        wave: 'square',
+        vol: 0.05,
+        tokens: bars(
+          'E6 . G6 . C7 - - . G6 . E6 . C6 - - .',
+          'F6 . A6 . C7 - - . A6 . F6 . C6 - - .',
+          'G6 . B6 . D7 - - . B6 . G6 . D6 - - .',
+          'E6 - G6 - C7 - - - . . . . . . . .',
+          'A5 . C6 . E6 - - . C6 . A5 . E5 - - .',
+          'F5 . A5 . C6 - - . D6 . E6 . F6 - - .',
+          'G6 - F6 - E6 - D6 - B5 - D6 - G6 - - -',
+          'C6 - - - E6 - - - C7 - - - . . . .',
+        ),
+      },
+      { wave: 'triangle', vol: 0.16, tokens: bass(PARQUE_CHORDS, 'octave') },
+      { wave: 'square', vol: 0.014, tokens: arp(PARQUE_CHORDS, 2, 4) },
+      { wave: 'drums', vol: 0.05, tokens: repeat('k . h . s . h . k . h . s . h .', 8) },
+    ],
+  },
+
+  /** La casita de los camarotes: guitarra suave, de noche. */
+  casita: {
+    bpm: 84,
+    loop: true,
+    echo: 0.2,
+    channels: [
+      {
+        wave: 'triangle',
+        vol: 0.11,
+        tokens: bars(
+          'B5 - - - D6 - - - B5 - A5 - G5 - - -',
+          'G5 - - - B5 - - - E6 - D6 - B5 - - -',
+          'C6 - - - E6 - - - D6 - C6 - B5 - - -',
+          'A5 - - - - - - - . . . . . . . .',
+          'B5 - - - D6 - - - G6 - F#6 - E6 - - -',
+          'E6 - - - D6 - - - B5 - - - G5 - - -',
+          'A5 - - - C6 - - - B5 - A5 - G5 - - -',
+          'F#5 - - - A5 - - - . . . . . . . .',
+        ),
+      },
+      { wave: 'square', vol: 0.014, tokens: arp(STREET_CHORDS, 2, 4) },
+      { wave: 'triangle', vol: 0.12, tokens: bass(STREET_CHORDS, 'drone') },
+    ],
+  },
+
+  /** La chiva: carranga a mil por las curvas del Quindío. */
+  chiva: {
+    bpm: 140,
+    loop: true,
+    channels: [
+      {
+        wave: 'square',
+        vol: 0.045,
+        tokens: bars(
+          'A5 . C#6 . E6 . C#6 . A5 . C#6 . E6 . A6 .',
+          'F#6 . A6 . F#6 . D6 . A5 . D6 . F#6 . D6 .',
+          'E6 . G#6 . B6 . G#6 . E6 . G#6 . B6 . G#6 .',
+          'A6 - - . E6 - - . C#6 - - . A5 - - .',
+          'A5 . B5 . C#6 . D6 . E6 . F#6 . E6 . C#6 .',
+          'D6 . F#6 . A6 . F#6 . D6 . C#6 . B5 . A5 .',
+          'B5 . E6 . G#6 . E6 . B5 . D6 . C#6 . B5 .',
+          'A5 - - - E5 - - - A5 - - - . . . .',
+        ),
+      },
+      { wave: 'triangle', vol: 0.18, tokens: cumbiaBass(CHIVA_CHORDS) },
+      { wave: 'drums', vol: 0.07, tokens: repeat('k . h s k . h s k . h s k h s h', 8) },
+    ],
+  },
+
+  /** Billares El Arriero: despecho de rocola (guitarra y llanto). */
+  billar: {
+    bpm: 96,
+    loop: true,
+    echo: 0.15,
+    channels: [
+      {
+        wave: 'square',
+        vol: 0.045,
+        tokens: bars(
+          'E5 - A5 - C6 - - - B5 - A5 - G#5 - - -',
+          'F5 - A5 - D6 - - - C6 - B5 - A5 - - -',
+          'G#5 - B5 - E6 - - - D6 - C6 - B5 - - -',
+          'A5 - - - C6 - - - E6 - - - . . . .',
+          'A5 - C6 - E6 - - - D6 - C6 - B5 - - -',
+          'D6 - F6 - A6 - - - G6 - F6 - E6 - - -',
+          'E6 - D6 - C6 - B5 - G#5 - B5 - E6 - - -',
+          'A5 - - - - - - - . . . . . . . .',
+        ),
+      },
+      { wave: 'triangle', vol: 0.15, tokens: bass(BARBER_CHORDS, 'twostep') },
+      { wave: 'square', vol: 0.014, tokens: arp(BARBER_CHORDS, 2, 4) },
+      { wave: 'drums', vol: 0.045, tokens: repeat('k . . h . . s . . h k . s . h .', 8) },
+    ],
+  },
+
+  /** La disco chiquita: el mismo dembow toda la noche. */
+  disco: {
+    bpm: 96,
+    loop: true,
+    channels: [
+      {
+        wave: 'square',
+        vol: 0.04,
+        tokens: bars(
+          'A5 . . A5 . . C6 . . . E6 . D6 . C6 .',
+          'C6 . . C6 . . A5 . . . F5 . G5 . A5 .',
+          'G5 . . G5 . . E5 . . . G5 . C6 . B5 .',
+          'B5 . . B5 . . D6 . . . G5 . . . . .',
+          'A5 . . A5 . . C6 . . . E6 . D6 . C6 .',
+          'C6 . . C6 . . A5 . . . F5 . G5 . A5 .',
+          'G5 . . G5 . . E5 . . . G5 . C6 . B5 .',
+          'B5 . . B5 . . D6 . . . G5 . . . . .',
+        ),
+      },
+      { wave: 'triangle', vol: 0.2, tokens: bass(DISCO_CHORDS, 'pulse', 1) },
+      { wave: 'drums', vol: 0.09, tokens: repeat('k . . s . . s . k . . s . . s .', 8) },
+    ],
+  },
+
+  /** Los mexicanos en la plaza: trompetas de mariachi (inventado). */
+  mariachi: {
+    bpm: 150,
+    loop: true,
+    channels: [
+      {
+        wave: 'square',
+        vol: 0.05,
+        tokens: bars(
+          'A5 - - . A5 . F#5 - - . A5 . D6 - - .',
+          'C#6 - - . B5 . A5 - - . G5 . E5 - - .',
+          'E5 - - . G5 . C#6 - - . B5 . A5 - - .',
+          'F#5 - - . A5 . D6 - - - . . . . . .',
+          'F#6 - - . E6 . D6 - - . F#6 . A6 - - .',
+          'G6 - - . F#6 . E6 - - . D6 . B5 - - .',
+          'A5 - - . C#6 . E6 - - . G6 . F#6 - E6 -',
+          'D6 - - - A5 - - - D6 - - - . . . .',
+        ),
+      },
+      { wave: 'triangle', vol: 0.17, tokens: bass(MARIACHI_CHORDS, 'twostep') },
+      { wave: 'square', vol: 0.016, tokens: arp(MARIACHI_CHORDS, 2, 4) },
+      { wave: 'drums', vol: 0.05, tokens: repeat('k . h . s . h . k . h . s . h .', 8) },
+    ],
+  },
+
+  /** El recuerdo: cajita de música, con eco. */
+  recuerdo: {
+    bpm: 76,
+    loop: true,
+    echo: 0.35,
+    channels: [
+      {
+        wave: 'triangle',
+        vol: 0.11,
+        tokens: bars(
+          'A6 - - - C7 - - - F6 - - - E6 - - -',
+          'D6 - - - F6 - - - A6 - - - . . . .',
+          'A#6 - - - A6 - - - G6 - - - F6 - - -',
+          'G6 - - - - - - - . . . . . . . .',
+          'A6 - - - C7 - - - F7 - - - E7 - - -',
+          'C7 - - - A6 - - - E6 - - - . . . .',
+          'D6 - - - F6 - - - A#6 - - - A6 - G6 -',
+          'F6 - - - - - - - . . . . . . . .',
+        ),
+      },
+      { wave: 'sine', vol: 0.02, tokens: arp(RECUERDO_CHORDS, 2, 5) },
+      { wave: 'triangle', vol: 0.1, tokens: bass(RECUERDO_CHORDS, 'drone') },
     ],
   },
 

@@ -1,0 +1,407 @@
+{
+  "id": "mission08",
+  "number": 8,
+  "title": "Lo que pasó en Salento",
+  "start": {
+    "map": "bobo_piso8",
+    "spawn": "cama"
+  },
+  "introDialogue": "m8_intro",
+  "objective": "Recuerda...",
+  "startMoney": 300000,
+  "startFlags": [
+    "mision8_iniciada",
+    "despierto",
+    "banado",
+    "vestido",
+    "tiene_mochila"
+  ],
+  "clock": "sáb 10:20",
+  "weather": "despejado",
+  "destinations": [
+    {
+      "map": "salento_casita",
+      "x": 5,
+      "y": 3,
+      "name": "Tu camarote",
+      "if": {
+        "flag": "m8_vuelta_plaza",
+        "map": "salento_casita"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 37,
+      "y": 87,
+      "name": "La casita (Carrera 7)",
+      "if": {
+        "flag": "m8_vuelta_plaza"
+      }
+    },
+    {
+      "map": "bar_billar",
+      "x": 6,
+      "y": 8,
+      "name": "Salida a la Calle Real",
+      "if": {
+        "flag": "m8_rumbo_plaza",
+        "map": "bar_billar"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 25,
+      "y": 82,
+      "name": "Plaza de Bolívar",
+      "if": {
+        "flag": "m8_rumbo_plaza"
+      }
+    },
+    {
+      "map": "disco_salento",
+      "x": 7,
+      "y": 8,
+      "name": "Salida (al billar de al lado)",
+      "if": {
+        "flag": "m8_disco_vista",
+        "map": "disco_salento"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 40,
+      "y": 73,
+      "name": "Billares El Arriero",
+      "if": {
+        "flag": "m8_disco_vista"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 24,
+      "y": 73,
+      "name": "Disco El Bahareque",
+      "if": {
+        "flag": "m8_disco_abierta"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 55,
+      "y": 74,
+      "name": "Tienda de doña Gladys (Calle Real)",
+      "if": {
+        "flag": "m8_noche_domingo"
+      }
+    },
+    {
+      "map": "salento_casita",
+      "x": 4,
+      "y": 9,
+      "name": "Danilo (en la sala)",
+      "if": {
+        "flag": "m8_pinpon",
+        "map": "salento_casita"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 51,
+      "y": 46,
+      "name": "Tejo Los Compadres (o la casita: Danilo)",
+      "if": {
+        "flag": "m8_pinpon"
+      }
+    },
+    {
+      "map": "salento_casita",
+      "x": 14,
+      "y": 10,
+      "name": "La mesa de pimpón (patio)",
+      "if": {
+        "flag": "m8_domingo",
+        "map": "salento_casita"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 57,
+      "y": 74,
+      "name": "Puesto de artesanías (toldo morado)",
+      "if": {
+        "flag": "m8_domingo",
+        "notFlag": "m8_regalo_richi"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 37,
+      "y": 87,
+      "name": "La casita: el torneo de pimpón",
+      "if": {
+        "flag": "m8_domingo"
+      }
+    },
+    {
+      "map": "salento_casita",
+      "x": 5,
+      "y": 3,
+      "name": "Tu camarote",
+      "if": {
+        "flag": "m8_cena_sabado",
+        "map": "salento_casita"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 37,
+      "y": 87,
+      "name": "La casita (Carrera 7)",
+      "if": {
+        "flag": "m8_vuelta_parque"
+      }
+    },
+    {
+      "map": "parque_cafe",
+      "x": 9,
+      "y": 6,
+      "name": "La chiva (entrada del parque)",
+      "if": {
+        "flag": "m8_parque_cerrando"
+      }
+    },
+    {
+      "map": "parque_cafe",
+      "x": 31,
+      "y": 98,
+      "name": "Rueda Panorámica",
+      "if": {
+        "flag": "m8_krater",
+        "map": "parque_cafe"
+      }
+    },
+    {
+      "map": "parque_cafe",
+      "x": 14,
+      "y": 70,
+      "name": "El Krater",
+      "if": {
+        "map": "parque_cafe"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 28,
+      "y": 87,
+      "name": "La chiva (sur de la plaza)",
+      "if": {
+        "flag": "m8_almorzo"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 21,
+      "y": 87,
+      "name": "La trucha (doña Leonor, sur de la plaza)",
+      "if": {
+        "flag": "m8_sabado",
+        "notFlag": "m8_almorzo",
+        "map": "salento"
+      }
+    },
+    {
+      "map": "salento_casita",
+      "x": 5,
+      "y": 11,
+      "name": "Salida",
+      "if": {
+        "flag": "m8_sabado",
+        "notFlag": "m8_almorzo",
+        "map": "salento_casita"
+      }
+    },
+    {
+      "map": "salento_casita",
+      "x": 5,
+      "y": 3,
+      "name": "Los camarotes",
+      "if": {
+        "flag": "m8_en_casita",
+        "map": "salento_casita"
+      }
+    },
+    {
+      "map": "salento",
+      "x": 37,
+      "y": 87,
+      "name": "Hostal La Casita (Carrera 7)",
+      "if": {
+        "flag": "m8_en_salento"
+      }
+    },
+    {
+      "map": "bus_salento",
+      "x": 12,
+      "y": 4,
+      "name": "Richi (junto a la ventana)",
+      "if": {
+        "map": "bus_salento"
+      }
+    }
+  ],
+  "victoryEvent": "mision8_final",
+  "routes": [
+    {
+      "id": "bus",
+      "name": "Bus, chiva y a pie",
+      "if": {
+        "flag": "mision8_iniciada"
+      }
+    }
+  ],
+  "defaultRoute": "A pie",
+  "walkedSuffix": {
+    "if": {
+      "flag": "nunca"
+    },
+    "text": ""
+  },
+  "collectibles": [
+    "oblea_salento",
+    "arepa_choclo",
+    "solterita",
+    "cafe_salento",
+    "llavero_palma",
+    "foto_krater"
+  ],
+  "bonuses": [
+    {
+      "text": "El ají para Renzo",
+      "if": {
+        "flag": "m8_aji_encontrado"
+      }
+    },
+    {
+      "text": "Manos arriba en la foto del Krater",
+      "if": {
+        "flag": "m8_foto_manos"
+      }
+    },
+    {
+      "text": "De fierro en el Barco del Café",
+      "if": {
+        "flag": "m8_barco_fierro"
+      }
+    },
+    {
+      "text": "Rey de los chocones",
+      "if": {
+        "flag": "m8_chocones_ok"
+      }
+    },
+    {
+      "text": "Campeón del pimpón de La Casita",
+      "if": {
+        "flag": "m8_pinpon_campeon"
+      }
+    },
+    {
+      "text": "Le ganaste a Danilo en el pool",
+      "if": {
+        "flag": "m8_pool_gano"
+      }
+    },
+    {
+      "text": "Reventaste una mecha",
+      "if": {
+        "flag": "m8_tejo_mecha"
+      }
+    },
+    {
+      "text": "Bailaste perfecto en la Calle Real",
+      "if": {
+        "flag": "m8_baile_perfecto"
+      }
+    },
+    {
+      "text": "Tequila como se debe",
+      "if": {
+        "flag": "m8_tequila_perfecto"
+      }
+    },
+    {
+      "text": "Subiste al Alto de la Cruz",
+      "if": {
+        "flag": "m8_subio_mirador"
+      }
+    },
+    {
+      "text": "¿Y si...? (las dos versiones)",
+      "if": {
+        "flag": [
+          "m8_whatif_visto_algo",
+          "m8_whatif_visto_nada"
+        ]
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "flag": "secreto_m8_willys",
+      "name": "Tres colgados atrás del Willys"
+    },
+    {
+      "flag": "secreto_m8_gringos",
+      "name": "Exportaste el «cachai» a Holanda"
+    },
+    {
+      "flag": "secreto_m8_nescafe",
+      "name": "Pediste Nescafé en Salento"
+    },
+    {
+      "flag": "secreto_m8_orquidea",
+      "name": "La orquídea que no se fue en el avión"
+    },
+    {
+      "flag": "secreto_m8_richi_baila",
+      "name": "Richi baila pasillo"
+    },
+    {
+      "flag": "secreto_m8_bandera",
+      "name": "La bandera de Chile en el Parque del Café"
+    },
+    {
+      "flag": "secreto_m8_dj",
+      "name": "«¿Tiene otra canción?» «No.»"
+    },
+    {
+      "flag": "secreto_m8_bigote",
+      "name": "El señor del bigote"
+    },
+    {
+      "flag": "secreto_m8_iker",
+      "name": "Laura conoce a Iker"
+    },
+    {
+      "flag": "secreto_m8_viva_chile",
+      "name": "¡Viva Chile! (en el Grito)"
+    },
+    {
+      "flag": "secreto_m8_monona",
+      "name": "Moñona en el tejo"
+    }
+  ],
+  "endings": [
+    {
+      "id": "agur",
+      "name": "Agur, chileno",
+      "if": {
+        "flag": "m8_final_alta"
+      }
+    },
+    {
+      "id": "mexico",
+      "name": "¡Feliz día de la Independencia!"
+    }
+  ]
+}

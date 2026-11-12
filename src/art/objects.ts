@@ -1,5 +1,6 @@
 import { PAL, shade } from './palette';
 import { PixelGrid } from './Painter';
+import { M8_OBJECTS } from './objects_m8';
 
 /**
  * Objetos estáticos de 16×16 (un solo frame): carteles, máquinas, coleccionables e íconos.
@@ -626,4 +627,6 @@ export const OBJECT_ART: Record<string, () => PixelGrid> = {
     g.rect(4, 4, 2, 2, '#e8ecf0').rect(9, 3, 2, 2, '#e8ecf0').rect(6, 1, 2, 2, '#e8ecf0');
     return g.outline(PAL.outline);
   },
+  // Misión 8: Salento y el Parque del Café.
+  ...M8_OBJECTS,
 };

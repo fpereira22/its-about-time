@@ -11,6 +11,9 @@ import { NatacionScene } from './scenes/NatacionScene';
 import { PersecucionScene } from './scenes/PersecucionScene';
 import { CocinaScene } from './scenes/CocinaScene';
 import { SalsaScene } from './scenes/SalsaScene';
+import { PoolScene } from './scenes/PoolScene';
+import { PinponScene } from './scenes/PinponScene';
+import { AtraccionScene } from './scenes/AtraccionScene';
 import { InteriorScene } from './scenes/InteriorScene';
 import { MissionCompleteScene } from './scenes/MissionCompleteScene';
 import { OverworldScene } from './scenes/OverworldScene';
@@ -55,7 +58,7 @@ const game = new Phaser.Game({
     autoCenter: Phaser.Scale.NO_CENTER,
   },
   input: { keyboard: false, gamepad: false },
-  scene: [BootScene, PreloadScene, TitleScene, OverworldScene, InteriorScene, UIScene, FutbolScene, PiscinaScene, CincoScene, NatacionScene, PersecucionScene, CocinaScene, SalsaScene, MissionCompleteScene, ProgressScene, CreditsScene, AdminWarpScene],
+  scene: [BootScene, PreloadScene, TitleScene, OverworldScene, InteriorScene, UIScene, FutbolScene, PiscinaScene, CincoScene, NatacionScene, PersecucionScene, CocinaScene, SalsaScene, PoolScene, PinponScene, AtraccionScene, MissionCompleteScene, ProgressScene, CreditsScene, AdminWarpScene],
 });
 
 Controls.attach(game);

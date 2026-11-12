@@ -3,6 +3,7 @@ import { Painter } from './Painter';
 import { m5Tiles } from './tiles_m5';
 import { m6Tiles } from './tiles_m6';
 import { m7Tiles } from './tiles_m7';
+import { m8Tiles } from './tiles_m8';
 
 export interface TileDef {
   key: string;
@@ -1811,6 +1812,7 @@ export const TILE_DEFS: TileDef[] = [
   ...m5Tiles(),
   ...m6Tiles(),
   ...m7Tiles(),
+  ...m8Tiles(),
   ...buildingTiles(),
 ];
 

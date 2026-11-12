@@ -84,7 +84,17 @@ export type SfxName =
   | 'beso' // el beso (suave, con campanita)
   | 'caja_registradora' // ¡tlin! la caja de la farmacia
   | 'tele' // prender la tele (el zumbido del encendido)
-  | 'paraguas'; // ¡fop! se abre el paraguas
+  | 'paraguas' // ¡fop! se abre el paraguas
+  | 'taco' // misión 8: el taco le pega a la blanca
+  | 'bola' // dos bolas de pool que chocan (clac)
+  | 'tronera' // una bola que cae en la tronera
+  | 'pinpon' // la pelotita de pimpón en la mesa (toc)
+  | 'riel' // el clac-clac-clac de la montaña rusa subiendo
+  | 'grito_mx' // ¡ajúa! (el grito mexicano)
+  | 'chupito' // el vasito de tequila en la mesa
+  | 'mecha' // ¡pum! la mecha del tejo
+  | 'chocon' // carros chocones: ¡bonk!
+  | 'rebobinar'; // el «¿y si...?» que se rebobina como un VHS
 
 /** Pistas de música de fondo. */
 export type MusicTrack =
@@ -113,6 +123,14 @@ export type MusicTrack =
   | 'depa' // misión 7: el depa del piso 8 (bossa tranquila, cálida)
   | 'ascensor' // la música del ascensor (bossa de ascensor, obvio)
   | 'cocina' // la boloñesa con Sira (cumbia juguetona)
+  | 'salento' // misión 8: Salento (pasillo con tiple)
+  | 'parque' // el Parque del Café (organito de feria)
+  | 'casita' // la casita de los camarotes (guitarra suave)
+  | 'chiva' // la chiva (carranga a mil)
+  | 'billar' // Billares El Arriero (despecho)
+  | 'disco' // la disco chiquita (dembow, el mismo toda la noche)
+  | 'mariachi' // los mexicanos en la plaza
+  | 'recuerdo' // el recuerdo (cajita de música)
   ;
 
 /** Sonido ambiente en loop: la lluvia (más fuerte en la tormenta). `indoor` la apaga como detrás de una ventana. */
