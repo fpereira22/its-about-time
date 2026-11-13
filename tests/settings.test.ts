@@ -20,6 +20,12 @@ describe('parseSettings', () => {
     expect(parseSettings(null, true).muted).toBe(true);
     expect(parseSettings({ muted: false }, true).muted).toBe(false);
   });
+
+  it('las reseñas del título vienen visibles y se pueden ocultar', () => {
+    expect(parseSettings(null).titleReviews).toBe(true);
+    expect(parseSettings({ titleReviews: false }).titleReviews).toBe(false);
+    expect(parseSettings({ titleReviews: 'no' }).titleReviews).toBe(true);
+  });
 });
 
 describe('Settings', () => {

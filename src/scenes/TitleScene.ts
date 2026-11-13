@@ -21,7 +21,8 @@ import { drawPanel, makeText, THEME } from '../ui/theme';
 import { BaseScene } from './BaseScene';
 import { MenuList } from '../ui/MenuList';
 import { SettingsPanel } from '../ui/SettingsPanel';
-import { TitleBoards } from '../ui/TitleBoards';
+import { TitleReviews } from '../ui/TitleReviews';
+import { autoPromptsAllowed, openNameForm } from '../ui/VoteForm';
 
 /** Mapa que se ve de fondo en el título, y desde qué fila. */
 const BACKDROP_MAP = 'providencia';
@@ -30,7 +31,7 @@ const BACKDROP_TOP_ROW = 8;
 const BUS_LANE = 17;
 const PAN_SPEED = 14;
 const MENU_Y = 98;
-/** Lo más arriba que puede empezar el menú sin tapar el logo (ahí empiezan también los paneles del ranking). */
+/** Lo más arriba que puede empezar el menú sin tapar el logo (ahí empiezan también las reseñas). */
 const MENU_MIN_Y = 78;
 const MENU_ROW = 13;
 
@@ -70,8 +71,10 @@ export class TitleScene extends BaseScene {
   private leaving = false;
   private canContinue = false;
   private settings: SettingsPanel | null = null;
-  /** Top 10 y opiniones a los lados del menú. */
-  private boards: TitleBoards | null = null;
+  /** Reseñas que aparecen y desaparecen a los lados del menú. */
+  private reviews: TitleReviews | null = null;
+  /** Formulario HTML abierto encima (el saludo): cierra lo que haya. */
+  private closeForm: (() => void) | null = null;
 
   constructor() {
     super('Title');
@@ -83,7 +86,8 @@ export class TitleScene extends BaseScene {
     this.menu = null;
     this.confirm = null;
     this.settings = null;
-    this.boards = null;
+    this.reviews = null;
+    this.closeForm = null;
     if (this.scene.isActive('UI')) this.scene.stop('UI');
     this.cameras.main.setBackgroundColor('#1c2a48');
 
@@ -92,7 +96,8 @@ export class TitleScene extends BaseScene {
 
     this.canContinue = this.checkContinue();
     this.buildMenu();
-    this.buildBoards();
+    this.buildReviews();
+    this.greetFirstTime();
 
     const footer = this.add.graphics().setDepth(5);
     footer.fillStyle(0x0d1424, 0.75).fillRect(0, BASE_HEIGHT - 13, BASE_WIDTH, 13);
@@ -123,7 +128,7 @@ export class TitleScene extends BaseScene {
     if (this.panX > this.panMax) this.panX = 0;
     this.backdrop.x = -Math.round(this.panX);
 
-    if (this.leaving) return;
+    if (this.leaving || this.closeForm) return;
     if (this.settings) {
       this.settings.update();
       return;
@@ -164,7 +169,7 @@ export class TitleScene extends BaseScene {
       { label: 'Nueva partida', action: () => this.chooseMission() },
       ...(SaveSlots.any ? [{ label: 'Cargar partida', action: () => this.chooseSlot() }] : []),
       { label: 'Progreso', action: () => this.go(() => this.scene.start('Progress')) },
-      { label: 'Ranking y votos', action: () => this.openRanking(0) },
+      { label: 'Top 10', badge: '★', action: () => this.openRanking(0) },
       { label: 'Ajustes', action: () => this.openSettings() },
       { label: 'Créditos', action: () => this.go(() => this.scene.start('Credits')) },
     ];
@@ -175,19 +180,31 @@ export class TitleScene extends BaseScene {
     this.menu = new MenuList(this, items, { x: BASE_WIDTH / 2, y, minWidth: 108, rowHeight });
   }
 
-  /** Paneles del ranking a los lados del menú: lo guardado al tiro y la planilla cuando llegue. */
-  private buildBoards(): void {
+  /** Reseñas a los lados del menú: lo guardado al tiro y la planilla cuando llegue. */
+  private buildReviews(): void {
     if (!this.menu) return;
-    const boards = new TitleBoards(this, { x: this.menu.container.x, width: this.menu.width }, (page) => {
-      if (!this.leaving && !this.confirm && !this.settings) this.openRanking(page);
+    const reviews = new TitleReviews(this, { x: this.menu.container.x, width: this.menu.width }, () => {
+      if (!this.leaving && !this.confirm && !this.settings && !this.closeForm) this.openRanking(1);
     });
-    this.boards = boards;
+    this.reviews = reviews;
     const cached = Ranking.cached;
-    boards.show(cached.fetchedAt > 0 || cached.players.length > 0 || cached.comments.length > 0 ? cached : null);
+    reviews.show(cached.fetchedAt > 0 || cached.comments.length > 0 ? cached : null);
     // De paso publica el puntaje si subió (secretos encontrados a mitad de misión, por ejemplo).
     Ranking.syncScore();
     void Ranking.load().then((s) => {
-      if (this.sys.isActive() && this.boards === boards) boards.show(s);
+      if (this.sys.isActive() && this.reviews === reviews) reviews.show(s);
+    });
+  }
+
+  /** La primera vez que se abre el juego, un saludo que pide el nombre (para votar más adelante). */
+  private greetFirstTime(): void {
+    if (!Ranking.needsName || !autoPromptsAllowed()) return;
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.closeForm?.());
+    this.time.delayedCall(900, () => {
+      if (this.leaving || this.confirm || this.settings || !Ranking.needsName) return;
+      this.closeForm = openNameForm(() => {
+        this.closeForm = null;
+      });
     });
   }
 
@@ -259,7 +276,7 @@ export class TitleScene extends BaseScene {
       this.menu.enabled = false;
       this.menu.container.setVisible(false);
     }
-    this.boards?.setVisible(false);
+    this.reviews?.setVisible(false);
   }
 
   private showMainMenu(): void {
@@ -267,7 +284,7 @@ export class TitleScene extends BaseScene {
       this.menu.enabled = true;
       this.menu.container.setVisible(true);
     }
-    this.boards?.setVisible(true);
+    this.reviews?.setVisible(true);
   }
 
   private requestNewGame(mission: MissionDef): void {
@@ -394,13 +411,13 @@ export class TitleScene extends BaseScene {
     const plate = this.add.graphics().setDepth(9);
     const pw = Math.ceil(title.width) + 28;
     plate.fillStyle(THEME.accent, 1).fillRect(cx - pw / 2 + 14, 45, pw - 28, 2);
-    this.addText(cx, 56, 'Micro, metro, tren... y a pie', {
+    this.addText(cx, 56, 'Entre micros, metro, taxi, tren, aviones... y a pie', {
       fontSize: '10px',
       color: '#d8e0f0',
     })
       .setOrigin(0.5)
       .setDepth(10);
-    this.addText(cx, 72, 'UNA AVENTURA EN SANTIAGO', { fontFamily: FONT_HUD, fontSize: '8px', color: '#f0d048' })
+    this.addText(cx, 72, 'UNA AVENTURA POR SUDAMÉRICA', { fontFamily: FONT_HUD, fontSize: '8px', color: '#f0d048' })
       .setOrigin(0.5)
       .setDepth(10);
     this.tweens.add({ targets: title, y: 28, duration: 1600, yoyo: true, repeat: -1, ease: 'Sine.InOut' });

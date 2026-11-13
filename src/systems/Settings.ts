@@ -22,9 +22,11 @@ export interface SettingsData {
   /** Silencio total (tecla M). */
   muted: boolean;
   textSpeed: TextSpeed;
+  /** Reseñas de los jugadores apareciendo en el título. */
+  titleReviews: boolean;
 }
 
-export const DEFAULT_SETTINGS: Readonly<SettingsData> = { music: VOLUME_STEPS, sfx: VOLUME_STEPS, muted: false, textSpeed: 'normal' };
+export const DEFAULT_SETTINGS: Readonly<SettingsData> = { music: VOLUME_STEPS, sfx: VOLUME_STEPS, muted: false, textSpeed: 'normal', titleReviews: true };
 
 /** Ajustes guardados → valores válidos (lo que falte o venga roto queda por defecto). */
 export function parseSettings(raw: unknown, legacyMuted = false): SettingsData {
@@ -34,6 +36,7 @@ export function parseSettings(raw: unknown, legacyMuted = false): SettingsData {
     sfx: volume(d.sfx, DEFAULT_SETTINGS.sfx),
     muted: typeof d.muted === 'boolean' ? d.muted : legacyMuted,
     textSpeed: TEXT_SPEEDS.includes(d.textSpeed as TextSpeed) ? (d.textSpeed as TextSpeed) : DEFAULT_SETTINGS.textSpeed,
+    titleReviews: typeof d.titleReviews === 'boolean' ? d.titleReviews : DEFAULT_SETTINGS.titleReviews,
   };
 }
 

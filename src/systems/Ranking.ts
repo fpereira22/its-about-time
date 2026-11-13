@@ -55,7 +55,28 @@ interface PlayerStore {
   sent?: PlayerRow;
   /** El último voto enviado (mismo motivo). */
   vote?: CommentRow;
+  /** Nombre que dio en el saludo del comienzo: rellena el formulario de votos (no se publica solo). */
+  draftName?: string;
+  /** Ya se le preguntó el nombre (lo haya dado o no). */
+  askedName?: boolean;
+  /** "¿Estás disfrutando el juego?": cuántas veces se preguntó y con cuántas misiones completadas. */
+  enjoy?: EnjoyState;
 }
+
+export interface EnjoyState {
+  asks: number;
+  /** Misiones completadas la última vez que se preguntó. */
+  lastAt: number;
+  /** Eligió "No volver a preguntar". */
+  never?: boolean;
+}
+
+/** Primera pregunta al completar esta cantidad de misiones (el prólogo cuenta). */
+export const ENJOY_FIRST_AT = 2;
+/** Después, cada cuántas misiones más. */
+export const ENJOY_EVERY = 3;
+/** Nunca más de esto. */
+export const ENJOY_MAX_ASKS = 3;
 
 export interface MyScore {
   score: number;
@@ -182,6 +203,13 @@ export function starsText(n: number): string {
   return '★'.repeat(full) + '☆'.repeat(5 - full);
 }
 
+/** ¿Toca preguntar si está disfrutando el juego? Nunca si ya votó o pidió que no. */
+export function shouldAskEnjoy(state: EnjoyState | undefined, completed: number, voted: boolean): boolean {
+  if (voted || state?.never) return false;
+  if (!state || state.asks === 0) return completed >= ENJOY_FIRST_AT;
+  return state.asks < ENJOY_MAX_ASKS && completed >= state.lastAt + ENJOY_EVERY;
+}
+
 // ---------------------------------------------------------------- estado y red
 
 class RankingImpl {
@@ -200,6 +228,51 @@ class RankingImpl {
 
   get playerId(): string | undefined {
     return this.store.id;
+  }
+
+  /** El nombre con que rellenar el formulario: el publicado o, si no, el que dio en el saludo. */
+  get suggestedName(): string | undefined {
+    return this.store.name ?? this.store.draftName;
+  }
+
+  /** Primera vez: todavía no se le ha preguntado el nombre. */
+  get needsName(): boolean {
+    return !this.store.name && !this.store.draftName && !this.store.askedName;
+  }
+
+  /** Guarda (solo en este navegador) el nombre del saludo. Vacío = "ahora no". */
+  setDraftName(raw: string): SubmitResult {
+    this.store.askedName = true;
+    if (raw.trim() !== '') {
+      const checked = checkName(raw);
+      if ('error' in checked) return { ok: false, error: checked.error };
+      this.store.draftName = checked.name;
+    }
+    writeStore(this.store);
+    return { ok: true };
+  }
+
+  /** Ya votó desde este navegador (o su voto está en la planilla). */
+  get hasVoted(): boolean {
+    const id = this.store.id;
+    return !!this.store.vote || (!!id && this.snapshot.comments.some((c) => c.id === id));
+  }
+
+  /** ¿Preguntar ahora si está disfrutando el juego? (al completar una misión). */
+  shouldAskEnjoy(): boolean {
+    return this.canSubmit && shouldAskEnjoy(this.store.enjoy, this.myScore().missions, this.hasVoted);
+  }
+
+  /** Anota que se le preguntó (al mostrar la pregunta). */
+  markEnjoyAsked(): void {
+    this.store.enjoy = { ...this.store.enjoy, asks: (this.store.enjoy?.asks ?? 0) + 1, lastAt: this.myScore().missions };
+    writeStore(this.store);
+  }
+
+  /** "No volver a preguntar". */
+  neverAskEnjoy(): void {
+    this.store.enjoy = { asks: this.store.enjoy?.asks ?? 0, lastAt: this.store.enjoy?.lastAt ?? 0, never: true };
+    writeStore(this.store);
   }
 
   /** Lo último que se tiene (puede estar vacío o viejo), sin pedir nada. */

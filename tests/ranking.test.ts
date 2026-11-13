@@ -2,6 +2,11 @@ import { describe, expect, it } from 'vitest';
 import {
   averageRating,
   checkName,
+  ENJOY_EVERY,
+  ENJOY_FIRST_AT,
+  ENJOY_MAX_ASKS,
+  Ranking,
+  shouldAskEnjoy,
   latestComments,
   parseComments,
   parseCsv,
@@ -102,5 +107,34 @@ describe('starsText', () => {
   it('redondea y llena con estrellas vacías', () => {
     expect(starsText(4.4)).toBe('★★★★☆');
     expect(starsText(9)).toBe('★★★★★');
+  });
+});
+
+describe('shouldAskEnjoy', () => {
+  it('la primera vez pregunta al completar ENJOY_FIRST_AT misiones', () => {
+    expect(shouldAskEnjoy(undefined, ENJOY_FIRST_AT - 1, false)).toBe(false);
+    expect(shouldAskEnjoy(undefined, ENJOY_FIRST_AT, false)).toBe(true);
+  });
+
+  it('después espera ENJOY_EVERY misiones y no pasa de ENJOY_MAX_ASKS', () => {
+    const asked = { asks: 1, lastAt: 2 };
+    expect(shouldAskEnjoy(asked, 2 + ENJOY_EVERY - 1, false)).toBe(false);
+    expect(shouldAskEnjoy(asked, 2 + ENJOY_EVERY, false)).toBe(true);
+    expect(shouldAskEnjoy({ asks: ENJOY_MAX_ASKS, lastAt: 0 }, 99, false)).toBe(false);
+  });
+
+  it('nunca si ya votó o pidió que no', () => {
+    expect(shouldAskEnjoy(undefined, 5, true)).toBe(false);
+    expect(shouldAskEnjoy({ asks: 0, lastAt: 0, never: true }, 5, false)).toBe(false);
+  });
+});
+
+describe('nombre del saludo', () => {
+  it('se pide una sola vez, valida y rellena el voto', () => {
+    expect(Ranking.needsName).toBe(true);
+    expect(Ranking.setDraftName('x').ok).toBe(false);
+    expect(Ranking.setDraftName('  Cami   R ').ok).toBe(true);
+    expect(Ranking.suggestedName).toBe('Cami R');
+    expect(Ranking.needsName).toBe(false);
   });
 });

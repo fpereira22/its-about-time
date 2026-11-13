@@ -10,6 +10,8 @@ import { StoryState } from '../systems/StoryState';
 import { drawPanel, THEME } from '../ui/theme';
 import { BaseScene } from './BaseScene';
 import { MenuList } from '../ui/MenuList';
+import { Ranking } from '../systems/Ranking';
+import { autoPromptsAllowed, openEnjoyPrompt } from '../ui/VoteForm';
 
 const PANEL = { x: 24, y: 24, w: BASE_WIDTH - 48, h: 128 };
 const STAGGER_MS = 160;
@@ -21,6 +23,8 @@ const CONFETTI_COLORS = [PAL.red, PAL.yellow, PAL.green, 0x2f6fd0, PAL.orange, P
 export class MissionCompleteScene extends BaseScene {
   private menu: MenuList | null = null;
   private leaving = false;
+  /** "¿Estás disfrutando el juego?" abierto encima: cierra lo que haya. */
+  private closeForm: (() => void) | null = null;
 
   constructor() {
     super('MissionComplete');
@@ -30,6 +34,8 @@ export class MissionCompleteScene extends BaseScene {
   create(): void {
     this.menu = null;
     this.leaving = false;
+    this.closeForm = null;
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.closeForm?.());
     const s = missionSummary();
     StoryState.save();
     this.cameras.main.setBackgroundColor('#1c2a48');
@@ -120,6 +126,15 @@ export class MissionCompleteScene extends BaseScene {
       );
       this.menu.container.setAlpha(0);
       this.tweens.add({ targets: this.menu.container, alpha: 1, duration: 200 });
+      // De vez en cuando (ver shouldAskEnjoy), con el resumen ya a la vista: ¿lo está disfrutando?
+      if (Ranking.shouldAskEnjoy() && autoPromptsAllowed()) {
+        this.time.delayedCall(1400, () => {
+          if (this.leaving) return;
+          this.closeForm = openEnjoyPrompt(() => {
+            this.closeForm = null;
+          });
+        });
+      }
     });
 
     this.setupZoom();
@@ -131,7 +146,7 @@ export class MissionCompleteScene extends BaseScene {
   }
 
   override update(): void {
-    if (!this.leaving) this.menu?.update();
+    if (!this.leaving && !this.closeForm) this.menu?.update();
   }
 
   private go(scene: string): void {

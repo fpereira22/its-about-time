@@ -117,6 +117,12 @@ export class SettingsPanel {
         value: () => (TouchControls.currentMode === 'on' ? 'Siempre' : TouchControls.currentMode === 'off' ? 'Nunca' : 'Auto'),
         change: () => TouchControls.setMode(TouchControls.currentMode === 'on' ? 'auto' : 'on'),
       },
+      {
+        label: 'Reseñas',
+        kind: 'choice',
+        value: () => (Settings.get('titleReviews') ? 'Visibles' : 'Ocultas'),
+        change: () => Settings.set('titleReviews', !Settings.get('titleReviews')),
+      },
       { label: 'Volver', kind: 'action', change: () => undefined },
     ];
     return rows;
