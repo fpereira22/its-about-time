@@ -14,6 +14,9 @@ export const THEME = {
   white: '#ffffff',
 };
 
+/** Color del puesto 1, 2 y 3 en los rankings (oro, plata y bronce que se leen sobre el panel claro). */
+export const MEDAL_CSS = ['#c8901c', '#8a8498', '#a8643a'];
+
 /**
  * Pixelify Sans une "fi" y "fl" en una ligadura que a tamaño chico se lee como una "A" ("final" → "Anal").
  * Un separador invisible (U+200C) entre las dos letras la evita.

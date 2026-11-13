@@ -11,6 +11,7 @@ import { canFullscreen, isFullscreen, toggleFullscreen } from '../systems/Fullsc
 import { TouchControls } from '../systems/TouchControls';
 import { currentMission, missionFullLabel, missionLabel, MISSIONS, parseClock } from '../systems/Mission';
 import type { MissionDef } from '../types/mission';
+import { Ranking } from '../systems/Ranking';
 import { Records } from '../systems/Records';
 import { RIDES } from '../systems/RideController';
 import { SaveSlots, SLOT_COUNT } from '../systems/SaveSlots';
@@ -20,6 +21,7 @@ import { drawPanel, makeText, THEME } from '../ui/theme';
 import { BaseScene } from './BaseScene';
 import { MenuList } from '../ui/MenuList';
 import { SettingsPanel } from '../ui/SettingsPanel';
+import { TitleBoards } from '../ui/TitleBoards';
 
 /** Mapa que se ve de fondo en el título, y desde qué fila. */
 const BACKDROP_MAP = 'providencia';
@@ -28,6 +30,9 @@ const BACKDROP_TOP_ROW = 8;
 const BUS_LANE = 17;
 const PAN_SPEED = 14;
 const MENU_Y = 98;
+/** Lo más arriba que puede empezar el menú sin tapar el logo (ahí empiezan también los paneles del ranking). */
+const MENU_MIN_Y = 78;
+const MENU_ROW = 13;
 
 const SCENE_FOR_KIND = { overworld: 'Overworld', interior: 'Interior' } as const;
 
@@ -65,6 +70,8 @@ export class TitleScene extends BaseScene {
   private leaving = false;
   private canContinue = false;
   private settings: SettingsPanel | null = null;
+  /** Top 10 y opiniones a los lados del menú. */
+  private boards: TitleBoards | null = null;
 
   constructor() {
     super('Title');
@@ -76,6 +83,7 @@ export class TitleScene extends BaseScene {
     this.menu = null;
     this.confirm = null;
     this.settings = null;
+    this.boards = null;
     if (this.scene.isActive('UI')) this.scene.stop('UI');
     this.cameras.main.setBackgroundColor('#1c2a48');
 
@@ -84,6 +92,7 @@ export class TitleScene extends BaseScene {
 
     this.canContinue = this.checkContinue();
     this.buildMenu();
+    this.buildBoards();
 
     const footer = this.add.graphics().setDepth(5);
     footer.fillStyle(0x0d1424, 0.75).fillRect(0, BASE_HEIGHT - 13, BASE_WIDTH, 13);
@@ -155,12 +164,35 @@ export class TitleScene extends BaseScene {
       { label: 'Nueva partida', action: () => this.chooseMission() },
       ...(SaveSlots.any ? [{ label: 'Cargar partida', action: () => this.chooseSlot() }] : []),
       { label: 'Progreso', action: () => this.go(() => this.scene.start('Progress')) },
+      { label: 'Ranking y votos', action: () => this.openRanking(0) },
       { label: 'Ajustes', action: () => this.openSettings() },
       { label: 'Créditos', action: () => this.go(() => this.scene.start('Credits')) },
     ];
-    // Bajo el logo; con todas las opciones (Continuar y Cargar) sube lo justo para no tapar el pie.
-    const y = Math.min(MENU_Y, BASE_HEIGHT - 15 - (items.length * 13 + 9));
-    this.menu = new MenuList(this, items, { x: BASE_WIDTH / 2, y, minWidth: 108 });
+    // Bajo el logo; con muchas opciones sube lo justo para no tapar el pie, y si ni así cabe sin
+    // tapar el logo, junta las filas.
+    const rowHeight = Math.min(MENU_ROW, Math.floor((BASE_HEIGHT - 15 - 9 - MENU_MIN_Y) / items.length));
+    const y = Math.min(MENU_Y, BASE_HEIGHT - 15 - (items.length * rowHeight + 9));
+    this.menu = new MenuList(this, items, { x: BASE_WIDTH / 2, y, minWidth: 108, rowHeight });
+  }
+
+  /** Paneles del ranking a los lados del menú: lo guardado al tiro y la planilla cuando llegue. */
+  private buildBoards(): void {
+    if (!this.menu) return;
+    const boards = new TitleBoards(this, { x: this.menu.container.x, width: this.menu.width }, (page) => {
+      if (!this.leaving && !this.confirm && !this.settings) this.openRanking(page);
+    });
+    this.boards = boards;
+    const cached = Ranking.cached;
+    boards.show(cached.fetchedAt > 0 || cached.players.length > 0 || cached.comments.length > 0 ? cached : null);
+    // De paso publica el puntaje si subió (secretos encontrados a mitad de misión, por ejemplo).
+    Ranking.syncScore();
+    void Ranking.load().then((s) => {
+      if (this.sys.isActive() && this.boards === boards) boards.show(s);
+    });
+  }
+
+  private openRanking(page: number): void {
+    this.go(() => this.scene.start('Ranking', { page }), false);
   }
 
   private openSettings(): void {
@@ -169,10 +201,7 @@ export class TitleScene extends BaseScene {
       depth: 31,
       onClose: () => {
         this.settings = null;
-        if (this.menu) {
-          this.menu.enabled = true;
-          this.menu.container.setVisible(true);
-        }
+        this.showMainMenu();
       },
     });
   }
@@ -230,6 +259,15 @@ export class TitleScene extends BaseScene {
       this.menu.enabled = false;
       this.menu.container.setVisible(false);
     }
+    this.boards?.setVisible(false);
+  }
+
+  private showMainMenu(): void {
+    if (this.menu) {
+      this.menu.enabled = true;
+      this.menu.container.setVisible(true);
+    }
+    this.boards?.setVisible(true);
   }
 
   private requestNewGame(mission: MissionDef): void {
@@ -268,10 +306,7 @@ export class TitleScene extends BaseScene {
     this.confirm.menu.destroy();
     this.confirm.box?.destroy();
     this.confirm = null;
-    if (this.menu) {
-      this.menu.enabled = true;
-      this.menu.container.setVisible(true);
-    }
+    this.showMainMenu();
   }
 
   private startNewGame(m: MissionDef): void {
@@ -287,10 +322,16 @@ export class TitleScene extends BaseScene {
   /**
    * Funde a negro y ejecuta `action`. Antes espera el contenido de la historia (diálogos y viñetas,
    * ver Content): normalmente ya llegó mientras se veía el título; si no, avisa que está cargando.
+   * Con `needsContent` false (pantallas que no usan la historia) no espera nada.
    */
-  private go(action: () => void): void {
+  private go(action: () => void, needsContent = true): void {
     if (this.leaving) return;
     this.leaving = true;
+    if (!needsContent) {
+      this.cameras.main.fadeOut(280, 0, 0, 0);
+      this.cameras.main.once('camerafadeoutcomplete', action);
+      return;
+    }
     const status = Content.ready
       ? null
       : this.addText(BASE_WIDTH / 2, BASE_HEIGHT - 20, 'Cargando la historia...', { fontSize: '9px', color: '#f0d048' })

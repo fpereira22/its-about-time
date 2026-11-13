@@ -18,6 +18,7 @@ import { GameMap } from '../systems/GameMap';
 import { currentMission } from '../systems/Mission';
 import { Npc } from '../systems/Npc';
 import { Records } from '../systems/Records';
+import { Ranking } from '../systems/Ranking';
 import { RIDES } from '../systems/RideController';
 import { playerTexture } from '../systems/PlayerLook';
 import { SCRIPTS, type DriveOptions, type ScriptHost } from '../systems/StoryScripts';
@@ -507,6 +508,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
   completeMission(): void {
     StoryState.setFlag(`${currentMission().id}_completa`);
     Records.recordCompletion();
+    Ranking.syncScore();
     StoryState.clockPaused = true;
     playMusic(null);
     this.transition(() => {

@@ -21,6 +21,8 @@ export interface MenuOptions {
   bare?: boolean;
   fontSize?: string;
   depth?: number;
+  /** Alto de cada fila (vertical). Por defecto 13. */
+  rowHeight?: number;
 }
 
 const ROW = 13;
@@ -31,6 +33,9 @@ const H_GAP = 26;
 /** Lista de opciones con cursor triangular (W/S o A/D para moverse, E para elegir). */
 export class MenuList {
   readonly container: Phaser.GameObjects.Container;
+  /** Tamaño del panel. */
+  readonly width: number;
+  readonly height: number;
   private readonly texts: Phaser.GameObjects.Text[];
   private readonly cursor: Phaser.GameObjects.Graphics;
   private selected = 0;
@@ -58,11 +63,14 @@ export class MenuList {
       w = x - H_GAP + 10;
       h = ROW + PAD_Y * 2 - 1;
     } else {
-      this.texts.forEach((t, i) => t.setPosition(CURSOR_GAP + 4, PAD_Y + i * ROW));
+      const row = opts.rowHeight ?? ROW;
+      this.texts.forEach((t, i) => t.setPosition(CURSOR_GAP + 4, PAD_Y + i * row));
       w = Math.ceil(Math.max(...this.texts.map((t) => t.width))) + CURSOR_GAP + 14;
-      h = items.length * ROW + PAD_Y * 2 - 1;
+      h = items.length * row + PAD_Y * 2 - 1;
     }
     w = Math.max(w, opts.minWidth ?? 0);
+    this.width = w;
+    this.height = h;
 
     const parts: Phaser.GameObjects.GameObject[] = [];
     if (!opts.bare) {
