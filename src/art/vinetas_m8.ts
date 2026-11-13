@@ -21,10 +21,10 @@ import { sinGorro } from './vinetas_m7';
 const W = 220;
 const H = 108;
 
-type Mood = 'smile' | 'open' | 'teeth' | 'grin' | 'o' | 'closed' | 'squint' | 'sleep' | 'sad' | 'blush' | 'cry' | 'green';
-type Fx = 'hearts' | 'notes' | 'zzz' | 'sparkle' | 'rain' | 'confetti' | 'stars' | 'mist' | 'steam' | 'snore' | 'lights' | 'sweat' | 'flash' | 'heart1';
+export type Mood = 'smile' | 'open' | 'teeth' | 'grin' | 'o' | 'closed' | 'squint' | 'sleep' | 'sad' | 'blush' | 'cry' | 'green';
+export type Fx = 'hearts' | 'notes' | 'zzz' | 'sparkle' | 'rain' | 'confetti' | 'stars' | 'mist' | 'steam' | 'snore' | 'lights' | 'sweat' | 'flash' | 'heart1';
 
-interface Spec {
+export interface Spec {
   /** Fondo. */
   b: string;
   /** Quiénes salen: "id ánimo" (ej. "richi grin"); "player" es el jugador. */
@@ -78,7 +78,7 @@ function casas(g: G, base: number, dark = false): void {
   }
 }
 
-const BACKDROPS: Record<string, Backdrop> = {
+export const BACKDROPS: Record<string, Backdrop> = {
   bus: (g, x, y, w, h) => {
     g.fillStyle(hex('#3a3c48'), 1).fillRect(x, y, w, h);
     for (let i = 0; i < 3; i++) {
@@ -304,9 +304,9 @@ const BACKDROPS: Record<string, Backdrop> = {
 // Objetos
 // ---------------------------------------------------------------------------
 
-type Prop = (g: G, cx: number, cy: number) => void;
+export type Prop = (g: G, cx: number, cy: number) => void;
 
-const PROPS: Record<string, Prop> = {
+export const PROPS: Record<string, Prop> = {
   oblea: (g, cx, cy) => {
     disc(g, cx, cy, 13, INK);
     disc(g, cx, cy, 12, '#f0dca0');
@@ -607,7 +607,7 @@ function drawFx(kit: VinetaKit, stage: Layer, fx: Fx[]): void {
   }
 }
 
-function compose(spec: Spec): VinetaBuilder {
+export function compose(spec: Spec): VinetaBuilder {
   return (kit) => {
     build(kit, spec);
   };
@@ -632,14 +632,14 @@ function build(kit: VinetaKit, spec: Spec): Layer {
 // Escenas propias
 // ---------------------------------------------------------------------------
 
-function label(kit: VinetaKit, stage: Layer, x: number, y: number, text: string, color = INK, size = 7, width = 180): Phaser.GameObjects.Text {
+export function label(kit: VinetaKit, stage: Layer, x: number, y: number, text: string, color = INK, size = 7, width = 180): Phaser.GameObjects.Text {
   const t = makeText(kit.scene, x, y, text, { fontSize: `${size}px`, fontStyle: '600', color, align: 'center', wordWrap: { width } }).setOrigin(0.5, 0);
   stage.add(t);
   return t;
 }
 
 /** La pantalla del celular con una foto o un chat. */
-function phoneFrame(kit: VinetaKit, stage: Layer): G {
+export function phoneFrame(kit: VinetaKit, stage: Layer): G {
   const g = addG(kit, stage);
   outlined(g, [[70, 4, 80, 100, '#1c1c24']]);
   flat(g, [[74, 10, 72, 88, '#f4f0e6'], [100, 6, 20, 2, '#3a3a48']]);
@@ -668,7 +668,7 @@ const fotogramRecuerdo: VinetaBuilder = (kit) => {
   kit.every(1200, () => floatHeart(kit, stage, 90 + Math.random() * 40, 70));
 };
 
-function chatVineta(from: string, color: string, lines: string[]): VinetaBuilder {
+export function chatVineta(from: string, color: string, lines: string[]): VinetaBuilder {
   return (kit) => {
     const stage = kit.framed(BACKDROPS.telefono);
     const g = phoneFrame(kit, stage);
@@ -1066,13 +1066,22 @@ const SPECS: Record<string, Spec> = {
   m8_despedida_plaza: { b: 'plaza', c: ['chuy grin', 'ximena smile'], p: ['bandera_mx'], t: '¡Cachai, carnal!' },
   m8_bus_vuelta: { b: 'bus', c: ['richi sleep', 'player smile', 'juanpa smile', 'renzo grin'], p: ['aji', 'sombrero'], s: 2.4 },
   // El «¿y si...?»: se arma con whatIf más abajo
+  // Los juegos del Parque del Café
+  m8_yippe: { b: 'parque', c: ['renzo open', 'player grin'], fx: 'sweat', t: 'YIPPE', tc: '#b0f0b0' },
+  m8_rapidos_seco: { b: 'parque', c: ['player grin', 'juanpa grin'], fx: 'sparkle', t: 'Capitán del bote' },
+  m8_rapidos_renzo: { b: 'parque', c: ['renzo o', 'player teeth'], fx: 'rain', t: '¡Renzo se mojó!' },
+  m8_fabulas_guerra: { b: 'parque', c: ['flor teeth', 'player grin', 'meli grin'], fx: 'rain', t: '¡Guerra de agua!' },
+  m8_tren_gorra: { b: 'parque', c: ['player grin', 'nino grin'], p: ['sombrero'], t: 'Maquinista honorario' },
+  m8_ciclon: { b: 'parque', c: ['flor grin', 'player open'], fx: 'stars', t: 'Ciclón' },
+  m8_fotos: { b: 'mirador', c: ['player smile'], p: ['cel'], fx: 'sparkle', t: 'Las fotos del paseo' },
+  m8_cafe_cosecha: { b: 'cafetal', c: ['guia_cafe grin', 'player grin'], p: ['granos'], fx: 'sparkle', t: 'Tu cosecha' },
+  m8_cafe_tinto: { b: 'cafetal', c: ['guia_cafe smile', 'player smile'], p: ['taza'], fx: 'steam', t: 'Tu café' },
+  m8_cafe_quemado: { b: 'cafetal', c: ['guia_cafe squint', 'player o'], p: ['taza'], fx: 'steam' },
 };
 
 export const M8_VINETAS: Record<string, VinetaBuilder> = {
   ...Object.fromEntries(Object.entries(SPECS).map(([id, spec]) => [id, compose(spec)])),
   m8_fotogram_recuerdo: fotogramRecuerdo,
-  m8_cel_sira: chatVineta('Sira', '#e8a0b8', ['buenos días, chileno ☔', '¿dormiste?']),
-  m8_cel_sira_tinto: chatVineta('Sira', '#e8a0b8', ['buenos días, chileno ☔', '¿qué haces? 🌧️', '¿vamos por un tinto?']),
   m8_boton_11: botonOnce,
   m8_foto_krater: fotoKrater,
   m8_krater_carro: kraterCarro,

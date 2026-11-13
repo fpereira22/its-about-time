@@ -39,6 +39,8 @@ export class DialogueBox implements DialoguePresenter {
   private choicesVisible = false;
   private selected = 0;
   private cursor: Phaser.GameObjects.Graphics | null = null;
+  /** Borde superior de cada opción dentro del cuadro (las largas ocupan dos líneas). */
+  private choiceRows: number[] = [];
 
   constructor(private readonly scene: Phaser.Scene) {
     const panel = scene.add.graphics();
@@ -196,19 +198,30 @@ export class DialogueBox implements DialoguePresenter {
 
   private showChoices(labels: string[]): void {
     this.choiceRoot.removeAll(true);
-    const texts = labels.map((label, i) =>
-      makeText(this.scene, 16, 5 + i * CHOICE_ROW, label, { color: THEME.ink }),
-    );
-    const w = Math.ceil(Math.max(...texts.map((t) => t.width))) + 24;
-    const h = labels.length * CHOICE_ROW + 9;
+    // Una opción larga se parte en dos líneas: el cuadro nunca pasa del ancho de la caja de diálogo.
+    const maxTextW = BOX.w - 24;
+    this.choiceRows = [];
+    let top = 5;
+    const texts = labels.map((label) => {
+      const t = makeText(this.scene, 16, top, label, {
+        color: THEME.ink,
+        lineSpacing: 1,
+        wordWrap: { width: maxTextW, useAdvancedWrap: true },
+      });
+      this.choiceRows.push(top);
+      top += Math.max(CHOICE_ROW, Math.ceil(t.height) + 3);
+      return t;
+    });
+    const w = Math.min(BOX.w, Math.ceil(Math.max(...texts.map((t) => t.width))) + 24);
+    const h = top + 4;
     const bg = this.scene.add.graphics();
     drawPanel(bg, 0, 0, w, h, { radius: 5 });
     this.cursor = this.scene.add.graphics();
     drawTriangle(this.cursor, 'right', THEME.accent, 3);
     this.choiceRoot.add([bg, ...texts, this.cursor]);
 
-    const x = BOX.x + BOX.w - w;
-    const y = BOX.y - h - 4;
+    const x = Math.max(BOX.x, BOX.x + BOX.w - w);
+    const y = Math.max(2, BOX.y - h - 4);
     this.choiceRoot.setPosition(x, y + 4).setAlpha(0).setVisible(true);
     this.scene.tweens.add({ targets: this.choiceRoot, alpha: 1, y, duration: 120, ease: 'Cubic.Out' });
     this.choicesVisible = true;
@@ -219,7 +232,7 @@ export class DialogueBox implements DialoguePresenter {
   private select(i: number): void {
     if (i !== this.selected) playSfx('cursor');
     this.selected = i;
-    this.cursor?.setPosition(9, 5 + i * CHOICE_ROW + 6.5);
+    this.cursor?.setPosition(9, (this.choiceRows[i] ?? 5 + i * CHOICE_ROW) + 6.5);
     this.choiceRoot.list.forEach((obj, idx) => {
       if (obj instanceof Phaser.GameObjects.Text) obj.setColor(idx - 1 === i ? THEME.accentCss : THEME.ink);
     });

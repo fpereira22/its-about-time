@@ -31,6 +31,7 @@ import { WeatherView } from '../systems/Weather';
 import { DarknessView } from '../systems/Darkness';
 import { makeText } from '../ui/theme';
 import { BaseScene } from './BaseScene';
+import { atraccionScene } from './AtraccionScene';
 import type { FutbolResult } from './FutbolScene';
 
 /** NPCs de npcs.json, de src/data/npcs/*.json (uno por misión) y los generados del campus. */
@@ -123,9 +124,11 @@ const FLAG_SIRA_POLERA = 'm7_polera';
  * Misión 8 (Salento): los amigos que caminan contigo en fila, detrás del jugador (flag `m8_sigue_<id>`, el id es
  * también el personaje de sprites.json). Van en este orden y también entran a los interiores.
  */
-const CREW_M8 = ['richi', 'juanpa', 'renzo', 'danilo', 'tami', 'laura'];
-/** Misión 8: todo pasa en un recuerdo. Con esta flag la cámara se ve un poco sepia y con el borde oscuro. */
-const FLAG_MEMORY = 'm8_recuerdo';
+const CREW_M8 = ['richi', 'juanpa', 'renzo', 'danilo', 'danilo_bano', 'tami', 'laura', 'ximena', 'roxane', 'mila'];
+/** Misiones 9 (la fiesta en el cerro) y 10 (el río con Danilo): la misma fila, con sus flags `m9_sigue_<id>` y `m10_sigue_<id>`. */
+const CREW_PREFIXES = ['m8_sigue_', 'm9_sigue_', 'm10_sigue_'];
+/** Misiones 8 y 9: todo pasa en un recuerdo. Con estas flags la cámara se ve un poco sepia y con el borde oscuro. */
+const FLAG_MEMORY = ['m8_recuerdo', 'm9_recuerdo'];
 
 /** Escena del tipo de mapa (overworld/interior) que corresponde a cada `kind`. */
 const SCENE_FOR_KIND = { overworld: 'Overworld', interior: 'Interior' } as const;
@@ -275,7 +278,11 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     // Misión 8: el pool, el pimpón y las atracciones (y el tejo).
     EventSystem.onScene(this, 'open-pool', ({ done }) => this.launchMinigame('Pool', {}, done));
     EventSystem.onScene(this, 'open-pinpon', ({ done }) => this.launchMinigame('Pinpon', {}, done));
-    EventSystem.onScene(this, 'open-atraccion', ({ mode, done }) => this.launchMinigame('Atraccion', { mode }, done));
+    EventSystem.onScene(this, 'open-atraccion', ({ mode, done }) => this.launchMinigame(atraccionScene(mode), { mode }, done));
+    // Misión 9: los juegos de la fiesta.
+    EventSystem.onScene(this, 'open-fiesta', ({ mode, done }) => this.launchMinigame('Fiesta', { mode }, done));
+    // Misión 10: los juegos del río Pance.
+    EventSystem.onScene(this, 'open-rio', ({ mode, photos, done }) => this.launchMinigame('Rio', { mode, photos }, done));
 
     if (!this.scene.isActive('UI')) this.scene.launch('UI');
     this.scene.bringToTop('UI');
@@ -413,7 +420,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
 
   /** El recuerdo (misión 8): un poco de sepia y el borde oscuro, como una foto vieja. Solo con WebGL. */
   private syncMemoryLook(): void {
-    const want = StoryState.hasFlag(FLAG_MEMORY);
+    const want = FLAG_MEMORY.some((f) => StoryState.hasFlag(f));
     const fx = this.renderer.type === Phaser.WEBGL ? this.cameras.main.postFX : undefined;
     if (!fx) return;
     if (want && this.memoryFx.length === 0) {
@@ -818,9 +825,9 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     }
   }
 
-  /** Crea o quita a los amigos que caminan en fila (misión 8), según sus flags `m8_sigue_<id>`. */
+  /** Crea o quita a los amigos que caminan en fila (misiones 8 y 9), según sus flags `m8_sigue_<id>` o `m9_sigue_<id>`. */
   private syncCrew(): void {
-    const want = CREW_M8.filter((id) => StoryState.hasFlag(`m8_sigue_${id}`));
+    const want = CREW_M8.filter((id) => CREW_PREFIXES.some((p) => StoryState.hasFlag(`${p}${id}`)));
     const same = want.length === this.crew.length && want.every((id, i) => this.crew[i].id === id);
     if (same) return;
     const keep = new Map(this.crew.map((c) => [c.id, c.actor]));

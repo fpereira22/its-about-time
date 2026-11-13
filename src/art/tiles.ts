@@ -4,6 +4,8 @@ import { m5Tiles } from './tiles_m5';
 import { m6Tiles } from './tiles_m6';
 import { m7Tiles } from './tiles_m7';
 import { m8Tiles } from './tiles_m8';
+import { m9Tiles } from './tiles_m9';
+import { m10Tiles } from './tiles_m10';
 
 export interface TileDef {
   key: string;
@@ -1813,6 +1815,8 @@ export const TILE_DEFS: TileDef[] = [
   ...m6Tiles(),
   ...m7Tiles(),
   ...m8Tiles(),
+  ...m9Tiles(),
+  ...m10Tiles(),
   ...buildingTiles(),
 ];
 

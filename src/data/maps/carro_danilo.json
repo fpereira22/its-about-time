@@ -1,0 +1,42 @@
+{
+ "id": "carro_danilo",
+ "name": "El carro de Danilo",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 9,
+ "height": 7,
+ "background": "#7cb8e8",
+ "music": "carro_danilo",
+ "legend": {
+  "k": "auto_carroceria",
+  "V": "auto_ventana",
+  "T": "auto_tablero",
+  "s": "auto_asiento",
+  ".": "auto_piso"
+ },
+ "rows": [
+  "kkkkkkkkk",
+  "kVVVVVVVk",
+  "kTs.s...k",
+  "kT......k",
+  "kTs.s...k",
+  "kVVVVVVVk",
+  "kkkkkkkkk"
+ ],
+ "spawns": {
+  "asiento": {
+   "x": 2,
+   "y": 2,
+   "dir": "left"
+  }
+ },
+ "enter": [
+  {
+   "id": "viaje",
+   "dialogue": "m10_carro_go",
+   "if": {
+    "mission": "mission10"
+   }
+  }
+ ]
+}

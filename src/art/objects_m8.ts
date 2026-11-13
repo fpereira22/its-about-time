@@ -63,6 +63,11 @@ export const M8_OBJECTS: Record<string, () => PixelGrid> = {
     g.rect(2, 8, 12, 5, '#f8dc68').rect(2, 4, 2, 4, '#f8dc68').rect(7, 3, 2, 5, '#f8dc68').rect(12, 4, 2, 4, '#f8dc68').rect(4, 10, 8, 1, '#c8303c');
     return g.outline(PAL.outline);
   },
+  cafe_cosecha: () => {
+    const g = new PixelGrid();
+    g.rect(3, 4, 10, 11, '#d8b878').rect(3, 4, 10, 2, '#c8a060').rect(5, 8, 6, 4, '#f4ecd8').rect(6, 9, 1, 1, '#6a3c1c').rect(8, 10, 2, 1, '#6a3c1c').set(9, 9, '#c8303c');
+    return g.outline(PAL.outline);
+  },
   puesto_frutas_obj: () => stall([[2, 11, 3, 3, '#e8c020'], [6, 11, 3, 3, '#5c1c3c'], [10, 11, 4, 3, '#e86c1c']], '#c8303c'),
   puesto_queso_obj: () => stall([[2, 11, 5, 3, '#f8f0c8'], [8, 11, 6, 3, '#f0e0a0']], '#2c64c0'),
   puesto_cafe_obj: () => stall([[2, 11, 4, 4, '#8c5a34'], [7, 11, 4, 4, '#6a3c1c'], [12, 11, 3, 4, '#c8a070']], '#2c9c58'),

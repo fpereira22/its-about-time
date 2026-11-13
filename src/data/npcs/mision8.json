@@ -1660,6 +1660,16 @@
     }
   },
   {
+    "id": "m8p_ciclon",
+    "map": "parque_cafe",
+    "x": 68,
+    "y": 17,
+    "dialogue": "m8_ciclon",
+    "if": {
+      "mission": "mission08"
+    }
+  },
+  {
     "id": "m8p_guadual",
     "map": "parque_cafe",
     "x": 50,

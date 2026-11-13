@@ -1,0 +1,823 @@
+{
+ "m10_intro": {
+  "start": "n12",
+  "nodes": {
+   "n1": {
+    "text": "Danilo invitó solo a ti. Eso, viniendo de él, es casi una declaración.",
+    "effects": [
+     {
+      "vineta": "m10_depa_manana"
+     },
+     {
+      "setFlag": "m10_invitado"
+     },
+     {
+      "objective": "Alístate: pantaloneta, toalla y bloqueador"
+     }
+    ]
+   },
+   "n3": {
+    "text": "Le mandas un pulgar arriba. Él te manda tres emojis de ola. 🌊🌊🌊",
+    "effects": [
+     {
+      "vineta": "m10_wa_danilo_ok"
+     }
+    ],
+    "next": "n1"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Bueno, la ciencia no. Lo digo yo. Pero yo estudié psicología. Es casi lo mismo.",
+    "effects": [
+     {
+      "vineta": "m10_wa_danilo_ok"
+     }
+    ],
+    "next": "n1"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Mejor. El río cura todo: el guayabo, el sueño y el despecho. Lo dice la ciencia.",
+    "effects": [
+     {
+      "vineta": "m10_wa_danilo_ok"
+     }
+    ],
+    "next": "n4"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "Justamente por este calor, parce. El agua del Pance baja de los Farallones: viene helada. Vas a ver.",
+    "effects": [
+     {
+      "vineta": "m10_wa_danilo_ok"
+     }
+    ],
+    "next": "n1"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Paso por vos en veinte. Alistáte: pantaloneta, toalla y bloqueador. Vojabés.",
+    "effects": [
+     {
+      "vineta": "m10_wa_danilo_1"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¡Vamos! Ya me alisto.»",
+      "goto": "n3"
+     },
+     {
+      "label": "«Parce, no he dormido nada...»",
+      "goto": "n5"
+     },
+     {
+      "label": "«¿Al río? ¿Hoy? ¿Con este calor?»",
+      "goto": "n6"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "Ah ve, chileno. ¿Vivo? Voy pa' Pance, al río. Los demás están muertos. Solo vos y yo.",
+    "effects": [
+     {
+      "vineta": "m10_wa_danilo_1"
+     }
+    ],
+    "next": "n2"
+   },
+   "n8": {
+    "text": "Bzzz. WhatsApp. Danilo.",
+    "effects": [
+     {
+      "vineta": "m10_wa_danilo_1"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m10_danilo_1"
+     }
+    ],
+    "next": "n7"
+   },
+   "n9": {
+    "text": "La miras por quinta vez. Sigue diciendo lo mismo.",
+    "effects": [
+     {
+      "vineta": "m10_cel_sonrisa"
+     }
+    ],
+    "next": "n8"
+   },
+   "n10": {
+    "text": "En la pantalla del celular sigue la notificación de la madrugada: «laaurii_14 comenzó a seguirte».",
+    "effects": [
+     {
+      "vineta": "m9_fotogram_sigue"
+     }
+    ],
+    "next": "n9"
+   },
+   "n11": {
+    "text": "No dormiste. Ni un minuto. Sigues en el sofá con la ropa de la fiesta y el pelo con olor a cloro.",
+    "effects": [
+     {
+      "vineta": "m10_sofa_ojeras"
+     }
+    ],
+    "next": "n10"
+   },
+   "n12": {
+    "text": "Domingo, 9:40 de la mañana. El sol de Cali ya entra de frente por el ventanal del 805.",
+    "effects": [
+     {
+      "vineta": "m10_depa_manana"
+     }
+    ],
+    "next": "n11"
+   }
+  }
+ },
+ "m10_closet": {
+  "start": "n1",
+  "nodes": {
+   "n2": {
+    "text": "El clóset. La ropa de la fiesta ya está hecha una bola en el rincón, que es su lugar.",
+    "effects": [
+     {
+      "vineta": "m10_closet"
+     }
+    ]
+   },
+   "n4": {
+    "text": "Pantaloneta puesta. Short encima. Chanclas. Listo para el Pance.",
+    "effects": [
+     {
+      "vineta": "m10_pantaloneta"
+     },
+     {
+      "event": "alistado_m10"
+     }
+    ]
+   },
+   "n3": {
+    "text": "¿Te la pones debajo del short?",
+    "effects": [
+     {
+      "vineta": "m10_closet"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Ponérsela",
+      "effects": [
+       {
+        "setFlag": "m10_pantaloneta"
+       },
+       {
+        "sfx": "item"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "Todavía no"
+     }
+    ]
+   },
+   "n5": {
+    "text": "El clóset del 805. Abajo de todo, la pantaloneta azul de la piscina de la U.",
+    "effects": [
+     {
+      "vineta": "m10_closet"
+     }
+    ],
+    "next": "n3"
+   },
+   "n1": {
+    "branches": [
+     {
+      "goto": "n2",
+      "if": {
+       "flag": "m10_pantaloneta"
+      }
+     },
+     {
+      "goto": "n5"
+     }
+    ]
+   }
+  }
+ },
+ "m10_toalla": {
+  "start": "n1",
+  "nodes": {
+   "n1": {
+    "text": "Tu toalla naranja, la de rayas. Todavía huele a la piscina de la U.",
+    "effects": [
+     {
+      "vineta": "m10_toalla"
+     },
+     {
+      "giveItem": "toalla_rio"
+     },
+     {
+      "setFlag": "m10_toalla"
+     },
+     {
+      "event": "alistado_m10"
+     }
+    ]
+   }
+  }
+ },
+ "m10_bloqueador": {
+  "start": "n1",
+  "nodes": {
+   "n1": {
+    "text": "Bloqueador factor 50. En Cali el sol del mediodía no perdona, y menos a un chileno.",
+    "effects": [
+     {
+      "vineta": "m10_bloqueador"
+     },
+     {
+      "giveItem": "bloqueador"
+     },
+     {
+      "setFlag": "m10_bloqueador"
+     },
+     {
+      "event": "alistado_m10"
+     }
+    ]
+   }
+  }
+ },
+ "m10_listo": {
+  "start": "n2",
+  "nodes": {
+   "n1": {
+    "text": "Igual sonríes. laaurii_14. El 14.",
+    "effects": [
+     {
+      "vineta": "m10_cel_sonrisa"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Pantaloneta, toalla y bloqueador. Te miras en el espejo del baño: tienes cara de no haber dormido. Porque no dormiste.",
+    "effects": [
+     {
+      "vineta": "m10_espejo"
+     }
+    ],
+    "next": "n1"
+   }
+  }
+ },
+ "m10_timbre": {
+  "start": "n5",
+  "nodes": {
+   "n1": {
+    "text": "Bzzz. Danilo otra vez: «Sótano. Puesto de visitantes. Bajá ya, que se nos llena el río».",
+    "effects": [
+     {
+      "vineta": "m10_wa_danilo_2"
+     },
+     {
+      "message": "m10_danilo_2"
+     },
+     {
+      "setFlag": "m10_timbre"
+     },
+     {
+      "objective": "Baja al sótano en el ascensor (botón S)"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Portería",
+    "text": "Que dice que ya está en el sótano, joven. Que baje. Que en visitantes.",
+    "effects": [
+     {
+      "vineta": "m10_citofono"
+     }
+    ],
+    "next": "n1"
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "(de fondo) ¡Decíle que bajé al sótano! ¡Que estoy parqueado en visitantes!",
+    "effects": [
+     {
+      "vineta": "m10_citofono"
+     }
+    ],
+    "next": "n2"
+   },
+   "n4": {
+    "speaker": "Portería",
+    "text": "Joven, buenos días. Lo busca un muchacho de gafas, que dice que es Danilo.",
+    "effects": [
+     {
+      "vineta": "m10_citofono"
+     }
+    ],
+    "next": "n3"
+   },
+   "n5": {
+    "text": "¡Riiiing! El citófono del depa.",
+    "effects": [
+     {
+      "vineta": "m10_citofono"
+     },
+     {
+      "sfx": "bell"
+     }
+    ],
+    "next": "n4"
+   }
+  }
+ },
+ "m10_ascensor_8": {
+  "start": "n1",
+  "nodes": {
+   "n2": {
+    "text": "El ascensor del piso 8. Todavía no: Danilo dijo que pasaba en veinte, y no estás listo.",
+    "effects": [
+     {
+      "vineta": "m10_boton_s"
+     }
+    ]
+   },
+   "n3": {
+    "text": "Ya llegaste. Lo único que falta es la cama.",
+    "effects": [
+     {
+      "vineta": "m10_boton_s"
+     }
+    ]
+   },
+   "n4": {
+    "text": "El ascensor. Debajo del 1 hay un botón gris que casi nunca aprietas: «S».",
+    "effects": [
+     {
+      "vineta": "m10_boton_s"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Bajar al sótano",
+      "effects": [
+       {
+        "event": "ascensor_m10",
+        "data": {
+         "to": "sotano"
+        }
+       }
+      ]
+     },
+     {
+      "label": "Quedarte en el piso"
+     }
+    ]
+   },
+   "n1": {
+    "branches": [
+     {
+      "goto": "n2",
+      "if": {
+       "notFlag": "m10_timbre"
+      }
+     },
+     {
+      "goto": "n3",
+      "if": {
+       "flag": "m10_vuelta"
+      }
+     },
+     {
+      "goto": "n4"
+     }
+    ]
+   }
+  }
+ },
+ "m10_ascensor_sotano": {
+  "start": "n1",
+  "nodes": {
+   "n2": {
+    "text": "El ascensor del sótano. Arriba, en el 805, te espera la cama.",
+    "effects": [
+     {
+      "vineta": "m10_boton_s"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Subir al 8",
+      "effects": [
+       {
+        "event": "ascensor_m10",
+        "data": {
+         "to": "piso8"
+        }
+       }
+      ]
+     },
+     {
+      "label": "Todavía no"
+     }
+    ]
+   },
+   "n3": {
+    "text": "Danilo te está esperando en el puesto de visitantes. Arriba no se te quedó nada.",
+    "effects": [
+     {
+      "vineta": "m10_boton_s"
+     }
+    ]
+   },
+   "n1": {
+    "branches": [
+     {
+      "goto": "n2",
+      "if": {
+       "flag": "m10_vuelta"
+      }
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   }
+  }
+ },
+ "m10_sotano": {
+  "start": "n7",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Subite, que el río no espera. Y el Pance un domingo después de las once es la Calle Quinta con agua.",
+    "effects": [
+     {
+      "vineta": "m10_sotano_danilo"
+     },
+     {
+      "setFlag": "m10_sotano"
+     },
+     {
+      "objective": "Súbete al carro de Danilo"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "Así me gusta. El río te va a resucitar.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa_sotano"
+     }
+    ],
+    "next": "n1"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Esa. Esa misma. Después me contás, en el carro. Tenemos una hora de terapia gratis.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa_sotano"
+     }
+    ],
+    "next": "n1"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "No me digás. Tenés la cara de no haber dormido, la camisa de anoche debajo del short y una sonrisa rarísima.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_gafas"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Ni un minuto.»",
+      "goto": "n3"
+     },
+     {
+      "label": "«¿Qué sonrisa?»",
+      "goto": "n4"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "¡Ah ve! Llegó el sobreviviente. ¿Dormiste algo?",
+    "effects": [
+     {
+      "vineta": "m10_danilo_gafas"
+     }
+    ],
+    "next": "n2"
+   },
+   "n6": {
+    "text": "Al fondo, en el puesto de visitantes, un carrito gris con una calcomanía de Cali en el vidrio de atrás. Y apoyado en la puerta...",
+    "effects": [
+     {
+      "vineta": "m10_sotano_danilo"
+     }
+    ],
+    "next": "n5"
+   },
+   "n7": {
+    "text": "El sótano del Bobo. Huele a concreto frío, a llanta y a carro recién lavado.",
+    "effects": [
+     {
+      "vineta": "m10_sotano"
+     }
+    ],
+    "next": "n6"
+   }
+  }
+ },
+ "m10_danilo_sotano": {
+  "start": "n1",
+  "nodes": {
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Andá a dormir, parce. Es una orden. Bueno... una sugerencia terapéutica.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_gafas"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "Puerta del copiloto, chileno. La de atrás está llena de flotadores de mi sobrino.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_gafas"
+     }
+    ]
+   },
+   "n1": {
+    "branches": [
+     {
+      "goto": "n2",
+      "if": {
+       "flag": "m10_vuelta"
+      }
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   }
+  }
+ },
+ "m10_danilo_rio": {
+  "start": "n1",
+  "nodes": {
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Bajemos a la playa del Puente 3, parce. Por el puente de madera.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_brazos"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "El chorro está río arriba, a la izquierda de la playa. Andá, que te estoy viendo.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "El Mono está abajo del Puente 3 con los neumáticos. Es el de la gorra.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_brazos"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Al puente, al puente. Que se nos va la luz buena para las fotos.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_brazos"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "Sentémonos un rato en ese piedrón, que el sol está rico.",
+    "effects": [
+     {
+      "vineta": "m10_piedra_sentados"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "Doña Nelly está pasando el puente, donde sale el humito. Vamos, que me muero de hambre.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_brazos"
+     }
+    ]
+   },
+   "n8": {
+    "speaker": "Danilo",
+    "text": "Qué domingo, parce. Qué domingo.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ]
+   },
+   "n1": {
+    "branches": [
+     {
+      "goto": "n2",
+      "if": {
+       "notFlag": "m10_playa"
+      }
+     },
+     {
+      "goto": "n3",
+      "if": {
+       "notFlag": "m10_chorro"
+      }
+     },
+     {
+      "goto": "n4",
+      "if": {
+       "notFlag": "m10_corriente"
+      }
+     },
+     {
+      "goto": "n5",
+      "if": {
+       "notFlag": "m10_puente"
+      }
+     },
+     {
+      "goto": "n6",
+      "if": {
+       "notFlag": "m10_recuerdos"
+      }
+     },
+     {
+      "goto": "n7",
+      "if": {
+       "notFlag": "m10_comio"
+      }
+     },
+     {
+      "goto": "n8"
+     }
+    ]
+   }
+  }
+ },
+ "m10_senora_olla": {
+  "start": "n2",
+  "nodes": {
+   "n1": {
+    "text": "Te pasa una presa de pollo en una servilleta. No es negociable.",
+    "effects": [
+     {
+      "vineta": "m10_senora_olla"
+     },
+     {
+      "sfx": "eat"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Señora",
+    "text": "¿Usted es el amigo de Danilito? ¡Coma, mijo, coma! ¡Que aquí sobra!",
+    "effects": [
+     {
+      "vineta": "m10_senora_olla"
+     }
+    ],
+    "next": "n1"
+   }
+  }
+ },
+ "m10_parlante": {
+  "start": "n1",
+  "nodes": {
+   "n1": {
+    "speaker": "Señor del parlante",
+    "text": "¡Esto es salsa, mijo! ¡Salsa de la de antes! ¡La de ahora es puro ruido!",
+    "effects": [
+     {
+      "vineta": "m10_parlante"
+     }
+    ]
+   }
+  }
+ },
+ "m10_nino": {
+  "start": "n1",
+  "nodes": {
+   "n1": {
+    "speaker": "Niño",
+    "text": "¡Mire, mire! ¡Yo me tiro desde esa piedra! ¡Mire! ...No, espere. No estaba mirando. ¡Otra vez!",
+    "effects": [
+     {
+      "vineta": "m10_nino"
+     }
+    ]
+   }
+  }
+ },
+ "m10_mango": {
+  "start": "n1",
+  "nodes": {
+   "n1": {
+    "speaker": "Vendedor",
+    "text": "¡Mango biche con sal y limón! ¡Mango biche! ¡El que no come mango biche en el Pance no vino al Pance!",
+    "effects": [
+     {
+      "vineta": "m10_mango"
+     }
+    ]
+   }
+  }
+ },
+ "m10_cuidador_npc": {
+  "start": "n1",
+  "nodes": {
+   "n1": {
+    "speaker": "Cuidador",
+    "text": "Tranquilo, mono, que su carro está en buenas manos. Las mías.",
+    "effects": [
+     {
+      "vineta": "m10_cuidador"
+     }
+    ]
+   }
+  }
+ },
+ "m10_carro_npc": {
+  "start": "n1",
+  "nodes": {
+   "n2": {
+    "text": "El carrito gris de Danilo, cubierto de polvo de la trocha.",
+    "effects": [
+     {
+      "vineta": "m10_sotano_danilo"
+     }
+    ]
+   },
+   "n3": {
+    "text": "El carrito gris de Danilo. Adentro, los flotadores del sobrino y un pino de olor «brisa marina».",
+    "effects": [
+     {
+      "vineta": "m10_sotano_danilo"
+     }
+    ]
+   },
+   "n1": {
+    "branches": [
+     {
+      "goto": "n2",
+      "if": {
+       "flag": "m10_historia"
+      }
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   }
+  }
+ },
+ "m10_danilo_carro": {
+  "start": "n1",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Mirá la vía, chileno, no a mí. Bueno, mirá lo que querás. Pero cantá.",
+    "effects": [
+     {
+      "vineta": "m10_carro_radio"
+     }
+    ]
+   }
+  }
+ }
+}

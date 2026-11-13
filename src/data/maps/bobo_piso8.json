@@ -172,6 +172,19 @@
     "flag": "m7_ascensor_juntos",
     "notFlag": "m7_vuelta_depa"
    }
+  },
+  {
+   "id": "m10_cama",
+   "x": 13,
+   "y": 10,
+   "w": 5,
+   "h": 3,
+   "event": "dormir_m10",
+   "if": {
+    "mission": "mission10",
+    "flag": "m10_despedida",
+    "notFlag": "m10_durmio"
+   }
   }
  ],
  "enter": [
@@ -199,6 +212,15 @@
    "if": {
     "mission": "mission08",
     "flag": "m8_presente"
+   }
+  },
+  {
+   "id": "m9_casa",
+   "dialogue": "m9_casa_llega",
+   "once": true,
+   "if": {
+    "mission": "mission09",
+    "flag": "m9_en_bobo"
    }
   }
  ],

@@ -71,7 +71,10 @@
     "sira": {
       "name": "Sira",
       "color": "#e8a0b8",
-      "callable": false
+      "callable": false,
+      "hideIf": {
+        "flag": "m8_recuerdo"
+      }
     },
     "intercambio": {
       "name": "Intercambio PUCC 🌎",
@@ -84,6 +87,10 @@
     "tami": {
       "name": "Tami",
       "color": "#e8607a"
+    },
+    "danilo": {
+      "name": "Danilo",
+      "color": "#3c9c5c"
     }
   },
   "messages": {
@@ -588,10 +595,6 @@
       "from": "sira",
       "text": "Estoy abajo. Don Wilmer me preguntó mi signo y si «vengo en son de paz». Subo."
     },
-    "m8_sira_buenosdias": {
-      "from": "sira",
-      "text": "buenos días, chileno ☔ ¿dormiste?"
-    },
     "m8_grupo_bus": {
       "from": "intercambio",
       "text": "Danilo: Bus 1:30 pm, plataforma 14 de la terminal. El que llegue tarde paga las polas 🍻"
@@ -604,9 +607,17 @@
       "from": "tami",
       "text": "¿Dónde se metieron vos y Danilo? 👀"
     },
-    "m8_sira_tinto": {
-      "from": "sira",
-      "text": "¿qué haces? 🌧️ ¿vamos por un tinto?"
+    "m10_danilo_1": {
+      "from": "danilo",
+      "text": "Ah ve, chileno. ¿Vivo? Voy pa' Pance, al río. Los demás están muertos. Solo vos y yo. Paso por vos en veinte: pantaloneta, toalla y bloqueador 🌊"
+    },
+    "m10_danilo_2": {
+      "from": "danilo",
+      "text": "Sótano. Puesto de visitantes. Bajá ya, que se nos llena el río 🚗"
+    },
+    "m10_danilo_3": {
+      "from": "danilo",
+      "text": "Llegué. Gracias por el domingo, parce. Dormí. Es una orden médica... bueno, psicológica 😂"
     }
   },
   "calls": {

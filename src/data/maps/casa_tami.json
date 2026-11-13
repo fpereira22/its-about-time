@@ -1,0 +1,319 @@
+{
+ "id": "casa_tami",
+ "name": "Casa de Tami (Cristo Rey)",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 36,
+ "height": 30,
+ "region": "cali",
+ "music": "fiesta",
+ "skyline": true,
+ "background": "#0c1428",
+ "legend": {
+  "M": "monte",
+  "r": "trocha_cristo",
+  "G": "porton",
+  "\"": "pasto",
+  "T": "arbol",
+  "y": "palmera",
+  "p": "parqueadero",
+  "q": "parqueadero_auto",
+  "Q": "parqueadero_auto_b",
+  "P": "adoquin",
+  "^": "muro_techo",
+  "W": "cali_muro",
+  "v": "cali_ventana",
+  "c": "cali_cuadro",
+  ".": "cali_piso",
+  "R": "refri",
+  "K": "cocina",
+  "k": "mueble_cocina",
+  "L": "lavaplatos",
+  "X": "barra",
+  "s": "sofa",
+  "Z": "parlante",
+  "B": "beerpong_a",
+  "b": "beerpong_b",
+  "C": "mesa_cacho",
+  "E": "planta_terraza",
+  "d": "deck_tami",
+  "g": "pergola",
+  "O": "pergola_poste",
+  "H": "parrilla",
+  "n": "nevera_portatil",
+  "m": "mesa_terraza",
+  "h": "silla_terraza",
+  "f": "piso_piscina",
+  "w": "agua_piscina",
+  "z": "reposera",
+  "U": "sombrilla",
+  "-": "baranda_vidrio",
+  "#": "vista_ciudad"
+ },
+ "rows": [
+  "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+  "MMrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrMM",
+  "MMrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrMM",
+  "MMMMMMMMMMMMMMMMGGMMMMMMMMMMMMMMMMMM",
+  "M\"pqpQpqpQpp\"T\"\"PP\"\"\"\"\"\"\"\"T\"\"y\"\"\"T\"M",
+  "M\"pppppppppp\"\"\"\"PP\"\"T\"\"y\"\"\"\"\"\"\"T\"\"\"M",
+  "M\"pppppppppp\"\"\"\"PP\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"M",
+  "M\"\"\"\"\"\"\"\"\"\"\"^^^^PP^^^^^^^^^^^^^^^^\"M",
+  "M\"\"\"\"\"\"\"\"\"\"\"WWvW..WWvWWWcWvWWWvWWW\"M",
+  "M\"T\"\"\"\"\"\"\"y\"WZ....Z........RKkLkkW\"M",
+  "M\"\"\"\"\"\"\"\"\"\"\"W....................W\"M",
+  "M\"\"\"\"\"\"\"\"\"\"\"W.......Bb......XXX..W\"M",
+  "M\"\"T\"\"\"\"\"\"\"\"Ws...................W\"M",
+  "M\"\"\"\"\"\"\"\"\"\"\"W.sss........C.......W\"M",
+  "M\"T\"\"\"\"\"\"\"\"\"WE..................EW\"M",
+  "M\"\"\"\"\"\"\"\"\"\"\"WWWWWWWWWW..WWWWWWWWWW\"M",
+  "M\"\"\"\"\"\"\"\"\"\"\"\"ddddddddd\"\"\"\"\"\"\"\"\"\"E\"\"M",
+  "M\"OgggOggggO\"dHnddddmd\"fffffffffff\"M",
+  "M\"gggggggggg\"dddddddhd\"fwwwwwwwwwf\"M",
+  "M\"gggggggggg\"ddddddddd\"fwwwwwwwwwf\"M",
+  "M\"gggggggggg\"ddddddddd\"fwwwwwwwwwf\"M",
+  "M\"gggggggggg\"ddddddddd\"fwwwwwwwwwf\"M",
+  "M\"OgggOggggO\"ddddddddd\"fwwwwwwwwwf\"M",
+  "M\"\"\"\"\"\"\"\"\"\"\"\"ddddddddd\"fffffffffff\"M",
+  "M\"\"\"\"\"\"\"\"\"\"\"\"ddddddddd\"\"z\"z\"z\"U\"\"\"\"M",
+  "M----------------------------------M",
+  "####################################",
+  "####################################",
+  "####################################",
+  "####################################"
+ ],
+ "zones": [
+  {
+   "name": "Vía a Cristo Rey",
+   "subtitle": "Los Cristales · Cali",
+   "x": 2,
+   "y": 1,
+   "w": 32,
+   "h": 2
+  },
+  {
+   "name": "Casa de Tami",
+   "subtitle": "La sala (y el beer pong)",
+   "x": 13,
+   "y": 9,
+   "w": 20,
+   "h": 6
+  },
+  {
+   "name": "La pérgola",
+   "subtitle": "Casa de Tami",
+   "x": 2,
+   "y": 17,
+   "w": 10,
+   "h": 6
+  },
+  {
+   "name": "La piscina",
+   "subtitle": "Casa de Tami",
+   "x": 23,
+   "y": 17,
+   "w": 11,
+   "h": 8
+  },
+  {
+   "name": "El mirador",
+   "subtitle": "Toda Cali, allá abajo",
+   "x": 13,
+   "y": 23,
+   "w": 9,
+   "h": 2
+  }
+ ],
+ "lights": [
+  {
+   "x": 2,
+   "y": 17.3,
+   "w": 10
+  },
+  {
+   "x": 2,
+   "y": 21.4,
+   "w": 10
+  },
+  {
+   "x": 13,
+   "y": 9.3,
+   "w": 20
+  },
+  {
+   "x": 23,
+   "y": 16.6,
+   "w": 11
+  }
+ ],
+ "labels": [
+  {
+   "x": 16.5,
+   "y": 3.4,
+   "text": "TAMI",
+   "color": "#f8dc68"
+  }
+ ],
+ "spawns": {
+  "llegada": {
+   "x": 16,
+   "y": 2,
+   "dir": "down"
+  },
+  "entrada": {
+   "x": 16,
+   "y": 9,
+   "dir": "down"
+  },
+  "sala": {
+   "x": 18,
+   "y": 12,
+   "dir": "left"
+  },
+  "beerpong": {
+   "x": 19,
+   "y": 11,
+   "dir": "right"
+  },
+  "cacho": {
+   "x": 24,
+   "y": 13,
+   "dir": "right"
+  },
+  "patio": {
+   "x": 22,
+   "y": 16,
+   "dir": "down"
+  },
+  "mirador": {
+   "x": 17,
+   "y": 24,
+   "dir": "down"
+  },
+  "pergola": {
+   "x": 7,
+   "y": 20,
+   "dir": "down"
+  },
+  "piscina": {
+   "x": 27,
+   "y": 17,
+   "dir": "down"
+  },
+  "auto": {
+   "x": 6,
+   "y": 5,
+   "dir": "up"
+  }
+ },
+ "triggers": [
+  {
+   "id": "mirador",
+   "x": 13,
+   "y": 24,
+   "w": 9,
+   "h": 1,
+   "event": "mirador_m9",
+   "if": {
+    "mission": "mission09",
+    "flag": "m9_en_casa",
+    "notFlag": "m9_mirador"
+   }
+  },
+  {
+   "id": "piscina",
+   "x": 23,
+   "y": 17,
+   "w": 11,
+   "h": 1,
+   "event": "piscina_m9",
+   "if": {
+    "mission": "mission09",
+    "flag": "m9_mirador",
+    "notFlag": "m9_piscina"
+   }
+  },
+  {
+   "id": "piscina_lado",
+   "x": 23,
+   "y": 18,
+   "w": 1,
+   "h": 6,
+   "event": "piscina_m9",
+   "if": {
+    "mission": "mission09",
+    "flag": "m9_mirador",
+    "notFlag": "m9_piscina"
+   }
+  },
+  {
+   "id": "auto",
+   "x": 2,
+   "y": 5,
+   "w": 10,
+   "h": 2,
+   "event": "auto_m9",
+   "if": {
+    "mission": "mission09",
+    "flag": [
+     "m9_beso_roxane",
+     "m9_piscina"
+    ],
+    "notFlag": "m9_auto",
+    "notItem": "cel_laura"
+   }
+  },
+  {
+   "id": "auto_cel",
+   "x": 2,
+   "y": 6,
+   "w": 10,
+   "h": 1,
+   "event": "dialogo:m9_auto_cel",
+   "if": {
+    "mission": "mission09",
+    "flag": [
+     "m9_beso_roxane",
+     "m9_piscina"
+    ],
+    "hasItem": "cel_laura"
+   }
+  }
+ ],
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m9_casa_tami_llega",
+   "if": {
+    "mission": "mission09",
+    "notFlag": "m9_en_casa"
+   }
+  }
+ ],
+ "crowd": {
+  "lines": "fiesta",
+  "areas": [
+   {
+    "x": 19,
+    "y": 13,
+    "w": 5,
+    "h": 2,
+    "count": 3
+   },
+   {
+    "x": 3,
+    "y": 18,
+    "w": 8,
+    "h": 3,
+    "count": 4
+   },
+   {
+    "x": 13,
+    "y": 19,
+    "w": 8,
+    "h": 3,
+    "count": 3
+   }
+  ]
+ }
+}

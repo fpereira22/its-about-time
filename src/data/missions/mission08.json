@@ -389,6 +389,18 @@
     {
       "flag": "secreto_m8_monona",
       "name": "Moñona en el tejo"
+    },
+    {
+      "flag": "secreto_m8_renzo_mojado",
+      "name": "Renzo se mojó en los Rápidos"
+    },
+    {
+      "flag": "secreto_m8_selfie_flor",
+      "name": "Selfie con Flor en la Rueda"
+    },
+    {
+      "flag": "secreto_m8_cafe",
+      "name": "Un café de cinco estrellas"
     }
   ],
   "endings": [

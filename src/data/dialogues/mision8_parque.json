@@ -976,12 +976,29 @@
   "start": "n0",
   "nodes": {
    "n0": {
-    "text": "La Torre Mirador: arriba se ve todo el parque, los cafetales en terrazas y, lejísimos, el nevado del Ruiz asomándose entre las nubes.",
+    "text": "La Torre Mirador: arriba se ve todo el parque, los cafetales en terrazas y, lejísimos, el Nevado del Ruiz asomándose entre las nubes.",
     "effects": [
      {
       "vineta": "m8_torre_vista"
      }
+    ],
+    "choices": [
+     {
+      "label": "Sacar fotos con el celular",
+      "effects": [
+       {
+        "event": "torre_m8"
+       }
+      ]
+     },
+     {
+      "label": "Solo mirar",
+      "goto": "mirar"
+     }
     ]
+   },
+   "mirar": {
+    "text": "Te quedas mirando un rato. Sin celular. Se siente raro. Se siente bien."
    }
   }
  },
@@ -989,16 +1006,26 @@
   "start": "n0",
   "nodes": {
    "n0": {
-    "text": "El Recorrido Cafetero: matas de café en fila, con granos rojos, amarillos y verdes. Un guía con sombrero aguadeño explica el proceso.",
+    "text": "El Recorrido Cafetero: matas de café en fila, con granos rojos, amarillos y verdes. Un guía con sombrero aguadeño y carriel, don Arnulfo, explica el proceso.",
     "effects": [
      {
       "vineta": "m8_cafetal"
      }
     ],
-    "next": "n1"
+    "branches": [
+     {
+      "goto": "hecho",
+      "if": {
+       "flag": "m8_cafe"
+      }
+     },
+     {
+      "goto": "n1"
+     }
+    ]
    },
    "n1": {
-    "speaker": "Guía",
+    "speaker": "Don Arnulfo",
     "text": "A ver, los extranjeros: ¿qué color tiene el grano de café cuando ya está para coger?",
     "choices": [
      {
@@ -1021,12 +1048,54 @@
     ]
    },
    "bien": {
-    "speaker": "Guía",
-    "text": "¡Bien! Rojito, rojito. Se coge a mano, uno por uno, y por eso el café de aquí es el mejor del mundo. Bueno, eso dicen los de aquí."
+    "speaker": "Don Arnulfo",
+    "text": "¡Bien! Rojito, rojito. Se coge a mano, uno por uno, y por eso el café de aquí es el mejor del mundo. Bueno, eso dicen los de aquí.",
+    "next": "oferta"
    },
    "mal": {
-    "speaker": "Guía",
-    "text": "¡No, mijo! Rojo, como una cereza. Por eso se llama «cereza» el fruto del café. Al tinto le falta mucho: secar, trillar, tostar, moler..."
+    "speaker": "Don Arnulfo",
+    "text": "¡No, mijo! Rojo, como una cereza. Por eso se llama «cereza» el fruto del café. Al tinto le falta mucho: secar, trillar, tostar, moler...",
+    "next": "oferta"
+   },
+   "oferta": {
+    "speaker": "Don Arnulfo",
+    "text": "¿Y si mejor lo hacen ustedes? Siembran un colino, cogen, despulpan, tuestan, muelen y cuelan. Y se toman su propio tinto. El que quede bueno, se lo lleva.",
+    "choices": [
+     {
+      "label": "Hacer el recorrido completo",
+      "effects": [
+       {
+        "event": "cafe_m8"
+       }
+      ]
+     },
+     {
+      "label": "Otro día",
+      "goto": "otro"
+     }
+    ]
+   },
+   "otro": {
+    "speaker": "Don Arnulfo",
+    "text": "Ahí queda el cafetal, mijo. El café no se va a ningún lado."
+   },
+   "hecho": {
+    "speaker": "Don Arnulfo",
+    "text": "¡El caficultor chileno! ¿Otra tandita? Esta vez tueste con más cariño.",
+    "choices": [
+     {
+      "label": "Otra tanda",
+      "effects": [
+       {
+        "event": "cafe_m8"
+       }
+      ]
+     },
+     {
+      "label": "Ya tengo mi café",
+      "goto": "otro"
+     }
+    ]
    }
   }
  },
@@ -1053,7 +1122,17 @@
       "vineta": "m8_show_cafe"
      }
     ],
-    "next": "n1"
+    "branches": [
+     {
+      "goto": "otra",
+      "if": {
+       "flag": "m8_show_bailo"
+      }
+     },
+     {
+      "goto": "n1"
+     }
+    ]
    },
    "n1": {
     "text": "Una bailarina baja de la tarima y te tiende la mano. Tami grita: «¡Que baile el chileno!». Danilo: «¡Ah ve, exposición! ¡Es terapia de exposición, parce!»",
@@ -1062,25 +1141,13 @@
       "label": "Subir a bailar",
       "effects": [
        {
-        "setFlag": "m8_show_bailo"
+        "event": "show_m8"
        }
-      ],
-      "goto": "baila"
+      ]
      },
      {
       "label": "Esconderte detrás de Richi",
       "goto": "esconde"
-     }
-    ]
-   },
-   "baila": {
-    "text": "Bailas un pasillo con una chapolera de verdad. No sabes los pasos. Ella te los dice al oído: «un, dos, tres, vuelta». El público aplaude. Tami aplaude más fuerte que todos.",
-    "effects": [
-     {
-      "vineta": "m8_show_baile"
-     },
-     {
-      "setFlag": "m8_tami_show"
      }
     ]
    },
@@ -1094,6 +1161,26 @@
       "setFlag": "secreto_m8_richi_baila"
      }
     ]
+   },
+   "otra": {
+    "text": "La bailarina te reconoce desde la tarima: «¡El chileno! ¿Otro pasillo?»",
+    "choices": [
+     {
+      "label": "Otro pasillo",
+      "effects": [
+       {
+        "event": "show_m8"
+       }
+      ]
+     },
+     {
+      "label": "Aplaudir desde la silla",
+      "goto": "aplaude"
+     }
+    ]
+   },
+   "aplaude": {
+    "text": "Aplaudes en el uno, dos, tres. Tami te corrige: «En el uno, chileno. Solo en el uno.»"
    }
   }
  },
@@ -1113,6 +1200,12 @@
       "effects": [
        {
         "sfx": "elevator"
+       },
+       {
+        "event": "teleferico_m8",
+        "data": {
+         "post": "m8_teleferico_post_e"
+        }
        }
       ],
       "goto": "cruzar"
@@ -1128,26 +1221,6 @@
     "effects": [
      {
       "vineta": "m8_teleferico_ida"
-     }
-    ],
-    "next": "n2"
-   },
-   "n2": {
-    "text": "Abajo, el cañón: el río como una cinta café, el bosque de guadua, los techos rojos de las atracciones. Las otras cabinas pasan en sentido contrario y la gente saluda.",
-    "next": "n3"
-   },
-   "n3": {
-    "text": "Renzo cierra los ojos todo el viaje. «Avísenme cuando lleguemos, causa.» Juanpa le toma una foto. Es la foto del viaje.",
-    "next": "n4"
-   },
-   "n4": {
-    "text": "La cabina frena en la estación del otro lado. Plaza principal: la Avenida de las Banderas y el Barco del Café.",
-    "effects": [
-     {
-      "warp": {
-       "map": "parque_cafe",
-       "spawn": "teleferico_e"
-      }
      }
     ]
    },
@@ -1172,6 +1245,12 @@
       "effects": [
        {
         "sfx": "elevator"
+       },
+       {
+        "event": "teleferico_m8",
+        "data": {
+         "post": "m8_teleferico_post_o"
+        }
        }
       ],
       "goto": "cruzar"
@@ -1187,22 +1266,6 @@
     "effects": [
      {
       "vineta": "m8_teleferico_vuelta"
-     }
-    ],
-    "next": "n2"
-   },
-   "n2": {
-    "text": "Abajo pasa el Tren del Café pitando. Desde arriba parece de juguete. Un pájaro vuela más abajo que ustedes.",
-    "next": "n3"
-   },
-   "n3": {
-    "text": "Llegan al otro lado: la entrada, la taquilla y la Torre Mirador.",
-    "effects": [
-     {
-      "warp": {
-       "map": "parque_cafe",
-       "spawn": "teleferico_o"
-      }
      }
     ]
    },
@@ -1239,28 +1302,13 @@
       "label": "Subirse (te vas a mojar)",
       "effects": [
        {
-        "setFlag": [
-         "m8_rapidos",
-         "mojado"
-        ]
-       },
-       {
-        "sfx": "splash"
+        "event": "rapidos_m8"
        }
-      ],
-      "goto": "subir"
+      ]
      },
      {
       "label": "No, gracias",
       "goto": "no"
-     }
-    ]
-   },
-   "subir": {
-    "text": "El bote gira, choca, sube... y una ola entera te cae encima. Quedas empapado de pies a cabeza. Renzo, a tu lado, sale seco. Seco. No hay explicación científica.",
-    "effects": [
-     {
-      "vineta": "m8_rapidos_moja"
      }
     ]
    },
@@ -1273,12 +1321,24 @@
     ]
    },
    "ya": {
-    "text": "Todavía estás goteando. La chiva de vuelta va a ser fría.",
-    "effects": [
+    "text": "La fila de los Rápidos otra vez. Renzo: «Yo me subo, causa. Total, yo no me mojo.»",
+    "choices": [
      {
-      "vineta": "m8_rapidos_moja"
+      "label": "Otra vuelta",
+      "effects": [
+       {
+        "event": "rapidos_m8"
+       }
+      ]
+     },
+     {
+      "label": "Ya fue suficiente agua",
+      "goto": "no2"
      }
     ]
+   },
+   "no2": {
+    "text": "Mejor secarse al sol un rato."
    }
   }
  },
@@ -1325,12 +1385,29 @@
   "start": "n0",
   "nodes": {
    "n0": {
-    "text": "La Estación Armenia del Tren del Café: un trencito de madera que da la vuelta al parque pitando. Un niño le dice adiós a todo el mundo desde la ventana. Le dices adiós.",
+    "text": "La Estación Armenia del Tren del Café: un trencito de madera que da la vuelta al parque pitando. Un niño le dice adiós a todo el mundo desde la ventana.",
     "effects": [
      {
       "vineta": "m8_tren_cafe"
      }
+    ],
+    "choices": [
+     {
+      "label": "Subirte al Tren del Café",
+      "effects": [
+       {
+        "event": "tren_m8"
+       }
+      ]
+     },
+     {
+      "label": "Decirle adiós al niño",
+      "goto": "adios"
+     }
     ]
+   },
+   "adios": {
+    "text": "Le dices adiós. El niño te dice adiós con las dos manos. Ganaste."
    }
   }
  },
@@ -1402,12 +1479,59 @@
   "start": "n0",
   "nodes": {
    "n0": {
-    "text": "El Yippe: una montaña rusa chiquita, para niños... y para Renzo, que se subió dos veces y gritó las dos.",
+    "text": "El Yippe: una montaña rusa chiquita, verde, con cara de gusanito. Para niños. Renzo mira la fila con los ojos brillantes: «Este es el mío, causa. El de mi tamaño emocional.»",
     "effects": [
      {
-      "vineta": "m8_krater_cartel"
+      "vineta": "m8_yippe"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "otra",
+      "if": {
+       "flag": "m8_yippe"
+      }
+     },
+     {
+      "goto": "fila"
      }
     ]
+   },
+   "fila": {
+    "choices": [
+     {
+      "label": "Subirte con Renzo",
+      "effects": [
+       {
+        "event": "yippe_m8"
+       }
+      ]
+     },
+     {
+      "label": "Mejor mirar desde abajo",
+      "goto": "mirar"
+     }
+    ]
+   },
+   "otra": {
+    "text": "Renzo: «¿Otra? ...Otra. No. Sí. Otra.»",
+    "choices": [
+     {
+      "label": "Otra vuelta con Renzo",
+      "effects": [
+       {
+        "event": "yippe_m8"
+       }
+      ]
+     },
+     {
+      "label": "Una era suficiente",
+      "goto": "mirar"
+     }
+    ]
+   },
+   "mirar": {
+    "text": "Renzo se sube solo. Dos veces. Grita las dos. Una niña de siete años lo consuela en la salida."
    }
   }
  },
@@ -1415,12 +1539,46 @@
   "start": "n0",
   "nodes": {
    "n0": {
-    "text": "El Lago de Fábulas: botes chocones que flotan, patos de verdad y patos de plástico. Los de verdad parecen más tranquilos.",
+    "text": "El Lago de Fábulas: botes chocones con cañón de agua, patos de verdad y patos de plástico. Los de verdad parecen más tranquilos.",
     "effects": [
      {
       "vineta": "m8_fabulas"
      }
+    ],
+    "branches": [
+     {
+      "goto": "solo",
+      "if": {
+       "notFlag": "m8_con_argentinas"
+      }
+     },
+     {
+      "goto": "botes"
+     }
     ]
+   },
+   "solo": {
+    "text": "Juanpa: «Parce, los botes son para ir en grupo y mojar gente. Primero el Krater, que allá están las argentinas.»"
+   },
+   "botes": {
+    "text": "Flor ya está subida en un bote rosado, con el cañón apuntándote. Meli le carga el agua.",
+    "choices": [
+     {
+      "label": "Subirte a un bote (es la guerra)",
+      "effects": [
+       {
+        "event": "fabulas_m8"
+       }
+      ]
+     },
+     {
+      "label": "Mirar los patos",
+      "goto": "patos"
+     }
+    ]
+   },
+   "patos": {
+    "text": "Un pato de verdad te mira fijo. Tú lo miras. Él gana."
    }
   }
  },
@@ -1704,6 +1862,435 @@
     "effects": [
      {
       "vineta": "m8_chiva_adentro"
+     }
+    ]
+   }
+  }
+ },
+ "m8_rapidos_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "renzo",
+      "if": {
+       "flag": "m8_rapidos_renzo"
+      }
+     },
+     {
+      "goto": "seco",
+      "if": {
+       "flag": "m8_rapidos_seco"
+      }
+     },
+     {
+      "goto": "mojado"
+     }
+    ]
+   },
+   "renzo": {
+    "text": "Renzo se baja empapado. Se mira las manos. Mira el cielo. «Causa... ¿qué hiciste? Veintitrés años seco, causa. VEINTITRÉS.» Juanpa le saca una foto. Es la foto del viaje (otra).",
+    "effects": [
+     {
+      "vineta": "m8_rapidos_renzo"
+     }
+    ]
+   },
+   "seco": {
+    "text": "Sales casi seco: mojado {mojado}%. Juanpa: «¡Parce, usted es capitán de bote!». Renzo, también seco, asiente con respeto profesional.",
+    "effects": [
+     {
+      "vineta": "m8_rapidos_seco"
+     }
+    ]
+   },
+   "mojado": {
+    "text": "Sales mojado al {mojado}%. Renzo sale seco. Seco. No hay explicación científica.",
+    "effects": [
+     {
+      "vineta": "m8_rapidos_moja"
+     }
+    ]
+   }
+  }
+ },
+ "m8_yippe_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "ok",
+      "if": {
+       "flag": "m8_yippe_ok"
+      }
+     },
+     {
+      "goto": "meh"
+     }
+    ]
+   },
+   "ok": {
+    "text": "Valentía: {valentia}/4. Renzo se baja temblando y feliz: «Lo superé, causa. Bueno... lo sobreviví. Que es parecido.»",
+    "effects": [
+     {
+      "vineta": "m8_yippe"
+     }
+    ]
+   },
+   "meh": {
+    "text": "Valentía: {valentia}/4. Renzo se sienta en el piso de la salida. «Necesito un momento, causa. Uno largo.» Un niño le ofrece su jugo.",
+    "effects": [
+     {
+      "vineta": "m8_yippe"
+     }
+    ]
+   }
+  }
+ },
+ "m8_fabulas_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "ok",
+      "if": {
+       "flag": "m8_fabulas_ok"
+      }
+     },
+     {
+      "goto": "meh"
+     }
+    ]
+   },
+   "ok": {
+    "text": "Mojaste {mojaste} veces. Flor se baja escurriendo el pelo: «Esto no se queda así, chileno.» Meli le pasa una toalla... y te mira a ti con cara de «ya entendí».",
+    "effects": [
+     {
+      "vineta": "m8_fabulas_guerra"
+     }
+    ]
+   },
+   "meh": {
+    "text": "Mojaste {mojaste} veces. A ti te mojaron más. Flor: «Ganamos las argentinas. Como en todo, che.»",
+    "effects": [
+     {
+      "vineta": "m8_fabulas_guerra"
+     }
+    ]
+   }
+  }
+ },
+ "m8_tren_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "ok",
+      "if": {
+       "flag": "m8_tren_ok"
+      }
+     },
+     {
+      "goto": "meh"
+     }
+    ]
+   },
+   "ok": {
+    "text": "Saludos y pitazos: {saludos}. El maquinista te pone su gorra un segundo para la foto: «Maquinista honorario del Quindío.» Renzo se despierta justo para salir en la foto.",
+    "effects": [
+     {
+      "vineta": "m8_tren_gorra"
+     }
+    ]
+   },
+   "meh": {
+    "text": "Saludos y pitazos: {saludos}. El maquinista te hace un gesto con la cabeza. Renzo durmió todo el recorrido y dice que fue «lo mejor del parque».",
+    "effects": [
+     {
+      "vineta": "m8_tren_cafe"
+     }
+    ]
+   }
+  }
+ },
+ "m8_show_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "ok",
+      "if": {
+       "flag": "m8_show_ok"
+      }
+     },
+     {
+      "goto": "meh"
+     }
+    ]
+   },
+   "ok": {
+    "text": "Bailas un pasillo con una chapolera de verdad: {pasos} pasos bien dados. El público aplaude de pie. Tami aplaude más fuerte que todos.",
+    "effects": [
+     {
+      "vineta": "m8_show_baile"
+     }
+    ]
+   },
+   "meh": {
+    "text": "Bailas un pasillo con una chapolera de verdad. Le pisas los pies dos veces. Ella sonríe igual: «Es que el pasillo es rápido, mijo.» Tami aplaude más fuerte que todos.",
+    "effects": [
+     {
+      "vineta": "m8_show_baile"
+     }
+    ]
+   }
+  }
+ },
+ "m8_show_nervios": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "A mitad de camino te arrepientes y vuelves a tu silla. Igual sacan a alguien: bueno, a Richi. Baila buenísimo.",
+    "effects": [
+     {
+      "vineta": "m8_show_baile"
+     },
+     {
+      "setFlag": "secreto_m8_richi_baila"
+     }
+    ]
+   }
+  }
+ },
+ "m8_ciclon": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El Ciclón: sillas voladoras colgadas de cadenas que giran cada vez más rápido. Alrededor cuelgan banderines amarillos, azules y rojos.",
+    "effects": [
+     {
+      "vineta": "m8_ciclon"
+     }
+    ],
+    "branches": [
+     {
+      "goto": "solo",
+      "if": {
+       "notFlag": "m8_con_argentinas"
+      }
+     },
+     {
+      "goto": "fila"
+     }
+    ]
+   },
+   "solo": {
+    "text": "Juanpa: «Parce, eso es para ir con alguien que grite. Renzo no cuenta: Renzo llora.» (Primero el Krater: allá están las argentinas.)"
+   },
+   "fila": {
+    "text": "Flor: «Yo me siento atrás tuyo. Si agarrás diez banderines, te invito un cholado. Si no, me lo invitás vos.»",
+    "choices": [
+     {
+      "label": "Subirte",
+      "effects": [
+       {
+        "event": "ciclon_m8"
+       }
+      ]
+     },
+     {
+      "label": "Después",
+      "goto": "despues"
+     }
+    ]
+   },
+   "despues": {
+    "text": "Las sillas giran sin ti. Flor te hace «gallina» con los brazos."
+   }
+  }
+ },
+ "m8_ciclon_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "ok",
+      "if": {
+       "flag": "m8_ciclon_cholado"
+      }
+     },
+     {
+      "goto": "meh"
+     }
+    ]
+   },
+   "ok": {
+    "text": "{banderines} banderines. Flor se anota «1 cholado» en la mano con un lapicero. «Para que no se me olvide. O para tener una excusa, no sé.»",
+    "effects": [
+     {
+      "vineta": "m8_ciclon"
+     }
+    ]
+   },
+   "meh": {
+    "text": "{banderines} banderines. Flor: «Casi, chileno. El cholado lo pago yo igual. Pero no le digas a Meli.»",
+    "effects": [
+     {
+      "vineta": "m8_ciclon"
+     }
+    ]
+   }
+  }
+ },
+ "m8_torre_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Bajas de la torre con {fotos} fotos nuevas. Juanpa: «Parce, pásemelas por el grupo. Las buenas. Las mías no.»",
+    "effects": [
+     {
+      "vineta": "m8_fotos"
+     }
+    ]
+   }
+  }
+ },
+ "m8_teleferico_post_e": {
+  "start": "n2",
+  "nodes": {
+   "n2": {
+    "text": "Guardas el celular con {fotos} fotos. Abajo, el cañón: el río como una cinta café, el bosque de guadua, los techos rojos de las atracciones.",
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Renzo cierra los ojos todo el viaje. «Avísenme cuando lleguemos, causa.» Juanpa le toma una foto. Es la foto del viaje.",
+    "next": "n4"
+   },
+   "n4": {
+    "text": "La cabina frena en la estación del otro lado. Plaza principal: la Avenida de las Banderas y el Barco del Café.",
+    "effects": [
+     {
+      "warp": {
+       "map": "parque_cafe",
+       "spawn": "teleferico_e"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "m8_teleferico_post_o": {
+  "start": "n2",
+  "nodes": {
+   "n2": {
+    "text": "Abajo pasa el Tren del Café pitando. Desde arriba parece de juguete. Un pájaro vuela más abajo que ustedes.",
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Llegan al otro lado: la entrada, la taquilla y la Torre Mirador.",
+    "effects": [
+     {
+      "warp": {
+       "map": "parque_cafe",
+       "spawn": "teleferico_o"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "m8_cafe_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "goto": "quemado",
+      "if": {
+       "flag": "m8_cafe_quemado"
+      }
+     },
+     {
+      "goto": "bueno",
+      "if": {
+       "flag": "m8_cafe_bueno"
+      }
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "quemado": {
+    "text": "Tu café: {calidad}/100, tueste {tueste}. Juanpa se lo toma de un trago, por solidaridad. «Sabe a carácter, parce.» Renzo lo huele y lo devuelve con respeto.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_quemado"
+     }
+    ],
+    "next": "bolsa"
+   },
+   "bueno": {
+    "text": "Tu café: {calidad}/100, tueste {tueste}. Don Arnulfo lo prueba, cierra los ojos y no dice nada por un rato. Después: «Este lo vendo yo, mijo.» Renzo pide otro.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_tinto"
+     }
+    ],
+    "next": "bolsa"
+   },
+   "normal": {
+    "text": "Tu café: {calidad}/100, tueste {tueste}. No es el mejor del Quindío, pero es tuyo: lo sembraste, lo cogiste y lo tostaste. Sabe a eso.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_tinto"
+     }
+    ],
+    "next": "bolsa"
+   },
+   "bolsa": {
+    "branches": [
+     {
+      "goto": "regalo",
+      "if": {
+       "notItem": "cafe_cosecha"
+      }
+     },
+     {
+      "goto": "fin"
+     }
+    ]
+   },
+   "regalo": {
+    "text": "Don Arnulfo te regala una bolsita de papel con lo que sobró: «Pa' que se acuerde del Quindío cada mañana.»",
+    "effects": [
+     {
+      "vineta": "m8_cafe_cosecha"
+     },
+     {
+      "giveItem": "cafe_cosecha"
+     }
+    ]
+   },
+   "fin": {
+    "text": "Don Arnulfo: «Vuelva cuando quiera. El colino suyo lo cuido yo.»"
+   }
+  }
+ },
+ "usar_cafe_cosecha": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Abres la bolsita. Huele a fogón de leña, a don Arnulfo y a tu primer café. El de verdad.",
+    "effects": [
+     {
+      "vineta": "m8_cafe_cosecha"
      }
     ]
    }

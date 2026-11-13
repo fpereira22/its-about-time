@@ -131,6 +131,10 @@ export type MusicTrack =
   | 'disco' // la disco chiquita (dembow, el mismo toda la noche)
   | 'mariachi' // los mexicanos en la plaza
   | 'recuerdo' // el recuerdo (cajita de música)
+  | 'taxi_noche' // misión 9: la radio del taxi subiendo a Cristo Rey (salsa romántica, bajito)
+  | 'fiesta' // la fiesta en la casa de Tami (salsa choke y reggaetón, a todo volumen)
+  | 'rio' // misión 10: el río Pance un domingo (marimba tranquila)
+  | 'carro_danilo' // la radio del carro de Danilo (salsa caleña de domingo)
   ;
 
 /** Sonido ambiente en loop: la lluvia (más fuerte en la tormenta). `indoor` la apaga como detrás de una ventana. */
@@ -153,8 +157,12 @@ export function playSfx(name: SfxName): void {
   EventSystem.emit('sfx', name);
 }
 
-export function playMusic(track: MusicTrack | null): void {
-  EventSystem.emit('music', track);
+/**
+ * Cambia la música. Con `bpm`, la pista arranca desde el principio a ese tempo (los bailes la
+ * reinician en cada ronda para que el compás calce con los pasos).
+ */
+export function playMusic(track: MusicTrack | null, bpm?: number): void {
+  EventSystem.emit('music', track, bpm);
 }
 
 export function setAmbient(state: AmbientState): void {

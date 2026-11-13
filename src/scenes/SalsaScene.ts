@@ -86,6 +86,8 @@ const TARGET_X = 56;
 const PX_PER_BEAT = 34;
 const PERFECT_MS = 90;
 const OK_MS = 170;
+/** Lo que tarda la música en sonar después de pedirla (la agenda de audio va un poco adelantada). */
+const MUSIC_LEAD_MS = 60;
 const PASS_RATE = 0.7;
 const FLOOR_Y = 138;
 
@@ -107,6 +109,8 @@ interface DanceStyle {
   fail: string;
   end: [perfect: string, some: string, none: string];
   street: boolean;
+  /** Misión 9: bajo la pérgola del patio de Tami, con Cali prendida abajo (en vez de la Calle Real). */
+  pergola?: boolean;
 }
 
 const SIRA_STYLE: DanceStyle = {
@@ -128,6 +132,26 @@ const SIRA_STYLE: DanceStyle = {
 
 /** Misión 8: en la Calle Real, con la música de la tienda de doña Gladys. Cada pareja baila distinto. */
 const CALLE_STYLES: Record<string, Omit<DanceStyle, 'look' | 'street'>> = {
+  // Misión 9: Laura, bajo la pérgola de la casa de Tami (arriba de Cristo Rey).
+  laura: {
+    name: 'Laura',
+    pergola: true,
+    rounds: [
+      { title: 'Salsa (como puede)', intro: 'Laura: «Vale, en Bilbao esto no se baila. Tú me guías y yo hago como que sé, ¿vale?»\nA / D: pasos', hint: 'A / D cuando el paso llegue a la marca · Esc: saltar', beatMs: 540, build: () => repeat(BASIC) },
+      { title: 'La vuelta', intro: 'Laura: «Ahora la vuelta. Si me caigo a la piscina, te tiro conmigo.»\nA / D: pasos · E: la vuelta', hint: 'E: la vuelta en el 5 · Esc: saltar', beatMs: 500, build: () => repeat(TURN) },
+      { title: 'A lo Bilbao', intro: 'Laura: «Y la última a mi manera: saltando y gritando, como en las fiestas de Aste Nagusia. ¡Aupa!»\nA / D · E', hint: 'Salta con ella · Esc: saltar', beatMs: 450, build: () => repeat(TURN) },
+    ],
+    miss: ['¡Ay, el pie!', '¡Que me pisas, tío!', '¡Hostia!', 'Mírame a mí, no al suelo'],
+    hits: ['¡Eso, chileno!', '¡Aupa!', '¡Qué arte!', 'Vale, vale, sabes bailar'],
+    quit: 'Laura: «¿Ya? Bueno, me lo apunto: me debes un baile.»',
+    pass: 'Laura: «¡Bai! ¡Así!»',
+    fail: 'Laura: «Bailamos fatal. Pero bailamos fatal juntos.»',
+    end: [
+      'Laura: «¿Y tú me dijiste que bailabas mal? Mentiroso. Me has engañado, chileno.»',
+      'Laura: «No ha estado nada mal. Para ser del sur y yo del norte, nos hemos encontrado en el medio.»',
+      'Laura: «Me has pisado como diez veces. Las he contado. Pero me lo he pasado bomba.»',
+    ],
+  },
   tami: {
     name: 'Tami',
     rounds: [
@@ -283,7 +307,8 @@ export class SalsaScene extends BaseScene {
     this.bannerText = this.addText(BASE_WIDTH / 2, 88, '', { fontSize: '10px', fontStyle: '600', color: THEME.ink, align: 'center', wordWrap: { width: 270 } })
       .setOrigin(0.5)
       .setDepth(14);
-    if (this.style.street) this.drawStreet();
+    if (this.style.pergola) this.drawPergola();
+    else if (this.style.street) this.drawStreet();
     else this.drawRoom();
     this.setupZoom();
     playMusic('salsa');
@@ -376,6 +401,9 @@ export class SalsaScene extends BaseScene {
       this.hideBanner();
       this.phase = 'play';
       this.phaseMs = 0;
+      // La música vuelve a empezar al tempo de la ronda: los 8 tiempos de cuenta son sus dos primeros compases.
+      playMusic('salsa', 60000 / this.round.beatMs);
+      this.clock -= MUSIC_LEAD_MS;
     } else if (this.phase === 'play') {
       this.clock += dt;
       this.play();
@@ -396,8 +424,8 @@ export class SalsaScene extends BaseScene {
     const beatNow = Math.floor(this.clock / beatMs);
     if (beatNow !== this.lastBeat) {
       this.lastBeat = beatNow;
-      if (beatNow < 0) this.countText.setText(COUNTS[(beatNow + 8) % 8]);
-      else this.countText.setText(COUNTS[beatNow % 8]);
+      // Módulo siempre positivo: con el adelanto de la música el reloj parte un poco antes del tiempo −8.
+      this.countText.setText(COUNTS[((beatNow % 8) + 8) % 8]);
       playSfx('click');
     }
 
@@ -486,6 +514,28 @@ export class SalsaScene extends BaseScene {
     g.fillStyle(0xa07c50, 1).fillRect(278, 94, 34, 44);
     g.fillStyle(0xc8e4f0, 1).fillRect(289, 80, 12, 15);
     g.fillStyle(0x1c1c24, 1).fillRect(292, 72, 6, 12);
+  }
+
+  /** Misión 9: la pérgola del patio de Tami, arriba de Cristo Rey, con toda Cali prendida abajo y los amigos bailando. */
+  private drawPergola(): void {
+    const g = this.bg;
+    g.fillStyle(0x0c1428, 1).fillRect(0, 0, BASE_WIDTH, FLOOR_Y);
+    for (let i = 0; i < 30; i++) g.fillStyle(0xf8f4ec, 0.7).fillRect((i * 53) % BASE_WIDTH, (i * 29) % 34, 1, 1);
+    // Cali allá abajo: un mar de lucecitas.
+    g.fillStyle(0x1c2440, 1).fillRect(0, 70, BASE_WIDTH, FLOOR_Y - 70);
+    for (let i = 0; i < 260; i++) g.fillStyle([0xf8dc68, 0xf8f4ec, 0xe8a040, 0x9cd0f0][i % 4], 0.85).fillRect((i * 37) % BASE_WIDTH, 74 + ((i * 13) % (FLOOR_Y - 80)), 1, 1);
+    // Los postes y las vigas de la pérgola, con guirnaldas de ampolletas.
+    g.fillStyle(0x6a4428, 1).fillRect(0, 20, BASE_WIDTH, 6).fillRect(0, 32, BASE_WIDTH, 3);
+    for (let x = 14; x < BASE_WIDTH; x += 72) g.fillStyle(0x5a3a20, 1).fillRect(x, 20, 7, FLOOR_Y - 20);
+    for (let x = 0; x < BASE_WIDTH; x += 10) g.fillStyle([0xf8dc68, 0xe868a8, 0x58d4d0][(x / 10) % 3], 1).fillRect(x, 40 + Math.round(Math.sin(x / 26) * 4), 2, 2);
+    // Los amigos bailando de fondo (siluetas).
+    for (const x of [40, 70, 250, 286]) {
+      g.fillStyle(0x2a2433, 1).fillCircle(x, FLOOR_Y - 34, 5).fillRect(x - 5, FLOOR_Y - 29, 10, 22);
+    }
+    // El piso de deck.
+    g.fillStyle(0x8c6a48, 1).fillRect(0, FLOOR_Y, BASE_WIDTH, BASE_HEIGHT - FLOOR_Y);
+    for (let x = 0; x < BASE_WIDTH; x += 14) g.fillStyle(0x6a4c30, 1).fillRect(x, FLOOR_Y, 1, BASE_HEIGHT - FLOOR_Y);
+    this.rain = [];
   }
 
   /** Misión 8: la Calle Real de noche, con las casas de colores, la tienda de doña Gladys y las guirnaldas. */

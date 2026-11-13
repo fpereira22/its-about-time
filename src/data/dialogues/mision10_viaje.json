@@ -1,0 +1,657 @@
+{
+ "m10_carro_go": {
+  "start": "n1",
+  "nodes": {
+   "n1": {
+    "text": "El carro de Danilo por dentro: un pino de olor colgando del espejo, un rosario y un parlante pegado con cinta.",
+    "effects": [
+     {
+      "vineta": "m10_carro_adentro"
+     },
+     {
+      "event": "viaje_carro_m10"
+     }
+    ]
+   }
+  }
+ },
+ "m10_carro_1": {
+  "start": "n6",
+  "nodes": {
+   "n2": {
+    "text": "Danilo canta todos los coros. Todos. Con los ojos cerrados en los semáforos.",
+    "effects": [
+     {
+      "vineta": "m10_carro_salsa"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "¡Eso, chileno! Un domingo sin salsa en Cali es ilegal. Subíle más. Más. ¡Eso!",
+    "effects": [
+     {
+      "vineta": "m10_carro_salsa"
+     },
+     {
+      "sfx": "secret"
+     }
+    ],
+    "next": "n2"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Ah, sí, mejor. Para un enguayabado, una balada. Muy bien diagnosticado.",
+    "effects": [
+     {
+      "vineta": "m10_carro_radio"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "¿Querés que hable yo? Parce, no sabés lo que acabás de hacer.",
+    "effects": [
+     {
+      "vineta": "m10_carro_radio"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Bueno. Regla del carro: el copiloto pone la música. ¿Qué querés?",
+    "effects": [
+     {
+      "vineta": "m10_carro_radio"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Salsa (y subirle)",
+      "effects": [
+       {
+        "setFlag": [
+         "m10_radio_salsa",
+         "secreto_m10_radio"
+        ]
+       },
+       {
+        "event": "radio_m10",
+        "data": {
+         "track": "carro_danilo"
+        }
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "Algo tranquilo",
+      "effects": [
+       {
+        "event": "radio_m10",
+        "data": {
+         "track": "depa"
+        }
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "Nada: que hable él",
+      "effects": [
+       {
+        "event": "radio_m10",
+        "data": {
+         "track": ""
+        }
+       }
+      ],
+      "goto": "n5"
+     }
+    ]
+   },
+   "n6": {
+    "text": "Sale del sótano. La reja se abre, la luz de las diez y media pega de frente y Danilo se pone unas gafas de sol enormes.",
+    "effects": [
+     {
+      "vineta": "m10_carro_sale"
+     }
+    ],
+    "next": "n1"
+   }
+  }
+ },
+ "m10_carro_2": {
+  "start": "n13",
+  "nodes": {
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Bueno, no. Se llama «estaba en el celular». Pero yo le digo interés. Es más bonito.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "Parce, a las cuatro de la mañana nadie sigue a nadie por accidente. Eso, en psicología, se llama interés.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n2"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "¿¡Te siguió!? ¿A las cuatro de la mañana? ¿Desde el piso 11?",
+    "effects": [
+     {
+      "vineta": "m10_danilo_shock"
+     }
+    ],
+    "next": "n3"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Ajá. Escondiendo el celular. Muy sano. Muy maduro. Después hablamos.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Sacas el celular. No sabes bien por qué, pero se lo muestras.",
+    "effects": [
+     {
+      "vineta": "m9_fotogram_sigue"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Mostrarle: «laaurii_14 comenzó a seguirte»",
+      "effects": [
+       {
+        "setFlag": "m10_mostro_follow"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "Guardar el celular",
+      "goto": "n5"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "Pero bueno, escucháme como psicólogo: ¿y la española?",
+    "effects": [
+     {
+      "vineta": "m10_carro_charla"
+     }
+    ],
+    "next": "n1"
+   },
+   "n8": {
+    "speaker": "Danilo",
+    "text": "Parce. Una semana en Cali y ya tenés más historia que yo en veinticuatro años.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n7"
+   },
+   "n9": {
+    "speaker": "Danilo",
+    "text": "¿¡La nica!? ¿La de los rulos? ¿Y durmieron en un carro?",
+    "effects": [
+     {
+      "vineta": "m10_danilo_shock"
+     }
+    ],
+    "next": "n8"
+   },
+   "n10": {
+    "speaker": "Danilo",
+    "text": "Parce, eso no es una coincidencia. Eso es Cali decidiendo. Vojabés.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n1"
+   },
+   "n11": {
+    "speaker": "Danilo",
+    "text": "La española. La de Bilbao. La del piso 11. La del «que lo decida Cali».",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n10"
+   },
+   "n12": {
+    "speaker": "Danilo",
+    "text": "Ajá. Y yo soy el papa. Mirá esa sonrisa. Esa sonrisa en terapia se llama «pasó algo».",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n1"
+   },
+   "n6": {
+    "text": "¿Qué le cuentas?",
+    "effects": [
+     {
+      "vineta": "m10_carro_charla"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Lo de Roxane (la piscina, el beso, el auto)",
+      "effects": [
+       {
+        "setFlag": "m10_conto_roxane"
+       }
+      ],
+      "goto": "n9"
+     },
+     {
+      "label": "Lo de Laura (el baile, el celular, el ascensor)",
+      "effects": [
+       {
+        "setFlag": "m10_conto_laura"
+       }
+      ],
+      "goto": "n11"
+     },
+     {
+      "label": "«Nada, parce. No pasó nada.»",
+      "effects": [
+       {
+        "setFlag": "m10_conto_nada"
+       }
+      ],
+      "goto": "n12"
+     }
+    ]
+   },
+   "n13": {
+    "speaker": "Danilo",
+    "text": "Bueno. Ahora sí. Contáme. ¿Qué pasó anoche? Yo te perdí de vista en la piscina.",
+    "effects": [
+     {
+      "vineta": "m10_carro_charla"
+     }
+    ],
+    "next": "n6"
+   }
+  }
+ },
+ "m10_carro_3": {
+  "start": "n8",
+  "nodes": {
+   "n2": {
+    "speaker": "Danilo",
+    "text": "...Te salvás porque tu mamá está en Chile y no puede defenderse. Pero quedás advertido.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "Eso. Vos sí entendés.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Y el que diga que el de su mamá es mejor, se baja del carro.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«El de mi mamá es mejor.»",
+      "goto": "n2"
+     },
+     {
+      "label": "«Vamos donde doña Nelly.»",
+      "goto": "n3"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Nosotros nos vamos a meter hasta el 4, el colgante. Allá no llega casi nadie, y doña Nelly hace el mejor sancocho del Valle.",
+    "effects": [
+     {
+      "vineta": "m10_puentes_mapa"
+     }
+    ],
+    "next": "n1"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Los puentes tienen número. El 1 es el de La Vorágine, arriba. El 3 es el de todo el mundo: parlante, olla y abuela.",
+    "effects": [
+     {
+      "vineta": "m10_puentes_mapa"
+     }
+    ],
+    "next": "n4"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "El Pance es el único río de Cali en el que todavía te podés bañar. Los otros... mejor no preguntés.",
+    "effects": [
+     {
+      "vineta": "m10_via_pance"
+     }
+    ],
+    "next": "n5"
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "Yo venía acá de pelado con mi papá. Todos los domingos. Él con la olla y yo con un neumático más grande que yo.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_nostalgia"
+     }
+    ],
+    "next": "n6"
+   },
+   "n8": {
+    "text": "La Vía a Pance: guaduales, fincas con piscina, ciclistas en fila india y, al fondo, los Farallones con nubes enganchadas.",
+    "effects": [
+     {
+      "vineta": "m10_via_pance"
+     }
+    ],
+    "next": "n7"
+   }
+  }
+ },
+ "m10_carro_4": {
+  "start": "n3",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Parce, ayudáme. Bajáte y guiáme, que yo de reversa soy un desastre. Si raspo el carro, mi mamá me deshereda.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_shock"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Un muchacho con un trapo rojo hace señas desde un parqueadero de tierra: «¡Acá, mono! ¡Acá hay puesto!»",
+    "effects": [
+     {
+      "vineta": "m10_cuidador"
+     }
+    ],
+    "next": "n1"
+   },
+   "n3": {
+    "text": "Kilómetro 12. Carros parqueados a los dos lados de la vía, familias bajando ollas y neumáticos, un vendedor de mango biche en cada curva.",
+    "effects": [
+     {
+      "vineta": "m10_via_llena"
+     }
+    ],
+    "next": "n2"
+   }
+  }
+ },
+ "m10_parquear_post": {
+  "start": "n1",
+  "nodes": {
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Perfecto. Derechito. Mi mamá te manda un abrazo y no lo sabe.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Cuidador",
+    "text": "¡Uy, mono! ¡Usted guía mejor que yo! ¿No quiere trabajo los domingos?",
+    "effects": [
+     {
+      "vineta": "m10_cuidador"
+     }
+    ],
+    "next": "n2"
+   },
+   "n4": {
+    "speaker": "Cuidador",
+    "text": "Tranquilo, patrón, yo se lo cuido. Son cinco mil, a la vuelta.",
+    "effects": [
+     {
+      "vineta": "m10_cuidador"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Bueno... quedó un poquito torcido. Y un poquito encima del otro puesto. Pero quedó.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n4"
+   },
+   "n1": {
+    "branches": [
+     {
+      "goto": "n3",
+      "if": {
+       "flag": "m10_parqueo_bien"
+      }
+     },
+     {
+      "goto": "n5"
+     }
+    ]
+   }
+  }
+ },
+ "m10_carro_vuelta": {
+  "start": "n8",
+  "nodes": {
+   "n1": {
+    "text": "Y en algún momento, entre Pance y la Calle 18, los ojos se te cierran solos.",
+    "effects": [
+     {
+      "vineta": "m10_carro_dormido"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "Ah ve, cuidado que te tomo la palabra. El próximo domingo, Pance otra vez. Y con neumático propio.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n1"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "...De los hombres buenos, ¿cierto? Jajaja. No te lo voy a dejar olvidar nunca.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n1"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Es que los otros no aguantan un domingo sin dormir. Vos sí. Sos de los buenos.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n4"
+   },
+   "n6": {
+    "text": "No hace falta decir nada. La salsa suena bajito. Danilo maneja con una mano por la ventana.",
+    "effects": [
+     {
+      "vineta": "m10_carro_atardecer"
+     }
+    ],
+    "next": "n1"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "A veces uno se la pasa escuchando a todo el mundo y se le olvida que también necesita que alguien lo acompañe al río.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_serio"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Cuando quieras, parce. Todos los domingos.»",
+      "effects": [
+       {
+        "setFlag": "m10_q_danilo"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "«Gracias a vos por invitarme solo a mí.»",
+      "effects": [
+       {
+        "setFlag": "m10_q_danilo"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "Quedarte callado, mirando el atardecer",
+      "goto": "n6"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "Parce... gracias por venir. De verdad. Necesitaba un domingo así.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_serio"
+     }
+    ],
+    "next": "n2"
+   },
+   "n8": {
+    "text": "La vuelta. El sol baja detrás de los Farallones y pinta la Vía a Pance de naranja. Huelen a río, a humo de leña y a bloqueador.",
+    "effects": [
+     {
+      "vineta": "m10_carro_atardecer"
+     }
+    ],
+    "next": "n7"
+   }
+  }
+ },
+ "m10_sotano_vuelta": {
+  "start": "n6",
+  "nodes": {
+   "n1": {
+    "text": "El carrito gris sube la rampa, pita dos veces y desaparece. Danilo saca la mano por la ventana hasta el final.",
+    "effects": [
+     {
+      "vineta": "m10_sotano"
+     },
+     {
+      "setFlag": "m10_despedida"
+     },
+     {
+      "objective": "Sube al 805 y duerme (por fin)"
+     }
+    ]
+   },
+   "n3": {
+    "text": "Choque de mano, abrazo de lado, palmada en la espalda. El protocolo caleño completo.",
+    "effects": [
+     {
+      "vineta": "m10_abrazo_danilo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Ah ve, ¿y esto? ...Bueno, venga. Venga ese abrazo. El río te ablandó.",
+    "effects": [
+     {
+      "vineta": "m10_abrazo_danilo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Y a la española... respondéle con calma. Sin afán. Que lo decida Cali, ¿no?",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Chocarle la mano",
+      "goto": "n3"
+     },
+     {
+      "label": "Abrazarlo",
+      "goto": "n4"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Andá a dormir. Es una orden. Bueno... una sugerencia terapéutica. Pero cumplíla.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_gafas"
+     }
+    ],
+    "next": "n2"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "Chileno. Chileno. Llegamos. Te dormiste con la boca abierta. Tengo foto.",
+    "effects": [
+     {
+      "vineta": "m10_sotano_danilo"
+     }
+    ],
+    "next": "n5"
+   }
+  }
+ }
+}

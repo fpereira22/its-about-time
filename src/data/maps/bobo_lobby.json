@@ -94,6 +94,15 @@
     "mission": "mission07",
     "flag": "m7_rumbo_paradero"
    }
+  },
+  {
+   "id": "m9_lobby",
+   "dialogue": "m9_lobby",
+   "once": true,
+   "if": {
+    "mission": "mission09",
+    "flag": "m9_recuerdo"
+   }
   }
  ],
  "labels": [
@@ -101,6 +110,21 @@
    "x": 2.5,
    "y": 2.2,
    "text": "RECEPCIÓN"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "m9_taxi",
+   "x": 8,
+   "y": 9,
+   "w": 3,
+   "h": 1,
+   "event": "taxi_m9",
+   "if": {
+    "mission": "mission09",
+    "flag": "m9_lobby",
+    "notFlag": "m9_en_taxi"
+   }
   }
  ]
 }

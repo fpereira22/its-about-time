@@ -6,8 +6,10 @@ import { MiniScene } from './MiniScene';
 
 /**
  * Misión 8: el torneo de pimpón en el patio de la casita (domingo). Mesa vista desde arriba: tu paleta abajo,
- * el rival arriba. A/D mueven la paleta; la pelota rebota según dónde le pegues (en el borde sale cruzada).
- * E justo antes de que llegue: ¡remate! (más rápida y difícil de devolver; si le pegas con el borde, sale muy cruzada).
+ * el rival arriba. A/D mueven la paleta. Cada golpe tiene un bote: la pelota tiene que picar en el lado del
+ * rival; si pica fuera de la mesa es «¡Afuera!» y si no pasa la malla es «¡Red!» (punto para el otro). Solo se
+ * devuelve después del bote. Dónde le pegas con la paleta (y A/D al golpear) decide hacia dónde va; con el borde
+ * sale muy cruzada y se puede ir afuera. E justo antes de que llegue: ¡remate! (más rápida y más profunda).
  * Tres partidos a 5 puntos: Renzo (se cansa), Juanpa (pega fuerte) y Richi (chiquito pero un muro).
  * Esc: entregar el partido.
  */
@@ -77,6 +79,36 @@ const T = { x: 112, y: 30, w: 96, h: 122 };
 const NET_Y = T.y + T.h / 2;
 const PAD_W = 18;
 const POINTS = 5;
+/** Línea de golpe de cada paleta (y) y hasta dónde llega cada jugador de costado. */
+const MY_Y = T.y + T.h + 4;
+const OP_Y = T.y - 4;
+const REACH = { min: T.x - 14, max: T.x + T.w + 14 };
+
+type Side = 'me' | 'them';
+
+/**
+ * La pelota en vuelo: va de donde le pegaron (s) a donde pica (l) en `dur` segundos, con su parábola de altura;
+ * después del bote sigue con la misma velocidad hacia la paleta del que recibe. `fault` se decide al golpear.
+ */
+interface Ball {
+  x: number;
+  y: number;
+  z: number;
+  sx: number;
+  sy: number;
+  lx: number;
+  ly: number;
+  t: number;
+  dur: number;
+  vx: number;
+  vy: number;
+  bounced: boolean;
+  /** Segundos desde el bote. */
+  after: number;
+  by: Side;
+  fault: 'net' | null;
+  smash: boolean;
+}
 
 export class PinponScene extends MiniScene<PinponResult> {
   private match = 0;
@@ -89,9 +121,11 @@ export class PinponScene extends MiniScene<PinponResult> {
   private phaseMs = 0;
   private px = BASE_WIDTH / 2;
   private ox = BASE_WIDTH / 2;
-  private ball = { x: 0, y: 0, vx: 0, vy: 0, z: 0 };
+  private ball: Ball = { x: 0, y: 0, z: 0, sx: 0, sy: 0, lx: 0, ly: 0, t: 0, dur: 1, vx: 0, vy: 0, bounced: false, after: 0, by: 'me', fault: null, smash: false };
   private smashWindow = 0;
-  private server: 'me' | 'them' = 'me';
+  private server: Side = 'me';
+  /** Dónde se marcó la última falta (el circulito de «afuera» / «red»). */
+  private mark: { x: number; y: number; ms: number } | null = null;
   private g!: Phaser.GameObjects.Graphics;
   private hud!: Phaser.GameObjects.Graphics;
   private scoreText!: Phaser.GameObjects.Text;
@@ -134,10 +168,57 @@ export class PinponScene extends MiniScene<PinponResult> {
 
   private serve(): void {
     this.px = this.ox = BASE_WIDTH / 2;
-    const down = this.server === 'them';
-    this.ball = { x: BASE_WIDTH / 2 + (Math.random() - 0.5) * 20, y: down ? T.y + 16 : T.y + T.h - 16, vx: (Math.random() - 0.5) * 50, vy: down ? 95 : -95, z: 0 };
+    this.mark = null;
+    const x = BASE_WIDTH / 2 + (Math.random() - 0.5) * 16;
+    if (this.server === 'me') this.shoot('me', x, MY_Y, 0, false, 0.6);
+    else this.shoot('them', x, OP_Y, 0, false, 0.6);
     this.phase = 'play';
     playSfx('pinpon');
+  }
+
+  /**
+   * Golpe de `by` desde (x, y). `off` es dónde tocó la paleta (-1 borde izquierdo .. 1 borde derecho); A/D al
+   * golpear empujan la dirección. Decide dónde pica (adentro, afuera o en la red) y la velocidad.
+   */
+  private shoot(by: Side, x: number, y: number, off: number, smash: boolean, speedK = 1): void {
+    const half = T.w / 2;
+    const cx = T.x + half;
+    let lx: number;
+    let ly: number;
+    let fault: Ball['fault'] = null;
+    let speed: number;
+    if (by === 'me') {
+      const aim = (Controls.isHeld('left') ? -1 : 0) + (Controls.isHeld('right') ? 1 : 0);
+      lx = cx + off * half * 0.9 + aim * 18 + (Math.random() - 0.5) * 8;
+      // Con el borde de la paleta la pelota sale muy cruzada: a veces se va afuera.
+      if (Math.abs(off) > 0.85 && Math.random() < 0.35) lx += Math.sign(off) * (10 + Math.random() * 10);
+      ly = smash ? T.y + 6 + Math.random() * 14 : T.y + 12 + Math.random() * (NET_Y - T.y - 28);
+      if (smash && Math.random() < 0.12) fault = 'net';
+      speed = (smash ? 215 : 125) * speedK;
+    } else {
+      const r = this.rival;
+      // Apunta lejos de ti, con su error.
+      const away = this.px < cx ? 1 : -1;
+      lx = cx + away * (10 + Math.random() * 28) + (Math.random() - 0.5) * r.error * 2;
+      lx = Phaser.Math.Clamp(lx, T.x + 3, T.x + T.w - 3);
+      ly = NET_Y + 14 + Math.random() * (T.y + T.h - NET_Y - 22);
+      const roll = Math.random() * 100;
+      if (roll < r.error * 0.5) fault = 'net';
+      else if (roll < r.error * 1.1) lx = Math.random() < 0.5 ? T.x - 4 - Math.random() * 10 : T.x + T.w + 4 + Math.random() * 10;
+      speed = 115 * r.hit * speedK;
+    }
+    const dur = Math.max(0.25, Math.hypot(lx - x, ly - y) / speed);
+    const b: Ball = { x, y, z: 4, sx: x, sy: y, lx, ly, t: 0, dur, vx: (lx - x) / dur, vy: (ly - y) / dur, bounced: false, after: 0, by, fault, smash };
+    // Después del bote, que llegue a donde el otro alcanza a correr.
+    const tLine = ((by === 'me' ? OP_Y : MY_Y) - ly) / b.vy;
+    const xLine = lx + b.vx * tLine;
+    if (tLine > 0 && (xLine < REACH.min + 2 || xLine > REACH.max - 2)) b.vx = (Phaser.Math.Clamp(xLine, REACH.min + 2, REACH.max - 2) - lx) / tLine;
+    this.ball = b;
+  }
+
+  /** ¿El punto (x, y) cae dentro de la mesa? */
+  private onTable(x: number, y: number): boolean {
+    return x >= T.x && x <= T.x + T.w && y >= T.y && y <= T.y + T.h;
   }
 
   override update(_t: number, delta: number): void {
@@ -187,63 +268,91 @@ export class PinponScene extends MiniScene<PinponResult> {
     const sp = 150;
     if (Controls.isHeld('left')) this.px -= sp * dt;
     if (Controls.isHeld('right')) this.px += sp * dt;
-    this.px = Phaser.Math.Clamp(this.px, T.x - 14, T.x + T.w + 14);
+    this.px = Phaser.Math.Clamp(this.px, REACH.min, REACH.max);
     if (Controls.consume('interact')) this.smashWindow = 0.22;
     this.smashWindow = Math.max(0, this.smashWindow - dt);
 
-    // El rival sigue la pelota (con su velocidad y su error).
-    const target = this.ball.vy < 0 ? this.ball.x + Math.sin(this.time.now / 300) * this.rival.error : BASE_WIDTH / 2;
-    const d = target - this.ox;
-    this.ox += Phaser.Math.Clamp(d, -this.rival.speed * dt, this.rival.speed * dt);
-
     const b = this.ball;
-    b.x += b.vx * dt;
-    b.y += b.vy * dt;
-    b.z = Math.abs(Math.sin(((b.y - T.y) / T.h) * Math.PI * 2)) * 6;
-    if (b.x < T.x - 26 || b.x > T.x + T.w + 26) {
-      // Se fue por el costado: punto para el que no le pegó.
-      this.point(b.vy > 0 ? 'me' : 'them');
+    // El rival va hacia donde la pelota va a cruzar su línea (con su velocidad y su error).
+    let target = BASE_WIDTH / 2;
+    if (b.by === 'me' && b.fault === null) {
+      const tLine = (OP_Y - b.ly) / b.vy;
+      target = b.lx + b.vx * tLine + Math.sin(this.time.now / 300) * this.rival.error * 0.6;
+    }
+    const d = target - this.ox;
+    this.ox = Phaser.Math.Clamp(this.ox + Phaser.Math.Clamp(d, -this.rival.speed * dt, this.rival.speed * dt), REACH.min, REACH.max);
+
+    if (!b.bounced) {
+      const prevY = b.y;
+      b.t = Math.min(1, b.t + dt / b.dur);
+      b.x = b.sx + (b.lx - b.sx) * b.t;
+      b.y = b.sy + (b.ly - b.sy) * b.t;
+      b.z = 4 * (1 - b.t) + (b.smash ? 7 : 12) * 4 * b.t * (1 - b.t);
+      // La red: si este golpe no la pasa, se queda ahí.
+      if (b.fault === 'net' && (prevY - NET_Y) * (b.y - NET_Y) <= 0 && prevY !== b.y) {
+        b.y = NET_Y + (b.by === 'me' ? 3 : -3);
+        b.z = 0;
+        this.fault('¡Red!', b.x, b.y, b.by === 'me' ? 'them' : 'me');
+        return;
+      }
+      if (b.t >= 1) {
+        if (!this.onTable(b.lx, b.ly)) {
+          b.z = 0;
+          this.fault('¡Afuera!', b.lx, b.ly, b.by === 'me' ? 'them' : 'me');
+          return;
+        }
+        b.bounced = true;
+        b.after = 0;
+        playSfx('pinpon');
+      }
       return;
     }
-    // Mi paleta.
-    const myY = T.y + T.h + 4;
-    if (b.vy > 0 && b.y >= myY - 3 && b.y <= myY + 6) {
-      if (Math.abs(b.x - this.px) <= PAD_W / 2 + 2) {
-        const off = (b.x - this.px) / (PAD_W / 2);
+
+    // Después del bote: sube un poco y baja hacia la paleta del que recibe.
+    b.after += dt;
+    b.x += b.vx * dt;
+    b.y += b.vy * dt;
+    b.z = Math.max(0, Math.sin(Math.min(1, b.after / 0.45) * Math.PI) * 8);
+    if (b.by === 'them') {
+      // Me toca: solo después del bote.
+      if (b.y >= MY_Y - 3 && b.y <= MY_Y + 6 && Math.abs(b.x - this.px) <= PAD_W / 2 + 2) {
+        const off = Phaser.Math.Clamp((b.x - this.px) / (PAD_W / 2), -1, 1);
         const smash = this.smashWindow > 0;
-        const speed = Math.abs(b.vy) * (smash ? 1.35 : 1.04);
-        b.vy = -Math.min(smash ? 260 : 200, Math.max(95, speed));
-        b.vx = off * 90 + (Math.random() - 0.5) * 10;
         if (smash) {
           this.smashWindow = 0;
           this.smashes++;
-          this.float('¡REMATE!', '#f8e070', this.px, myY - 14);
+          this.float('¡REMATE!', '#f8e070', this.px, MY_Y - 14);
           playSfx('taco');
         } else playSfx('pinpon');
+        this.shoot('me', b.x, MY_Y - 3, off, smash);
+        return;
       }
-    }
-    if (b.y > myY + 12) {
-      this.point('them');
-      return;
-    }
-    // Paleta del rival.
-    const oY = T.y - 4;
-    if (b.vy < 0 && b.y <= oY + 3 && b.y >= oY - 6) {
-      if (Math.abs(b.x - this.ox) <= PAD_W / 2 + 2) {
-        const off = (b.x - this.ox) / (PAD_W / 2);
-        b.vy = Math.min(230, Math.max(95, Math.abs(b.vy) * 1.03 * this.rival.hit));
-        b.vx = off * 80 + (BASE_WIDTH / 2 - b.x) * 0.3 + (Math.random() - 0.5) * 40;
+      if (b.y > MY_Y + 12) this.point('them');
+    } else {
+      if (b.y <= OP_Y + 3 && b.y >= OP_Y - 6 && Math.abs(b.x - this.ox) <= PAD_W / 2 + 2) {
         playSfx('pinpon');
         if (Math.random() < 0.12) this.say(this.rival.taunts[Math.floor(Math.random() * this.rival.taunts.length)], this.ox, T.y - 6, 900);
+        // A un remate le cuesta responder: la devuelve más lenta.
+        this.shoot('them', b.x, OP_Y + 3, 0, false, b.smash ? 0.85 : 1);
+        return;
       }
+      if (b.y < OP_Y - 12) this.point('me');
     }
-    if (b.y < oY - 12) this.point('me');
   }
 
-  private point(who: 'me' | 'them'): void {
+  /** Falta (red o afuera): marca dónde fue y punto para `who`. */
+  private fault(text: string, x: number, y: number, who: Side): void {
+    this.mark = { x, y, ms: 900 };
+    this.float(text, '#f8e070', x, y - 8);
+    playSfx('golpe');
+    this.point(who);
+  }
+
+  private point(who: Side): void {
     if (who === 'me') this.me++;
     else this.them++;
-    this.float(who === 'me' ? '¡Punto!' : `Punto de ${this.rival.name}`, who === 'me' ? '#a8e0a0' : '#ff9c9c', BASE_WIDTH / 2, NET_Y);
+    // El aviso al costado de la mesa, no encima de la malla.
+    this.float(who === 'me' ? '¡Punto!' : `Punto de ${this.rival.name}`, who === 'me' ? '#a8e0a0' : '#ff9c9c', who === 'me' ? 58 : 262, NET_Y);
     playSfx(who === 'me' ? 'blip' : 'cancel');
     this.server = who === 'me' ? 'them' : 'me';
     if (this.me >= POINTS || this.them >= POINTS) {
@@ -295,10 +404,14 @@ export class PinponScene extends MiniScene<PinponResult> {
     g.fillStyle(0xc8303c, 1).fillRoundedRect(this.ox - PAD_W / 2, T.y - 6, PAD_W, 4, 2);
     g.fillStyle(this.smashWindow > 0 ? 0xf8e070 : 0xc8303c, 1).fillRoundedRect(this.px - PAD_W / 2, T.y + T.h + 2, PAD_W, 4, 2);
     // La pelota y su sombra.
-    if (this.phase === 'play') {
+    if (this.phase === 'play' || (this.phase === 'point' && this.mark)) {
       const b = this.ball;
       g.fillStyle(0x000000, 0.25).fillCircle(b.x + 1, b.y + 1, 2);
       g.fillStyle(0xf8f4ec, 1).fillCircle(b.x, b.y - b.z, 2);
+    }
+    if (this.mark && this.mark.ms > 0) {
+      this.mark.ms -= this.game.loop.delta;
+      g.lineStyle(1, 0xf8e070, 1).strokeCircle(this.mark.x, this.mark.y, 4);
     }
     const h = this.hud;
     h.clear();

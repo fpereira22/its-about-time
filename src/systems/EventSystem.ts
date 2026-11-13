@@ -22,8 +22,8 @@ export interface GameEvents {
   banner: [{ title: string; subtitle?: string }];
   /** Efecto de sonido (lo reproduce AudioManager). Usa playSfx() de src/audio/sfx.ts. */
   sfx: [SfxName];
-  /** Cambiar la música de fondo (null = silencio). Usa playMusic(). */
-  music: [MusicTrack | null];
+  /** Cambiar la música de fondo (null = silencio). Usa playMusic(). El bpm opcional fuerza otro tempo y la reinicia. */
+  music: [MusicTrack | null, number?];
   /** Sonido ambiente (la lluvia). Usa setAmbient(). */
   ambient: [AmbientState];
   /** Viento y murmullo de la ciudad en lo alto (rooftop). Usa setSkylineAmbient(). */
@@ -46,6 +46,10 @@ export interface GameEvents {
   'open-pool': [{ done: (result: import('../scenes/PoolScene').PoolResult) => void }];
   'open-pinpon': [{ done: (result: import('../scenes/PinponScene').PinponResult) => void }];
   'open-atraccion': [{ mode: import('../scenes/AtraccionScene').AtraccionMode; done: (result: import('../scenes/AtraccionScene').AtraccionResult) => void }];
+  /** Misión 9: los juegos de la fiesta en la casa de Tami (las curvas del taxi, beer pong, cacho y la pelea de gallinas). */
+  'open-fiesta': [{ mode: import('../scenes/FiestaScene').FiestaMode; done: (result: import('../scenes/FiestaScene').FiestaResult) => void }];
+  /** Misión 10: los juegos del río Pance (parquear, el chorro, el neumático, el puente colgante, las fotos y la historia). */
+  'open-rio': [{ mode: import('../scenes/RioScene').RioMode; photos?: string[]; done: (result: import('../scenes/RioScene').RioResult) => void }];
   'open-cocina': [{ part: 1 | 2; done: (result: { score: number; total: number; perfect: boolean; cried: boolean; teamwork: boolean }) => void }];
   /** Abrir el mapa interactivo de la Línea 1 (escena UI). */
   'open-line-map': [];

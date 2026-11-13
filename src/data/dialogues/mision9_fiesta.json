@@ -1,0 +1,1440 @@
+{
+ "m9_casa_tami_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "effects": [
+     {
+      "event": "llegada_m9"
+     }
+    ]
+   }
+  }
+ },
+ "m9_llegada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El portón se abre antes de que toquen. Es Tami.",
+    "effects": [
+     {
+      "vineta": "m9_tami_porton"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Desde Salento no han hablado. Ni un mensaje. Ni un «¿llegaste bien?». Nada.",
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Tami",
+    "text": "Ah... hola. Pasen. La piscina está atrás y el trago en la cocina.",
+    "effects": [
+     {
+      "vineta": "m9_tami"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Detrás de ella aparece un tipo alto, con cadena dorada y la camisa blanca abierta hasta el tercer botón. Le pasa el brazo por los hombros a Tami.",
+    "effects": [
+     {
+      "vineta": "m9_steven"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Steven",
+    "text": "¿Qué fue, mi pana? Steven, de Guayaquil. Bienvenidos, bienvenidos. Están en su casa. Bueno, en la de Tami, pero es lo mismo, ¿no, mi amor?",
+    "effects": [
+     {
+      "vineta": "m9_steven_tami"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Tami",
+    "text": "...Sí, Steven.",
+    "choices": [
+     {
+      "label": "«Buena, Steven. Gracias por la invitación.»",
+      "goto": "educado"
+     },
+     {
+      "label": "«Hola, Tami.»",
+      "goto": "hola_tami"
+     },
+     {
+      "label": "(Mirar a Tami y no decir nada)",
+      "goto": "nada"
+     }
+    ]
+   },
+   "educado": {
+    "speaker": "Steven",
+    "text": "¡Chévere, ñaño! Así me gusta, gente educada. Pasen, pasen.",
+    "effects": [
+     {
+      "vineta": "m9_steven"
+     }
+    ],
+    "next": "n7"
+   },
+   "hola_tami": {
+    "speaker": "Tami",
+    "text": "Hola, chileno. ...Pasen, que se enfría el ambiente.",
+    "effects": [
+     {
+      "vineta": "m9_tami"
+     }
+    ],
+    "next": "n7"
+   },
+   "nada": {
+    "text": "Tami te mira medio segundo. Después mira para otro lado.",
+    "effects": [
+     {
+      "vineta": "m9_tami"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "¿Y esa? ¿Hay historia? Dímelo bajito.",
+    "effects": [
+     {
+      "vineta": "m9_laura_susurro"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Una historia corta.»",
+      "effects": [
+       {
+        "setFlag": "m9_q_honesto"
+       }
+      ],
+      "goto": "corta"
+     },
+     {
+      "label": "«No hay nada.»",
+      "goto": "nada2"
+     }
+    ]
+   },
+   "corta": {
+    "speaker": "Laura",
+    "text": "Las cortas son las mejores. Ya me la contarás... o no. Como quieras.",
+    "next": "n8"
+   },
+   "nada2": {
+    "speaker": "Laura",
+    "text": "Ya. «Nada». Esa cara no es de nada, chileno. Pero vale, vale.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "speaker": "Ximena",
+    "text": "¡Laura! ¡Ven, que Chuy y Renata ya están adentro con el tequila!",
+    "effects": [
+     {
+      "vineta": "m9_ximena"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "Bueno... me voy con los míos un rato. Ahora te busco.",
+    "effects": [
+     {
+      "vineta": "m9_laura_guino"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "speaker": "Laura",
+    "text": "...O búscame tú, ¿vale? Que yo me pierdo fácil.",
+    "next": "n11"
+   },
+   "n11": {
+    "text": "Laura se va con Ximena hacia la sala. Desde el fondo del patio alguien grita tu nombre. Es Danilo, en la baranda.",
+    "effects": [
+     {
+      "objective": "Sal al patio: Danilo y los muchachos están en la baranda del mirador"
+     }
+    ]
+   }
+  }
+ },
+ "m9_mirador": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La baranda del patio da al vacío. Y abajo, en el vacío, está Cali entera: millones de lucecitas que tiemblan con el calor.",
+    "effects": [
+     {
+      "vineta": "m9_mirador"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Ah ve, chileno. Llegaste. Bienvenido al mejor balcón de Cali. Desde acá se ve todo, vojabés.",
+    "effects": [
+     {
+      "vineta": "m9_mirador_amigos"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Juanpa",
+    "text": "Parce, ¿y esa española con la que llegaste? ¿La de Salento? ¿La del tequila?",
+    "choices": [
+     {
+      "label": "«Vive en mi edificio.»",
+      "goto": "edificio"
+     },
+     {
+      "label": "«Es una amiga.»",
+      "goto": "amiga"
+     }
+    ]
+   },
+   "edificio": {
+    "speaker": "Richi",
+    "text": "¡Ala! ¡Achichay! ¡En el mismo edificio! ¡Eso no es casualidad, ve!",
+    "effects": [
+     {
+      "vineta": "m9_richi"
+     }
+    ],
+    "next": "n4"
+   },
+   "amiga": {
+    "speaker": "Renzo",
+    "text": "«Una amiga», dice. Asu, causa. Así empiezan todas las historias de mi tío Pocho.",
+    "effects": [
+     {
+      "vineta": "m9_renzo"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Bueno, juguemos a algo. A ver si sabés dónde queda cada cosa. ¿Ves esa torre alta con la lucecita roja arriba?",
+    "effects": [
+     {
+      "vineta": "m9_mirador_puntos"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«La Torre de Cali.»",
+      "effects": [
+       {
+        "setFlag": "m9_lug_1"
+       }
+      ],
+      "goto": "t_ok"
+     },
+     {
+      "label": "«La Torre Eiffel.»",
+      "goto": "t_no"
+     }
+    ]
+   },
+   "t_ok": {
+    "speaker": "Danilo",
+    "text": "¡Eso! Ya sos medio caleño.",
+    "next": "n6"
+   },
+   "t_no": {
+    "speaker": "Richi",
+    "text": "¡Ala! ¡La Torre Eiffel, dice! ¡Este chileno ya está tomado y no se ha tomado nada!",
+    "effects": [
+     {
+      "vineta": "m9_richi"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "¿Y esa mancha de luz grandota, redonda, como un plato?",
+    "choices": [
+     {
+      "label": "«El estadio Pascual Guerrero.»",
+      "effects": [
+       {
+        "setFlag": "m9_lug_2"
+       }
+      ],
+      "goto": "e_ok"
+     },
+     {
+      "label": "«Un ovni.»",
+      "goto": "e_no"
+     }
+    ]
+   },
+   "e_ok": {
+    "speaker": "Juanpa",
+    "text": "¡Exacto! Ahí juega el América. Y el Cali en el otro. No preguntés cuál es mejor, que acá nos matamos.",
+    "effects": [
+     {
+      "vineta": "m9_juanpa"
+     }
+    ],
+    "next": "n7"
+   },
+   "e_no": {
+    "speaker": "Juanpa",
+    "text": "Parce, si es un ovni, que se lleve a Renzo primero.",
+    "effects": [
+     {
+      "vineta": "m9_juanpa"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "Y la última: ¿dónde queda el Bobo?",
+    "choices": [
+     {
+      "label": "«Allá al sur, esa lucecita chiquita al lado de la autopista.»",
+      "effects": [
+       {
+        "setFlag": [
+         "secreto_m9_bobo",
+         "m9_lug_3"
+        ]
+       }
+      ],
+      "goto": "b_ok"
+     },
+     {
+      "label": "«Es esa, la más brillante.»",
+      "goto": "b_no"
+     },
+     {
+      "label": "«No tengo idea.»",
+      "goto": "b_ni"
+     }
+    ]
+   },
+   "b_ok": {
+    "speaker": "Danilo",
+    "text": "¡Exacto! Allá, chiquitico. Y pensar que de ahí salió un taxi con cinco personas apretadas para llegar acá.",
+    "effects": [
+     {
+      "vineta": "m9_mirador_puntos"
+     },
+     {
+      "sfx": "secret"
+     }
+    ],
+    "next": "n8"
+   },
+   "b_no": {
+    "speaker": "Danilo",
+    "text": "Esa es una bomba de gasolina, ve.",
+    "next": "n8"
+   },
+   "b_ni": {
+    "speaker": "Juanpa",
+    "text": "Normal, parce. Yo vivo acá hace veinte años y todavía me pierdo.",
+    "effects": [
+     {
+      "vineta": "m9_juanpa"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "text": "Juanpa, Richi y Renzo se van a buscar algo de tomar. Danilo se queda contigo en la baranda y baja la voz.",
+    "next": "n9"
+   },
+   "n9": {
+    "speaker": "Danilo",
+    "text": "Ve parce... ¿viste a Tami con el ecuatoriano?",
+    "effects": [
+     {
+      "vineta": "m9_danilo_serio"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Sí. Y está bien.»",
+      "goto": "bien"
+     },
+     {
+      "label": "«Un poco raro, ¿no?»",
+      "goto": "raro"
+     },
+     {
+      "label": "«¿De la que me salvé?»",
+      "effects": [
+       {
+        "setFlag": "secreto_m9_salvado"
+       }
+      ],
+      "goto": "salve"
+     }
+    ]
+   },
+   "bien": {
+    "speaker": "Danilo",
+    "text": "Eso, ve. Eso es madurez. Mirá cómo crecés, parce. Me dan ganas de cobrarte la sesión.",
+    "next": "n10"
+   },
+   "raro": {
+    "speaker": "Danilo",
+    "text": "Raro es poco. Hace una semana te miraba a vos en Salento y hoy ya tiene a Steven, con cadena y todo.",
+    "next": "n10"
+   },
+   "salve": {
+    "speaker": "Danilo",
+    "text": "¡De la que te salvaste, parce! Yo no te lo iba a decir, pero ya lo dijiste vos. Eso, en psicología, se llama «insight».",
+    "effects": [
+     {
+      "vineta": "m9_danilo_risa"
+     },
+     {
+      "sfx": "secret"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "speaker": "Danilo",
+    "text": "Bueno. La noche es larga. Juanpa y Richi van a armar el beer pong, Renzo se fue a jugar cacho con una peruana... y vos tenés una española adentro. Vojabés.",
+    "effects": [
+     {
+      "vineta": "m9_danilo_serio"
+     }
+    ],
+    "next": "n11"
+   },
+   "n11": {
+    "text": "Ahora la fiesta es tuya: el beer pong en la sala, el cacho junto a la cocina, la pérgola, la piscina... y Laura, que está adentro con los mexicanos. Búscala cuando quieras.",
+    "effects": [
+     {
+      "objective": "La fiesta: juega, toma, baila... y busca a Laura cuando quieras"
+     },
+     {
+      "setFlag": "m9_mirador"
+     }
+    ]
+   }
+  }
+ },
+ "m9_laura_buscar": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "¡Por fin! Pensé que me ibas a dejar con los mexicanos toda la noche. Chuy me ha hecho tomar tres tequilas. Tres.",
+    "effects": [
+     {
+      "vineta": "m9_laura_sala"
+     },
+     {
+      "setFlag": "m9_quimica_visible"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Te estaba buscando.»",
+      "effects": [
+       {
+        "setFlag": "m9_q_buscar"
+       }
+      ],
+      "goto": "buscando"
+     },
+     {
+      "label": "«Vine por el tequila.»",
+      "goto": "tequila"
+     },
+     {
+      "label": "«Vuelvo en un rato.»",
+      "goto": "luego"
+     }
+    ]
+   },
+   "luego": {
+    "speaker": "Laura",
+    "text": "Vale, pero no tardes, que me enfrío. Y que Chuy me sirve otro.",
+    "effects": [
+     {
+      "clearFlag": "m9_quimica_visible"
+     }
+    ]
+   },
+   "buscando": {
+    "speaker": "Laura",
+    "text": "¿Ah, sí? Pues ya me has encontrado. Ahora no me sueltes, que me pierdo.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "tequila": {
+    "speaker": "Laura",
+    "text": "¡Mentiroso! Has venido por mí. Se te nota en la cara de sardina.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Laura agarra una botella de aguardiente de la mesa. Le saca la tapa con los dientes.",
+    "effects": [
+     {
+      "vineta": "m9_botella"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Aquí ya no quedan vasos limpios. Toma, del pico. A lo bilbaíno.",
+    "choices": [
+     {
+      "label": "Tomar de la misma botella",
+      "effects": [
+       {
+        "setFlag": [
+         "m9_q_botella",
+         "m9_misma_botella"
+        ]
+       },
+       {
+        "sfx": "chupito"
+       }
+      ],
+      "goto": "misma"
+     },
+     {
+      "label": "«Mejor busco un vaso.»",
+      "goto": "vaso"
+     }
+    ]
+   },
+   "misma": {
+    "text": "Tomas. Anís, fuego, y el sabor del pintalabios rojo en el borde de la botella. Laura te mira mientras tomas.",
+    "effects": [
+     {
+      "vineta": "m9_botella_misma"
+     }
+    ],
+    "next": "misma2"
+   },
+   "misma2": {
+    "speaker": "Laura",
+    "text": "¿Qué? ¿Nunca habías compartido botella con una de Bilbao? Pues ya está. Ahora somos familia.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     },
+     {
+      "giveItem": "botella_guaro"
+     }
+    ],
+    "next": "n5"
+   },
+   "vaso": {
+    "speaker": "Laura",
+    "text": "Qué fino me ha salido el chileno. Vale, vale. Más para mí.",
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Oye, ¿bailamos? Ahí afuera, en la pérgola. Están todos tus amigos haciendo el ridículo y quiero hacerlo yo también.",
+    "effects": [
+     {
+      "vineta": "m9_laura_sala"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Vamos.»",
+      "goto": "vamos"
+     }
+    ]
+   },
+   "vamos": {
+    "text": "Te agarra de la mano y te saca al patio sin esperar respuesta.",
+    "effects": [
+     {
+      "event": "baile_m9"
+     }
+    ]
+   }
+  }
+ },
+ "m9_baile_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Terminan sin aire, riéndose, debajo de las guirnaldas. Richi y Juanpa aplauden. Danilo grita: «¡Eso es sanar, parce!».",
+    "effects": [
+     {
+      "vineta": "m9_pergola_baile"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m9_baile_bien"
+      },
+      "goto": "bien"
+     },
+     {
+      "goto": "mal"
+     }
+    ]
+   },
+   "bien": {
+    "speaker": "Laura",
+    "text": "No me lo esperaba. Bailas mejor de lo que hablas euskera. Y eso que el euskera no se te da nada mal.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "mal": {
+    "speaker": "Laura",
+    "text": "Me has pisado. Mucho. Pero me lo he pasado bomba.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Laura saca el celular del bolsillo de atrás del jean. Funda roja y amarilla.",
+    "effects": [
+     {
+      "vineta": "m9_cel_entrega"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Toma. Guárdamelo, porfa. Yo lo pierdo todo y tú tienes cara de responsable. Cuídamelo bien... y cuídame un poco a mí también, que el aguardiente ya me está subiendo.",
+    "choices": [
+     {
+      "label": "«Te lo cuido con mi vida.»",
+      "effects": [
+       {
+        "setFlag": "m9_q_cuidar"
+       }
+      ],
+      "goto": "vida"
+     },
+     {
+      "label": "«¿Y si te llaman?»",
+      "goto": "llaman"
+     }
+    ]
+   },
+   "vida": {
+    "speaker": "Laura",
+    "text": "Con tu vida no, que me lo vas a devolver muerto. Con cariño basta.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "fin"
+   },
+   "llaman": {
+    "speaker": "Laura",
+    "text": "Que me dejen un mensaje. Esta noche no estoy para nadie... bueno, para casi nadie.",
+    "effects": [
+     {
+      "vineta": "m9_laura_guino"
+     }
+    ],
+    "next": "fin"
+   },
+   "fin": {
+    "text": "Te guardas el celular de Laura en el bolsillo. Ahora tienes dos celulares y una responsabilidad.",
+    "effects": [
+     {
+      "giveItem": "cel_laura"
+     },
+     {
+      "setFlag": [
+       "m9_cel_laura",
+       "m9_laura_hecho"
+      ]
+     },
+     {
+      "clearFlag": "m9_quimica_visible"
+     },
+     {
+      "objective": "La piscina te espera (con el celular de Laura en el bolsillo)"
+     }
+    ]
+   }
+  }
+ },
+ "m9_laura_pergola": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m9_piscina",
+       "hasItem": "cel_laura"
+      },
+      "goto": "devolver"
+     },
+     {
+      "if": {
+       "flag": "m9_cel_devuelto"
+      },
+      "goto": "devuelto"
+     },
+     {
+      "goto": "antes"
+     }
+    ]
+   },
+   "antes": {
+    "speaker": "Laura",
+    "text": "La piscina está llamando a gritos. ¿Te tiras? Yo miro desde aquí, que el agua y yo no nos llevamos. Y mi móvil, ¿eh? Tú lo cuidas.",
+    "effects": [
+     {
+      "vineta": "m9_laura_pergola"
+     }
+    ]
+   },
+   "devolver": {
+    "speaker": "Laura",
+    "text": "¡Mi móvil! ¡Vivo! ...Gracias, chileno.",
+    "effects": [
+     {
+      "vineta": "m9_cel_devuelve"
+     },
+     {
+      "takeItem": "cel_laura"
+     },
+     {
+      "setFlag": "m9_cel_devuelto"
+     }
+    ],
+    "next": "d2"
+   },
+   "d2": {
+    "speaker": "Laura",
+    "text": "Te he visto, ¿eh? En la piscina.",
+    "effects": [
+     {
+      "vineta": "m9_laura_seria"
+     }
+    ],
+    "next": "d3"
+   },
+   "d3": {
+    "speaker": "Laura",
+    "text": "No pasa nada, tío. Es una fiesta. Cuídala, que va muy perjudicada. ...Y cuídate tú también.",
+    "next": "d4"
+   },
+   "d4": {
+    "speaker": "Laura",
+    "text": "Agur, chileno.",
+    "effects": [
+     {
+      "vineta": "m9_laura_agur"
+     },
+     {
+      "objective": "Acompaña a Roxane al auto (en el estacionamiento, junto al portón)"
+     }
+    ]
+   },
+   "devuelto": {
+    "speaker": "Laura",
+    "text": "Agur, chileno. Ya nos cruzaremos en el ascensor.",
+    "effects": [
+     {
+      "vineta": "m9_laura_agur"
+     }
+    ]
+   }
+  }
+ },
+ "m9_laura_tarde": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "¿Te vas? ...Vale. Ya nos cruzaremos en el ascensor, ¿no? Tres pisos no es nada.",
+    "effects": [
+     {
+      "vineta": "m9_laura_seria"
+     }
+    ]
+   }
+  }
+ },
+ "m9_auto_cel": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Todavía tienes el celular de Laura en el bolsillo. No te puedes ir así. Laura está en la pérgola.",
+    "effects": [
+     {
+      "vineta": "m9_cel_fondo"
+     }
+    ]
+   }
+  }
+ },
+ "m9_juanpa_bp": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m9_beerpong"
+      },
+      "goto": "post"
+     },
+     {
+      "goto": "pre"
+     }
+    ]
+   },
+   "pre": {
+    "speaker": "Juanpa",
+    "text": "¡Parce! ¿Un beer pong? Richi y yo contra vos. El que pierde se toma lo que quede en los vasos.",
+    "effects": [
+     {
+      "vineta": "m9_juanpa_bp"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¡Dale!»",
+      "goto": "dale"
+     },
+     {
+      "label": "«Ahorita no.»",
+      "goto": "no"
+     }
+    ]
+   },
+   "dale": {
+    "speaker": "Juanpa",
+    "text": "¡Eso! Richi, acomodá los vasos. Y no me hagás trampa con el codo.",
+    "effects": [
+     {
+      "event": "beerpong_m9"
+     }
+    ]
+   },
+   "no": {
+    "speaker": "Juanpa",
+    "text": "Ah ve, el chileno se arrugó. Aquí lo esperamos."
+   },
+   "post": {
+    "speaker": "Juanpa",
+    "text": "Revancha más tarde, parce. Ahorita estoy... digiriendo.",
+    "effects": [
+     {
+      "vineta": "m9_juanpa"
+     }
+    ]
+   }
+  }
+ },
+ "m9_beerpong_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m9_beerpong_gano"
+      },
+      "goto": "gano"
+     },
+     {
+      "goto": "perdio"
+     }
+    ]
+   },
+   "gano": {
+    "text": "Juanpa te pasa el último vaso rojo, vacío, como si fuera una copa. «Ganaste, parce. Guárdalo de trofeo.»",
+    "effects": [
+     {
+      "vineta": "m9_juanpa_bp"
+     },
+     {
+      "giveItem": "vaso_rojo"
+     }
+    ]
+   },
+   "perdio": {
+    "text": "Te toca tomarte lo que queda en tus vasos. Richi te pasa el último, vacío: «Pa' que te acordés de esta derrota, ve.»",
+    "effects": [
+     {
+      "vineta": "m9_richi"
+     },
+     {
+      "giveItem": "vaso_rojo"
+     }
+    ]
+   }
+  }
+ },
+ "m9_richi_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Richi",
+    "text": "¡Achichay, chileno! Allá en Pasto el beer pong se juega con hervido. Es más peligroso, ve.",
+    "effects": [
+     {
+      "vineta": "m9_richi"
+     }
+    ]
+   }
+  }
+ },
+ "m9_mila_cacho": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m9_cacho"
+      },
+      "goto": "post"
+     },
+     {
+      "goto": "pre"
+     }
+    ]
+   },
+   "pre": {
+    "speaker": "Mila",
+    "text": "¡Chileno! ¿Un cachito? Renzo dice que el cacho es de Arequipa, pero el cacho es limeño.",
+    "effects": [
+     {
+      "vineta": "m9_mila_cacho"
+     }
+    ],
+    "next": "pre2"
+   },
+   "pre2": {
+    "speaker": "Renzo",
+    "text": "¡El cacho es de todo el Perú, causa!",
+    "effects": [
+     {
+      "vineta": "m9_renzo"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Juguemos.»",
+      "goto": "juega"
+     },
+     {
+      "label": "«¿Lima o Arequipa?»",
+      "effects": [
+       {
+        "setFlag": "secreto_m9_lima"
+       }
+      ],
+      "goto": "pelea"
+     },
+     {
+      "label": "«Después.»",
+      "goto": "despues"
+     }
+    ]
+   },
+   "juega": {
+    "speaker": "Mila",
+    "text": "¡Eso, causa! Tres rondas. Agita bien el cubilete, que si no, no vale.",
+    "effects": [
+     {
+      "event": "cacho_m9"
+     }
+    ]
+   },
+   "pelea": {
+    "speaker": "Renzo",
+    "text": "¡Arequipa es independiente, causa! ¡Tenemos volcán y pasaporte propio!",
+    "effects": [
+     {
+      "vineta": "m9_renzo"
+     }
+    ],
+    "next": "pelea2"
+   },
+   "pelea2": {
+    "speaker": "Mila",
+    "text": "¡Ustedes tienen un volcán y ya se creen país! ¡En Lima tenemos mar!",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     }
+    ],
+    "next": "pelea3"
+   },
+   "pelea3": {
+    "speaker": "Renzo",
+    "text": "¡Un mar gris, causa! ¡Gris!",
+    "next": "pelea4"
+   },
+   "pelea4": {
+    "text": "Los dos se miran. Se ríen. Se sirven otro aguardiente. La guerra Lima–Arequipa queda en tregua.",
+    "effects": [
+     {
+      "sfx": "secret"
+     }
+    ]
+   },
+   "despues": {
+    "speaker": "Mila",
+    "text": "Aquí estamos, chileno. El cacho no se va a ningún lado. Renzo tampoco, ya no se puede parar."
+   },
+   "post": {
+    "speaker": "Mila",
+    "text": "Ya me ganaste... o te gané. Da igual, causa. Lo importante es que Renzo perdió.",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m9_cacho_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m9_cacho_gano"
+      },
+      "goto": "gano"
+     },
+     {
+      "goto": "perdio"
+     }
+    ]
+   },
+   "gano": {
+    "text": "Mila te regala uno de sus dados. «Pa' que practiques, chileno. En Lima te comen vivo, pero ya estás listo.»",
+    "effects": [
+     {
+      "vineta": "m9_mila_cacho"
+     },
+     {
+      "giveItem": "dado_cacho"
+     }
+    ]
+   },
+   "perdio": {
+    "text": "Mila te regala uno de sus dados. «Pa' que practiques, causa. Mucho, mucho, que te hace falta.»",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     },
+     {
+      "giveItem": "dado_cacho"
+     }
+    ]
+   }
+  }
+ },
+ "m9_renzo_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Renzo",
+    "text": "Causa, ¿probaste el aguardiente? Es como el pisco, pero con anís. Me gusta. No le digas a mi mamá.",
+    "effects": [
+     {
+      "vineta": "m9_renzo"
+     }
+    ]
+   }
+  }
+ },
+ "m9_danilo_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Ah ve, ¿qué hacés acá conmigo? Andá a jugar, a bailar o a buscar a la española, parce. Pero no te quedés mirando Cali como un poeta triste.",
+    "effects": [
+     {
+      "vineta": "m9_danilo_serio"
+     }
+    ]
+   }
+  }
+ },
+ "m9_tami_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Tami",
+    "text": "¿Necesitas algo, chileno? El baño es la segunda puerta.",
+    "effects": [
+     {
+      "vineta": "m9_tami"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Cómo has estado?»",
+      "goto": "como"
+     },
+     {
+      "label": "«Linda casa.»",
+      "goto": "casa"
+     },
+     {
+      "label": "«Nada, gracias.»",
+      "goto": "nada"
+     }
+    ]
+   },
+   "como": {
+    "speaker": "Tami",
+    "text": "Bien. Ocupada. ...Muy bien, la verdad.",
+    "next": "como2"
+   },
+   "como2": {
+    "text": "Tami mira a Steven, que se ríe solo en la cocina. Tú también lo miras. Después la miras a ella. Ya no hay nada que decir."
+   },
+   "casa": {
+    "speaker": "Tami",
+    "text": "Es de mis papás. Están en Miami. Por eso la fiesta."
+   },
+   "nada": {
+    "speaker": "Tami",
+    "text": "Ok."
+   }
+  }
+ },
+ "m9_steven_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Steven",
+    "text": "¿Qué fue, mi pana? ¿Todo bien? ¿Ya te tomaste algo?",
+    "effects": [
+     {
+      "vineta": "m9_steven"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Encebollado o ceviche?»",
+      "effects": [
+       {
+        "setFlag": "secreto_m9_steven"
+       }
+      ],
+      "goto": "enceb"
+     },
+     {
+      "label": "«Cuídala.»",
+      "goto": "cuida"
+     },
+     {
+      "label": "«Todo bien.»",
+      "goto": "bien"
+     }
+    ]
+   },
+   "enceb": {
+    "speaker": "Steven",
+    "text": "¡Encebollado, ñaño! ¡Encebollado pa' la chuchaqui! ¡Los de Guayaquil no negociamos eso! Bróder, tú sí sabes.",
+    "effects": [
+     {
+      "vineta": "m9_steven"
+     },
+     {
+      "sfx": "secret"
+     }
+    ]
+   },
+   "cuida": {
+    "speaker": "Steven",
+    "text": "...Tranquilo, pana. Tranquilo."
+   },
+   "bien": {
+    "speaker": "Steven",
+    "text": "¡Chévere! Disfruta, que la noche está joven."
+   }
+  }
+ },
+ "m9_chuy_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Chuy",
+    "text": "¡Órale, chileno! ¡El mexicano honorario! ¿Un tequilita? Ya sabes el orden: sal, tequila, limón. Si te equivocas, pagas la siguiente.",
+    "effects": [
+     {
+      "vineta": "m9_mexicanos"
+     }
+    ]
+   }
+  }
+ },
+ "m9_renata_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m9_laura_hecho"
+      },
+      "goto": "despues"
+     },
+     {
+      "goto": "antes"
+     }
+    ]
+   },
+   "antes": {
+    "speaker": "Renata",
+    "text": "Laura no ha dejado de hablar del «chileno del 805» desde que llegamos. Te lo digo nada más pa' que sepas, güey.",
+    "effects": [
+     {
+      "vineta": "m9_mexicanos"
+     }
+    ]
+   },
+   "despues": {
+    "speaker": "Renata",
+    "text": "Ya vi que bailaron. Ya vi, ya vi. No digo nada. Bueno, sí: ¡qué padre!",
+    "effects": [
+     {
+      "vineta": "m9_mexicanos"
+     }
+    ]
+   }
+  }
+ },
+ "m9_ximena_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Ximena",
+    "text": "¡Cachai, güey! ¿Sí lo dije bien? ¡Ya me sale natural! Y no te quites la pulsera, que si te pierdes te encontramos por el brillo.",
+    "effects": [
+     {
+      "vineta": "m9_ximena"
+     }
+    ]
+   }
+  }
+ },
+ "m9_roxane_pre": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Roxane",
+    "text": "¿Y vos quién sos? ...Ah, el chileno. Ximena me habló de vos. Roxane, de Managua. Estoy esperando que alguien se tire primero a la piscina. Nadie se atreve, ideay.",
+    "effects": [
+     {
+      "vineta": "m9_roxane"
+     }
+    ]
+   }
+  }
+ },
+ "m9_parlante": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El parlante es más grande que la nevera. Suena salsa choke y el piso vibra. Alguien le pegó un sticker: «NO TOCAR – STEVEN».",
+    "effects": [
+     {
+      "vineta": "m9_parlante"
+     }
+    ]
+   }
+  }
+ },
+ "m9_barra": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Una botella de aguardiente a medio tomar, vasitos plásticos y limones cortados. ¿Te sirves?",
+    "effects": [
+     {
+      "vineta": "m9_barra"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Un aguardientico.»",
+      "effects": [
+       {
+        "sfx": "chupito"
+       }
+      ],
+      "goto": "si"
+     },
+     {
+      "label": "«Un vaso de agua.»",
+      "goto": "agua"
+     }
+    ]
+   },
+   "si": {
+    "text": "Anís y fuego. Steven, desde la cocina: «¡Eso, mi pana!»."
+   },
+   "agua": {
+    "text": "Muy responsable. Danilo estaría orgulloso. Bueno, Danilo está orgulloso: te está mirando desde la baranda."
+   }
+  }
+ },
+ "m9_cristo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Detrás de la casa, más arriba todavía, el Cristo Rey con los brazos abiertos, iluminado. Parece que está abrazando a toda la ciudad.",
+    "effects": [
+     {
+      "vineta": "m9_cristo"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Saludarlo con la mano",
+      "effects": [
+       {
+        "setFlag": "secreto_m9_cristo"
+       }
+      ],
+      "goto": "saludo"
+     },
+     {
+      "label": "Sacar una foto de Cali",
+      "if": {
+       "notItem": "foto_cali_noche"
+      },
+      "goto": "foto"
+     },
+     {
+      "label": "Seguir mirando"
+     }
+    ]
+   },
+   "saludo": {
+    "text": "Le haces un saludo con la mano. Nadie te ve. Bueno, Richi sí: «¡Ala! ¡El chileno saludando al Cristo, ve!».",
+    "effects": [
+     {
+      "sfx": "secret"
+     }
+    ]
+   },
+   "foto": {
+    "text": "Clic. Cali entera en una foto, temblando de luces. Sale un poquito movida. Así es más real.",
+    "effects": [
+     {
+      "vineta": "m9_mirador"
+     },
+     {
+      "sfx": "camera"
+     },
+     {
+      "giveItem": "foto_cali_noche"
+     }
+    ]
+   }
+  }
+ },
+ "m9_parrilla": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La parrilla está apagada. Encima hay un plato con tres chorizos fríos y una arepa mordida. Nadie sabe de quién es la arepa.",
+    "effects": [
+     {
+      "vineta": "m9_barra"
+     }
+    ]
+   }
+  }
+ },
+ "m9_carro": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Un carro gris con los vidrios empañados. Adentro no se ve nada. Mejor así."
+   }
+  }
+ },
+ "m9_agua": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El agua está tibia y brilla con las luces de la piscina. Todavía nadie se ha tirado.",
+    "effects": [
+     {
+      "vineta": "m9_piscina_dentro"
+     }
+    ]
+   }
+  }
+ },
+ "m9_porton": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El portón negro. Afuera, la carretera destapada baja hacia Cali. Todavía es muy temprano para irse.",
+    "effects": [
+     {
+      "vineta": "m9_porton"
+     }
+    ]
+   }
+  }
+ }
+}

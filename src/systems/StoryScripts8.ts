@@ -282,6 +282,10 @@ export const M8_SCRIPTS: Record<string, Script> = {
     crew('juanpa', 'renzo');
     playMusic('recuerdo');
     await host.say('m8_rueda');
+    // Mientras sube: el celular y el paisaje (y una selfie con Flor, si te mira).
+    const fotos = await atraccion('rueda');
+    if (!fotos.skipped && (fotos.photos?.length ?? 0) >= 6) set('m8_fotos_rueda');
+    if (fotos.selfie) set('m8_selfie_flor', 'secreto_m8_selfie_flor');
     await clockTo(host, 'sáb 17:40', 1600);
     await host.say('m8_rueda_arriba');
     host.shake(500, 0.004);
@@ -294,6 +298,129 @@ export const M8_SCRIPTS: Record<string, Script> = {
     crew('juanpa', 'renzo');
     StoryState.setClock(StoryState.clock, parseClock('sáb 18:05'));
     host.setLocked(false);
+  },
+
+  /** El Yippe, la montaña rusa de los niños, con Renzo. */
+  async yippe_m8(host) {
+    host.setLocked(true);
+    const r = await atraccion('yippe');
+    host.setLocked(false);
+    if (r.skipped) return;
+    set('m8_yippe');
+    if (r.good) set('m8_yippe_ok');
+    Dialogue.vars.set('valentia', String(r.score));
+    await host.wait(300);
+    await host.say('m8_yippe_post');
+  },
+
+  /** Los Rápidos: ¿quién se moja? */
+  async rapidos_m8(host) {
+    host.setLocked(true);
+    const r = await atraccion('rapidos');
+    host.setLocked(false);
+    if (r.skipped) return;
+    set('m8_rapidos');
+    StoryState.setFlag('m8_rapidos_seco', (r.wet ?? 0) < 25);
+    if ((r.wet ?? 0) >= 40) set('mojado');
+    if (r.renzoWet) set('m8_rapidos_renzo', 'secreto_m8_renzo_mojado');
+    Dialogue.vars.set('mojado', String(r.wet ?? 0));
+    await host.wait(300);
+    await host.say('m8_rapidos_post');
+  },
+
+  /** El Lago de Fábulas: botes chocones con cañón de agua. */
+  async fabulas_m8(host) {
+    host.setLocked(true);
+    const r = await atraccion('fabulas');
+    host.setLocked(false);
+    if (r.skipped) return;
+    set('m8_fabulas');
+    if (r.good) set('m8_fabulas_ok');
+    Dialogue.vars.set('mojaste', String(r.score));
+    await host.wait(300);
+    await host.say('m8_fabulas_post');
+  },
+
+  /** El Tren del Café: saludar y pitar desde la ventana. */
+  async tren_m8(host) {
+    host.setLocked(true);
+    const r = await atraccion('tren');
+    host.setLocked(false);
+    if (r.skipped) return;
+    set('m8_tren');
+    if (r.good) set('m8_tren_ok');
+    Dialogue.vars.set('saludos', String(r.score));
+    await host.wait(300);
+    await host.say('m8_tren_post');
+  },
+
+  /** El Show del Café: el pasillo con la bailarina (Tami aplaude). */
+  async show_m8(host) {
+    host.setLocked(true);
+    const r = await atraccion('show');
+    host.setLocked(false);
+    if (r.skipped) {
+      await host.say('m8_show_nervios');
+      return;
+    }
+    set('m8_show_bailo', 'm8_tami_show');
+    if (r.good) set('m8_show_ok');
+    Dialogue.vars.set('pasos', String(r.score));
+    await host.wait(300);
+    await host.say('m8_show_post');
+  },
+
+  /** El Ciclón: las sillas voladoras y los banderines. */
+  async ciclon_m8(host) {
+    host.setLocked(true);
+    const r = await atraccion('ciclon');
+    host.setLocked(false);
+    if (r.skipped) return;
+    set('m8_ciclon');
+    if (r.score >= 10) set('m8_ciclon_cholado');
+    Dialogue.vars.set('banderines', String(r.score));
+    await host.wait(300);
+    await host.say('m8_ciclon_post');
+  },
+
+  /** El teleférico: fotos mientras cruza el cañón; el diálogo de llegada hace el warp (data.post). */
+  async teleferico_m8(host, data) {
+    host.setLocked(true);
+    const r = await atraccion('teleferico');
+    host.setLocked(false);
+    if (!r.skipped && (r.photos?.length ?? 0) >= 6) set('m8_fotos_teleferico');
+    Dialogue.vars.set('fotos', String(r.photos?.length ?? 0));
+    await host.wait(300);
+    await host.say(String(data.post ?? 'm8_teleferico_post_e'));
+  },
+
+  /** La Torre Mirador: el parque entero en el celular. */
+  async torre_m8(host) {
+    host.setLocked(true);
+    const r = await atraccion('torre');
+    host.setLocked(false);
+    if (r.skipped) return;
+    set('m8_torre');
+    if ((r.photos?.length ?? 0) >= 6) set('m8_fotos_torre');
+    Dialogue.vars.set('fotos', String(r.photos?.length ?? 0));
+    await host.wait(300);
+    await host.say('m8_torre_post');
+  },
+
+  /** El Recorrido Cafetero completo: sembrar, coger, despulpar, tostar, moler, colar y probar tu café. */
+  async cafe_m8(host) {
+    host.setLocked(true);
+    const r = await atraccion('cafe');
+    host.setLocked(false);
+    if (r.skipped || !r.cafe) return;
+    set('m8_cafe');
+    StoryState.setFlag('m8_cafe_bueno', r.cafe.calidad >= 70);
+    StoryState.setFlag('m8_cafe_quemado', r.cafe.tueste === 'quemado');
+    if (r.cafe.calidad >= 85) set('secreto_m8_cafe');
+    Dialogue.vars.set('calidad', String(r.cafe.calidad));
+    Dialogue.vars.set('tueste', r.cafe.tueste);
+    await host.wait(300);
+    await host.say('m8_cafe_post');
   },
 
   /** Domingo: el torneo de pimpón en el patio de la casita. */

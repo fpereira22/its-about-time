@@ -1,0 +1,324 @@
+{
+ "id": "pance_rio",
+ "name": "Río Pance (Ecoparque)",
+ "kind": "overworld",
+ "tileSize": 16,
+ "width": 170,
+ "height": 40,
+ "region": "cali",
+ "music": "rio",
+ "background": "#2c6a34",
+ "legend": {
+  "a": "bosque_pance",
+  "b": "sendero_rio",
+  "c": "pasto_rio_b",
+  "d": "bosque_pance_b",
+  "e": "pasto_rio",
+  "f": "calle",
+  "g": "guadua",
+  "h": "parqueadero",
+  "i": "carro_rojo_a",
+  "j": "carro_blanco_a",
+  "k": "carro_azul_a",
+  "l": "playa_piedras",
+  "m": "playa_piedras_b",
+  "n": "carro_rojo_b",
+  "o": "carro_blanco_b",
+  "p": "carro_azul_b",
+  "q": "rio_bajo",
+  "r": "rio_bajo_b",
+  "s": "caseta",
+  "t": "rio_hondo",
+  "u": "rio_hondo_b",
+  "v": "rio_piedra",
+  "w": "talanquera",
+  "x": "cicloruta",
+  "y": "rio_corriente",
+  "z": "piedra_grande",
+  "A": "puente_madera_rio",
+  "B": "puente_torre",
+  "C": "puente_colgante",
+  "D": "puente_concreto",
+  "E": "puente_colgante_b",
+  "F": "chorro",
+  "G": "kiosko_pance",
+  "H": "fogon_lena",
+  "I": "toldo_azul",
+  "J": "parlante",
+  "K": "mesa_madera",
+  "L": "tronco_banca",
+  "M": "teja",
+  "N": "carro_danilo_a",
+  "O": "carro_danilo_b"
+ },
+ "rows": [
+  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "abcccccadaacbadaadaadaadaadaadabbbeecbccadaadaadaadaadaadaadaadaadaadaabbcccceeeeceeeebbbbbbbbbbbbbbbbbeeeceeeeceebedaadaadeeeceebbbbbcccebbbccccccacccccceeceeeecccccccca",
+  "acccccadaadcbdaadaadaadaadaadaadcbbbbcaadaadaadaadaadaadaadaadaadaadaadabeeccceeeeceeeeceeeeceeeeceeeebbbbbbeeeeceebaadaadaeeeeceeeebbeebbeccccccccadaccccccccccecccccccca",
+  "acccccdaadacbbadaadaadaadaadaadaeceedaadaadaadaadaadaadaadaadaadaadaadaaebbcccceeeeceeeeceeeeceeeeceeeeceeeebbbbecebedaadaaceeeeceeeebbbeeccccccccadaadaadccccccccccccccca",
+  "acccccaadaadcbcaadaadaadaadaadaaeecdaadaadaadaadaadaadaadaadaadaadaadaadaabbccccccceceeeeceeeeceeeeceeeeceeeecebbbbebeadaadaceeeeceeeeceeeccccccccdaadaadaadcccaccccccccca",
+  "accccaadaadacbbadaadaadaadaadaadeeeaadaadaadaadaadaadaadaadaadaadaadaadaadabccccccceeceeeeceeeeceeeeceeeeceeeeceeeebbeeeadaaeceeeeceeeeceecccccccccadaadaadaadaadaadccccca",
+  "accccadaadaadcbbaadaadaadaadaadceeeadaadaadaadaadaadaadaadaabbbbbeceadaadaabccccccceeeceeeeceeeeceeeeceeeeceeeeceebbbeeeeaadaeceeeeceeeececcccccccadaadaadaadaadaadaadaaca",
+  "accccdaadaadaccbedaadaadaadaadaeceedaadaadaadaadaadaadaadaabbccebbbbeaadaadbccccccceeeeceeeeceeeeceeeeceeeeceebbbbbccceeeedaaeeceeeececcccccccccccdaadaadaadaadaadaadaadaa",
+  "accccaadaadaadccbeceaadaadaadaeeeceaadaadaadaadaadaadaadaebcccccccccbbbbbbbeccccccccecccceeeeceeeeceeeeceebbbbbeecccccceeeeadeeeceeeecccccccccccccaadaadaadaaccccccdaadffa",
+  "accccadaadaadaaccbbbeeeadaaeeceeeecadaadaadaadaadaadaadaebeccccccccccccccccccccccceecccccceeeeceeeebbbbbbbbeccccccccccaaeeeeceeeeceeeecccccccccaccadaadcccaacccccccccffffa",
+  "accaaaaaaaaaaaaaaaccbbbbaaeeadaeeeedaadaadaadaadaadaadaabbccccccccccccccccccccccceeeeccccccebbbbbbbbceeeccccgcccccccdaadaeeeeceeeeceeeeceeeccccdaadaadaccccccccccccfffffea",
+  "accchihjhNhkhjhihccccccbbecadaadeedaadaadaadaadaadaadaadbccccccccccccccccccccccccceeecccccbbbecccccgcccclllmfffffffeaadaaceeeeceeffffffffffbbbbbbdaadaeceeccccccefffffceea",
+  "accchnhohOhphohnhcccccccbbedaadaadaadaadaadaadaadaadaadabcccccccccccccccccccccccccccccccbbeecccccccccclffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffeeeebba",
+  "accchhhhhhhhhhhhhccccccccbbaadaadaadaadaadaadaadaadaadabcccccccccccccebecccccccccccccccbceeeeccccccffffqrqqrqqrllfffffffffffffffffeeeceeeefffffffffffffffffffffffebbbbbbba",
+  "accchhhhhhhhhhhhscccccccccbbdaadaadaadaadaadaadaadeadebbccccccccceebbbbbbbbbbbcccccbbbbeeceecccffffffqqrttutvtqqrlmlleeceeeeceeeeceeeeceeebceeefceeeeceeeeceeeecebbbceeeea",
+  "accchhhhhhhhhhhhweeecccccccbbedaadaadaadaadeebbbbbbbbbbcccccccccbbbeeeceeeecebbbbbbbeceeeefffffffffrquttvutttutttqrqlleeceeeeceeegceeeeceebbbbbbbbbbbeceeeeceeeebbeeeceeda",
+  "aceeeeceffffffffffeeececcccccbbbeeedaadaacbbbeccccccccccccccccebbgceeeffffffffffffeeeeffffffffffxlrqvtttutttutttuytqrllleceeeeceeeebbbeeceebbbeeeecbbbbceeebbeebbcaadacdaa",
+  "afffffffffffffffffffffceeecccccbbbbbbbbbbbbcaadaadaacccccccccbbbbeegeffffffffffffffffffffffxcelllrqutttutqrqqtyutttutqrlleceeeeclmlllmbbecbbbbceeeeceebbbbbbbbbbdaadaacaaa",
+  "affffffffeeeecbbbefffffffeadacccaccccccccadaadaadaacccccccbbblmllbbfffffffeeeecefffffffffemlllzqrqutttuqqlmlrqqrttutttqqllmceeelllqzllmllbbbbbbceebeceeebceeegceeedaadccda",
+  "aeeecgeeeceeebbbbbbbbbfffffgedaadaadaadaadaadaadaaeccccccblffffffffffffffffffffffffffflmlllzrqqrtutttrqmlllmlllqqrtttutrqqlmlllmrqqrqqrmlleceeebbeeeeceebeceeeegeeeedaccca",
+  "aeeebbbbbbbbbbzlmlllmlllfffffgceeeeeeeeedaaeefffffcgeeebfffqqrqqrqffffffffffffffffrqqrqAAqqrqtttutttrqllbbbbbbllmqqtuttturqqrqqrutttuttqrlleclllmBbBmlllmlllmlllceeeccccca",
+  "amlllmlllmlzlmlllmlllmlllmfffffbbbbbceeeecffffffffffffffffqqtttuttrqlmlllmlllqrqqrquttqAAttutttuttyrqmlbeecegebblmlqqttutytuqqrutttutttuqqlllmlllmCllmlqqrqllmlzlmlcccccca",
+  "vqrqqrqqrqqrDDrqqrqqrqqrqqmlffffffmlbbbfffffffbbfffffffffqutttutttutrqqrqqrqqrutttutttuAAtutttuytqrqllbeeeeceegebbmlrqytttutttutttutttutttqqrqqrqqEqqrqqtqqrqqrqqlmllcccca",
+  "vutttuttturqDDtttutttutytrqqrqqffffffffffffmlllmlllmllqrqutttutttutttytqvutttutttutttutAAuttyurqqllmlbeceeeeceeegbbmzqrqtutttuttturqqrtttuyttutttuCttutttuvttutttqqmlllcca",
+  "vtttutttutttDDttutttytttuttvutrqqrqqrqqrqqrqqrqqrqqrqqrtutttuqqrqtytvtttutttutttutttuttAAyrqqrllmllbbeeeceeeeceeeebbmlllrqqtutttqrllmqqyutttutttutEtutvtutttutytuttqqlllma",
+  "vttutttutttuDDtutytutttvtttutttutttutttuyttutttutttutttutttuqmllqrtutttutttutttqrFqrqqrAArqllmllbbbeceeeeceeeeceeeebbblllmrqqrqqlmlllmrqtttutttuttCutttutttytttutttutqqrla",
+  "vrqqrqutttutDDqqrqqrqqrqttutttutttuttyutttutttutttutttutttrqllmlllqrqtuttrqqrqqrlqmlllmlllmllbbbgeeeeceeeeceeeeceeeebbbbblmlllmlllbbblmlrqqrqqrqqrEqrqqrqqrqqrqqttutttuqqv",
+  "vqqrqqrqqrqqDDlmlllmlllqrqqrtutttuyttutttutttutttutttuttqrqmlbbbbllzlrqqrqlmlllmllbbbbbmlbbbbeeeeceeeeceeeeceeeeceeeecebbbbbbbbbbbegcbbmlllmlzlmllCmllzmlllmlllrqqtttutttv",
+  "alllmlllmlllmlllmlblmlllmllzqrqqrqqrqtttutttutqrqqrqqrqqrlllbeebbbblmlllmlllmbbbbbeceeebbgeeeceeeeceeeeceeeeceeeeceeeeceeegceeeeceeeegebmlzlmlllmBbBmlbbbbbeelllmrqqutttuv",
+  "aeeecebbeceebbbbbbebbbbbbmlllmlllmlqqrqqrqqrqqrqqrqqrqlllmbbbbbbceebbbbbbbbbbeGHgeIJceGHecIJeeGHeeIJeeeeceeeeceeeeceeeeceeeegeeeeceeeecgbbbbbbbbbbbbbbeGHeebbeeclmlrqqyutv",
+  "aeeeegbeeeceeeecgeeeceeeebbbbbbbllmlllmlllmlllmlllmlllmlbbbbbeeeeceeeecgeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeecebeecebbeceeeebbegeeeeeKKeeegcbmllrqqrv",
+  "aceeebbeeeeceeeeceeeeceeeeceegecbbbbbbbbbbbbbbbbbbbbbbbbceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeebbbbebbeeecebbbceeeeeeeeeeeeeebeellzmlv",
+  "aecebbeceeeeceeeeceeeeceeeeceeegcbbeeceeeegeeeebbbeecgeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeebcebbbceeeebbeeeceeeeeeLLeceeebcgeeelma",
+  "abbbeeeeceeeeceeeeceeeeceeeeceeeecbbeeceeeecbbbeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeebbbbeecebeecbbbeceeeeceeeecebbbbeebecegeeca",
+  "aeeeceeeeceeeeceeeeceeeeceeeeceeeecebbbbbbbbbeeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceebbbbbbbbbbbeceeeebbbbbbeeeeceeeeceeeecbeebbbeeeceegea",
+  "aeeeeceeeeceeeeceeeeceeeeceeeeceeeeceebbbeeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeecebbbbbbbeceeeeceeeeceeebbbeeeceeeeceeeeceeeebeeeeceeeeceeea",
+  "aceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceebbbeeeeceeeeceeeeceeeecebbeceeeeceeeeceeeeceebeceeeeceeeeceea",
+  "aeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeecbeeeceeeeceeeeceeeeceeeebeeeeceeeeceeeecbeeecbbeMceeeeceeeecea",
+  "aeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeeceeeecbbeeceeeeceeeeceeeeceebeceeeeceeeeceeebbbbbbbeeeeceeeeceeeeca",
+  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+ ],
+ "zones": [
+  {
+   "name": "Parqueadero del Ecoparque",
+   "subtitle": "Vía a Pance · km 12",
+   "x": 4,
+   "y": 11,
+   "w": 13,
+   "h": 5
+  },
+  {
+   "name": "Puente 2",
+   "subtitle": "Ecoparque Río Pance",
+   "x": 11,
+   "y": 0,
+   "w": 4,
+   "h": 40
+  },
+  {
+   "name": "Puente 3",
+   "subtitle": "Domingo: medio Cali está aquí",
+   "x": 77,
+   "y": 0,
+   "w": 22,
+   "h": 40
+  },
+  {
+   "name": "Puente 4",
+   "subtitle": "El colgante · casi sin gente",
+   "x": 143,
+   "y": 0,
+   "w": 7,
+   "h": 40
+  },
+  {
+   "name": "Donde doña Nelly",
+   "subtitle": "Sancocho de leña · pasando el Puente 4",
+   "x": 150,
+   "y": 28,
+   "w": 7,
+   "h": 5
+  }
+ ],
+ "labels": [
+  {
+   "x": 10.5,
+   "y": 10.1,
+   "text": "ECOPARQUE RÍO PANCE",
+   "color": "#f8f0c8"
+  },
+  {
+   "x": 13,
+   "y": 19.5,
+   "text": "PUENTE 2",
+   "color": "#f8f0c8"
+  },
+  {
+   "x": 88,
+   "y": 18.5,
+   "text": "PUENTE 3",
+   "color": "#f8f0c8"
+  },
+  {
+   "x": 146.5,
+   "y": 18.8,
+   "text": "PUENTE 4",
+   "color": "#f8f0c8"
+  },
+  {
+   "x": 151.5,
+   "y": 28.2,
+   "text": "SANCOCHO",
+   "color": "#f8dc68"
+  }
+ ],
+ "spawns": {
+  "llegada": {
+   "x": 9,
+   "y": 13,
+   "dir": "down"
+  },
+  "carro": {
+   "x": 9,
+   "y": 13,
+   "dir": "up"
+  },
+  "playa_p3": {
+   "x": 84,
+   "y": 26,
+   "dir": "down"
+  },
+  "chorro": {
+   "x": 81,
+   "y": 26,
+   "dir": "up"
+  },
+  "corriente_ini": {
+   "x": 92,
+   "y": 25,
+   "dir": "up"
+  },
+  "corriente_fin": {
+   "x": 142,
+   "y": 27,
+   "dir": "right"
+  },
+  "puente4_sur": {
+   "x": 146,
+   "y": 28,
+   "dir": "up"
+  },
+  "puente4_medio": {
+   "x": 146,
+   "y": 24,
+   "dir": "down"
+  },
+  "piedra": {
+   "x": 149,
+   "y": 27,
+   "dir": "right"
+  },
+  "nelly": {
+   "x": 153,
+   "y": 31,
+   "dir": "up"
+  },
+  "mesa": {
+   "x": 154,
+   "y": 31,
+   "dir": "up"
+  }
+ },
+ "triggers": [
+  {
+   "id": "playa",
+   "x": 77,
+   "y": 0,
+   "w": 8,
+   "h": 40,
+   "event": "playa_m10",
+   "if": {
+    "mission": "mission10",
+    "flag": "m10_en_pance",
+    "notFlag": "m10_playa"
+   }
+  },
+  {
+   "id": "chorro",
+   "x": 80,
+   "y": 26,
+   "w": 3,
+   "h": 1,
+   "event": "chorro_m10",
+   "if": {
+    "mission": "mission10",
+    "flag": "m10_playa",
+    "notFlag": "m10_chorro"
+   }
+  },
+  {
+   "id": "puente",
+   "x": 146,
+   "y": 27,
+   "w": 1,
+   "h": 1,
+   "event": "puente_m10",
+   "if": {
+    "mission": "mission10",
+    "flag": "m10_corriente",
+    "notFlag": "m10_puente"
+   }
+  },
+  {
+   "id": "piedra",
+   "x": 148,
+   "y": 26,
+   "w": 3,
+   "h": 3,
+   "event": "recuerdos_m10",
+   "if": {
+    "mission": "mission10",
+    "flag": "m10_puente",
+    "notFlag": "m10_recuerdos"
+   }
+  }
+ ],
+ "enter": [
+  {
+   "id": "llegada",
+   "dialogue": "m10_pance_llega",
+   "once": true,
+   "if": {
+    "mission": "mission10"
+   }
+  }
+ ],
+ "crowd": {
+  "lines": "pance",
+  "areas": [
+   {
+    "x": 78,
+    "y": 25,
+    "w": 8,
+    "h": 2,
+    "count": 6
+   },
+   {
+    "x": 90,
+    "y": 25,
+    "w": 8,
+    "h": 2,
+    "count": 5
+   },
+   {
+    "x": 79,
+    "y": 18,
+    "w": 18,
+    "h": 2,
+    "count": 5
+   },
+   {
+    "x": 10,
+    "y": 27,
+    "w": 6,
+    "h": 2,
+    "count": 3
+   }
+  ]
+ }
+}

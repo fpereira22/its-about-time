@@ -477,5 +477,91 @@
     "name": "Corona de cartulina",
     "description": "«CAMPEÓN», torneo de pimpón de La Casita. Hecha por doña Rubiela.",
     "icon": "corona_carton"
+  },
+  "cafe_cosecha": {
+    "name": "Tu café del Quindío",
+    "description": "Una bolsita de papel con el café que sembraste, cogiste y tostaste en el Parque del Café. Don Arnulfo le escribió «cosecha del chileno».",
+    "icon": "cafe_cosecha",
+    "use": "usar_cafe_cosecha",
+    "useLabel": "Oler"
+  },
+  "cel_laura": {
+    "name": "Celular de Laura",
+    "description": "Funda roja y amarilla. «Guárdamelo, que yo lo pierdo todo y tú tienes cara de responsable.»",
+    "icon": "cel_laura",
+    "use": "usar_cel_laura",
+    "useLabel": "Mirar"
+  },
+  "vaso_rojo": {
+    "name": "Vaso rojo",
+    "description": "El último vaso del beer pong. Juanpa dice que es un trofeo. Huele a cerveza.",
+    "icon": "vaso_rojo",
+    "collectible": true
+  },
+  "dado_cacho": {
+    "name": "Dado del cacho",
+    "description": "Mila te lo regaló: «Pa que practiques, chileno. En Lima te comen vivo.»",
+    "icon": "dado_cacho",
+    "collectible": true
+  },
+  "pulsera_neon": {
+    "name": "Pulsera de neón",
+    "description": "Verde fosforito. Te la puso Ximena en el taxi. Todavía brilla un poquito.",
+    "icon": "pulsera_neon",
+    "collectible": true
+  },
+  "foto_cali_noche": {
+    "name": "Foto de Cali de noche",
+    "description": "Toda Cali prendida, desde arriba de Cristo Rey. La sacaste desde la baranda del patio de Tami.",
+    "icon": "foto_cali_noche",
+    "collectible": true,
+    "use": "usar_foto_cali_noche",
+    "useLabel": "Mirar"
+  },
+  "botella_guaro": {
+    "name": "Botella de aguardiente",
+    "description": "Media botella. Pasó por tantas manos que ya es patrimonio de la fiesta.",
+    "icon": "botella_guaro",
+    "collectible": true
+  },
+  "toalla_rio": {
+    "name": "Toalla de rayas",
+    "description": "Naranja, blanca y azul. Todavía huele a la piscina de la U.",
+    "icon": "toalla_rio"
+  },
+  "bloqueador": {
+    "name": "Bloqueador factor 50",
+    "description": "En Cali el sol del mediodía no perdona. Y menos a un chileno.",
+    "icon": "bloqueador"
+  },
+  "foto_puente": {
+    "name": "Foto en el puente colgante",
+    "description": "Danilo en el aire, tú muerto de la risa y el río verde abajo. El Puente 4 del Pance.",
+    "icon": "foto_puente",
+    "collectible": true
+  },
+  "piedra_lisa": {
+    "name": "Piedra lisa del Pance",
+    "description": "Del tamaño de tu palma, perfectamente lisa. El río tardó mil años en dejarla así.",
+    "icon": "piedra_lisa",
+    "collectible": true
+  },
+  "pluma_barranquero": {
+    "name": "Pluma de barranquero",
+    "description": "Azul turquesa, con la punta en forma de raqueta. Danilo dice que trae suerte. Danilo dice muchas cosas.",
+    "icon": "pluma_barranquero",
+    "collectible": true
+  },
+  "vaso_lulada": {
+    "name": "Vaso de lulada",
+    "description": "De doña Nelly: lulo, limón, hielo y azúcar. Con cuchara, que tiene pedacitos.",
+    "icon": "vaso_lulada",
+    "collectible": true
+  },
+  "hoja_fiambre": {
+    "name": "Hoja del fiambre",
+    "description": "La hoja de plátano en la que venía el fiambre de doña Nelly. Te la guardaste. No sabes muy bien por qué.",
+    "icon": "hoja_fiambre",
+    "collectible": true
   }
 }

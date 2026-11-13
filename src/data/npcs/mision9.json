@@ -1,0 +1,471 @@
+[
+ {
+  "id": "m9_wilmer",
+  "map": "bobo_lobby",
+  "x": 2,
+  "y": 2,
+  "dialogue": "m9_wilmer_lobby",
+  "sprite": "wilmer",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_recuerdo"
+  }
+ },
+ {
+  "id": "m9_ximena_lobby",
+  "map": "bobo_lobby",
+  "x": 12,
+  "y": 4,
+  "dialogue": "m9_ximena_lobby",
+  "sprite": "ximena",
+  "dir": "right",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_recuerdo",
+   "notFlag": [
+    "m9_lobby",
+    "m9_en_taxi"
+   ]
+  }
+ },
+ {
+  "id": "m9t_hernan",
+  "map": "taxi_m9",
+  "x": 2,
+  "y": 4,
+  "dialogue": "m9_hernan_npc",
+  "sprite": "hernan",
+  "dir": "left",
+  "if": {
+   "mission": "mission09"
+  }
+ },
+ {
+  "id": "m9t_ximena",
+  "map": "taxi_m9",
+  "x": 2,
+  "y": 2,
+  "dialogue": "m9_ximena_taxi",
+  "sprite": "ximena",
+  "dir": "left",
+  "if": {
+   "mission": "mission09",
+   "notFlag": "m9_vuelta_roxane"
+  }
+ },
+ {
+  "id": "m9t_laura",
+  "map": "taxi_m9",
+  "x": 4,
+  "y": 4,
+  "dialogue": "m9_laura_taxi_npc",
+  "sprite": "laura",
+  "dir": "left",
+  "if": {
+   "mission": "mission09",
+   "notFlag": "m9_vuelta_roxane"
+  }
+ },
+ {
+  "id": "m9t_mila",
+  "map": "taxi_m9",
+  "x": 4,
+  "y": 2,
+  "dialogue": "m9_mila_taxi",
+  "sprite": "mila",
+  "dir": "left",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_mila_sube",
+   "notFlag": [
+    "m9_mila_bajo",
+    "m9_vuelta_roxane"
+   ]
+  }
+ },
+ {
+  "id": "m9t_roxane",
+  "map": "taxi_m9",
+  "x": 4,
+  "y": 4,
+  "dialogue": "m9_roxane_pre",
+  "sprite": "roxane",
+  "dir": "left",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_vuelta_roxane"
+  }
+ },
+ {
+  "id": "m9c_laura_sala",
+  "map": "casa_tami",
+  "x": 15,
+  "y": 11,
+  "dialogue": "m9_laura_buscar",
+  "sprite": "laura",
+  "dir": "right",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa",
+   "notFlag": [
+    "m9_laura_hecho",
+    "m9_piscina"
+   ]
+  }
+ },
+ {
+  "id": "m9c_laura_tarde",
+  "map": "casa_tami",
+  "x": 15,
+  "y": 11,
+  "dialogue": "m9_laura_tarde",
+  "sprite": "laura",
+  "dir": "right",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_piscina",
+   "notFlag": "m9_laura_hecho"
+  }
+ },
+ {
+  "id": "m9c_chuy",
+  "map": "casa_tami",
+  "x": 14,
+  "y": 10,
+  "dialogue": "m9_chuy_npc",
+  "sprite": "chuy",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_renata",
+  "map": "casa_tami",
+  "x": 16,
+  "y": 10,
+  "dialogue": "m9_renata_npc",
+  "sprite": "renata",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_ximena",
+  "map": "casa_tami",
+  "x": 17,
+  "y": 11,
+  "dialogue": "m9_ximena_npc",
+  "sprite": "ximena",
+  "dir": "left",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_tami",
+  "map": "casa_tami",
+  "x": 28,
+  "y": 12,
+  "dialogue": "m9_tami_npc",
+  "sprite": "tami",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_steven",
+  "map": "casa_tami",
+  "x": 29,
+  "y": 12,
+  "dialogue": "m9_steven_npc",
+  "sprite": "steven",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_mila",
+  "map": "casa_tami",
+  "x": 26,
+  "y": 13,
+  "dialogue": "m9_mila_cacho",
+  "sprite": "mila",
+  "dir": "left",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_renzo_cacho",
+  "map": "casa_tami",
+  "x": 25,
+  "y": 12,
+  "dialogue": "m9_mila_cacho",
+  "sprite": "renzo",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_mirador"
+  }
+ },
+ {
+  "id": "m9c_juanpa_bp",
+  "map": "casa_tami",
+  "x": 22,
+  "y": 11,
+  "dialogue": "m9_juanpa_bp",
+  "sprite": "juanpa",
+  "dir": "left",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_mirador",
+   "notFlag": "m9_piscina"
+  }
+ },
+ {
+  "id": "m9c_richi_bp",
+  "map": "casa_tami",
+  "x": 22,
+  "y": 12,
+  "dialogue": "m9_richi_npc",
+  "sprite": "richi",
+  "dir": "left",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_mirador",
+   "notFlag": "m9_piscina"
+  }
+ },
+ {
+  "id": "m9c_danilo",
+  "map": "casa_tami",
+  "x": 14,
+  "y": 24,
+  "dialogue": "m9_danilo_npc",
+  "sprite": "danilo",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_renzo_mir",
+  "map": "casa_tami",
+  "x": 15,
+  "y": 24,
+  "dialogue": "m9_renzo_npc",
+  "sprite": "renzo",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa",
+   "notFlag": "m9_mirador"
+  }
+ },
+ {
+  "id": "m9c_juanpa_mir",
+  "map": "casa_tami",
+  "x": 19,
+  "y": 24,
+  "dialogue": "m9_juanpa_bp",
+  "sprite": "juanpa",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa",
+   "notFlag": "m9_mirador"
+  }
+ },
+ {
+  "id": "m9c_richi_mir",
+  "map": "casa_tami",
+  "x": 20,
+  "y": 24,
+  "dialogue": "m9_richi_npc",
+  "sprite": "richi",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa",
+   "notFlag": "m9_mirador"
+  }
+ },
+ {
+  "id": "m9c_laura_pergola",
+  "map": "casa_tami",
+  "x": 5,
+  "y": 19,
+  "dialogue": "m9_laura_pergola",
+  "sprite": "laura",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_laura_hecho"
+  }
+ },
+ {
+  "id": "m9c_roxane",
+  "map": "casa_tami",
+  "x": 27,
+  "y": 23,
+  "dialogue": "m9_roxane_pre",
+  "sprite": "roxane",
+  "dir": "up",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa",
+   "notFlag": "m9_piscina"
+  }
+ },
+ {
+  "id": "m9c_juanpa_pis",
+  "map": "casa_tami",
+  "x": 25,
+  "y": 17,
+  "dialogue": "m9_juanpa_bp",
+  "sprite": "juanpa",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_piscina"
+  }
+ },
+ {
+  "id": "m9c_richi_pis",
+  "map": "casa_tami",
+  "x": 31,
+  "y": 17,
+  "dialogue": "m9_richi_npc",
+  "sprite": "richi",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_piscina"
+  }
+ },
+ {
+  "id": "m9c_parlante",
+  "map": "casa_tami",
+  "x": 13,
+  "y": 9,
+  "dialogue": "m9_parlante",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_parlante_2",
+  "map": "casa_tami",
+  "x": 18,
+  "y": 9,
+  "dialogue": "m9_parlante",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_barra",
+  "map": "casa_tami",
+  "x": 29,
+  "y": 11,
+  "dialogue": "m9_barra",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_parrilla",
+  "map": "casa_tami",
+  "x": 14,
+  "y": 17,
+  "dialogue": "m9_parrilla",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_cristo",
+  "map": "casa_tami",
+  "x": 21,
+  "y": 25,
+  "dialogue": "m9_cristo",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_cristo_2",
+  "map": "casa_tami",
+  "x": 12,
+  "y": 25,
+  "dialogue": "m9_cristo",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_carro",
+  "map": "casa_tami",
+  "x": 3,
+  "y": 4,
+  "dialogue": "m9_carro",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9c_agua",
+  "map": "casa_tami",
+  "x": 27,
+  "y": 20,
+  "dialogue": "m9_agua",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa",
+   "notFlag": "m9_piscina"
+  }
+ },
+ {
+  "id": "m9c_porton",
+  "map": "casa_tami",
+  "x": 16,
+  "y": 3,
+  "dialogue": "m9_porton",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_en_casa"
+  }
+ },
+ {
+  "id": "m9_roxane_cama",
+  "map": "bobo_piso8",
+  "x": 16,
+  "y": 11,
+  "dialogue": "m9_roxane_cama_npc",
+  "sprite": "roxane",
+  "dir": "down",
+  "if": {
+   "mission": "mission09",
+   "flag": "m9_roxane_cama"
+  }
+ }
+]

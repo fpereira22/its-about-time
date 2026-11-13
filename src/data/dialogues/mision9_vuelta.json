@@ -1,0 +1,897 @@
+{
+ "m9_piscina": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Medianoche y media. Alguien le sube el volumen al parlante. Juanpa se saca la camisa, la revolea y grita: «¡A LA PISCINAAA!».",
+    "effects": [
+     {
+      "vineta": "m9_piscina_grito"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Y se tira de bomba. El agua salpica hasta la parrilla. Detrás de él se tiran Richi, Ximena, dos caleños que no conoces y Renzo, que llega al agua como un meteorito.",
+    "effects": [
+     {
+      "vineta": "m9_piscina_bomba"
+     },
+     {
+      "sfx": "chapuzon"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "branches": [
+     {
+      "if": {
+       "hasItem": "cel_laura"
+      },
+      "goto": "cel"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "cel": {
+    "text": "Antes de tirarte, guardas el celular de Laura adentro de tu zapato, el zapato debajo de la reposera, y la reposera vigilada por Danilo. Como un tesoro.",
+    "effects": [
+     {
+      "vineta": "m9_cel_zapato"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Te tiras tú también. El agua está tibia. Arriba, las estrellas; abajo, las luces de Cali; y en el medio, una piscina llena de gente gritando.",
+    "effects": [
+     {
+      "vineta": "m9_piscina_dentro"
+     },
+     {
+      "sfx": "splash"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "En la orilla, una chica morena, de rulos enormes, te mira con las piernas metidas en el agua.",
+    "effects": [
+     {
+      "vineta": "m9_roxane"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Roxane",
+    "text": "Ideay, chele. Vos sos el chileno, ¿verdad? Roxane. De Managua. Amiga de Ximena de la u.",
+    "effects": [
+     {
+      "vineta": "m9_roxane"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Chele?»",
+      "goto": "chele"
+     },
+     {
+      "label": "«Mucho gusto, Roxane.»",
+      "goto": "gusto"
+     }
+    ]
+   },
+   "chele": {
+    "speaker": "Roxane",
+    "text": "Así les decimos en Nicaragua a los blanquitos como vos. Con cariño, ¿eh? Tranquilo.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_risa"
+     }
+    ],
+    "next": "n7"
+   },
+   "gusto": {
+    "speaker": "Roxane",
+    "text": "Mucho gusto, chele. Qué educadito.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_risa"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Ximena",
+    "text": "¡Pelea de gallinas! ¡Juanpa y yo contra quien sea, güeyes!",
+    "effects": [
+     {
+      "vineta": "m9_ximena"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "text": "Roxane se mete al agua y se te sube a los hombros sin preguntar. «Yo arriba y vos abajo. No me vayás a botar, chele.»",
+    "effects": [
+     {
+      "vineta": "m9_gallina"
+     }
+    ]
+   }
+  }
+ },
+ "m9_gallina_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m9_gallina_gano"
+      },
+      "goto": "gano"
+     },
+     {
+      "goto": "perdio"
+     }
+    ]
+   },
+   "gano": {
+    "text": "Juanpa y Ximena salen del agua tosiendo y riéndose. Roxane se baja de tus hombros de un salto y te abraza, toda mojada.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_risa"
+     }
+    ],
+    "next": "gano2"
+   },
+   "gano2": {
+    "speaker": "Roxane",
+    "text": "¡Somos un equipo tuani, chele!",
+    "next": "n1"
+   },
+   "perdio": {
+    "text": "Caen al agua de espalda. Roxane sale con los rulos tapándole la cara entera.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_risa"
+     }
+    ],
+    "next": "perdio2"
+   },
+   "perdio2": {
+    "speaker": "Roxane",
+    "text": "¡Ideay! Me botaste. Me debés una.",
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Después, la piscina se va vaciando. Quedan pocos. Roxane y tú, en la esquina, con los brazos en el borde, mirando Cali.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_borde"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Roxane",
+    "text": "En Managua no se ve así la ciudad. Allá hay lagos y volcanes, pero de noche todo es oscuro. Esto parece un cielo al revés.",
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Roxane",
+    "text": "¿Y vos qué? ¿Extrañás Chile?",
+    "choices": [
+     {
+      "label": "«A veces.»",
+      "goto": "aveces"
+     },
+     {
+      "label": "«Esta noche, nada.»",
+      "goto": "nada"
+     }
+    ]
+   },
+   "aveces": {
+    "speaker": "Roxane",
+    "text": "Yo también. Pero mirá dónde estamos.",
+    "next": "n4"
+   },
+   "nada": {
+    "speaker": "Roxane",
+    "text": "Así me gusta.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_risa"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Se queda callada. Te mira. Tiene gotas en las pestañas y los rulos le pesan de agua.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_cerca"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Besarla",
+      "effects": [
+       {
+        "setFlag": "m9_beso_roxane"
+       },
+       {
+        "sfx": "beso"
+       }
+      ],
+      "goto": "beso"
+     },
+     {
+      "label": "Sonreírle y seguir mirando Cali",
+      "goto": "no"
+     }
+    ]
+   },
+   "beso": {
+    "text": "Te acercas. Ella también. El beso sabe a cloro y a aguardiente. Alguien en la pérgola silba. No te importa.",
+    "effects": [
+     {
+      "vineta": "m9_beso"
+     }
+    ],
+    "next": "beso2"
+   },
+   "beso2": {
+    "speaker": "Roxane",
+    "text": "Ideay... vos no perdés el tiempo, ¿eh, chele?",
+    "effects": [
+     {
+      "vineta": "m9_roxane_risa"
+     }
+    ],
+    "next": "beso3"
+   },
+   "beso3": {
+    "speaker": "Roxane",
+    "text": "Estoy muerta. ¿Me acompañás al carro de mi amiga? Está en el estacionamiento, junto al portón. Quiero acostarme un ratito.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_cerca"
+     }
+    ]
+   },
+   "no": {
+    "text": "Le sonríes. Ella también. Miran Cali un rato sin decir nada. A veces eso es suficiente.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_borde"
+     }
+    ],
+    "next": "no2"
+   },
+   "no2": {
+    "speaker": "Roxane",
+    "text": "Sos buena onda, chele. Raro, pero buena onda.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m9_roxane_auto_obj": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "hasItem": "cel_laura"
+      },
+      "goto": "cel"
+     },
+     {
+      "goto": "ok"
+     }
+    ]
+   },
+   "cel": {
+    "text": "Antes de irte con Roxane: todavía tienes el celular de Laura. Ella está en la pérgola.",
+    "effects": [
+     {
+      "objective": "Devuélvele el celular a Laura (está en la pérgola) y después ve con Roxane al auto"
+     }
+    ]
+   },
+   "ok": {
+    "effects": [
+     {
+      "objective": "Acompaña a Roxane al auto (en el estacionamiento, junto al portón)"
+     }
+    ]
+   }
+  }
+ },
+ "m9_irse": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Son casi las dos. La música baja. Laura aparece en el borde de la piscina con la chaqueta de jean puesta.",
+    "effects": [
+     {
+      "vineta": "m9_laura_pergola"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "branches": [
+     {
+      "if": {
+       "hasItem": "cel_laura"
+      },
+      "goto": "cel"
+     },
+     {
+      "goto": "sin"
+     }
+    ]
+   },
+   "cel": {
+    "speaker": "Laura",
+    "text": "Chileno, Ximena ha pedido un taxi. ¿Te vienes? Que tienes mi móvil y sin él no me voy. ...Bueno, y sin ti tampoco.",
+    "effects": [
+     {
+      "vineta": "m9_laura_guino"
+     },
+     {
+      "setFlag": "m9_q_irse"
+     }
+    ]
+   },
+   "sin": {
+    "speaker": "Laura",
+    "text": "Chileno, Ximena ha pedido un taxi. ¿Te vienes? Vamos al mismo edificio, sería tonto pagar dos taxis.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m9_auto": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El carro de la amiga de Roxane está abierto. Huele a ambientador de pino y a chicle de menta.",
+    "effects": [
+     {
+      "vineta": "m9_auto"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Roxane",
+    "text": "Echate para allá, chele. Solo un ratito, ¿sí?",
+    "effects": [
+     {
+      "vineta": "m9_roxane_cerca"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Se acuestan de lado en el asiento de atrás, como dos cucharas. Los vidrios se empañan. Afuera se sigue escuchando la salsa, cada vez más lejos.",
+    "effects": [
+     {
+      "vineta": "m9_auto_dormidos"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Roxane se duerme primero. Respira despacio. Tú cuentas las lucecitas de Cali en el vidrio empañado hasta que se te cierran los ojos."
+   }
+  }
+ },
+ "m9_amanecer": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Te despiertas con el cuello torcido. Por el vidrio empañado entra luz naranja: está amaneciendo sobre Cali.",
+    "effects": [
+     {
+      "vineta": "m9_amanecer"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Roxane",
+    "text": "Mmm... ¿qué hora es? ...Ay, no. Me duele todo. Hasta los rulos.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_sueno"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Roxane",
+    "text": "Mi amiga se fue sin mí. Y yo vivo en Jamundí. No llego viva a Jamundí, chele.",
+    "choices": [
+     {
+      "label": "«Vente al Bobo a descansar. Después te vas.»",
+      "goto": "bobo"
+     },
+     {
+      "label": "«Te llevo al Bobo. Sin segundas intenciones.»",
+      "goto": "bobo2"
+     }
+    ]
+   },
+   "bobo": {
+    "speaker": "Roxane",
+    "text": "Ideay... bueno. Pero solo a dormir, ¿eh? Tengo la cabeza como un tambor.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_sueno"
+     }
+    ]
+   },
+   "bobo2": {
+    "speaker": "Roxane",
+    "text": "Ideay, qué caballero. Bueno. Pero vos dormís en el sofá.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m9_taxi_roxane": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Pides un taxi. Sube por la curva un taxi amarillo y... no puede ser.",
+    "effects": [
+     {
+      "vineta": "m9_hernan"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Don Hernán",
+    "text": "¡Uy, el chileno! ¡Otra vez usted, mijo! ¿Y la española y la peruana? ¿Las cambió?",
+    "effects": [
+     {
+      "vineta": "m9_hernan"
+     },
+     {
+      "setFlag": "secreto_m9_hernan"
+     },
+     {
+      "sfx": "secret"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Es una historia larga, don Hernán.»",
+      "goto": "larga"
+     },
+     {
+      "label": "«Al Bobo, por favor.»",
+      "goto": "bobo"
+     }
+    ]
+   },
+   "larga": {
+    "speaker": "Don Hernán",
+    "text": "Todas las historias de las seis de la mañana son largas, mijo. No me cuente. Mejor no me cuente.",
+    "next": "n2"
+   },
+   "bobo": {
+    "speaker": "Don Hernán",
+    "text": "Al Bobo. Calladito y despacito, que la señorita va dormida.",
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Roxane se duerme con la cabeza en tu hombro antes de la primera curva. Bajan por la vía a Cristo Rey con el sol saliendo detrás de la cordillera.",
+    "effects": [
+     {
+      "vineta": "m9_taxi_amanecer"
+     }
+    ]
+   }
+  }
+ },
+ "m9_taxi_vuelta_grupo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Ximena pidió el taxi. Sube por la curva un taxi amarillo y... no puede ser.",
+    "effects": [
+     {
+      "vineta": "m9_hernan"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Don Hernán",
+    "text": "¡Los de las curvas! ¡Súbanse, súbanse! Ya me sé el orden: la mexicana adelante, el chileno al medio.",
+    "effects": [
+     {
+      "vineta": "m9_hernan"
+     },
+     {
+      "setFlag": "secreto_m9_hernan"
+     },
+     {
+      "sfx": "secret"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Mila",
+    "text": "Yo me bajo en Bochalema, causa. Fue un honor ser aplastada por ustedes.",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Bajan por la vía a Cristo Rey. En Bochalema, Mila se baja: «¡Chau, gente! ¡Chileno, practica el cacho!». El taxi se siente enorme sin ella.",
+    "effects": [
+     {
+      "vineta": "m9_taxi_puestos"
+     },
+     {
+      "setFlag": "m9_mila_bajo"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Ximena se queda dormida adelante con la boca abierta. Laura tararea bajito la salsa de la radio. Desafina. No le importa.",
+    "effects": [
+     {
+      "vineta": "m9_laura_ventana"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Oye, chileno... ha estado bien, ¿eh? Esto. Hoy.",
+    "effects": [
+     {
+      "vineta": "m9_laura_taxi"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Muy bien.»",
+      "goto": "bien"
+     },
+     {
+      "label": "«Lo decidió Cali.»",
+      "effects": [
+       {
+        "setFlag": "m9_q_cali"
+       }
+      ],
+      "goto": "cali"
+     }
+    ]
+   },
+   "bien": {
+    "speaker": "Laura",
+    "text": "Muy bien. Sí.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ]
+   },
+   "cali": {
+    "speaker": "Laura",
+    "text": "Lo decidió Cali. Y un poquito el 14.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m9_casa_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "effects": [
+     {
+      "event": "casa_m9"
+     }
+    ]
+   }
+  }
+ },
+ "m9_bobo_roxane": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Wilmer está entrando a su turno justo cuando ustedes cruzan el lobby. Te mira. Mira a Roxane. Mira el reloj.",
+    "effects": [
+     {
+      "vineta": "m9_wilmer_seis"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Wilmer",
+    "text": "Joven... ¿qué le dije anoche? Las seis de la mañana. Las seis.",
+    "effects": [
+     {
+      "vineta": "m9_wilmer_seis"
+     },
+     {
+      "setFlag": "secreto_m9_wilmer"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "En el 805, Roxane se tira en tu cama sin sacarse las zapatillas. Le pones una manta encima. Le dejas un vaso de agua y una pastilla para el dolor de cabeza en el velador.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_cama"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Roxane",
+    "text": "Gracias, chele... sos buena gente... buena gente...",
+    "effects": [
+     {
+      "vineta": "m9_roxane_cama"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Se duerme antes de terminar la frase. Tú te acuestas en el sofá y sacas el celular para poner una alarma."
+   }
+  }
+ },
+ "m9_ascensor_laura": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El ascensor del Bobo. El que funciona. Tú marcas el 8. Laura marca el 11.",
+    "effects": [
+     {
+      "vineta": "m8_boton_11"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "branches": [
+     {
+      "if": {
+       "hasItem": "cel_laura"
+      },
+      "goto": "cel"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "cel": {
+    "text": "Le devuelves el celular. Ella lo mira como si fuera la primera vez que lo ve.",
+    "effects": [
+     {
+      "vineta": "m9_cel_devuelve"
+     },
+     {
+      "takeItem": "cel_laura"
+     },
+     {
+      "setFlag": "m9_cel_devuelto"
+     }
+    ],
+    "next": "cel2"
+   },
+   "cel2": {
+    "speaker": "Laura",
+    "text": "¡Mi móvil! Lo has cuidado. ...Y a mí también. Eskerrik asko, chileno.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Ding. Piso 8. Se abren las puertas.",
+    "effects": [
+     {
+      "vineta": "m9_ascensor_laura"
+     },
+     {
+      "sfx": "elevator"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Agur, chileno. Hasta... bueno, hasta el próximo ascensor.",
+    "effects": [
+     {
+      "vineta": "m9_laura_agur"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "text": "Las puertas se cierran. El número de arriba sube: 9, 10, 11."
+   }
+  }
+ },
+ "m9_fotogram_sigue": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Vibra el celular. Fotogram.",
+    "effects": [
+     {
+      "vineta": "m9_fotogram_sigue"
+     },
+     {
+      "sfx": "notify"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "«laaurii_14 comenzó a seguirte.»",
+    "effects": [
+     {
+      "vineta": "m9_fotogram_sigue"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m9_beso_roxane"
+      },
+      "goto": "roxane"
+     },
+     {
+      "goto": "sola"
+     }
+    ]
+   },
+   "roxane": {
+    "text": "laaurii_14. El 14. Miras a Roxane, dormida en tu cama. Miras el celular. Miras el techo. Qué noche.",
+    "next": "n3"
+   },
+   "sola": {
+    "text": "laaurii_14. El 14. Sonríes en la oscuridad del 805, tres pisos más abajo.",
+    "next": "n3"
+   },
+   "n3": {
+    "choices": [
+     {
+      "label": "Seguirla de vuelta",
+      "effects": [
+       {
+        "setFlag": "m9_seguir"
+       }
+      ],
+      "goto": "seguir"
+     },
+     {
+      "label": "Seguirla de vuelta... y darle like a una foto vieja",
+      "effects": [
+       {
+        "setFlag": [
+         "m9_seguir",
+         "secreto_m9_like"
+        ]
+       }
+      ],
+      "goto": "like"
+     }
+    ]
+   },
+   "seguir": {
+    "text": "Siguiendo. Fácil. Como si no hubieras tardado un minuto entero en apretar el botón."
+   },
+   "like": {
+    "text": "Le das like a una acuarela de un puente rojo, publicada hace cuarenta y siete semanas. Te arrepientes al segundo. Ya es tarde.",
+    "effects": [
+     {
+      "vineta": "m9_cel_fondo"
+     },
+     {
+      "sfx": "secret"
+     }
+    ]
+   }
+  }
+ },
+ "m9_roxane_cama_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Roxane duerme atravesada en tu cama, con los rulos desparramados en la almohada. Ronca bajito. No la despiertes.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_cama"
+     }
+    ]
+   }
+  }
+ },
+ "m9_presente": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Sábado en la noche. El de ahora. La foto de Cali de noche sigue abierta en la pantalla.",
+    "effects": [
+     {
+      "vineta": "m9_depa_noche"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Dos semanas. Desde esa noche, cada vez que el ascensor para en el 11, miras quién sube.",
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Abajo de la foto, comentas: «14 🙌». A los dos segundos, a laaurii_14 le gusta tu comentario.",
+    "effects": [
+     {
+      "vineta": "m9_fotogram_like"
+     },
+     {
+      "sfx": "notify"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Afuera, allá arriba, el Cristo Rey sigue con los brazos abiertos.",
+    "effects": [
+     {
+      "vineta": "m9_depa_noche"
+     }
+    ]
+   }
+  }
+ }
+}

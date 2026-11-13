@@ -45,6 +45,8 @@ class AudioManagerImpl {
   private ambientBus: GainNode | null = null;
   private player: TrackPlayer | null = null;
   private track: MusicTrack | null = null;
+  /** Tempo forzado por la escena (undefined = el de la pista). */
+  private bpm: number | undefined;
   private ducked = false;
   private sfxCount = 0;
   private readonly lastSfx = new Map<SfxName, number>();
@@ -63,7 +65,7 @@ class AudioManagerImpl {
   attach(game: Phaser.Game): void {
     this.game = game;
     EventSystem.on('sfx', (name) => this.play(name));
-    EventSystem.on('music', (track) => this.setMusic(track));
+    EventSystem.on('music', (track, bpm) => this.setMusic(track, bpm));
     EventSystem.on('ambient', (state) => this.setAmbient(state));
     EventSystem.on('skyline-ambient', (state) => this.setSkyline(state));
     EventSystem.on('state-changed', () => this.watchFlags());
@@ -128,16 +130,17 @@ class AudioManagerImpl {
     SFX[name](ctx, now + 0.005, this.sfxBus);
   }
 
-  private setMusic(track: MusicTrack | null): void {
-    if (track === this.track && (track === null || this.player)) return;
+  private setMusic(track: MusicTrack | null, bpm?: number): void {
+    if (track === this.track && bpm === undefined && this.bpm === undefined && (track === null || this.player)) return;
     this.track = track;
+    this.bpm = bpm;
     if (this.ctx) this.startTrack(track);
   }
 
   private startTrack(track: MusicTrack | null): void {
     if (!this.ctx || !this.musicBus) return;
     this.player?.fadeOut();
-    this.player = track ? new TrackPlayer(this.ctx, TRACKS[track], this.musicBus) : null;
+    this.player = track ? new TrackPlayer(this.ctx, TRACKS[track], this.musicBus, this.bpm) : null;
   }
 
   /** La lluvia suena siempre (en silencio si no llueve): así solo se ajusta su volumen. */

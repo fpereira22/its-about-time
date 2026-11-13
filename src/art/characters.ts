@@ -24,8 +24,8 @@ export interface HumanLook {
   shirt: string;
   pants: string;
   shoes?: string;
-  /** `fade`: degradado (costados rapados); `mullet`: corto adelante y largo atrás. */
-  hairStyle?: 'short' | 'long' | 'bun' | 'cap' | 'bald' | 'fade' | 'mullet';
+  /** `fade`: degradado (costados rapados); `mullet`: corto adelante y largo atrás; `curly`: rulos con volumen (misión 9). */
+  hairStyle?: 'short' | 'long' | 'bun' | 'cap' | 'bald' | 'fade' | 'mullet' | 'curly';
   cap?: string;
   /** Contextura: "heavy" ensancha el torso; "small" lo hace más bajito (Richi) y "tall", más alto (Juanpa), misión 8. */
   build?: 'normal' | 'heavy' | 'small' | 'tall';
@@ -140,6 +140,26 @@ function humanFrame(dir: 'down' | 'up' | 'left', step: 0 | 1 | 2, look: HumanLoo
       put(g, 10, 8, 'h');
       put(g, 10, 9, 'h');
       put(g, 11, 9, 'o');
+    }
+  } else if (style === 'curly') {
+    // Rulos: una melena con volumen (más ancha y más alta que la cabeza) y rizos sueltos de otro tono.
+    for (let x = 5; x <= 10; x++) (put(g, x, 0, 'o'), put(g, x, 1, 'h'));
+    put(g, 4, 1, 'o');
+    put(g, 11, 1, 'o');
+    if (dir === 'down') {
+      for (let y = 3; y <= 9; y++) (put(g, 2, y, 'o'), put(g, 3, y, 'h'), put(g, 12, y, 'h'), put(g, 13, y, 'o'));
+      for (const [x, y] of [[3, 4], [12, 6], [3, 8], [12, 9]] as const) put(g, x, y, 'f');
+    } else if (dir === 'up') {
+      for (let y = 3; y <= 10; y++) {
+        put(g, 2, y, 'o');
+        for (let x = 3; x <= 12; x++) put(g, x, y, (x + y) % 3 === 0 ? 'f' : 'h');
+        put(g, 13, y, 'o');
+      }
+    } else {
+      for (let y = 3; y <= 9; y++) (put(g, 12, y, 'h'), put(g, 13, y, 'o'));
+      for (const [x, y] of [[10, 8], [11, 8], [11, 9], [10, 9]] as const) put(g, x, y, 'h');
+      put(g, 12, 5, 'f');
+      put(g, 12, 8, 'f');
     }
   } else if (style === 'bun') {
     for (let x = 6; x <= 9; x++) put(g, x, 0, 'o');

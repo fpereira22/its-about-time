@@ -47,6 +47,13 @@ export function bust(g: G, look: HumanLook, cx: number, cy: number, s: number, o
   // Pelo de atrás (largo o mullet).
   if (style === 'long') r(-6, -4, 12, 11, look.hair);
   if (style === 'mullet') r(-6, 0, 12, 9, look.hair);
+  if (style === 'curly') {
+    // Rulos (misión 9): una nube de pelo alrededor de la cara, con rizos de otro tono.
+    r(-8, -8, 16, 15, INK);
+    r(-7, -7, 14, 13, look.hair);
+    for (const [x, y] of [[-8.5, -4], [-8.5, 1], [7, -4], [7, 1], [-4, -9], [1, -9.5], [-7.5, 5], [6, 5]] as const) r(x, y, 2, 2.5, look.hair);
+    for (const [x, y] of [[-6, -5], [-6, 2], [5, -3], [5, 3], [-2, -7], [2, -6]] as const) r(x, y, 1, 1, shade(look.hair, 0.35));
+  }
   // Cara.
   r(-5, -5, 10, 11, INK);
   r(-4, -4, 8, 9, look.skin);

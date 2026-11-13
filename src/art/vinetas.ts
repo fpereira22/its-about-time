@@ -69,6 +69,9 @@ function hairParts(look: HumanLook): { back: Part[]; top: Part[] } {
       return { back: [], top: [[4, -1, 14, 4, hair], [4, 2, 3, 4, shade(hair, 0.35)]] };
     case 'mullet':
       return { back: [[2, 4, 6, 16, hair]], top: [[4, -1, 14, 5, hair], [4, 2, 6, 6, hair], [15, 3, 2, 2, hair]] };
+    case 'curly':
+      // Rulos (misión 9): una nube de pelo más ancha y alta que la cabeza, con volumen atrás.
+      return { back: [[0, -2, 10, 20, hair], [-1, 4, 3, 8, hair]], top: [[3, -3, 16, 6, hair], [2, 1, 8, 9, hair], [16, 2, 3, 4, hair], [8, -4, 4, 2, hair]] };
     default:
       return { back: [], top: [[4, -1, 14, 5, hair], [4, 2, 6, 7, hair], [15, 3, 2, 2, hair]] };
   }

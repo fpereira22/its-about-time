@@ -1,0 +1,231 @@
+{
+  "id": "mission09",
+  "number": 9,
+  "title": "Arriba de todo",
+  "start": {
+    "map": "bobo_piso8",
+    "spawn": "sofa"
+  },
+  "introDialogue": "m9_intro",
+  "objective": "Recuerda...",
+  "startMoney": 120000,
+  "startFlags": [
+    "mision9_iniciada",
+    "despierto",
+    "banado",
+    "vestido"
+  ],
+  "clock": "sáb 21:00",
+  "weather": "despejado",
+  "destinations": [
+    {
+      "map": "casa_tami",
+      "x": 6,
+      "y": 6,
+      "name": "El auto de la amiga de Roxane (estacionamiento)",
+      "if": {
+        "flag": "m9_beso_roxane",
+        "notItem": "cel_laura",
+        "map": "casa_tami"
+      }
+    },
+    {
+      "map": "casa_tami",
+      "x": 5,
+      "y": 20,
+      "name": "Laura (en la pérgola): devuélvele el celular",
+      "if": {
+        "flag": ["m9_beso_roxane", "m9_piscina"],
+        "hasItem": "cel_laura",
+        "map": "casa_tami"
+      }
+    },
+    {
+      "map": "casa_tami",
+      "x": 27,
+      "y": 17,
+      "name": "La piscina",
+      "if": {
+        "flag": "m9_laura_hecho",
+        "notFlag": "m9_piscina",
+        "map": "casa_tami"
+      }
+    },
+    {
+      "map": "casa_tami",
+      "x": 16,
+      "y": 11,
+      "name": "Laura (en la sala, con los mexicanos)",
+      "if": {
+        "flag": "m9_mirador",
+        "notFlag": ["m9_laura_hecho", "m9_piscina"],
+        "map": "casa_tami"
+      }
+    },
+    {
+      "map": "casa_tami",
+      "x": 17,
+      "y": 24,
+      "name": "El mirador (Danilo y los muchachos)",
+      "if": {
+        "flag": "m9_en_casa",
+        "notFlag": "m9_mirador",
+        "map": "casa_tami"
+      }
+    },
+    {
+      "map": "bobo_lobby",
+      "x": 9,
+      "y": 9,
+      "name": "La puerta del Bobo (el taxi)",
+      "if": {
+        "flag": "m9_lobby",
+        "map": "bobo_lobby"
+      }
+    }
+  ],
+  "victoryEvent": "mision9_final",
+  "routes": [
+    {
+      "id": "taxi",
+      "name": "Taxi (con Don Hernán, ida y vuelta)",
+      "if": {
+        "flag": "mision9_iniciada"
+      }
+    }
+  ],
+  "defaultRoute": "Taxi",
+  "walkedSuffix": {
+    "if": {
+      "flag": "nunca"
+    },
+    "text": ""
+  },
+  "collectibles": [
+    "pulsera_neon",
+    "vaso_rojo",
+    "dado_cacho",
+    "foto_cali_noche",
+    "botella_guaro"
+  ],
+  "bonuses": [
+    {
+      "text": "Diez curvas sin aplastar a nadie",
+      "if": {
+        "flag": "m9_curvas_perfectas"
+      }
+    },
+    {
+      "text": "Euskera: tres de tres",
+      "if": {
+        "flag": "m9_euskera_3"
+      }
+    },
+    {
+      "text": "Ganaste el beer pong",
+      "if": {
+        "flag": "m9_beerpong_gano"
+      }
+    },
+    {
+      "text": "Ganaste el cacho",
+      "if": {
+        "flag": "m9_cacho_gano"
+      }
+    },
+    {
+      "text": "Quina en el cacho",
+      "if": {
+        "flag": "secreto_m9_quina"
+      }
+    },
+    {
+      "text": "Bailaste perfecto bajo la pérgola",
+      "if": {
+        "flag": "m9_baile_perfecto"
+      }
+    },
+    {
+      "text": "Campeones de la pelea de gallinas",
+      "if": {
+        "flag": "m9_gallina_gano"
+      }
+    },
+    {
+      "text": "Devolviste el celular de Laura",
+      "if": {
+        "flag": "m9_cel_devuelto"
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "flag": "secreto_m9_14",
+      "name": "El 14 de los dos"
+    },
+    {
+      "flag": "secreto_m9_euskera",
+      "name": "Medio vasco"
+    },
+    {
+      "flag": "secreto_m9_radio",
+      "name": "Don Hernán le sube a la radio"
+    },
+    {
+      "flag": "secreto_m9_bobo",
+      "name": "Encontraste el Bobo desde Cristo Rey"
+    },
+    {
+      "flag": "secreto_m9_salvado",
+      "name": "De la que te salvaste"
+    },
+    {
+      "flag": "secreto_m9_steven",
+      "name": "¿Encebollado o ceviche?"
+    },
+    {
+      "flag": "secreto_m9_lima",
+      "name": "La guerra Lima–Arequipa"
+    },
+    {
+      "flag": "secreto_m9_cristo",
+      "name": "Saludaste al Cristo Rey"
+    },
+    {
+      "flag": "secreto_m9_fondo",
+      "name": "El fondo de pantalla de Laura"
+    },
+    {
+      "flag": "secreto_m9_hernan",
+      "name": "Otra vez Don Hernán"
+    },
+    {
+      "flag": "secreto_m9_wilmer",
+      "name": "«Las seis, joven»"
+    },
+    {
+      "flag": "secreto_m9_like",
+      "name": "El like a una foto de hace 47 semanas"
+    }
+  ],
+  "endings": [
+    {
+      "id": "roxane",
+      "name": "Rulos, un auto y el amanecer",
+      "if": {
+        "flag": "m9_beso_roxane"
+      }
+    },
+    {
+      "id": "laaurii",
+      "name": "laaurii_14 comenzó a seguirte",
+      "if": {
+        "flag": "m9_final_alta"
+      }
+    },
+    {
+      "id": "cerro",
+      "name": "Arriba de todo"
+    }
+  ]
+}

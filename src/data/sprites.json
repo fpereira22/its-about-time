@@ -1776,6 +1776,98 @@
         "hairStyle": "cap",
         "cap": "#c8303c"
       }
+    },
+    "mila": {
+      "look": {
+        "skin": "#c08a62",
+        "hair": "#1c1418",
+        "shirt": "#e8c030",
+        "pants": "#2a2a38",
+        "hairStyle": "long",
+        "build": "heavy",
+        "accent": "#c8303c"
+      }
+    },
+    "roxane": {
+      "look": {
+        "skin": "#8a5a3c",
+        "hair": "#1c1012",
+        "shirt": "#1ca8a8",
+        "pants": "#f4f0e6",
+        "shoes": "#f4f0e6",
+        "hairStyle": "curly",
+        "accent": "#f8dc68"
+      }
+    },
+    "steven": {
+      "look": {
+        "skin": "#c89068",
+        "hair": "#1c1418",
+        "shirt": "#f4f0e6",
+        "pants": "#3a4a78",
+        "shoes": "#f4f0e6",
+        "hairStyle": "fade",
+        "accent": "#e8c040"
+      }
+    },
+    "hernan": {
+      "look": {
+        "skin": "#a87048",
+        "hair": "#c8c8d0",
+        "shirt": "#e8d8a0",
+        "pants": "#4a4a3a",
+        "hairStyle": "short",
+        "extras": [
+          "mustache"
+        ]
+      }
+    },
+    "danilo_bano": {
+      "look": {
+        "skin": "#a87048",
+        "hair": "#1c1418",
+        "shirt": "#a87048",
+        "pants": "#3c9c5c",
+        "shoes": "#a87048",
+        "hairStyle": "fade",
+        "extras": [
+          "glasses"
+        ]
+      }
+    },
+    "mono": {
+      "look": {
+        "skin": "#e0b088",
+        "hair": "#e8c878",
+        "shirt": "#2c64c0",
+        "pants": "#3c3c48",
+        "hairStyle": "cap",
+        "cap": "#e8c030",
+        "shoes": "#e0b088"
+      }
+    },
+    "cuidador": {
+      "look": {
+        "skin": "#8a5a3a",
+        "hair": "#141010",
+        "shirt": "#e8c030",
+        "pants": "#3a3a48",
+        "hairStyle": "cap",
+        "cap": "#c8303c",
+        "accent": "#c8303c"
+      }
+    },
+    "nelly": {
+      "look": {
+        "skin": "#8a5a3a",
+        "hair": "#2a1c14",
+        "shirt": "#e8742c",
+        "pants": "#3a3a48",
+        "hairStyle": "bun",
+        "shoes": "#5a3a20",
+        "build": "heavy",
+        "accent": "#f4f0e6"
+      }
     }
   },
   "objects": [
@@ -1876,12 +1968,29 @@
     "aji_casa",
     "manilla_parque",
     "corona_carton",
+    "cafe_cosecha",
     "puesto_frutas_obj",
     "puesto_queso_obj",
     "puesto_cafe_obj",
     "puesto_artesania_obj",
     "puesto_plantas_obj",
-    "oblea_salento"
+    "oblea_salento",
+    "cel_laura",
+    "vaso_rojo",
+    "dado_cacho",
+    "pulsera_neon",
+    "foto_cali_noche",
+    "botella_guaro",
+    "piedra_lisa",
+    "foto_puente",
+    "pluma_barranquero",
+    "vaso_lulada",
+    "hoja_fiambre",
+    "toalla_rio",
+    "bloqueador",
+    "neumatico",
+    "olla_sancocho",
+    "llaves_danilo"
   ],
   "sheets": {}
 }

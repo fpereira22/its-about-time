@@ -1,0 +1,1167 @@
+{
+ "m9_intro": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Sábado en la noche. El mismo sábado. Desde el ventanal del 805 se ve Cali prendida y, allá arriba, en el cerro, las lucecitas de Cristo Rey.",
+    "effects": [
+     {
+      "vineta": "m9_depa_noche"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Vibra el celular. Fotogram: «Tus recuerdos de hace dos semanas».",
+    "effects": [
+     {
+      "vineta": "m9_fotogram_recuerdo"
+     },
+     {
+      "sfx": "notify"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Una foto de Cali de noche, desde arriba, toda prendida como un pesebre gigante. La subió laaurii_14. Te etiquetó.",
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Dos semanas. Una semana después de Salento. La fiesta en la casa de Tami, arriba de todo...",
+    "next": "n4"
+   },
+   "n4": {
+    "text": "...y un taxi amarillo con cinco personas adentro y ni un centímetro libre.",
+    "effects": [
+     {
+      "objective": "Recuerda..."
+     },
+     {
+      "event": "recuerdo_m9"
+     }
+    ]
+   }
+  }
+ },
+ "m9_lobby": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Una semana después de Salento. Sábado, nueve y veinticinco de la noche. Bajas al lobby del Bobo con la camisa planchada. Más o menos planchada.",
+    "effects": [
+     {
+      "vineta": "m9_lobby_ximena"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Ximena",
+    "text": "¡Chileno! ¡Qué guapo, güey! ¿Te planchaste la camisa? ¡No manches, te la planchaste!",
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Ximena",
+    "text": "Ya pedí el taxi. Nada más falta mi amiga, la que te dije que vive aquí en tu edificio. Ya baja.",
+    "next": "n3"
+   },
+   "n3": {
+    "text": "El ascensor hace «ding». Se abren las puertas.",
+    "effects": [
+     {
+      "vineta": "m9_ascensor_abre"
+     },
+     {
+      "sfx": "elevator"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Pelo castaño, pecas, una chaqueta de jean y los labios pintados de rojo. Te ve y se queda quieta, con un pie adentro del ascensor y otro afuera.",
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "No. No me lo creo. ¿TÚ?",
+    "effects": [
+     {
+      "vineta": "m9_laura_lobby"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Kaixo.»",
+      "effects": [
+       {
+        "setFlag": "m9_q_kaixo"
+       }
+      ],
+      "goto": "kaixo"
+     },
+     {
+      "label": "«¿Tú eres la amiga de Ximena?»",
+      "goto": "amiga"
+     },
+     {
+      "label": "«Piso 11, ¿no?»",
+      "effects": [
+       {
+        "setFlag": "m9_q_piso"
+       }
+      ],
+      "goto": "piso"
+     }
+    ]
+   },
+   "kaixo": {
+    "speaker": "Laura",
+    "text": "¡Kaixo, chileno! ¡Te acuerdas! Hostia... una semana, ¿eh? Una semana viviendo a tres pisos y ni una vez nos hemos cruzado.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "destino"
+   },
+   "amiga": {
+    "speaker": "Laura",
+    "text": "¡La misma! ¿Y tú eres «el chileno de mi edificio» que me decía Ximena? ¡Ximena, que es el de Salento!",
+    "next": "destino"
+   },
+   "piso": {
+    "speaker": "Laura",
+    "text": "¡Piso 11! ¡Y tú el 805, que no se me ha olvidado! Una semana, tío. Una semana y ni una vez en el ascensor.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "destino"
+   },
+   "destino": {
+    "speaker": "Ximena",
+    "text": "Esperen, ¿se conocen? ¡¿De Salento?! ¡No manches! ¡El Grito! ¡Claro, güey!",
+    "effects": [
+     {
+      "vineta": "m9_lobby_trio"
+     }
+    ],
+    "next": "destino2"
+   },
+   "destino2": {
+    "speaker": "Laura",
+    "text": "Pues ya está. Por fin nos vemos. Yo dije que lo decidiera Cali... y Cali ha tardado una semana. No está nada mal, ¿eh?",
+    "choices": [
+     {
+      "label": "«Será el destino.»",
+      "effects": [
+       {
+        "setFlag": "m9_q_destino"
+       }
+      ],
+      "goto": "destino_si"
+     },
+     {
+      "label": "«Será Ximena.»",
+      "goto": "ximena"
+     }
+    ]
+   },
+   "destino_si": {
+    "speaker": "Laura",
+    "text": "El destino, dice. ¡Qué romántico me ha salido el chileno! ...Me gusta. Apuntado.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "wilmer"
+   },
+   "ximena": {
+    "speaker": "Ximena",
+    "text": "¡Obvio soy yo! Yo soy el destino, güey. Pónganme en los agradecimientos de la boda.",
+    "next": "ximena2"
+   },
+   "ximena2": {
+    "speaker": "Laura",
+    "text": "¡Ximena! ¿Qué boda? ¡Que acabamos de vernos!",
+    "effects": [
+     {
+      "vineta": "m9_lobby_trio"
+     }
+    ],
+    "next": "wilmer"
+   },
+   "wilmer": {
+    "speaker": "Wilmer",
+    "text": "Joven, señoritas: el taxi. El amarillo, el que está pitando en la puerta.",
+    "effects": [
+     {
+      "vineta": "m9_wilmer"
+     }
+    ],
+    "next": "fin"
+   },
+   "fin": {
+    "speaker": "Ximena",
+    "text": "¡Vámonos! Que Tami vive hasta arriba, en Cristo Rey, y la subida es larga.",
+    "effects": [
+     {
+      "setFlag": [
+       "m9_lobby",
+       "m9_sigue_laura",
+       "m9_sigue_ximena"
+      ]
+     },
+     {
+      "objective": "Sal a la calle: el taxi espera en la puerta del Bobo"
+     }
+    ]
+   }
+  }
+ },
+ "m9_wilmer_lobby": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Wilmer",
+    "text": "Que le vaya bien, joven. Y no me llegue a las seis de la mañana, que yo entro a las seis y después me toca verlo.",
+    "effects": [
+     {
+      "vineta": "m9_wilmer"
+     }
+    ]
+   }
+  }
+ },
+ "m9_ximena_lobby": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Ximena",
+    "text": "¡Ándale, güey, que el taxi cobra la espera!",
+    "effects": [
+     {
+      "vineta": "m9_ximena"
+     }
+    ]
+   }
+  }
+ },
+ "m9_laura_lobby_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "¿Qué miras? Vamos, que llegamos tarde... aunque en Cali nadie llega a la hora, ¿no?",
+    "effects": [
+     {
+      "vineta": "m9_laura_lobby"
+     }
+    ]
+   }
+  }
+ },
+ "m9_taxi_subir": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Afuera espera un taxi amarillo con las puertas abiertas y una salsa sonando bajito en la radio.",
+    "effects": [
+     {
+      "vineta": "m9_taxi_afuera"
+     }
+    ]
+   }
+  }
+ },
+ "m9_taxi_go": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "effects": [
+     {
+      "event": "viaje_taxi_m9"
+     }
+    ]
+   }
+  }
+ },
+ "m9_taxi_puestos": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Ximena se sube adelante, al lado del taxista. «Yo voy adelante porque yo pedí el taxi, güey. Reglas son reglas.»",
+    "effects": [
+     {
+      "vineta": "m9_taxi_puestos"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Atrás: Laura a la izquierda, junto a la ventana. Tú al medio. El puesto del medio. El de las rodillas contra la palanca de cambios.",
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Don Hernán",
+    "text": "Buenas noches, muchachos. Hernán, para servirles. ¿Pa' dónde es la cosa?",
+    "effects": [
+     {
+      "vineta": "m9_hernan"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Ximena",
+    "text": "Primero a Bochalema, a recoger a una amiga, y después hasta arriba, a Cristo Rey. Por los lados de Los Cristales.",
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Don Hernán",
+    "text": "Uy, hasta arriba. Agárrense, que esa subida es de curvas. Pero tranquilos, que yo me la sé de memoria, ve."
+   }
+  }
+ },
+ "m9_taxi_1": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "Bueno, chileno. Cuéntame. ¿Qué has hecho esta semana? Porque yo te he buscado en el ascensor TODOS los días. Bueno, dos días. Bueno, uno.",
+    "effects": [
+     {
+      "vineta": "m9_laura_taxi"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Yo también te busqué.»",
+      "effects": [
+       {
+        "setFlag": "m9_q_busque"
+       }
+      ],
+      "goto": "busque"
+     },
+     {
+      "label": "«Estudiar. Comer. Dormir.»",
+      "goto": "rutina"
+     },
+     {
+      "label": "«Pensar en el destino.»",
+      "goto": "destino"
+     }
+    ]
+   },
+   "busque": {
+    "speaker": "Laura",
+    "text": "¿Ah, sí? ¿Y por qué no me has encontrado? Que soy facilísima de encontrar: piso 11, la primera puerta afuera del ascensor, aunque hablo muy bajo pero escucho música a todo volúmen.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "rutina": {
+    "speaker": "Laura",
+    "text": "Qué vida más emocionante. Eres como mi aita los domingos: sofá, siesta y fútbol.",
+    "next": "n2"
+   },
+   "destino": {
+    "speaker": "Laura",
+    "text": "¡Otra vez el destino! Vale, ya veo que eres poeta. Los poetas en Bilbao acaban todos en el bar, ¿eh?",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Lo de Salento fue muy fuerte. El Grito, el tequila, la palma de cera... Se lo conté a mi ama por videollamada y no se lo creía.",
+    "effects": [
+     {
+      "vineta": "m9_laura_taxi"
+     }
+    ]
+   }
+  }
+ },
+ "m9_mila_sube": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El taxi para frente a un conjunto de Bochalema. Sale una chica grande, gordita, con una blusa amarilla y una risa que se escucha antes de que abra la puerta.",
+    "effects": [
+     {
+      "vineta": "m9_mila"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Mila",
+    "text": "¡Habla, gente! Soy Mila, de Lima. ¡Uy, chileno al medio! Córranse, córranse, que vengo con todo.",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Mila se sube a la derecha. El taxi se inclina un poquito. Laura queda pegada a la ventana, tú pegado a Laura y Mila pegada a todos.",
+    "effects": [
+     {
+      "vineta": "m9_taxi_apretados"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Vale, esto es muy íntimo. Muy, muy íntimo. Chileno, tu codo está en mi costilla.",
+    "choices": [
+     {
+      "label": "«Perdón, perdón.»",
+      "goto": "perdon"
+     },
+     {
+      "label": "«Es el destino otra vez.»",
+      "effects": [
+       {
+        "setFlag": "m9_q_codo"
+       }
+      ],
+      "goto": "codo"
+     }
+    ]
+   },
+   "perdon": {
+    "speaker": "Mila",
+    "text": "Tranquilo, causa. En las combis de Lima vamos así, pero con una gallina en las piernas.",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     }
+    ],
+    "next": "n4"
+   },
+   "codo": {
+    "speaker": "Laura",
+    "text": "¡El destino tiene unos codos muy afilados!",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Mila",
+    "text": "¿Y ustedes de dónde se conocen? Tienen cara de que se conocen.",
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Ximena",
+    "text": "¡De Salento! ¡Se conocieron en el Grito, güey! ¡Y viven en el mismo edificio y no sabían!",
+    "effects": [
+     {
+      "vineta": "m9_ximena"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Mila",
+    "text": "¡Asu mare! Eso es novela. Eso es telenovela de las nueve de la noche.",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "text": "Ximena se da vuelta y les pone a todos una pulsera de neón verde. «Pa' que no nos perdamos, güeyes.»",
+    "effects": [
+     {
+      "vineta": "m9_pulseras"
+     },
+     {
+      "giveItem": "pulsera_neon"
+     }
+    ]
+   }
+  }
+ },
+ "m9_taxi_2": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "A ver, que no te he contado nada de Bilbao. Lo primero que tienes que saber: los de Bilbao nacemos donde nos da la gana.",
+    "effects": [
+     {
+      "vineta": "m9_laura_taxi"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Cómo es eso?»",
+      "goto": "bilbainada"
+     },
+     {
+      "label": "«¿Entonces naciste en otro lado?»",
+      "goto": "otro"
+     }
+    ]
+   },
+   "bilbainada": {
+    "speaker": "Laura",
+    "text": "Es una bilbainada. Exageramos todo. Si un bilbaíno te dice que ha pescado un pez de dos metros, era una sardina. Pero una sardina muy de Bilbao.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "otro": {
+    "speaker": "Laura",
+    "text": "¡Que no! Nací en Bilbao, en el hospital de Basurto. Pero si hubiera querido, habría nacido en la Luna. Es un dicho, tío.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Y a Bilbao le decimos «el Botxo». Ya te contaré por qué. Y tengo el Guggenheim a diez minutos de casa: un museo todo de metal, como un barco. En la puerta hay un perro gigante hecho de flores.",
+    "choices": [
+     {
+      "label": "«¿Te gusta el arte?»",
+      "effects": [
+       {
+        "setFlag": "m9_q_arte"
+       }
+      ],
+      "goto": "arte"
+     },
+     {
+      "label": "«¿Un perro de flores?»",
+      "goto": "perro"
+     }
+    ]
+   },
+   "arte": {
+    "speaker": "Laura",
+    "text": "¿Gustarme? Pinto. Acuarelas, sobre todo. La ría, los puentes, la gente dormida en el metro... A ti te pintaría al medio de este taxi, con cara de sardina en lata.",
+    "effects": [
+     {
+      "vineta": "m9_laura_acuarela"
+     }
+    ],
+    "next": "n4"
+   },
+   "perro": {
+    "speaker": "Laura",
+    "text": "Un perro de flores, de doce metros. Le cambian las flores según la estación. En Bilbao somos así: ponemos un perro de flores y nos quedamos tan anchos. ...Y yo pinto, ¿sabes? Acuarelas.",
+    "effects": [
+     {
+      "vineta": "m9_laura_acuarela"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Y la música. Sin música no vivo. En verano voy a un festival que hacen en un monte: tres días saltando en el barro.",
+    "choices": [
+     {
+      "label": "«¿Y qué escuchas?»",
+      "effects": [
+       {
+        "setFlag": "m9_q_musica"
+       }
+      ],
+      "goto": "musica"
+     },
+     {
+      "label": "«Yo canto en la ducha.»",
+      "goto": "ducha"
+     }
+    ]
+   },
+   "musica": {
+    "speaker": "Laura",
+    "text": "De todo. Rock, indie, cosas en euskera que no conoces... y desde que llegué a Cali, salsa. Salsa a muerte. Me sé tres pasos. Bueno, dos.",
+    "next": "n5"
+   },
+   "ducha": {
+    "speaker": "Laura",
+    "text": "Eso no cuenta, todos cantamos en la ducha. Yo canto en la ducha y en el metro. Mi ama dice que tengo voz de... bueno, mejor no te digo lo que dice.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Mila",
+    "text": "Oigan, ¿y ustedes tienen número de la suerte? Yo el 8. Porque es como yo: redondita por arriba y redondita por abajo.",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "El mío es el 14. Desde pequeña: mi dorsal en el equipo del cole, mi portal, todo. ¿Y el tuyo, chileno?",
+    "effects": [
+     {
+      "vineta": "m9_laura_taxi"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«El 14.»",
+      "goto": "catorce"
+     },
+     {
+      "label": "«El de mi polera de la PUCC.»",
+      "goto": "polera"
+     },
+     {
+      "label": "«Adivina.»",
+      "goto": "adivina"
+     }
+    ]
+   },
+   "catorce": {
+    "speaker": "Laura",
+    "text": "¡¿Qué dices?! ¡¿El 14?! ¡No me mientas, que me lo creo!",
+    "next": "c2"
+   },
+   "polera": {
+    "speaker": "Laura",
+    "text": "¿Y cuál es ese número? ...Dímelo. ¿Cuál? ...¿El 14? ¡¿Tu polera es la del 14?!",
+    "next": "c2"
+   },
+   "adivina": {
+    "speaker": "Laura",
+    "text": "Mmm... ¿el 14? ...Era broma. Era broma. ¿Es el 14? ¡¿Es el 14 de verdad?!",
+    "next": "c2"
+   },
+   "c2": {
+    "speaker": "Ximena",
+    "text": "¡No manches! ¡Los dos el 14! ¡Ya, cásense!",
+    "effects": [
+     {
+      "vineta": "m9_catorce"
+     },
+     {
+      "setFlag": [
+       "secreto_m9_14",
+       "m9_q_catorce"
+      ]
+     },
+     {
+      "sfx": "secret"
+     }
+    ],
+    "next": "c3"
+   },
+   "c3": {
+    "speaker": "Mila",
+    "text": "¡El catorce, el catorce! ¡Eso es destino, causa! ¡Eso es más destino que lo del edificio!",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     }
+    ],
+    "next": "c4"
+   },
+   "c4": {
+    "speaker": "Laura",
+    "text": "Vale, vale. El 14 es nuestro. Que nadie más lo toque, ¿eh? Ni Mila.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ]
+   }
+  }
+ },
+ "m9_taxi_3": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "Bueno, chileno. Examen sorpresa. En Salento te dije unas palabritas en euskera. A ver qué recuerdas. Y no vale preguntarle a Ximena.",
+    "effects": [
+     {
+      "vineta": "m9_laura_examen"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Mila",
+    "text": "¡Uy, examen! Yo me copio, causa.",
+    "next": "q1"
+   },
+   "q1": {
+    "speaker": "Laura",
+    "text": "Primera: «kaixo». ¿Qué crees que significa?",
+    "effects": [
+     {
+      "vineta": "m9_laura_examen"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Hola.»",
+      "effects": [
+       {
+        "setFlag": "m9_eus_1"
+       }
+      ],
+      "goto": "q1_ok"
+     },
+     {
+      "label": "«Salud.»",
+      "goto": "q1_no"
+     },
+     {
+      "label": "«Guapo.»",
+      "goto": "q1_no2"
+     }
+    ]
+   },
+   "q1_ok": {
+    "speaker": "Laura",
+    "text": "¡Bai! ¡Muy bien! Uno de uno.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "q2"
+   },
+   "q1_no": {
+    "speaker": "Laura",
+    "text": "Nooo. Casi. Bueno, no. Ni casi.",
+    "next": "q2"
+   },
+   "q1_no2": {
+    "speaker": "Laura",
+    "text": "¡Ja! ¿Tú qué te crees? No. Y eso otro no te lo voy a decir.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "q2"
+   },
+   "q2": {
+    "speaker": "Laura",
+    "text": "Segunda: «agur».",
+    "choices": [
+     {
+      "label": "«Adiós.»",
+      "effects": [
+       {
+        "setFlag": "m9_eus_2"
+       }
+      ],
+      "goto": "q2_ok"
+     },
+     {
+      "label": "«Agua.»",
+      "goto": "q2_no"
+     },
+     {
+      "label": "«Abrazo.»",
+      "goto": "q2_no2"
+     }
+    ]
+   },
+   "q2_ok": {
+    "speaker": "Laura",
+    "text": "¡Bai! ¡Vas bien, chileno!",
+    "next": "q3"
+   },
+   "q2_no": {
+    "speaker": "Laura",
+    "text": "¿Agua? Pues no. Te lo dejo de deberes.",
+    "next": "q3"
+   },
+   "q2_no2": {
+    "speaker": "Laura",
+    "text": "Ojalá, ¿eh? Pero no.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "q3"
+   },
+   "q3": {
+    "speaker": "Laura",
+    "text": "Y la última, difícil: «eskerrik asko».",
+    "choices": [
+     {
+      "label": "«Gracias.»",
+      "effects": [
+       {
+        "setFlag": "m9_eus_3"
+       }
+      ],
+      "goto": "q3_ok"
+     },
+     {
+      "label": "«Esquí acuático.»",
+      "goto": "q3_no"
+     },
+     {
+      "label": "«Te quiero.»",
+      "goto": "q3_no2"
+     }
+    ]
+   },
+   "q3_ok": {
+    "speaker": "Laura",
+    "text": "¡Bai! ¡Bai, bai, bai!",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "res"
+   },
+   "q3_no": {
+    "speaker": "Laura",
+    "text": "¿Esquí acuático? ¡Me muero! Esto se lo cuento a todo Bilbao.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "res"
+   },
+   "q3_no2": {
+    "speaker": "Laura",
+    "text": "¡Uy! Para, para, que acabamos de llegar a la Circunvalar.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "res"
+   },
+   "res": {
+    "branches": [
+     {
+      "if": {
+       "flag": [
+        "m9_eus_1",
+        "m9_eus_2",
+        "m9_eus_3"
+       ]
+      },
+      "goto": "perfecto"
+     },
+     {
+      "goto": "normal"
+     }
+    ]
+   },
+   "perfecto": {
+    "speaker": "Laura",
+    "text": "¡Tres de tres! ¡Este chileno es medio vasco! Eskerrik asko por estudiar, ¿eh? ...Ya sabes lo que significa.",
+    "effects": [
+     {
+      "vineta": "m9_laura_examen"
+     },
+     {
+      "setFlag": [
+       "secreto_m9_euskera",
+       "m9_q_euskera",
+       "m9_euskera_3"
+      ]
+     },
+     {
+      "sfx": "secret"
+     }
+    ]
+   },
+   "normal": {
+    "speaker": "Laura",
+    "text": "Bueno, bueno. Te pongo un aprobado raspado. Ya irás aprendiendo. Tenemos tiempo... tenemos tres pisos de tiempo.",
+    "effects": [
+     {
+      "vineta": "m9_laura_taxi"
+     }
+    ]
+   }
+  }
+ },
+ "m9_taxi_4": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El taxi empieza a subir. Las calles se ponen empinadas y, por la ventana de Laura, Cali se va quedando abajo, toda prendida.",
+    "effects": [
+     {
+      "vineta": "m9_ventana_cali"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Hostia... Mira eso. Parece que alguien ha tirado purpurina encima de la ciudad.",
+    "choices": [
+     {
+      "label": "«Don Hernán, ¿le sube a la radio?»",
+      "effects": [
+       {
+        "setFlag": "secreto_m9_radio"
+       }
+      ],
+      "goto": "radio"
+     },
+     {
+      "label": "«Es más bonita de lo que pensaba.»",
+      "effects": [
+       {
+        "setFlag": "m9_q_vista"
+       }
+      ],
+      "goto": "vista"
+     },
+     {
+      "label": "«Parece un pesebre.»",
+      "goto": "pesebre"
+     }
+    ]
+   },
+   "radio": {
+    "speaker": "Don Hernán",
+    "text": "¡Con mucho gusto, mijo! Esta es de las buenas.",
+    "next": "radio2"
+   },
+   "radio2": {
+    "text": "Don Hernán le sube a la radio. Suena una salsa vieja de esas que todo Cali se sabe. Ximena la canta sin saberla. Mila la canta en peruano. Laura la canta en algo que no es español. Tú haces la trompeta.",
+    "effects": [
+     {
+      "vineta": "m9_taxi_canta"
+     },
+     {
+      "sfx": "secret"
+     }
+    ],
+    "next": "n3"
+   },
+   "vista": {
+    "speaker": "Laura",
+    "text": "Sí que lo es. ...Oye, tú y yo vemos lo mismo desde el 8 y desde el 11. Pero desde aquí parece otra cosa, ¿no?",
+    "effects": [
+     {
+      "vineta": "m9_laura_ventana"
+     }
+    ],
+    "next": "n3"
+   },
+   "pesebre": {
+    "speaker": "Mila",
+    "text": "¡Un pesebre gigante! En Lima no se ve nada así. En Lima todo es gris. Gris bonito, pero gris.",
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Don Hernán",
+    "text": "Bueno, muchachos, ahora sí: la vía a Cristo Rey. Agárrense de lo que puedan. Menos de mí.",
+    "effects": [
+     {
+      "vineta": "m9_hernan"
+     }
+    ]
+   }
+  }
+ },
+ "m9_curvas_post": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m9_curvas_bien"
+      },
+      "goto": "bien"
+     },
+     {
+      "goto": "mal"
+     }
+    ]
+   },
+   "bien": {
+    "speaker": "Laura",
+    "text": "Vale. Gracias por no aplastarme. Eres un caballero. Un caballero sardina, pero un caballero.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n1"
+   },
+   "mal": {
+    "speaker": "Mila",
+    "text": "Causa, tengo tu forma marcada en el brazo. Como un sello.",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     }
+    ],
+    "next": "mal2"
+   },
+   "mal2": {
+    "speaker": "Laura",
+    "text": "Y yo tengo la ventana marcada en la cara. Mira. ¿Se ve? Se ve.",
+    "effects": [
+     {
+      "vineta": "m9_laura_risa"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Arriba, en lo más alto, el taxi para frente a un portón negro. Desde adentro llega la música. Mucha música.",
+    "effects": [
+     {
+      "vineta": "m9_porton"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Don Hernán",
+    "text": "Llegamos, muchachos. Pórtense bien... o mal, pero con cuidado. Y no se me caigan a la piscina.",
+    "effects": [
+     {
+      "vineta": "m9_hernan"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "El taxi de Don Hernán se va bajando por la curva, con las luces rojas cada vez más chiquititas."
+   }
+  }
+ },
+ "m9_hernan_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Don Hernán",
+    "text": "Tranquilo, mijo, que yo manejo. Usted disfrute el paisaje... y la compañía.",
+    "effects": [
+     {
+      "vineta": "m9_hernan"
+     }
+    ]
+   }
+  }
+ },
+ "m9_ximena_taxi": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Ximena",
+    "text": "¡Yo pedí el taxi, yo pongo la música! Bueno, Don Hernán pone la música. Yo la canto.",
+    "effects": [
+     {
+      "vineta": "m9_ximena"
+     }
+    ]
+   }
+  }
+ },
+ "m9_laura_taxi_npc": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "No me mires tanto, que me pongo nerviosa. Mira por la ventana. Bueno, mira un poquito.",
+    "effects": [
+     {
+      "vineta": "m9_laura_taxi"
+     }
+    ]
+   }
+  }
+ },
+ "m9_mila_taxi": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Mila",
+    "text": "¡Chileno, respira hacia adentro, que no entramos!",
+    "effects": [
+     {
+      "vineta": "m9_mila_risa"
+     }
+    ]
+   }
+  }
+ },
+ "usar_cel_laura": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "No vas a mirar nada. Es su celular. ...Bueno. Solo la pantalla de bloqueo, que se prende sola.",
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Es una acuarela: un puente de hierro rojo sobre un río, con el cielo gris. Abajo, chiquitito, firmado: «L.»",
+    "effects": [
+     {
+      "vineta": "m9_cel_fondo"
+     },
+     {
+      "setFlag": "secreto_m9_fondo"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Lo vuelves a guardar en el bolsillo. Pesa como el doble que el tuyo."
+   }
+  }
+ },
+ "usar_foto_cali_noche": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Toda Cali prendida desde arriba. En una esquina de la foto, borrosa, una pulsera de neón verde.",
+    "effects": [
+     {
+      "vineta": "m9_mirador"
+     }
+    ]
+   }
+  }
+ }
+}

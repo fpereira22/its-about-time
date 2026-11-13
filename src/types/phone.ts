@@ -8,6 +8,8 @@ export interface PhoneContact {
   callable?: boolean;
   /** Solo aparece en la app Teléfono si se cumple (ej. doña Mery, recién desde Cali). */
   if?: Condition;
+  /** Mientras se cumpla, su conversación no aparece en Mensajes (ej. Sira durante el recuerdo de Salento). */
+  hideIf?: Condition;
 }
 
 export interface PhoneMessage {

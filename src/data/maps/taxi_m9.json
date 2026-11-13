@@ -1,0 +1,42 @@
+{
+ "id": "taxi_m9",
+ "name": "Taxi a Cristo Rey",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 9,
+ "height": 7,
+ "background": "#0c0c14",
+ "music": "taxi_noche",
+ "legend": {
+  "k": "auto_carroceria",
+  "V": "auto_ventana",
+  "T": "auto_tablero",
+  "s": "auto_asiento",
+  ".": "auto_piso"
+ },
+ "rows": [
+  "kkkkkkkkk",
+  "kVVVVVVVk",
+  "kTs.s...k",
+  "kT..s...k",
+  "kTs.s...k",
+  "kVVVVVVVk",
+  "kkkkkkkkk"
+ ],
+ "spawns": {
+  "asiento": {
+   "x": 4,
+   "y": 3,
+   "dir": "left"
+  }
+ },
+ "enter": [
+  {
+   "id": "viaje",
+   "dialogue": "m9_taxi_go",
+   "if": {
+    "mission": "mission09"
+   }
+  }
+ ]
+}

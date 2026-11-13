@@ -9,22 +9,10 @@
       "vineta": "m8_depa_sabado"
      }
     ],
-    "next": "n1"
-   },
-   "n1": {
-    "text": "Vibra el celular. Es Sira: «buenos días, chileno ☔ ¿dormiste?». Le contestas con tres caritas. Después borras dos. Después las vuelves a poner.",
-    "effects": [
-     {
-      "vineta": "m8_cel_sira"
-     },
-     {
-      "message": "m8_sira_buenosdias"
-     }
-    ],
     "next": "n2"
    },
    "n2": {
-    "text": "Otra notificación. Fotogram: «Tus recuerdos de hace tres semanas». Una foto: la plaza de Salento de noche, gente abrazada, un vasito de tequila en primer plano.",
+    "text": "Vibra el celular. Fotogram: «Tus recuerdos de hace tres semanas». Una foto: la plaza de Salento de noche, gente abrazada, un vasito de tequila en primer plano.",
     "effects": [
      {
       "vineta": "m8_fotogram_recuerdo"

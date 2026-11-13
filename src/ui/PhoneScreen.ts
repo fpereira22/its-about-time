@@ -317,6 +317,8 @@ export class PhoneScreen {
     for (const entry of StoryState.phone) {
       const msg = PHONE.messages[entry.id];
       if (!msg) continue;
+      const hideIf = PHONE.contacts[msg.from]?.hideIf;
+      if (hideIf && check(hideIf)) continue;
       const c = byFrom.get(msg.from) ?? { from: msg.from, last: '', unread: 0, at: 0 };
       c.last = msg.mine ? `Tú: ${msg.text}` : msg.text;
       c.at = entry.at;
@@ -595,7 +597,7 @@ export class PhoneScreen {
   }
 
   private renderHome(): void {
-    const unread = StoryState.unreadCount();
+    const unread = this.conversations().reduce((n, c) => n + c.unread, 0);
     APPS.forEach((app, i) => {
       const cx = SCREEN.x + 18 + (i % 3) * 32;
       const cy = SCREEN.y + STATUS_H + 17 + Math.floor(i / 3) * 34;

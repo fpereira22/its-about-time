@@ -1280,7 +1280,7 @@
    },
    "n1": {
     "speaker": "Laura",
-    "text": "¡Kaixo! Bueno, eso es «hola» en euskera. Soy Laura, de Bilbao. Bilbao, en el País Vasco. En España. Que no es lo mismo pero sí es lo mismo, ¿vale? Ya te lo explico otro día.",
+    "text": "¡Kaixo! Soy Laura, de Bilbao. Bilbao, en el País Vasco. En España. Que no es lo mismo pero sí es lo mismo, ¿vale? Ya te lo explico otro día.",
     "next": "n2"
    },
    "n2": {
@@ -1314,7 +1314,7 @@
    },
    "kaixo": {
     "speaker": "Laura",
-    "text": "¡¿Kaixo?! ¡Hostia! ¡Un chileno que sabe euskera! ...Bueno, una palabra. Pero es la palabra correcta. Eskerrik asko, que es «gracias».",
+    "text": "¡¿Kaixo?! ¡Hostia! ¡Un chileno que sabe euskera! ...Bueno, una palabra. Pero es la palabra correcta. Eskerrik asko.",
     "effects": [
      {
       "vineta": "m8_laura_risa"
@@ -1532,7 +1532,7 @@
    },
    "espana": {
     "speaker": "Laura",
-    "text": "Uf. La comida, lo primero. Los pintxos, la tortilla de patatas de mi ama... «ama» es mamá en euskera. Y el Athletic: mi equipo de fútbol. Solo juegan jugadores de allí. Es una locura y es precioso. ¡Aupa Athletic!",
+    "text": "Uf. La comida, lo primero. Los pintxos, la tortilla de patatas de mi ama... Y el Athletic: mi equipo de fútbol. Solo juegan jugadores de allí. Es una locura y es precioso. ¡Aupa Athletic!",
     "next": "lluvia"
    },
    "rrii": {
@@ -1542,7 +1542,7 @@
    },
    "lluvia": {
     "speaker": "Laura",
-    "text": "En Bilbao llueve así, ¿sabes? Finito, todo el día. Lo llamamos «sirimiri». Por eso esta mañana, con la lluvia de Salento, me sentí en casa un ratito.",
+    "text": "En Bilbao llueve así, ¿sabes? Sirimiri. Por eso esta mañana, con la lluvia de Salento, me sentí en casa un ratito.",
     "effects": [
      {
       "vineta": "m8_laura_sirimiri"
@@ -1605,7 +1605,7 @@
    },
    "cerros": {
     "speaker": "Laura",
-    "text": "Como mi caserío de mi aita, en Bizkaia. «Aita» es papá. Muchos montes, muchas vacas y tres bares. La vida perfecta, vamos.",
+    "text": "Como el caserío de mi aita, en Bizkaia. Muchos montes, muchas vacas y tres bares. La vida perfecta, vamos.",
     "next": "nostalgia"
    },
    "nostalgia": {
@@ -2000,7 +2000,7 @@
    },
    "agur": {
     "speaker": "Laura",
-    "text": "Agur, chileno. «Agur» es adiós en euskera. Pero un adiós de los que vuelven, ¿vale?",
+    "text": "Agur, chileno. Pero un agur de los que vuelven, ¿vale?",
     "effects": [
      {
       "vineta": "m8_laura_agur"
@@ -2146,22 +2146,10 @@
    },
    "n1": {
     "text": "Fue a la vuelta de Salento, en ese mismo bus, cuando volviste a hablar con Sira. Quién lo diría.",
-    "next": "n2"
-   },
-   "n2": {
-    "text": "Vibra el celular. Es Sira: «¿qué haces? 🌧️ ¿vamos por un tinto?». Sonríes. Ahora sí sabes qué son.",
-    "effects": [
-     {
-      "vineta": "m8_cel_sira_tinto"
-     },
-     {
-      "message": "m8_sira_tinto"
-     }
-    ],
     "next": "n3"
    },
    "n3": {
-    "text": "Y también está lo otro. Piso 11. Tres pisos más arriba. Tres semanas, y ni una sola vez en el ascensor.",
+    "text": "Y también está lo otro. Piso 11. Tres pisos más arriba.",
     "effects": [
      {
       "vineta": "m8_boton_11"
@@ -2180,11 +2168,11 @@
     ]
    },
    "alta": {
-    "text": "«Que lo decida Cali», dijo. Cali todavía no decide. Pero a veces, en el ascensor, te quedas mirando el botón del 11 un segundo de más.",
+    "text": "«Que lo decida Cali», dijo. Y Cali no se demoró nada: una semana después, en el lobby del Bobo, se abrió el ascensor... Pero esa es otra historia.",
     "next": "fin"
    },
    "normal": {
-    "text": "A veces, cuando el ascensor se detiene en otro piso, te acuerdas de ella. Nunca es el 11. Todavía.",
+    "text": "Tres pisos. Al final, Cali se encargó de juntarlos, y bastante rápido. Pero esa es otra historia.",
     "next": "fin"
    },
    "fin": {

@@ -1,16 +1,70 @@
 import type { MusicTrack } from './sfx';
-import { hat, kick, noteFreq, noteMidi, snare, tone } from './synth';
+import {
+  babyBass,
+  bellMouth,
+  bellNeck,
+  bongoHigh,
+  bongoLow,
+  brass,
+  cascara,
+  clave,
+  congaHeel,
+  congaOpen,
+  congaSlap,
+  congaTip,
+  guiro,
+  hat,
+  kick,
+  maraca,
+  noteFreq,
+  noteMidi,
+  palmas,
+  piano,
+  snare,
+  timbal,
+  timbalBell,
+  tone,
+  tumba,
+} from './synth';
 
 /**
  * Música chiptune original, escrita como patrones de 16 pasos (semicorcheas) por compás.
  *
  * Tokens de canal melódico: "C5", "F#4", "Bb3" = nota; "-" = sostener la nota anterior; "." = silencio.
+ * Un token melódico puede ser un acorde: "C4+E4+G4".
  * Tokens de batería: "k" bombo, "s" caja, "h" hi-hat, "x" bombo+hat, "o" caja+hat, "." silencio.
+ * Tokens de percusión latina (canal 'perc'): cada letra es un golpe y se pueden juntar ("cB" = clave + campana).
  */
 
 const STEPS_PER_BAR = 16;
 
-type Wave = OscillatorType | 'drums';
+/** 'perc': percusión latina; 'piano' / 'brass' / 'babybass': las voces "de orquesta" de la salsa. */
+type Wave = OscillatorType | 'drums' | 'perc' | 'piano' | 'brass' | 'babybass';
+
+type Hit = (ctx: BaseAudioContext, t: number, vol: number, dest: AudioNode) => void;
+
+/** El alfabeto de la percusión latina. */
+const PERC: Record<string, Hit> = {
+  c: clave,
+  o: congaOpen,
+  O: tumba,
+  s: congaSlap,
+  h: congaHeel,
+  t: congaTip,
+  n: bongoHigh,
+  N: bongoLow,
+  B: bellMouth,
+  b: bellNeck,
+  x: timbalBell,
+  e: cascara,
+  l: (ctx, t, v, d) => timbal(ctx, t, v, d, true),
+  L: (ctx, t, v, d) => timbal(ctx, t, v, d, false),
+  G: (ctx, t, v, d) => guiro(ctx, t, v, d, true),
+  g: (ctx, t, v, d) => guiro(ctx, t, v, d, false),
+  m: maraca,
+  p: palmas,
+  k: kick,
+};
 
 interface ChannelDef {
   wave: Wave;
@@ -119,6 +173,10 @@ const CHIVA_CHORDS = ['A', 'D', 'E', 'A', 'A', 'D', 'E', 'A'];
 const DISCO_CHORDS = ['Am', 'F', 'C', 'G', 'Am', 'F', 'C', 'G'];
 const MARIACHI_CHORDS = ['D', 'A', 'A', 'D', 'D', 'G', 'A', 'D'];
 const RECUERDO_CHORDS = ['F', 'Dm', 'A#', 'C', 'F', 'Am', 'A#', 'C'];
+const TAXI_CHORDS = ['Am', 'Dm', 'G', 'C', 'F', 'Dm', 'E', 'Am'];
+const FIESTA_CHORDS = ['Gm', 'Gm', 'D#', 'F', 'Gm', 'Gm', 'D#', 'F'];
+const RIO_CHORDS = ['D', 'G', 'A', 'D', 'D', 'G', 'A', 'D'];
+const CARRO_CHORDS = ['C', 'F', 'G', 'C', 'Am', 'Dm', 'G', 'C'];
 
 /** Bajo de cumbia: la fundamental en el 1 y la quinta en el 3, con un repique al final. */
 function cumbiaBass(chords: string[]): string[] {
@@ -128,20 +186,84 @@ function cumbiaBass(chords: string[]): string[] {
   });
 }
 
-/** Montuno de piano (salsa): el acorde picado a contratiempo. */
-function montuno(chords: string[]): string[] {
-  return chords.flatMap((c) => {
-    const [a, b, d] = chordMidi(c, 4).map(midiName);
-    return bars(`${a} . ${b} ${d} . ${a} . ${b} ${d} . ${a} . ${b} ${d} . ${b}`);
+// --- Salsa: todo amarrado a la clave 2-3 (compás par = lado del 2, compás impar = lado del 3) ---
+
+const REST = '. . . . . . . . . . . . . . . .';
+
+/** Repite un patrón de uno o más compases hasta llenar `n` compases. */
+function loopBars(n: number, ...pattern: string[]): string[] {
+  return Array.from({ length: n }, (_, i) => pattern[i % pattern.length]);
+}
+
+const rest = (n: number): string[] => loopBars(n, REST);
+
+/** Clave de son 2-3: el 2 y el 3 en el primer compás; el 1, el "y" del 2 y el 4 en el segundo. */
+const CLAVE = ['. . . . c . . . c . . . . . . .', 'c . . . . . c . . . . . c . . .'];
+/** Tumbao de conga (marcha): talón-punta, slap en el 2 y los abiertos en el 4 y su "y" (el último en la tumbadora). */
+const MARCHA = ['h . t . s . t . h . t . o . o .', 'h . t . s . t . h . t . o . O O'];
+/** Martillo del bongó: corcheas en el macho, la hembra abierta en el 4. */
+const MARTILLO = ['n . t . n . t . n . t . N . n .'];
+/** Campana del bongó en el montuno: la boca en los tiempos, el cuello en medio. */
+const BONGO_BELL = ['B . b . B . b b B . b . B . b b'];
+/** Cáscara 2-3 en el costado del timbal (y el mismo ritmo en la campanita durante el mambo). */
+const CASCARA = ['e . . . e . e . . . e . . . e .', 'e . . . e . . . e . e . . . e .'];
+const MAMBO_BELL = CASCARA.map((b) => b.replaceAll('e', 'x'));
+/** Güiro: uno largo y dos cortos en cada tiempo. */
+const GUIRO = ['G . g g G . g g G . g g G . g g'];
+/** Repique del timbal para cerrar una sección (el "abanico"). */
+const TIMBAL_FILL = 'e . . . e . . . L . L l . l L .';
+/** Maracas parejitas (bolero y salsa romántica). */
+const MARACAS = ['m . m m m . m m m . m m m . m m'];
+
+const SCALES: Record<string, number[]> = {
+  C: [0, 2, 4, 5, 7, 9, 11],
+  G: [7, 9, 11, 0, 2, 4, 6],
+  Am: [9, 11, 0, 2, 4, 5, 8], // menor armónica (con el sol sostenido)
+  Gm: [7, 9, 10, 0, 2, 3, 6],
+};
+
+/** Segunda voz de los metales: una tercera diatónica abajo de cada nota ("E6" → "E6+C6"). */
+function thirds(tokens: string[], key: keyof typeof SCALES): string[] {
+  const scale = SCALES[key];
+  return tokens.map((tok) => {
+    if (tok === '.' || tok === '-') return tok;
+    const m = noteMidi(tok);
+    const deg = scale.indexOf(m % 12);
+    const below = deg < 0 ? m - 3 : m - ((m % 12) - scale[(deg + 5) % 7] + 12) % 12;
+    return `${tok}+${midiName(below)}`;
   });
 }
 
-/** Tumbao del bajo: anticipa el acorde en el "y" del 2 y en el 4. */
-function tumbao(chords: string[]): string[] {
-  return chords.flatMap((c) => {
-    const [r, , fifth] = chordMidi(c, 2).map(midiName);
-    return bars(`. . . . . . ${fifth} - . . . . ${r} - - -`);
+/**
+ * Montuno de piano: corcheas que alternan el acorde picado con notas en octavas, y el acorde
+ * siguiente anticipado en el "y" del 4, amarrado por encima de la barra (el 1 no se toca).
+ */
+function montuno(chords: string[]): string[] {
+  return chords.flatMap((c, i) => {
+    const [r, third, fifth] = chordMidi(c, 4);
+    const next = chordMidi(chords[(i + 1) % chords.length], 4)[0];
+    const oct = (m: number): string => `${midiName(m)}+${midiName(m + 12)}`;
+    const stab = `${midiName(third)}+${midiName(fifth)}+${midiName(r + 12)}`;
+    return bars(`- . ${stab} . ${oct(third)} . ${stab} . ${oct(fifth)} . ${stab} . ${oct(third)} . ${oct(next)} -`);
   });
+}
+
+/**
+ * Tumbao del bajo: no toca en el 1; la quinta en el "y" del 2 y, en el 4, la fundamental del acorde
+ * que viene, amarrada hasta el compás siguiente. Eso es lo que hace que la salsa "empuje".
+ */
+function tumbao(chords: string[]): string[] {
+  return chords.flatMap((c, i) => {
+    const [r, , fifth] = chordMidi(c, 2);
+    const next = chordMidi(chords[(i + 1) % chords.length], 2)[0];
+    const five = fifth > r + 7 ? fifth - 12 : fifth;
+    return bars(`- - - - . . ${midiName(five)} - - - . . ${midiName(next)} - - -`);
+  });
+}
+
+/** Un canal de percusión latina armado por compases. */
+function perc(vol: number, ...barList: string[]): ChannelDef {
+  return { wave: 'perc', vol, tokens: bars(...barList) };
 }
 
 export const TRACKS: Record<MusicTrack, TrackDef> = {
@@ -394,6 +516,116 @@ export const TRACKS: Record<MusicTrack, TrackDef> = {
       { wave: 'triangle', vol: 0.17, tokens: bass(MARIACHI_CHORDS, 'twostep') },
       { wave: 'square', vol: 0.016, tokens: arp(MARIACHI_CHORDS, 2, 4) },
       { wave: 'drums', vol: 0.05, tokens: repeat('k . h . s . h . k . h . s . h .', 8) },
+    ],
+  },
+
+  /** Misión 9: la radio del taxi de Don Hernán, subiendo a Cristo Rey (salsa romántica de madrugada, inventada). */
+  taxi_noche: {
+    bpm: 104,
+    loop: true,
+    echo: 0.18,
+    channels: [
+      {
+        wave: 'brass',
+        vol: 0.035,
+        tokens: bars(
+          'E5 - A5 - C6 - B5 - A5 - - - E5 - - -',
+          'F5 - A5 - D6 - C6 - A5 - - - . . . .',
+          'G5 - B5 - D6 - C6 - B5 - G5 - D5 - - -',
+          'E5 - G5 - C6 - - - . . . . . . . .',
+          'F5 - A5 - C6 - D6 - C6 - A5 - F5 - - -',
+          'D5 - F5 - A5 - G5 - F5 - D5 - . . . .',
+          'E5 - G#5 - B5 - D6 - C6 - B5 - G#5 - - -',
+          'A5 - - - E5 - - - A5 - - - . . . .',
+        ),
+      },
+      { wave: 'piano', vol: 0.03, tokens: montuno(TAXI_CHORDS) },
+      { wave: 'babybass', vol: 0.17, tokens: tumbao(TAXI_CHORDS) },
+      perc(0.035, ...loopBars(8, ...CLAVE)),
+      perc(0.07, ...loopBars(8, ...MARCHA)),
+      perc(0.03, ...loopBars(8, ...GUIRO)),
+    ],
+  },
+
+  /** La fiesta en la casa de Tami: salsa choke con bajo gordo y palmas (inventada). */
+  fiesta: {
+    bpm: 98,
+    loop: true,
+    channels: [
+      {
+        wave: 'brass',
+        vol: 0.045,
+        tokens: bars(
+          'G5 . G5 . A#5 . D6 . . . C6 . A#5 . G5 .',
+          'G5 . G5 . A#5 . D6 . . . F6 . D6 . C6 .',
+          'D#6 . D6 . C6 . A#5 . . . G5 . A#5 . C6 .',
+          'F5 . A5 . C6 . F6 . . . . . . . . .',
+          'G5 . G5 . A#5 . D6 . . . C6 . A#5 . G5 .',
+          'A#5 . C6 . D6 . G6 . . . F6 . D6 . C6 .',
+          'D#6 . D6 . C6 . A#5 . . . G5 . F5 . D#5 .',
+          'F5 . . . A5 . . . C6 . . . . . . .',
+        ),
+      },
+      { wave: 'babybass', vol: 0.24, tokens: bass(FIESTA_CHORDS, 'pulse', 1) },
+      { wave: 'piano', vol: 0.04, tokens: montuno(FIESTA_CHORDS) },
+      { wave: 'drums', vol: 0.09, tokens: repeat('k . . s . . k . k . . s . h s .', 8) },
+      perc(0.11, ...loopBars(8, ...MARCHA)),
+      perc(0.07, ...loopBars(8, '. . . . p . . . . . . . p . . .')),
+      perc(0.04, ...loopBars(8, ...BONGO_BELL)),
+    ],
+  },
+
+  /** Misión 10: el río Pance un domingo (marimba y guasá, tranquila, con el agua de fondo). Inventada. */
+  rio: {
+    bpm: 92,
+    loop: true,
+    echo: 0.16,
+    channels: [
+      {
+        wave: 'triangle',
+        vol: 0.1,
+        tokens: bars(
+          'F#5 . A5 . D6 - - . A5 . F#5 . E5 - - .',
+          'D5 . G5 . B5 - - . A5 . G5 . D5 - - .',
+          'E5 . A5 . C#6 - - . B5 . A5 . E5 - - .',
+          'F#5 - - . A5 - - . D6 - - - . . . .',
+          'F#5 . A5 . D6 - - . E6 . D6 . B5 - - .',
+          'B4 . D5 . G5 - - . F#5 . E5 . D5 - - .',
+          'C#5 . E5 . A5 - - . G5 . F#5 . E5 - - .',
+          'D5 - - - A4 - - - D5 - - - . . . .',
+        ),
+      },
+      { wave: 'square', vol: 0.016, tokens: arp(RIO_CHORDS, 2, 4) },
+      { wave: 'triangle', vol: 0.12, tokens: bass(RIO_CHORDS, 'drone') },
+      perc(0.03, ...loopBars(8, 'm . m m m . m m m . m m m . m m')),
+      perc(0.025, ...loopBars(8, 'o . . . . . o . . . o . . . . .')),
+    ],
+  },
+
+  /** Misión 10: la radio del carro de Danilo un domingo (salsa caleña, brillante, con campana). Inventada. */
+  carro_danilo: {
+    bpm: 112,
+    loop: true,
+    channels: [
+      {
+        wave: 'brass',
+        vol: 0.04,
+        tokens: bars(
+          'G5 . E5 . G5 . C6 . . . B5 . A5 . G5 .',
+          'A5 . F5 . A5 . C6 . . . D6 . C6 . A5 .',
+          'B5 . G5 . B5 . D6 . . . C6 . B5 . G5 .',
+          'C6 - - . G5 . E5 . C5 . . . . . . .',
+          'E6 . C6 . A5 . E6 . . . D6 . C6 . A5 .',
+          'F5 . A5 . D6 . F6 . . . E6 . D6 . A5 .',
+          'G5 . B5 . D6 . G6 . . . F6 . D6 . B5 .',
+          'C6 . . . G5 . . . C6 . . . . . . .',
+        ),
+      },
+      { wave: 'piano', vol: 0.035, tokens: montuno(CARRO_CHORDS) },
+      { wave: 'babybass', vol: 0.19, tokens: tumbao(CARRO_CHORDS) },
+      perc(0.035, ...loopBars(8, ...CLAVE)),
+      perc(0.07, ...loopBars(8, ...MARCHA)),
+      perc(0.04, ...loopBars(8, 'B . b . B . b b B . b . B . b b')),
     ],
   },
 
@@ -706,8 +938,8 @@ export const TRACKS: Record<MusicTrack, TrackDef> = {
     echo: 0.28,
     channels: [
       {
-        wave: 'triangle',
-        vol: 0.12,
+        wave: 'brass',
+        vol: 0.04,
         tokens: bars(
           'E5 - - - A5 - - - C6 - B5 - A5 - - -',
           'F5 - - - A5 - - - D6 - C6 - A5 - - -',
@@ -719,58 +951,104 @@ export const TRACKS: Record<MusicTrack, TrackDef> = {
           'E5 - - - - - - - . . . . . . . .',
         ),
       },
-      { wave: 'square', vol: 0.018, tokens: montuno(ROOFTOP_CHORDS) },
-      { wave: 'triangle', vol: 0.17, tokens: tumbao(ROOFTOP_CHORDS) },
-      { wave: 'drums', vol: 0.06, tokens: repeat('k . . h . . k . . h . . k . h .', 8) },
+      { wave: 'piano', vol: 0.035, tokens: montuno(ROOFTOP_CHORDS) },
+      { wave: 'babybass', vol: 0.2, tokens: tumbao(ROOFTOP_CHORDS) },
+      perc(0.04, ...loopBars(8, ...CLAVE)),
+      perc(0.06, ...loopBars(8, ...MARTILLO)),
+      perc(0.05, ...loopBars(8, ...MARACAS)),
     ],
   },
 
-  /** Cali: salsa con montuno, tumbao y clave. */
+  /**
+   * Cali: salsa dura en clave 2-3. Primero la guía con la trompeta sobre cáscara, martillo y güiro;
+   * después el mambo: metales en terceras, campana de bongó y la campanita del timbal.
+   */
   salsa: {
     bpm: 104,
     loop: true,
     channels: [
       {
-        wave: 'square',
+        wave: 'brass',
         vol: 0.05,
-        tokens: bars(
-          'G5 - . E5 . G5 . C6 - - . . . . . .',
-          'A5 - . F5 . A5 . C6 - - . A5 . . . .',
-          'B5 - . G5 . D6 . B5 - - . G5 . . . .',
-          'C6 - - - . . . . E5 - G5 - C6 - . .',
-          'E6 - . D6 . C6 . G5 - - . . . . . .',
-          'F6 - . E6 . D6 . C6 - - . A5 . . . .',
-          'D6 - . C6 . B5 . G5 - - . D6 . . . .',
-          'C6 - - - . . . . . . . . . . . .',
-        ),
+        tokens: [
+          ...bars(
+            'G5 - . E5 . G5 . C6 - - . . . . . .',
+            'A5 - . F5 . A5 . C6 - - . A5 . . . .',
+            'B5 - . G5 . D6 . B5 - - . G5 . . . .',
+            'C6 - - - . . . . E5 - G5 - C6 - . .',
+            'E6 - . D6 . C6 . G5 - - . . . . . .',
+            'F6 - . E6 . D6 . C6 - - . A5 . . . .',
+            'D6 - . C6 . B5 . G5 - - . D6 . . . .',
+            'C6 - - - . . . . . . . . . . . .',
+          ),
+          ...thirds(
+            bars(
+              'G5 . . C6 . . E6 . . . . . D6 . C6 .',
+              '. . A5 . C6 . . A5 - . . . . . . .',
+              'G5 . . B5 . . D6 . . . . . F6 . E6 .',
+              '. . D6 . C6 . . A5 - . . . . . . .',
+              'E6 . . E6 . . G6 . . . E6 . D6 . C6 .',
+              '. . C6 . A5 . . F5 - . . . . . . .',
+              'D6 . . D6 . . F6 . . . E6 . D6 . B5 .',
+              'C6 - - . . . . . . . . . . . . .',
+            ),
+            'C',
+          ),
+        ],
       },
-      { wave: 'square', vol: 0.03, tokens: montuno(SALSA_CHORDS) },
-      { wave: 'triangle', vol: 0.2, tokens: tumbao(SALSA_CHORDS) },
-      { wave: 'drums', vol: 0.12, tokens: repeat('x . h o . h k . h . o . k h o .', 8) },
+      { wave: 'piano', vol: 0.08, tokens: montuno(SALSA_CHORDS) },
+      { wave: 'babybass', vol: 0.24, tokens: tumbao(SALSA_CHORDS) },
+      perc(0.06, ...loopBars(16, ...CLAVE)),
+      perc(0.12, ...loopBars(16, ...MARCHA)),
+      perc(0.08, ...loopBars(8, ...MARTILLO), ...rest(8)),
+      perc(0.05, ...rest(8), ...loopBars(8, ...BONGO_BELL)),
+      perc(0.07, ...loopBars(7, ...CASCARA), TIMBAL_FILL, ...loopBars(7, ...MAMBO_BELL), TIMBAL_FILL),
+      perc(0.05, ...loopBars(8, ...GUIRO), ...rest(8)),
     ],
   },
-  /** Misión 5, la Barbería 360: salsa brava en menor, con trompetas, montuno y la campana del timbal. */
+
+  /** Misión 5, la Barbería 360: salsa brava en menor. La guía en la trompeta y un mambo de metales que pica. */
   barberia: {
     bpm: 112,
     loop: true,
     channels: [
       {
-        wave: 'square',
+        wave: 'brass',
         vol: 0.055,
-        tokens: bars(
-          'A5 . A5 . C6 . A5 - E5 - . . A5 . C6 .',
-          'D6 - - . C6 . A5 . F5 - . . D6 . . .',
-          'B5 . G#5 . E5 . B5 - D6 - C6 - B5 . . .',
-          'A5 - - - . . E5 . A5 . C6 . E6 - . .',
-          'E6 . D6 . C6 . A5 . E6 . D6 . C6 . A5 .',
-          'F6 - - . D6 . A5 . F6 - E6 - D6 . . .',
-          'E6 - . D6 . B5 . G#5 - . B5 . E6 . . .',
-          'E6 - - - . . . . B5 - G#5 - E5 - . .',
-        ),
+        tokens: [
+          ...bars(
+            'A5 . A5 . C6 . A5 - E5 - . . A5 . C6 .',
+            'D6 - - . C6 . A5 . F5 - . . D6 . . .',
+            'B5 . G#5 . E5 . B5 - D6 - C6 - B5 . . .',
+            'A5 - - - . . E5 . A5 . C6 . E6 - . .',
+            'E6 . D6 . C6 . A5 . E6 . D6 . C6 . A5 .',
+            'F6 - - . D6 . A5 . F6 - E6 - D6 . . .',
+            'E6 - . D6 . B5 . G#5 - . B5 . E6 . . .',
+            'E6 - - - . . . . B5 - G#5 - E5 - . .',
+          ),
+          ...thirds(
+            bars(
+              'A5 . . C6 . . E6 . . . D6 . C6 . . .',
+              '. . D6 . F6 . . A6 - . . . F6 . D6 .',
+              'E6 . . B5 . . G#5 . . . B5 . D6 . . .',
+              'C6 - . A5 . . E5 . . . . . . . . .',
+              'A5 . . C6 . . E6 . . . F6 . E6 . . .',
+              '. . D6 . F6 . . A6 - . . . F6 . D6 .',
+              'E6 . . E6 . . G#6 . . . F6 . E6 . D6 .',
+              'B5 - - - . . . . . . . . . . . .',
+            ),
+            'Am',
+          ),
+        ],
       },
-      { wave: 'square', vol: 0.03, tokens: montuno(BARBER_CHORDS) },
-      { wave: 'triangle', vol: 0.2, tokens: tumbao(BARBER_CHORDS) },
-      { wave: 'drums', vol: 0.12, tokens: repeat('x . h o . h k . h h o . k h o h', 8) },
+      { wave: 'piano', vol: 0.08, tokens: montuno(BARBER_CHORDS) },
+      { wave: 'babybass', vol: 0.24, tokens: tumbao(BARBER_CHORDS) },
+      perc(0.06, ...loopBars(16, ...CLAVE)),
+      perc(0.13, ...loopBars(16, ...MARCHA)),
+      perc(0.08, ...loopBars(8, ...MARTILLO), ...rest(8)),
+      perc(0.06, ...rest(8), ...loopBars(8, ...BONGO_BELL)),
+      perc(0.08, ...loopBars(7, ...CASCARA), TIMBAL_FILL, ...loopBars(7, ...MAMBO_BELL), TIMBAL_FILL),
+      perc(0.05, ...loopBars(8, ...GUIRO), ...rest(8)),
     ],
   },
 
@@ -832,8 +1110,8 @@ export const TRACKS: Record<MusicTrack, TrackDef> = {
     echo: 0.26,
     channels: [
       {
-        wave: 'triangle',
-        vol: 0.13,
+        wave: 'piano',
+        vol: 0.09,
         tokens: bars(
           'E5 - - - G5 - - - C6 - - - B5 - A5 -',
           'A5 - - - - - - - E5 - - - . . . .',
@@ -845,9 +1123,10 @@ export const TRACKS: Record<MusicTrack, TrackDef> = {
           'G5 - - - - - - - . . . . . . . .',
         ),
       },
-      { wave: 'square', vol: 0.016, tokens: montuno(SIRA_CHORDS) },
-      { wave: 'triangle', vol: 0.15, tokens: tumbao(SIRA_CHORDS) },
-      { wave: 'drums', vol: 0.05, tokens: repeat('k . . h . . k . . h . . k . h .', 8) },
+      { wave: 'piano', vol: 0.03, tokens: montuno(SIRA_CHORDS) },
+      { wave: 'babybass', vol: 0.18, tokens: tumbao(SIRA_CHORDS) },
+      perc(0.05, ...loopBars(8, ...MARTILLO)),
+      perc(0.04, ...loopBars(8, ...MARACAS)),
     ],
   },
 
@@ -982,7 +1261,7 @@ export const TRACKS: Record<MusicTrack, TrackDef> = {
 // ---------------------------------------------------------------------------
 
 interface NoteEvent {
-  freq: number;
+  freqs: number[];
   steps: number;
 }
 
@@ -993,12 +1272,18 @@ interface ParsedChannel {
 
 function parseChannel(def: ChannelDef): ParsedChannel {
   if (def.wave === 'drums') return { def, notes: [] };
+  if (def.wave === 'perc') {
+    for (const tok of def.tokens) {
+      for (const ch of tok) if (ch !== '.' && !PERC[ch]) throw new Error(`Golpe de percusión desconocido: "${ch}"`);
+    }
+    return { def, notes: [] };
+  }
   const notes: Array<NoteEvent | null> = def.tokens.map(() => null);
   def.tokens.forEach((tok, i) => {
     if (tok === '.' || tok === '-') return;
     let steps = 1;
     while (def.tokens[i + steps] === '-') steps++;
-    notes[i] = { freq: noteFreq(tok), steps };
+    notes[i] = { freqs: tok.split('+').map(noteFreq), steps };
   });
   return { def, notes };
 }
@@ -1019,10 +1304,12 @@ export class TrackPlayer {
     private readonly ctx: AudioContext,
     private readonly def: TrackDef,
     dest: AudioNode,
+    /** Otro tempo (el baile manda). */
+    bpm = def.bpm,
   ) {
     this.channels = def.channels.map(parseChannel);
     this.length = Math.max(...def.channels.map((c) => c.tokens.length));
-    this.stepDur = 60 / def.bpm / 4;
+    this.stepDur = 60 / bpm / 4;
     this.output = ctx.createGain();
     const now = ctx.currentTime;
     this.output.gain.setValueAtTime(0, now);
@@ -1080,18 +1367,24 @@ export class TrackPlayer {
         if (tok === 'h' || tok === 'x' || tok === 'o') hat(this.ctx, t, def.vol * 0.35, this.output);
         continue;
       }
+      if (def.wave === 'perc') {
+        const tok = def.tokens[step % def.tokens.length];
+        for (const hit of tok) if (hit !== '.') PERC[hit](this.ctx, t, def.vol, this.output);
+        continue;
+      }
       const note = ch.notes[step % ch.notes.length];
       if (!note) continue;
-      tone(this.ctx, {
-        type: def.wave,
-        freq: note.freq,
-        start: t,
-        dur: note.steps * this.stepDur * (def.sustain ? 1 : 0.92),
-        vol: def.vol,
-        sustain: def.sustain,
-        attack: def.sustain ? 0.03 : 0.004,
-        dest: this.output,
-      });
+      const dur = note.steps * this.stepDur * (def.sustain ? 1 : 0.92);
+      // En los acordes, cada nota baja un poco para que el total no sature.
+      const vol = note.freqs.length > 1 ? def.vol / Math.sqrt(note.freqs.length) : def.vol;
+      for (const freq of note.freqs) {
+        if (def.wave === 'piano') piano(this.ctx, freq, t, dur, vol, this.output);
+        else if (def.wave === 'brass') brass(this.ctx, freq, t, dur, vol, this.output);
+        else if (def.wave === 'babybass') babyBass(this.ctx, freq, t, dur, vol, this.output);
+        else {
+          tone(this.ctx, { type: def.wave, freq, start: t, dur, vol, sustain: def.sustain, attack: def.sustain ? 0.03 : 0.004, dest: this.output });
+        }
+      }
     }
   }
 }

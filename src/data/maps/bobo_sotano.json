@@ -1,0 +1,111 @@
+{
+ "id": "bobo_sotano",
+ "name": "Sótano del Bobo Unic Living",
+ "kind": "interior",
+ "tileSize": 16,
+ "width": 22,
+ "height": 14,
+ "background": "#14121a",
+ "music": "depa",
+ "legend": {
+  "^": "muro_techo",
+  "M": "sotano_muro",
+  "e": "ascensor",
+  ".": "sotano_piso",
+  "|": "sotano_linea",
+  "-": "sotano_linea_h",
+  ">": "sotano_flecha",
+  "R": "sotano_rampa",
+  "C": "sotano_columna",
+  "1": "carro_blanco_a",
+  "2": "carro_blanco_b",
+  "3": "carro_rojo_a",
+  "4": "carro_rojo_b",
+  "D": "carro_danilo_a",
+  "d": "carro_danilo_b",
+  "5": "carro_azul_a",
+  "6": "carro_azul_b"
+ },
+ "rows": [
+  "^^^^^^^^^^^^^^^^^^^^^^",
+  "^MMeMMMMMMMMMMMMMMMMM^",
+  "^...................R^",
+  "^1|5|3|1|5|3|1|5|3|.R^",
+  "^2|6|4|2|6|4|2|6|4|.R^",
+  "^------------------.R^",
+  "^..>.....C.....>....R^",
+  "^..>..............>.R^",
+  "^..........C........R^",
+  "^------------------.R^",
+  "^5|1|D|5|1|3|5|1|3|.R^",
+  "^6|2|d|6|2|4|6|2|4|.R^",
+  "^...................R^",
+  "^^^^^^^^^^^^^^^^^^^^^^"
+ ],
+ "labels": [
+  {
+   "x": 11,
+   "y": 6.2,
+   "text": "SÓTANO · VISITANTES",
+   "color": "#e8c030"
+  },
+  {
+   "x": 20,
+   "y": 1.4,
+   "text": "SALIDA",
+   "color": "#e8c030"
+  }
+ ],
+ "spawns": {
+  "ascensor": {
+   "x": 3,
+   "y": 2,
+   "dir": "down"
+  },
+  "carro": {
+   "x": 5,
+   "y": 9,
+   "dir": "down"
+  },
+  "llegada": {
+   "x": 18,
+   "y": 7,
+   "dir": "left"
+  }
+ },
+ "triggers": [
+  {
+   "id": "carro",
+   "x": 4,
+   "y": 9,
+   "w": 3,
+   "h": 1,
+   "event": "carro_m10",
+   "if": {
+    "mission": "mission10",
+    "flag": "m10_sotano",
+    "notFlag": "m10_en_carro"
+   }
+  }
+ ],
+ "enter": [
+  {
+   "id": "sotano",
+   "dialogue": "m10_sotano",
+   "once": true,
+   "if": {
+    "mission": "mission10",
+    "notFlag": "m10_vuelta"
+   }
+  },
+  {
+   "id": "vuelta",
+   "dialogue": "m10_sotano_vuelta",
+   "once": true,
+   "if": {
+    "mission": "mission10",
+    "flag": "m10_vuelta_llego"
+   }
+  }
+ ]
+}

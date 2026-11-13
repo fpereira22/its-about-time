@@ -1,0 +1,1653 @@
+{
+ "m10_pance_llega": {
+  "start": "n3",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Primero bajamos al Puente 3, que es donde está todo el mundo. Y ahí arrancamos.",
+    "effects": [
+     {
+      "vineta": "m10_puentes_mapa"
+     },
+     {
+      "objective": "Baja al río por el Puente 3"
+     },
+     {
+      "setFlag": "m10_en_pance"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Bienvenido al Pance, chileno. Agua de la cordillera: fría, clarita... y gratis.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_brazos"
+     }
+    ],
+    "next": "n1"
+   },
+   "n3": {
+    "text": "El Ecoparque Río Pance. Calor, olor a pasto mojado y, abajo, el ruido del río sobre las piedras.",
+    "effects": [
+     {
+      "vineta": "m10_pance_llegada"
+     }
+    ],
+    "next": "n2"
+   }
+  }
+ },
+ "m10_playa": {
+  "start": "n6",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "El que no aguanta debajo del chorro, paga el sancocho.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     },
+     {
+      "setFlag": "m10_playa"
+     },
+     {
+      "objective": "Métete al chorro (río arriba del Puente 3)"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Bueno. Primero, la ducha. Allá arriba, a la izquierda, hay un chorrito entre las piedras. Es tradición.",
+    "effects": [
+     {
+      "vineta": "m10_chorro_lejos"
+     }
+    ],
+    "next": "n1"
+   },
+   "n3": {
+    "text": "Danilo se saca la camisa, la tira encima de una piedra y se queda en una pantaloneta verde con piñas.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_bano"
+     },
+     {
+      "event": "bano_m10"
+     }
+    ],
+    "next": "n2"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Domingo en el Pance: medio Cali con olla, parlante y abuela. El otro medio está llegando.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_brazos"
+     }
+    ],
+    "next": "n3"
+   },
+   "n5": {
+    "speaker": "Señora",
+    "text": "¡Mijo, cuidado con la olla! ¡Que eso tiene pollo, papa, yuca y amor!",
+    "effects": [
+     {
+      "vineta": "m10_senora_olla"
+     }
+    ],
+    "next": "n4"
+   },
+   "n6": {
+    "text": "La playa del Puente 3. Domingo en Cali: toldos azules, ollas de sancocho en leña, tres parlantes compitiendo y un abuelo en chanclas dirigiendo todo.",
+    "effects": [
+     {
+      "vineta": "m10_playa_llena"
+     }
+    ],
+    "next": "n5"
+   }
+  }
+ },
+ "m10_chorro_pre": {
+  "start": "n2",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "La regla es fácil: te metés debajo, aguantás lo más que podás y no gritás. ...Todos gritan.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ]
+   },
+   "n2": {
+    "text": "El chorro: el agua cae de una laja de piedra, blanca y helada, directo de los Farallones.",
+    "effects": [
+     {
+      "vineta": "m10_chorro"
+     }
+    ],
+    "next": "n1"
+   }
+  }
+ },
+ "m10_chorro_post": {
+  "start": "n2",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Ahora sí, lo mejor: nos dejamos llevar por el río hasta el Puente 4. Abajo del Puente 3 está el Mono, que alquila neumáticos.",
+    "effects": [
+     {
+      "vineta": "m10_neumaticos"
+     },
+     {
+      "setFlag": "m10_chorro"
+     },
+     {
+      "objective": "Alquila un neumático con el Mono (abajo del Puente 3)"
+     }
+    ]
+   },
+   "n3": {
+    "text": "Sales temblando, pero despierto. Por primera vez desde ayer, completamente despierto.",
+    "effects": [
+     {
+      "vineta": "m10_chorro_despierto"
+     }
+    ],
+    "next": "n1"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "¡Ah ve! ¡Aguantaste! ¡Un chileno aguantó el chorro del Pance! Esto hay que contarlo en la U.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n3"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Tranquilo, parce. Yo pago el sancocho. Pero lo voy a contar en la U.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n1"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "Jajajaja. El grito se oyó hasta en el Puente 2. Una señora se persignó.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n5"
+   },
+   "n2": {
+    "branches": [
+     {
+      "goto": "n4",
+      "if": {
+       "flag": "m10_chorro_bien"
+      }
+     },
+     {
+      "goto": "n6"
+     }
+    ]
+   }
+  }
+ },
+ "m10_mono": {
+  "start": "n1",
+  "nodes": {
+   "n2": {
+    "speaker": "El Mono",
+    "text": "¿Neumático, mono? Primero dese el chapuzón en el chorro, que el río lo baja a uno dormido si está enguayabado.",
+    "effects": [
+     {
+      "vineta": "m10_mono"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "El Mono",
+    "text": "Deje el neumático ahí en la orilla, mono, que yo lo subo en moto. ¡Buen domingo!",
+    "effects": [
+     {
+      "vineta": "m10_mono"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Ah ve, ¿me invitaste? Bueno, el sancocho lo pago yo. Trato.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     },
+     {
+      "event": "corriente_m10"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "Claro, el que perdió en el chorro... ah, no, espera. Bueno, ya, yo pago. Hoy estoy generoso.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     },
+     {
+      "event": "corriente_m10"
+     }
+    ]
+   },
+   "n4": {
+    "text": "Diez mil por los dos neumáticos.",
+    "effects": [
+     {
+      "vineta": "m10_neumaticos"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Pagar los dos (10.000)",
+      "if": {
+       "minMoney": 10000
+      },
+      "effects": [
+       {
+        "pay": 10000
+       },
+       {
+        "sfx": "coin"
+       },
+       {
+        "setFlag": "m10_pago_neumaticos"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "Que pague Danilo",
+      "goto": "n6"
+     },
+     {
+      "label": "Todavía no"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "El Mono",
+    "text": "Todos tienen parche, patrón. El parche es lo que los hace flotar.",
+    "effects": [
+     {
+      "vineta": "m10_mono"
+     }
+    ],
+    "next": "n4"
+   },
+   "n8": {
+    "speaker": "Danilo",
+    "text": "Dos, Mono. Y que no sean los que tienen parche.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n7"
+   },
+   "n9": {
+    "speaker": "El Mono",
+    "text": "¡Neumáticos, neumáticos! Bajan hasta el 4 y yo los recojo en la moto. Cinco mil cada uno.",
+    "effects": [
+     {
+      "vineta": "m10_mono"
+     }
+    ],
+    "next": "n8"
+   },
+   "n1": {
+    "branches": [
+     {
+      "goto": "n2",
+      "if": {
+       "notFlag": "m10_chorro"
+      }
+     },
+     {
+      "goto": "n3",
+      "if": {
+       "flag": "m10_corriente"
+      }
+     },
+     {
+      "goto": "n9"
+     }
+    ]
+   }
+  }
+ },
+ "m10_corriente_pre": {
+  "start": "n2",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "¡Esquivá las piedras, chileno! ¡Y si ves un pájaro azul con la cola larga, avisá, que es un barranquero!",
+    "effects": [
+     {
+      "vineta": "m10_danilo_neumatico"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Te sientas en el neumático. El agua helada te agarra la espalda y el río te lleva, despacio al principio.",
+    "effects": [
+     {
+      "vineta": "m10_neumatico_rio"
+     }
+    ],
+    "next": "n1"
+   }
+  }
+ },
+ "m10_corriente_post": {
+  "start": "n3",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Acá es. Subámonos al puente, que desde la mitad se ve todo el río. Y hay que sacarse fotos. Obligatorio.",
+    "effects": [
+     {
+      "vineta": "m10_puente_lejos"
+     },
+     {
+      "setFlag": "m10_corriente"
+     },
+     {
+      "objective": "Sube al puente colgante (Puente 4)"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Y ahí está: el Puente 4. Un puente colgante de tablas y cables, sobre el agua más verde que has visto en tu vida.",
+    "effects": [
+     {
+      "vineta": "m10_puente_lejos"
+     }
+    ],
+    "next": "n1"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "¡Parce, bajaste como un caleño! ¿Seguro que no naciste acá?",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n5": {
+    "text": "Llegas a la playita de arriba del Puente 4 dando vueltas en el neumático, muerto de la risa.",
+    "effects": [
+     {
+      "vineta": "m10_neumatico_llegada"
+     }
+    ],
+    "next": "n4"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "Bueno. Las piedras ganaron. Pero llegaste, que es lo que importa.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n2"
+   },
+   "n7": {
+    "text": "Llegas a la playita de arriba del Puente 4 con un raspón en la rodilla y el neumático al revés.",
+    "effects": [
+     {
+      "vineta": "m10_neumatico_llegada"
+     }
+    ],
+    "next": "n6"
+   },
+   "n3": {
+    "branches": [
+     {
+      "goto": "n5",
+      "if": {
+       "flag": "m10_corriente_bien"
+      }
+     },
+     {
+      "goto": "n7"
+     }
+    ]
+   }
+  }
+ },
+ "m10_puente_pre": {
+  "start": "n2",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Caminá por el medio y no mirés para abajo. ...Yo voy a saltar un poquito. Para que sea más emocionante.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ]
+   },
+   "n2": {
+    "text": "El puente colgante. Las tablas crujen. Algunas faltan. Abajo, el río suena como un aplauso largo.",
+    "effects": [
+     {
+      "vineta": "m10_puente_tablas"
+     }
+    ],
+    "next": "n1"
+   }
+  }
+ },
+ "m10_puente_medio": {
+  "start": "n3",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Bueno, sacá el celular. Fotos. Muchas. Una de cada cosa, que esto no vuelve a pasar igual.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_brazos"
+     }
+    ]
+   },
+   "n2": {
+    "text": "La mitad del puente. Abajo, el río verde se abre entre las piedras; arriba, guaduas y un cielo azul sin una nube.",
+    "effects": [
+     {
+      "vineta": "m10_puente_vista"
+     }
+    ],
+    "next": "n1"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "¡Llegaste sin agarrarte! Ni yo, parce, ni yo. Y eso que salté como un loco.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Te agarraste del cable como un gato en una cortina. Muy digno. Muy chileno.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n2"
+   },
+   "n3": {
+    "branches": [
+     {
+      "goto": "n4",
+      "if": {
+       "flag": "m10_puente_bien"
+      }
+     },
+     {
+      "goto": "n5"
+     }
+    ]
+   }
+  }
+ },
+ "m10_fotos_post": {
+  "start": "n4",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Mandáme la del salto. Esa va de foto de perfil. Bueno, de portada. Bueno, para mi mamá.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     },
+     {
+      "setFlag": "m10_puente"
+     },
+     {
+      "objective": "Siéntate en el piedrón de la orilla (pasando el puente)"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "¡Un barranquero! ¡Y lo sacaste! Parce, hay caleños que se mueren sin ver uno.",
+    "effects": [
+     {
+      "vineta": "m10_barranquero"
+     },
+     {
+      "setFlag": "secreto_m10_barranquero"
+     }
+    ],
+    "next": "n1"
+   },
+   "n2": {
+    "branches": [
+     {
+      "goto": "n3",
+      "if": {
+       "flag": "m10_foto_barranquero"
+      }
+     },
+     {
+      "goto": "n1"
+     }
+    ]
+   },
+   "n4": {
+    "text": "Revisas la galería: {fotos}.",
+    "effects": [
+     {
+      "vineta": "m10_galeria"
+     },
+     {
+      "giveItem": "foto_puente"
+     }
+    ],
+    "next": "n2"
+   }
+  }
+ },
+ "m10_pluma": {
+  "start": "n2",
+  "nodes": {
+   "n1": {
+    "text": "Una pluma de barranquero. Te la guardas en el bolsillo de la toalla.",
+    "effects": [
+     {
+      "vineta": "m10_pluma"
+     },
+     {
+      "giveItem": "pluma_barranquero"
+     },
+     {
+      "setFlag": "m10_pluma"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Entre las piedras del extremo norte del puente, una pluma azul turquesa, larga, con la punta en forma de raqueta.",
+    "effects": [
+     {
+      "vineta": "m10_pluma"
+     }
+    ],
+    "next": "n1"
+   }
+  }
+ },
+ "m10_piedra": {
+  "start": "n1",
+  "nodes": {
+   "n1": {
+    "text": "Una piedra del río, perfectamente lisa, del tamaño de tu palma. Está tibia de sol.",
+    "effects": [
+     {
+      "vineta": "m10_piedra_lisa"
+     },
+     {
+      "giveItem": "piedra_lisa"
+     },
+     {
+      "setFlag": "m10_piedra_lisa"
+     }
+    ]
+   }
+  }
+ },
+ "m10_recuerdos": {
+  "start": "n18",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Bueno. Me suena la tripa. Vamos donde doña Nelly, que es aquí pasando el puente.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_brazos"
+     },
+     {
+      "setFlag": "m10_recuerdos"
+     },
+     {
+      "objective": "Come donde doña Nelly (pasando el Puente 4)"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Se quedan un rato callados. Un barranquero cruza el río de una orilla a la otra. Danilo te da un codazo para que lo mires.",
+    "effects": [
+     {
+      "vineta": "m10_barranquero_vuela"
+     }
+    ],
+    "next": "n1"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Claro. Eso no se quita. Pero acá también tenés gente, ¿oíste? No estás solo en esto.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_serio"
+     }
+    ],
+    "next": "n2"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "¿Sopa... qué? Parce, después de un sancocho de doña Nelly te vas a olvidar de eso. Te lo juro.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "Eso es el río. El Pance hace eso: te deja el presente limpiecito.",
+    "effects": [
+     {
+      "vineta": "m10_piedra_sentados"
+     }
+    ],
+    "next": "n2"
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "Y vos, chileno. ¿Extrañás Santiago?",
+    "effects": [
+     {
+      "vineta": "m10_piedra_sentados"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«A mi familia, sí. Mucho.»",
+      "goto": "n4"
+     },
+     {
+      "label": "«La comida. Las sopaipillas.»",
+      "goto": "n5"
+     },
+     {
+      "label": "«Hoy no extraño nada.»",
+      "effects": [
+       {
+        "setFlag": "m10_q_ahora"
+       }
+      ],
+      "goto": "n6"
+     }
+    ]
+   },
+   "n8": {
+    "speaker": "Danilo",
+    "text": "Por eso estudié psicología, creo. Para entender por qué uno es feliz justo cuando todos los demás se asustan.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_serio"
+     }
+    ],
+    "next": "n3"
+   },
+   "n9": {
+    "speaker": "Danilo",
+    "text": "Nada. Me sacó una señora con un palo de escoba. Mi papá llegó llorando. Yo, feliz.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_pelado"
+     }
+    ],
+    "next": "n8"
+   },
+   "n10": {
+    "speaker": "Danilo",
+    "text": "Puede ser. Uno siempre vuelve a donde lo sacaron del agua. Eso no lo dice ningún libro, lo digo yo.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_serio"
+     }
+    ],
+    "next": "n3"
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "Yo me acuerdo de mi primer domingo acá. Tenía doce años. Me llevó la corriente hasta el Puente 4 y mi papá corriendo por la orilla.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_nostalgia"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Y qué pasó?»",
+      "effects": [
+       {
+        "setFlag": "secreto_m10_pelado"
+       }
+      ],
+      "goto": "n9"
+     },
+     {
+      "label": "«¿Por eso te gusta tanto el 4?»",
+      "goto": "n10"
+     }
+    ]
+   },
+   "n12": {
+    "speaker": "Danilo",
+    "text": "Y ahí estaba la española, en la banca. Así empezó todo, ¿cierto?",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n7"
+   },
+   "n13": {
+    "speaker": "Danilo",
+    "text": "Salento no es Cali, parce. ...Pero te lo acepto. Esa noche fue de película.",
+    "effects": [
+     {
+      "vineta": "m8_laura_banca"
+     }
+    ],
+    "next": "n12"
+   },
+   "n14": {
+    "speaker": "Danilo",
+    "text": "Desde ahí arriba todo se ve chiquito, ¿no? Hasta los problemas. Por eso me gusta subir.",
+    "effects": [
+     {
+      "vineta": "m9_mirador_amigos"
+     }
+    ],
+    "next": "n7"
+   },
+   "n15": {
+    "speaker": "Danilo",
+    "text": "...Ah ve. Esa es la mejor respuesta que me han dado en meses. Y eso que yo hago preguntas de trabajo.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_serio"
+     }
+    ],
+    "next": "n7"
+   },
+   "n11": {
+    "speaker": "Danilo",
+    "text": "¿Qué es lo que más te ha gustado de Cali? Y no digás «la gente», que eso lo dicen todos.",
+    "effects": [
+     {
+      "vineta": "m10_piedra_sentados"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«La plaza de Salento, con los mexicanos.»",
+      "goto": "n13"
+     },
+     {
+      "label": "«El mirador de la casa de Tami, con toda Cali prendida.»",
+      "goto": "n14"
+     },
+     {
+      "label": "«Esto. Ahora. El río.»",
+      "effects": [
+       {
+        "setFlag": "m10_q_ahora"
+       }
+      ],
+      "goto": "n15"
+     }
+    ]
+   },
+   "n16": {
+    "speaker": "Danilo",
+    "text": "Y ahora mirate: fiestas en Cristo Rey, nicas, españolas, el chorro del Pance...",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n11"
+   },
+   "n17": {
+    "speaker": "Danilo",
+    "text": "Parce... ¿te acordás del bus a Salento? Hace dos semanas apenas. Vos ni sabías quién era Richi.",
+    "effects": [
+     {
+      "vineta": "m8_bus_richi"
+     }
+    ],
+    "next": "n16"
+   },
+   "n18": {
+    "text": "Se sientan en un piedrón tibio, con los pies en el agua. El sol pega fuerte. El río no se calla nunca.",
+    "effects": [
+     {
+      "vineta": "m10_piedra_sentados"
+     }
+    ],
+    "next": "n17"
+   }
+  }
+ },
+ "m10_nelly": {
+  "start": "n1",
+  "nodes": {
+   "n2": {
+    "speaker": "Doña Nelly",
+    "text": "Todavía está muy temprano pa' el sancocho, mijo. Vaya báñese, que el río no se va a ir.",
+    "effects": [
+     {
+      "vineta": "m10_nelly"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Doña Nelly",
+    "text": "¿Le gustó, mijo? Vuelva el otro domingo, que hago fiambre con chicharrón.",
+    "effects": [
+     {
+      "vineta": "m10_nelly"
+     }
+    ]
+   },
+   "n4": {
+    "text": "Se sientan en la mesa de tablones, bajo el kiosko de paja. El humo de la leña, el río al lado, nadie más alrededor.",
+    "effects": [
+     {
+      "vineta": "m10_mesa_kiosko"
+     },
+     {
+      "event": "comida_m10"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Doña Nelly",
+    "text": "Lulo, limón, hielo y azúcar. Con cuchara, que tiene pedacitos.",
+    "effects": [
+     {
+      "vineta": "m10_lulada"
+     }
+    ],
+    "next": "n4"
+   },
+   "n7": {
+    "speaker": "Doña Nelly",
+    "text": "Agua de panela le traigo, mijo. Agua sola no, que me ofende.",
+    "effects": [
+     {
+      "vineta": "m10_nelly"
+     }
+    ],
+    "next": "n4"
+   },
+   "n5": {
+    "speaker": "Doña Nelly",
+    "text": "¿Y pa' tomar, mijo? Tengo lulada bien fría y cholado.",
+    "effects": [
+     {
+      "vineta": "m10_nelly_menu"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Una lulada (5.000)",
+      "if": {
+       "minMoney": 5000
+      },
+      "effects": [
+       {
+        "pay": 5000
+       },
+       {
+        "sfx": "coin"
+       },
+       {
+        "giveItem": "vaso_lulada"
+       },
+       {
+        "setFlag": "m10_lulada"
+       }
+      ],
+      "goto": "n6"
+     },
+     {
+      "label": "Agua no más",
+      "goto": "n7"
+     }
+    ]
+   },
+   "n9": {
+    "speaker": "Doña Nelly",
+    "text": "Con su arroz, su aguacate y su ají. Y una presa grande, que usted está flaquito.",
+    "effects": [
+     {
+      "vineta": "m10_sancocho"
+     }
+    ],
+    "next": "n5"
+   },
+   "n10": {
+    "speaker": "Doña Nelly",
+    "text": "Arroz, papa, huevo, carne desmechada, plátano maduro... todo amarradito en la hoja. Ábralo con cuidado, que quema.",
+    "effects": [
+     {
+      "vineta": "m10_fiambre"
+     }
+    ],
+    "next": "n5"
+   },
+   "n11": {
+    "speaker": "Danilo",
+    "text": "Dos sancochos, doña Nelly. Y este lo pago yo, que perdió en el chorro. Bueno, o no. Da igual. Hoy invito.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n5"
+   },
+   "n8": {
+    "speaker": "Doña Nelly",
+    "text": "Hay sancocho de gallina en leña y fiambre en hoja de plátano. ¿Qué le sirvo, mijo?",
+    "effects": [
+     {
+      "vineta": "m10_nelly_menu"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Sancocho de gallina (15.000)",
+      "if": {
+       "minMoney": 15000
+      },
+      "effects": [
+       {
+        "pay": 15000
+       },
+       {
+        "sfx": "coin"
+       },
+       {
+        "setFlag": "m10_sancocho"
+       }
+      ],
+      "goto": "n9"
+     },
+     {
+      "label": "Fiambre en hoja de plátano (14.000)",
+      "if": {
+       "minMoney": 14000
+      },
+      "effects": [
+       {
+        "pay": 14000
+       },
+       {
+        "sfx": "coin"
+       },
+       {
+        "setFlag": "m10_fiambre"
+       },
+       {
+        "giveItem": "hoja_fiambre"
+       }
+      ],
+      "goto": "n10"
+     },
+     {
+      "label": "«Lo que pida Danilo.»",
+      "effects": [
+       {
+        "setFlag": "m10_sancocho"
+       }
+      ],
+      "goto": "n11"
+     }
+    ]
+   },
+   "n12": {
+    "speaker": "Doña Nelly",
+    "text": "Ay, pobrecito. Eso se cura con sancocho. Siéntense, mijos.",
+    "effects": [
+     {
+      "vineta": "m10_nelly"
+     }
+    ],
+    "next": "n8"
+   },
+   "n13": {
+    "speaker": "Danilo",
+    "text": "El mismo, doña Nelly. Viene enguayabado, sin dormir y recién duchado en el chorro.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n12"
+   },
+   "n14": {
+    "speaker": "Doña Nelly",
+    "text": "¡Danilito! ¡Mijo! ¡Hace cuánto! ¿Y este muchacho tan blanquito? ¿Es el chileno del que me hablaste?",
+    "effects": [
+     {
+      "vineta": "m10_nelly_danilo"
+     }
+    ],
+    "next": "n13"
+   },
+   "n1": {
+    "branches": [
+     {
+      "goto": "n2",
+      "if": {
+       "notFlag": "m10_recuerdos"
+      }
+     },
+     {
+      "goto": "n3",
+      "if": {
+       "flag": "m10_comio"
+      }
+     },
+     {
+      "goto": "n14"
+     }
+    ]
+   }
+  }
+ },
+ "m10_comida": {
+  "start": "n8",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Parce, esto hay que subirlo. Historia. Ya. El río, el puente, el sancocho. Que vean en la U que los chilenos sí sobreviven a Cali.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_brazos"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Danilo come como si fuera una competencia. Después se tira hacia atrás en el tronco, con la mano en la panza.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_lleno"
+     }
+    ],
+    "next": "n1"
+   },
+   "n4": {
+    "speaker": "Doña Nelly",
+    "text": "(desde el fogón) ¡Eso es, mijo! ¡A este me lo adopto!",
+    "effects": [
+     {
+      "vineta": "m10_nelly_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "JAJAJAJA. Lo dijiste. Lo dijiste en el carro que no y ahora sí. Doña Nelly, ¡ganó usted!",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "Eso es un sí. Un sí rotundo. Te leo la cara, parce.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n2"
+   },
+   "n3": {
+    "text": "Te quemas la lengua. Sigues comiendo.",
+    "effects": [
+     {
+      "vineta": "m10_comiendo"
+     },
+     {
+      "sfx": "eat"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Lo mejor que he comido en Colombia.»",
+      "effects": [
+       {
+        "setFlag": "m10_q_nelly"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "«Mejor que el de mi mamá.» (No se lo digas a ella)",
+      "effects": [
+       {
+        "setFlag": "m10_q_nelly"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "Asentir con la boca llena",
+      "goto": "n6"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "¿Y? ¿Qué tal?",
+    "effects": [
+     {
+      "vineta": "m10_comiendo"
+     }
+    ],
+    "next": "n3"
+   },
+   "n9": {
+    "text": "Desamarras la hoja de plátano y sale un vapor que huele a domingo de toda la vida. Aunque sea tu primero.",
+    "effects": [
+     {
+      "vineta": "m10_fiambre"
+     }
+    ],
+    "next": "n7"
+   },
+   "n10": {
+    "text": "El sancocho llega humeando, en un plato hondo de peltre, con la mazorca asomada y el cilantro encima.",
+    "effects": [
+     {
+      "vineta": "m10_sancocho"
+     }
+    ],
+    "next": "n7"
+   },
+   "n8": {
+    "branches": [
+     {
+      "goto": "n9",
+      "if": {
+       "flag": "m10_fiambre"
+      }
+     },
+     {
+      "goto": "n10"
+     }
+    ]
+   }
+  }
+ },
+ "m10_historia_pre": {
+  "start": "n1",
+  "nodes": {
+   "n1": {
+    "text": "Abres Fotogram. El circulito de «Tu historia». La galería llena de río.",
+    "effects": [
+     {
+      "vineta": "m10_fotogram_historia"
+     }
+    ]
+   }
+  }
+ },
+ "m10_historia_post": {
+  "start": "n25",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Eso. Hora de volver. Subimos por el sendero, recogemos el carro y a casa.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_brazos"
+     },
+     {
+      "setFlag": "m10_historia"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Doña Nelly",
+    "text": "¡Mijos! ¡Ya va a llover allá arriba en el cerro! ¡Recojan, que el río crece!",
+    "effects": [
+     {
+      "vineta": "m10_nelly"
+     }
+    ],
+    "next": "n1"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Esto es lo mejor que ha pasado en este río desde que me sacaron con el palo de escoba.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n2"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "«Así somos los hombres buenos». JAJAJAJA. Parce. PARCE. Y le gustó. Le gustó.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_risa"
+     }
+    ],
+    "next": "n4"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "Claro, claro. Vojabés. Vojabés todo, chileno.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_sabe"
+     }
+    ],
+    "next": "n2"
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "...La española, ¿cierto? No me digás nada. Ya sé. Lo sé todo. Soy psicólogo.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_sabe"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Mostrarle el corazoncito",
+      "goto": "n5"
+     },
+     {
+      "label": "«No sé de qué hablas.»",
+      "goto": "n6"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "Ah ve... ¿y esa sonrisa?",
+    "effects": [
+     {
+      "vineta": "m10_danilo_cejas"
+     }
+    ],
+    "next": "n3"
+   },
+   "n8": {
+    "text": "«A laaurii_14 le gustó tu mensaje».",
+    "effects": [
+     {
+      "vineta": "m10_laura_like"
+     },
+     {
+      "setFlag": "m10_like"
+     }
+    ],
+    "next": "n7"
+   },
+   "n9": {
+    "text": "Y entonces: un corazoncito rojo sobre tu mensaje.",
+    "effects": [
+     {
+      "vineta": "m10_laura_like"
+     },
+     {
+      "sfx": "beso"
+     }
+    ],
+    "next": "n8"
+   },
+   "n10": {
+    "text": "Tres puntitos. Desaparecen. Vuelven a aparecer.",
+    "effects": [
+     {
+      "vineta": "m10_puntitos"
+     }
+    ],
+    "next": "n9"
+   },
+   "n11": {
+    "text": "Enviado. «Así somos los hombres buenos».",
+    "effects": [
+     {
+      "vineta": "m10_respuesta_enviada"
+     },
+     {
+      "sfx": "enviado"
+     }
+    ],
+    "next": "n10"
+   },
+   "n14": {
+    "text": "Última oportunidad. Danilo ya te está mirando raro.",
+    "effects": [
+     {
+      "vineta": "m10_laura_responder"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Así somos los hombres buenos.» 😏",
+      "effects": [
+       {
+        "setFlag": [
+         "m10_hombres_buenos",
+         "secreto_m10_borrador"
+        ]
+       }
+      ],
+      "goto": "n11"
+     }
+    ]
+   },
+   "n15": {
+    "text": "Lo escribes. Es la una de la tarde. Lo borras.",
+    "effects": [
+     {
+      "vineta": "m10_borrador"
+     }
+    ],
+    "next": "n14"
+   },
+   "n13": {
+    "text": "¿Qué le respondes, de verdad?",
+    "effects": [
+     {
+      "vineta": "m10_laura_responder"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Así somos los hombres buenos.» 😏",
+      "effects": [
+       {
+        "setFlag": "m10_hombres_buenos"
+       }
+      ],
+      "goto": "n11"
+     },
+     {
+      "label": "«¿Y tú qué haces despierta tan temprano?»",
+      "effects": [
+       {
+        "setFlag": "m10_borrador_2"
+       }
+      ],
+      "goto": "n15"
+     }
+    ]
+   },
+   "n16": {
+    "text": "Lo escribes. Lo lees. Suena a frase de gimnasio. Lo borras.",
+    "effects": [
+     {
+      "vineta": "m10_borrador"
+     }
+    ],
+    "next": "n13"
+   },
+   "n12": {
+    "text": "¿Qué le respondes?",
+    "effects": [
+     {
+      "vineta": "m10_laura_responder"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Así somos los hombres buenos.» 😏",
+      "effects": [
+       {
+        "setFlag": "m10_hombres_buenos"
+       }
+      ],
+      "goto": "n11"
+     },
+     {
+      "label": "«Dormir es para los débiles.»",
+      "effects": [
+       {
+        "setFlag": "m10_borrador_1"
+       }
+      ],
+      "goto": "n16"
+     }
+    ]
+   },
+   "n17": {
+    "text": "Sonríes. Una sonrisa que no te sale desde la boca, sino desde más adentro.",
+    "effects": [
+     {
+      "vineta": "m10_sonrisa_cel"
+     }
+    ],
+    "next": "n12"
+   },
+   "n18": {
+    "speaker": "Laura",
+    "text": "Tío, qué máquina. ¿No dormiste después de la fiesta y ahora en el río?",
+    "effects": [
+     {
+      "vineta": "m10_laura_dm"
+     }
+    ],
+    "next": "n17"
+   },
+   "n19": {
+    "text": "«laaurii_14 respondió a tu historia».",
+    "effects": [
+     {
+      "vineta": "m10_laura_dm"
+     }
+    ],
+    "next": "n18"
+   },
+   "n20": {
+    "text": "Bzzz.",
+    "effects": [
+     {
+      "vineta": "m10_cel_boca_abajo"
+     },
+     {
+      "sfx": "notify"
+     }
+    ],
+    "next": "n19"
+   },
+   "n21": {
+    "text": "Le das vuelta al celular sobre la mesa. Danilo te mira. Tú miras el río.",
+    "effects": [
+     {
+      "vineta": "m10_cel_boca_abajo"
+     }
+    ],
+    "next": "n20"
+   },
+   "n22": {
+    "text": "«laaurii_14».",
+    "effects": [
+     {
+      "vineta": "m10_historia_laura"
+     },
+     {
+      "sfx": "latido"
+     }
+    ],
+    "next": "n21"
+   },
+   "n23": {
+    "text": "Y entonces, entre los nombres:",
+    "effects": [
+     {
+      "vineta": "m10_historia_vistas"
+     }
+    ],
+    "next": "n22"
+   },
+   "n24": {
+    "text": "Las vistas empiezan a subir: Richi, Juanpa, Renzo, Tami, Ximena, Mila... la mitad del grupo de intercambio.",
+    "effects": [
+     {
+      "vineta": "m10_historia_vistas"
+     }
+    ],
+    "next": "n23"
+   },
+   "n25": {
+    "text": "Publicada. «Tu historia · hace un momento».",
+    "effects": [
+     {
+      "vineta": "m10_historia_subida"
+     },
+     {
+      "sfx": "enviado"
+     }
+    ],
+    "next": "n24"
+   }
+  }
+ },
+ "m10_subida": {
+  "start": "n3",
+  "nodes": {
+   "n1": {
+    "speaker": "Danilo",
+    "text": "A casa, chileno. Vos al sofá... no. A la cama. A la cama de verdad.",
+    "effects": [
+     {
+      "vineta": "m10_danilo_gafas"
+     }
+    ]
+   },
+   "n2": {
+    "text": "En el parqueadero, el cuidador les abre la reja con una venia: «Se lo cuidé como a mi mamá, patrón».",
+    "effects": [
+     {
+      "vineta": "m10_cuidador"
+     }
+    ],
+    "next": "n1"
+   },
+   "n3": {
+    "text": "Suben por el sendero de la orilla, con los neumáticos del Mono rebotando atrás en su moto y las primeras nubes negras sobre los Farallones.",
+    "effects": [
+     {
+      "vineta": "m10_sendero_subida"
+     }
+    ],
+    "next": "n2"
+   }
+  }
+ },
+ "m10_final": {
+  "start": "n7",
+  "nodes": {
+   "n1": {
+    "text": "Así somos los hombres buenos.",
+    "effects": [
+     {
+      "vineta": "m10_dormido"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Cuarenta horas sin dormir, un chorro helado, un río, un puente colgante, un sancocho y un corazoncito.",
+    "effects": [
+     {
+      "vineta": "m10_cama_final"
+     }
+    ],
+    "next": "n1"
+   },
+   "n3": {
+    "text": "Dejas el celular en el velador, boca abajo.",
+    "effects": [
+     {
+      "vineta": "m10_cama_final"
+     }
+    ],
+    "next": "n2"
+   },
+   "n4": {
+    "text": "Bzzz. Danilo: «Llegué. Gracias por el domingo, parce. Dormí. Es una orden médica... bueno, psicológica 😂».",
+    "effects": [
+     {
+      "vineta": "m10_wa_danilo_3"
+     },
+     {
+      "message": "m10_danilo_3"
+     }
+    ],
+    "next": "n3"
+   },
+   "n5": {
+    "text": "Abres el celular una última vez. Tu mensaje. El corazoncito rojo. «laaurii_14».",
+    "effects": [
+     {
+      "vineta": "m10_laura_like"
+     }
+    ],
+    "next": "n4"
+   },
+   "n6": {
+    "text": "Te tiras en la cama sin sacarte la pantaloneta. Huele a río.",
+    "effects": [
+     {
+      "vineta": "m10_cama_final"
+     }
+    ],
+    "next": "n5"
+   },
+   "n7": {
+    "text": "El 805. Las persianas a medio cerrar. Afuera, la tarde se pone gris y empieza a lloviznar sobre Cali.",
+    "effects": [
+     {
+      "vineta": "m10_depa_tarde"
+     }
+    ],
+    "next": "n6"
+   }
+  }
+ }
+}
