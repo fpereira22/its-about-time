@@ -7,7 +7,7 @@ import { sinGorro } from './vinetas_m7';
 import { BACKDROPS, chatVineta, compose, label, phoneFrame, PROPS, type Prop, type Spec } from './vinetas_m8';
 
 /**
- * Viñetas de la misión 10 («Río abajo»): el domingo en el río Pance con Danilo. Usa el compositor de la misión 8
+ * Viñetas del final de la misión 9 (el domingo en el río Pance con Danilo; prefijo m10_). Usa el compositor de la misión 8
  * (fondo + bustos + objetos + efecto) con fondos nuevos —el depa de mañana y de tarde, el sótano del Bobo, el carro
  * de Danilo por dentro, la Vía a Pance, el río con su playa llena, el chorro, el puente colgante, el kiosko de doña
  * Nelly y el atardecer— y escenas propias: los mensajes de Danilo, el citófono, el botón «S» del ascensor, el mapa
@@ -516,6 +516,8 @@ const dormido: VinetaBuilder = (kit) => {
 
 const SPECS: Record<string, Spec> = {
   m10_depa_manana: { b: 'depa_dia', c: ['player squint'], fx: 'sparkle' },
+  m10_roxane_despierta: { b: 'depa_dia', c: ['roxane o', 'player blush'], t: '¿Chele?' },
+  m10_roxane_chao: { b: 'depa_dia', c: ['roxane smile', 'player blush'], fx: 'heart1' },
   m10_sofa_ojeras: { b: 'depa_dia', c: ['player sleep'], p: ['cel'], t: '0 horas de sueño' },
   m10_cel_sonrisa: { b: 'depa_dia', c: ['player blush'], p: ['cel'], fx: 'heart1' },
   m10_closet: { b: 'depa_dia', c: ['player smile'], p: ['pantaloneta'] },

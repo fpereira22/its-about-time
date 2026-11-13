@@ -131,13 +131,132 @@
     "next": "n10"
    },
    "n12": {
-    "text": "Domingo, 9:40 de la mañana. El sol de Cali ya entra de frente por el ventanal del 805.",
+    "text": "Domingo, 9:40 de la mañana. El día después de la fiesta. El sol de Cali ya entra de frente por el ventanal del 805.",
     "effects": [
      {
       "vineta": "m10_depa_manana"
      }
     ],
     "next": "n11"
+   }
+  }
+ },
+ "m10_roxane_manana": {
+  "start": "n10",
+  "nodes": {
+   "n1": {
+    "text": "Te quedas solo en el sofá. Sin dormir. Con una nica que se fue con tu chaqueta y una española que te siguió a las cuatro de la mañana.",
+    "effects": [
+     {
+      "vineta": "m10_sofa_ojeras"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Te da un beso en la mejilla, se pone tu chaqueta sin preguntar y sale. La puerta del 805 se cierra despacito.",
+    "effects": [
+     {
+      "vineta": "m10_roxane_chao"
+     },
+     {
+      "clearFlag": "m9_roxane_cama"
+     },
+     {
+      "sfx": "door"
+     }
+    ],
+    "next": "n1"
+   },
+   "n3": {
+    "speaker": "Roxane",
+    "text": "Me voy, que mi amiga tiene mi bolso y mi dignidad en su carro. Te escribo. ...O no. Ya veremos.",
+    "effects": [
+     {
+      "vineta": "m10_roxane_chao"
+     }
+    ],
+    "next": "n2"
+   },
+   "n5": {
+    "speaker": "Roxane",
+    "text": "...Bonito. Sí. Fue bonito. Sos buena gente, chele. Te lo dije anoche y te lo digo sobria.",
+    "effects": [
+     {
+      "vineta": "m10_roxane_chao"
+     }
+    ],
+    "next": "n3"
+   },
+   "n6": {
+    "speaker": "Roxane",
+    "text": "Ideay. No me digás eso, que me lo creo. ...Bueno, me lo creo.",
+    "effects": [
+     {
+      "vineta": "m10_roxane_chao"
+     }
+    ],
+    "next": "n3"
+   },
+   "n7": {
+    "speaker": "Roxane",
+    "text": "JAJAJA. Honesto. Me gusta. Raro pero rico, como el gallopinto con huevo.",
+    "effects": [
+     {
+      "vineta": "m10_roxane_chao"
+     }
+    ],
+    "next": "n3"
+   },
+   "n4": {
+    "speaker": "Roxane",
+    "text": "Oye... lo de anoche. La piscina. El carro. ¿Fue raro? Decime la verdad.",
+    "effects": [
+     {
+      "vineta": "m10_roxane_despierta"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Raro no. Bonito.»",
+      "goto": "n5"
+     },
+     {
+      "label": "«Fue la mejor noche desde que llegué a Cali.»",
+      "goto": "n6"
+     },
+     {
+      "label": "«Un poquito raro, sí.»",
+      "goto": "n7"
+     }
+    ]
+   },
+   "n8": {
+    "text": "Se toma el vaso de agua de un trago. Y la pastilla. Y otro vaso.",
+    "effects": [
+     {
+      "vineta": "m9_roxane_cama"
+     }
+    ],
+    "next": "n4"
+   },
+   "n9": {
+    "speaker": "Roxane",
+    "text": "¿Chele? ...Ay, no. ¿Esta es tu casa? ¿Dormí con las zapatillas puestas?",
+    "effects": [
+     {
+      "vineta": "m10_roxane_despierta"
+     }
+    ],
+    "next": "n8"
+   },
+   "n10": {
+    "text": "9:15. Un ruido en la cama. Roxane se sienta de golpe, con los rulos para todos lados, y mira el 805 como si fuera la primera vez.",
+    "effects": [
+     {
+      "vineta": "m10_roxane_despierta"
+     }
+    ],
+    "next": "n9"
    }
   }
  },

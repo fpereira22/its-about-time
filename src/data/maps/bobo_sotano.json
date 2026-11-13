@@ -82,7 +82,7 @@
    "h": 1,
    "event": "carro_m10",
    "if": {
-    "mission": "mission10",
+    "mission": "mission09",
     "flag": "m10_sotano",
     "notFlag": "m10_en_carro"
    }
@@ -94,7 +94,7 @@
    "dialogue": "m10_sotano",
    "once": true,
    "if": {
-    "mission": "mission10",
+    "mission": "mission09",
     "notFlag": "m10_vuelta"
    }
   },
@@ -103,7 +103,7 @@
    "dialogue": "m10_sotano_vuelta",
    "once": true,
    "if": {
-    "mission": "mission10",
+    "mission": "mission09",
     "flag": "m10_vuelta_llego"
    }
   }

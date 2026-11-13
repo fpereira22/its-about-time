@@ -19,6 +19,161 @@
   "weather": "despejado",
   "destinations": [
     {
+      "map": "bobo_piso8",
+      "x": 17,
+      "y": 5,
+      "name": "El clóset (la pantaloneta)",
+      "if": {
+        "flag": [
+          "m10_invitado",
+          "m10_dia"
+        ],
+        "notFlag": [
+          "m10_pantaloneta",
+          "m10_timbre"
+        ],
+        "map": "bobo_piso8"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 8,
+      "y": 2,
+      "name": "El ascensor (botón S)",
+      "if": {
+        "flag": [
+          "m10_timbre",
+          "m10_dia"
+        ],
+        "notFlag": "m10_sotano",
+        "map": "bobo_piso8"
+      }
+    },
+    {
+      "map": "bobo_sotano",
+      "x": 6,
+      "y": 9,
+      "name": "El carro de Danilo (visitantes)",
+      "if": {
+        "flag": [
+          "m10_sotano",
+          "m10_dia"
+        ],
+        "notFlag": "m10_en_carro",
+        "map": "bobo_sotano"
+      }
+    },
+    {
+      "map": "pance_rio",
+      "x": 84,
+      "y": 26,
+      "name": "La playa del Puente 3",
+      "if": {
+        "flag": [
+          "m10_en_pance",
+          "m10_dia"
+        ],
+        "notFlag": "m10_playa",
+        "map": "pance_rio"
+      }
+    },
+    {
+      "map": "pance_rio",
+      "x": 81,
+      "y": 26,
+      "name": "El chorro",
+      "if": {
+        "flag": [
+          "m10_playa",
+          "m10_dia"
+        ],
+        "notFlag": "m10_chorro",
+        "map": "pance_rio"
+      }
+    },
+    {
+      "map": "pance_rio",
+      "x": 93,
+      "y": 25,
+      "name": "El Mono (neumáticos)",
+      "if": {
+        "flag": [
+          "m10_chorro",
+          "m10_dia"
+        ],
+        "notFlag": "m10_corriente",
+        "map": "pance_rio"
+      }
+    },
+    {
+      "map": "pance_rio",
+      "x": 146,
+      "y": 28,
+      "name": "El puente colgante (Puente 4)",
+      "if": {
+        "flag": [
+          "m10_corriente",
+          "m10_dia"
+        ],
+        "notFlag": "m10_puente",
+        "map": "pance_rio"
+      }
+    },
+    {
+      "map": "pance_rio",
+      "x": 149,
+      "y": 27,
+      "name": "El piedrón de la orilla",
+      "if": {
+        "flag": [
+          "m10_puente",
+          "m10_dia"
+        ],
+        "notFlag": "m10_recuerdos",
+        "map": "pance_rio"
+      }
+    },
+    {
+      "map": "pance_rio",
+      "x": 153,
+      "y": 30,
+      "name": "Donde doña Nelly",
+      "if": {
+        "flag": [
+          "m10_recuerdos",
+          "m10_dia"
+        ],
+        "notFlag": "m10_comio",
+        "map": "pance_rio"
+      }
+    },
+    {
+      "map": "bobo_sotano",
+      "x": 3,
+      "y": 2,
+      "name": "El ascensor (subir al 8)",
+      "if": {
+        "flag": [
+          "m10_despedida",
+          "m10_dia"
+        ],
+        "map": "bobo_sotano"
+      }
+    },
+    {
+      "map": "bobo_piso8",
+      "x": 15,
+      "y": 11,
+      "name": "Tu cama. Por fin.",
+      "if": {
+        "flag": [
+          "m10_despedida",
+          "m10_dia"
+        ],
+        "map": "bobo_piso8"
+      }
+    },
+    {
       "map": "casa_tami",
       "x": 6,
       "y": 6,
@@ -35,7 +190,10 @@
       "y": 20,
       "name": "Laura (en la pérgola): devuélvele el celular",
       "if": {
-        "flag": ["m9_beso_roxane", "m9_piscina"],
+        "flag": [
+          "m9_beso_roxane",
+          "m9_piscina"
+        ],
         "hasItem": "cel_laura",
         "map": "casa_tami"
       }
@@ -58,7 +216,10 @@
       "name": "Laura (en la sala, con los mexicanos)",
       "if": {
         "flag": "m9_mirador",
-        "notFlag": ["m9_laura_hecho", "m9_piscina"],
+        "notFlag": [
+          "m9_laura_hecho",
+          "m9_piscina"
+        ],
         "map": "casa_tami"
       }
     },
@@ -92,6 +253,13 @@
       "if": {
         "flag": "mision9_iniciada"
       }
+    },
+    {
+      "id": "carro",
+      "name": "El carro de Danilo (+ un neumático río abajo)",
+      "if": {
+        "flag": "m10_dia"
+      }
     }
   ],
   "defaultRoute": "Taxi",
@@ -106,7 +274,12 @@
     "vaso_rojo",
     "dado_cacho",
     "foto_cali_noche",
-    "botella_guaro"
+    "botella_guaro",
+    "foto_puente",
+    "piedra_lisa",
+    "pluma_barranquero",
+    "vaso_lulada",
+    "hoja_fiambre"
   ],
   "bonuses": [
     {
@@ -155,6 +328,42 @@
       "text": "Devolviste el celular de Laura",
       "if": {
         "flag": "m9_cel_devuelto"
+      }
+    },
+    {
+      "text": "Parqueaste a Danilo derechito",
+      "if": {
+        "flag": "m10_parqueo_bien"
+      }
+    },
+    {
+      "text": "Aguantaste el chorro del Pance",
+      "if": {
+        "flag": "m10_chorro_bien"
+      }
+    },
+    {
+      "text": "Bajaste el río como un caleño",
+      "if": {
+        "flag": "m10_corriente_bien"
+      }
+    },
+    {
+      "text": "Cruzaste el colgante sin agarrarte",
+      "if": {
+        "flag": "m10_puente_bien"
+      }
+    },
+    {
+      "text": "Cuatro fotos buenas en el puente",
+      "if": {
+        "flag": "m10_fotos_bien"
+      }
+    },
+    {
+      "text": "Una historia con todo (foto, sticker y texto)",
+      "if": {
+        "flag": "m10_historia_completa"
       }
     }
   ],
@@ -206,6 +415,30 @@
     {
       "flag": "secreto_m9_like",
       "name": "El like a una foto de hace 47 semanas"
+    },
+    {
+      "flag": "secreto_m10_radio",
+      "name": "Salsa de domingo en la radio"
+    },
+    {
+      "flag": "secreto_m10_polar",
+      "name": "Oso polar del Pance"
+    },
+    {
+      "flag": "secreto_m10_patico",
+      "name": "Río abajo sin tocar una piedra"
+    },
+    {
+      "flag": "secreto_m10_barranquero",
+      "name": "El barranquero en la foto"
+    },
+    {
+      "flag": "secreto_m10_pelado",
+      "name": "El Danilo de doce años"
+    },
+    {
+      "flag": "secreto_m10_borrador",
+      "name": "Escribir y borrar (dos veces)"
     }
   ],
   "endings": [

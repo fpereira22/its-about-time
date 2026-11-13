@@ -6,14 +6,17 @@ import { advanceClock, parseClock } from './Mission';
 import { FLAG_SWIM } from './PlayerLook';
 import { StoryState } from './StoryState';
 import type { ScriptHost } from './StoryScripts';
+import { presenteM9 } from './StoryScripts9';
 
 /**
- * Scripts de la misión 10 («Río abajo»): el domingo después de la fiesta en Cristo Rey. Sin haber dormido, Danilo
+ * El final de la misión 9 («Arriba de todo»), todavía en el recuerdo: el domingo después de la fiesta en Cristo Rey
+ * (flags `m10_*`, por la misión que iba a ser aparte). Arranca en casa_m9 (StoryScripts9.ts). Sin haber dormido, Danilo
  * te invita (solo a ti) al río Pance: te alistas en el 805, suena el citófono, lo buscas en el sótano del Bobo y en
  * su carro hablan de anoche camino a Pance. Allá: parquear en el Ecoparque, la playa del Puente 3, la «ducha» en el
  * chorro, río abajo en neumático hasta el Puente 4 (el colgante), fotos en el puente, los recuerdos en un piedrón,
  * el sancocho de doña Nelly donde casi no hay gente, la historia de Fotogram, la respuesta de Laura («tío, qué
- * máquina...») y el corazoncito. Y de vuelta al Bobo, a dormir por fin. Se suman a SCRIPTS en StoryScripts.ts.
+ * máquina...») y el corazoncito. Y de vuelta al Bobo, a dormir por fin; ahí el recuerdo termina y vuelve el presente
+ * (presenteM9). Se suman a SCRIPTS en StoryScripts.ts.
  */
 
 type Script = (host: ScriptHost, data: Record<string, unknown>) => Promise<void> | void;
@@ -53,20 +56,43 @@ function rio(mode: RioMode, photos?: string[]): Promise<RioResult> {
   return new Promise<RioResult>((done) => EventSystem.emit('open-rio', { mode, photos, done }));
 }
 
+/**
+ * Después de «laaurii_14 comenzó a seguirte»: pasan las horas sin dormir y amanece el domingo. Si Roxane durmió en
+ * tu cama, se despierta y se va; después, el mensaje de Danilo.
+ */
+export async function mananaPance(host: ScriptHost): Promise<void> {
+  await host.fade(true, 1400);
+  playMusic(null);
+  set('m10_dia');
+  StoryState.setWeather('despejado');
+  StoryState.setClock(parseClock(has('m9_beso_roxane') ? 'dom+ 09:15' : 'dom+ 09:40'), parseClock('dom+ 09:50'));
+  banner('Domingo', 'La mañana después de la fiesta');
+  host.placePlayer('sofa');
+  await host.wait(1200);
+  await host.fade(false, 1200);
+  playMusic('depa');
+  if (has('m9_roxane_cama')) {
+    await host.say('m10_roxane_manana');
+    clockAt('dom+ 09:40', 'dom+ 09:50');
+  }
+  await host.say('m10_intro');
+  host.setLocked(false);
+}
+
 /** Las fotos buenas del puente (para la historia de Fotogram). */
 let galeria: string[] = [];
 
 /** El carro de ida, tramo por tramo (del sótano del Bobo al km 12 de la Vía a Pance). */
 const IDA: Array<{ title: string; subtitle: string; at: string; dialogue: string }> = [
-  { title: 'Sótano del Bobo → Calle 18', subtitle: 'En el carro de Danilo', at: 'dom 10:32', dialogue: 'm10_carro_1' },
-  { title: 'Avenida Cañasgordas', subtitle: 'Hacia el sur, hacia Pance', at: 'dom 10:40', dialogue: 'm10_carro_2' },
-  { title: 'Vía a Pance (Carrera 122)', subtitle: 'Guaduales, fincas y ciclistas', at: 'dom 10:52', dialogue: 'm10_carro_3' },
-  { title: 'Ecoparque Río Pance', subtitle: 'Km 12 · domingo', at: 'dom 11:02', dialogue: 'm10_carro_4' },
+  { title: 'Sótano del Bobo → Calle 18', subtitle: 'En el carro de Danilo', at: 'dom+ 10:32', dialogue: 'm10_carro_1' },
+  { title: 'Avenida Cañasgordas', subtitle: 'Hacia el sur, hacia Pance', at: 'dom+ 10:40', dialogue: 'm10_carro_2' },
+  { title: 'Vía a Pance (Carrera 122)', subtitle: 'Guaduales, fincas y ciclistas', at: 'dom+ 10:52', dialogue: 'm10_carro_3' },
+  { title: 'Ecoparque Río Pance', subtitle: 'Km 12 · domingo', at: 'dom+ 11:02', dialogue: 'm10_carro_4' },
 ];
 
 const VUELTA: Array<{ title: string; subtitle: string; at: string }> = [
-  { title: 'Vía a Pance', subtitle: 'De vuelta, con el sol bajando', at: 'dom 17:05' },
-  { title: 'Avenida Cañasgordas', subtitle: 'Hacia el Bobo', at: 'dom 17:20' },
+  { title: 'Vía a Pance', subtitle: 'De vuelta, con el sol bajando', at: 'dom+ 17:05' },
+  { title: 'Avenida Cañasgordas', subtitle: 'Hacia el Bobo', at: 'dom+ 17:20' },
 ];
 
 export const M10_SCRIPTS: Record<string, Script> = {
@@ -77,11 +103,11 @@ export const M10_SCRIPTS: Record<string, Script> = {
     host.setLocked(true);
     await host.wait(400);
     await host.say('m10_listo');
-    await clockTo(host, 'dom 10:05', 1200);
+    await clockTo(host, 'dom+ 10:05', 1200);
     playSfx('bell');
     await host.wait(500);
     await host.say('m10_timbre');
-    StoryState.setClock(StoryState.clock, parseClock('dom 10:30'));
+    StoryState.setClock(StoryState.clock, parseClock('dom+ 10:30'));
     host.setLocked(false);
   },
 
@@ -137,7 +163,7 @@ export const M10_SCRIPTS: Record<string, Script> = {
     await host.say('m10_parquear_post');
     await host.fade(true, 700);
     danilo('ropa');
-    clockAt('dom 11:10', 'dom 11:40');
+    clockAt('dom+ 11:10', 'dom+ 11:40');
     host.goTo('pance_rio', 'llegada');
   },
 
@@ -146,7 +172,7 @@ export const M10_SCRIPTS: Record<string, Script> = {
     if (has('m10_playa')) return;
     host.setLocked(true);
     host.facePlayer('down');
-    clockAt('dom 11:25', 'dom 11:50');
+    clockAt('dom+ 11:25', 'dom+ 11:50');
     await host.say('m10_playa');
     host.setLocked(false);
   },
@@ -171,7 +197,7 @@ export const M10_SCRIPTS: Record<string, Script> = {
     host.placePlayer('chorro');
     await host.wait(300);
     await host.say('m10_chorro_post');
-    clockAt('dom 11:50', 'dom 12:20');
+    clockAt('dom+ 11:50', 'dom+ 12:20');
     host.setLocked(false);
   },
 
@@ -185,7 +211,7 @@ export const M10_SCRIPTS: Record<string, Script> = {
     const r = await rio('corriente');
     if (r.good || r.skipped) set('m10_corriente_bien');
     if (r.perfect) set('secreto_m10_patico');
-    clockAt('dom 12:25', 'dom 12:50');
+    clockAt('dom+ 12:25', 'dom+ 12:50');
     playMusic('rio');
     host.placePlayer('corriente_fin');
     await host.wait(400);
@@ -216,7 +242,7 @@ export const M10_SCRIPTS: Record<string, Script> = {
     host.placePlayer('puente4_medio');
     await host.wait(300);
     await host.say('m10_fotos_post');
-    clockAt('dom 12:55', 'dom 13:20');
+    clockAt('dom+ 12:55', 'dom+ 13:20');
     host.setLocked(false);
   },
 
@@ -226,9 +252,9 @@ export const M10_SCRIPTS: Record<string, Script> = {
     host.setLocked(true);
     host.placePlayer('piedra');
     host.facePlayer('right');
-    clockAt('dom 13:05');
+    clockAt('dom+ 13:05');
     await host.say('m10_recuerdos');
-    clockAt('dom 13:30', 'dom 13:50');
+    clockAt('dom+ 13:30', 'dom+ 13:50');
     host.setLocked(false);
   },
 
@@ -240,9 +266,9 @@ export const M10_SCRIPTS: Record<string, Script> = {
     set('m10_comio');
     host.placePlayer('mesa');
     host.facePlayer('up');
-    clockAt('dom 13:45');
+    clockAt('dom+ 13:45');
     await host.say('m10_comida');
-    await clockTo(host, 'dom 14:20', 1200);
+    await clockTo(host, 'dom+ 14:20', 1200);
     await host.say('m10_historia_pre');
     const fotos = galeria.length > 0 ? galeria : ['El río verde'];
     const r = await rio('historia', fotos);
@@ -256,7 +282,7 @@ export const M10_SCRIPTS: Record<string, Script> = {
     clear(FLAG_SWIM);
     danilo('ropa');
     StoryState.setWeather('nublado');
-    StoryState.setClock(parseClock('dom 16:40'), parseClock('dom 16:45'));
+    StoryState.setClock(parseClock('dom+ 16:40'), parseClock('dom+ 16:45'));
     host.placePlayer('carro');
     await host.wait(500);
     await host.fade(false, 900);
@@ -268,18 +294,18 @@ export const M10_SCRIPTS: Record<string, Script> = {
     host.goTo('carro_danilo', 'asiento');
   },
 
-  /** En el 805, por fin: la cama. */
+  /** En el 805, por fin: la cama. Y se acaba el recuerdo. */
   async dormir_m10(host) {
     if (has('m10_durmio')) return;
     host.setLocked(true);
     set('m10_durmio');
     host.placePlayer('cama');
     StoryState.setWeather('lluvia');
-    clockAt('dom 17:50');
+    clockAt('dom+ 17:50');
     playMusic('depa');
     await host.say('m10_final');
     await host.fade(true, 1800);
-    host.completeMission();
+    await presenteM9(host);
   },
 };
 
@@ -296,7 +322,7 @@ async function vuelta(host: ScriptHost): Promise<void> {
   await clockTo(host, VUELTA[1].at, 2000);
   await host.fade(true, 1200);
   playMusic(null);
-  StoryState.setClock(parseClock('dom 17:35'), parseClock('dom 17:50'));
+  StoryState.setClock(parseClock('dom+ 17:35'), parseClock('dom+ 17:50'));
   set('m10_vuelta_llego');
   host.goTo('bobo_sotano', 'carro');
 }

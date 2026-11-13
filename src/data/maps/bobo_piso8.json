@@ -181,7 +181,7 @@
    "h": 3,
    "event": "dormir_m10",
    "if": {
-    "mission": "mission10",
+    "mission": "mission09",
     "flag": "m10_despedida",
     "notFlag": "m10_durmio"
    }

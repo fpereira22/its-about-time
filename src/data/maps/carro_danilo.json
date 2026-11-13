@@ -35,7 +35,7 @@
    "id": "viaje",
    "dialogue": "m10_carro_go",
    "if": {
-    "mission": "mission10"
+    "mission": "mission09"
    }
   }
  ]

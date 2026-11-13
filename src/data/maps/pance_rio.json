@@ -233,7 +233,7 @@
    "h": 40,
    "event": "playa_m10",
    "if": {
-    "mission": "mission10",
+    "mission": "mission09",
     "flag": "m10_en_pance",
     "notFlag": "m10_playa"
    }
@@ -246,7 +246,7 @@
    "h": 1,
    "event": "chorro_m10",
    "if": {
-    "mission": "mission10",
+    "mission": "mission09",
     "flag": "m10_playa",
     "notFlag": "m10_chorro"
    }
@@ -259,7 +259,7 @@
    "h": 1,
    "event": "puente_m10",
    "if": {
-    "mission": "mission10",
+    "mission": "mission09",
     "flag": "m10_corriente",
     "notFlag": "m10_puente"
    }
@@ -272,7 +272,7 @@
    "h": 3,
    "event": "recuerdos_m10",
    "if": {
-    "mission": "mission10",
+    "mission": "mission09",
     "flag": "m10_puente",
     "notFlag": "m10_recuerdos"
    }
@@ -284,7 +284,7 @@
    "dialogue": "m10_pance_llega",
    "once": true,
    "if": {
-    "mission": "mission10"
+    "mission": "mission09"
    }
   }
  ],

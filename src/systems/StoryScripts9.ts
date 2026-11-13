@@ -7,6 +7,7 @@ import { EventSystem } from './EventSystem';
 import { advanceClock, parseClock } from './Mission';
 import { StoryState } from './StoryState';
 import type { ScriptHost } from './StoryScripts';
+import { mananaPance } from './StoryScripts10';
 
 /**
  * Scripts de la misión 9 («Arriba de todo»), otro recuerdo: una semana después de Salento. Empieza en el presente
@@ -260,29 +261,36 @@ export const M9_SCRIPTS: Record<string, Script> = {
     host.goTo('taxi_m9', 'asiento');
   },
 
-  /** De vuelta en el depa (con Roxane o después del ascensor con Laura): Fotogram, y el presente. */
+  /**
+   * De vuelta en el depa (con Roxane o después del ascensor con Laura): Fotogram... y el recuerdo sigue: el domingo
+   * en el río Pance con Danilo (StoryScripts10.ts), que termina volviendo al presente.
+   */
   async casa_m9(host) {
     host.setLocked(true);
     await host.wait(600);
     playMusic('depa');
     await host.say(has('m9_beso_roxane') ? 'm9_bobo_roxane' : 'm9_ascensor_laura');
     await host.say('m9_fotogram_sigue');
-    await host.fade(true, 1600);
-    playSfx('rebobinar');
-    // El presente: el mismo sábado en la noche, dos semanas después.
-    clear('m9_recuerdo', 'm9_roxane_cama', 'm9_sigue_laura', 'm9_sigue_ximena', 'm9_sigue_roxane', 'm9_en_bobo');
-    const v = quimica();
-    Dialogue.vars.set('quimica', String(v));
-    StoryState.setFlag('m9_final_alta', v >= ALTA);
-    StoryState.setWeather('despejado');
-    clockSet('sáb 23:15', 'sáb 23:30');
-    host.placePlayer('sofa');
-    await host.wait(800);
-    await host.fade(false, 1000);
-    await host.say('m9_presente');
-    host.completeMission();
+    await mananaPance(host);
   },
 };
+
+/** El presente: el mismo sábado en la noche, dos semanas después (después del domingo en el Pance). */
+export async function presenteM9(host: ScriptHost): Promise<void> {
+  playSfx('rebobinar');
+  clear('m9_recuerdo', 'm9_roxane_cama', 'm9_sigue_laura', 'm9_sigue_ximena', 'm9_sigue_roxane', 'm9_en_bobo', 'm10_dia');
+  const v = quimica();
+  Dialogue.vars.set('quimica', String(v));
+  StoryState.setFlag('m9_final_alta', v >= ALTA);
+  StoryState.setWeather('despejado');
+  clockSet('sáb 23:15', 'sáb 23:30');
+  host.placePlayer('sofa');
+  await host.wait(800);
+  await host.fade(false, 1000);
+  playMusic('depa');
+  await host.say('m9_presente');
+  host.completeMission();
+}
 
 /** Al amanecer, con Roxane dormida en tu hombro (y Don Hernán otra vez). */
 async function vueltaRoxane(host: ScriptHost): Promise<void> {

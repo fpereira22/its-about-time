@@ -7,7 +7,8 @@
   "object": "toalla_rio",
   "dialogue": "m10_toalla",
   "if": {
-   "mission": "mission10",
+   "mission": "mission09",
+   "flag": "m10_dia",
    "notFlag": "m10_toalla"
   }
  },
@@ -19,7 +20,8 @@
   "object": "bloqueador",
   "dialogue": "m10_bloqueador",
   "if": {
-   "mission": "mission10",
+   "mission": "mission09",
+   "flag": "m10_dia",
    "notFlag": "m10_bloqueador"
   }
  },
@@ -30,7 +32,8 @@
   "y": 5,
   "dialogue": "m10_closet",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09",
+   "flag": "m10_dia"
   }
  },
  {
@@ -40,7 +43,8 @@
   "y": 1,
   "dialogue": "m10_ascensor_8",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09",
+   "flag": "m10_dia"
   }
  },
  {
@@ -50,7 +54,7 @@
   "y": 1,
   "dialogue": "m10_ascensor_sotano",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -62,7 +66,7 @@
   "dir": "left",
   "dialogue": "m10_danilo_sotano",
   "if": {
-   "mission": "mission10",
+   "mission": "mission09",
    "any": [
     {
      "notFlag": "m10_en_carro"
@@ -83,7 +87,7 @@
   "dir": "left",
   "dialogue": "m10_danilo_carro",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -93,7 +97,7 @@
   "y": 11,
   "dialogue": "m10_carro_npc",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -105,7 +109,7 @@
   "dir": "down",
   "dialogue": "m10_cuidador_npc",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -118,7 +122,7 @@
   "dialogue": "m10_mango",
   "wander": 2,
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -130,7 +134,7 @@
   "dir": "up",
   "dialogue": "m10_senora_olla",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -142,7 +146,7 @@
   "dir": "up",
   "dialogue": "m10_parlante",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -155,7 +159,7 @@
   "dialogue": "m10_nino",
   "wander": 2,
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -167,7 +171,7 @@
   "dir": "left",
   "dialogue": "m10_mono",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -178,7 +182,7 @@
   "object": "neumatico",
   "dialogue": "m10_mono",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -190,7 +194,7 @@
   "dir": "down",
   "dialogue": "m10_nelly",
   "if": {
-   "mission": "mission10"
+   "mission": "mission09"
   }
  },
  {
@@ -202,7 +206,7 @@
   "dialogue": "m10_pluma",
   "solid": false,
   "if": {
-   "mission": "mission10",
+   "mission": "mission09",
    "notFlag": "m10_pluma"
   }
  },
@@ -215,7 +219,7 @@
   "dialogue": "m10_piedra",
   "solid": false,
   "if": {
-   "mission": "mission10",
+   "mission": "mission09",
    "notFlag": "m10_piedra_lisa"
   }
  }
