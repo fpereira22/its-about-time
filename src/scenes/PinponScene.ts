@@ -105,6 +105,8 @@ interface Ball {
   bounced: boolean;
   /** Segundos desde el bote. */
   after: number;
+  /** Cuánto dura el arco después del bote (hasta un poco más allá de la paleta del que recibe). */
+  up: number;
   by: Side;
   fault: 'net' | null;
   smash: boolean;
@@ -121,7 +123,7 @@ export class PinponScene extends MiniScene<PinponResult> {
   private phaseMs = 0;
   private px = BASE_WIDTH / 2;
   private ox = BASE_WIDTH / 2;
-  private ball: Ball = { x: 0, y: 0, z: 0, sx: 0, sy: 0, lx: 0, ly: 0, t: 0, dur: 1, vx: 0, vy: 0, bounced: false, after: 0, by: 'me', fault: null, smash: false };
+  private ball: Ball = { x: 0, y: 0, z: 0, sx: 0, sy: 0, lx: 0, ly: 0, t: 0, dur: 1, vx: 0, vy: 0, bounced: false, after: 0, up: 0.45, by: 'me', fault: null, smash: false };
   private smashWindow = 0;
   private server: Side = 'me';
   /** Dónde se marcó la última falta (el circulito de «afuera» / «red»). */
@@ -193,7 +195,7 @@ export class PinponScene extends MiniScene<PinponResult> {
       // Con el borde de la paleta la pelota sale muy cruzada: a veces se va afuera.
       if (Math.abs(off) > 0.85 && Math.random() < 0.35) lx += Math.sign(off) * (10 + Math.random() * 10);
       ly = smash ? T.y + 6 + Math.random() * 14 : T.y + 12 + Math.random() * (NET_Y - T.y - 28);
-      if (smash && Math.random() < 0.12) fault = 'net';
+      if (smash && Math.random() < 0.08) fault = 'net';
       speed = (smash ? 215 : 125) * speedK;
     } else {
       const r = this.rival;
@@ -207,12 +209,21 @@ export class PinponScene extends MiniScene<PinponResult> {
       else if (roll < r.error * 1.1) lx = Math.random() < 0.5 ? T.x - 4 - Math.random() * 10 : T.x + T.w + 4 + Math.random() * 10;
       speed = 115 * r.hit * speedK;
     }
+    // Si va a la red, el tiro termina en la malla (con un arco bajito) en vez de pasarla por encima.
+    if (fault === 'net') {
+      lx = Phaser.Math.Clamp(lx, T.x - 4, T.x + T.w + 4);
+      ly = NET_Y + (by === 'me' ? 3 : -3);
+    }
     const dur = Math.max(0.25, Math.hypot(lx - x, ly - y) / speed);
-    const b: Ball = { x, y, z: 4, sx: x, sy: y, lx, ly, t: 0, dur, vx: (lx - x) / dur, vy: (ly - y) / dur, bounced: false, after: 0, by, fault, smash };
-    // Después del bote, que llegue a donde el otro alcanza a correr.
-    const tLine = ((by === 'me' ? OP_Y : MY_Y) - ly) / b.vy;
-    const xLine = lx + b.vx * tLine;
-    if (tLine > 0 && (xLine < REACH.min + 2 || xLine > REACH.max - 2)) b.vx = (Phaser.Math.Clamp(xLine, REACH.min + 2, REACH.max - 2) - lx) / tLine;
+    const b: Ball = { x, y, z: 4, sx: x, sy: y, lx, ly, t: 0, dur, vx: (lx - x) / dur, vy: (ly - y) / dur, bounced: false, after: 0, up: 0.45, by, fault, smash };
+    if (fault === null) {
+      // Después del bote, que llegue a donde el otro alcanza a correr.
+      const tLine = ((by === 'me' ? OP_Y : MY_Y) - ly) / b.vy;
+      const xLine = lx + b.vx * tLine;
+      if (tLine > 0 && (xLine < REACH.min + 2 || xLine > REACH.max - 2)) b.vx = (Phaser.Math.Clamp(xLine, REACH.min + 2, REACH.max - 2) - lx) / tLine;
+      // El arco del bote dura hasta un poco más allá de la paleta: así no vuelve a picar en la mesa.
+      if (tLine > 0) b.up = tLine * 1.2;
+    }
     this.ball = b;
   }
 
@@ -283,19 +294,17 @@ export class PinponScene extends MiniScene<PinponResult> {
     this.ox = Phaser.Math.Clamp(this.ox + Phaser.Math.Clamp(d, -this.rival.speed * dt, this.rival.speed * dt), REACH.min, REACH.max);
 
     if (!b.bounced) {
-      const prevY = b.y;
       b.t = Math.min(1, b.t + dt / b.dur);
       b.x = b.sx + (b.lx - b.sx) * b.t;
       b.y = b.sy + (b.ly - b.sy) * b.t;
-      b.z = 4 * (1 - b.t) + (b.smash ? 7 : 12) * 4 * b.t * (1 - b.t);
-      // La red: si este golpe no la pasa, se queda ahí.
-      if (b.fault === 'net' && (prevY - NET_Y) * (b.y - NET_Y) <= 0 && prevY !== b.y) {
-        b.y = NET_Y + (b.by === 'me' ? 3 : -3);
-        b.z = 0;
-        this.fault('¡Red!', b.x, b.y, b.by === 'me' ? 'them' : 'me');
-        return;
-      }
+      b.z = 4 * (1 - b.t) + (b.fault === 'net' ? 3 : b.smash ? 7 : 12) * 4 * b.t * (1 - b.t);
       if (b.t >= 1) {
+        // La red: el tiro bajito se clavó en la malla.
+        if (b.fault === 'net') {
+          b.z = 0;
+          this.fault('¡Red!', b.x, b.y, b.by === 'me' ? 'them' : 'me');
+          return;
+        }
         if (!this.onTable(b.lx, b.ly)) {
           b.z = 0;
           this.fault('¡Afuera!', b.lx, b.ly, b.by === 'me' ? 'them' : 'me');
@@ -312,7 +321,12 @@ export class PinponScene extends MiniScene<PinponResult> {
     b.after += dt;
     b.x += b.vx * dt;
     b.y += b.vy * dt;
-    b.z = Math.max(0, Math.sin(Math.min(1, b.after / 0.45) * Math.PI) * 8);
+    b.z = Math.max(0, Math.sin(Math.min(1, b.after / b.up) * Math.PI) * 8);
+    // Si vuelve a picar en la mesa antes de que se la devuelvan: dos botes, punto para el que pegó.
+    if (b.after >= b.up && this.onTable(b.x, b.y)) {
+      this.fault('¡Dos botes!', b.x, b.y, b.by);
+      return;
+    }
     if (b.by === 'them') {
       // Me toca: solo después del bote.
       if (b.y >= MY_Y - 3 && b.y <= MY_Y + 6 && Math.abs(b.x - this.px) <= PAD_W / 2 + 2) {
