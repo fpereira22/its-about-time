@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import { playMusic } from '../audio/sfx';
-import { vehicleKey } from '../art/SpriteRegistry';
-import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD, TILE } from '../config/display';
+import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD } from '../config/display';
 import { Controls } from '../systems/Controls';
 import { GameMap } from '../systems/GameMap';
 import { GAME_TITLE } from '../config/game';
@@ -9,7 +8,7 @@ import { Admin } from '../systems/Admin';
 import { Content } from '../systems/Content';
 import { canFullscreen, isFullscreen, toggleFullscreen } from '../systems/Fullscreen';
 import { TouchControls } from '../systems/TouchControls';
-import { currentMission, missionFullLabel, missionLabel, MISSIONS, parseClock } from '../systems/Mission';
+import { clockMinutes, currentMission, missionFullLabel, missionLabel, MISSIONS, parseClock } from '../systems/Mission';
 import type { MissionDef } from '../types/mission';
 import { Ranking } from '../systems/Ranking';
 import { Records } from '../systems/Records';
@@ -21,15 +20,13 @@ import { drawPanel, makeText, THEME } from '../ui/theme';
 import { BaseScene } from './BaseScene';
 import { MenuList } from '../ui/MenuList';
 import { SettingsPanel } from '../ui/SettingsPanel';
+import { TitleBackdrop } from '../ui/TitleBackdrop';
 import { TitleReviews } from '../ui/TitleReviews';
 import { autoPromptsAllowed, openNameForm } from '../ui/VoteForm';
 
-/** Mapa que se ve de fondo en el título, y desde qué fila. */
-const BACKDROP_MAP = 'providencia';
-const BACKDROP_TOP_ROW = 8;
-/** Fila de la pista por donde pasa la micro del fondo. */
-const BUS_LANE = 17;
-const PAN_SPEED = 14;
+const CONTROLS_HINT = 'WASD/Flechas: mover  ·  E: interactuar  ·  Esc: menú';
+/** Cuánto se ve el nombre del lugar en el pie antes de volver a los controles (ms). */
+const PLACE_HINT_MS = 4500;
 const MENU_Y = 98;
 /** Lo más arriba que puede empezar el menú sin tapar el logo (ahí empiezan también las reseñas). */
 const MENU_MIN_Y = 78;
@@ -65,9 +62,10 @@ export class TitleScene extends BaseScene {
   private menu: MenuList | null = null;
   /** Submenú abierto (elegir misión o confirmar): Esc lo cierra y vuelve al menú principal. */
   private confirm: { menu: MenuList; box: Phaser.GameObjects.Container | null } | null = null;
-  private backdrop!: Phaser.Tilemaps.TilemapLayer;
-  private panX = 0;
-  private panMax = 0;
+  private backdrop: TitleBackdrop | null = null;
+  /** Texto del pie: los controles, o el nombre del lugar del fondo cuando cambia. */
+  private footerText: Phaser.GameObjects.Text | null = null;
+  private footerTimer: Phaser.Time.TimerEvent | null = null;
   private leaving = false;
   private canContinue = false;
   private settings: SettingsPanel | null = null;
@@ -84,29 +82,35 @@ export class TitleScene extends BaseScene {
   create(): void {
     this.leaving = false;
     this.menu = null;
+    this.backdrop = null;
     this.confirm = null;
     this.settings = null;
     this.reviews = null;
     this.closeForm = null;
     if (this.scene.isActive('UI')) this.scene.stop('UI');
     this.cameras.main.setBackgroundColor('#1c2a48');
+    this.footerText = null;
+    this.footerTimer = null;
 
+    this.canContinue = this.checkContinue();
     this.createBackdrop();
     this.createLogo();
 
-    this.canContinue = this.checkContinue();
     this.buildMenu();
     this.buildReviews();
     this.greetFirstTime();
 
     const footer = this.add.graphics().setDepth(5);
     footer.fillStyle(0x0d1424, 0.75).fillRect(0, BASE_HEIGHT - 13, BASE_WIDTH, 13);
-    this.addText(BASE_WIDTH / 2, BASE_HEIGHT - 6.5, 'WASD/Flechas: mover  ·  E: interactuar  ·  Esc: menú', {
+    this.footerText = this.addText(BASE_WIDTH / 2, BASE_HEIGHT - 6.5, CONTROLS_HINT, {
       fontSize: '8px',
       color: '#c8d0e0',
     })
       .setOrigin(0.5)
       .setDepth(6);
+    // (createBackdrop ya lo armó; TS no lo ve porque arriba quedó en null.)
+    const backdrop = this.backdrop as TitleBackdrop | null;
+    if (backdrop) this.showPlace(backdrop.current.place, backdrop.minutes);
 
     if (Admin.active) {
       // Tocarla abre el selector de etapas (en el celular no hay F2).
@@ -124,9 +128,7 @@ export class TitleScene extends BaseScene {
   }
 
   override update(_time: number, delta: number): void {
-    this.panX += (PAN_SPEED * delta) / 1000;
-    if (this.panX > this.panMax) this.panX = 0;
-    this.backdrop.x = -Math.round(this.panX);
+    this.backdrop?.update(delta);
 
     if (this.leaving || this.closeForm) return;
     if (this.settings) {
@@ -368,24 +370,19 @@ export class TitleScene extends BaseScene {
     );
   }
 
+  /**
+   * Fondo que va cambiando de lugar (ver TitleBackdrop): parte donde quedó la partida, a su hora,
+   * y mientras más se espera, más avanza el día y más probable es que llueva.
+   */
   private createBackdrop(): void {
-    const map = GameMap.get(BACKDROP_MAP);
-    this.backdrop = map.createLayer(this).setPosition(0, -BACKDROP_TOP_ROW * TILE).setDepth(0);
-    // Con la cámara fija (origen 0,0 + zoom) Phaser calcula mal qué tiles están a la vista.
-    this.backdrop.skipCull = true;
-    this.panMax = map.width * TILE - BASE_WIDTH;
-    this.panX = 0;
-
-    const busY = (BUS_LANE + 1 - BACKDROP_TOP_ROW) * TILE;
-    const bus = this.add.image(-60, busY, vehicleKey('micro')).setOrigin(0.5, 1).setDepth(1);
-    this.tweens.add({
-      targets: bus,
-      x: BASE_WIDTH + 60,
-      duration: 6500,
-      delay: 900,
-      repeat: -1,
-      repeatDelay: 2500,
-      onUpdate: () => bus.setX(Math.round(bus.x)),
+    const saved = StoryState.hasSave();
+    const now = new Date();
+    this.backdrop = new TitleBackdrop(this, {
+      startMinutes: saved ? clockMinutes() : now.getDay() * 1440 + now.getHours() * 60 + now.getMinutes(),
+      missionId: currentMission().id,
+      savedMap: this.canContinue ? StoryState.location?.map : undefined,
+      savedWeather: saved ? StoryState.weather : undefined,
+      onPlace: (def, minutes) => this.showPlace(def.place, minutes),
     });
 
     // Velo oscuro con degradado arriba para que el logo se lea sobre el mapa.
@@ -394,6 +391,29 @@ export class TitleScene extends BaseScene {
     for (let i = 0; i < 10; i++) {
       veil.fillStyle(0x0d1424, 0.55 * (1 - i / 10)).fillRect(0, i * 8, BASE_WIDTH, 8);
     }
+  }
+
+  /** El pie muestra un rato el lugar del fondo y la hora, y vuelve a los controles. */
+  private showPlace(place: string, minutes: number): void {
+    const text = this.footerText;
+    if (!text) return;
+    const m = Math.floor(minutes) % 1440;
+    const hhmm = `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+    this.footerTimer?.remove(false);
+    this.tweens.killTweensOf(text);
+    text.setText(`${place}  ·  ${hhmm}`).setColor('#f0d048').setAlpha(0);
+    this.tweens.add({ targets: text, alpha: 1, duration: 400 });
+    this.footerTimer = this.time.delayedCall(PLACE_HINT_MS, () => {
+      this.tweens.add({
+        targets: text,
+        alpha: 0,
+        duration: 300,
+        onComplete: () => {
+          text.setText(CONTROLS_HINT).setColor('#c8d0e0');
+          this.tweens.add({ targets: text, alpha: 1, duration: 300 });
+        },
+      });
+    });
   }
 
   private createLogo(): void {

@@ -30,7 +30,7 @@ const SKY: Array<[number, number]> = [
   [19.6, NIGHT],
   [24, NIGHT],
 ];
-const WEATHER_TINT: Record<Weather, number> = { despejado: DAY, nublado: 0xdcdfe6, lluvia: 0xb4bccb, tormenta: 0x949eb2 };
+export const WEATHER_TINT: Record<Weather, number> = { despejado: DAY, nublado: 0xdcdfe6, lluvia: 0xb4bccb, tormenta: 0x949eb2 };
 const RAIN_DROPS: Record<Weather, number> = { despejado: 0, nublado: 0, lluvia: 90, tormenta: 190 };
 /** Velocidad de caída (px/s) y cuánto se inclina la lluvia con el viento. */
 const RAIN_SPEED = 260;
@@ -76,7 +76,7 @@ function lerpColor(a: number, b: number, t: number): number {
   return Phaser.Display.Color.GetColor(mix(ca.r, cb.r), mix(ca.g, cb.g), mix(ca.b, cb.b));
 }
 
-function multiply(a: number, b: number): number {
+export function multiply(a: number, b: number): number {
   const ca = Phaser.Display.Color.IntegerToRGB(a);
   const cb = Phaser.Display.Color.IntegerToRGB(b);
   return Phaser.Display.Color.GetColor(Math.round((ca.r * cb.r) / 255), Math.round((ca.g * cb.g) / 255), Math.round((ca.b * cb.b) / 255));
@@ -94,7 +94,7 @@ export function skyColor(minutes: number): number {
 }
 
 /** Qué tan de noche está (0 = día, 1 = noche cerrada), según el velo. */
-function darkness(color: number): number {
+export function darkness(color: number): number {
   const c = Phaser.Display.Color.IntegerToRGB(color);
   return Phaser.Math.Clamp(1 - (c.r + c.g + c.b) / 3 / 255, 0, 1) / 0.6;
 }
