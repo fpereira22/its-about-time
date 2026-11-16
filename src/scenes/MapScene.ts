@@ -16,6 +16,7 @@ import { Dialogue } from '../systems/DialogueManager';
 import { EventSystem } from '../systems/EventSystem';
 import { GameMap } from '../systems/GameMap';
 import { currentMission } from '../systems/Mission';
+import { SkillStats } from '../systems/SkillStats';
 import { Npc } from '../systems/Npc';
 import { Records } from '../systems/Records';
 import { Ranking } from '../systems/Ranking';
@@ -319,7 +320,13 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
         this.scene.wake('UI');
         this.scene.wake();
         this.cameras.main.fadeIn(FADE_MS, 0, 0, 0);
+        // Los minijuegos que se repiten (fútbol, natación, salsa, pimpón) suben sus stats y se guardan.
+        const gain = SkillStats.record(key, currentMission().id, result);
         done(result);
+        if (gain && gain.ups.length > 0) {
+          const title = gain.levelAfter > gain.levelBefore ? `${gain.skill.name} · ¡nivel ${gain.levelAfter}!` : `${gain.skill.name} · suben tus stats`;
+          EventSystem.emit('skill-gain', { title, subtitle: gain.ups.map((u) => `${u.name} +${u.by}`).join(' · ') });
+        }
       },
     });
     this.scene.sleep();

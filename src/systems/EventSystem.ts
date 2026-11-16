@@ -20,6 +20,8 @@ export interface GameEvents {
   'location-changed': [{ name: string; subtitle?: string }];
   /** Cartel grande arriba (nombre de calle, próxima estación). */
   banner: [{ title: string; subtitle?: string }];
+  /** Subieron las stats de un minijuego: el cartel sale cuando el jugador quede libre (sin diálogo ni viñeta). */
+  'skill-gain': [{ title: string; subtitle: string }];
   /** Efecto de sonido (lo reproduce AudioManager). Usa playSfx() de src/audio/sfx.ts. */
   sfx: [SfxName];
   /** Cambiar la música de fondo (null = silencio). Usa playMusic(). El bpm opcional fuerza otro tempo y la reinicia. */

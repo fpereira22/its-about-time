@@ -43,6 +43,9 @@ export class UIScene extends BaseScene {
   private wardrobe!: WardrobeScreen;
   private baggage!: BaggageClaim;
   private quimica!: QuimicaMeter;
+  private banner!: Banner;
+  /** Stats que subieron en el último minijuego, a la espera de que el jugador quede libre para avisarlo. */
+  private pendingSkill: { title: string; subtitle: string } | null = null;
 
   constructor() {
     super('UI');
@@ -58,6 +61,8 @@ export class UIScene extends BaseScene {
     Dialogue.setPresenter(this.dialogueBox);
     const banner = new Banner(this);
     EventSystem.onScene(this, 'banner', ({ title, subtitle }) => banner.show(title, subtitle));
+    this.banner = banner;
+    EventSystem.onScene(this, 'skill-gain', (g) => void (this.pendingSkill = g));
     EventSystem.onScene(this, 'vineta', (id) => {
       if (id) banner.dismiss();
     });
@@ -121,6 +126,10 @@ export class UIScene extends BaseScene {
     if (this.baggage.isOpen) return this.baggage.update(delta);
 
     if (map?.sys.isActive()) Phone.update();
+    if (this.pendingSkill && map?.sys.isActive() && map.canOpenMenu) {
+      this.banner.show(this.pendingSkill.title, this.pendingSkill.subtitle);
+      this.pendingSkill = null;
+    }
 
     const wantsMenu = Controls.consume('menu');
     const wantsInventory = Controls.consume('inventory');

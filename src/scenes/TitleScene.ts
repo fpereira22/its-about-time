@@ -190,6 +190,7 @@ export class TitleScene extends BaseScene {
       { label: 'Nueva partida', action: () => this.chooseMission() },
       ...(SaveSlots.any ? [{ label: 'Cargar partida', action: () => this.chooseSlot() }] : []),
       { label: 'Progreso', action: () => this.go(() => this.scene.start('Progress')) },
+      { label: 'Estadísticas', action: () => this.go(() => this.scene.start('Stats')) },
       { label: 'Top 10', badge: '★', action: () => this.openRanking(0) },
       { label: 'Ajustes', action: () => this.openSettings() },
       { label: 'Créditos', action: () => this.go(() => this.scene.start('Credits')) },
