@@ -3,6 +3,7 @@ import { PixelGrid } from './Painter';
 import { M8_OBJECTS } from './objects_m8';
 import { M9_OBJECTS } from './objects_m9';
 import { M10_OBJECTS } from './objects_m10';
+import { M11_OBJECTS } from './objects_m11';
 
 /**
  * Objetos estáticos de 16×16 (un solo frame): carteles, máquinas, coleccionables e íconos.
@@ -634,4 +635,5 @@ export const OBJECT_ART: Record<string, () => PixelGrid> = {
   // Misión 9: la fiesta en el cerro.
   ...M9_OBJECTS,
   ...M10_OBJECTS,
+  ...M11_OBJECTS,
 };

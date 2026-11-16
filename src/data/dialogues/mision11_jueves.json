@@ -1,0 +1,2417 @@
+{
+ "m11_lobby_jueves": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El lobby a las nueve. Laura baja del ascensor con una camisa blanca y el pelo suelto todavía mojado. Te ve y se ríe.",
+    "effects": [
+     {
+      "vineta": "m11_laura_camisa"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Hueles a cloro. ¿Vienes de la piscina?",
+    "effects": [
+     {
+      "vineta": "m11_cloro"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Natación. Los jueves.»",
+      "goto": "n2"
+     },
+     {
+      "label": "«Es mi perfume nuevo. Se llama «Cloro Pour Homme».»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_perfume"
+       }
+      ],
+      "goto": "n3"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Los jueves. Me lo apunto.",
+    "effects": [
+     {
+      "vineta": "m11_cloro"
+     }
+    ],
+    "next": "n4"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Pues huele a piscina pública. Me encanta.",
+    "effects": [
+     {
+      "vineta": "m11_me_encanta"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Afuera pita un carro gris. Danilo saca la mano por la ventana. En el puesto del copiloto va Mila, eligiendo música en el celular de Danilo.",
+    "effects": [
+     {
+      "vineta": "m11_carro_afuera"
+     },
+     {
+      "sfx": "bocina_grover"
+     },
+     {
+      "event": "carro_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_carro_go": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Atrás, tú detrás de Mila y Laura detrás de Danilo. Danilo arranca. Mila pone una salsa. Danilo no dice nada. Danilo NUNCA deja que nadie le ponga música.",
+    "effects": [
+     {
+      "vineta": "m11_carro_noche"
+     },
+     {
+      "event": "viaje_carro_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_carro_1": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Mila",
+    "text": "¡Habla, chileno! ¡Habla, española! ¿Listos para San Antonio? Danilo dice que es el mejor mirador de Cali. Yo digo que Cristo Rey.",
+    "effects": [
+     {
+      "vineta": "m11_mila_habla"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Ve, Mila, en Cristo Rey te mareaste en las curvas. No hables.",
+    "effects": [
+     {
+      "vineta": "m11_danilo_mila"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Mila",
+    "text": "Me mareé porque manejaba Don Hernán. Contigo no me mareo.",
+    "effects": [
+     {
+      "vineta": "m11_contigo"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Silencio de dos segundos. Laura te mira. Tú miras a Laura. Los dos miran por la ventana para no reírse.",
+    "effects": [
+     {
+      "vineta": "m11_miradas"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Uy.»",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_uy"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "No dices nada."
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "¿«Uy» qué, chileno? ¿«Uy» qué? Bajate.",
+    "effects": [
+     {
+      "vineta": "m11_bajate"
+     }
+    ]
+   }
+  }
+ },
+ "m11_carro_2": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "Oye, ¿y tú de qué equipo eres? En Chile, digo.",
+    "effects": [
+     {
+      "vineta": "m11_equipo"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Del Colo-Colo, amiga. El más grande de Chile.»",
+      "effects": [
+       {
+        "setFlag": "m11_hincha_colo"
+       }
+      ],
+      "goto": "c1"
+     },
+     {
+      "label": "«De la U. Sufro desde que nací.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_sufrir"
+       }
+      ],
+      "goto": "n1"
+     }
+    ]
+   },
+   "c1": {
+    "speaker": "Laura",
+    "text": "¿Colo-Colo? ¡Suena a pájaro! ¿Es un pájaro?",
+    "effects": [
+     {
+      "vineta": "m11_la_u"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Era un cacique mapuche. Sabio y aguerrido. Como el equipo.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_cacique"
+       }
+      ],
+      "goto": "c2"
+     },
+     {
+      "label": "«Es el Cacique. El Popular. No se explica, se siente.»",
+      "goto": "c2"
+     }
+    ]
+   },
+   "c2": {
+    "speaker": "Laura",
+    "text": "Un cacique. Me gusta. A nosotros nos llaman «los leones», por San Mamés. Él no tuvo tanta suerte: lo echaron a los leones de verdad.",
+    "effects": [
+     {
+      "vineta": "m11_sufrir"
+     }
+    ],
+    "next": "n3"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Eso es ser del Athletic también. Sufrir con estilo.",
+    "effects": [
+     {
+      "vineta": "m11_sufrir"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "¿La U? ¿Como «la universidad»? Qué nombre tan raro para un equipo.",
+    "effects": [
+     {
+      "vineta": "m11_la_u"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Nosotros solo jugamos con gente de la tierra. Vascos o formados allí. Nada de fichajes de fuera. Somos los únicos raros que lo hacen. Por eso llevamos desde el 84 sin ganar la Copa. Pero el día que vuelva a salir la gabarra por la ría, lloro como una niña. Ya verás.",
+    "effects": [
+     {
+      "vineta": "m11_gabarra"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Eso es amor a la camiseta.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_camiseta"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "«¿Y si un chileno quisiera jugar en el Athletic?»",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_athletic"
+       },
+       {
+        "setFlag": "m11_ql_casarse"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "«En la U jugamos con quien sea, igual perdemos.»",
+      "goto": "n6",
+      "if": {
+       "notFlag": "m11_hincha_colo"
+      }
+     },
+     {
+      "label": "«En el Colo jugamos con quien sea... y ganamos la Libertadores del 91.»",
+      "if": {
+       "flag": "m11_hincha_colo"
+      },
+      "goto": "c6"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Exacto. Amor a la camiseta. Y a la gente. A lo de uno.",
+    "effects": [
+     {
+      "vineta": "m11_amor_camiseta"
+     }
+    ],
+    "next": "n7"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Imposible. ...Bueno. Si se casa con una de Bakio, igual le dejan. Es broma. ¿Es broma? Sí. Es broma.",
+    "effects": [
+     {
+      "vineta": "m11_casa"
+     }
+    ],
+    "next": "n7"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "Jajaja. Pues entonces somos iguales.",
+    "effects": [
+     {
+      "vineta": "m11_sufrir"
+     }
+    ],
+    "next": "n7"
+   },
+   "c6": {
+    "speaker": "Laura",
+    "text": "¿Una copa de toda América? Vale, vale. Tú ganas. Pero yo tengo la ría y una gabarra esperando.",
+    "effects": [
+     {
+      "vineta": "m11_sufrir"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "Acá en Cali somos del América o del Cali. Y no se habla de eso en el carro, que me choco.",
+    "effects": [
+     {
+      "vineta": "m11_danilo_america"
+     }
+    ],
+    "next": "r8"
+   },
+   "r8": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_hincha_colo"
+      },
+      "goto": "n8c"
+     },
+     {
+      "goto": "n8"
+     }
+    ]
+   },
+   "n8": {
+    "speaker": "Mila",
+    "text": "En Lima somos de Alianza o de la U. ...Nuestra U. No la tuya, chileno.",
+    "effects": [
+     {
+      "vineta": "m11_mila_u"
+     }
+    ]
+   },
+   "n8c": {
+    "speaker": "Mila",
+    "text": "En Lima somos de Alianza o de la U. Y Alianza y Colo-Colo son hermanos, chileno: por lo del 87. Te salvaste.",
+    "effects": [
+     {
+      "vineta": "m11_mila_u"
+     }
+    ]
+   }
+  }
+ },
+ "m11_carro_3": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "¿Cómo es Santiago? Nunca te lo he preguntado.",
+    "effects": [
+     {
+      "vineta": "m11_santiago"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Grande. Con la cordillera encima. Y smog.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_cordillera"
+       }
+      ],
+      "goto": "n1"
+     },
+     {
+      "label": "«Gris en invierno. Pero cuando llueve y se limpia, ves la nieve en los cerros.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_nieve"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "«Es mi casa. No sé explicarlo mejor.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_casa"
+       }
+      ],
+      "goto": "n3"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Cordillera encima. Qué bonito suena. Lo del smog no tanto.",
+    "effects": [
+     {
+      "vineta": "m11_postal_santiago"
+     }
+    ],
+    "next": "n4"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Eso es como Bakio después del sirimiri. Todo brilla. Lo entiendo.",
+    "effects": [
+     {
+      "vineta": "m11_postal_santiago"
+     }
+    ],
+    "next": "n4"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "No hace falta. Eso se entiende igual en todos los idiomas.",
+    "effects": [
+     {
+      "vineta": "m11_casa_idioma"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Bakio tiene dos mil personas. Dos mil. En el súper sabes la vida de todos. En verano somos más, por los turistas. En invierno solo quedan la lluvia, el mar y mi ama.",
+    "effects": [
+     {
+      "vineta": "m11_bakio_invierno"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Ve, y en Cali somos dos millones y medio y igual sabemos la vida de todos. Pregúntenle a la señora del chontaduro.",
+    "effects": [
+     {
+      "vineta": "m11_danilo_cali"
+     }
+    ]
+   }
+  }
+ },
+ "m11_carro_4": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La subida a San Antonio. Casas coloniales, faroles y una calle empinada donde el carro de Danilo protesta.",
+    "effects": [
+     {
+      "vineta": "m11_subida_sanantonio"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "¿Y tu familia? Cuéntame de tu familia.",
+    "effects": [
+     {
+      "vineta": "m11_familia"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Mi mamá llora en todos los aeropuertos. Mi papá dice que no llora, pero llora.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_papas"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "«Tengo un hermano chico. Me hizo un dibujo: «VUELVE PRONTO», con la N al revés.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_hermano"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "«Y Walle. Walle es familia.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_familia_walle"
+       }
+      ],
+      "goto": "n4"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Como el mío. Aita dice que es alergia. ¡En la playa, alergia! Al mar, será.",
+    "effects": [
+     {
+      "vineta": "m11_aita"
+     }
+    ],
+    "next": "n5"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Ay, no... Eso es lo más bonito que he oído en semanas. ¿Lo tienes? ¿Lo tienes pegado?",
+    "effects": [
+     {
+      "vineta": "m11_hermano"
+     }
+    ],
+    "next": "n5"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Walle es familia, claro. Como Txinparta. La que más.",
+    "effects": [
+     {
+      "vineta": "m11_walle_familia"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Yo tengo a ama, a aita y a Ane, mi hermana pequeña. Tiene nueve años y quiere ser surfista y astronauta. A la vez. Dice que va a surfear en la luna.",
+    "effects": [
+     {
+      "vineta": "m11_familia_laura"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "Ama es la que manda en casa, y además trabaja en una naviera en Barakaldo. Aita es el administrador y gerente de una residencia de estudiantes en el centro de Bilbao. Y Ane... Ane me escribe cada noche «¿cuándo vuelves?». Y yo no sé qué contestarle.",
+    "effects": [
+     {
+      "vineta": "m11_ane"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Contéstale que estás aprendiendo a bailar salsa en una acera.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ane"
+       }
+      ],
+      "goto": "n7"
+     },
+     {
+      "label": "«Contéstale la verdad: que todavía no.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_todavia"
+       }
+      ],
+      "goto": "n8"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "...Se lo voy a contar. Le va a encantar. Va a querer venir.",
+    "effects": [
+     {
+      "vineta": "m11_se_lo_cuento"
+     }
+    ],
+    "next": "n9"
+   },
+   "n8": {
+    "speaker": "Laura",
+    "text": "Todavía no. Sí. Esa es la verdad.",
+    "effects": [
+     {
+      "vineta": "m11_todavia_no"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "text": "En el asiento de adelante, Mila le dice algo bajito a Danilo. Danilo se ríe como no lo habías visto reírse nunca.",
+    "effects": [
+     {
+      "vineta": "m11_mila_danilo"
+     }
+    ]
+   }
+  }
+ },
+ "m11_sanantonio_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "San Antonio de noche. La capillita blanca, los faroles amarillos, gente sentada en el pasto. Y abajo, Cali entera prendida como un mar de luces.",
+    "effects": [
+     {
+      "vineta": "m11_sanantonio"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Bienvenidos al mejor mirador de Cali. No me discutan. Primero se come, después se mira. ¡Vamos!",
+    "effects": [
+     {
+      "vineta": "m11_danilo_bienvenida"
+     },
+     {
+      "setFlag": [
+       "m11_sigue_laura",
+       "m11_sigue_danilo",
+       "m11_sigue_mila",
+       "m11_en_sanantonio"
+      ]
+     },
+     {
+      "objective": "Compra algo de comer y vayan al mirador (arriba, junto a la capilla)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_obleero": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_oblea"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Obleero",
+    "text": "¿Otra, mi rey? Con arequipe y queso, la especialidad.",
+    "effects": [
+     {
+      "vineta": "m11_obleero"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Obleero",
+    "text": "¡Obleas, obleas! Con arequipe, mora, queso, crema... ¡y chispitas pa' la señorita!",
+    "effects": [
+     {
+      "vineta": "m11_obleero"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "¿Esto es una galleta gigante con dulce de leche? ¿Por qué no hay esto en Euskadi?",
+    "effects": [
+     {
+      "vineta": "m11_laura_oblea"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Una para cada uno (8.000)",
+      "if": {
+       "minMoney": 8000
+      },
+      "effects": [
+       {
+        "setFlag": "m11_oblea"
+       },
+       {
+        "pay": 8000
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "Una para compartir con Laura (4.000)",
+      "if": {
+       "minMoney": 4000
+      },
+      "effects": [
+       {
+        "setFlag": [
+         "m11_oblea",
+         "m11_oblea_compartida"
+        ]
+       },
+       {
+        "setFlag": "m11_ql_compartir"
+       },
+       {
+        "pay": 4000
+       }
+      ],
+      "goto": "n4"
+     }
+    ]
+   },
+   "n4": {
+    "text": "Danilo compra otra y se la comparte a Mila. Mila le quita las chispitas. Él la deja.",
+    "effects": [
+     {
+      "vineta": "m11_oblea_dm"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_oblea_compartida"
+      },
+      "goto": "n6"
+     },
+     {
+      "goto": "n7"
+     }
+    ]
+   },
+   "n6": {
+    "text": "Laura muerde su mitad y te pasa la otra con arequipe en la comisura. No se lo dices. Bueno, sí se lo dices. Se ríe y se limpia con tu manga.",
+    "effects": [
+     {
+      "vineta": "m11_arequipe_cara"
+     }
+    ]
+   },
+   "n7": {
+    "text": "Laura se come la suya en cuatro mordiscos. «Ni una palabra», dice con la boca llena.",
+    "effects": [
+     {
+      "vineta": "m11_ni_una_palabra"
+     }
+    ]
+   }
+  }
+ },
+ "m11_salpiconera": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Salpiconera",
+    "text": "¡Salpicón, salpicón! Con helado encima, ¡pa' la calor!",
+    "effects": [
+     {
+      "vineta": "m11_salpicon"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Mila",
+    "text": "¡Asu! Fruta picada con jugo y helado. Esto en Lima sería un postre de domingo.",
+    "effects": [
+     {
+      "vineta": "m11_mila_salpicon"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Comprar un salpicón (5.000)",
+      "if": {
+       "minMoney": 5000
+      },
+      "effects": [
+       {
+        "setFlag": "secreto_m11_salpicon"
+       },
+       {
+        "pay": 5000
+       }
+      ]
+     },
+     {
+      "label": "No, gracias."
+     }
+    ]
+   }
+  }
+ },
+ "m11_mirador": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El mirador de San Antonio. Se sientan los cuatro en el muro, con las piernas colgando. Cali entera abajo: las avenidas como ríos de luz, el Cristo Rey al fondo, iluminado.",
+    "effects": [
+     {
+      "vineta": "m11_mirador_noche"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Mila",
+    "text": "¿Se dieron cuenta de que el Cristo de Cristo Rey está mirando para acá? Nos está vigilando.",
+    "effects": [
+     {
+      "vineta": "m11_mila_cristo"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Te está vigilando a vos, que te comiste mis chispitas.",
+    "effects": [
+     {
+      "vineta": "m11_chispitas"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Mila le da un empujoncito. Danilo no se aparta. Se quedan así, hombro con hombro, haciendo como que no.",
+    "effects": [
+     {
+      "vineta": "m11_hombro"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "(bajito, a ti) ¿Tú también lo estás viendo, verdad?",
+    "effects": [
+     {
+      "vineta": "m11_lo_ves"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Desde Cristo Rey.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_lentos"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "«¿Ver qué? Yo veo la ciudad.»",
+      "goto": "n6"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Desde Cristo Rey, sí. Qué lentos. Igual que otros.",
+    "effects": [
+     {
+      "vineta": "m11_igual_otros"
+     }
+    ],
+    "next": "n7"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "Claro. La ciudad. Tú solo ves la ciudad.",
+    "effects": [
+     {
+      "vineta": "m11_solo_ciudad"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "text": "Laura apoya la cabeza en tu hombro. Así, sin avisar. Como si fuera lo normal.",
+    "effects": [
+     {
+      "vineta": "m11_cabeza_hombro"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "speaker": "Laura",
+    "text": "Cali de noche parece el mar de Bakio con las luces de los barcos. Si entrecierras los ojos.",
+    "effects": [
+     {
+      "vineta": "m11_mar_luces"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Entrecierras los ojos.",
+      "effects": [
+       {
+        "setFlag": "m11_ql_mar"
+       }
+      ],
+      "goto": "n9"
+     },
+     {
+      "label": "Le das un beso en la cabeza.",
+      "effects": [
+       {
+        "setFlag": "m11_ql_beso_cabeza"
+       }
+      ],
+      "goto": "n10"
+     },
+     {
+      "label": "No te mueves para no romper nada.",
+      "goto": "n11"
+     }
+    ]
+   },
+   "n9": {
+    "text": "Es verdad. Parece el mar. Y por un segundo estás en un pueblo de dos mil personas que no conoces y que extrañas igual.",
+    "effects": [
+     {
+      "vineta": "m11_mar_luces"
+     }
+    ],
+    "next": "n11"
+   },
+   "n10": {
+    "text": "Laura no se mueve. Solo aprieta un poco tu brazo.",
+    "effects": [
+     {
+      "vineta": "m11_beso_cabeza"
+     }
+    ],
+    "next": "n11"
+   },
+   "n11": {
+    "speaker": "Danilo",
+    "text": "Bueno, bueno, ¿alguien más tiene hambre de verdad? Las obleas no cuentan.",
+    "effects": [
+     {
+      "vineta": "m11_hambre"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Conozco un chileno. Completos de verdad.»",
+      "goto": "n12"
+     },
+     {
+      "label": "«Yo invito a algo de mi tierra.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_mi_tierra"
+       }
+      ],
+      "goto": "n12"
+     }
+    ]
+   },
+   "n12": {
+    "speaker": "Mila",
+    "text": "¿Completos? ¿Qué es un completo? ¿Es como un pan con chicharrón?",
+    "effects": [
+     {
+      "vineta": "m11_mila_completo"
+     }
+    ],
+    "next": "n13"
+   },
+   "n13": {
+    "speaker": "Danilo",
+    "text": "Es un perro caliente con complejo de superioridad. Vamos.",
+    "effects": [
+     {
+      "vineta": "m11_complejo"
+     },
+     {
+      "setFlag": "m11_mirador"
+     },
+     {
+      "event": "resto_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_resto_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "«Al Toque — Sanguchería Chilena». Un local chiquito con una bandera de Chile en la pared, fotos de la Plaza de Armas y un televisor dando un partido viejo del Colo-Colo con la U.",
+    "effects": [
+     {
+      "vineta": "m11_resto"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "El Pato",
+    "text": "¡Weeeena, compadre! ¡Mi chileno favorito! ¡Y viene acompañado! ¡Adelante, adelante, siéntense donde quieran, que esto es suyo!",
+    "effects": [
+     {
+      "vineta": "m11_pato"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "El Pato",
+    "text": "Patricio, pero me dicen el Pato. De Puente Alto. Hace doce años en Cali y todavía digo «cachai».",
+    "effects": [
+     {
+      "vineta": "m11_pato_presenta"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Encantada, Pato. Yo soy Laura, de... de Bilbao. Más o menos.",
+    "effects": [
+     {
+      "vineta": "m11_laura_pato"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "El Pato",
+    "text": "¿Española? ¡Uuuh! Compadre, ¿y esto? ...Ya, ya, no digo nada. Siéntense.",
+    "effects": [
+     {
+      "vineta": "m11_pato_guino"
+     },
+     {
+      "clearFlag": [
+       "m11_sigue_laura",
+       "m11_sigue_danilo",
+       "m11_sigue_mila"
+      ]
+     },
+     {
+      "objective": "Pídele al Pato en el mostrador"
+     }
+    ]
+   }
+  }
+ },
+ "m11_pato_pedido": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_pedido"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "El Pato",
+    "text": "Ya viene, ya viene. ¡Al toque!",
+    "effects": [
+     {
+      "vineta": "m11_pato"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "El Pato",
+    "text": "Ya po, ¿qué les sirvo? Tengo completo italiano, el As, churrasco, chorrillana pa' compartir y Bilz bien helada... bueno, una que se parece.",
+    "effects": [
+     {
+      "vineta": "m11_menu_pato"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Completos italianos para todos. Y una chorrillana.»",
+      "effects": [
+       {
+        "setFlag": "m11_pide_completos"
+       },
+       {
+        "setFlag": "m11_ql_patria"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "«Para mí un As. Para ellos, completos.»",
+      "effects": [
+       {
+        "setFlag": "m11_pide_as"
+       }
+      ],
+      "goto": "n4"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "El Pato",
+    "text": "¡Eso, compadre! Así se hace patria.",
+    "effects": [
+     {
+      "vineta": "m11_pato_patria"
+     }
+    ],
+    "next": "n5"
+   },
+   "n4": {
+    "speaker": "El Pato",
+    "text": "El As, como los grandes. Bien.",
+    "effects": [
+     {
+      "vineta": "m11_pato_patria"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "text": "Llegan los completos: pan largo, vienesa, tomate picado, palta molida a montones y una raya de mayonesa casera. Y una chorrillana humeante con huevo frito encima.",
+    "effects": [
+     {
+      "vineta": "m11_completos"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "¿Esto es un perro caliente con guacamole? ¿Y sin salsa rosada? ¿Y sin papitas trituradas encima? ¿Ustedes cómo viven?",
+    "effects": [
+     {
+      "vineta": "m11_danilo_completo"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "El Pato",
+    "text": "¡PALTA, weón! ¡No es guacamole, es palta! ¡Respeta, caleño!",
+    "effects": [
+     {
+      "vineta": "m11_pato_palta"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "speaker": "Mila",
+    "text": "Está buenazo, causa. Pero le falta ají. En Lima le pondríamos ají amarillo a todo.",
+    "effects": [
+     {
+      "vineta": "m11_mila_aji"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "Madre mía. Esto es un pintxo con esteroides. Me lo como entero. Me da igual que se me caiga la palta por la camisa blanca.",
+    "effects": [
+     {
+      "vineta": "m11_laura_completo"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "text": "Se le cae la palta por la camisa blanca.",
+    "effects": [
+     {
+      "vineta": "m11_palta_camisa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Le pasas una servilleta y le ayudas a limpiarse.",
+      "effects": [
+       {
+        "setFlag": "m11_ql_servilleta"
+       }
+      ],
+      "goto": "n11"
+     },
+     {
+      "label": "Te ríes hasta que te duele la guata.",
+      "effects": [
+       {
+        "setFlag": "m11_ql_risa"
+       }
+      ],
+      "goto": "n12"
+     }
+    ]
+   },
+   "n11": {
+    "speaker": "Laura",
+    "text": "Gracias. ...Ya está. Ya. Ya, que me pongo roja.",
+    "effects": [
+     {
+      "vineta": "m11_servilleta"
+     }
+    ],
+    "next": "n13"
+   },
+   "n12": {
+    "speaker": "Laura",
+    "text": "¡No te rías! ...Vale, ríete. Yo también me reiría.",
+    "effects": [
+     {
+      "vineta": "m11_risa_palta"
+     }
+    ],
+    "next": "n13"
+   },
+   "n13": {
+    "effects": [
+     {
+      "setFlag": "m11_pedido"
+     },
+     {
+      "objective": "Habla con el Pato en el mostrador antes de irte"
+     }
+    ]
+   }
+  }
+ },
+ "m11_pato_charla": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "notFlag": "m11_pedido"
+      },
+      "goto": "pedir"
+     },
+     {
+      "if": {
+       "flag": "m11_pato_charla"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "El Pato",
+    "text": "Cuídate, compadre. Y vuelve. Con la española.",
+    "effects": [
+     {
+      "vineta": "m11_pato_guino"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "El Pato",
+    "text": "Ven, compadre, acércate. ...¿Cómo estai? ¿De verdad?",
+    "effects": [
+     {
+      "vineta": "m11_pato_serio"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Bien. Raro, pero bien.»",
+      "goto": "n3"
+     },
+     {
+      "label": "«Extraño la comida de mi mamá.»",
+      "goto": "n4"
+     },
+     {
+      "label": "«Extraño a mi perro.»",
+      "goto": "n5"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "El Pato",
+    "text": "Raro pero bien. Así es esto. El primer año uno extraña hasta el smog. Después uno extraña Cali cuando va a Chile. Te vai a quedar a medio camino pa' siempre.",
+    "effects": [
+     {
+      "vineta": "m11_pato_medio"
+     }
+    ],
+    "next": "n6"
+   },
+   "n4": {
+    "speaker": "El Pato",
+    "text": "Por eso existe el Al Toque, compadre. Pa' que nadie llore por un completo. Ven cuando quieras. A ti te fío.",
+    "effects": [
+     {
+      "vineta": "m11_pato_fio"
+     }
+    ],
+    "next": "n6"
+   },
+   "n5": {
+    "speaker": "El Pato",
+    "text": "Uf. El perro es lo peor. Yo dejé un quiltro en Puente Alto, el Cachupín. Se murió viejito con mi vieja. Todavía sueño con él.",
+    "effects": [
+     {
+      "vineta": "m11_pato_cachupin"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "El Pato",
+    "text": "Y oye... la española. Te mira cuando no la miras. Yo llevo doce años detrás de este mostrador, compadre. Esas cosas las veo.",
+    "effects": [
+     {
+      "vineta": "m11_pato_te_mira"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Es complicado, Pato.»",
+      "effects": [
+       {
+        "setFlag": "m11_complicado"
+       }
+      ],
+      "goto": "n7"
+     },
+     {
+      "label": "«Somos amigos.»",
+      "goto": "n8"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "El Pato",
+    "text": "Todo es complicado, compadre. Hasta un completo. Pero se come igual.",
+    "effects": [
+     {
+      "vineta": "m11_pato_complicado"
+     }
+    ],
+    "next": "n9"
+   },
+   "n8": {
+    "speaker": "El Pato",
+    "text": "Ya. Amigos. Yo con mi señora también éramos «amigos». Ahora tenemos tres cabros.",
+    "effects": [
+     {
+      "vineta": "m11_pato_amigos"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "text": "El Pato no les cobra la chorrillana. Te pasa una servilleta con el logo del Al Toque y su número escrito con lápiz: «Pa' cuando extraños Chile. —P.»",
+    "effects": [
+     {
+      "vineta": "m11_servilleta_pato"
+     },
+     {
+      "setFlag": "m11_pato_charla"
+     },
+     {
+      "giveItem": "servilleta_pato"
+     },
+     {
+      "pay": 20000
+     },
+     {
+      "event": "vuelta_resto_m11"
+     }
+    ]
+   },
+   "pedir": {
+    "speaker": "El Pato",
+    "text": "Primero se come, compadre. Después se conversa. Pide algo.",
+    "effects": [
+     {
+      "vineta": "m11_pato"
+     },
+     {
+      "event": "dialogo:m11_pato_pedido"
+     }
+    ]
+   }
+  }
+ },
+ "m11_bobo_noche": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El Bobo a las once y media. Danilo deja el carro con el motor prendido.",
+    "effects": [
+     {
+      "vineta": "m11_bobo_noche"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Yo llevo a Mila. Me queda de camino.",
+    "effects": [
+     {
+      "vineta": "m11_me_queda"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Mila",
+    "text": "Bochalema no te queda de camino a nada, Danilo.",
+    "effects": [
+     {
+      "vineta": "m11_bochalema"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "Me queda de camino. Chao. Mañana a las siete paso por Laura pa' Calima. Chileno, cuidámela.",
+    "effects": [
+     {
+      "vineta": "m11_cuidamela"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Se van. Te quedas en la acera con Laura. Hace calor. No corre nada de aire.",
+    "effects": [
+     {
+      "vineta": "m11_acera_laura"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "¿Subes? Tengo pelis españolas y cero ganas de dormir. Y mañana me voy tres días.",
+    "effects": [
+     {
+      "vineta": "m11_subes"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Subo.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_subo"
+       }
+      ],
+      "goto": "n7"
+     },
+     {
+      "label": "«¿Qué pelis? Depende de la peli.»",
+      "goto": "n6"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "Depende de la peli. Qué morro. Sube y elige tú.",
+    "effects": [
+     {
+      "vineta": "m11_morro"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "effects": [
+     {
+      "setFlag": [
+       "m11_sigue_laura",
+       "m11_sube_11"
+      ]
+     },
+     {
+      "objective": "Sube con Laura al piso 11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_living_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El 1104. Igual que tu depa, pero al revés. Una planta enorme en una esquina, una bandera ikurriña en la pared, libros en el suelo y un ventilador que gira sin ganas.",
+    "effects": [
+     {
+      "vineta": "m11_living"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Te presento a Begoña. La planta. No me mires así, todas las plantas tienen nombre.",
+    "effects": [
+     {
+      "vineta": "m11_begona"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Y el ventilador se llama «Inútil». Por razones obvias. Elige peli mientras preparo algo de tomar. La tele está ahí.",
+    "effects": [
+     {
+      "vineta": "m11_inutil"
+     },
+     {
+      "clearFlag": "m11_sigue_laura"
+     },
+     {
+      "objective": "Elige la peli (la tele del 1104)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_tele": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_peli"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "text": "La tele del 1104, con la peli puesta.",
+    "effects": [
+     {
+      "vineta": "m11_tele"
+     }
+    ]
+   },
+   "n2": {
+    "text": "El catálogo de pelis españolas de Laura. Todas con un corazoncito.",
+    "effects": [
+     {
+      "vineta": "m11_catalogo"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Bajo el puente de Deusto» (comedia, Bilbao)",
+      "effects": [
+       {
+        "setFlag": "m11_peli_deusto"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "«Ocho veranos en Mundaka» (drama, el mar)",
+      "effects": [
+       {
+        "setFlag": "m11_peli_mundaka"
+       },
+       {
+        "setFlag": "m11_ql_peli_drama"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "«La gabarra» (fútbol y lágrimas)",
+      "effects": [
+       {
+        "setFlag": "m11_peli_gabarra"
+       }
+      ],
+      "goto": "n3"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Para tomar tengo agua de panela con limón bien fría, té de hierbabuena o jugo de lulo sin azúcar. Algo sano. Que mañana madrugo.",
+    "effects": [
+     {
+      "vineta": "m11_bebidas"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Agua de panela con limón",
+      "goto": "n4"
+     },
+     {
+      "label": "Té de hierbabuena",
+      "goto": "n5"
+     },
+     {
+      "label": "Jugo de lulo sin azúcar",
+      "effects": [
+       {
+        "setFlag": "m11_ql_valiente"
+       }
+      ],
+      "goto": "n6"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "La mía también. Es lo más rico de Colombia. Después de... bueno.",
+    "effects": [
+     {
+      "vineta": "m11_panela"
+     }
+    ],
+    "next": "n7"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Muy fino tú. Té de hierbabuena. Como mi ama.",
+    "effects": [
+     {
+      "vineta": "m11_te"
+     }
+    ],
+    "next": "n7"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "¿Sin azúcar? Eres un valiente. Esto sin azúcar es una bofetada.",
+    "effects": [
+     {
+      "vineta": "m11_lulo_sin"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "effects": [
+     {
+      "setFlag": "m11_peli"
+     },
+     {
+      "event": "pelis_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_peli_durante": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Se sientan en el sofá. Al principio con un cojín de distancia. A la media hora, sin cojín.",
+    "effects": [
+     {
+      "vineta": "m11_sofa_peli"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_peli_deusto"
+      },
+      "goto": "n2"
+     },
+     {
+      "if": {
+       "flag": "m11_peli_mundaka"
+      },
+      "goto": "n3"
+     },
+     {
+      "goto": "n4"
+     }
+    ]
+   },
+   "n2": {
+    "text": "En la peli, un señor de Deusto discute con un andaluz por un bocadillo. Laura se ríe en las partes que tú no entiendes y te las explica, y no se entienden mejor.",
+    "effects": [
+     {
+      "vineta": "m11_peli_risa"
+     }
+    ],
+    "next": "n5"
+   },
+   "n3": {
+    "text": "En la peli, dos hermanos se separan en un puerto con niebla. Laura llora en silencio. Tú haces como que no la ves. Le pasas un pañuelo igual.",
+    "effects": [
+     {
+      "vineta": "m11_peli_llora"
+     }
+    ],
+    "next": "n5"
+   },
+   "n4": {
+    "text": "En la peli, un pueblo entero sale a la ría a ver pasar una barcaza con jugadores encima. Laura canta el himno del Athletic. Entero. De pie en el sofá.",
+    "effects": [
+     {
+      "vineta": "m11_peli_himno"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "text": "Calor. Mucho calor. El ventilador «Inútil» hace honor a su nombre. Laura se recoge el pelo, se lo suelta, se lo vuelve a recoger.",
+    "effects": [
+     {
+      "vineta": "m11_calor"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "Madre mía. No se puede. ¿Salimos al balcón? Ahí corre un poco de aire. Un poco.",
+    "effects": [
+     {
+      "vineta": "m11_al_balcon"
+     },
+     {
+      "objective": "Sal al balcón con Laura"
+     }
+    ]
+   }
+  }
+ },
+ "m11_balcon": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El balcón: dos metros por uno, una silla plegable y una vista de la Calle 18 de noche con los cerros negros al fondo. Arriba, la luna llena, enorme.",
+    "effects": [
+     {
+      "vineta": "m11_balcon_luna"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "En Bakio las noches así no existen. Allí duermes con manta hasta en agosto. Aquí... aquí no sé ni cómo dormir. Sola, digo. Con este calor.",
+    "effects": [
+     {
+      "vineta": "m11_ind_1"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Con ventilador.»",
+      "goto": "n2"
+     },
+     {
+      "label": "«¿Sola?»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ind_sola"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "«Yo tampoco duermo bien últimamente.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ind_duermo"
+       }
+      ],
+      "goto": "n4"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Con ventilador. Claro. Con Inútil. ...Qué listo eres a veces, de verdad.",
+    "effects": [
+     {
+      "vineta": "m11_ind_1_mal"
+     }
+    ],
+    "next": "n5"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "He dicho «sola» por decir algo. ...O no. No sé. Hace calor, no me hagas caso.",
+    "effects": [
+     {
+      "vineta": "m11_ind_1_bien"
+     }
+    ],
+    "next": "n5"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "¿Ah, no? ¿Y eso por qué será?",
+    "effects": [
+     {
+      "vineta": "m11_ind_1_eso"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "¿Sabes qué me dijo Mila en el baño del Pato? Que los chilenos son muy lentos. Que hay que darles todo por escrito.",
+    "effects": [
+     {
+      "vineta": "m11_ind_2"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Pues mándamelo por escrito.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ind_escrito"
+       }
+      ],
+      "goto": "n6"
+     },
+     {
+      "label": "«Lentos, no. Prudentes.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ind_prudente"
+       }
+      ],
+      "goto": "n7"
+     },
+     {
+      "label": "«Mila no conoce a todos los chilenos.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ind_uno"
+       }
+      ],
+      "goto": "n8"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "...Ja. Ni lo sueñes. Me ha dicho Mila que tampoco hay que ponérselo fácil.",
+    "effects": [
+     {
+      "vineta": "m11_ind_2_escrito"
+     }
+    ],
+    "next": "n9"
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "Prudentes. Vale. Hay prudentes que se quedan prudentes toda la vida, ¿eh?",
+    "effects": [
+     {
+      "vineta": "m11_ind_2_prudente"
+     }
+    ],
+    "next": "n9"
+   },
+   "n8": {
+    "speaker": "Laura",
+    "text": "No. Yo tampoco. Solo conozco a uno.",
+    "effects": [
+     {
+      "vineta": "m11_ind_2_uno"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "text": "Se quedan callados. Pasa una moto. Pasa otra. La luna sigue ahí, quieta, como esperando algo.",
+    "effects": [
+     {
+      "vineta": "m11_luna_grande"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "speaker": "Laura",
+    "text": "Mañana me voy a Calima tres días con los de intercambio. Danilo viene, que conoce el lago. ¿Tú no vienes?",
+    "effects": [
+     {
+      "vineta": "m11_ind_3"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«No me invitaron.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ind_invito"
+       }
+      ],
+      "goto": "n11"
+     },
+     {
+      "label": "«Tengo cosas acá este finde.»",
+      "effects": [
+       {
+        "setFlag": "m11_laura_sospecha"
+       }
+      ],
+      "goto": "n12"
+     },
+     {
+      "label": "«¿Me vas a extrañar?»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ind_extrana"
+       }
+      ],
+      "goto": "n13"
+     }
+    ]
+   },
+   "n11": {
+    "speaker": "Laura",
+    "text": "Te estoy invitando yo. ...Ya sé que no puedes, tienes tus cosas. Pero que conste que te invité.",
+    "effects": [
+     {
+      "vineta": "m11_ind_3_invito"
+     }
+    ],
+    "next": "n14"
+   },
+   "n12": {
+    "speaker": "Laura",
+    "text": "Cosas. Vale. ...Cosas.",
+    "effects": [
+     {
+      "vineta": "m11_ind_3_cosas"
+     }
+    ],
+    "next": "n14"
+   },
+   "n13": {
+    "speaker": "Laura",
+    "text": "Tres días no es nada. ...Igual sí. Un poquito. Nada. Un poco.",
+    "effects": [
+     {
+      "vineta": "m11_ind_3_extrana"
+     }
+    ],
+    "next": "n14"
+   },
+   "n14": {
+    "speaker": "Laura",
+    "text": "Oye. Es muy tarde para irse al 8, ¿no? Bajar tres pisos... con este calor... en ascensor... es lejísimos.",
+    "effects": [
+     {
+      "vineta": "m11_ind_4"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Es lejísimos, sí.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ind_lejos"
+       }
+      ],
+      "goto": "n15"
+     },
+     {
+      "label": "«Puedo dormir en el sofá.»",
+      "goto": "n16"
+     },
+     {
+      "label": "«Mejor me voy. Mañana madrugas.»",
+      "effects": [
+       {
+        "setFlag": "m11_casi_se_va"
+       }
+      ],
+      "goto": "n17"
+     }
+    ]
+   },
+   "n15": {
+    "speaker": "Laura",
+    "text": "Lejísimos. Lo sabía.",
+    "effects": [
+     {
+      "vineta": "m11_lejisimos"
+     }
+    ],
+    "next": "n20"
+   },
+   "n16": {
+    "speaker": "Laura",
+    "text": "El sofá es una tortura, créeme. Yo me he dormido ahí viendo series y me desperté torcida. No. No te dejo.",
+    "effects": [
+     {
+      "vineta": "m11_sofa_tortura"
+     }
+    ],
+    "next": "n20"
+   },
+   "n17": {
+    "speaker": "Laura",
+    "text": "...Vale. Como quieras.",
+    "effects": [
+     {
+      "vineta": "m11_como_quieras"
+     }
+    ],
+    "next": "n18"
+   },
+   "n18": {
+    "text": "Das dos pasos hacia la puerta. Laura te agarra la mano.",
+    "effects": [
+     {
+      "vineta": "m11_mano_balcon"
+     }
+    ],
+    "next": "n19"
+   },
+   "n19": {
+    "speaker": "Laura",
+    "text": "No. Quédate. No me hagas pedírtelo dos veces, que me muero de vergüenza.",
+    "effects": [
+     {
+      "vineta": "m11_quedate_laura"
+     }
+    ],
+    "next": "n20"
+   },
+   "n20": {
+    "text": "Laura apaga la luz del living. Solo queda la luna, entrando por todas partes.",
+    "effects": [
+     {
+      "vineta": "m11_luz_apagada"
+     },
+     {
+      "setFlag": "m11_balcon"
+     },
+     {
+      "objective": "Ve al cuarto de Laura"
+     },
+     {
+      "event": "cuarto_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_luna": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El cuarto de Laura, a oscuras. La ventana abierta. La luna llena lo pinta todo de azul y de blanco: las sábanas, la bufanda colgada en la silla, la piel.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_luna"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Solo dormir, ¿vale? ...Bueno. Y hablar un poco. Que no tengo sueño.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_luna_2"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Se acuestan mirando el techo. Entre los dos, un espacio de una mano. Después, de medio. Después, de nada.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_luna_2"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "¿Te puedo contar algo que no le he contado a nadie aquí? Me da miedo volver a Bakio. Que todo siga igual y yo no. Que yo ya no quepa.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_luna_3"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Vas a caber. Vas a caber más grande.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_luna_grande"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "«A mí me pasa lo mismo con Santiago.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_luna_dos"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "Le tomas la mano en silencio.",
+      "effects": [
+       {
+        "setFlag": "m11_ql_luna_mano"
+       }
+      ],
+      "goto": "n6"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "...Más grande. Me gusta eso.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_luna_3"
+     }
+    ],
+    "next": "n7"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "¿Sí? ...Entonces somos dos. Qué alivio. Somos dos.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_luna_3"
+     }
+    ],
+    "next": "n7"
+   },
+   "n6": {
+    "text": "Ella la aprieta. Fuerte. No dice nada más.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_luna_3"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "text": "Afuera, una moto. Un perro. Una salsa lejana que alguien escucha en otro edificio. La respiración de Laura se va haciendo lenta.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_luna_4"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "speaker": "Laura",
+    "text": "(medio dormida) ...Eskerrik asko, chileno.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_luna_4"
+     }
+    ],
+    "choices": [
+     {
+      "label": "La abrazas.",
+      "effects": [
+       {
+        "setFlag": "m11_abrazo_luna"
+       },
+       {
+        "setFlag": "m11_ql_abrazo"
+       }
+      ],
+      "goto": "n9"
+     },
+     {
+      "label": "Te quedas quieto, mirando la luna.",
+      "goto": "n10"
+     },
+     {
+      "label": "Le dices algo bajito."
+     }
+    ]
+   },
+   "n9": {
+    "text": "Se acurruca contra tu pecho sin despertarse. Hueles a cloro todavía. A ella no parece importarle.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_abrazo"
+     }
+    ],
+    "next": "n13"
+   },
+   "n10": {
+    "text": "La luna se mueve despacio por la ventana. Tú no. No quieres que se acabe nada.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_luna_4"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Me gustas.»",
+      "effects": [
+       {
+        "setFlag": "m11_susurro"
+       },
+       {
+        "setFlag": "m11_ql_susurro"
+       }
+      ],
+      "goto": "n11"
+     },
+     {
+      "label": "«Buenas noches, Laura.»",
+      "effects": [
+       {
+        "setFlag": "m11_gabon"
+       }
+      ],
+      "goto": "n12"
+     }
+    ],
+    "next": "n13"
+   },
+   "n11": {
+    "text": "Lo dices tan bajito que no sabes si lo escuchó. Ella sonríe dormida. O despierta. No sabes.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_susurro"
+     }
+    ],
+    "next": "n13"
+   },
+   "n12": {
+    "text": "«Gabon», murmura ella. No sabes qué significa. Te gusta igual.",
+    "effects": [
+     {
+      "vineta": "m11_cuarto_susurro"
+     }
+    ],
+    "next": "n13"
+   },
+   "n13": {
+    "text": "Te duermes con la luna en la cara.",
+    "effects": [
+     {
+      "vineta": "m11_luna_fundido"
+     },
+     {
+      "event": "manana_calima_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_manana_calima": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Viernes. 06:40. Laura corre por todo el depa metiendo cosas en una mochila: bikini, bloqueador, la bufanda, un libro, otro libro.",
+    "effects": [
+     {
+      "vineta": "m11_laura_maleta"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "¡Buenos días! Perdón, perdón, voy tardísimo. ¿Has dormido bien? Yo he dormido... muy bien. Demasiado bien. No sé ni dónde tengo el cargador.",
+    "effects": [
+     {
+      "vineta": "m11_buenos_dias"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Abajo pita el carro de Danilo. Dos veces. Tres.",
+    "effects": [
+     {
+      "vineta": "m11_pito"
+     },
+     {
+      "sfx": "bocina_grover"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Oye, ¿me haces un favor? Riégame a Begoña el sábado. Toma: la llave de repuesto. No la pierdas, que es la única.",
+    "effects": [
+     {
+      "vineta": "m11_llave"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Begoña queda en buenas manos.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_begona"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "«¿Me estás dando la llave de tu casa?»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_llave"
+       }
+      ],
+      "goto": "n5"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Lo sé. Por eso te la dejo. A Begoña, digo.",
+    "effects": [
+     {
+      "vineta": "m11_buenas_manos"
+     }
+    ],
+    "next": "n6"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "De mi casa, no: de la casa de Begoña. Es distinto. ...Es lo mismo, sí. Calla.",
+    "effects": [
+     {
+      "vineta": "m11_llave_casa"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "Agur, chileno. Pórtate bien. ...O no. Lo que quieras.",
+    "effects": [
+     {
+      "vineta": "m11_agur_calima"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "text": "Se va corriendo por el pasillo. Vuelve a los tres segundos, te da un beso en la mejilla y se vuelve a ir. El ascensor se cierra.",
+    "effects": [
+     {
+      "vineta": "m11_beso_mejilla"
+     },
+     {
+      "sfx": "beso"
+     },
+     {
+      "setFlag": "m11_calima"
+     },
+     {
+      "objective": "Vuelve al 805"
+     },
+     {
+      "giveItem": "llave_1104"
+     }
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,309 @@
+{
+ "m11_laura_living": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "Agua de panela, té o lulo. Lo que quieras. Pero primero elige la peli, que si no, me duermo.",
+    "effects": [
+     {
+      "vineta": "m11_laura_cocina"
+     }
+    ]
+   }
+  }
+ },
+ "m11_laura_bib": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "(susurrando) El mostrador es ese, ¿no? Ve tú delante. Me dan miedo las bibliotecarias. Desde pequeña.",
+    "effects": [
+     {
+      "vineta": "m11_laura_susurra"
+     }
+    ]
+   }
+  }
+ },
+ "m11_laura_resto": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "Pídeme lo que pidas tú. Confío en tu criterio chileno. Bueno, más o menos.",
+    "effects": [
+     {
+      "vineta": "m11_laura_mesa"
+     }
+    ]
+   }
+  }
+ },
+ "m11_danilo_resto": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Ve, si esto no tiene salsa rosada yo no respondo. Que conste.",
+    "effects": [
+     {
+      "vineta": "m11_danilo_mesa"
+     }
+    ]
+   }
+  }
+ },
+ "m11_mila_resto": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Mila",
+    "text": "Causa, ¿y aquí no hay ají? ¿Ni uno? ¿Ni de pollo?",
+    "effects": [
+     {
+      "vineta": "m11_mila_mesa"
+     }
+    ]
+   }
+  }
+ },
+ "m11_uber_chofer": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Conductor",
+    "text": "Cinturón, mis amores. Y nada de comer en el carro, que lo acabo de lavar.",
+    "effects": [
+     {
+      "vineta": "m11_chofer_uber"
+     }
+    ]
+   }
+  }
+ },
+ "m11_uber_danilo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "Yo de copiloto. Soy el único que se sabe el camino. Bueno, el GPS también.",
+    "effects": [
+     {
+      "vineta": "m11_danilo_copiloto"
+     }
+    ]
+   }
+  }
+ },
+ "m11_uber_fio": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Fiorella",
+    "text": "Si me mareo, chileno, la ventana es tuya. Te aviso.",
+    "effects": [
+     {
+      "vineta": "m11_fio_mareo"
+     }
+    ]
+   }
+  }
+ },
+ "m11_uber_laura": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "¿Me pasas el agua? ...Gracias. No, quédatela tú. Bueno, dame otro sorbito.",
+    "effects": [
+     {
+      "vineta": "m11_laura_agua"
+     }
+    ]
+   }
+  }
+ },
+ "m11_carro_danilo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Danilo",
+    "text": "No me hablés mientras manejo, que me distraigo. ...Bueno, hablame. Pero de cosas tranquilas.",
+    "effects": [
+     {
+      "vineta": "m11_danilo_maneja"
+     }
+    ]
+   }
+  }
+ },
+ "m11_carro_mila": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Mila",
+    "text": "Yo pongo la música. Danilo dice que no deja a nadie. A mí sí me deja. No sé por qué será.",
+    "effects": [
+     {
+      "vineta": "m11_mila_musica"
+     }
+    ]
+   }
+  }
+ },
+ "m11_carro_laura": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "Hace calor hasta con la ventana abierta. ¿Cómo vivís aquí? ...Encantados, ya lo sé.",
+    "effects": [
+     {
+      "vineta": "m11_laura_ventana"
+     }
+    ]
+   }
+  }
+ },
+ "m11_wilmer": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_volvieron"
+      },
+      "goto": "n1"
+     },
+     {
+      "if": {
+       "flag": "m11_helado"
+      },
+      "goto": "n2"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Wilmer",
+    "text": "Buenas noches, chileno. ...Se ven lindos juntos, ¿sabe? Ya lo había dicho una vez. Lo digo otra vez.",
+    "effects": [
+     {
+      "vineta": "m11_wilmer_lindos"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Wilmer",
+    "text": "La mesa de pimpón es nueva. Las paletas, de Wilmer. No se me las lleven.",
+    "effects": [
+     {
+      "vineta": "m11_wilmer_paletas"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Wilmer",
+    "text": "Buenas, buenas. Bonito día pa' salir, ¿no? Hasta la española bajó temprano.",
+    "effects": [
+     {
+      "vineta": "m11_wilmer_dia"
+     }
+    ]
+   }
+  }
+ },
+ "m11_mesa_pinpon": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La mesa de pimpón nueva del lobby. «DONACIÓN DE LOS DEL PISO 3 — CUIDARLA».",
+    "effects": [
+     {
+      "vineta": "m11_lobby_mesa"
+     }
+    ]
+   }
+  }
+ },
+ "m11_piedra_corazon": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "En la orilla, entre las piedras redondas, una con forma de corazón. Lisa, fría, casi perfecta.",
+    "effects": [
+     {
+      "vineta": "m11_piedra"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Guardártela.",
+      "effects": [
+       {
+        "setFlag": "m11_piedra_corazon"
+       },
+       {
+        "giveItem": "piedra_corazon"
+       }
+      ],
+      "goto": "n1"
+     },
+     {
+      "label": "Dársela a Laura.",
+      "effects": [
+       {
+        "setFlag": [
+         "m11_piedra_corazon",
+         "secreto_m11_piedra"
+        ]
+       },
+       {
+        "setFlag": "m11_ql_piedra"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "Dejarla donde está."
+     }
+    ]
+   },
+   "n1": {
+    "text": "Te la guardas en el bolsillo. Laura no lo ve. O sí.",
+    "effects": [
+     {
+      "vineta": "m11_piedra_bolsillo"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "¿Para mí? ¿Una piedra? ...Es la cosa más tonta y más bonita que me han regalado. Me la llevo a Bakio.",
+    "effects": [
+     {
+      "vineta": "m11_piedra_laura"
+     }
+    ]
+   }
+  }
+ },
+ "m11_dormir_no": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Todavía no es hora de dormir.",
+    "effects": [
+     {
+      "vineta": "m11_no_dormir"
+     }
+    ]
+   }
+  }
+ }
+}

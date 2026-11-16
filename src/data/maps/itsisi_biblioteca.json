@@ -1,0 +1,77 @@
+{
+  "id": "itsisi_biblioteca",
+  "name": "Biblioteca de la Itsisi",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 16,
+  "height": 12,
+  "background": "#14121a",
+  "music": "campus",
+  "rows": [
+    "^^^^^^^^^^^^^^^^",
+    "^LLLLLL^^LLLLLL^",
+    "^,,,,,,,,,,,,,,^",
+    "^,EE,EE,,EE,EE,^",
+    "^,,,,,,,,,,,,,,^",
+    "^,EE,EE,,EE,EE,^",
+    "^,,,,,,,,,,,,,,^",
+    "^,mm,mm,,,,,,,,^",
+    "^,hh,hh,,,,CCC,^",
+    "^,,,,,,,,,,,,,,^",
+    "^MMMMMMDMMMMMMM^",
+    "^^^^^^^^^^^^^^^^"
+  ],
+  "legend": {
+    "^": "muro_techo",
+    "L": "librero",
+    ",": "u_piso",
+    "E": "estante",
+    "m": "escritorio",
+    "h": "silla",
+    "C": "meson",
+    "M": "u_muro",
+    "D": "puerta"
+  },
+  "zones": [
+    {
+      "name": "Biblioteca",
+      "subtitle": "Universidad Itsisi",
+      "x": 0,
+      "y": 0,
+      "w": 16,
+      "h": 12
+    }
+  ],
+  "spawns": {
+    "entrada": {
+      "x": 7,
+      "y": 9,
+      "dir": "up"
+    }
+  },
+  "warps": [
+    {
+      "x": 7,
+      "y": 10,
+      "to": "itsisi",
+      "spawn": "biblioteca"
+    }
+  ],
+  "enter": [
+    {
+      "id": "m11_llega",
+      "dialogue": "m11_biblio_llega",
+      "once": true,
+      "if": {
+        "mission": "mission10"
+      }
+    }
+  ],
+  "labels": [
+    {
+      "x": 12,
+      "y": 7.3,
+      "text": "PRÉSTAMO"
+    }
+  ]
+}

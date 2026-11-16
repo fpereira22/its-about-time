@@ -563,5 +563,40 @@
     "description": "La hoja de plátano en la que venía el fiambre de doña Nelly. Te la guardaste. No sabes muy bien por qué.",
     "icon": "hoja_fiambre",
     "collectible": true
+  },
+  "libro_voragine": {
+    "name": "La vorágine",
+    "description": "De José Eustasio Rivera. Edición de biblioteca de la Itsisi, prestada con el carnet de Valentina Ospina. Hoy es el último día para devolverla.",
+    "icon": "libro_voragine"
+  },
+  "separador_voragine": {
+    "name": "Separador de Vale",
+    "description": "Hecho a mano, con un samán a lápiz. «Para Laura: que Cali te enrede como la selva al de la novela. — Vale».",
+    "icon": "separador_voragine",
+    "collectible": true
+  },
+  "servilleta_pato": {
+    "name": "Servilleta del Al Toque",
+    "description": "Con el número del Pato escrito con lápiz: «Pa' cuando extraños Chile. —P.» Huele un poco a palta.",
+    "icon": "servilleta_pato",
+    "collectible": true
+  },
+  "llave_1104": {
+    "name": "Llave del 1104",
+    "description": "La llave de repuesto de Laura, con un llavero rojo. «No la pierdas, que es la única.» Es para regar a Begoña. Solo para eso. Claro.",
+    "icon": "llave_1104",
+    "collectible": true
+  },
+  "tira_fotomaton": {
+    "name": "Tira del fotomatón",
+    "description": "Tres fotos con Sira en el Guayacán. La cuarta «no existe».",
+    "icon": "tira_fotomaton",
+    "collectible": true
+  },
+  "piedra_corazon": {
+    "name": "Piedra con forma de corazón",
+    "description": "Del río, al pie de la Chorrera del Indio. Lisa, fría y casi perfecta. Casi.",
+    "icon": "piedra_corazon",
+    "collectible": true
   }
 }

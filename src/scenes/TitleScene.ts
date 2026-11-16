@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { playMusic } from '../audio/sfx';
+import { playMusic, playSfx } from '../audio/sfx';
 import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD } from '../config/display';
 import { Controls } from '../systems/Controls';
 import { GameMap } from '../systems/GameMap';
@@ -18,7 +18,7 @@ import { Secrets } from '../systems/Secrets';
 import { StoryState } from '../systems/StoryState';
 import { drawPanel, makeText, THEME } from '../ui/theme';
 import { BaseScene } from './BaseScene';
-import { MenuList } from '../ui/MenuList';
+import { MenuList, type MenuItem } from '../ui/MenuList';
 import { SettingsPanel } from '../ui/SettingsPanel';
 import { TitleBackdrop } from '../ui/TitleBackdrop';
 import { TitleReviews } from '../ui/TitleReviews';
@@ -31,6 +31,14 @@ const MENU_Y = 98;
 /** Lo más arriba que puede empezar el menú sin tapar el logo (ahí empiezan también las reseñas). */
 const MENU_MIN_Y = 78;
 const MENU_ROW = 13;
+/** Misiones por página en el submenú de "Nueva partida". */
+const MISSIONS_PER_PAGE = 5;
+/** Alto de fila del submenú de misiones (un poco más junto, para que no tape el logo). */
+const PAGER_ROW = 12;
+/** Espacio bajo el panel para los puntitos de página. */
+const PAGER_DOTS_H = 6;
+/** Cuánto se corre la página al cambiar (px). */
+const PAGE_SLIDE = 48;
 
 const SCENE_FOR_KIND = { overworld: 'Overworld', interior: 'Interior' } as const;
 
@@ -62,6 +70,15 @@ export class TitleScene extends BaseScene {
   private menu: MenuList | null = null;
   /** Submenú abierto (elegir misión o confirmar): Esc lo cierra y vuelve al menú principal. */
   private confirm: { menu: MenuList; box: Phaser.GameObjects.Container | null } | null = null;
+  /** El submenú de misiones por páginas, mientras está abierto. */
+  private missionPager: {
+    page: number;
+    pages: number;
+    make: (page: number) => MenuList;
+    prev: Phaser.GameObjects.Graphics;
+    next: Phaser.GameObjects.Graphics;
+    dots: Phaser.GameObjects.Graphics;
+  } | null = null;
   private backdrop: TitleBackdrop | null = null;
   /** Texto del pie: los controles, o el nombre del lugar del fondo cuando cambia. */
   private footerText: Phaser.GameObjects.Text | null = null;
@@ -137,6 +154,8 @@ export class TitleScene extends BaseScene {
     }
     if (this.confirm) {
       if (Controls.consume('menu')) this.closeConfirm();
+      else if (this.missionPager && Controls.consume('left')) this.flipMissionPage(-1);
+      else if (this.missionPager && Controls.consume('right')) this.flipMissionPage(1);
       else this.confirm.menu.update();
       return;
     }
@@ -225,22 +244,103 @@ export class TitleScene extends BaseScene {
     });
   }
 
-  /** Submenú: qué misión empezar. Se desbloquean en orden (todas en modo admin). */
+  /**
+   * Submenú: qué misión empezar, de a 5 por página; A/D (o las flechas de los lados) corre a la página
+   * siguiente o anterior. Se desbloquean en orden (todas en modo admin).
+   */
   private chooseMission(): void {
     this.hideMainMenu();
-    const menu = new MenuList(
-      this,
-      [
-        ...MISSIONS.map((m) =>
-          Records.isUnlocked(m)
-            ? { label: missionFullLabel(m), action: () => this.requestNewGame(m) }
-            : { label: `${missionLabel(m)}: ???  (bloqueada)`, action: () => undefined, disabled: true },
-        ),
-        { label: 'Volver', action: () => this.closeConfirm() },
-      ],
-      { x: BASE_WIDTH / 2, y: submenuY(MISSIONS.length + 1), depth: 31 },
+    const pages = Math.ceil(MISSIONS.length / MISSIONS_PER_PAGE);
+    const items = (p: number): MenuItem[] => [
+      ...MISSIONS.slice(p * MISSIONS_PER_PAGE, (p + 1) * MISSIONS_PER_PAGE).map((m) =>
+        Records.isUnlocked(m)
+          ? { label: missionFullLabel(m), action: () => this.requestNewGame(m) }
+          : { label: `${missionLabel(m)}: ???  (bloqueada)`, action: () => undefined, disabled: true },
+      ),
+      { label: 'Volver', action: () => this.closeConfirm() },
+    ];
+    // Todas las páginas del mismo ancho y a la misma altura, para que al correrlas no salte el panel.
+    const minWidth = Math.max(
+      ...Array.from({ length: pages }, (_, p) => {
+        const probe = new MenuList(this, items(p), { x: 0, y: 0, rowHeight: PAGER_ROW });
+        probe.destroy();
+        return probe.width;
+      }),
     );
-    this.confirm = { menu, box: null };
+    const fullHeight = (MISSIONS_PER_PAGE + 1) * PAGER_ROW + 9;
+    const y = Math.min(MENU_Y - 6, BASE_HEIGHT - 15 - (fullHeight + PAGER_DOTS_H));
+    const make = (p: number): MenuList =>
+      new MenuList(this, items(p), { x: BASE_WIDTH / 2, y, depth: 31, minWidth, rowHeight: PAGER_ROW });
+
+    // Abre en la página de la última misión desbloqueada: la que toca jugar.
+    const last = MISSIONS.reduce((acc, m, i) => (Records.isUnlocked(m) ? i : acc), 0);
+    const page = Math.floor(last / MISSIONS_PER_PAGE);
+
+    // Flechas a los lados del panel (también se tocan) y puntitos de página abajo.
+    const box = this.add.container(BASE_WIDTH / 2, y).setDepth(31);
+    const arrow = (dir: -1 | 1): Phaser.GameObjects.Graphics => {
+      const g = this.add.graphics({ x: dir * (minWidth / 2 + 11), y: fullHeight / 2 });
+      drawPanel(g, -7, -7, 14, 14, { radius: 4 });
+      g.fillStyle(THEME.accent, 1).fillTriangle(-dir * 2, -4, -dir * 2, 4, dir * 3, 0);
+      g.setInteractive(new Phaser.Geom.Rectangle(-9, -9, 18, 18), Phaser.Geom.Rectangle.Contains);
+      g.on('pointerdown', () => this.flipMissionPage(dir));
+      box.add(g);
+      return g;
+    };
+    const prev = arrow(-1);
+    const next = arrow(1);
+    const dots = this.add.graphics({ y: fullHeight + 3 });
+    box.add(dots);
+    box.setVisible(pages > 1);
+
+    this.missionPager = { page, pages, make, prev, next, dots };
+    this.confirm = { menu: make(page), box };
+    this.refreshMissionPager();
+  }
+
+  /** Corre el submenú de misiones a la página de al lado (`dir` = -1 izquierda, 1 derecha). */
+  private flipMissionPage(dir: -1 | 1): void {
+    const pager = this.missionPager;
+    const confirm = this.confirm;
+    if (!pager || !confirm) return;
+    const to = pager.page + dir;
+    if (to < 0 || to >= pager.pages) {
+      playSfx('error');
+      return;
+    }
+    playSfx('cursor');
+    const old = confirm.menu;
+    old.enabled = false;
+    const menu = pager.make(to);
+    const x = menu.container.x;
+    menu.container.setX(x + dir * PAGE_SLIDE).setAlpha(0);
+    this.tweens.add({ targets: menu.container, x, alpha: 1, duration: 200, ease: 'Cubic.Out' });
+    this.tweens.add({
+      targets: old.container,
+      x: old.container.x - dir * PAGE_SLIDE,
+      alpha: 0,
+      duration: 200,
+      ease: 'Cubic.Out',
+      onComplete: () => old.destroy(),
+    });
+    confirm.menu = menu;
+    pager.page = to;
+    this.refreshMissionPager();
+  }
+
+  /** Flechas apagadas en los bordes y el puntito de la página actual. */
+  private refreshMissionPager(): void {
+    const pager = this.missionPager;
+    if (!pager) return;
+    pager.prev.setAlpha(pager.page > 0 ? 1 : 0.3);
+    pager.next.setAlpha(pager.page < pager.pages - 1 ? 1 : 0.3);
+    const gap = 8;
+    const x0 = -((pager.pages - 1) * gap) / 2;
+    pager.dots.clear();
+    for (let i = 0; i < pager.pages; i++) {
+      pager.dots.fillStyle(i === pager.page ? THEME.accent : 0xc8d0e0, i === pager.page ? 1 : 0.7);
+      pager.dots.fillCircle(x0 + i * gap, 0, i === pager.page ? 2.5 : 1.8);
+    }
   }
 
   /** Submenú: qué espacio de guardado cargar. */
@@ -321,6 +421,7 @@ export class TitleScene extends BaseScene {
   }
 
   private closeConfirm(): void {
+    this.missionPager = null;
     if (!this.confirm) return;
     this.confirm.menu.destroy();
     this.confirm.box?.destroy();

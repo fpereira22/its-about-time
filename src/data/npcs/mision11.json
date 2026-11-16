@@ -1,0 +1,535 @@
+[
+  {
+    "id": "m11_asc11",
+    "map": "bobo_piso11",
+    "x": 8,
+    "y": 1,
+    "dialogue": "m11_ascensor_11",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_tele",
+    "map": "bobo_piso11",
+    "x": 5,
+    "y": 6,
+    "dialogue": "m11_tele",
+    "if": {
+      "mission": "mission10",
+      "flag": "m11_sube_11",
+      "notFlag": "m11_calima"
+    }
+  },
+  {
+    "id": "m11_begona",
+    "map": "bobo_piso11",
+    "x": 14,
+    "y": 10,
+    "dialogue": "m11_begona",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_laura_11",
+    "map": "bobo_piso11",
+    "x": 3,
+    "y": 6,
+    "sprite": "laura",
+    "dir": "up",
+    "dialogue": "m11_laura_living",
+    "if": {
+      "mission": "mission10",
+      "flag": "m11_sube_11",
+      "notFlag": "m11_peli"
+    }
+  },
+  {
+    "id": "m11_danilo_11",
+    "map": "bobo_piso11",
+    "x": 9,
+    "y": 16,
+    "sprite": "danilo",
+    "dir": "down",
+    "dialogue": "m11_balcon_danilo",
+    "if": {
+      "mission": "mission10",
+      "flag": "m11_volvieron",
+      "notFlag": "m11_decidio"
+    }
+  },
+  {
+    "id": "m11_amparo",
+    "map": "itsisi_biblioteca",
+    "x": 12,
+    "y": 9,
+    "sprite": "amparo",
+    "dir": "up",
+    "dialogue": "m11_amparo",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_poesia",
+    "map": "itsisi_biblioteca",
+    "x": 13,
+    "y": 5,
+    "dialogue": "m11_poesia",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_pato",
+    "map": "resto_chileno",
+    "x": 11,
+    "y": 2,
+    "sprite": "pato",
+    "dir": "down",
+    "dialogue": "m11_pato_charla",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_laura_resto",
+    "map": "resto_chileno",
+    "x": 4,
+    "y": 4,
+    "sprite": "laura",
+    "dir": "left",
+    "dialogue": "m11_laura_resto",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_danilo_resto",
+    "map": "resto_chileno",
+    "x": 5,
+    "y": 3,
+    "sprite": "danilo",
+    "dir": "left",
+    "dialogue": "m11_danilo_resto",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_mila_resto",
+    "map": "resto_chileno",
+    "x": 5,
+    "y": 5,
+    "sprite": "mila",
+    "dir": "left",
+    "dialogue": "m11_mila_resto",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_uber_chofer",
+    "map": "uber_m11",
+    "x": 2,
+    "y": 4,
+    "sprite": "chofer",
+    "dir": "left",
+    "dialogue": "m11_uber_chofer",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_uber_danilo",
+    "map": "uber_m11",
+    "x": 2,
+    "y": 2,
+    "sprite": "danilo",
+    "dir": "left",
+    "dialogue": "m11_uber_danilo",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_uber_fio",
+    "map": "uber_m11",
+    "x": 4,
+    "y": 2,
+    "sprite": "fiorella",
+    "dir": "left",
+    "dialogue": "m11_uber_fio",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_uber_laura",
+    "map": "uber_m11",
+    "x": 4,
+    "y": 4,
+    "sprite": "laura",
+    "dir": "left",
+    "dialogue": "m11_uber_laura",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_heladero",
+    "map": "itsisi",
+    "x": 26,
+    "y": 40,
+    "sprite": "heladero",
+    "dir": "right",
+    "dialogue": "m11_heladero",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_vigilante",
+    "map": "itsisi",
+    "x": 22,
+    "y": 53,
+    "sprite": "vigilante",
+    "dir": "down",
+    "dialogue": "m11_vigilante_itsisi",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_edificio_l",
+    "map": "itsisi",
+    "x": 52,
+    "y": 67,
+    "dialogue": "m11_edificio_l",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_taller_diseno",
+    "map": "itsisi",
+    "x": 53,
+    "y": 67,
+    "dialogue": "m11_taller_diseno",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_chulo",
+    "map": "itsisi",
+    "x": 40,
+    "y": 31,
+    "dialogue": "m11_chulo_azul",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_cafe",
+    "map": "itsisi",
+    "x": 27,
+    "y": 41,
+    "dialogue": "m11_cafe_itsisi",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_cancha",
+    "map": "itsisi",
+    "x": 41,
+    "y": 77,
+    "dialogue": "m11_cancha_itsisi",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_empanadas",
+    "map": "voragine",
+    "x": 63,
+    "y": 24,
+    "sprite": "senora",
+    "dir": "down",
+    "dialogue": "m11_empanadas_voragine",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_campero",
+    "map": "voragine",
+    "x": 1,
+    "y": 33,
+    "sprite": "chofer",
+    "dir": "down",
+    "dialogue": "m11_campero",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_puente",
+    "map": "voragine",
+    "x": 64,
+    "y": 19,
+    "dialogue": "m11_puente_voragine",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_ofelia",
+    "map": "chorrera",
+    "x": 46,
+    "y": 39,
+    "sprite": "ofelia",
+    "dir": "down",
+    "dialogue": "m11_almuerzo",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_piedra_corazon",
+    "map": "chorrera",
+    "x": 36,
+    "y": 43,
+    "object": "piedra_corazon",
+    "dialogue": "m11_piedra_corazon",
+    "if": {
+      "mission": "mission10",
+      "notFlag": "m11_piedra_corazon"
+    }
+  },
+  {
+    "id": "m11_asc_lobby",
+    "map": "bobo_lobby",
+    "x": 13,
+    "y": 1,
+    "dialogue": "m11_ascensor_lobby",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_asc_lobby_b",
+    "map": "bobo_lobby",
+    "x": 15,
+    "y": 1,
+    "dialogue": "m11_ascensor_lobby",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_wilmer",
+    "map": "bobo_lobby",
+    "x": 2,
+    "y": 2,
+    "sprite": "wilmer",
+    "dir": "down",
+    "dialogue": "m11_wilmer",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_mesa_pinpon",
+    "map": "bobo_lobby",
+    "x": 11,
+    "y": 5,
+    "dialogue": "m11_mesa_pinpon",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_asc8",
+    "map": "bobo_piso8",
+    "x": 8,
+    "y": 1,
+    "dialogue": "m11_ascensor_8",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_cocina",
+    "map": "bobo_piso8",
+    "x": 3,
+    "y": 6,
+    "dialogue": "m11_cocina_805",
+    "if": {
+      "mission": "mission10",
+      "flag": "m11_vuelta_bobo"
+    }
+  },
+  {
+    "id": "m11_ducha",
+    "map": "bobo_piso8",
+    "x": 1,
+    "y": 12,
+    "dialogue": "m11_ducha",
+    "if": {
+      "mission": "mission10",
+      "flag": "m11_vuelta_bobo"
+    }
+  },
+  {
+    "id": "m11_sofa805",
+    "map": "bobo_piso8",
+    "x": 12,
+    "y": 9,
+    "dialogue": "m11_sofa_final",
+    "if": {
+      "mission": "mission10",
+      "flag": "m11_cena",
+      "notFlag": "m11_a_la_cama"
+    }
+  },
+  {
+    "id": "m11_laura_805",
+    "map": "bobo_piso8",
+    "x": 13,
+    "y": 8,
+    "sprite": "laura",
+    "dir": "left",
+    "dialogue": "m11_sofa_final",
+    "if": {
+      "mission": "mission10",
+      "flag": "m11_cena",
+      "notFlag": "m11_a_la_cama"
+    }
+  },
+  {
+    "id": "m11_chela",
+    "map": "bobo_cuadra",
+    "x": 10,
+    "y": 39,
+    "sprite": "chela",
+    "dir": "down",
+    "dialogue": "m11_chela",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_carreta",
+    "map": "bobo_cuadra",
+    "x": 9,
+    "y": 39,
+    "object": "carreta_salchipapa",
+    "dialogue": "m11_chela",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_carro_danilo",
+    "map": "carro_danilo",
+    "x": 2,
+    "y": 4,
+    "sprite": "danilo",
+    "dir": "left",
+    "dialogue": "m11_carro_danilo",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_carro_mila",
+    "map": "carro_danilo",
+    "x": 2,
+    "y": 2,
+    "sprite": "mila",
+    "dir": "left",
+    "dialogue": "m11_carro_mila",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_carro_laura",
+    "map": "carro_danilo",
+    "x": 4,
+    "y": 4,
+    "sprite": "laura",
+    "dir": "left",
+    "dialogue": "m11_carro_laura",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_obleero",
+    "map": "san_antonio",
+    "x": 22,
+    "y": 12,
+    "sprite": "obleero",
+    "dir": "down",
+    "dialogue": "m11_obleero",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_salpiconera",
+    "map": "san_antonio",
+    "x": 26,
+    "y": 12,
+    "sprite": "salpiconera",
+    "dir": "down",
+    "dialogue": "m11_salpiconera",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_tienda",
+    "map": "guayacan_plaza",
+    "x": 8,
+    "y": 1,
+    "dialogue": "m11_tienda_majo",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_cine",
+    "map": "guayacan_plaza",
+    "x": 14,
+    "y": 1,
+    "dialogue": "m11_cine_mall",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_fotomaton",
+    "map": "guayacan_plaza",
+    "x": 24,
+    "y": 1,
+    "dialogue": "m11_fotomaton",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_banca",
+    "map": "guayacan_plaza",
+    "x": 5,
+    "y": 5,
+    "dialogue": "m11_majo_cata_charla",
+    "if": {
+      "mission": "mission10"
+    }
+  }
+]

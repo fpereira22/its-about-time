@@ -1,0 +1,78 @@
+{
+  "id": "resto_chileno",
+  "name": "Al Toque · Sanguchería Chilena",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 14,
+  "height": 11,
+  "background": "#14121a",
+  "music": "hamburguesas",
+  "rows": [
+    "^^^^^^^^^^^^^^",
+    "^MMcMMFMMvvMm^",
+    "^,,,,,,,,,,,,^",
+    "^,nn,,nn,,KKK^",
+    "^,TT,,TT,,,,,^",
+    "^,ss,,ss,,,,,^",
+    "^,,,,,,,,,,,,^",
+    "^,nn,,,,,,,,,^",
+    "^,TT,,,,,,,,p^",
+    "^MMMMMDMMMMMM^",
+    "^^^^^^^^^^^^^^"
+  ],
+  "legend": {
+    "^": "muro_techo",
+    "M": "resto_muro",
+    "c": "resto_cuadro",
+    "F": "bandera_chile",
+    "v": "resto_ventana",
+    "m": "menu_pato",
+    ",": "resto_piso",
+    "n": "silla_resto_n",
+    "T": "mesa_resto",
+    "s": "silla_resto",
+    "K": "resto_meson",
+    "p": "planta",
+    "D": "puerta"
+  },
+  "zones": [
+    {
+      "name": "Al Toque",
+      "subtitle": "Sanguchería chilena · Cali",
+      "x": 0,
+      "y": 0,
+      "w": 14,
+      "h": 11
+    }
+  ],
+  "spawns": {
+    "entrada": {
+      "x": 6,
+      "y": 8,
+      "dir": "up"
+    },
+    "mesa": {
+      "x": 2,
+      "y": 5,
+      "dir": "up"
+    }
+  },
+  "enter": [
+    {
+      "id": "m11_llega",
+      "dialogue": "m11_resto_llega",
+      "once": true,
+      "if": {
+        "mission": "mission10"
+      }
+    }
+  ],
+  "labels": [
+    {
+      "x": 7,
+      "y": 0.4,
+      "text": "AL TOQUE",
+      "color": "#f8dc68"
+    }
+  ]
+}

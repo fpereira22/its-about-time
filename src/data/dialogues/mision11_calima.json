@@ -1,0 +1,1425 @@
+{
+ "m11_viernes": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Viernes. El 805 se siente más grande sin saber que Laura está tres pisos arriba.",
+    "effects": [
+     {
+      "vineta": "m11_805_solo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "10:12. Una historia de laaurii_14: el lago Calima, azul oscuro, lleno de velas de windsurf, y el viento despeinándola. Texto: «aquí sopla 🌬️».",
+    "effects": [
+     {
+      "vineta": "m11_historia_calima"
+     },
+     {
+      "sfx": "notify"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "15:05. Otro mensaje. Este es de Sira.",
+    "effects": [
+     {
+      "vineta": "m11_chat_sira_mall"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m11_sira_mall"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Sira",
+    "text": "«¿Mall? Majo necesita un vestido para un matrimonio y Cata necesita opinar de todo. Y yo te necesito a ti para no aburrirme 🙃 Te espero en el Guayacán en media hora»",
+    "effects": [
+     {
+      "vineta": "m11_chat_sira_mall"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Voy.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_voy"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "«¿Me necesitas a mí o a mi tarjeta?»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_tarjeta"
+       }
+      ],
+      "goto": "n4"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Sira",
+    "text": "«A ti. La tarjeta la tiene Majo. Ven ya 😂»",
+    "effects": [
+     {
+      "vineta": "m11_chat_sira_mall"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "effects": [
+     {
+      "event": "mall_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_mall_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "C.C. Guayacán Plaza un viernes a las cuatro: aire acondicionado, olor a crispetas y adolescentes en manada.",
+    "effects": [
+     {
+      "vineta": "m11_mall"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Majo",
+    "text": "¡Llegó el chileno! Sira dijo que no ibas a venir. Le gané una apuesta.",
+    "effects": [
+     {
+      "vineta": "m11_majo_apuesta"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Sira",
+    "text": "Yo no dije eso. Dije que «a lo mejor» no venías. Es distinto.",
+    "effects": [
+     {
+      "vineta": "m11_sira_distinto"
+     },
+     {
+      "setFlag": [
+       "m11_sigue_sira_m7",
+       "m11_sigue_majo",
+       "m11_sigue_cata",
+       "m11_en_mall"
+      ]
+     },
+     {
+      "objective": "Paseen por el mall (la tienda, el cine, el fotomatón)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_tienda_majo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_vestido"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Majo",
+    "text": "El vestido verde. Ya está decidido. Gracias, chileno, tienes buen ojo.",
+    "effects": [
+     {
+      "vineta": "m11_majo_vestido"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Majo",
+    "text": "Ok, jurado: ¿el vestido verde o el vestido verde un poquito más verde?",
+    "effects": [
+     {
+      "vineta": "m11_majo_duda"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«El primero.»",
+      "goto": "n3"
+     },
+     {
+      "label": "«El segundo.»",
+      "goto": "n4"
+     },
+     {
+      "label": "«Son el mismo vestido.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_mismo"
+       }
+      ],
+      "goto": "n5"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Cata",
+    "text": "¡Eso dije yo! Gracias. Por fin alguien con criterio.",
+    "effects": [
+     {
+      "vineta": "m11_cata_criterio"
+     }
+    ],
+    "next": "n6"
+   },
+   "n4": {
+    "speaker": "Majo",
+    "text": "¡Eso dije YO! Cata, perdiste.",
+    "effects": [
+     {
+      "vineta": "m11_majo_gana"
+     }
+    ],
+    "next": "n6"
+   },
+   "n5": {
+    "speaker": "Sira",
+    "text": "(riéndose) No digas eso en voz alta. Te van a matar.",
+    "effects": [
+     {
+      "vineta": "m11_sira_rie_mall"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "effects": [
+     {
+      "setFlag": "m11_vestido"
+     }
+    ]
+   }
+  }
+ },
+ "m11_cine_mall": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La cartelera del cine. Están dando otra vez «Tu nombre bajo el cometa», en función de trasnoche.",
+    "effects": [
+     {
+      "vineta": "m11_cartelera"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Sira",
+    "text": "(bajito) ¿Te acuerdas? Esa la vimos en tu depa. Mientras llovía.",
+    "effects": [
+     {
+      "vineta": "m11_sira_cometa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Me acuerdo de todo.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_cometa"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "«¿Volvemos a verla?»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_volver"
+       }
+      ],
+      "goto": "n3"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Sira",
+    "text": "...Shh. Que Cata tiene oídos de murciélago.",
+    "effects": [
+     {
+      "vineta": "m11_sira_shh_mall"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Sira",
+    "text": "Algún día. Sin público.",
+    "effects": [
+     {
+      "vineta": "m11_sira_cometa"
+     }
+    ]
+   }
+  }
+ },
+ "m11_fotomaton": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_fotomaton"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "text": "El fotomatón. La tira de fotos ya está en tu billetera.",
+    "effects": [
+     {
+      "vineta": "m11_fotomaton"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Un fotomatón al lado de la escalera: cuatro fotos, cinco mil pesos.",
+    "effects": [
+     {
+      "vineta": "m11_fotomaton"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Cata",
+    "text": "¡Fotomatón! Sira y el chileno, adentro. Majo y yo después. ¡Vamos, vamos!",
+    "effects": [
+     {
+      "vineta": "m11_cata_empuja"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Adentro, apretados en la banquita. Flash. Flash. Flash. En la cuarta, Sira te agarra la cara y te da un beso. Flash.",
+    "effects": [
+     {
+      "vineta": "m11_tira_fotos"
+     },
+     {
+      "sfx": "camera"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Sira",
+    "text": "Esa me la quedo yo. Las otras tres, tú. ...La cuarta no existe, ¿ok?",
+    "effects": [
+     {
+      "vineta": "m11_sira_tira"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«No existe.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_no_existe"
+       }
+      ],
+      "goto": "n7"
+     },
+     {
+      "label": "«Existe un poquito.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_poquito"
+       }
+      ],
+      "goto": "n6"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Sira",
+    "text": "Un poquito. Bueno. Un poquito existe.",
+    "effects": [
+     {
+      "vineta": "m11_sira_tira"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "effects": [
+     {
+      "setFlag": "m11_fotomaton"
+     },
+     {
+      "giveItem": "tira_fotomaton"
+     },
+     {
+      "pay": 5000
+     }
+    ]
+   }
+  }
+ },
+ "m11_majo_cata_charla": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Majo",
+    "text": "Oigan, ¿y ustedes dos qué son? ¿Novios? ¿Amigos? ¿Algo?",
+    "effects": [
+     {
+      "vineta": "m11_majo_pregunta"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Sira",
+    "text": "Compañeros de natación.",
+    "effects": [
+     {
+      "vineta": "m11_companeros"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Cata",
+    "text": "Ajá. Y yo soy la reina de Inglaterra.",
+    "effects": [
+     {
+      "vineta": "m11_cata_reina"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Compañeros de natación. Muy buenos compañeros.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_companeros"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "No dices nada y miras una vitrina con mucho interés.",
+      "goto": "n4"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Sira",
+    "text": "(te pisa el pie) Muy buenos.",
+    "effects": [
+     {
+      "vineta": "m11_pisa_pie"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Majo",
+    "text": "Ajá. Una vitrina de ropa interior de señora. Muy interesante, chileno.",
+    "effects": [
+     {
+      "vineta": "m11_vitrina"
+     }
+    ]
+   }
+  }
+ },
+ "m11_mall_salir": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "notFlag": "m11_fotomaton"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Cata",
+    "text": "¿Ya se van? ¡No! ¡Falta el fotomatón!",
+    "effects": [
+     {
+      "vineta": "m11_cata_empuja"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Sira",
+    "text": "¿Nos vamos? Majo ya tiene vestido y yo tengo hambre de cama.",
+    "effects": [
+     {
+      "vineta": "m11_hambre_cama"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Vamos.»",
+      "effects": [
+       {
+        "event": "mall_salida_m11"
+       }
+      ]
+     },
+     {
+      "label": "«Una vuelta más.»"
+     }
+    ]
+   }
+  }
+ },
+ "m11_viernes_noche": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Viernes, 22:40. De vuelta en el 805, con la tira del fotomatón encima del velador.",
+    "effects": [
+     {
+      "vineta": "m11_805_noche"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Mensaje de Danilo.",
+    "effects": [
+     {
+      "vineta": "m11_chat_danilo_1"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m11_danilo_1"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "«Parce. Ve. Hablé con Laura hoy en el lago. No sabés lo que dijo de vos. 👀»",
+    "effects": [
+     {
+      "vineta": "m11_chat_danilo_1"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Qué dijo?»",
+      "goto": "n3"
+     },
+     {
+      "label": "«No me interesa.»",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_check"
+       }
+      ],
+      "goto": "n4"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "«Secreto profesional. Soy psicólogo. 🤐 Jajaja dormí bien, chileno»",
+    "effects": [
+     {
+      "vineta": "m11_chat_danilo_1"
+     }
+    ],
+    "next": "n5"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "«Ajá. Leíste el mensaje en 2 segundos. Te vi el doble check. Dormí bien 😂»",
+    "effects": [
+     {
+      "vineta": "m11_chat_danilo_1"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "text": "No duermes bien.",
+    "effects": [
+     {
+      "vineta": "m11_no_duerme"
+     },
+     {
+      "setFlag": "m11_viernes_fin"
+     },
+     {
+      "objective": "A dormir"
+     }
+    ]
+   }
+  }
+ },
+ "m11_sabado_calima": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Sábado. 09:30. Te despierta una foto: Laura de espaldas en un muelle de madera, con el lago detrás. Debajo, un mensaje.",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_muelle"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m11_laura_muelle"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "«¡Buenos días! No te olvides de Begoña 🌱 Necesita agua y que le hablen bonito. Lo segundo es importante.»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_muelle"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Le voy a leer poesía.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_silva"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "«¿Y a ti quién te habla bonito allá?»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_bonito"
+       }
+      ],
+      "goto": "n3"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "«Silva. Léele a Silva. Le gustará. ...A mí me gustaría. 🙈»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_muelle"
+     }
+    ],
+    "next": "n4"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "«El viento. Y Danilo, que no se calla nunca. Ninguno de los dos es lo mismo. 🙃»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_muelle"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "effects": [
+     {
+      "setFlag": "m11_sabado"
+     },
+     {
+      "objective": "Riega a Begoña (piso 11, con la llave de Laura)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_puerta_1104": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "hasItem": "llave_1104"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Abres el 1104 con la llave de repuesto. Huele a ella. A champú de coco y a libros.",
+    "effects": [
+     {
+      "vineta": "m11_abre_1104"
+     }
+    ]
+   },
+   "n2": {
+    "text": "El 1104. Cerrado.",
+    "effects": [
+     {
+      "vineta": "m11_1104_cerrado"
+     }
+    ]
+   }
+  }
+ },
+ "m11_begona": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_begona_regada"
+      },
+      "goto": "n1"
+     },
+     {
+      "if": {
+       "notFlag": "m11_sabado"
+      },
+      "goto": "n2"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Begoña, regada y feliz. O eso parece. Es una planta.",
+    "effects": [
+     {
+      "vineta": "m11_begona_feliz"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Begoña, la planta de Laura. Enorme, verde, con nombre propio.",
+    "effects": [
+     {
+      "vineta": "m11_begona_sola"
+     }
+    ]
+   },
+   "n3": {
+    "text": "Begoña. La riegas con el vaso de la cocina. Tres vasos. Laura dijo «agua y que le hablen bonito».",
+    "effects": [
+     {
+      "vineta": "m11_regando"
+     },
+     {
+      "sfx": "splash"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Le lees el poema de Silva que te sabes a medias.",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_begona"
+       },
+       {
+        "setFlag": "m11_ql_poema_planta"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "«Begoña, tu dueña es un desastre. Pero un desastre lindo.»",
+      "goto": "n5"
+     },
+     {
+      "label": "La riegas en silencio, como un profesional.",
+      "goto": "n6"
+     }
+    ]
+   },
+   "n4": {
+    "text": "«Una noche... una noche toda llena de... de perfumes, de murmullos...» Begoña no dice nada. Pero brilla un poquito más. Seguro.",
+    "effects": [
+     {
+      "vineta": "m11_poema_planta"
+     }
+    ],
+    "next": "n6"
+   },
+   "n5": {
+    "text": "Begoña, discreta, no comenta.",
+    "effects": [
+     {
+      "vineta": "m11_planta_discreta"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "text": "En el refri hay un post-it amarillo con letra redonda: «Si estás leyendo esto, has venido a regar a Begoña. Eskerrik asko, chileno 🌱 —L»",
+    "effects": [
+     {
+      "vineta": "m11_postit"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "text": "Al lado, pegado con un imán de Bakio, un dibujo hecho por una niña: una chica con bufanda roja y blanca, una perra rubia y una palmera. Arriba dice «LAURA ETA TXINPARTA CALIN».",
+    "effects": [
+     {
+      "vineta": "m11_dibujo_ane"
+     },
+     {
+      "setFlag": "m11_begona_regada"
+     },
+     {
+      "objective": "Ve a la U: Sira te espera en la plaza"
+     }
+    ]
+   }
+  }
+ },
+ "m11_sira_maqueta": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La plaza de la PUCC un sábado: casi vacía. Sira, Majo y Cata en una banca con una maqueta de cartón blanco del tamaño de una mesa.",
+    "effects": [
+     {
+      "vineta": "m11_maqueta"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Sira",
+    "text": "Te presento mi biblioteca imaginaria. Tres pisos, un patio con samán en el medio y un techo verde. ¿Está recta?",
+    "effects": [
+     {
+      "vineta": "m11_sira_biblio"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Está perfecta.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_perfecta"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "«¿Un samán al medio? Como la Itsisi.»",
+      "effects": [
+       {
+        "setFlag": "m11_sira_itsisi"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "«El segundo piso está torcido.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_honesto"
+       }
+      ],
+      "goto": "n4"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Sira",
+    "text": "Mentiroso. El segundo piso está torcido. Pero gracias.",
+    "effects": [
+     {
+      "vineta": "m11_torcido"
+     }
+    ],
+    "next": "n5"
+   },
+   "n3": {
+    "speaker": "Sira",
+    "text": "¿Fuiste a la Itsisi? ¿Con quién? ...Ah. Bueno. Sí, como la Itsisi. Me inspiré.",
+    "effects": [
+     {
+      "vineta": "m11_con_quien"
+     }
+    ],
+    "next": "n5"
+   },
+   "n4": {
+    "speaker": "Sira",
+    "text": "¡Por fin alguien honesto! Majo me dijo que estaba perfecto.",
+    "effects": [
+     {
+      "vineta": "m11_honesto"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Cata",
+    "text": "Bueno, ya, mucha arquitectura. ¡Helado! En la Farmadía de tu cuadra, chileno, que es la más barata.",
+    "effects": [
+     {
+      "vineta": "m11_cata_helado"
+     },
+     {
+      "setFlag": [
+       "m11_sigue_sira_m7",
+       "m11_sigue_majo",
+       "m11_sigue_cata",
+       "m11_sab_maqueta"
+      ]
+     },
+     {
+      "objective": "Vayan a la Farmadía (esquina de la Carrera 122)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_farma_sira": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Farmadía otra vez. El mismo congelador. La misma cajera viendo la misma novela.",
+    "effects": [
+     {
+      "vineta": "m11_farma_sira"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Sira",
+    "text": "¿Maracuyá no hay? ...Bueno, mora. ¿Tú?",
+    "effects": [
+     {
+      "vineta": "m11_sira_mora"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Choco-Doble.»",
+      "goto": "n2"
+     },
+     {
+      "label": "«Mora también.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_copion"
+       }
+      ],
+      "goto": "n3"
+     }
+    ]
+   },
+   "n2": {
+    "text": "El mismo que el lunes. No lo piensas. Lo piensas después.",
+    "effects": [
+     {
+      "vineta": "m11_choco_doble"
+     }
+    ],
+    "next": "n4"
+   },
+   "n3": {
+    "speaker": "Sira",
+    "text": "Copión.",
+    "effects": [
+     {
+      "vineta": "m11_copion"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Salen a la acera. Se sientan en el mismo bordillo. Donde el lunes...",
+    "effects": [
+     {
+      "vineta": "m11_bordillo_sira"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Sira",
+    "text": "¿Qué te pasa? Te quedaste mirando el piso como si se te hubiera perdido algo.",
+    "effects": [
+     {
+      "vineta": "m11_sira_que_pasa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Nada. Me acordé de algo.»",
+      "goto": "n6"
+     },
+     {
+      "label": "«El lunes bailé salsa aquí. Con una amiga.»",
+      "effects": [
+       {
+        "setFlag": "m11_sira_sabe_salsa"
+       },
+       {
+        "setFlag": "m11_qs_verdad"
+       }
+      ],
+      "goto": "n7"
+     },
+     {
+      "label": "«Que me gusta estar aquí contigo.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_contigo"
+       }
+      ],
+      "goto": "n8"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Sira",
+    "text": "De algo. Ajá. Bueno, cuando quieras me cuentas.",
+    "effects": [
+     {
+      "vineta": "m11_cuando_quieras"
+     }
+    ],
+    "next": "n9"
+   },
+   "n7": {
+    "speaker": "Sira",
+    "text": "¿Aquí? ¿En la acera? ...Qué lindo. Qué envidia. ¿Y la amiga baila bien?",
+    "effects": [
+     {
+      "vineta": "m11_que_envidia"
+     }
+    ],
+    "next": "n9"
+   },
+   "n8": {
+    "speaker": "Sira",
+    "text": "...Uy. Eso no me lo esperaba. Cállate, que me pongo roja delante de Cata.",
+    "effects": [
+     {
+      "vineta": "m11_me_pongo_roja"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "speaker": "Majo",
+    "text": "¡Bueno! ¿Esta noche salsoteca o qué? Hay una en San Fernando que es una chimba. Nada de excusas, chileno.",
+    "effects": [
+     {
+      "vineta": "m11_majo_salsoteca"
+     },
+     {
+      "setFlag": "m11_sab_farma"
+     },
+     {
+      "event": "salsoteca_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_salsoteca_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Una salsoteca de San Fernando: piso de tablas, discos de acetato en las paredes, un espejo enorme y señores de setenta años bailando mejor que todos.",
+    "effects": [
+     {
+      "vineta": "m11_salsoteca"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Sira",
+    "text": "¿Bailamos? Como en el depa. Pero sin pisarme.",
+    "effects": [
+     {
+      "vineta": "m11_sira_bailamos"
+     }
+    ]
+   }
+  }
+ },
+ "m11_salsoteca_despues": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Termina la canción. Un señor de sombrero les aplaude y le dice a Sira: «Ese muchacho tiene futuro, mija. No lo suelte».",
+    "effects": [
+     {
+      "vineta": "m11_senor_sombrero"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Sira",
+    "text": "(a ti, bajito) Ya escuchaste al señor.",
+    "effects": [
+     {
+      "vineta": "m11_ya_escuchaste"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "A la una de la mañana la acompañas a la esquina a esperar su taxi. Majo y Cata se fueron en otro, con risitas.",
+    "effects": [
+     {
+      "vineta": "m11_esquina_sira"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Sira",
+    "text": "Hoy estuvo bonito. Tú estuviste bonito. Raro, pero bonito.",
+    "effects": [
+     {
+      "vineta": "m11_raro_bonito"
+     }
+    ],
+    "choices": [
+     {
+      "label": "La besas.",
+      "effects": [
+       {
+        "setFlag": "m11_beso_sira"
+       },
+       {
+        "setFlag": "m11_qs_beso"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "La abrazas fuerte.",
+      "effects": [
+       {
+        "setFlag": "m11_qs_abrazo"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "«Avísame cuando llegues.»",
+      "effects": [
+       {
+        "setFlag": "m11_sira_cuando_sepas"
+       }
+      ],
+      "goto": "n6"
+     }
+    ]
+   },
+   "n4": {
+    "text": "En la esquina, debajo de un poste que parpadea, sin nadie mirando. Como ella quiere. Como te gusta a ti también.",
+    "effects": [
+     {
+      "vineta": "m11_beso_sira_esquina"
+     },
+     {
+      "sfx": "beso"
+     }
+    ],
+    "next": "n7"
+   },
+   "n5": {
+    "text": "Se queda un rato largo con la cara en tu hombro. Huele a salsoteca y a mora.",
+    "effects": [
+     {
+      "vineta": "m11_abrazo_sira"
+     }
+    ],
+    "next": "n7"
+   },
+   "n6": {
+    "speaker": "Sira",
+    "text": "Siempre te aviso. ...Tú avísame a mí cuando sepas qué quieres.",
+    "effects": [
+     {
+      "vineta": "m11_cuando_sepas"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "text": "Llega el taxi. Se va. Te quedas en la esquina un rato, con el corazón en dos partes que no se conocen.",
+    "effects": [
+     {
+      "vineta": "m11_dos_partes"
+     },
+     {
+      "event": "sabado_noche_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_sabado_noche": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Sábado, 01:40. El 805.",
+    "effects": [
+     {
+      "vineta": "m11_805_madrugada"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Mensaje de Danilo.",
+    "effects": [
+     {
+      "vineta": "m11_chat_danilo_2"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m11_danilo_2"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "«Chileno. Le pregunté cosas a Laura. Sobre vos. Ve, no te voy a decir nada por chat, pero preparate. El domingo hablamos. 🤐🔥»",
+    "effects": [
+     {
+      "vineta": "m11_chat_danilo_2"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Y otro, de Laura. Una foto de la luna sobre el lago Calima.",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_luna"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m11_laura_luna"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "«La misma luna de anoche. ¿La estás viendo? Me gustaría que estuvieras aquí. Ya está. Lo he dicho. Buenas noches 🌕»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_luna"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«La estoy viendo.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_misma_luna"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "«A mí también me gustaría.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_gustaria"
+       }
+      ],
+      "goto": "n6"
+     },
+     {
+      "label": "No contestas. No sabes qué contestar.",
+      "effects": [
+       {
+        "setFlag": "m11_no_contesta"
+       }
+      ],
+      "goto": "n7"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "«🥹»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_luna"
+     }
+    ],
+    "next": "n7"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "«Mañana vuelvo. Espérame. 🌕»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_luna"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "text": "La tira del fotomatón en el velador. La luna en la ventana. Dos chats abiertos. No duermes.",
+    "effects": [
+     {
+      "vineta": "m11_insomnio"
+     },
+     {
+      "setFlag": "m11_sabado_fin"
+     },
+     {
+      "objective": "Intenta dormir"
+     }
+    ]
+   }
+  }
+ },
+ "m11_domingo_calima": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Domingo. Pasa lento. Lavas la ropa de la salsoteca. Te comes un arroz. Ves la mitad de un partido.",
+    "effects": [
+     {
+      "vineta": "m11_domingo_lento"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_pregunto_txinparta"
+      },
+      "goto": "n2"
+     },
+     {
+      "goto": "n4"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Mensaje de Danilo.",
+    "effects": [
+     {
+      "vineta": "m11_chat_danilo_txinparta"
+     },
+     {
+      "sfx": "notify"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "«Dato: le pregunté a Laura qué significa Txinparta. Dice que «chispa». Me dijo que no te lo dijera. Vojabés. 😂»",
+    "effects": [
+     {
+      "vineta": "m11_chat_danilo_txinparta"
+     },
+     {
+      "setFlag": "secreto_m11_txinparta"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "17:20. Laura.",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_llegamos"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m11_laura_llegamos"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "«¡Volvemos! Llegamos a las 7. ¿Nos esperas en mi depa? Tienes la llave 😏 Salimos a comer algo, que estoy muerta de hambre»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_llegamos"
+     },
+     {
+      "setFlag": "m11_domingo_vuelta"
+     },
+     {
+      "objective": "Espera a Laura y a Danilo en el 1104 (siéntate en el sofá)"
+     },
+     {
+      "clock": "dom++ 18:30",
+      "max": "dom++ 19:00"
+     }
+    ]
+   }
+  }
+ }
+}

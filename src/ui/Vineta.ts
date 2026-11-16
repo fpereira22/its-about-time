@@ -179,7 +179,8 @@ export class Vineta {
 
   show(id: string): void {
     // Una viñeta en vivo (el chat) que ya está abierta sigue como está: no se rearma.
-    if (this.root && id === this.currentId && LIVE_VINETAS.has(id)) return;
+    // Misión 10 (prefijo m11_): pedir otra vez la misma viñeta no la rearma (no se repiten las animaciones).
+    if (this.root && id === this.currentId && (LIVE_VINETAS.has(id) || id.startsWith('m11_'))) return;
     this.destroy();
     this.currentId = id;
     const build = VINETAS[id];

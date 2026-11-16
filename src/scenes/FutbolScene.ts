@@ -38,18 +38,26 @@ export interface FutbolSceneData {
   done: (result: FutbolResult) => void;
   /** Antes del pitazo, el calentamiento con el equipo (tutorial). */
   tutorial?: boolean;
+  /**
+   * Misión 10 (prefijo m11_): fútbol 5 en la cancha sintética del GLD. Cancha chica, cinco por lado, tiempos más
+   * cortos y el reloj de la historia avanza una hora desde la hora en que empieza.
+   */
+  cinco?: boolean;
 }
 
-const FW = 560;
-const FH = 340;
+// Medidas de la cancha: cambian con el modo (once o fútbol 5), por eso son `let` (se fijan en `init`).
+let FW = 560;
+let FH = 340;
 const MARGIN = 44;
 const GOAL_HALF = 28;
 const GOAL_DEPTH = 12;
 const CROSSBAR_Z = 12;
-const BOX_DEPTH = 76;
-const BOX_HALF = 82;
+let BOX_DEPTH = 76;
+let BOX_HALF = 82;
 /** Duración real de cada tiempo (el reloj del partido muestra 45 minutos). */
-const HALF_MS = 80_000;
+let HALF_MS = 80_000;
+const FIELD_11 = { fw: 560, fh: 340, boxDepth: 76, boxHalf: 82, halfMs: 80_000 };
+const FIELD_5 = { fw: 380, fh: 232, boxDepth: 50, boxHalf: 58, halfMs: 50_000 };
 /** Hora del partido: empieza 16:30 y termina 18:15 (el reloj de la historia avanza con él). */
 const KICKOFF_CLOCK = 'lun 16:30';
 const END_CLOCK = 'lun 18:15';
@@ -160,6 +168,18 @@ const FORMATION: Array<[Role, number, number]> = [
   ['FWD', 0.6, 0.62],
 ];
 
+/** Fútbol 5 (misión 10): arquero, un defensa, dos volantes y tú arriba. */
+const FORMATION_5: Array<[Role, number, number]> = [
+  ['GK', 0.04, 0.5],
+  ['DEF', 0.24, 0.5],
+  ['MID', 0.42, 0.24],
+  ['MID', 0.42, 0.76],
+  ['FWD', 0.6, 0.5],
+];
+/** Los nombres de cada equipo según el modo: [nombre corto del marcador, nombre largo, nombre con FC]. */
+const TEAMS_11 = { us: ['INT', 'Intercambio', 'Intercambio FC'], them: ['ING', 'Ingeniería', 'Ingeniería FC'] } as const;
+const TEAMS_5 = { us: ['805', 'Los del Bobo', 'Los del Bobo'], them: ['ARQ', 'Arquitectura', 'Arquitectura FC'] } as const;
+
 const US: Array<{ name: string; skin: string; hair: string; style: HumanLook['hairStyle'] }> = [
   { name: 'Mathieu', skin: '#f0d0b0', hair: '#c8a060', style: 'short' },
   { name: 'Iker', skin: '#f0c8a0', hair: '#2a1c18', style: 'short' },
@@ -217,6 +237,9 @@ export class FutbolScene extends BaseScene {
   private kicked = false;
   private ownGoals = 0;
   private tutorial = false;
+  private cinco = false;
+  private formation: Array<[Role, number, number]> = FORMATION;
+  private teams: typeof TEAMS_11 | typeof TEAMS_5 = TEAMS_11;
   /** Calentamiento en curso: el ejercicio actual (y una espera corta entre uno y otro). */
   private tut: { i: number; wait: number; retry: number; trickDone: boolean } | null = null;
   private tutText!: Phaser.GameObjects.Text;
@@ -244,6 +267,15 @@ export class FutbolScene extends BaseScene {
   init(data: FutbolSceneData): void {
     this.done = data.done;
     this.tutorial = data.tutorial === true;
+    this.cinco = data.cinco === true;
+    const f = this.cinco ? FIELD_5 : FIELD_11;
+    FW = f.fw;
+    FH = f.fh;
+    BOX_DEPTH = f.boxDepth;
+    BOX_HALF = f.boxHalf;
+    HALF_MS = f.halfMs;
+    this.formation = this.cinco ? FORMATION_5 : FORMATION;
+    this.teams = this.cinco ? TEAMS_5 : TEAMS_11;
     this.tut = null;
     this.ownGoals = 0;
     this.players = [];
@@ -270,8 +302,8 @@ export class FutbolScene extends BaseScene {
     this.createBall();
     this.createHud();
 
-    this.clockFrom = parseClock(KICKOFF_CLOCK);
-    this.clockTo = parseClock(END_CLOCK);
+    this.clockFrom = this.cinco ? StoryState.clock : parseClock(KICKOFF_CLOCK);
+    this.clockTo = this.cinco ? StoryState.clock + 60 : parseClock(END_CLOCK);
     StoryState.setClock(this.clockFrom, this.clockFrom);
 
     const cam = this.cameras.main;
@@ -286,7 +318,7 @@ export class FutbolScene extends BaseScene {
     playMusic('futbol');
     setAmbient({ rain: 'none', indoor: false });
     if (this.tutorial) this.startTutorial();
-    else this.kickoff(0, '¡Pitazo inicial!', 'Intercambio FC saca del medio');
+    else this.kickoff(0, '¡Pitazo inicial!', `${this.teams.us[2]} saca del medio`);
     this.cameras.main.fadeIn(400, 0, 0, 0);
   }
 
@@ -397,9 +429,9 @@ export class FutbolScene extends BaseScene {
   private createPlayers(): void {
     const me = playerLook({ ...currentOutfit(), shirt: BLUE, pants: '#f0f0e8' }, false);
     const humanTex = this.makeTexture(`futbol:yo:${JSON.stringify(me)}`, { ...me, extras: (me.extras ?? []).filter((e) => e !== 'backpack') });
-    FORMATION.forEach(([role, hx, hy], i) => {
+    this.formation.forEach(([role, hx, hy], i) => {
       // Nuestro equipo: el 11 (delantero de abajo) eres tú.
-      const human = i === 10;
+      const human = i === this.formation.length - 1;
       const mate = US[Math.min(i, US.length - 1)];
       const ourTex = human
         ? humanTex
@@ -525,16 +557,16 @@ export class FutbolScene extends BaseScene {
     if (this.half === 1) {
       this.half = 2;
       this.halfMs = 0;
-      this.showBanner('Medio tiempo', `Intercambio ${this.score[0]} – ${this.score[1]} Ingeniería · ¡Agua y a seguir!`);
+      this.showBanner('Medio tiempo', `${this.teams.us[1]} ${this.score[0]} – ${this.score[1]} ${this.teams.them[1]} · ¡Agua y a seguir!`);
       this.pauseMs = 2600;
-      this.afterPause = () => this.kickoff(1, 'Segundo tiempo', 'Ingeniería FC saca del medio');
+      this.afterPause = () => this.kickoff(1, 'Segundo tiempo', `${this.teams.them[2]} saca del medio`);
       return;
     }
     this.finished = true;
     this.time.delayedCall(350, () => playSfx('silbato'));
     const [us, them] = this.score;
     const verdict = us > them ? '¡GANAMOS!' : us < them ? 'Perdimos...' : 'Empate';
-    this.showBanner(`FINAL · ${verdict}`, `Intercambio ${us} – ${them} Ingeniería\n\n(E para seguir)`);
+    this.showBanner(`FINAL · ${verdict}`, `${this.teams.us[1]} ${us} – ${them} ${this.teams.them[1]}\n\n(E para seguir)`);
   }
 
   private finish(): void {
@@ -562,12 +594,12 @@ export class FutbolScene extends BaseScene {
     let who: string;
     if (own) who = `Autogol de ${scorer.human ? 'ti...' : scorer.name}`;
     else if (team === 0) who = mine ? '¡GOLAZO TUYO!' : `¡Gol de ${scorer?.name ?? 'Intercambio'}!`;
-    else who = `Gol de ${scorer?.name ?? 'Ingeniería'}...`;
-    const title = team === 0 ? '¡GOOOOL!' : own ? 'Autogol' : 'Gol de Ingeniería';
-    const subtitle = `${who}\nIntercambio ${this.score[0]} – ${this.score[1]} Ingeniería`;
+    else who = `Gol de ${scorer?.name ?? this.teams.them[1]}...`;
+    const title = team === 0 ? '¡GOOOOL!' : own ? 'Autogol' : `Gol de ${this.teams.them[1]}`;
+    const subtitle = `${who}\n${this.teams.us[1]} ${this.score[0]} – ${this.score[1]} ${this.teams.them[1]}`;
     this.ball.owner = null;
     this.aiming = null;
-    const next = (): void => this.kickoff(team === 0 ? 1 : 0, 'Saque del medio', team === 0 ? 'Ingeniería FC' : 'Intercambio FC');
+    const next = (): void => this.kickoff(team === 0 ? 1 : 0, 'Saque del medio', team === 0 ? this.teams.them[2] : this.teams.us[2]);
     const vin = mine ? (this.myGoals === 3 ? 'futbol_hattrick' : 'futbol_gol') : own && scorer.human ? 'futbol_autogol' : null;
     if (!vin) {
       this.showBanner(title, subtitle);
@@ -597,7 +629,7 @@ export class FutbolScene extends BaseScene {
     taker.y = y;
     this.ball = { x, y, z: 0, vx: 0, vy: 0, vz: 0, owner: taker, last: taker, target: null };
     taker.think = 0.5;
-    this.showBanner('Lateral', team === 0 ? 'Para Intercambio' : 'Para Ingeniería');
+    this.showBanner('Lateral', team === 0 ? `Para ${this.teams.us[1]}` : `Para ${this.teams.them[1]}`);
     this.pauseMs = 900;
   }
 
@@ -765,7 +797,7 @@ export class FutbolScene extends BaseScene {
     this.cone.setVisible(false);
     this.tutText.setText('');
     this.tutBg.clear();
-    this.kickoff(0, '¡Pitazo inicial!', 'Intercambio FC saca del medio');
+    this.kickoff(0, '¡Pitazo inicial!', `${this.teams.us[2]} saca del medio`);
   }
 
   // -------------------------------------------------------------------------
@@ -1323,7 +1355,7 @@ export class FutbolScene extends BaseScene {
     this.drawAim();
 
     const minute = Math.min(45, Math.floor((this.halfMs / HALF_MS) * 45)) + (this.half - 1) * 45;
-    this.scoreText.setText(this.tut ? 'CALENTAMIENTO' : `INT ${this.score[0]} – ${this.score[1]} ING   ${String(minute).padStart(2, '0')}'`);
+    this.scoreText.setText(this.tut ? 'CALENTAMIENTO' : `${this.teams.us[0]} ${this.score[0]} – ${this.score[1]} ${this.teams.them[0]}   ${String(minute).padStart(2, '0')}'`);
     this.sky.setFillStyle(skyColor(StoryState.clock));
     this.drawRadar();
     // La ayuda: hasta que pateas por primera vez.

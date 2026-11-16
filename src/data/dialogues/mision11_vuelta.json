@@ -1,0 +1,758 @@
+{
+ "m11_espera_living": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Te sientas en el sofá del 1104. Begoña te mira. Tú miras la puerta. El reloj de la cocina hace tic, tac, tic.",
+    "effects": [
+     {
+      "vineta": "m11_espera"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "19:12. Voces en el pasillo. La llave de Laura no entra porque está intentando abrir con la del carro de Danilo.",
+    "effects": [
+     {
+      "vineta": "m11_voces"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Se abre la puerta. Laura entra quemada por el sol, con el pelo hecho un nido, y suelta la mochila en el suelo.",
+    "effects": [
+     {
+      "vineta": "m11_laura_vuelve"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "¡Chileno! ¡Estás aquí! ¿Has regado a Begoña? ¡Está preciosa! ...Hola. Hola, hola.",
+    "effects": [
+     {
+      "vineta": "m11_hola_hola"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_begona_regada"
+      },
+      "goto": "n6"
+     },
+     {
+      "goto": "n5"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "...Begoña está un poco mustia. ¿No la has regado? ¡Chileno! ...Bueno. Bueno. Está viva.",
+    "effects": [
+     {
+      "vineta": "m11_mustia"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "text": "Te abraza. Huele a protector solar, a lago y a carretera. Dura un segundo más de lo normal.",
+    "effects": [
+     {
+      "vineta": "m11_abrazo_vuelta"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "Me cambio y salimos a comer, que estoy muerta de hambre. Dadme cinco minutos. Diez. Quince.",
+    "effects": [
+     {
+      "vineta": "m11_me_cambio"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "text": "Laura se encierra en el cuarto. Danilo te hace una seña con la cabeza hacia el balcón.",
+    "effects": [
+     {
+      "vineta": "m11_sena"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "speaker": "Danilo",
+    "text": "Chileno. Vení. Al balcón.",
+    "effects": [
+     {
+      "vineta": "m11_veni"
+     },
+     {
+      "setFlag": "m11_volvieron"
+     },
+     {
+      "objective": "Sal al balcón con Danilo"
+     }
+    ]
+   }
+  }
+ },
+ "m11_balcon_danilo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El balcón del 1104. El mismo de la noche de la luna. Ahora con Danilo, que se apoya en la baranda como si fuera a dar una noticia en el telediario.",
+    "effects": [
+     {
+      "vineta": "m11_balcon_danilo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Ve, parcero. Hablé con Laura, ¿sí? En el lago. El sábado, sentados en el muelle. Le pregunté varias cosas.",
+    "effects": [
+     {
+      "vineta": "m11_nube_1"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Le pregunté si estaba bien, si extrañaba España, si le gustaba Cali. Lo normal. Y después le pregunté si le gustaba alguien de acá.",
+    "effects": [
+     {
+      "vineta": "m11_nube_1"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Danilo",
+    "text": "Y ella se quedó callada. Miró el agua. Y me dijo: «Me gusta alguien. Alguien de un país que tiene una estrellita en la bandera».",
+    "effects": [
+     {
+      "vineta": "m11_nube_2"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Una estrellita. Blanca. Sobre un cuadrado azul.",
+    "effects": [
+     {
+      "vineta": "m11_estrellita"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "Y siguió, ¿eh? Me dijo que es una persona que le gusta mucho. Que la trata bien. Que la hace reír cuando no quiere reírse. Que baila fatal pero le pone ganas.",
+    "effects": [
+     {
+      "vineta": "m11_nube_3"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Danilo",
+    "text": "Que el día que le contó lo de su hermana chiquita, la persona no le dio un consejo, solo la escuchó. Y que eso nadie lo hace.",
+    "effects": [
+     {
+      "vineta": "m11_nube_3"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Danilo",
+    "text": "Y que tiene un perro con unas orejas ridículas.",
+    "effects": [
+     {
+      "vineta": "m11_nube_4"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "speaker": "Danilo",
+    "text": "Así que yo no sé, parce. Yo conozco un solo chileno con un perro de orejas ridículas. ¿Vos conocés otro? ¿O te hago un dibujo?",
+    "effects": [
+     {
+      "vineta": "m11_danilo_dibujo"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "text": "Te quedas helado. Por fuera. Por dentro, no.",
+    "effects": [
+     {
+      "vineta": "m11_helado_por_dentro"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Estás seguro?»",
+      "goto": "n10"
+     },
+     {
+      "label": "«...Wow.»",
+      "goto": "n11"
+     },
+     {
+      "label": "«¿Y por qué me lo cuentas?»",
+      "effects": [
+       {
+        "setFlag": "m11_danilo_cuenta"
+       }
+      ],
+      "goto": "n12"
+     }
+    ]
+   },
+   "n10": {
+    "speaker": "Danilo",
+    "text": "Parce, soy psicólogo. Bueno, casi. Estoy seguro. Ella estaba roja como el escudo del América.",
+    "effects": [
+     {
+      "vineta": "m11_seguro"
+     }
+    ],
+    "next": "n13"
+   },
+   "n11": {
+    "speaker": "Danilo",
+    "text": "Wow, sí. Wow es la palabra.",
+    "effects": [
+     {
+      "vineta": "m11_wow"
+     }
+    ],
+    "next": "n13"
+   },
+   "n12": {
+    "speaker": "Danilo",
+    "text": "Porque te quiero, huevón. Y porque la quiero a ella. Y porque los dos son lentísimos y yo ya me estoy poniendo viejo esperando.",
+    "effects": [
+     {
+      "vineta": "m11_te_quiero"
+     }
+    ],
+    "next": "n13"
+   },
+   "n13": {
+    "speaker": "Danilo",
+    "text": "Ahora... yo no sé nada de tu vida. Bueno, sé un poco. Sé que los jueves hueles a cloro y que el sábado no contestaste al grupo hasta la una de la mañana.",
+    "effects": [
+     {
+      "vineta": "m11_danilo_sabe"
+     }
+    ],
+    "next": "n14"
+   },
+   "n14": {
+    "speaker": "Danilo",
+    "text": "No te pregunto nada. Solo te digo: pensalo. Sea lo que sea que decidás, decidilo bien. Ella no es para tantear de mala fe, ¿sí? Ni la otra persona tampoco.",
+    "effects": [
+     {
+      "vineta": "m11_pensalo"
+     }
+    ],
+    "next": "n15"
+   },
+   "n15": {
+    "text": "Danilo vuelve adentro a robarse una galleta. Te quedas solo en el balcón. La Calle 18 de noche. Dos nombres en la cabeza.",
+    "effects": [
+     {
+      "vineta": "m11_decision_balcon"
+     }
+    ],
+    "next": "n16"
+   },
+   "n16": {
+    "text": "Laura: los pandebonos, la acera, la luna, «me gustaría que estuvieras aquí». Sira: el cloro, el fotomatón, la esquina, «avísame cuando sepas qué quieres».",
+    "effects": [
+     {
+      "vineta": "m11_dos_caras"
+     }
+    ],
+    "next": "n17"
+   },
+   "n17": {
+    "text": "¿Qué vas a hacer?",
+    "effects": [
+     {
+      "vineta": "m11_dos_caras"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Seguirle el juego a Laura. A ver dónde llega esto.",
+      "effects": [
+       {
+        "setFlag": "m11_dec_laura"
+       },
+       {
+        "setFlag": "m11_ql_decide"
+       }
+      ],
+      "goto": "n18"
+     },
+     {
+      "label": "Quedarte con Sira. Lo de Laura... dejarlo ahí.",
+      "effects": [
+       {
+        "setFlag": "m11_dec_sira"
+       },
+       {
+        "setFlag": "m11_qs_decide"
+       }
+      ],
+      "goto": "n19"
+     },
+     {
+      "label": "Seguir con las dos. Ir tanteando, de buena fe, sin mentirle a nadie.",
+      "effects": [
+       {
+        "setFlag": "m11_dec_ambas"
+       }
+      ],
+      "goto": "n20"
+     }
+    ]
+   },
+   "n18": {
+    "text": "Laura. Por ahora, Laura. Lo sientes en el estómago. Lo que pase con lo otro... ya verás.",
+    "effects": [
+     {
+      "vineta": "m11_decide_laura"
+     }
+    ],
+    "next": "n21"
+   },
+   "n19": {
+    "text": "Sira. Lo tranquilo. Lo que nadie ve. Con Laura vas a ser amable, pero no vas a cruzar la línea. O eso te dices.",
+    "effects": [
+     {
+      "vineta": "m11_decide_sira"
+     }
+    ],
+    "next": "n21"
+   },
+   "n20": {
+    "text": "No sabes. Y no vas a fingir que sabes. Vas a ir despacio, de buena fe, escuchando lo que sientes. Sin promesas que no puedas cumplir.",
+    "effects": [
+     {
+      "vineta": "m11_decide_ambas"
+     }
+    ],
+    "next": "n21"
+   },
+   "n21": {
+    "text": "Se abre la puerta del balcón. Laura, con un vestido azul y el pelo todavía mojado.",
+    "effects": [
+     {
+      "vineta": "m11_laura_azul"
+     }
+    ],
+    "next": "n22"
+   },
+   "n22": {
+    "speaker": "Laura",
+    "text": "¿Qué? ¿Qué me miráis así los dos? ¿Tengo algo en la cara?",
+    "effects": [
+     {
+      "vineta": "m11_que_me_mirais"
+     }
+    ],
+    "next": "n23"
+   },
+   "n23": {
+    "speaker": "Danilo",
+    "text": "Nada, nada. El chileno, que ve el vestido y se le olvida el español. Vamos a comer. ¡Salchipapas! Hay una señora aquí abajo que es leyenda.",
+    "effects": [
+     {
+      "vineta": "m11_salchipapas"
+     },
+     {
+      "setFlag": [
+       "m11_decidio",
+       "m11_sigue_laura",
+       "m11_sigue_danilo"
+      ]
+     },
+     {
+      "objective": "Bajen a las salchipapas de doña Chela (en la cuadra del Bobo)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_chela": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_salchipapa"
+      },
+      "goto": "n1"
+     },
+     {
+      "if": {
+       "notFlag": "m11_decidio"
+      },
+      "goto": "n2"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Doña Chela",
+    "text": "¿Otra porción, mijo? ¡Eso es pa' crecer!",
+    "effects": [
+     {
+      "vineta": "m11_chela"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Doña Chela",
+    "text": "Todavía estoy prendiendo el aceite, mijo. Vuelva en un ratico.",
+    "effects": [
+     {
+      "vineta": "m11_chela"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Doña Chela",
+    "text": "¡Danilito! ¡Volvió el muchacho! ¿Qué les pongo? ¿Salchipapa sencilla, la especial o la «Bomba Chela»?",
+    "effects": [
+     {
+      "vineta": "m11_chela_danilo"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "¿Salchipapa? ¿Salchicha con patatas? ¿Eso es todo? ¿Por qué hay tantas salsas?",
+    "effects": [
+     {
+      "vineta": "m11_laura_salsas"
+     }
+    ],
+    "choices": [
+     {
+      "label": "La «Bomba Chela» para los tres",
+      "effects": [
+       {
+        "setFlag": "m11_bomba"
+       },
+       {
+        "pay": 18000
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "Tres sencillas",
+      "effects": [
+       {
+        "pay": 12000
+       }
+      ],
+      "goto": "n6"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Doña Chela",
+    "text": "¡Eso! Salchicha, papa, huevito de codorniz, queso, maíz, ripio de papa y todas las salsas. ¡Pa' los valientes!",
+    "effects": [
+     {
+      "vineta": "m11_bomba"
+     }
+    ],
+    "next": "n7"
+   },
+   "n6": {
+    "speaker": "Doña Chela",
+    "text": "Sencillas pero con cariño. Ya va.",
+    "effects": [
+     {
+      "vineta": "m11_chela"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "Vale. Hay salsa rosada, de piña, de ajo, mostaza, y una verde que da miedo. ¿Cuál le pongo?",
+    "effects": [
+     {
+      "vineta": "m11_salsas"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Todas. Así se come en Cali.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_todas"
+       }
+      ],
+      "goto": "n8"
+     },
+     {
+      "label": "«La de piña. Confía en mí.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_pina"
+       }
+      ],
+      "goto": "n9"
+     },
+     {
+      "label": "«La verde. Para ver tu cara.»",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_pica"
+       }
+      ],
+      "goto": "n10"
+     }
+    ]
+   },
+   "n8": {
+    "speaker": "Danilo",
+    "text": "¡ESO, chileno! Ya eres caleño. Te doy la cédula.",
+    "effects": [
+     {
+      "vineta": "m11_cedula"
+     }
+    ],
+    "next": "n11"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "¿Piña con salchicha? ...¡Hostia! ¡Está buenísimo! ¿Por qué está buenísimo?",
+    "effects": [
+     {
+      "vineta": "m11_pina"
+     }
+    ],
+    "next": "n11"
+   },
+   "n10": {
+    "speaker": "Laura",
+    "text": "¡PICA! ¡PICA MUCHO! ¡AGUA! ¡Te odio! ¡No te odio! ¡AGUA!",
+    "effects": [
+     {
+      "vineta": "m11_pica"
+     }
+    ],
+    "next": "n11"
+   },
+   "n11": {
+    "text": "Comen de pie, en la acera, con tenedorcitos de plástico. Danilo cuenta el lago entero: los mosquitos, el viento, uno de Alemania que se cayó del windsurf once veces.",
+    "effects": [
+     {
+      "vineta": "m11_comen_acera"
+     }
+    ],
+    "next": "n12"
+   },
+   "n12": {
+    "text": "Laura se ríe de todo. Y cada vez que se ríe, te mira a ti. No a Danilo. A ti.",
+    "effects": [
+     {
+      "vineta": "m11_te_mira"
+     }
+    ],
+    "next": "n13"
+   },
+   "n13": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_dec_sira"
+      },
+      "goto": "n14"
+     },
+     {
+      "goto": "n15"
+     }
+    ]
+   },
+   "n14": {
+    "text": "Le devuelves la sonrisa. Pero un poco menos. Ella lo nota. No dice nada.",
+    "effects": [
+     {
+      "vineta": "m11_sonrisa_menos"
+     }
+    ],
+    "next": "n16"
+   },
+   "n15": {
+    "text": "Le devuelves la sonrisa. Danilo hace como que no ve nada y se mete una papa entera a la boca.",
+    "effects": [
+     {
+      "vineta": "m11_danilo_papa"
+     }
+    ],
+    "next": "n16"
+   },
+   "n16": {
+    "speaker": "Danilo",
+    "text": "Bueno, mañana es festivo. ¿Plan? Yo digo La Vorágine, la Chorrera del Indio. Mila se apunta. Dice que trae a una amiga peruana.",
+    "effects": [
+     {
+      "vineta": "m11_plan_voragine"
+     }
+    ],
+    "next": "n17"
+   },
+   "n17": {
+    "speaker": "Laura",
+    "text": "¡La Vorágine! ¡Como el libro! ¡Te lo dije! Te dije que Cali me pone las cosas delante. Yo llevo a Fiorella, la de Lima que vive en el 6.",
+    "effects": [
+     {
+      "vineta": "m11_como_el_libro"
+     }
+    ],
+    "next": "n18"
+   },
+   "n18": {
+    "speaker": "Laura",
+    "text": "Y... ¿por qué no invitas a tu amiga? La arquitecta. Cuantos más, mejor.",
+    "effects": [
+     {
+      "vineta": "m11_invita_sira"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Le escribo.»",
+      "effects": [
+       {
+        "setFlag": "m11_invita_sira"
+       }
+      ],
+      "goto": "n20"
+     },
+     {
+      "label": "«No sé si pueda.»",
+      "effects": [
+       {
+        "setFlag": "m11_invita_sira"
+       }
+      ],
+      "goto": "n19"
+     }
+    ]
+   },
+   "n19": {
+    "speaker": "Laura",
+    "text": "Pregúntale igual. Si no, no pasa nada.",
+    "effects": [
+     {
+      "vineta": "m11_pregunta_igual"
+     }
+    ],
+    "next": "n20"
+   },
+   "n20": {
+    "text": "Le escribes a Sira. Contesta en diez segundos.",
+    "effects": [
+     {
+      "vineta": "m11_chat_sira_voragine"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m11_sira_voragine"
+     }
+    ],
+    "next": "n21"
+   },
+   "n21": {
+    "speaker": "Sira",
+    "text": "«¡¿La Vorágine?! ¡Voy! Nunca he ido a la Chorrera. Llevo bloqueador para todos 🙌»",
+    "effects": [
+     {
+      "vineta": "m11_chat_sira_voragine"
+     }
+    ],
+    "next": "n22"
+   },
+   "n22": {
+    "text": "Laura lee el mensaje por encima de tu hombro. «¡Genial!», dice. Y lo dice de verdad. Creo.",
+    "effects": [
+     {
+      "vineta": "m11_genial"
+     },
+     {
+      "setFlag": "m11_salchipapa"
+     },
+     {
+      "clearFlag": [
+       "m11_sigue_laura",
+       "m11_sigue_danilo"
+      ]
+     },
+     {
+      "objective": "A dormir: mañana, La Vorágine (salen a las 8 del lobby)"
+     },
+     {
+      "clockMax": "dom++ 23:59"
+     }
+    ]
+   }
+  }
+ },
+ "m11_despedida_salchipapa": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "Mañana a las ocho en el lobby. Con bloqueador. Y con zapatillas de verdad, no esas de ciudad.",
+    "effects": [
+     {
+      "vineta": "m11_zapatillas"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Y dormí, chileno. Que se te nota en la cara que no dormiste nada este finde.",
+    "effects": [
+     {
+      "vineta": "m11_dormi"
+     }
+    ]
+   }
+  }
+ }
+}

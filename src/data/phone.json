@@ -91,6 +91,13 @@
     "danilo": {
       "name": "Danilo",
       "color": "#3c9c5c"
+    },
+    "laura": {
+      "name": "Laura",
+      "color": "#c8303c",
+      "if": {
+        "mission": "mission10"
+      }
     }
   },
   "messages": {
@@ -618,6 +625,58 @@
     "m10_danilo_3": {
       "from": "danilo",
       "text": "Llegué. Gracias por el domingo, parce. Dormí. Es una orden médica... bueno, psicológica 😂"
+    },
+    "m11_laura_helado": {
+      "from": "laura",
+      "text": "Chileno. Helado. Farmadía. 10 minutos 🍦 No acepto excusas"
+    },
+    "m11_sira_cancha": {
+      "from": "sira",
+      "text": "Te vi jugar desde el segundo piso de Arquitectura 👀 Corres raro. Pero corres."
+    },
+    "m11_danilo_jueves": {
+      "from": "danilo",
+      "text": "Chileno: a las 9 paso por el Bobo con Mila. Vamos a San Antonio. Laura ya dijo que sí. Vojabés 😎"
+    },
+    "m11_sira_mall": {
+      "from": "sira",
+      "text": "¿Mall? Majo necesita un vestido y Cata opinar de todo. Te espero en el Guayacán 🙃"
+    },
+    "m11_danilo_1": {
+      "from": "danilo",
+      "text": "Parce. Ve. Hablé con Laura hoy en el lago. No sabés lo que dijo de vos 👀"
+    },
+    "m11_laura_muelle": {
+      "from": "laura",
+      "text": "¡Buenos días! No te olvides de Begoña 🌱 Necesita agua y que le hablen bonito."
+    },
+    "m11_danilo_2": {
+      "from": "danilo",
+      "text": "Chileno. Le pregunté cosas a Laura. Sobre vos. El domingo hablamos 🤐🔥"
+    },
+    "m11_laura_luna": {
+      "from": "laura",
+      "text": "La misma luna de anoche. ¿La estás viendo? Me gustaría que estuvieras aquí 🌕"
+    },
+    "m11_laura_llegamos": {
+      "from": "laura",
+      "text": "¡Volvemos! Llegamos a las 7. ¿Nos esperas en mi depa? Tienes la llave 😏"
+    },
+    "m11_sira_voragine": {
+      "from": "sira",
+      "text": "¡¿La Vorágine?! ¡Voy! Llevo bloqueador para todos 🙌"
+    },
+    "m11_sira_cancela": {
+      "from": "sira",
+      "text": "Ay no 😭 Me salió algo con mi familia. No puedo ir. Pásenla rico. Y me mandas fotos 💙"
+    },
+    "m11_laura_10min": {
+      "from": "laura",
+      "text": "Vale, 10. Me ha llamado ama y le he tenido que contar TODO el día. Bueno, todo no 😅"
+    },
+    "m11_sira_final": {
+      "from": "sira",
+      "text": "¿Estás despierto? No podía dormir. Mañana te tengo una sorpresa 💙 Es algo que debí decirte hace tiempo."
     }
   },
   "calls": {

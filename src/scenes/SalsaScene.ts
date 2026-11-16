@@ -111,6 +111,13 @@ interface DanceStyle {
   street: boolean;
   /** Misión 9: bajo la pérgola del patio de Tami, con Cali prendida abajo (en vez de la Calle Real). */
   pergola?: boolean;
+  /**
+   * Misión 10 (prefijo m11_): `farmadia` = en la acera de la Farmadía, de noche, con la salsa de la tienda de al
+   * lado; `salsoteca` = una salsoteca de San Fernando con luces y espejo.
+   */
+  scenery?: 'farmadia' | 'salsoteca';
+  /** Personaje de sprites.json si no es el mismo id del estilo (ej. `laura_farma` baila con el sprite `laura`). */
+  lookId?: string;
 }
 
 const SIRA_STYLE: DanceStyle = {
@@ -132,6 +139,48 @@ const SIRA_STYLE: DanceStyle = {
 
 /** Misión 8: en la Calle Real, con la música de la tienda de doña Gladys. Cada pareja baila distinto. */
 const CALLE_STYLES: Record<string, Omit<DanceStyle, 'look' | 'street'>> = {
+  // Misión 10: Laura, en la acera de la Farmadía, con el helado a medio comer y la salsa de la tienda de al lado.
+  laura_farma: {
+    name: 'Laura',
+    lookId: 'laura',
+    scenery: 'farmadia',
+    rounds: [
+      { title: 'En la acera', intro: 'Laura: «¿Aquí? ¿En la calle? ¿Con el helado en la mano? ...Vale. Vale. Pero si me caigo, la culpa es tuya.»\nA / D: pasos', hint: 'A / D cuando el paso llegue a la marca · Esc: saltar', beatMs: 560, build: () => repeat(BASIC) },
+      { title: 'La vuelta (sin soltar el helado)', intro: 'Laura: «Ahora la vuelta. Sujétame el cono, que esto es serio.»\nA / D: pasos · E: la vuelta', hint: 'E: la vuelta en el 5 · Esc: saltar', beatMs: 520, build: () => repeat(TURN) },
+      { title: 'Hasta que se acabe la canción', intro: 'Laura: «No pares. Si paras, me da vergüenza. Si no paras... también, pero menos.»\nA / D · E', hint: 'No mires los pies · Esc: saltar', beatMs: 480, build: () => repeat(TURN) },
+    ],
+    miss: ['¡Ay, el helado!', '¡Que me pisas!', '¡Hostia, el bordillo!', 'Mírame, no al suelo'],
+    hits: ['¡Eso!', '¡Aupa!', 'Vale, vale... esto mola', 'Que nos mira el guardia'],
+    quit: 'Laura: «¿Ya? Qué pena... Me lo apunto: me debes el final de la canción.»',
+    pass: 'Laura: «¡Bai! ¡Así!»',
+    fail: 'Laura: «Fatal. Pero fatal bonito.»',
+    end: [
+      'Laura: «Nadie me había sacado a bailar en una acera. En mi vida. ...No digas nada. No lo estropees.»',
+      'Laura: «En Bakio esto no pasa. Allí llueve y nos metemos al bar. Aquí hace calor y bailamos en la calle. Me quedo con aquí.»',
+      'Laura: «Te he pisado yo a ti esta vez. Estamos en paz. ...Gracias, chileno. De verdad.»',
+    ],
+  },
+  // Misión 10: Sira, en la salsoteca con Majo y Cata, el sábado en que Laura está en Calima.
+  sira_salsoteca: {
+    name: 'Sira',
+    lookId: 'sira_m7',
+    scenery: 'salsoteca',
+    rounds: [
+      { title: 'Salsa de la vieja guardia', intro: 'Sira: «Aquí bailan los duros, chileno. Haz como en el depa. Uno, dos, tres... y el cuatro se descansa.»\nA / D: pasos', hint: 'A / D cuando el paso llegue a la marca · Esc: saltar', beatMs: 540, build: () => repeat(BASIC) },
+      { title: 'La vuelta doble', intro: 'Sira: «Ahora dos vueltas seguidas. Majo y Cata nos están grabando, así que nada de pisarme.»\nA / D: pasos · E: la vuelta', hint: 'E: la vuelta en el 5 · Esc: saltar', beatMs: 480, build: () => repeat(TURN) },
+      { title: 'Pegaditos (otra vez)', intro: 'Sira: «La última pegadito. Como esa vez. ¿Te acuerdas?»\nA / D · E', hint: 'No mires los pies · Esc: saltar', beatMs: 440, build: () => repeat(TURN) },
+    ],
+    miss: ['¡Mi pie, chileno!', '¡El cuatro!', 'Me vas a dejar coja', 'Mírame a mí'],
+    hits: ['¡Eso, papi!', '¡Ahí está!', 'Majo, ¿lo grabaste?', 'Ya bailas como caleño'],
+    quit: 'Sira: «¿Cansado? Bueno, me siento contigo. Pero la próxima no te salvas.»',
+    pass: 'Sira: «¡Eso!»',
+    fail: 'Sira: «Me pisaste. Lo vamos a ver en el video, ¿sí?»',
+    end: [
+      'Sira: «...Bailas mejor que hace un mes. ¿Con quién estás practicando, ah? ...Es broma. ¿Es broma?»',
+      'Sira: «Bien, bien. Ya no me da pena que me vean contigo en una pista.»',
+      'Sira: «Me pisaste. Pero me gusta bailar contigo igual. No le digas a Majo que dije eso.»',
+    ],
+  },
   // Misión 9: Laura, bajo la pérgola de la casa de Tami (arriba de Cristo Rey).
   laura: {
     name: 'Laura',
@@ -275,7 +324,7 @@ export class SalsaScene extends BaseScene {
   init(data: SalsaSceneData): void {
     this.done = data.done;
     const calle = data.partner ? CALLE_STYLES[data.partner] : undefined;
-    this.style = calle && data.partner ? { ...calle, look: data.partner, street: true } : SIRA_STYLE;
+    this.style = calle && data.partner ? { ...calle, look: calle.lookId ?? data.partner, street: true } : SIRA_STYLE;
     this.roundIdx = 0;
     this.score = 0;
     this.hits = 0;
@@ -307,7 +356,9 @@ export class SalsaScene extends BaseScene {
     this.bannerText = this.addText(BASE_WIDTH / 2, 88, '', { fontSize: '10px', fontStyle: '600', color: THEME.ink, align: 'center', wordWrap: { width: 270 } })
       .setOrigin(0.5)
       .setDepth(14);
-    if (this.style.pergola) this.drawPergola();
+    if (this.style.scenery === 'farmadia') this.drawFarmadia();
+    else if (this.style.scenery === 'salsoteca') this.drawSalsoteca();
+    else if (this.style.pergola) this.drawPergola();
     else if (this.style.street) this.drawStreet();
     else this.drawRoom();
     this.setupZoom();
@@ -535,6 +586,51 @@ export class SalsaScene extends BaseScene {
     // El piso de deck.
     g.fillStyle(0x8c6a48, 1).fillRect(0, FLOOR_Y, BASE_WIDTH, BASE_HEIGHT - FLOOR_Y);
     for (let x = 0; x < BASE_WIDTH; x += 14) g.fillStyle(0x6a4c30, 1).fillRect(x, FLOOR_Y, 1, BASE_HEIGHT - FLOOR_Y);
+    this.rain = [];
+  }
+
+  /** Misión 10: la acera de la Farmadía 24H, de noche: el letrero rojo, la vitrina de La Espiga y la tienda con el parlante. */
+  private drawFarmadia(): void {
+    const g = this.bg;
+    g.fillStyle(0x10162c, 1).fillRect(0, 0, BASE_WIDTH, FLOOR_Y);
+    for (let i = 0; i < 24; i++) g.fillStyle(0xf8f4ec, 0.6).fillRect((i * 53) % BASE_WIDTH, (i * 29) % 30, 1, 1);
+    // La luna casi llena.
+    g.fillStyle(0xf4f0e0, 1).fillCircle(280, 20, 9);
+    g.fillStyle(0x10162c, 1).fillCircle(284, 18, 8);
+    // La Farmadía: fachada blanca con el letrero rojo prendido.
+    g.fillStyle(0xe8e4dc, 1).fillRect(10, 44, 150, FLOOR_Y - 44);
+    g.fillStyle(0xc8303c, 1).fillRect(20, 50, 130, 14);
+    g.fillStyle(0xfff4f4, 1).fillRect(26, 55, 118, 4);
+    g.fillStyle(0xbfe8f8, 0.85).fillRect(24, 72, 60, 46).fillRect(98, 72, 52, 46);
+    g.fillStyle(0x2a2433, 1).fillRect(84, 70, 14, FLOOR_Y - 70);
+    // La tienda de al lado, con la puerta abierta, la luz amarilla y el parlante en la acera.
+    g.fillStyle(0x6a4c38, 1).fillRect(176, 60, 120, FLOOR_Y - 60);
+    g.fillStyle(0xf8e8a8, 0.85).fillRect(186, 76, 40, FLOOR_Y - 76);
+    g.fillStyle(0x2c9c58, 1).fillRect(176, 56, 120, 6);
+    g.fillStyle(0x1c1824, 1).fillRect(240, 100, 18, 38);
+    g.fillStyle(0x4a4a5c, 1).fillCircle(249, 110, 5).fillCircle(249, 126, 6);
+    // La acera con sus baldosas y el bordillo amarillo.
+    g.fillStyle(0x9c9c98, 1).fillRect(0, FLOOR_Y, BASE_WIDTH, BASE_HEIGHT - FLOOR_Y);
+    for (let x = 0; x < BASE_WIDTH; x += 16) g.fillStyle(0x84847f, 1).fillRect(x, FLOOR_Y, 1, BASE_HEIGHT - FLOOR_Y);
+    g.fillStyle(0xe8c030, 1).fillRect(0, BASE_HEIGHT - 6, BASE_WIDTH, 2);
+    this.rain = [];
+  }
+
+  /** Misión 10: una salsoteca de San Fernando: piso de tablas, espejo, luces de colores y los discos en la pared. */
+  private drawSalsoteca(): void {
+    const g = this.bg;
+    g.fillStyle(0x1c1024, 1).fillRect(0, 0, BASE_WIDTH, FLOOR_Y);
+    for (let i = 0; i < 9; i++) {
+      const x = 16 + i * 34;
+      g.fillStyle(0x0c0c10, 1).fillCircle(x, 26, 11);
+      g.fillStyle([0xc8303c, 0xe8b828, 0x2c64c0][i % 3], 1).fillCircle(x, 26, 4);
+    }
+    g.fillStyle(0x3a2a44, 1).fillRect(0, 48, BASE_WIDTH, 70);
+    g.fillStyle(0x6a5a8c, 0.35).fillRect(10, 52, BASE_WIDTH - 20, 62);
+    for (let i = 0; i < 6; i++) g.fillStyle([0xe868a8, 0x58d4d0, 0xf8dc68][i % 3], 0.16).fillTriangle(40 + i * 50, 0, 10 + i * 50, FLOOR_Y, 70 + i * 50, FLOOR_Y);
+    for (const x of [30, 60, 262, 292]) g.fillStyle(0x0c0810, 1).fillCircle(x, FLOOR_Y - 34, 5).fillRect(x - 5, FLOOR_Y - 29, 10, 22);
+    g.fillStyle(0x7c5a3c, 1).fillRect(0, FLOOR_Y, BASE_WIDTH, BASE_HEIGHT - FLOOR_Y);
+    for (let x = 0; x < BASE_WIDTH; x += 12) g.fillStyle(0x5a3e28, 1).fillRect(x, FLOOR_Y, 1, BASE_HEIGHT - FLOOR_Y);
     this.rain = [];
   }
 

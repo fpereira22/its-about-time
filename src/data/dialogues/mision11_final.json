@@ -1,0 +1,1007 @@
+{
+ "m11_805_vuelta": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El 805. Te miras al espejo: barro en las rodillas, una quemadura de sol con la forma de la correa de la mochila y una sonrisa que no se te va.",
+    "effects": [
+     {
+      "vineta": "m11_espejo"
+     },
+     {
+      "objective": "Dúchate (el baño) y después cocina (la cocina)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_ducha": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_duchado"
+      },
+      "goto": "n1"
+     },
+     {
+      "if": {
+       "notFlag": "m11_vuelta_bobo"
+      },
+      "goto": "n2"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Ya te duchaste. Hueles a jabón y no a Chorrera.",
+    "effects": [
+     {
+      "vineta": "m11_duchado"
+     }
+    ]
+   },
+   "n2": {
+    "text": "La ducha del 805.",
+    "effects": [
+     {
+      "vineta": "m11_ducha_vacia"
+     }
+    ]
+   },
+   "n3": {
+    "text": "Agua tibia. Se va el barro, se va la arena del pozo y una hoja de helecho que traías en el pelo sin saber.",
+    "effects": [
+     {
+      "vineta": "m11_ducha"
+     },
+     {
+      "sfx": "ducha"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Cantas la salsa de la Farmadía.",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_ducha"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "Te quedas pensando en el mirador.",
+      "goto": "n5"
+     }
+    ]
+   },
+   "n4": {
+    "text": "Mal. Muy mal. Pero con sentimiento.",
+    "effects": [
+     {
+      "vineta": "m11_canta_ducha"
+     }
+    ],
+    "next": "n6"
+   },
+   "n5": {
+    "text": "«Es un sitio. Y alguien.» Lo repites en la cabeza hasta que se acaba el agua caliente.",
+    "effects": [
+     {
+      "vineta": "m11_piensa_ducha"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "effects": [
+     {
+      "setFlag": "m11_duchado"
+     }
+    ]
+   }
+  }
+ },
+ "m11_cocina_805": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_burger"
+      },
+      "goto": "n1"
+     },
+     {
+      "if": {
+       "notFlag": "m11_duchado"
+      },
+      "goto": "n2"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Las hamburguesas, tapadas con un plato para que no se enfríen.",
+    "effects": [
+     {
+      "vineta": "m11_burgers_tapadas"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Primero la ducha. Hueles a río.",
+    "effects": [
+     {
+      "vineta": "m11_hueles_rio"
+     }
+    ]
+   },
+   "n3": {
+    "text": "El refri: carne molida, pan de hamburguesa, una lechuga valiente, dos tomates, queso en lonchas y una salsa de ajo de la tienda de abajo.",
+    "effects": [
+     {
+      "vineta": "m11_refri"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Hamburguesas. Simples. Que estamos solos y no hay que impresionar a nadie. ...Bueno. Un poco.",
+    "effects": [
+     {
+      "vineta": "m11_simples"
+     },
+     {
+      "event": "burger_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_burger_despues": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_burger_bien"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Dos hamburguesas que parecen de foto. Las tapas con un plato y pones la mesa: dos platos, dos vasos, una vela que encontraste en un cajón.",
+    "effects": [
+     {
+      "vineta": "m11_mesa_puesta"
+     }
+    ],
+    "next": "n3"
+   },
+   "n2": {
+    "text": "Dos hamburguesas honestas, un poco chuecas. Las tapas con un plato. Pones la mesa. Encuentras una vela en un cajón. La prendes. La apagas. La vuelves a prender.",
+    "effects": [
+     {
+      "vineta": "m11_vela"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "effects": [
+     {
+      "setFlag": "m11_burger"
+     },
+     {
+      "event": "espera_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_espera_1": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "21:40. Laura: «Ya voy. Me estoy desenredando el pelo. La Chorrera me lo ha hecho rastas. 5 min.»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_5min"
+     },
+     {
+      "sfx": "notify"
+     }
+    ]
+   }
+  }
+ },
+ "m11_espera_2": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "22:15. Laura: «Vale, 10. Me ha llamado ama y le he tenido que contar TODO el día. Bueno, todo no. 😅»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_10min"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m11_laura_10min"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Qué no le contaste?»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_no_contaste"
+       }
+      ],
+      "goto": "n1"
+     },
+     {
+      "label": "«Las hamburguesas se enfrían.»",
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "«Eso no se cuenta. Como los deseos. 🙊»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_10min"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "«¡Las calientas! ¡Ya voy, ya voy!»",
+    "effects": [
+     {
+      "vineta": "m11_chat_laura_10min"
+     }
+    ]
+   }
+  }
+ },
+ "m11_espera_3": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "22:51. Calientas las hamburguesas por segunda vez. La vela ya va por la mitad.",
+    "effects": [
+     {
+      "vineta": "m11_media_vela"
+     }
+    ]
+   }
+  }
+ },
+ "m11_toc_final": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "23:04. Toc, toc.",
+    "effects": [
+     {
+      "vineta": "m11_toc_final"
+     },
+     {
+      "sfx": "toc_toc"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Laura. Pelo suelto y mojado, una camiseta enorme del Athletic, pantalón corto y chanclas. Trae una botella de agua con gas y dos mandarinas.",
+    "effects": [
+     {
+      "vineta": "m11_laura_athletic"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Perdón, perdón, perdón. Ama. El pelo. La vida. ¿Llego tarde? Llego tardísimo. Huele de maravilla.",
+    "effects": [
+     {
+      "vineta": "m11_perdon_perdon"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Llegas justo.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_justo"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "«Calenté las hamburguesas tres veces.»",
+      "goto": "n4"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Mentiroso. Pero mentiroso majo.",
+    "effects": [
+     {
+      "vineta": "m11_mentiroso_majo"
+     }
+    ],
+    "next": "n5"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "¡Tres veces! Te las compenso. No sé cómo. Ya pensaré algo.",
+    "effects": [
+     {
+      "vineta": "m11_compenso"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "text": "Comen en la mesa del 805, con la vela y la ventana abierta. Cali allá abajo, prendida.",
+    "effects": [
+     {
+      "vineta": "m11_cena_vela"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "Madre mía. Esto está buenísimo. ¿Esto es «simple»? ¿Qué cocinas cuando no es simple? ¿Langosta?",
+    "effects": [
+     {
+      "vineta": "m11_buenisimo"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_burger_bien"
+      },
+      "goto": "n8"
+     },
+     {
+      "goto": "n9"
+     }
+    ]
+   },
+   "n8": {
+    "speaker": "Laura",
+    "text": "En serio. La mejor hamburguesa de Cali. Y he probado la de Danilo, que dice que es la mejor de Cali.",
+    "effects": [
+     {
+      "vineta": "m11_la_mejor"
+     },
+     {
+      "setFlag": "m11_ql_burger"
+     }
+    ],
+    "next": "n10"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "Está un poco quemadita por un lado. Me encanta así. Es como yo: quemadita por un lado.",
+    "effects": [
+     {
+      "vineta": "m11_quemadita"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "effects": [
+     {
+      "setFlag": "m11_cena"
+     },
+     {
+      "objective": "Siéntense en el sofá"
+     }
+    ]
+   }
+  }
+ },
+ "m11_sofa_final": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El sofá del 805. Laura se sienta con las piernas cruzadas, mirándote. Pela una mandarina y te da la mitad.",
+    "effects": [
+     {
+      "vineta": "m11_mandarina"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Bueno. Cuéntame algo. Algo que no sepa.",
+    "effects": [
+     {
+      "vineta": "m11_algo"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Danilo me contó lo que le dijiste en el lago.»",
+      "effects": [
+       {
+        "setFlag": "m11_dijo_lago"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "«Que Walle te manda saludos.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_saludos"
+       }
+      ],
+      "goto": "n6"
+     },
+     {
+      "label": "«Que hoy fue el mejor día desde que llegué a Cali.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_mejor_dia"
+       }
+      ],
+      "goto": "n7"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "...¿Qué? ¿QUÉ? ¿Te lo ha contado? ¡Lo mato! ¡Lo mato y lo tiro a la Chorrera!",
+    "effects": [
+     {
+      "vineta": "m11_lo_mato"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "¿Qué te ha contado exactamente? No. No me lo digas. Sí. Dímelo.",
+    "effects": [
+     {
+      "vineta": "m11_dimelo"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Algo de un país con una estrellita en la bandera.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_estrellita"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "«Algo de un perro con orejas ridículas.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_orejas"
+       }
+      ],
+      "goto": "n5"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "...Hay muchos países con estrellitas. Vietnam. Somalia. Marruecos... ¿Marruecos tiene? Tiene. ...Vale. Era Chile. Era Chile. Ya está.",
+    "effects": [
+     {
+      "vineta": "m11_era_chile"
+     }
+    ],
+    "next": "n8"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "¡Las orejas de Walle NO son ridículas! ¡Son preciosas! ...Ay. Ay, ya me he delatado.",
+    "effects": [
+     {
+      "vineta": "m11_delatado"
+     }
+    ],
+    "next": "n8"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "Ay. Dile a Walle que Txinparta también. Que está deseando conocerlo.",
+    "effects": [
+     {
+      "vineta": "m11_saludos_walle"
+     }
+    ],
+    "next": "n8"
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "...Eso te lo iba a decir yo. Me lo has robado.",
+    "effects": [
+     {
+      "vineta": "m11_robado"
+     }
+    ],
+    "next": "n8"
+   },
+   "n8": {
+    "speaker": "Laura",
+    "text": "Oye. Hace un calor horrible en tu sofá también. ¿Todos los sofás de Cali tienen calefacción incorporada?",
+    "effects": [
+     {
+      "vineta": "m11_calor_sofa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Es el sofá. Seguro es el sofá.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_sofa"
+       }
+      ],
+      "goto": "n9"
+     },
+     {
+      "label": "«Puedo abrir la ventana.»",
+      "goto": "n10"
+     },
+     {
+      "label": "«No creo que sea el calor.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_no_calor"
+       }
+      ],
+      "goto": "n11"
+     }
+    ]
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "Claro. El sofá.",
+    "effects": [
+     {
+      "vineta": "m11_el_sofa"
+     }
+    ],
+    "next": "n12"
+   },
+   "n10": {
+    "speaker": "Laura",
+    "text": "Ya está abierta, listo.",
+    "effects": [
+     {
+      "vineta": "m11_ya_abierta"
+     }
+    ],
+    "next": "n12"
+   },
+   "n11": {
+    "speaker": "Laura",
+    "text": "...No. No creo que sea el calor.",
+    "effects": [
+     {
+      "vineta": "m11_no_es_calor"
+     }
+    ],
+    "next": "n12"
+   },
+   "n12": {
+    "speaker": "Laura",
+    "text": "Mila dice que los chilenos son lentos. Yo le dije que no. Que algunos solo son... prudentes. Que hay que esperar. ¿Tengo razón o tengo que esperar más?",
+    "effects": [
+     {
+      "vineta": "m11_esperar_mas"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«No tienes que esperar más.»",
+      "effects": [
+       {
+        "setFlag": "m11_no_esperar"
+       },
+       {
+        "setFlag": "m11_ql_no_esperar"
+       }
+      ],
+      "goto": "n15"
+     },
+     {
+      "label": "«Un poquito más.»",
+      "goto": "n13"
+     },
+     {
+      "label": "«Yo también estoy esperando algo.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_esperando"
+       }
+      ],
+      "goto": "n14"
+     }
+    ]
+   },
+   "n13": {
+    "speaker": "Laura",
+    "text": "Un poquito más. Vale. Pero poquito, ¿eh?",
+    "effects": [
+     {
+      "vineta": "m11_poquito"
+     }
+    ],
+    "next": "n15"
+   },
+   "n14": {
+    "speaker": "Laura",
+    "text": "¿Ah, sí? ¿El qué?",
+    "effects": [
+     {
+      "vineta": "m11_el_que"
+     }
+    ],
+    "next": "n15"
+   },
+   "n15": {
+    "text": "El reloj del microondas marca la una y diez. Laura bosteza y se tapa la boca, avergonzada.",
+    "effects": [
+     {
+      "vineta": "m11_bosteza"
+     }
+    ],
+    "next": "n16"
+   },
+   "n16": {
+    "speaker": "Laura",
+    "text": "Estoy muerta. La Chorrera, el monte, el campero... ¿Puedo...? ¿Puedo quedarme? A dormir, digo. Bajar... subir tres pisos es lejísimos.",
+    "effects": [
+     {
+      "vineta": "m11_puedo"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Es lejísimos, sí.»",
+      "goto": "n17"
+     },
+     {
+      "label": "«Quédate.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_quedate2"
+       }
+      ],
+      "goto": "n18"
+     }
+    ]
+   },
+   "n17": {
+    "speaker": "Laura",
+    "text": "Lo sabía.",
+    "effects": [
+     {
+      "vineta": "m11_lo_sabia"
+     }
+    ],
+    "next": "n18"
+   },
+   "n18": {
+    "effects": [
+     {
+      "setFlag": "m11_a_la_cama"
+     },
+     {
+      "objective": "Ve a la cama"
+     },
+     {
+      "event": "cama_final_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_cama_final": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La cama del 805. La ventana abierta. No hay luna llena esta noche, solo las luces de Cali en el techo y el ventilador que sí funciona.",
+    "effects": [
+     {
+      "vineta": "m11_cama_805"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Tu ventilador funciona. El mío se llama Inútil. El tuyo debería llamarse... no sé. Héroe.",
+    "effects": [
+     {
+      "vineta": "m11_heroe"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Se acuestan de lado, mirándose. Muy cerca. La respiración de Laura huele a mandarina.",
+    "effects": [
+     {
+      "vineta": "m11_cara_a_cara"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Hoy, en el mirador, cuando dije «un sitio y alguien»... no lo dije por decir.",
+    "effects": [
+     {
+      "vineta": "m11_cara_a_cara"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_dec_sira"
+      },
+      "goto": "n5"
+     },
+     {
+      "goto": "n7"
+     }
+    ]
+   },
+   "n5": {
+    "text": "Sira. El fotomatón. La cuarta foto que «no existe». La esquina. «Avísame cuando sepas qué quieres.»",
+    "effects": [
+     {
+      "vineta": "m11_flash_sira"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "text": "Laura está ahí, a un centímetro. Esperando.",
+    "effects": [
+     {
+      "vineta": "m11_cara_a_cara"
+     }
+    ],
+    "choices": [
+     {
+      "label": "La besas.",
+      "goto": "n8"
+     },
+     {
+      "label": "Le acaricias la cara. No la besas. Todavía no.",
+      "goto": "n11"
+     }
+    ]
+   },
+   "n7": {
+    "text": "Laura está ahí, a un centímetro. Esperando. Sin prisa. Como si tuviera toda la noche. La tiene.",
+    "effects": [
+     {
+      "vineta": "m11_cara_a_cara"
+     }
+    ],
+    "choices": [
+     {
+      "label": "La besas.",
+      "goto": "n8"
+     },
+     {
+      "label": "Le acaricias la cara. No la besas. Todavía no.",
+      "goto": "n11"
+     }
+    ]
+   },
+   "n8": {
+    "text": "La besas. Despacio. Laura cierra los ojos y te agarra la camiseta con el puño, como si se fuera a caer de algún lado.",
+    "effects": [
+     {
+      "vineta": "m11_beso_laura"
+     },
+     {
+      "sfx": "beso"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "...Por fin. Madre mía. Por fin, chileno.",
+    "effects": [
+     {
+      "vineta": "m11_beso_laura_2"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "text": "Se quedan así, frente con frente, riéndose bajito de nada. Afuera, Cali sigue su vida. Adentro, se detuvo.",
+    "effects": [
+     {
+      "vineta": "m11_beso_laura_2"
+     },
+     {
+      "setFlag": "m11_beso_laura"
+     },
+     {
+      "setFlag": "m11_ql_beso"
+     }
+    ],
+    "next": "n13"
+   },
+   "n11": {
+    "speaker": "Laura",
+    "text": "...Vale. Todavía no. Me gusta que sea «todavía». Gabon, chileno.",
+    "effects": [
+     {
+      "vineta": "m11_todavia"
+     }
+    ],
+    "next": "n12"
+   },
+   "n12": {
+    "text": "Se duerme con tu mano en su cara. Tú no te duermes. Miras el techo. Piensas en dos personas.",
+    "effects": [
+     {
+      "vineta": "m11_techo"
+     },
+     {
+      "setFlag": "m11_no_beso"
+     }
+    ],
+    "next": "n13"
+   },
+   "n13": {
+    "text": "La 1:47. Laura se duerme sobre tu pecho. El ventilador gira. Todo está en silencio.",
+    "effects": [
+     {
+      "vineta": "m11_dormida_pecho"
+     }
+    ],
+    "next": "n14"
+   },
+   "n14": {
+    "text": "Y entonces, en el velador, tu celular se prende solo.",
+    "effects": [
+     {
+      "vineta": "m11_cel_velador"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m11_sira_final"
+     }
+    ],
+    "next": "n15"
+   },
+   "n15": {
+    "text": "La pantalla ilumina el cuarto entero de azul. Un mensaje. De Sira.",
+    "effects": [
+     {
+      "vineta": "m11_cel_sira_final"
+     }
+    ],
+    "next": "n16"
+   },
+   "n16": {
+    "speaker": "Sira",
+    "text": "«¿Estás despierto? No podía dormir. Mañana te tengo una sorpresa 💙 Es algo que debí decirte hace tiempo.»",
+    "effects": [
+     {
+      "vineta": "m11_cel_sira_final"
+     }
+    ],
+    "next": "n17"
+   },
+   "n17": {
+    "text": "Laura se mueve. Abre un ojo. La luz del celular le da en la cara.",
+    "effects": [
+     {
+      "vineta": "m11_laura_despierta"
+     }
+    ],
+    "next": "n18"
+   },
+   "n18": {
+    "speaker": "Laura",
+    "text": "(medio dormida) ...¿Quién te escribe a estas horas?",
+    "effects": [
+     {
+      "vineta": "m11_laura_despierta"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Nadie. Duerme.»",
+      "effects": [
+       {
+        "setFlag": "m11_final_nadie"
+       }
+      ],
+      "goto": "n19"
+     },
+     {
+      "label": "«Una amiga.»",
+      "effects": [
+       {
+        "setFlag": "m11_final_amiga"
+       }
+      ],
+      "goto": "n19"
+     },
+     {
+      "label": "Apagas el celular sin contestar.",
+      "effects": [
+       {
+        "setFlag": "m11_final_apaga"
+       }
+      ],
+      "goto": "n19"
+     }
+    ]
+   },
+   "n19": {
+    "text": "Laura vuelve a cerrar los ojos. O hace como que los cierra. El celular vibra otra vez debajo de la almohada. Y otra.",
+    "effects": [
+     {
+      "vineta": "m11_vibra"
+     }
+    ],
+    "next": "n20"
+   },
+   "n20": {
+    "text": "Afuera, en algún edificio, alguien pone una salsa vieja. De esas de trompetas y coro.",
+    "effects": [
+     {
+      "vineta": "m11_negro_final"
+     },
+     {
+      "event": "final_m11"
+     }
+    ]
+   }
+  }
+ }
+}

@@ -13,6 +13,7 @@ import { M7_SCRIPTS } from './StoryScripts7';
 import { M8_SCRIPTS } from './StoryScripts8';
 import { M9_SCRIPTS } from './StoryScripts9';
 import { M10_SCRIPTS } from './StoryScripts10';
+import { M11_SCRIPTS } from './StoryScripts11';
 
 /** Lo que un script puede hacer con la escena de mapa activa (lo implementa MapScene). */
 export interface ScriptHost {
@@ -574,6 +575,8 @@ export const SCRIPTS: Record<string, Script> = {
   ...M9_SCRIPTS,
   // --- Misión 10 (src/systems/StoryScripts10.ts) ---
   ...M10_SCRIPTS,
+  // --- Misión 10 «Luna llena en el 11» (prefijo m11_, src/systems/StoryScripts11.ts) ---
+  ...M11_SCRIPTS,
 };
 
 /** Espera (sin bloquear al jugador) a que el reloj de la historia llegue a `at`. */

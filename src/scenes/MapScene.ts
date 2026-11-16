@@ -125,9 +125,16 @@ const FLAG_SIRA_POLERA = 'm7_polera';
  * Misión 8 (Salento): los amigos que caminan contigo en fila, detrás del jugador (flag `m8_sigue_<id>`, el id es
  * también el personaje de sprites.json). Van en este orden y también entran a los interiores.
  */
-const CREW_M8 = ['richi', 'juanpa', 'renzo', 'danilo', 'danilo_bano', 'tami', 'laura', 'ximena', 'roxane', 'mila'];
-/** Misiones 9 (la fiesta en el cerro) y 10 (el río con Danilo): la misma fila, con sus flags `m9_sigue_<id>` y `m10_sigue_<id>`. */
-const CREW_PREFIXES = ['m8_sigue_', 'm9_sigue_', 'm10_sigue_'];
+const CREW_M8 = [
+  'richi', 'juanpa', 'renzo', 'danilo', 'danilo_bano', 'tami', 'laura', 'ximena', 'roxane', 'mila',
+  // Misión 10 (prefijo m11_): Laura con ropa de río, Sira y sus amigas, y las dos peruanas de La Vorágine.
+  'laura_bano', 'sira_m7', 'majo', 'cata', 'fiorella', 'ariana', 'mila_bano',
+];
+/**
+ * Misiones 9 (la fiesta en el cerro) y su final en el río con Danilo, y la misión 10 (Laura, Sira y La Vorágine):
+ * la misma fila, con sus flags `m9_sigue_<id>`, `m10_sigue_<id>` y `m11_sigue_<id>`.
+ */
+const CREW_PREFIXES = ['m8_sigue_', 'm9_sigue_', 'm10_sigue_', 'm11_sigue_'];
 /** Misiones 8 y 9: todo pasa en un recuerdo. Con estas flags la cámara se ve un poco sepia y con el borde oscuro. */
 const FLAG_MEMORY = ['m8_recuerdo', 'm9_recuerdo'];
 
@@ -264,8 +271,8 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     );
     EventSystem.onScene(this, 'story', ({ name, data }) => this.runScript(name, data));
     // El partido (misión 4) corre en su propia escena; el mapa y la interfaz duermen mientras tanto.
-    EventSystem.onScene(this, 'open-futbol', ({ done, tutorial }) => {
-      this.launchMinigame('Futbol', { tutorial }, (result: FutbolResult) => done(result));
+    EventSystem.onScene(this, 'open-futbol', ({ done, tutorial, cinco }) => {
+      this.launchMinigame('Futbol', { tutorial, cinco }, (result: FutbolResult) => done(result));
     });
     // Misión 5: el Marco Polo en la piscina y el Cinco en Pance Burger, igual que el partido.
     EventSystem.onScene(this, 'open-piscina', ({ done }) => this.launchMinigame('Piscina', {}, done));
@@ -278,12 +285,14 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     EventSystem.onScene(this, 'open-salsa', ({ partner, done }) => this.launchMinigame('Salsa', { partner }, done));
     // Misión 8: el pool, el pimpón y las atracciones (y el tejo).
     EventSystem.onScene(this, 'open-pool', ({ done }) => this.launchMinigame('Pool', {}, done));
-    EventSystem.onScene(this, 'open-pinpon', ({ done }) => this.launchMinigame('Pinpon', {}, done));
+    EventSystem.onScene(this, 'open-pinpon', ({ rival, done }) => this.launchMinigame('Pinpon', { rival }, done));
     EventSystem.onScene(this, 'open-atraccion', ({ mode, done }) => this.launchMinigame(atraccionScene(mode), { mode }, done));
     // Misión 9: los juegos de la fiesta.
     EventSystem.onScene(this, 'open-fiesta', ({ mode, done }) => this.launchMinigame('Fiesta', { mode }, done));
     // Misión 10: los juegos del río Pance.
     EventSystem.onScene(this, 'open-rio', ({ mode, photos, done }) => this.launchMinigame('Rio', { mode, photos }, done));
+    // Misión 10 (prefijo m11_): La Vorágine, la Chorrera del Indio y las hamburguesas del 805.
+    EventSystem.onScene(this, 'open-paseo', ({ mode, done }) => this.launchMinigame('Paseo', { mode }, done));
 
     if (!this.scene.isActive('UI')) this.scene.launch('UI');
     this.scene.bringToTop('UI');

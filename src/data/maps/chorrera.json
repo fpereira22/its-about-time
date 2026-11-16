@@ -1,0 +1,281 @@
+{
+  "id": "chorrera",
+  "name": "San Francisco · Chorrera del Indio",
+  "kind": "overworld",
+  "tileSize": 16,
+  "width": 84,
+  "height": 90,
+  "region": "cali",
+  "music": "rio",
+  "background": "#2c6a34",
+  "legend": {
+    "\"": "ladera",
+    "b": "bosque_pance",
+    "B": "bosque_pance_b",
+    "T": "arbol",
+    "w": "rio_hondo",
+    "W": "rio_hondo_b",
+    "q": "rio_bajo",
+    "l": "playa_piedras",
+    "z": "piedra_grande",
+    "=": "calle",
+    "t": "trocha",
+    "n": "sendero_rio",
+    "u": "puente_concreto",
+    "H": "edificio:teja",
+    "d": "casa_puerta",
+    "c": "cancha",
+    "v": "agua_piscina",
+    ".": "plazoleta",
+    "k": "kiosko_pance",
+    "f": "fogon_lena",
+    "m": "mesa_madera",
+    "R": "roca_cascada",
+    "C": "cascada",
+    "E": "espuma",
+    "p": "paso_piedras",
+    "X": "barro",
+    "M": "mirador_piso",
+    "_": "mirador_baranda",
+    "Y": "willys_verde_a",
+    "y": "willys_verde_b"
+  },
+  "rows": [
+    "\"bbB\"bBbbB\"\"B\"\"\"\"bB\"bB\"bB\"b\"\"\"B\"bB\"\"BbbBb\"Bb\"\"\"\"\"bbBb\"Bb\"B\"b\"\"bB\"\"\"bbBb\"B\"b\"bbBbbBbb",
+    "bb\"b\"BbbBbbB\"bBbbBbbB\"\"BbbBbb\"b\"B\"\"\"b\"\"\"bBbbB\"\"\"b\"B\"b\"b\"B\"\"\"\"b\"\"\"BbbBb\"Bb\"B\"b\"\"b\"\"\"\"",
+    "bBb\"B\"\"Bbb\"\"bB\"bBb\"Bb\"B\"\"\"b\"\"bbB\"\"\"\"b\"\"\"B\"b\"\"bB\"\"________bBbbBb\"\"\"b\"bbB\"b\"bb\"\"\"Bb\"\"b",
+    "\"b\"\"b\"\"bb\"\"bB\"\"\"bb\"\"bB\"b\"\"\"B\"\"B\"bB\"\"\"\"\"B\"b\"b\"Bb\"BMMMMMMMM\"b\"\"\"b\"\"bBbb\"\"\"Bb\"B\"\"\"b\"B\"\"",
+    "llllb\"\"\"B\"\"\"\"b\"b\"BbbB\"b\"bb\"\"b\"bb\"\"\"\"\"\"Bb\"\"b\"\"bbB\"MMMMMMMMbbB\"\"B\"b\"bb\"\"\"\"\"bBb\"Bbb\"bbB",
+    "Wqqllll\"\"b\"bbBbb\"bb\"bbB\"\"B\"b\"b\"\"b\"\"\"b\"\"bB\"b\"\"b\"b\"MMMMMMMMbBbbB\"b\"\"\"\"\"b\"bbBbbB\"\"Bb\"\"b",
+    "lllqqqlllBb\"\"bbB\"b\"\"b\"\"b\"bbB\"\"\"bb\"b\"Bbb\"bb\"\"bB\"bBMMMMMMMMBbbBbbB\"b\"\"\"\"\"bB\"\"B\"\"Bbb\"\"\"",
+    "\"\"lllqqWlllB\"\"Bbb\"b\"\"\"bBb\"\"b\"\"bbB\"b\"bb\"b\"\"\"b\"b\"\"\"\"B\"X\"\"b\"bb\"bb\"\"\"\"\"bB\"bB\"b\"\"bB\"bBbbB",
+    "\"\"b\"llllWqll\"B\"bBbbB\"b\"bb\"b\"\"bb\"b\"\"\"b\"b\"Bb\"\"\"bB\"bBb\"X\"\"\"\"\"\"bb\"b\"\"\"\"\"\"b\"\"b\"\"\"\"\"b\"\"\"\"b",
+    "Bb\"BbbBllWqlBbb\"b\"\"\"\"B\"\"BbbB\"bBb\"\"b\"Bb\"Bb\"Bbb\"\"bBbb\"XXXXX\"\"bB\"\"B\"\"B\"b\"\"\"\"\"bB\"\"\"\"\"\"b\"",
+    "bb\"b\"Bb\"llWl\"\"B\"b\"\"\"\"\"bBbbBb\"\"b\"\"b\"\"b\"\"\"\"B\"b\"\"b\"b\"\"\"\"\"\"\"X\"\"\"bb\"\"\"Bb\"\"\"\"\"\"\"Bbb\"\"bBbb\"",
+    "b\"b\"B\"\"\"\"lqll\"\"\"Bb\"\"bbB\"b\"b\"\"bbB\"\"\"\"\"B\"bB\"b\"\"\"\"\"bB\"\"\"\"\"\"X\"Bbb\"\"\"Bbb\"\"\"BbbB\"b\"bb\"b\"B\"",
+    "\"bbB\"\"\"bbllql\"b\"\"\"\"bbBbb\"bbB\"\"\"\"\"\"\"b\"\"\"B\"\"\"\"bB\"\"Bbb\"XXXXX\"\"bBb\"\"\"bBb\"B\"\"Bbb\"\"bBb\"Bb\"",
+    "bbB\"bB\"bB\"lql\"B\"bB\"\"B\"\"B\"\"\"bbBb\"B\"\"\"b\"B\"\"BbbB\"b\"\"\"B\"X\"\"\"\"\"b\"b\"B\"\"B\"bB\"\"\"b\"Bb\"\"\"b\"\"bB",
+    "\"BbbBb\"\"bblqlB\"\"\"b\"\"bb\"\"bBb\"Bb\"B\"b\"\"bBbbB\"b\"\"bBbb\"\"\"X\"\"\"\"\"B\"\"\"bbB\"b\"b\"B\"\"B\"bB\"\"B\"b\"b",
+    "B\"bB\"\"\"bbBlqlbb\"bbB\"bB\"\"\"bbBb\"Bb\"Bb\"\"\"bBb\"B\"b\"\"\"\"\"\"\"XXXXX\"b\"B\"bBbb\"\"bBbbBb\"B\"b\"\"\"\"\"b",
+    "b\"Bb\"B\"b\"blWlbBb\"\"\"\"\"b\"Bbb\"\"\"BbbB\"bBb\"\"bbBbbBbbBbbB\"\"\"\"\"X\"\"\"\"\"\"\"b\"\"bBbbBb\"B\"\"\"b\"\"\"b\"",
+    "\"B\"b\"\"bBb\"lqlBbb\"\"\"B\"b\"bbBb\"\"\"\"Bbb\"b\"BbbB\"bB\"bBb\"\"b\"\"\"\"\"X\"\"\"b\"\"\"\"\"\"BbbBbb\"\"\"\"\"\"\"bbB\"",
+    "B\"\"BbbBb\"Blqlb\"\"\"bB\"b\"\"bB\"b\"bb\"bbBbb\"bbBb\"\"bbB\"bB\"b\"XXXXX\"\"bBbb\"bbB\"bBb\"BbbB\"\"Bb\"\"\"\"",
+    "\"b\"\"\"Bb\"\"blqlbBbbB\"b\"bb\"bbB\"bBb\"\"b\"\"\"bBb\"\"bb\"\"b\"\"\"\"\"X\"\"\"\"\"\"\"\"\"\"\"b\"b\"B\"bBb\"\"bb\"\"\"\"b\"\"",
+    "\"Bb\"Bbb\"bblqlB\"bB\"b\"b\"\"b\"Bb\"B\"bBb\"\"bb\"b\"\"b\"B\"\"\"\"\"\"b\"X\"\"\"\"\"\"\"\"B\"\"Bb\"B\"bB\"bB\"\"Bb\"BbbB\"",
+    "Bb\"Bb\"B\"b\"lWl\"bBb\"BbbB\"\"\"\"bBb\"BbbBbb\"\"\"B\"bBb\"\"\"bBb\"\"XXXXX\"\"\"\"bbB\"\"\"bbB\"\"\"b\"\"\"\"\"\"\"Bbb",
+    "\"\"\"\"bB\"bB\"lql\"\"\"\"\"bbB\"\"Bb\"\"b\"B\"\"\"bbB\"\"\"\"\"\"bb\"b\"Bb\"B\"\"\"\"\"X\"\"\"\"bBb\"\"bb\"bbB\"bBb\"Bb\"llll",
+    "b\"\"b\"bb\"\"blql\"bbB\"bB\"b\"\"bB\"b\"bbB\"bB\"bB\"b\"b\"BbbBb\"\"\"\"\"\"\"\"X\"\"b\"Bb\"\"b\"\"bb\"b\"B\"\"Bb\"llwwW",
+    "\"\"bBb\"\"\"\"Blql\"bBb\"Bb\"B\"\"BbbBbb\"bb\"\"bBb\"\"bb\"bb\"\"\"\"\"\"\"XXXXX\"\"bBbbB\"\"\"\"\"\"bbBbbBbbllwwww",
+    "\"bBb\"B\"\"\"\"lqlb\"b\"\"\"\"\"b\"Bb\"B\"bBbb\"b\"\"\"\"\"\"b\"\"\"B\"b\"\"bB\"X\"\"\"\"\"b\"bbBbb\"bb\"bb\"b\"BbbllwWwww",
+    "\"\"b\"B\"\"\"bblWllb\"\"\"\"\"\"\"B\"bB\"\"Bbb\"\"b\"\"bBbbBb\"BbbB\"bB\"\"X\"\"\"\"\"\"\"\"B\"b\"\"b\"b\"\"\"\"Bb\"llwwwWll",
+    "\"\"\"B\"b\"\"b\"llWll\"\"b\"\"\"Bb\"\"bbBb\"B\"\"\"bb\"\"\"Bb\"B\"bBbb\"\"b\"XXXXX\"\"b\"b\"Bbb\"\"b\"\"\"\"b\"llWwwwllb",
+    "\"b\"b\"Bb\"\"\"blqWlb\"\"\"\"BbbB\"b\"b\"B\"bB\"\"\"\"\"B\"\"\"b\"\"\"\"\"\"\"B\"\"\"\"\"X\"bBb\"B\"b\"b\"B\"\"\"b\"llwwWwll\"\"",
+    "\"\"\"\"B\"b\"b\"Bllqlll\"\"Bb\"\"\"b\"b\"B\"b\"bb\"b\"\"b\"B\"\"B\"bB\"\"\"b\"\"\"\"\"X\"\"\"bBbb\"\"\"\"\"bB\"\"llwwwwll\"B\"",
+    "B\"\"\"\"b\"\"bB\"\"llqWll\"bbB\"\"B\"\"B\"\"B\"bB\"\"Bb\"\"\"\"BbbB\"\"\"\"\"\"XXXXX\"b\"B\"\"\"\"b\"\"\"\"bbllwWwwllbB\"b",
+    "bbBb\"Bbb\"\"\"\"\"lllWlllll\"\"bbB\"bBbb\"bb\"\"\"Bbb\"b\"B\"b\"\"\"B\"X\"\"\"\"\"\"\"bb\"\"\"Bb\"Bbbllwwwlll\"\"\"\"\"",
+    "\"B\"bB\"bB\"\"B\"b\"bllWqqqll\"\"\"\"bBbbBbb\"\"bB\"bBbbB\"\"\"bbB\"\"X\"\"\"\"\"\"bb\"\"b\"bb\"b\"llWwwll\"b\"\"\"tt",
+    "\"bb\"\"b\"\"\"Bb\"\"bbBllllqqlllb\"B\"RRRRCcRRR\"Bbb\"\"\"\"b\"\"b\"\"XXXXX\"\"\"Bb\"\"\"\"B\"bllwwWllb\"B\"\"tt\"",
+    "\"\"\"b\"B\"\"Bb\"Bbb\"\"b\"blllqqll\"bbRRRRCcRRRBbb\"bb\"\"bBb\"\"\"\"\"\"\"X\"\"\"\"bB\"bz\"lllwwwwl\"\"\"\"\"t\"\"\"",
+    "bB\"b\"b\"\"bb\"\"bB\"\"\"b\"B\"llqql\"b\"RRRRCcRRR\"b\"\"\"Bb\"Bb\"Bb\"\"\"\"\"X\"\"\"\"Bbzwwwwwwwwwll\"\"ttt\"\"\"b",
+    "\"bb\"bbB\"\"\"\"b\"\"bBbbBbb\"llqll\"\"RRRRCcRRR\"\"b\"BbbB\"\"\"b\"\"XXXXX\"\"b\"\"b\"wwwwwwwzlltttt\"\"\"B\"b",
+    "bbBbb\"bb\"\"\"Bbb\"b\"Bb\"\"b\"llqll\"RRRRCcRRRBbb\"b\"BbbBbb\"\"\"\"\"\"\"\"\"\"b\"llwwwwwwwtttt\"\"\"\"bBbb\"",
+    "b\"\"bBbb\"b\"B\"\"Bb\"B\"b\"b\"B\"llqllRRRRCcRRR\"\"\"\"\"\"\"\"\"\"\"HHH\"\"b\"\"b\"b\"llWwwwwwttt\"\"\"\"\"b\"B\"\"B\"",
+    "\"\"\"BbbBb\"Bb\"Bb\"\"\"\"BbbBb\"\"llqqzwwwEEwwzlnnn\"\"kknfnHHH\"\"\"\"\"\"\"bllwzwwwwttwz\"\"b\"b\"\"\"bB\"b",
+    "\"bBb\"\"b\"\"\"\"\"bbBb\"B\"bB\"b\"\"blllqwwwwwwwqqqWlnnnn\"\"\"\"n\"bB\"\"\"blllwwwwWlttzlBb\"B\"\"\"\"\"BbbB",
+    "bB\"\"Bbb\"\"\"\"b\"B\"bBb\"\"\"bB\"bB\"\"llwwwwwwwlnnnnnnm\"\"m\"\"n\"\"\"\"\"\"llwwWwwlllt\"\"BbbB\"bBbb\"\"b\"b",
+    "\"b\"Bb\"\"bbB\"\"\"\"b\"\"b\"\"\"\"b\"Bb\"\"\"lllllllll\"llql\"\"\"\"\"\"\"\"n\"\"\"\"llwwwwWll\"t\"\"\"bbBb\"B\"\"Bbb\"\"\"",
+    "bbBbbBbb\"\"\"B\"b\"bbBbbB\"bBbbB\"\"\"\"\"\"\"\"\"\"\"\"llql\"\"\"\"\"\"\"\"nn\"\"llwWwwlll\"\"t\"\"\"\"\"\"b\"\"b\"\"bB\"b\"",
+    "\"Bb\"\"\"\"\"\"\"B\"bBbb\"\"b\"\"\"\"\"\"B\"\"\"\"\"\"\"\"\"\"\"\"\"lqqlB\"bBb\"\"\"\"nnllwwwWllb\"\"t\"\"b\"\"b\"B\"\"\"\"\"Bbb\"b",
+    "\"b\"\"bb\"bbBbb\"b\"\"\"\"B\"b\"b\"Bb\"\"\"\"\"\"\"\"\"\"\"\"\"lWll\"blllllllnnwWwwlll\"\"\"tt\"b\"Bb\"\"\"\"B\"\"Bb\"\"\"\"",
+    "\"\"\"\"b\"\"b\"b\"\"b\"B\"bB\"b\"b\"\"\"bB\"\"B\"bB\"b\"b\"BlqWllllWwwwwWwpwwWllB\"\"\"tt\"\"bB\"\"\"\"b\"\"\"\"\"bBbb\"",
+    "b\"\"\"Bb\"BbbB\"bB\"b\"\"b\"\"bBb\"B\"bB\"b\"b\"B\"\"\"\"llqllwwwWwwwwWpwwll\"\"\"tt\"\"\"b\"b\"Bb\"B\"bBbb\"b\"Bb",
+    "Bb\"B\"\"BbbBbb\"bbBbbB\"bBbb\"\"bB\"\"\"\"\"\"b\"\"\"b\"lqlWwwwwWwwwwpnlnn\"tt\"\"\"b\"B\"bB\"\"Bb\"B\"\"BbbBb\"",
+    "b\"Bb\"\"b\"B\"\"Bb\"B\"\"B\"bB\"bB\"\"B\"\"\"\"\"B\"\"Bbb\"llwqwWwlllllllnlnttt\"\"\"\"b\"B\"\"\"b\"\"\"\"\"\"\"\"b\"\"b\"B",
+    "bB\"\"\"b\"Bb\"B\"\"B\"bBb\"\"b\"\"b\"Bb\"\"\"bBbb\"bllllWwqwwllb\"\"b\"\"\"tt\"\"\"\"b\"\"\"Bb\"\"\"\"\"b\"\"b\"Bbb\"b\"Bb",
+    "Bbb\"\"bB\"b\"\"bB\"\"B\"bB\"\"Bb\"B\"\"B\"b\"bb\"lllwwwwWwlll\"bB\"\"\"tttt\"\"b\"\"\"bBbb\"\"b\"bb\"\"\"\"\"bB\"bB\"\"",
+    "\"\"Bb\"\"\"b\"bb\"\"\"B\"b\"bb\"b\"\"\"b\"bbBbllllwwWwwwwll\"\"\"\"\"\"\"tttt\"\"bbBbbBbbB\"\"BbbBbb\"b\"B\"bBb\"B",
+    "\"Bb\"B\"\"B\"b\"\"b\"b\"\"bb\"b\"B\"b\"b\"BbllwWwwwwWwlll\"\"\"\"\"ttttt\"\"\"\"bBbb\"bbB\"bBbb\"b\"\"\"bB\"b\"b\"\"\"",
+    "\"b\"Bbb\"bbB\"\"\"\"bBbb\"\"bB\"\"\"b\"\"lllwwwWwwwlll\"\"\"\"ttt\"\"tt\"\"\"bbBbb\"\"\"\"bbB\"bBbb\"bbB\"b\"bbB\"\"",
+    "bb\"\"\"\"b\"\"b\"\"bbB\"b\"\"b\"b\"BbbBllwWwwwwllll\"\"\"\"ttt\"\"tt\"\"\"BbbB\"\"B\"b\"\"bB\"\"B\"b\"\"bBbb\"b\"B\"\"B",
+    "\"\"b\"\"b\"B\"\"\"\"\"\"\"b\"\"\"B\"\"\"\"\"\"llwwwWwlllbB\"b\"\"tt\"\"\"tt\"\"b\"\"bB\"\"\"\"b\"\"\"Bbb\"\"b\"bbB\"\"\"b\"Bb\"\"\"",
+    "\"\"\"\"\"\"\"\"b\"\"bBbbB\"\"\"\"b\"b\"\"llWwwwlllbb\"\"\"\"\"t\"\"\"B\"\"\"\"\"\"b\"\"b\"B\"\"\"\"bBbb\"b\"\"\"\"\"\"bBb\"Bb\"B\"b",
+    "\"bB\"\"B\"bBb\"Bbb\"bbBb\"Bb\"BllwwWwll\"HHHb\"\"tt\"\"\"Bb\"Bb\"\"\"b\"bb\"b\"\"b\"Bb\"\"\"\"Bbb\"\"\"\"\"b\"\"bBbb\"",
+    "\"Bb\"B\"\"Bb\"\"b\"\"\"bB\"bBb\"\"llwwwlllBbHHH\"Htt\"\"bB\"\"\"b\"\"bb\"\"bB\"bBbbB\"b\"\"bB\"\"\"\"b\"\"\"\"b\"Bb\"B\"",
+    "\"\"\"\"bb\"\"\"B\"\"Bbb\"b\"\"\"b\"\"lwWwllHHH\"\"\"\"\"ttH\"b\"bbBbb\"\"\"BbbBbb\"bb\"b\"B\"b\"b\"BbbBbbBbbB\"\"Bb\"",
+    "b\"\"bb\"\"\"\"\"b\"bb\"bbB\"\"\"bllwwWlbHHHB\"b\"tt\"\"\"B\"\"Bb\"\"\"b\"\"bB\"bBb\"\"bbBb\"\"\"bBb\"\"\"bB\"bB\"\"B\"b\"",
+    "bB\"b\"b\"B\"b\"\"\"B\"\"B\"\"B\"\"lwwwllBb\"\"b\"\"\"t\"\"\"\"\"\"Bb\"\"\"b\"b\"B\"\"Bb\"\"\"bBb\"\"\"\"B\"\"\"bb\"b\"\"\"bB\"\"\"b",
+    "Bbb\"b\"\"\"bB\"\"Bbb\"bbB\"b\"lWwwlB\"b\"b\"\"tt\"\"b\"\"b\"\"\"\"\"bBb\"\"\"bB\"b\"b\"\"bb\"b\"\"\"bB\"\"\"bb\"\"\"\"\"bB\"b",
+    "\"\"B\"\"\"b\"B\"b\"b\"B\"\"B\"\"\"llwWwl\"bBb\"\"tt\"\"\"\"\"bBb\"\"\"bBbbB\"\"B\"\"\"b\"\"\"\"B\"bBb\"\"bbB\"bBb\"B\"\"B\"bB",
+    "b\"\"b\"b\"BbbB\"\"\"b\"B\"b\"\"lwwwWl\"B\"\"\"tt\"\"bBb\"Bb\"\"bbBb\"\"\"b\"bbBb\"\"bbB\"b\"\"\"\"b\"\"\"bBb\"\"\"bB\"bBb",
+    "\"b\"Bb\"B\"\"B\"b\"\"\"Bbb\"\"llwwwllBb\"\"tt\"\"\"\"b\"\"b\"BbbBb\"BbbB\"\"B\"bBb\"B\"b\"\"\"B\"bB\"bB\"b\"bbBb\"\"\"\"",
+    "b\"Bbb\"\"b\"\"bB\"\"B\"b\"bllwWwllB\"\"\"tt\"\"\"\"bbB\"\"\"\"bB\"b\"bb\"\"bBb\"Bb\"B\"\"BbbB\"\"Bb\"Bb\"B\"\"\"b\"B\"bB",
+    "bB\"\"Bb\"Bb\"Bb\"\"\"b\"b\"lwwwWlBb\"\"tt\"\"\"\"bb\"b\"B\"\"B\"\"\"bbB\"\"Bb\"B\"\"B\"\"B\"b\"\"b\"b\"BbbBb\"B\"\"B\"bBb",
+    "B\"\"\"\"bBb\"B\"bB\"bBbbllwwwllb\"\"\"t\"\"\"B\"bBb\"Bb\"B\"\"\"\"\"B\"b\"b\"\"\"b\"\"\"Bb\"Bbb\"\"bBbbB\"\"BbbBbbB\"\"",
+    "\"\"\"b\"\"b\"\"bbB\"bB\"bllwWwll\"\"\"\"t\"\"bB\"bB\"\"\"\"bB\"bB\"\"Bb\"\"\"b\"\"\"\"\"bBb\"B\"b\"\"bB\"bB\"\"B\"bBb\"B\"b\"",
+    "bBbb\"bbBb\"\"b\"Bbb\"lwwwWl\"\"\"\"tt\"b\"\"bBb\"B\"b\"\"b\"bbB\"bB\"bBb\"B\"b\"bb\"b\"B\"bBb\"\"\"\"\"\"bB\"\"BbbBb",
+    "Bb\"B\"\"\"bbB\"bB\"\"\"llwwwllbB\"tt\"\"\"\"b\"b\"\"\"\"\"bbBb\"Bbb\"\"bBb\"\"\"\"B\"bBb\"Bb\"Bb\"B\"b\"\"\"\"\"\"\"b\"\"\"b",
+    "\"\"Bb\"\"\"bB\"bB\"\"\"llwWwll\"B\"\"t\"\"B\"\"\"\"\"Bb\"Bb\"\"b\"\"\"bBbb\"\"\"B\"\"\"\"b\"bb\"b\"\"\"bBbb\"\"b\"\"\"B\"bB\"b\"",
+    "bB\"\"B\"\"Bb\"\"b\"Bllwwwllb\"\"\"t\"\"B\"bB\"\"\"bb\"b\"Bbb\"b\"Bb\"\"\"bBbb\"bbBb\"B\"\"\"bb\"bbB\"b\"\"b\"\"bBbbB\"",
+    "Bb\"\"\"b\"b\"\"\"\"\"\"lWwwwlbB\"\"t\"\"Bbb\"bbB\"\"B\"b\"\"b\"b\"\"\"bBb\"B\"\"\"\"\"\"\"b\"bbBb\"\"\"bBb\"\"\"\"\"\"\"\"\"b\"bb",
+    "b\"\"\"\"Bb\"Bb\"\"bllwWwll\"\"\"tt\"\"\"bBbbBb\"Bbb\"\"bB\"bB\"\"\"bbB\"\"\"bbB\"\"Bb\"Bb\"B\"\"\"\"\"Bb\"\"b\"BbbB\"bB",
+    "b\"\"\"\"\"\"Bbb\"\"llwwwll\"\"\"t\"\"\"\"\"\"\"bB\"\"Bb\"Bbb\"bb\"bbB\"b\"\"\"B\"\"Bb\"\"\"bB\"b\"\"b\"b\"\"bbBb\"Bbb\"bb\"b",
+    "\"b\"Bbb\"\"b\"b\"lWwwwl\"\"tt\"\"Bb\"\"b\"\"bbBb\"B\"b\"b\"\"\"\"B\"b\"bb\"\"\"B\"b\"b\"BbbB\"b\"bb\"bbBb\"Bb\"\"b\"Bbb",
+    "b\"BbbB\"bBbbllwWwll\"tt\"\"Bb\"\"\"b\"\"bBbbBbb\"bbB\"b\"\"bB\"bBbbB\"\"Bb\"\"\"b\"\"b\"b\"B\"b\"b\"\"bbB\"\"\"\"\"B",
+    "\"B\"\"B\"bBb\"llwwwll\"tt\"\"Bb\"Bb\"B\"b\"\"bB\"bBb\"Bbb\"\"\"BbbB\"b\"\"\"\"\"\"\"bbBbbBb\"BbbBbbB\"b\"bb\"\"\"\"b",
+    "Bbb\"bbB\"b\"lWwwwl\"tt\"\"\"b\"\"\"b\"b\"\"b\"B\"\"\"b\"\"b\"Bbb\"b\"Bb\"\"\"\"B\"b\"\"bB\"\"B\"b\"\"b\"\"bB\"b\"bbB\"bB\"b",
+    "b\"B\"\"Bbb\"llwWwllt\"\"\"Bb\"\"\"\"\"b\"\"\"bBbbBb\"\"\"b\"\"bBbbBb\"\"\"bBbb\"b\"\"\"\"\"b\"Bbb\"bb\"b\"B\"bBb\"B\"bB",
+    "b\"\"bBb\"Bllwwwlltt\"\"Bb\"\"bb\"\"\"Bb\"\"\"b\"\"b\"\"\"B\"b\"bbB\"\"\"\"\"\"\"\"Bb\"Bbb\"\"\"\"b\"\"\"\"B\"\"\"bb\"\"\"B\"\"Bb",
+    "BbbBb\"BblWwwwltt\"\"\"bb\"\"\"\"b\"\"bbB\"\"\"bb\"\"\"Bbb\"\"\"\"\"\"Bbb\"bbBb\"Bbb\"bb\"bbB\"\"\"bbBbb\"\"bB\"\"Bb\"",
+    "b\"Bb\"B\"llwWwllt\"\"\"\"bBb\"\"b\"Bbb\"\"\"\"\"\"B\"bBbb\"b\"\"\"\"\"b\"B\"b\"\"b\"\"bBbbBb\"\"\"bBbb\"b\"\"\"b\"b\"\"\"bB",
+    "\"B\"bB\"\"lwwwWlt\"\"\"\"bB\"bB\"bBbbB\"\"Bbb\"\"\"\"\"bB\"bBb\"Bb\"B\"b\"bbBb\"B\"bB\"\"\"b\"\"\"b\"\"\"\"\"b\"bb\"b\"\"\"",
+    "B\"\"Bbbllwwwltt\"\"b\"\"b\"\"bbB\"b\"b\"B\"\"B\"\"\"\"bB\"\"\"bbB\"bB\"\"\"\"bBbb\"\"\"\"bb\"b\"\"bb\"\"b\"b\"B\"bB\"\"B\"\"",
+    "\"\"BbbBlwWwwlt\"\"\"\"B\"\"B\"bB\"\"Bb\"\"\"bBb\"Bb\"\"bbB\"b\"\"\"\"bbBb\"\"\"bB\"bBbbB\"bB\"\"\"bbB\"b\"b\"B\"\"\"\"\"\"",
+    "\"\"b\"\"blwwWltt\"\"b\"b\"Bb\"\"\"\"B\"\"\"bbB\"bB\"b\"\"b\"\"b\"bb\"\"bB\"bBbbB\"\"\"\"\"B\"b\"\"\"\"b\"\"\"bBb\"Bbb\"bbB\""
+  ],
+  "zones": [
+    {
+      "name": "Chorrera del Indio",
+      "subtitle": "Pance · San Francisco",
+      "x": 27,
+      "y": 32,
+      "w": 13,
+      "h": 12
+    },
+    {
+      "name": "Mirador de la loma",
+      "subtitle": "El valle del Pance",
+      "x": 47,
+      "y": 1,
+      "w": 11,
+      "h": 6
+    },
+    {
+      "name": "San Francisco",
+      "subtitle": "Corregimiento de Pance",
+      "x": 0,
+      "y": 0,
+      "w": 84,
+      "h": 90
+    }
+  ],
+  "spawns": {
+    "llegada": {
+      "x": 82,
+      "y": 32,
+      "dir": "left"
+    },
+    "pozo": {
+      "x": 67,
+      "y": 41,
+      "dir": "up"
+    },
+    "piedras_norte": {
+      "x": 53,
+      "y": 45,
+      "dir": "up"
+    },
+    "piedras_sur": {
+      "x": 53,
+      "y": 49,
+      "dir": "up"
+    },
+    "cascada": {
+      "x": 33,
+      "y": 43,
+      "dir": "up"
+    },
+    "restaurante": {
+      "x": 46,
+      "y": 42,
+      "dir": "up"
+    },
+    "mirador": {
+      "x": 52,
+      "y": 5,
+      "dir": "up"
+    },
+    "loma": {
+      "x": 52,
+      "y": 37,
+      "dir": "up"
+    }
+  },
+  "triggers": [
+    {
+      "id": "m11_pozo",
+      "x": 64,
+      "y": 40,
+      "w": 7,
+      "h": 2,
+      "event": "dialogo:m11_pozo",
+      "if": {
+        "mission": "mission10",
+        "flag": "m11_en_chorrera",
+        "notFlag": "m11_salto"
+      }
+    },
+    {
+      "id": "m11_piedras",
+      "x": 52,
+      "y": 48,
+      "w": 3,
+      "h": 2,
+      "event": "dialogo:m11_piedras",
+      "if": {
+        "mission": "mission10",
+        "flag": "m11_salto",
+        "notFlag": "m11_mano"
+      }
+    },
+    {
+      "id": "m11_cascada",
+      "x": 29,
+      "y": 42,
+      "w": 9,
+      "h": 2,
+      "event": "dialogo:m11_cascada_llega",
+      "if": {
+        "mission": "mission10",
+        "flag": "m11_mano",
+        "notFlag": "m11_cascada"
+      }
+    },
+    {
+      "id": "m11_subida",
+      "x": 51,
+      "y": 35,
+      "w": 3,
+      "h": 3,
+      "event": "dialogo:m11_subida",
+      "if": {
+        "mission": "mission10",
+        "flag": "m11_almorzo",
+        "notFlag": "m11_subida_hecha"
+      }
+    }
+  ],
+  "enter": [
+    {
+      "id": "m11_llega",
+      "dialogue": "m11_trocha_despues",
+      "once": true,
+      "if": {
+        "mission": "mission10"
+      }
+    }
+  ],
+  "labels": [
+    {
+      "x": 33.5,
+      "y": 31.6,
+      "text": "CHORRERA DEL INDIO",
+      "color": "#f8f4e0"
+    },
+    {
+      "x": 46,
+      "y": 37.6,
+      "text": "DOÑA OFELIA",
+      "color": "#f8dc68"
+    }
+  ]
+}

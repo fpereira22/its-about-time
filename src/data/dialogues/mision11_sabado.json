@@ -1,0 +1,1864 @@
+{
+ "m11_intro": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Sábado. Dos semanas desde aquel like de laaurii_14. Desde entonces: tres historias contestadas, un «jajaja» y cero encuentros en el ascensor.",
+    "effects": [
+     {
+      "vineta": "m11_depa_sabado"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "Toc, toc.",
+    "effects": [
+     {
+      "vineta": "m11_toc"
+     },
+     {
+      "sfx": "toc_toc"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "text": "Por la mirilla: una bolsa de papel de La Espiga y, detrás, Laura. Pijama de rayas, chanclas y el pelo amarrado con un lápiz.",
+    "effects": [
+     {
+      "vineta": "m11_mirilla"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "¡Kaixo, vecino! Traigo pandebonos. En la panadería me han dicho que en Cali el sábado no se desayuna sin pandebono. ¿Es verdad o me han timado?",
+    "effects": [
+     {
+      "vineta": "m11_laura_pandebono"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Es ley. Pasa, pasa.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_pasa"
+       }
+      ],
+      "goto": "n6"
+     },
+     {
+      "label": "«¿Y ese pijama? ¿Es de Bilbao?»",
+      "goto": "n4"
+     },
+     {
+      "label": "«Te timaron: aquí se desayuna con tinto y sueño.»",
+      "goto": "n5"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Es de Bakio, que no es lo mismo. Ya te contaré. ¿Me dejas pasar o desayuno en el pasillo?",
+    "effects": [
+     {
+      "vineta": "m11_laura_pijama"
+     }
+    ],
+    "next": "n6"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Pues traigo pandebonos igual. Tú pones el tinto y el sueño.",
+    "effects": [
+     {
+      "vineta": "m11_laura_pandebono"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "text": "Entra como si conociera el depa: mira el ventanal, los cerros, tu ropa doblada más o menos.",
+    "effects": [
+     {
+      "vineta": "m11_laura_mira"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "Qué majo esto. El mío es igual pero al revés, y con un balcón donde no cabe ni una silla. Bueno, cabe una. Una pequeña.",
+    "next": "n8"
+   },
+   "n8": {
+    "text": "Haces dos tintos. Ella le echa tres cucharadas de azúcar sin pedir perdón.",
+    "effects": [
+     {
+      "vineta": "m11_tinto"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "Bueno. Cuéntame. ¿Qué tal la universidad? Y no me digas «bien», que eso lo dice todo el mundo.",
+    "effects": [
+     {
+      "vineta": "m11_laura_pregunta"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Logística me tiene loco. El profe habla en ecuaciones.»",
+      "goto": "n10"
+     },
+     {
+      "label": "«Bien.»",
+      "goto": "n12"
+     },
+     {
+      "label": "«Lo mejor no son las clases. Es lo de afuera.»",
+      "goto": "n14"
+     }
+    ]
+   },
+   "n10": {
+    "speaker": "Laura",
+    "text": "En Bilbao teníamos uno igual. Le llamábamos «el Excel». Nunca sonreía. ¿Y lo llevas bien?",
+    "effects": [
+     {
+      "vineta": "m11_laura_excel"
+     }
+    ],
+    "next": "n11"
+   },
+   "n11": {
+    "text": "Le cuentas del control que salvaste a última hora con un café y mucha fe. Aplaude con medio pandebono en la boca.",
+    "effects": [
+     {
+      "vineta": "m11_aplauso"
+     },
+     {
+      "setFlag": "m11_ql_u"
+     }
+    ],
+    "next": "n17"
+   },
+   "n12": {
+    "speaker": "Laura",
+    "text": "«Bien.» Vale. Te lo acepto si me lo dices otra vez sin mirar el tinto.",
+    "effects": [
+     {
+      "vineta": "m11_laura_pregunta"
+     }
+    ],
+    "next": "n13"
+   },
+   "n13": {
+    "text": "Te ríes. Y le cuentas la verdad: que a veces no entiendes nada y que igual te encanta estar aquí.",
+    "effects": [
+     {
+      "vineta": "m11_sincero"
+     },
+     {
+      "setFlag": "m11_ql_sincero"
+     }
+    ],
+    "next": "n17"
+   },
+   "n14": {
+    "speaker": "Laura",
+    "text": "¿Lo de afuera? ¿Como qué?",
+    "effects": [
+     {
+      "vineta": "m11_laura_curiosa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Los pavos reales.»",
+      "goto": "n15"
+     },
+     {
+      "label": "«Las personas.»",
+      "goto": "n16"
+     }
+    ]
+   },
+   "n15": {
+    "speaker": "Laura",
+    "text": "Los pavos. Claro. Los pavos. ...Vale, los pavos son lo mejor, te lo concedo.",
+    "effects": [
+     {
+      "vineta": "m11_laura_risa"
+     }
+    ],
+    "next": "n17"
+   },
+   "n16": {
+    "text": "Laura se queda un segundo callada y sorbe el tinto. Se le suben los colores hasta las orejas.",
+    "effects": [
+     {
+      "vineta": "m11_laura_roja"
+     },
+     {
+      "setFlag": "m11_ql_personas"
+     }
+    ],
+    "next": "n17"
+   },
+   "n17": {
+    "speaker": "Laura",
+    "text": "Yo voy bien. Raro, pero bien. Me metí en Literatura Latinoamericana para cubrir créditos y resulta que es lo que más me gusta.",
+    "effects": [
+     {
+      "vineta": "m11_laura_libro"
+     }
+    ],
+    "next": "n18"
+   },
+   "n18": {
+    "speaker": "Laura",
+    "text": "Lo malo: tengo este libro desde hace un mes. Me lo sacó una amiga de la Itsisi con su carnet... y hoy es el último día para devolverlo.",
+    "next": "n19"
+   },
+   "n19": {
+    "text": "La tapa está gastada: «La vorágine», de José Eustasio Rivera. Edición de biblioteca, con el sello de la Universidad Itsisi.",
+    "effects": [
+     {
+      "vineta": "m11_libro_tapa"
+     }
+    ],
+    "next": "n20"
+   },
+   "n20": {
+    "speaker": "Laura",
+    "text": "Me hizo gracia el título. Y luego resulta que es tremenda: selva, caucho, gente que se pierde... ¿Hay un sitio que se llama así, no? ¿La Vorágine?",
+    "effects": [
+     {
+      "vineta": "m11_laura_libro"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Sí, río arriba de Pance. Dicen que es lindo.»",
+      "effects": [
+       {
+        "setFlag": "m11_voragine_semilla"
+       },
+       {
+        "setFlag": "m11_ql_voragine"
+       }
+      ],
+      "goto": "n21"
+     },
+     {
+      "label": "«Ni idea. Yo solo conozco el Pance de abajo.»",
+      "goto": "n22"
+     }
+    ]
+   },
+   "n21": {
+    "speaker": "Laura",
+    "text": "¿Ves? Cali me pone las cosas delante. Habrá que ir. Apuntado.",
+    "effects": [
+     {
+      "vineta": "m11_apuntado"
+     }
+    ],
+    "next": "n23"
+   },
+   "n22": {
+    "speaker": "Laura",
+    "text": "Pues algún día lo descubrimos. Apuntado.",
+    "effects": [
+     {
+      "vineta": "m11_apuntado"
+     }
+    ],
+    "next": "n23"
+   },
+   "n23": {
+    "speaker": "Laura",
+    "text": "Bueno, el favor: ¿me acompañas a devolverlo? Está aquí al lado, bajando por la Calle 18. Yo no me ubico, y tú tienes cara de ubicarte.",
+    "effects": [
+     {
+      "vineta": "m11_laura_favor"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Vamos. Pero me debes un helado.»",
+      "effects": [
+       {
+        "setFlag": "m11_helado_trato"
+       },
+       {
+        "setFlag": "m11_ql_trato"
+       }
+      ],
+      "goto": "n24"
+     },
+     {
+      "label": "«¿Cara de ubicarme? Llevo tres meses perdido.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_perdidos"
+       }
+      ],
+      "goto": "n25"
+     }
+    ]
+   },
+   "n24": {
+    "speaker": "Laura",
+    "text": "Hecho. Yo invito el helado y tú me haces de guía.",
+    "effects": [
+     {
+      "vineta": "m11_trato"
+     }
+    ],
+    "next": "n26"
+   },
+   "n25": {
+    "speaker": "Laura",
+    "text": "Pues nos perdemos juntos. Es más divertido.",
+    "effects": [
+     {
+      "vineta": "m11_trato"
+     }
+    ],
+    "next": "n26"
+   },
+   "n26": {
+    "text": "Laura sube a cambiarse. Diez minutos después aparece en tu puerta con un vestido amarillo y la bufanda del Athletic amarrada a la mochila. Hacen treinta grados.",
+    "effects": [
+     {
+      "vineta": "m11_laura_vestido"
+     }
+    ],
+    "next": "n27"
+   },
+   "n27": {
+    "speaker": "Laura",
+    "text": "No me mires así. La bufanda viene conmigo a todas partes. Es un amuleto.",
+    "effects": [
+     {
+      "setFlag": [
+       "m11_sigue_laura",
+       "m11_quimica_laura",
+       "m11_salida_itsisi"
+      ]
+     },
+     {
+      "objective": "Baja con Laura y ve a la Itsisi (al sur por la Calle 18)"
+     },
+     {
+      "giveItem": "libro_voragine"
+     }
+    ]
+   }
+  }
+ },
+ "m11_ascensor_8": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El ascensor del Bobo. Botones del S al 12.",
+    "effects": [
+     {
+      "vineta": "m11_ascensor"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Bajar al lobby",
+      "effects": [
+       {
+        "event": "ascensor_m11",
+        "data": {
+         "to": "lobby"
+        }
+       }
+      ]
+     },
+     {
+      "label": "Subir al 11",
+      "if": {
+       "flag": "m11_acceso_11"
+      },
+      "effects": [
+       {
+        "event": "ascensor_m11",
+        "data": {
+         "to": "piso11"
+        }
+       }
+      ]
+     },
+     {
+      "label": "Quedarse"
+     }
+    ]
+   }
+  }
+ },
+ "m11_ascensor_lobby": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El ascensor del Bobo.",
+    "effects": [
+     {
+      "vineta": "m11_ascensor"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Subir al 8",
+      "effects": [
+       {
+        "event": "ascensor_m11",
+        "data": {
+         "to": "piso8"
+        }
+       }
+      ]
+     },
+     {
+      "label": "Subir al 11",
+      "if": {
+       "flag": "m11_acceso_11"
+      },
+      "effects": [
+       {
+        "event": "ascensor_m11",
+        "data": {
+         "to": "piso11"
+        }
+       }
+      ]
+     },
+     {
+      "label": "Quedarse"
+     }
+    ]
+   }
+  }
+ },
+ "m11_ascensor_11": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El ascensor del piso 11. El 11 iluminado. Por fin.",
+    "effects": [
+     {
+      "vineta": "m11_boton_11_on"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Bajar al 8",
+      "effects": [
+       {
+        "event": "ascensor_m11",
+        "data": {
+         "to": "piso8"
+        }
+       }
+      ]
+     },
+     {
+      "label": "Bajar al lobby",
+      "effects": [
+       {
+        "event": "ascensor_m11",
+        "data": {
+         "to": "lobby"
+        }
+       }
+      ]
+     },
+     {
+      "label": "Quedarse"
+     }
+    ]
+   }
+  }
+ },
+ "m11_cuadra_ida": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Calle 18 a pleno sol. Laura se pone las gafas de sol y se arremanga el vestido para no tropezar con la bufanda.",
+    "effects": [
+     {
+      "vineta": "m11_calle18"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Nunca he usado la piscina del Bobo. Me da vergüenza bañarme sola delante de los del piso 3, que son todos de Ingeniería y se tiran en bomba.",
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Tú guía. Yo sigo. Si nos perdemos, la culpa es tuya.",
+    "effects": [
+     {
+      "objective": "Ve a la Itsisi: sigue la Calle 18 hacia el sur"
+     }
+    ]
+   }
+  }
+ },
+ "m11_itsisi_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Universidad Itsisi: ladrillo, vidrio y samanes enormes. Estudiantes en sábado con cara de parcial.",
+    "effects": [
+     {
+      "vineta": "m11_itsisi"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "¡Otra universidad entera pegada a la nuestra! En Bilbao esto sería un barrio.",
+    "effects": [
+     {
+      "vineta": "m11_itsisi_laura"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Vale dijo que la biblioteca está «al lado de la Plaza Samán». ¿Qué samán? ¡Aquí todos son samanes!",
+    "effects": [
+     {
+      "vineta": "m11_samanes"
+     },
+     {
+      "objective": "Busca la biblioteca (al lado de la Plaza Samán)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_vigilante_itsisi": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Vigilante",
+    "text": "Buenas, buenas. ¿Vienen a la biblioteca? Sigan derecho, pasando el Edificio B. Y no se me suban al samán, que ya me ha tocado bajar a dos.",
+    "effects": [
+     {
+      "vineta": "m11_vigilante"
+     }
+    ]
+   }
+  }
+ },
+ "m11_chulo_azul": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Una escultura enorme de un gallinazo azul, con las alas medio abiertas.",
+    "effects": [
+     {
+      "vineta": "m11_chulo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "¿Eso es un pájaro? ¿Por qué es azul? ¿Por qué me mira así?",
+    "effects": [
+     {
+      "vineta": "m11_chulo_laura"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Es un chulo. Aquí les dicen así a los gallinazos.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_chulo"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "«Te mira porque llevas bufanda con treinta grados.»",
+      "goto": "n3"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Un chulo. Vale. Me lo apunto con el chontaduro y el «ve».",
+    "effects": [
+     {
+      "vineta": "m11_apunta"
+     }
+    ],
+    "next": "n4"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Pues que se compre una. Es del Athletic. Mira cómo se le van los ojos.",
+    "effects": [
+     {
+      "vineta": "m11_apunta"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "effects": [
+     {
+      "setFlag": "secreto_m11_chulo"
+     }
+    ]
+   }
+  }
+ },
+ "m11_edificio_l": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Edificio L. Laboratorios. Por la ventana, alguien suelda un robot con la paciencia de un relojero.",
+    "effects": [
+     {
+      "vineta": "m11_edificio"
+     }
+    ]
+   }
+  }
+ },
+ "m11_taller_diseno": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Taller de Diseño. Maquetas de cartón en la ventana, una lámpara hecha con botellas y un letrero: «NO TOCAR. EN SERIO.»",
+    "effects": [
+     {
+      "vineta": "m11_taller"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Esto le encantaría a tu amiga la arquitecta, ¿no? La de la piscina.",
+    "effects": [
+     {
+      "vineta": "m11_laura_sira"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Cómo sabes de ella?»",
+      "effects": [
+       {
+        "setFlag": "m11_laura_sabe_sira"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "«Puede ser.»",
+      "goto": "n3"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Cali es un pañuelo, chileno. Y el Bobo es un pañuelo más pequeño. ...Era broma. Me lo contó Danilo.",
+    "effects": [
+     {
+      "vineta": "m11_panuelo"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "«Puede ser.» Qué respuesta tan chilena.",
+    "effects": [
+     {
+      "vineta": "m11_apunta"
+     }
+    ]
+   }
+  }
+ },
+ "m11_cancha_itsisi": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "En la cancha, un partido de fútbol de sábado: diez contra diez, dos perros y un árbitro con chancletas.",
+    "effects": [
+     {
+      "vineta": "m11_cancha"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Si fuera el Athletic ya estaría gritando. Pero no conozco a nadie. Grito igual: ¡AUPA!",
+    "effects": [
+     {
+      "vineta": "m11_aupa"
+     }
+    ]
+   }
+  }
+ },
+ "m11_cafe_itsisi": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Cafetería Bristol. Huele a pandeyuca recién salido y a tinto de greca.",
+    "effects": [
+     {
+      "vineta": "m11_cafeteria"
+     }
+    ]
+   }
+  }
+ },
+ "m11_biblio_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Biblioteca de la Itsisi. Silencio absoluto y aire acondicionado a dieciocho grados.",
+    "effects": [
+     {
+      "vineta": "m11_biblioteca"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "(susurrando) Qué gloria. Me quedaría a vivir aquí. Con una manta.",
+    "effects": [
+     {
+      "vineta": "m11_biblio_laura"
+     },
+     {
+      "objective": "Devuelve el libro en el mostrador"
+     }
+    ]
+   }
+  }
+ },
+ "m11_amparo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_libro_devuelto"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Doña Rocío",
+    "text": "Ya está devuelto, mijo. Y bájenle a la voz, que esto es una biblioteca.",
+    "effects": [
+     {
+      "vineta": "m11_amparo"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Doña Rocío",
+    "text": "Buenos días. ¿Devolución?",
+    "effects": [
+     {
+      "vineta": "m11_amparo"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Laura le pasa el libro. Doña Rocío lo escanea. Bip. Frunce el ceño por encima de las gafas.",
+    "effects": [
+     {
+      "vineta": "m11_amparo_ceno"
+     },
+     {
+      "sfx": "bip"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Doña Rocío",
+    "text": "Este libro está prestado al carnet de Valentina Ospina. ¿Alguno de ustedes es Valentina Ospina?",
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Eh... no. Soy amiga suya. Me lo prestó. Bueno... nos lo prestó. A los dos.",
+    "effects": [
+     {
+      "vineta": "m11_laura_nerviosa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Somos amigos de Valentina. Ella está en parciales.»",
+      "goto": "n6"
+     },
+     {
+      "label": "«La verdad: se lo prestaron a ella y ella me arrastró hasta acá.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_honesto"
+       }
+      ],
+      "goto": "n7"
+     },
+     {
+      "label": "«Señora, ¿usted se ha leído La vorágine?»",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_amparo"
+       },
+       {
+        "setFlag": "m11_ql_cita"
+       }
+      ],
+      "goto": "n8"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Doña Rocío",
+    "text": "Mmm. Ajá. La devolución no necesita carnet. Lo que necesita es la mora: un día, mil quinientos pesos.",
+    "effects": [
+     {
+      "vineta": "m11_amparo_ceno"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "Doña Rocío",
+    "text": "Por lo menos son honestos. La devolución no necesita carnet. Pero la mora sí: mil quinientos.",
+    "effects": [
+     {
+      "vineta": "m11_amparo_rie"
+     }
+    ]
+   },
+   "n8": {
+    "speaker": "Doña Rocío",
+    "text": "Tres veces, mijo. «Antes que me hubiera apasionado por mujer alguna, jugué mi corazón al azar y me lo ganó la Violencia.»",
+    "effects": [
+     {
+      "vineta": "m11_amparo_cita"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "(bajito) Hostia... Me ha dado escalofríos.",
+    "effects": [
+     {
+      "vineta": "m11_escalofrio"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "speaker": "Doña Rocío",
+    "text": "La mora son mil quinientos.",
+    "effects": [
+     {
+      "vineta": "m11_amparo"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Yo pago.» (1.500)",
+      "if": {
+       "minMoney": 1500
+      },
+      "effects": [
+       {
+        "setFlag": "m11_ql_paga"
+       },
+       {
+        "pay": 1500
+       }
+      ],
+      "goto": "n11"
+     },
+     {
+      "label": "«Págala tú, que es tu mora.»",
+      "goto": "n12"
+     }
+    ]
+   },
+   "n11": {
+    "speaker": "Laura",
+    "text": "¡No! ...Bueno, vale. Pero el helado lo pago yo. Que conste.",
+    "effects": [
+     {
+      "vineta": "m11_laura_conste"
+     }
+    ],
+    "next": "n13"
+   },
+   "n12": {
+    "speaker": "Laura",
+    "text": "Mil quinientos pesos de mi vida. Que conste en acta.",
+    "effects": [
+     {
+      "vineta": "m11_laura_paga"
+     }
+    ],
+    "next": "n13"
+   },
+   "n13": {
+    "text": "Doña Rocío hojea el libro antes de guardarlo. Del medio cae un papelito doblado.",
+    "effects": [
+     {
+      "vineta": "m11_papelito"
+     }
+    ],
+    "next": "n14"
+   },
+   "n14": {
+    "text": "Un separador hecho a mano. Por un lado, un samán dibujado con lápiz. Por el otro, en letra redonda: «Para Laura: que Cali te enrede como la selva al de la novela. — Vale».",
+    "effects": [
+     {
+      "vineta": "m11_separador"
+     }
+    ],
+    "next": "n15"
+   },
+   "n15": {
+    "speaker": "Laura",
+    "text": "Ay, Vale... Qué tonta. ...¿Te lo quedas tú? Yo lo pierdo todo.",
+    "effects": [
+     {
+      "vineta": "m11_separador_laura"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Me lo quedo. Pero sigue siendo tuyo.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_separador"
+       }
+      ],
+      "goto": "n17"
+     },
+     {
+      "label": "«Lo meto en mi cuaderno de Logística. Para que algo ahí sea bonito.»",
+      "goto": "n16"
+     }
+    ]
+   },
+   "n16": {
+    "speaker": "Laura",
+    "text": "Pobre cuaderno. Necesitaba alegría.",
+    "effects": [
+     {
+      "vineta": "m11_separador_laura"
+     }
+    ],
+    "next": "n17"
+   },
+   "n17": {
+    "speaker": "Doña Rocío",
+    "text": "Y bájenle a la voz, ¿sí? Que esto es una biblioteca, no la Sexta.",
+    "effects": [
+     {
+      "vineta": "m11_amparo_rie"
+     },
+     {
+      "setFlag": "m11_libro_devuelto"
+     },
+     {
+      "objective": "El helado: la heladería de la Plaza Samán"
+     },
+     {
+      "giveItem": "separador_voragine"
+     },
+     {
+      "takeItem": "libro_voragine"
+     }
+    ]
+   }
+  }
+ },
+ "m11_poesia": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_poesia"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Poesía colombiana. El tomo de José Asunción Silva sigue un poco salido del estante.",
+    "effects": [
+     {
+      "vineta": "m11_estante"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Estante de poesía colombiana. Laura saca un tomo viejo de José Asunción Silva y lo abre al azar.",
+    "effects": [
+     {
+      "vineta": "m11_poesia_laura"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "(susurrando) «Una noche, una noche toda llena de perfumes, de murmullos y de músicas de alas...»",
+    "effects": [
+     {
+      "vineta": "m11_nocturno"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "¿Te imaginas? Una noche así. Toda llena de cosas.",
+    "effects": [
+     {
+      "vineta": "m11_poesia_mira"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Me la imagino.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_nocturno"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "«Con este calor, la noche va a estar llena de zancudos.»",
+      "goto": "n6"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "...Vale. Shh. Que nos echan.",
+    "effects": [
+     {
+      "vineta": "m11_poesia_mira"
+     }
+    ],
+    "next": "n7"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "Qué poco romántico eres, de verdad. ...Pero tienes razón.",
+    "effects": [
+     {
+      "vineta": "m11_poco_romantico"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "effects": [
+     {
+      "setFlag": "m11_poesia"
+     }
+    ]
+   }
+  }
+ },
+ "m11_heladero": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_helado"
+      },
+      "goto": "n1"
+     },
+     {
+      "if": {
+       "notFlag": "m11_libro_devuelto"
+      },
+      "goto": "n2"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Heladero",
+    "text": "¿Otro? ¡Este calor no perdona, ve!",
+    "effects": [
+     {
+      "vineta": "m11_heladero"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Primero el libro, después el helado. Si no, me lo como encima de La vorágine y doña lo que sea me mata.",
+    "effects": [
+     {
+      "vineta": "m11_primero_libro"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Heladero",
+    "text": "¡A la orden! Hay lulo, maracuyá, guanábana, mora, arequipe... y chontaduro, pa' los valientes.",
+    "effects": [
+     {
+      "vineta": "m11_heladero"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "¿Chontaduro? No sé qué es y me da miedo. ¿Tú qué pides?",
+    "effects": [
+     {
+      "vineta": "m11_laura_miedo"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Maracuyá",
+      "effects": [
+       {
+        "setFlag": "m11_qs_maracuya"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "Lulo",
+      "goto": "n7"
+     },
+     {
+      "label": "Chontaduro",
+      "goto": "n8"
+     }
+    ]
+   },
+   "n5": {
+    "text": "Maracuyá. Sin querer, te acuerdas de un chat a las tres de la mañana. De alguien a quien le encanta el maracuyá.",
+    "effects": [
+     {
+      "vineta": "m11_maracuya_sira"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "text": "Laura no se da cuenta. O hace como que no.",
+    "effects": [
+     {
+      "vineta": "m11_laura_helado"
+     }
+    ],
+    "next": "n10"
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "¿Lulo? Suena a nombre de perro. «¡Lulo, ven aquí!» ...Me gusta.",
+    "effects": [
+     {
+      "vineta": "m11_lulo"
+     }
+    ],
+    "next": "n10"
+   },
+   "n8": {
+    "text": "Te lo dan con sal y miel por encima. Sabe a... ¿zapallo? ¿Papa dulce? ¿A coraje?",
+    "effects": [
+     {
+      "vineta": "m11_chontaduro"
+     }
+    ],
+    "next": "n9"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "¡Tu cara! ¡TU CARA! Espera, no te muevas, te hago una foto.",
+    "effects": [
+     {
+      "vineta": "m11_foto_cara"
+     },
+     {
+      "sfx": "camera"
+     },
+     {
+      "setFlag": "secreto_m11_chontaduro"
+     },
+     {
+      "setFlag": "m11_ql_chontaduro"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "speaker": "Laura",
+    "text": "Para mí, arequipe. Que es como el dulce de leche, ¿no? ...En Chile le dicen manjar, ¿verdad? Manjar. Qué palabra tan bonita para un dulce.",
+    "effects": [
+     {
+      "vineta": "m11_arequipe"
+     }
+    ],
+    "next": "n11"
+   },
+   "n11": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_helado_trato"
+      },
+      "goto": "n12"
+     },
+     {
+      "goto": "n13"
+     }
+    ]
+   },
+   "n12": {
+    "text": "Laura paga los dos antes de que alcances a sacar la billetera. «Un trato es un trato.»",
+    "effects": [
+     {
+      "vineta": "m11_laura_invita"
+     }
+    ],
+    "next": "n14"
+   },
+   "n13": {
+    "text": "Pagan a medias. El heladero les regala un barquillo extra «por bonitos».",
+    "effects": [
+     {
+      "vineta": "m11_barquillo"
+     },
+     {
+      "pay": 4000
+     }
+    ],
+    "next": "n14"
+   },
+   "n14": {
+    "text": "Se sientan en una banca debajo del samán más grande. El helado se derrite más rápido de lo que se alcanza a comer.",
+    "effects": [
+     {
+      "vineta": "m11_banca_saman"
+     }
+    ],
+    "next": "n15"
+   },
+   "n15": {
+    "speaker": "Laura",
+    "text": "¿Te puedo decir una cosa rara?",
+    "effects": [
+     {
+      "vineta": "m11_cosa_rara"
+     }
+    ],
+    "next": "n16"
+   },
+   "n16": {
+    "speaker": "Laura",
+    "text": "Desde Salento pensé que te iba a encontrar en el ascensor todos los días. Y nada. Dos semanas. Al final tuve que bajar yo con pandebonos.",
+    "choices": [
+     {
+      "label": "«Yo miraba quién subía cada vez que paraba en el 11.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ascensor"
+       }
+      ],
+      "goto": "n17"
+     },
+     {
+      "label": "«Pensé que no querías.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_pruebas"
+       }
+      ],
+      "goto": "n18"
+     },
+     {
+      "label": "«Te vi una vez, pero llevabas audífonos.»",
+      "goto": "n19"
+     }
+    ]
+   },
+   "n17": {
+    "speaker": "Laura",
+    "text": "¿De verdad? ...Tonto. Haberme escrito.",
+    "effects": [
+     {
+      "vineta": "m11_tonto"
+     }
+    ],
+    "next": "n20"
+   },
+   "n18": {
+    "speaker": "Laura",
+    "text": "¿Que no quería? Te seguí en Fotogram a las cuatro de la mañana, chileno. ¿Qué más pruebas quieres?",
+    "effects": [
+     {
+      "vineta": "m11_tonto"
+     }
+    ],
+    "next": "n20"
+   },
+   "n19": {
+    "speaker": "Laura",
+    "text": "¡Mentira! ...¿De verdad? Ay, qué rabia. Me los quito para siempre.",
+    "effects": [
+     {
+      "vineta": "m11_rabia"
+     }
+    ],
+    "next": "n20"
+   },
+   "n20": {
+    "speaker": "Laura",
+    "text": "Bueno. ¿Volvemos? Wilmer me ha dicho que en el lobby pusieron una mesa de pimpón. ¿Te atreves?",
+    "effects": [
+     {
+      "vineta": "m11_te_atreves"
+     },
+     {
+      "setFlag": "m11_helado"
+     },
+     {
+      "objective": "Vuelve al Bobo: hay pimpón nuevo en el lobby"
+     }
+    ]
+   }
+  }
+ },
+ "m11_lobby_pinpon": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Al lado de los sofás del lobby hay una mesa de pimpón nueva, con un letrero: «DONACIÓN DE LOS DEL PISO 3 — CUIDARLA».",
+    "effects": [
+     {
+      "vineta": "m11_lobby_mesa"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Wilmer",
+    "text": "Buenas, buenas. ¿Van a estrenarla? Las paletas están en la recepción. Me las cuidan, que esas son de Wilmer.",
+    "effects": [
+     {
+      "vineta": "m11_wilmer_paletas"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "A siete. El que pierde invita el próximo helado.",
+    "effects": [
+     {
+      "vineta": "m11_laura_reta"
+     },
+     {
+      "event": "pinpon_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_pinpon_gana": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "Me has ganado en mi propio deporte. ...Vale, no es mi deporte. Pero en Bakio era la reina del frontón. Que lo sepas.",
+    "effects": [
+     {
+      "vineta": "m11_pinpon_gana"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Wilmer",
+    "text": "¡Eso, chileno! Revancha el lunes, señorita.",
+    "effects": [
+     {
+      "vineta": "m11_wilmer_aplaude"
+     },
+     {
+      "setFlag": "m11_ql_pinpon"
+     }
+    ]
+   }
+  }
+ },
+ "m11_pinpon_pierde": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Laura",
+    "text": "¡AUPA! ¡Toma ya! Me debes un helado, chileno. Y te lo voy a cobrar. Con intereses.",
+    "effects": [
+     {
+      "vineta": "m11_pinpon_pierde"
+     },
+     {
+      "setFlag": "m11_debe_helado"
+     }
+    ]
+   }
+  }
+ },
+ "m11_bakio": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Se tiran en el sofá del lobby, sudados. Afuera empieza a caer la tarde.",
+    "effects": [
+     {
+      "vineta": "m11_sofa_lobby"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Te confieso algo: en Salento dije que era de Bilbao. Mentí un poquito. Soy de Bakio, a media hora, en la costa. Pero nadie conoce Bakio, así que digo Bilbao y ya.",
+    "effects": [
+     {
+      "vineta": "m11_confiesa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Y cómo es Bakio?»",
+      "goto": "n3"
+     },
+     {
+      "label": "«Mentirosa. Ya no te creo nada.»",
+      "goto": "n2"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Te lo compenso con fotos. Mira.",
+    "effects": [
+     {
+      "vineta": "m11_fotos_cel"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Laura saca el celular. Una playa grande, con olas. Montes verdes con viñas. Un cielo gris de los que no se ven en Cali.",
+    "effects": [
+     {
+      "vineta": "m11_bakio_postal"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Olas para surfear, viñas de txakoli en el monte y un pueblo donde todos saben de quién eres hija. Y siempre, siempre, sirimiri.",
+    "choices": [
+     {
+      "label": "«¿Siri... qué?»",
+      "effects": [
+       {
+        "setFlag": "m11_sirimiri"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "«Suena a sur de Chile.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_sur"
+       }
+      ],
+      "goto": "n6"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Sirimiri. Ya lo entenderás el día que vengas. Se entiende con el cuerpo, no con palabras.",
+    "effects": [
+     {
+      "vineta": "m11_sirimiri"
+     }
+    ],
+    "next": "n7"
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "¿Sí? Pues algún día me llevas y comparamos lluvias.",
+    "effects": [
+     {
+      "vineta": "m11_comparamos"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "Y esto es San Juan de Gaztelugatxe. Una ermita en una isla, con doscientos y pico escalones. Arriba tocas la campana tres veces y pides un deseo.",
+    "effects": [
+     {
+      "vineta": "m11_gaztelugatxe"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¿Y qué pediste?»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_deseo"
+       }
+      ],
+      "goto": "n8"
+     },
+     {
+      "label": "«¿Doscientos escalones? En Valparaíso los cerros tienen ascensor.»",
+      "goto": "n9"
+     }
+    ]
+   },
+   "n8": {
+    "speaker": "Laura",
+    "text": "Eso no se cuenta. Si lo cuentas, no se cumple. ...Pero creo que se está cumpliendo.",
+    "effects": [
+     {
+      "vineta": "m11_deseo"
+     }
+    ],
+    "next": "n10"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "Flojo. Te subo a empujones.",
+    "effects": [
+     {
+      "vineta": "m11_flojo"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "speaker": "Laura",
+    "text": "Y esta... esta es mi vida entera.",
+    "effects": [
+     {
+      "vineta": "m11_foto_txinparta"
+     }
+    ],
+    "next": "n11"
+   },
+   "n11": {
+    "text": "En la pantalla: una perra rubia, de pelo largo y orejas de punta, corriendo por la orilla con un palo más largo que ella.",
+    "next": "n12"
+   },
+   "n12": {
+    "speaker": "Laura",
+    "text": "Txinparta. Una pastora vasca, de las rubias. Tiene seis años y más energía que todo Cali junto.",
+    "choices": [
+     {
+      "label": "«¿Txin... qué?»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_txinparta"
+       }
+      ],
+      "goto": "n13"
+     },
+     {
+      "label": "«Es preciosa. ¿Qué significa el nombre?»",
+      "effects": [
+       {
+        "setFlag": "m11_pregunto_txinparta"
+       }
+      ],
+      "goto": "n14"
+     }
+    ]
+   },
+   "n13": {
+    "speaker": "Laura",
+    "text": "Txin-par-ta. Practica, que algún día te la presento.",
+    "effects": [
+     {
+      "vineta": "m11_practica"
+     }
+    ],
+    "next": "n15"
+   },
+   "n14": {
+    "speaker": "Laura",
+    "text": "Eso lo tienes que descubrir tú. Pista: le pega muchísimo.",
+    "effects": [
+     {
+      "vineta": "m11_pista"
+     }
+    ],
+    "next": "n15"
+   },
+   "n15": {
+    "speaker": "Laura",
+    "text": "Ama me manda una foto suya cada mañana. Hoy estaba durmiendo encima de mis zapatillas. Me echa de menos, la tonta.",
+    "effects": [
+     {
+      "vineta": "m11_txinparta_zapatillas"
+     }
+    ],
+    "next": "n16"
+   },
+   "n16": {
+    "speaker": "Laura",
+    "text": "¿Y tú? ¿Tienes perro? Tienes cara de tener perro.",
+    "effects": [
+     {
+      "vineta": "m11_cara_perro"
+     }
+    ],
+    "next": "n17"
+   },
+   "n17": {
+    "text": "Sacas el celular. Fondo de pantalla: Walle.",
+    "effects": [
+     {
+      "vineta": "m11_foto_walle"
+     }
+    ],
+    "next": "n18"
+   },
+   "n18": {
+    "text": "Walle: mediano, crespo, color crema y dorado, con unas orejas largas y onduladas de cocker, la lengua afuera y una placa azul en forma de hueso que dice WALLE. Lleva el arnés de pata de gallo que le compró tu mamá.",
+    "next": "n19"
+   },
+   "n19": {
+    "speaker": "Laura",
+    "text": "¡¿PERO QUÉ ES ESO?! ¡Mira esas orejas! ¡Es un peluche! ¿Cómo se llama? ...Ah, lo pone ahí. ¡Walle! ¡WALLE!",
+    "effects": [
+     {
+      "vineta": "m11_laura_walle"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Tiene siete años y se cree persona.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_walle"
+       }
+      ],
+      "goto": "n20"
+     },
+     {
+      "label": "«Lo extraño más que a nadie. No le digas a mi mamá.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_extrano"
+       }
+      ],
+      "goto": "n21"
+     },
+     {
+      "label": "«Mira esta: se comió un calcetín y se hizo el inocente.»",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_calcetin"
+       },
+       {
+        "setFlag": "m11_ql_calcetin"
+       }
+      ],
+      "goto": "n22"
+     }
+    ]
+   },
+   "n20": {
+    "speaker": "Laura",
+    "text": "Igual que Txinparta. Si se juntan esos dos, nos echan de casa.",
+    "effects": [
+     {
+      "vineta": "m11_nos_echan"
+     }
+    ],
+    "next": "n24"
+   },
+   "n21": {
+    "speaker": "Laura",
+    "text": "Te guardo el secreto. ...Yo a Txinparta también. Más que a nadie. Bueno. Casi.",
+    "effects": [
+     {
+      "vineta": "m11_casi"
+     }
+    ],
+    "next": "n24"
+   },
+   "n22": {
+    "text": "Walle, sentado al lado de un calcetín destrozado, mirando a la cámara con cara de «yo no fui».",
+    "effects": [
+     {
+      "vineta": "m11_foto_walle_calcetin"
+     }
+    ],
+    "next": "n23"
+   },
+   "n23": {
+    "speaker": "Laura",
+    "text": "¡No puedo! ¡Esa cara! ¡Es culpable y lo sabe!",
+    "effects": [
+     {
+      "vineta": "m11_laura_llora_risa"
+     }
+    ],
+    "next": "n24"
+   },
+   "n24": {
+    "speaker": "Laura",
+    "text": "Prométeme una cosa: un día juntamos a Walle y a Txinparta. Aunque sea por videollamada.",
+    "effects": [
+     {
+      "vineta": "m11_promete"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Prometido.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_promesa"
+       }
+      ],
+      "goto": "n26"
+     },
+     {
+      "label": "«¿En Bakio o en Santiago?»",
+      "goto": "n25"
+     }
+    ]
+   },
+   "n25": {
+    "speaker": "Laura",
+    "text": "Donde sea. Pero que se conozcan.",
+    "effects": [
+     {
+      "vineta": "m11_promete"
+     }
+    ],
+    "next": "n26"
+   },
+   "n26": {
+    "text": "Wilmer, desde la recepción, los mira por encima del computador. No dice nada. Pero sonríe.",
+    "effects": [
+     {
+      "vineta": "m11_wilmer_sonrie"
+     }
+    ],
+    "next": "n27"
+   },
+   "n27": {
+    "speaker": "Laura",
+    "text": "Bueno, me voy, que mañana madrugo para el gimnasio. ...Mentira, no voy al gimnasio. Pero me voy.",
+    "effects": [
+     {
+      "vineta": "m11_laura_se_va"
+     }
+    ],
+    "next": "n28"
+   },
+   "n28": {
+    "speaker": "Laura",
+    "text": "Agur, chileno. Gracias por lo de hoy.",
+    "effects": [
+     {
+      "vineta": "m11_agur"
+     },
+     {
+      "setFlag": [
+       "m11_dia1_fin",
+       "m11_acceso_11"
+      ]
+     },
+     {
+      "clearFlag": "m11_sigue_laura"
+     },
+     {
+      "objective": "Sube al 805 y descansa"
+     }
+    ]
+   }
+  }
+ },
+ "m11_cama_aun_no": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Todavía es de día. Hay cosas que hacer.",
+    "effects": [
+     {
+      "vineta": "m11_cama_no"
+     }
+    ]
+   }
+  }
+ }
+}

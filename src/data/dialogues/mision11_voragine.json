@@ -1,0 +1,1300 @@
+{
+ "m11_festivo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Lunes festivo. 07:15. Zapatillas de verdad, bloqueador, pantaloneta, toalla y una botella de agua congelada.",
+    "effects": [
+     {
+      "vineta": "m11_festivo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "text": "07:41. Sira.",
+    "effects": [
+     {
+      "vineta": "m11_chat_sira_cancela"
+     },
+     {
+      "sfx": "notify"
+     },
+     {
+      "message": "m11_sira_cancela"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Sira",
+    "text": "«Ay no 😭 Me salió algo con mi familia, una tía que llegó de Buenaventura y mi mamá me necesita. No puedo ir. Pásenla rico. Y me mandas fotos. Muchas.»",
+    "effects": [
+     {
+      "vineta": "m11_chat_sira_cancela"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Qué pena. Te mando fotos de todo.»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_fotos"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "«¿Todo bien con tu familia?»",
+      "effects": [
+       {
+        "setFlag": "m11_qs_familia"
+       }
+      ],
+      "goto": "n4"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Sira",
+    "text": "«De todo no. De la Chorrera. Y de ti 💙»",
+    "effects": [
+     {
+      "vineta": "m11_chat_sira_cancela"
+     }
+    ],
+    "next": "n5"
+   },
+   "n4": {
+    "speaker": "Sira",
+    "text": "«Sí, sí. Cosas de tías. Gracias por preguntar. De verdad 💙»",
+    "effects": [
+     {
+      "vineta": "m11_chat_sira_cancela"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "text": "Guardas el celular. Sientes algo raro en el estómago. Alivio. Y culpa por sentir alivio.",
+    "effects": [
+     {
+      "vineta": "m11_alivio"
+     },
+     {
+      "setFlag": "m11_festivo"
+     },
+     {
+      "objective": "Baja al lobby: salen a las 8"
+     }
+    ]
+   }
+  }
+ },
+ "m11_lobby_voragine": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El lobby a las ocho. Danilo con gafas de sol y un sombrero vueltiao. Mila con Ariana, su amiga de Lima. Y Laura, con trenzas, zapatillas de verdad y Fiorella, la peruana del piso 6.",
+    "effects": [
+     {
+      "vineta": "m11_grupo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Ariana",
+    "text": "¡Habla, chileno! Mila me contó todo de ti. Todo todo.",
+    "effects": [
+     {
+      "vineta": "m11_ariana"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Fiorella",
+    "text": "Hola, soy Fiorella. Vivo en el 6. Te he visto en el ascensor un montón de veces. Siempre miras el botón del 11.",
+    "effects": [
+     {
+      "vineta": "m11_fiorella"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Laura se atraganta con el agua. Mila y Ariana se miran. Danilo silba mirando el techo.",
+    "effects": [
+     {
+      "vineta": "m11_atraganta"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Bueno, bueno. Pedí dos Uber. En el primero vamos el chileno, Laura, Fiorella y yo. En el otro, las limeñas. Así ellas pueden hablar mal de nosotros tranquilas.",
+    "effects": [
+     {
+      "vineta": "m11_danilo_ubers"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Mila",
+    "text": "Siempre hablamos mal de ustedes, Danilo. No necesitamos otro Uber para eso.",
+    "effects": [
+     {
+      "vineta": "m11_mila_mal"
+     },
+     {
+      "event": "uber_m11",
+      "data": {
+       "tramo": "ida"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "m11_uber_go": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El Uber: un sedán blanco con olor a pino. El conductor tiene puesta una emisora de vallenatos. Danilo adelante, tú atrás entre Fiorella y Laura.",
+    "effects": [
+     {
+      "vineta": "m11_uber"
+     },
+     {
+      "event": "viaje_uber_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_uber_1": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Fiorella",
+    "text": "Entonces, Laura, ¿tú y el chileno se conocieron en Salento?",
+    "effects": [
+     {
+      "vineta": "m11_fio_pregunta"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "En Salento. En una plaza llena de mexicanos. Me dijo que el tequila de Chile era mejor. Mentira, claro.",
+    "effects": [
+     {
+      "vineta": "m11_laura_salento"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Era mejor. Lo sostengo.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_cabezota"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "«Yo no dije eso. Dije que el pisco era mejor que el tequila.»",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_pisco"
+       }
+      ],
+      "goto": "n3"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Cabezota. Ves, Fiorella. Cabezota desde el primer día.",
+    "effects": [
+     {
+      "vineta": "m11_cabezota"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Fiorella",
+    "text": "¿PISCO? ¿Pisco chileno? Causa, bájate de este carro. El pisco es peruano.",
+    "effects": [
+     {
+      "vineta": "m11_pisco"
+     }
+    ]
+   }
+  }
+ },
+ "m11_uber_2": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Vía a Pance. Ciclistas, guaduales, fincas, vendedores de mango biche. Laura saca la mano por la ventana para sentir el viento.",
+    "effects": [
+     {
+      "vineta": "m11_via_pance"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Esto huele a Bakio en verano. A pasto mojado y a algo dulce. ¿Lo hueles?",
+    "effects": [
+     {
+      "vineta": "m11_huele"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Huele a mango biche.»",
+      "goto": "n2"
+     },
+     {
+      "label": "«Huele a ti.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_huele"
+       }
+      ],
+      "goto": "n3"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Pues Bakio huele a mango biche, decidido.",
+    "effects": [
+     {
+      "vineta": "m11_huele"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "...Calla. Que está Fiorella.",
+    "effects": [
+     {
+      "vineta": "m11_calla_fio"
+     }
+    ]
+   }
+  }
+ },
+ "m11_voragine_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Vorágine. Un pueblito al lado del río Pance: unas cuantas casas, una cancha, restaurantes con mesas de madera y el río sonando por debajo de todo.",
+    "effects": [
+     {
+      "vineta": "m11_voragine"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "«La vorágine»... No se parece nada a la selva del libro. Es precioso.",
+    "effects": [
+     {
+      "vineta": "m11_voragine_laura"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Esto es apenas la entrada. La Chorrera del Indio está más arriba, en San Francisco. Hay que pedir otro carro, que la vía de acá pa'rriba es destapada.",
+    "effects": [
+     {
+      "vineta": "m11_mas_arriba"
+     },
+     {
+      "setFlag": [
+       "m11_en_voragine",
+       "m11_sigue_laura",
+       "m11_sigue_danilo",
+       "m11_sigue_mila",
+       "m11_sigue_fiorella",
+       "m11_sigue_ariana"
+      ]
+     },
+     {
+      "objective": "Busquen el carro que sube a San Francisco (en la vía, al oeste del puente)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_empanadas_voragine": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Señora",
+    "text": "¡Empanaditas de pipián, mijos! ¡Recién hechas, con ají de maní!",
+    "effects": [
+     {
+      "vineta": "m11_pipian"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Ariana",
+    "text": "¡Ají de maní! ¡Esto es como en el Perú pero al revés!",
+    "effects": [
+     {
+      "vineta": "m11_ariana_aji"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Comprar empanadas para todos (6.000)",
+      "if": {
+       "minMoney": 6000
+      },
+      "effects": [
+       {
+        "setFlag": "m11_empanadas"
+       },
+       {
+        "pay": 6000
+       }
+      ]
+     },
+     {
+      "label": "No, gracias."
+     }
+    ]
+   }
+  }
+ },
+ "m11_puente_voragine": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El puente sobre el río Pance. Abajo, el agua bajando clarita entre piedras enormes. Unos niños se tiran desde una roca gritando.",
+    "effects": [
+     {
+      "vineta": "m11_puente"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Míralos. Sin miedo ninguno. Yo a su edad me tiraba desde el puerto de Bakio. Ahora me da miedo hasta la ducha fría.",
+    "effects": [
+     {
+      "vineta": "m11_laura_puente"
+     }
+    ]
+   }
+  }
+ },
+ "m11_campero": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Un campero viejo, de los que suben a San Francisco. El conductor fuma recostado en la puerta.",
+    "effects": [
+     {
+      "vineta": "m11_campero"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Conductor",
+    "text": "¿Pa' la Chorrera? Suban, suban. Los de atrás se agarran, que eso de allá arriba es pura piedra.",
+    "effects": [
+     {
+      "vineta": "m11_conductor"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Danilo",
+    "text": "Yo adelante. Ustedes tres atrás. Las limeñas en el otro carro, con las mochilas. ¡Vamos!",
+    "effects": [
+     {
+      "vineta": "m11_danilo_adelante"
+     },
+     {
+      "event": "trocha_m11"
+     }
+    ]
+   }
+  }
+ },
+ "m11_trocha_despues": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_trocha_juntos"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Al bajarse en San Francisco, Laura todavía tiene tu brazo agarrado. Se da cuenta. Lo suelta. Lo vuelve a agarrar. «Por si acaso», dice.",
+    "effects": [
+     {
+      "vineta": "m11_por_si_acaso"
+     },
+     {
+      "setFlag": "m11_ql_trocha"
+     }
+    ],
+    "next": "n3"
+   },
+   "n2": {
+    "text": "Se bajan en San Francisco con las piernas temblando. Fiorella besa el suelo.",
+    "effects": [
+     {
+      "vineta": "m11_fio_suelo"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "San Francisco: unas casas, un restaurante, un letrero de madera que dice «CHORRERA DEL INDIO →» y el ruido del agua cayendo, todavía lejos.",
+    "effects": [
+     {
+      "vineta": "m11_san_francisco"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Danilo",
+    "text": "Primero el pozo, después las piedras, después la Chorrera, después se almuerza y después subimos al mirador. ¿Hay preguntas? No hay preguntas.",
+    "effects": [
+     {
+      "vineta": "m11_danilo_plan"
+     },
+     {
+      "objective": "Al pozo del río (siguiendo el sendero)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_pozo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El pozo: una olla de agua verde oscura entre rocas gigantes. Desde arriba, la gente se tira gritando.",
+    "effects": [
+     {
+      "vineta": "m11_pozo"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "El que no se tira, no almuerza. Regla del Pance.",
+    "effects": [
+     {
+      "vineta": "m11_regla"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Yo me tiro. Pero el último salto es contigo. De la mano. Y si me ahogo, te persigo como fantasma vasco.",
+    "effects": [
+     {
+      "vineta": "m11_fantasma"
+     },
+     {
+      "event": "paseo_m11",
+      "data": {
+       "mode": "salto"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "m11_pozo_despues": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_salto_juntos"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Salen a flote al mismo tiempo, todavía de la mano. Laura escupe agua y se ríe con el pelo en la cara. Nadie aplaude. Todos miran.",
+    "effects": [
+     {
+      "vineta": "m11_salen_juntos"
+     },
+     {
+      "setFlag": "m11_ql_salto"
+     }
+    ],
+    "next": "n3"
+   },
+   "n2": {
+    "text": "Salen como pueden. Laura: «La próxima vez te espero, ¿eh? Hiru es TRES.»",
+    "effects": [
+     {
+      "vineta": "m11_hiru"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "effects": [
+     {
+      "objective": "Crucen el río por las piedras"
+     }
+    ]
+   }
+  }
+ },
+ "m11_piedras": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Para seguir hacia la Chorrera hay que cruzar el río por unas piedras resbalosas. El agua corre fuerte por debajo.",
+    "effects": [
+     {
+      "vineta": "m11_piedras"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Por ahí no paso yo sola ni loca. Dame la mano.",
+    "effects": [
+     {
+      "vineta": "m11_dame_mano"
+     },
+     {
+      "event": "paseo_m11",
+      "data": {
+       "mode": "mano"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "m11_piedras_despues": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_mano_juntos"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "text": "En la otra orilla, Laura no te suelta la mano. Tú tampoco haces el intento. Siguen caminando así por el sendero.",
+    "effects": [
+     {
+      "vineta": "m11_siguen_mano"
+     },
+     {
+      "setFlag": "m11_ql_piedras"
+     }
+    ],
+    "next": "n3"
+   },
+   "n2": {
+    "text": "Llegan a la otra orilla empapados hasta la cintura. Mila, desde una piedra: «¿Eso fue un paso o un bautizo?»",
+    "effects": [
+     {
+      "vineta": "m11_bautizo"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "effects": [
+     {
+      "objective": "Sigan el sendero hasta la Chorrera del Indio"
+     }
+    ]
+   }
+  }
+ },
+ "m11_cascada_llega": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Y de pronto, la Chorrera del Indio: una cortina blanca de agua cayendo por una pared de roca negra, cubierta de musgo, con un pozo hirviendo de espuma abajo.",
+    "effects": [
+     {
+      "vineta": "m11_chorrera_grande"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "Madre mía. Madre mía. Madre mía.",
+    "effects": [
+     {
+      "vineta": "m11_madre_mia"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Ariana",
+    "text": "¡Asu! ¡Y nosotros en Lima pensando que la Costa Verde era naturaleza!",
+    "effects": [
+     {
+      "vineta": "m11_costa_verde"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Vale. Debajo. Los dos. Y no me sueltes, ¿eh?",
+    "effects": [
+     {
+      "vineta": "m11_debajo"
+     },
+     {
+      "event": "paseo_m11",
+      "data": {
+       "mode": "cascada"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "m11_cascada_despues": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_cascada_juntos"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Salen morados, temblando, castañeteando los dientes. Y de la mano. Laura grita algo en euskera hacia la cascada. No sabes qué. Suena a fiesta.",
+    "effects": [
+     {
+      "vineta": "m11_euskera_grito"
+     },
+     {
+      "setFlag": "m11_ql_cascada"
+     }
+    ],
+    "next": "n3"
+   },
+   "n2": {
+    "text": "Salen como pueden, tosiendo. Laura: «El Indio uno, nosotros cero. Revancha cuando vuelva de España.» Se queda callada después de decirlo.",
+    "effects": [
+     {
+      "vineta": "m11_revancha_espana"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "text": "Se sientan en una piedra al sol para secarse. Fiorella saca la cámara.",
+    "effects": [
+     {
+      "vineta": "m11_foto_chorrera"
+     },
+     {
+      "sfx": "camera"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Fiorella",
+    "text": "Laura, chileno, juntitos, ¡whisky!",
+    "effects": [
+     {
+      "vineta": "m11_whisky"
+     },
+     {
+      "setFlag": "m11_foto_chorrera"
+     },
+     {
+      "objective": "Almuercen en el restaurante de San Francisco"
+     }
+    ]
+   }
+  }
+ },
+ "m11_almuerzo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_almorzo"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "n2"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Doña Ofelia",
+    "text": "¿Algo más, mijos? ¿Un tintico pa' la subida?",
+    "effects": [
+     {
+      "vineta": "m11_ofelia"
+     }
+    ]
+   },
+   "n2": {
+    "text": "El restaurante de San Francisco: mesas de madera debajo de un techo de zinc, gallinas sueltas y una olla de sancocho del tamaño de un barril.",
+    "effects": [
+     {
+      "vineta": "m11_restaurante"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Doña Ofelia",
+    "text": "Hoy hay trucha frita, sancocho de gallina y arroz con todo. Y limonada de panela, la mejor de Pance.",
+    "effects": [
+     {
+      "vineta": "m11_menu_ofelia"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Trucha frita",
+      "effects": [
+       {
+        "setFlag": "m11_ql_trucha"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "Sancocho de gallina",
+      "goto": "n5"
+     }
+    ]
+   },
+   "n4": {
+    "text": "Una trucha dorada que no cabe en el plato, con patacón y arroz. Laura te roba la piel crujiente sin preguntar.",
+    "effects": [
+     {
+      "vineta": "m11_trucha"
+     }
+    ],
+    "next": "n6"
+   },
+   "n5": {
+    "text": "Un plato hondo de sancocho, con mazorca y yuca. Danilo te mira con respeto: «Ese es el plato de los que saben».",
+    "effects": [
+     {
+      "vineta": "m11_sancocho_m11"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "text": "Mila y Danilo comparten una limonada con dos pitillos. Ariana los graba disimuladamente. Fiorella le da codazos a Laura. Laura te da codazos a ti.",
+    "effects": [
+     {
+      "vineta": "m11_limonada"
+     }
+    ],
+    "next": "n7"
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "(bajito) ¿Lo estás viendo, verdad? Esos dos. Desde Cristo Rey.",
+    "effects": [
+     {
+      "vineta": "m11_esos_dos"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Igual de lentos que otros.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_lentos2"
+       }
+      ],
+      "goto": "n8"
+     },
+     {
+      "label": "«Hacen bonita pareja.»",
+      "goto": "n9"
+     }
+    ]
+   },
+   "n8": {
+    "speaker": "Laura",
+    "text": "...Ja. Mira quién habla.",
+    "effects": [
+     {
+      "vineta": "m11_mira_quien"
+     }
+    ],
+    "next": "n10"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "Sí. Hay gente que hace bonita pareja y no se da cuenta.",
+    "effects": [
+     {
+      "vineta": "m11_bonita_pareja"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "effects": [
+     {
+      "setFlag": "m11_almorzo"
+     },
+     {
+      "objective": "Suban al mirador (el sendero de la loma)"
+     },
+     {
+      "pay": 25000
+     }
+    ]
+   }
+  }
+ },
+ "m11_subida": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El sendero al mirador sube en zigzag por la loma, entre helechos y barro. Danilo y las limeñas van adelante, sin aire. Laura va detrás de ti.",
+    "effects": [
+     {
+      "vineta": "m11_sendero"
+     },
+     {
+      "event": "paseo_m11",
+      "data": {
+       "mode": "subida"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "m11_mirador_pance": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Arriba: el valle del Pance entero, verde, con el río como un hilo plateado. Más allá, Cali en el plano, chiquita. Y los Farallones con nubes enganchadas.",
+    "effects": [
+     {
+      "vineta": "m11_mirador_valle"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_subida_juntos"
+      },
+      "goto": "n2"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "n2": {
+    "text": "Laura llega de tu mano. No dice nada. Te apoya la cabeza en el hombro, como en San Antonio.",
+    "effects": [
+     {
+      "vineta": "m11_hombro_mirador"
+     },
+     {
+      "setFlag": "m11_ql_mirador"
+     }
+    ],
+    "next": "n4"
+   },
+   "n3": {
+    "text": "Laura llega sin aire y se tira en el pasto. «Merece la pena. Esto merece la pena.»",
+    "effects": [
+     {
+      "vineta": "m11_merece"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "¿Sabes qué? En Gaztelugatxe pedí un deseo. Te dije que no se cuenta. Pero te digo una cosa: pedí encontrar un sitio donde me sintiera en casa sin estar en casa.",
+    "effects": [
+     {
+      "vineta": "m11_deseo_mirador"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Y creo que... bueno. Que lo encontré. Más o menos. Es un sitio. Y alguien.",
+    "effects": [
+     {
+      "vineta": "m11_alguien"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Yo también lo encontré.»",
+      "effects": [
+       {
+        "setFlag": "m11_encontre"
+       },
+       {
+        "setFlag": "m11_ql_encontre"
+       }
+      ],
+      "goto": "n6"
+     },
+     {
+      "label": "Le tomas la mano y no dices nada.",
+      "effects": [
+       {
+        "setFlag": "m11_ql_silencio"
+       }
+      ],
+      "goto": "n7"
+     },
+     {
+      "label": "«Cali tiene eso. Te adopta.»",
+      "if": {
+       "flag": "m11_dec_sira"
+      },
+      "goto": "n8"
+     },
+     {
+      "label": "«Te entiendo más de lo que crees.»",
+      "goto": "n9"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "...¿Sí?",
+    "effects": [
+     {
+      "vineta": "m11_si"
+     }
+    ],
+    "next": "n10"
+   },
+   "n7": {
+    "text": "Laura mira la mano. Te mira a ti. Mira el valle. Sonríe.",
+    "effects": [
+     {
+      "vineta": "m11_mano_valle"
+     }
+    ],
+    "next": "n10"
+   },
+   "n8": {
+    "speaker": "Laura",
+    "text": "Cali, sí. Cali.",
+    "effects": [
+     {
+      "vineta": "m11_cali_si"
+     }
+    ],
+    "next": "n10"
+   },
+   "n9": {
+    "speaker": "Laura",
+    "text": "Lo sé. Por eso te lo cuento a ti.",
+    "effects": [
+     {
+      "vineta": "m11_por_eso"
+     }
+    ],
+    "next": "n10"
+   },
+   "n10": {
+    "text": "Danilo grita desde abajo: «¡Bajen, tortolitos, que se nos va la luz y el último Uber!» Mila le pega. Danilo se ríe.",
+    "effects": [
+     {
+      "vineta": "m11_tortolitos"
+     },
+     {
+      "setFlag": "m11_mirador_pance"
+     },
+     {
+      "event": "paseo_m11",
+      "data": {
+       "mode": "bajada"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "m11_bajada_despues": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "Abajo, en San Francisco, con el último sol pintando todo de naranja. Llegan de la mano. Nadie del grupo dice nada. Todos lo vieron.",
+    "effects": [
+     {
+      "vineta": "m11_bajada_fin"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Ariana",
+    "text": "(a Mila, nada disimulada) ¿Viste? ¿Viste?",
+    "effects": [
+     {
+      "vineta": "m11_viste"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Fiorella",
+    "text": "Lo vi. Lo vimos todos. Hasta el señor del campero lo vio.",
+    "effects": [
+     {
+      "vineta": "m11_lo_vimos"
+     },
+     {
+      "event": "uber_m11",
+      "data": {
+       "tramo": "vuelta"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "m11_uber_vuelta_1": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "De vuelta. El campero hasta La Vorágine y después otro Uber hasta el Bobo. Laura se queda dormida en tu hombro antes de llegar a la Vía a Pance.",
+    "effects": [
+     {
+      "vineta": "m11_dormida_hombro"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "(desde adelante, bajito) Parce. No la despertés.",
+    "effects": [
+     {
+      "vineta": "m11_no_despertes"
+     }
+    ],
+    "choices": [
+     {
+      "label": "No la despiertas.",
+      "effects": [
+       {
+        "setFlag": "m11_ql_dormida"
+       }
+      ]
+     },
+     {
+      "label": "Le acomodas el pelo que se le cae en la cara.",
+      "effects": [
+       {
+        "setFlag": "m11_ql_pelo"
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "m11_uber_vuelta_2": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La Calle 18. El Bobo. Laura se despierta con la marca de tu camiseta en la mejilla.",
+    "effects": [
+     {
+      "vineta": "m11_marca"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "¿Me he dormido? ¿Encima de ti? Ay, perdón. ...No, perdón no. Gracias.",
+    "effects": [
+     {
+      "vineta": "m11_perdon_no"
+     }
+    ]
+   }
+  }
+ },
+ "m11_bobo_vuelta": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "El lobby del Bobo. Todos con barro hasta las rodillas. Wilmer los mira desde la recepción y no dice nada. Saca el trapero.",
+    "effects": [
+     {
+      "vineta": "m11_wilmer_trapero"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Danilo",
+    "text": "Bueno, gente. Yo llevo a las limeñas. Me quedan de camino.",
+    "effects": [
+     {
+      "vineta": "m11_me_quedan"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Mila",
+    "text": "Nada te queda de camino, Danilo. Nada.",
+    "effects": [
+     {
+      "vineta": "m11_nada_camino"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Me voy a duchar, que tengo media Chorrera en el pelo. ...Oye. ¿Cenamos? En tu depa. Tú cocinas. Yo bajo cuando esté limpia.",
+    "effects": [
+     {
+      "vineta": "m11_cenamos"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Yo cocino.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_cocino"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "«¿Qué quieres comer?»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_sorprende"
+       }
+      ],
+      "goto": "n4"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Lo que hagas tú. Sorpréndeme.",
+    "effects": [
+     {
+      "vineta": "m11_sorprendeme"
+     }
+    ],
+    "next": "n5"
+   },
+   "n5": {
+    "effects": [
+     {
+      "setFlag": "m11_vuelta_bobo"
+     },
+     {
+      "clearFlag": [
+       "m11_sigue_laura",
+       "m11_sigue_danilo",
+       "m11_sigue_mila",
+       "m11_sigue_fiorella",
+       "m11_sigue_ariana",
+       "m11_sigue_laura_bano",
+       "m11_sigue_mila_bano"
+      ]
+     },
+     {
+      "objective": "Sube al 805: dúchate y cocina algo"
+     },
+     {
+      "clock": "lun++ 19:40",
+      "max": "lun++ 22:00"
+     }
+    ]
+   }
+  }
+ }
+}

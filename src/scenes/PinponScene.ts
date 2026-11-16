@@ -25,6 +25,8 @@ export interface PinponResult {
 
 export interface PinponSceneData {
   done: (r: PinponResult) => void;
+  /** Misión 10 (prefijo m11_): un solo partido, a 7, contra este rival (`laura`), en la mesa del lobby del Bobo. */
+  rival?: string;
 }
 
 interface Rival {
@@ -75,10 +77,26 @@ const RIVALS: Rival[] = [
   },
 ];
 
+/** Misión 10: Laura, en la mesa nueva del lobby del Bobo Unic Living. Juega raro: corta todo y celebra en euskera. */
+const SOLO_RIVALS: Record<string, Rival> = {
+  laura: {
+    name: 'Laura',
+    speed: 96,
+    error: 11,
+    hit: 1.08,
+    shirt: 0xc8303c,
+    intro: 'Laura: «En Bakio hay una mesa en el frontón y ahí he perdido muchos veranos. Vale, chileno: a siete. El que pierde invita el próximo helado.»',
+    win: 'Laura: «Vale, vale, me has ganado. Pero que conste que la mesa está torcida. Y que el sol me daba en la cara. Dentro de un lobby. Sí.»',
+    lose: 'Laura: «¡Aupa! ¡Toma ya! Me debes un helado, chileno. Y no me vale de los de máquina.»',
+    taunts: ['¡Aupa!', '¡Hostia, qué bola!', 'Esa la corto', '¡Bai, bai, bai!', 'Uy, casi'],
+  },
+};
+
 const T = { x: 112, y: 30, w: 96, h: 122 };
 const NET_Y = T.y + T.h / 2;
 const PAD_W = 18;
 const POINTS = 5;
+const SOLO_POINTS = 7;
 /** Línea de golpe de cada paleta (y) y hasta dónde llega cada jugador de costado. */
 const MY_Y = T.y + T.h + 4;
 const OP_Y = T.y - 4;
@@ -119,6 +137,10 @@ export class PinponScene extends MiniScene<PinponResult> {
   private wins = 0;
   private smashes = 0;
   private beatRichi = false;
+  private rivals: Rival[] = RIVALS;
+  /** Partido único (misión 10): sin torneo, a 7 puntos, en el lobby. */
+  private solo = false;
+  private points = POINTS;
   private phase: 'intro' | 'serve' | 'play' | 'point' | 'matchEnd' | 'end' = 'intro';
   private phaseMs = 0;
   private px = BASE_WIDTH / 2;
@@ -138,6 +160,10 @@ export class PinponScene extends MiniScene<PinponResult> {
 
   init(data: PinponSceneData): void {
     this.initMini(data.done);
+    const solo = data.rival ? SOLO_RIVALS[data.rival] : undefined;
+    this.solo = solo !== undefined;
+    this.rivals = solo ? [solo] : RIVALS;
+    this.points = solo ? SOLO_POINTS : POINTS;
     this.match = 0;
     this.wins = 0;
     this.smashes = 0;
@@ -151,12 +177,12 @@ export class PinponScene extends MiniScene<PinponResult> {
     this.createUi('#c8784c');
     this.scoreText = this.addText(BASE_WIDTH - 6, 4, '', { fontSize: '8px', fontStyle: '600', color: '#fbf6ee' }).setOrigin(1, 0).setDepth(50);
     this.hintText.setText('A/D: mover la paleta · E justo antes: ¡remate! · Esc: entregar el partido');
-    playMusic('casita');
+    playMusic(this.solo ? 'depa' : 'casita');
     this.startMatch();
   }
 
   private get rival(): Rival {
-    return RIVALS[Math.min(this.match, RIVALS.length - 1)];
+    return this.rivals[Math.min(this.match, this.rivals.length - 1)];
   }
 
   private startMatch(): void {
@@ -164,8 +190,8 @@ export class PinponScene extends MiniScene<PinponResult> {
     this.them = 0;
     this.server = 'me';
     this.phase = 'intro';
-    this.titleText.setText(`Torneo · Partido ${this.match + 1}/3`);
-    this.banner(`${this.rival.intro}\nA 5 puntos. (E para sacar)`);
+    this.titleText.setText(this.solo ? `Lobby del Bobo · contra ${this.rival.name}` : `Torneo · Partido ${this.match + 1}/3`);
+    this.banner(`${this.rival.intro}\nA ${this.points} puntos. (E para sacar)`);
   }
 
   private serve(): void {
@@ -250,8 +276,11 @@ export class PinponScene extends MiniScene<PinponResult> {
       if (this.phaseMs > 400 && Controls.consume('interact')) {
         this.hideBanner();
         this.match++;
-        if (this.match < RIVALS.length) this.startMatch();
-        else {
+        if (this.match < this.rivals.length) this.startMatch();
+        else if (this.solo) {
+          this.phase = 'end';
+          this.finish({ wins: this.wins, champion: this.wins === 1, beatRichi: false, smashes: this.smashes });
+        } else {
           this.phase = 'end';
           const verdict =
             this.wins === 3
@@ -272,7 +301,7 @@ export class PinponScene extends MiniScene<PinponResult> {
 
   private play(dt: number): void {
     if (Controls.consume('menu')) {
-      this.them = POINTS;
+      this.them = this.points;
       this.endMatch();
       return;
     }
@@ -369,7 +398,7 @@ export class PinponScene extends MiniScene<PinponResult> {
     this.float(who === 'me' ? '¡Punto!' : `Punto de ${this.rival.name}`, who === 'me' ? '#a8e0a0' : '#ff9c9c', who === 'me' ? 58 : 262, NET_Y);
     playSfx(who === 'me' ? 'blip' : 'cancel');
     this.server = who === 'me' ? 'them' : 'me';
-    if (this.me >= POINTS || this.them >= POINTS) {
+    if (this.me >= this.points || this.them >= this.points) {
       this.endMatch();
       return;
     }
@@ -378,7 +407,7 @@ export class PinponScene extends MiniScene<PinponResult> {
   }
 
   private endMatch(): void {
-    const won = this.me >= POINTS && this.me > this.them;
+    const won = this.me >= this.points && this.me > this.them;
     if (won) {
       this.wins++;
       if (this.rival.name === 'Richi') this.beatRichi = true;
@@ -392,9 +421,10 @@ export class PinponScene extends MiniScene<PinponResult> {
   private draw(): void {
     const g = this.g;
     g.clear();
+    if (this.solo) this.drawLobby(g);
     // El patio: terracota, materas y la hamaca al fondo.
-    g.fillStyle(0xc8784c, 1).fillRect(0, 0, BASE_WIDTH, BASE_HEIGHT);
-    for (let y = 0; y < BASE_HEIGHT; y += 16) for (let x = 0; x < BASE_WIDTH; x += 16) g.fillStyle(0xa85c34, 1).fillRect(x, y, 16, 1).fillRect(x, y, 1, 16);
+    else g.fillStyle(0xc8784c, 1).fillRect(0, 0, BASE_WIDTH, BASE_HEIGHT);
+    if (!this.solo) for (let y = 0; y < BASE_HEIGHT; y += 16) for (let x = 0; x < BASE_WIDTH; x += 16) g.fillStyle(0xa85c34, 1).fillRect(x, y, 16, 1).fillRect(x, y, 1, 16);
     for (const [x, y] of [[24, 30], [36, 150], [284, 40], [296, 140]] as const) {
       g.fillStyle(0xc0603c, 1).fillRect(x - 6, y, 12, 10);
       g.fillStyle(0x2c9c58, 1).fillCircle(x, y - 3, 9);
@@ -430,6 +460,20 @@ export class PinponScene extends MiniScene<PinponResult> {
     const h = this.hud;
     h.clear();
     this.drawBars(h);
-    this.scoreText.setText(`Tú ${this.me} – ${this.them} ${this.rival.name}   ·   Ganados: ${this.wins}`);
+    this.scoreText.setText(this.solo ? `Tú ${this.me} – ${this.them} ${this.rival.name}` : `Tú ${this.me} – ${this.them} ${this.rival.name}   ·   Ganados: ${this.wins}`);
+  }
+
+  /** El lobby del Bobo: baldosa clara, la alfombra, el ventanal de noche y los sofás. */
+  private drawLobby(g: Phaser.GameObjects.Graphics): void {
+    g.fillStyle(0xd8d0c4, 1).fillRect(0, 0, BASE_WIDTH, BASE_HEIGHT);
+    for (let y = 0; y < BASE_HEIGHT; y += 20) for (let x = 0; x < BASE_WIDTH; x += 20) g.fillStyle(0xc4bcb0, 1).fillRect(x, y, 20, 1).fillRect(x, y, 1, 20);
+    g.fillStyle(0x3a4a78, 1).fillRect(0, 0, BASE_WIDTH, 22);
+    for (let i = 0; i < 18; i++) g.fillStyle(0xf8e070, 0.8).fillRect(8 + i * 18, 8 + (i % 3) * 3, 2, 2);
+    g.fillStyle(0x6a3c2c, 1).fillRect(T.x - 30, T.y - 26, T.w + 60, T.h + 52);
+    g.fillStyle(0x8c5a3c, 1).fillRect(T.x - 26, T.y - 22, T.w + 52, T.h + 44);
+    for (const x of [30, 260]) {
+      g.fillStyle(0x2a2433, 1).fillRect(x - 1, 60, 32, 50);
+      g.fillStyle(0x5a6a8c, 1).fillRect(x, 61, 30, 48);
+    }
   }
 }

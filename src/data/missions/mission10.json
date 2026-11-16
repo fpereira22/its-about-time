@@ -1,0 +1,501 @@
+{
+  "id": "mission10",
+  "number": 10,
+  "title": "Luna llena en el 11",
+  "start": {
+    "map": "bobo_piso8",
+    "spawn": "sofa"
+  },
+  "introDialogue": "m11_intro",
+  "objective": "Abre la puerta",
+  "startMoney": 250000,
+  "startFlags": [
+    "mision10_iniciada",
+    "despierto",
+    "banado",
+    "vestido"
+  ],
+  "clock": "sáb 09:40",
+  "weather": "despejado",
+  "destinations": [
+    {
+      "map": "bobo_cuadra",
+      "x": 4,
+      "y": 45,
+      "name": "La Itsisi (al sur por la Calle 18)",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_salida_itsisi",
+        "notFlag": "m11_libro_devuelto"
+      }
+    },
+    {
+      "map": "itsisi",
+      "x": 39,
+      "y": 43,
+      "name": "La biblioteca de la Itsisi",
+      "if": {
+        "map": "itsisi",
+        "flag": "m11_salida_itsisi",
+        "notFlag": "m11_libro_devuelto"
+      }
+    },
+    {
+      "map": "itsisi",
+      "x": 29,
+      "y": 41,
+      "name": "El helado de la Plaza Samán",
+      "if": {
+        "map": "itsisi",
+        "flag": "m11_libro_devuelto",
+        "notFlag": "m11_helado"
+      }
+    },
+    {
+      "map": "itsisi",
+      "x": 19,
+      "y": 0,
+      "name": "De vuelta al Bobo (Calle 18 al norte)",
+      "if": {
+        "map": "itsisi",
+        "flag": "m11_helado",
+        "notFlag": "m11_dia1_fin"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 18,
+      "y": 32,
+      "name": "El lobby del Bobo",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_helado",
+        "notFlag": "m11_dia1_fin"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 0,
+      "y": 9,
+      "name": "La PUCC (cruzando la Calle 18)",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_lunes",
+        "notFlag": "m11_u_solo"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 59,
+      "y": 74,
+      "name": "El GLD (Centro Deportivo)",
+      "if": {
+        "map": "pucc_campus",
+        "flag": "m11_u_solo",
+        "notFlag": "m11_futbol"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 78,
+      "y": 26,
+      "name": "De vuelta al Bobo",
+      "if": {
+        "map": "pucc_campus",
+        "flag": "m11_futbol",
+        "notFlag": "m11_rumbo_farma"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 11,
+      "y": 43,
+      "name": "La Farmadía",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_rumbo_farma",
+        "notFlag": "m11_helado_farma"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 18,
+      "y": 32,
+      "name": "El lobby del Bobo (con Laura)",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_salsa_farma",
+        "notFlag": "m11_dia2_fin"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 0,
+      "y": 9,
+      "name": "La PUCC: natación en el GLD",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_jueves",
+        "notFlag": "m11_natacion"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 59,
+      "y": 74,
+      "name": "El GLD (natación con Sira)",
+      "if": {
+        "map": "pucc_campus",
+        "flag": "m11_jueves",
+        "notFlag": "m11_natacion"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 18,
+      "y": 32,
+      "name": "El lobby del Bobo (Danilo pasa a las 9)",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_natacion",
+        "notFlag": "m11_carro"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 78,
+      "y": 26,
+      "name": "De vuelta al Bobo",
+      "if": {
+        "map": "pucc_campus",
+        "flag": "m11_natacion",
+        "notFlag": "m11_carro"
+      }
+    },
+    {
+      "map": "san_antonio",
+      "x": 18,
+      "y": 5,
+      "name": "El mirador de San Antonio",
+      "if": {
+        "map": "san_antonio",
+        "flag": "m11_en_sanantonio",
+        "notFlag": "m11_mirador"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 18,
+      "y": 32,
+      "name": "El lobby: sube al 11",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_sube_11",
+        "notFlag": "m11_peli"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 0,
+      "y": 9,
+      "name": "La U: Sira te espera en la plaza",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_begona_regada",
+        "notFlag": "m11_sab_maqueta"
+      }
+    },
+    {
+      "map": "pucc_campus",
+      "x": 78,
+      "y": 26,
+      "name": "La Farmadía (en la cuadra del Bobo)",
+      "if": {
+        "map": "pucc_campus",
+        "flag": "m11_sab_maqueta",
+        "notFlag": "m11_sab_farma"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 11,
+      "y": 43,
+      "name": "La Farmadía",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_sab_maqueta",
+        "notFlag": "m11_sab_farma"
+      }
+    },
+    {
+      "map": "bobo_cuadra",
+      "x": 10,
+      "y": 40,
+      "name": "Las salchipapas de doña Chela",
+      "if": {
+        "map": "bobo_cuadra",
+        "flag": "m11_decidio",
+        "notFlag": "m11_salchipapa"
+      }
+    },
+    {
+      "map": "voragine",
+      "x": 1,
+      "y": 35,
+      "name": "El campero a San Francisco",
+      "if": {
+        "map": "voragine",
+        "flag": "m11_en_voragine",
+        "notFlag": "m11_trocha"
+      }
+    },
+    {
+      "map": "chorrera",
+      "x": 67,
+      "y": 40,
+      "name": "El pozo del río",
+      "if": {
+        "map": "chorrera",
+        "flag": "m11_en_chorrera",
+        "notFlag": "m11_salto"
+      }
+    },
+    {
+      "map": "chorrera",
+      "x": 53,
+      "y": 49,
+      "name": "El paso de las piedras",
+      "if": {
+        "map": "chorrera",
+        "flag": "m11_salto",
+        "notFlag": "m11_mano"
+      }
+    },
+    {
+      "map": "chorrera",
+      "x": 33,
+      "y": 43,
+      "name": "La Chorrera del Indio",
+      "if": {
+        "map": "chorrera",
+        "flag": "m11_mano",
+        "notFlag": "m11_cascada"
+      }
+    },
+    {
+      "map": "chorrera",
+      "x": 46,
+      "y": 41,
+      "name": "Donde doña Ofelia",
+      "if": {
+        "map": "chorrera",
+        "flag": "m11_cascada",
+        "notFlag": "m11_almorzo"
+      }
+    },
+    {
+      "map": "chorrera",
+      "x": 52,
+      "y": 36,
+      "name": "El sendero de la loma",
+      "if": {
+        "map": "chorrera",
+        "flag": "m11_almorzo",
+        "notFlag": "m11_subida_hecha"
+      }
+    }
+  ],
+  "victoryEvent": "mision10_final",
+  "routes": [
+    {
+      "id": "pie",
+      "name": "A pie",
+      "if": {
+        "flag": "mision10_iniciada"
+      }
+    },
+    {
+      "id": "carro",
+      "name": "Carro",
+      "if": {
+        "flag": "m11_carro"
+      }
+    },
+    {
+      "id": "uber",
+      "name": "Uber y campero",
+      "if": {
+        "flag": "m11_trocha"
+      }
+    }
+  ],
+  "defaultRoute": "A pie",
+  "walkedSuffix": {
+    "if": {
+      "flag": "nunca"
+    },
+    "text": ""
+  },
+  "collectibles": [
+    "separador_voragine",
+    "servilleta_pato",
+    "llave_1104",
+    "tira_fotomaton",
+    "piedra_corazon"
+  ],
+  "bonuses": [
+    {
+      "text": "Le ganaste a Laura en el pimpón",
+      "if": {
+        "flag": "m11_pinpon_gano"
+      }
+    },
+    {
+      "text": "Ganaste el fútbol 5 contra Arquitectura",
+      "if": {
+        "flag": "m11_futbol_gano"
+      }
+    },
+    {
+      "text": "Bailaste salsa en la acera de la Farmadía",
+      "if": {
+        "flag": "m11_salsa_farma_bien"
+      }
+    },
+    {
+      "text": "Natación perfecta con Sira",
+      "if": {
+        "flag": "m11_natacion_perfecta"
+      }
+    },
+    {
+      "text": "La salsoteca: tres de tres",
+      "if": {
+        "flag": "m11_salsoteca_perfecta"
+      }
+    },
+    {
+      "text": "Ni un golpe en la trocha",
+      "if": {
+        "flag": "m11_trocha_perfecta"
+      }
+    },
+    {
+      "text": "Tres de tres al pozo",
+      "if": {
+        "flag": "m11_salto_perfecta"
+      }
+    },
+    {
+      "text": "Debajo de la Chorrera, de la mano",
+      "if": {
+        "flag": "m11_cascada_perfecta"
+      }
+    },
+    {
+      "text": "Las piedras sin mojarse",
+      "if": {
+        "flag": "m11_mano_perfecta"
+      }
+    },
+    {
+      "text": "La subida sin un resbalón",
+      "if": {
+        "flag": "m11_subida_perfecta"
+      }
+    },
+    {
+      "text": "La bajada sin soltarse",
+      "if": {
+        "flag": "m11_bajada_perfecta"
+      }
+    },
+    {
+      "text": "Hamburguesas de foto",
+      "if": {
+        "flag": "m11_burger_perfecta"
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "flag": "secreto_m11_amparo",
+      "name": "Doña Rocío se sabe La vorágine"
+    },
+    {
+      "flag": "secreto_m11_chontaduro",
+      "name": "Helado de chontaduro"
+    },
+    {
+      "flag": "secreto_m11_chulo",
+      "name": "El chulo azul"
+    },
+    {
+      "flag": "secreto_m11_calcetin",
+      "name": "Walle y el calcetín"
+    },
+    {
+      "flag": "secreto_m11_uy",
+      "name": "«Uy.»"
+    },
+    {
+      "flag": "secreto_m11_athletic",
+      "name": "Un chileno en el Athletic"
+    },
+    {
+      "flag": "secreto_m11_salpicon",
+      "name": "Salpicón con helado"
+    },
+    {
+      "flag": "secreto_m11_check",
+      "name": "El doble check"
+    },
+    {
+      "flag": "secreto_m11_begona",
+      "name": "Poesía para Begoña"
+    },
+    {
+      "flag": "secreto_m11_txinparta",
+      "name": "Lo que significa Txinparta"
+    },
+    {
+      "flag": "secreto_m11_pica",
+      "name": "La salsa verde de doña Chela"
+    },
+    {
+      "flag": "secreto_m11_pisco",
+      "name": "La guerra del pisco"
+    },
+    {
+      "flag": "secreto_m11_ducha",
+      "name": "Salsa en la ducha"
+    },
+    {
+      "flag": "secreto_m11_piedra",
+      "name": "Una piedra para Bakio"
+    }
+  ],
+  "endings": [
+    {
+      "id": "luna",
+      "name": "Por fin, chileno",
+      "if": {
+        "flag": "m11_beso_laura"
+      }
+    },
+    {
+      "id": "sira",
+      "name": "Lo que nadie ve",
+      "if": {
+        "flag": [
+          "m11_dec_sira",
+          "m11_no_beso"
+        ]
+      }
+    },
+    {
+      "id": "todavia",
+      "name": "Todavía"
+    }
+  ]
+}

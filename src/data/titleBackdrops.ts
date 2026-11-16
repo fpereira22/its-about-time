@@ -242,4 +242,37 @@ export const TITLE_BACKDROPS: TitleBackdropDef[] = [
     row: 14,
     pan: 'right',
   },
+  // Misión 9 (mission10, prefijo m11_)
+  {
+    id: 'itsisi',
+    map: 'itsisi',
+    place: 'Calle 18 · Universidad Itsisi',
+    mission: 'mission10',
+    col: 23,
+    row: 0,
+    pan: 'right',
+    lanes: [
+      { row: 7, dir: 1, vehicles: CALI },
+      { row: 9, dir: -1, vehicles: CALI },
+    ],
+  },
+  {
+    id: 'voragine',
+    map: 'voragine',
+    place: 'La Vorágine · Pance',
+    mission: 'mission10',
+    col: 40,
+    row: 6,
+    pan: 'down',
+  },
+  {
+    id: 'chorrera',
+    map: 'chorrera',
+    place: 'Chorrera del Indio · San Francisco',
+    mission: 'mission10',
+    afterComplete: true,
+    col: 18,
+    row: 28,
+    pan: 'right',
+  },
 ];

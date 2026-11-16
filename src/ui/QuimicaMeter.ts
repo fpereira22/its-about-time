@@ -12,53 +12,79 @@ import { makeText } from './theme';
  * Misión 7: el mismo medidor, con sus propias flags (`m7_q_<algo>`, visible con `m7_quimica_visible`).
  * Misión 8: con Laura, en la plaza (`m8_q_<algo>`, visible con `m8_quimica_visible`).
  * Misión 9: con Laura otra vez, en el taxi y en la fiesta (`m9_q_<algo>`, visible con `m9_quimica_visible`).
+ * Misión 10 (prefijo `m11_`): DOS medidores a la vez, uno con Laura (`m11_ql_*`) y otro con Sira (`m11_qs_*`), cada uno
+ * con su nombre y su flag de visibilidad. Se apilan uno debajo del otro.
  */
 
 export const QUIMICA_PREFIX = 'm6_q_';
 export const QUIMICA_MAX = 14;
-/** Prefijo de las flags de química y flag que muestra el medidor, por misión. */
-const BY_MISSION: Record<string, { prefix: string; visible: string }> = {
-  mission06: { prefix: QUIMICA_PREFIX, visible: 'm6_quimica_visible' },
-  mission07: { prefix: 'm7_q_', visible: 'm7_quimica_visible' },
-  mission08: { prefix: 'm8_q_', visible: 'm8_quimica_visible' },
-  mission09: { prefix: 'm9_q_', visible: 'm9_quimica_visible' },
+
+interface MeterDef {
+  prefix: string;
+  visible: string;
+  /** Texto del medidor (por defecto «Química»). */
+  label?: string;
+  /** Color del borde y de los corazones llenos. */
+  color?: number;
+}
+
+/** Prefijo de las flags de química y flag que muestra el medidor, por misión (en orden de arriba abajo). */
+const BY_MISSION: Record<string, MeterDef[]> = {
+  mission06: [{ prefix: QUIMICA_PREFIX, visible: 'm6_quimica_visible' }],
+  mission07: [{ prefix: 'm7_q_', visible: 'm7_quimica_visible' }],
+  mission08: [{ prefix: 'm8_q_', visible: 'm8_quimica_visible' }],
+  mission09: [{ prefix: 'm9_q_', visible: 'm9_quimica_visible' }],
+  mission10: [
+    { prefix: 'm11_ql_', visible: 'm11_quimica_laura', label: 'Laura', color: 0xe8607a },
+    { prefix: 'm11_qs_', visible: 'm11_quimica_sira', label: 'Sira', color: 0x58b8c8 },
+  ],
 };
 const HEARTS = QUIMICA_MAX / 2;
 const X = 4;
 const Y = 35;
+const ROW = 14;
 const DEPTH = 41;
 
-/** Cuántos puntos de química llevas en la misión en curso (flags `m6_q_*` o `m7_q_*`). */
-export function quimica(): number {
-  const prefix = BY_MISSION[StoryState.missionId]?.prefix ?? QUIMICA_PREFIX;
-  return StoryState.allFlags().filter((f) => f.startsWith(prefix)).length;
+/**
+ * Cuántos puntos de química llevas en la misión en curso. Sin `prefix`, los del primer medidor de la misión
+ * (en la misión 10: Laura); con `prefix` (ej. `m11_qs_`), los de ese.
+ */
+export function quimica(prefix?: string): number {
+  const p = prefix ?? BY_MISSION[StoryState.missionId]?.[0]?.prefix ?? QUIMICA_PREFIX;
+  return StoryState.allFlags().filter((f) => f.startsWith(p)).length;
 }
 
-export class QuimicaMeter {
+class MeterBar {
   private readonly g: Phaser.GameObjects.Graphics;
   private readonly label: Phaser.GameObjects.Text;
   private value = -1;
   private pulse = 0;
+  private def: MeterDef | null = null;
 
-  constructor(private readonly scene: Phaser.Scene) {
+  constructor(
+    private readonly scene: Phaser.Scene,
+    private readonly y: number,
+  ) {
     this.g = scene.add.graphics().setDepth(DEPTH);
-    this.label = makeText(scene, X + 4, Y + 2, 'Química', { fontSize: '7px', color: '#ffd6e2' }).setDepth(DEPTH + 1);
-    this.refresh(true);
-    EventSystem.onScene(scene, 'state-changed', () => this.refresh(false));
+    this.label = makeText(scene, X + 4, y + 2, 'Química', { fontSize: '7px', color: '#ffd6e2' }).setDepth(DEPTH + 1);
   }
 
-  private refresh(first: boolean): void {
-    const def = BY_MISSION[StoryState.missionId];
+  refresh(def: MeterDef | undefined, first: boolean): void {
+    if (def !== this.def) {
+      this.def = def ?? null;
+      this.value = -1;
+      this.label.setText(def?.label ?? 'Química');
+    }
     const visible = def !== undefined && StoryState.hasFlag(def.visible);
     this.g.setVisible(visible);
     this.label.setVisible(visible);
-    if (!visible) return;
-    const v = Math.min(QUIMICA_MAX, quimica());
+    if (!visible || !def) return;
+    const v = Math.min(QUIMICA_MAX, quimica(def.prefix));
     if (v === this.value) return;
     if (!first && this.value >= 0 && v > this.value) {
       this.pulse = 1;
       playSfx('latido');
-      this.floatHeart();
+      this.floatHeart(v);
     }
     this.value = v;
     this.draw();
@@ -72,18 +98,22 @@ export class QuimicaMeter {
 
   private draw(): void {
     const g = this.g;
+    const y = this.y;
+    const color = this.def?.color ?? 0xe8607a;
     g.clear();
     const w = 40 + HEARTS * 8;
-    g.fillStyle(0x2a1824, 0.85).fillRoundedRect(X, Y, w, 12, 3);
-    g.lineStyle(1, 0xe8607a, 0.8).strokeRoundedRect(X, Y, w, 12, 3);
+    g.fillStyle(0x2a1824, 0.85).fillRoundedRect(X, y, w, 12, 3);
+    g.lineStyle(1, color, 0.8).strokeRoundedRect(X, y, w, 12, 3);
     const full = Math.floor(this.value / 2);
     const half = this.value % 2 === 1;
+    const fullColor = this.def?.color === undefined ? 0xf05a7a : color;
+    const halfColor = Phaser.Display.Color.IntegerToColor(fullColor).lighten(18).color;
     for (let i = 0; i < HEARTS; i++) {
       const hx = X + 38 + i * 8;
-      const hy = Y + 3;
+      const hy = y + 3;
       const beat = i === Math.max(0, Math.ceil(this.value / 2) - 1) && this.pulse > 0 ? Math.round(this.pulse * 1.5) : 0;
-      const color = i < full ? 0xf05a7a : i === full && half ? 0xf0a0b4 : 0x5a3848;
-      this.heart(hx - beat, hy - beat, color, 1 + (beat > 0 ? 0.3 : 0));
+      const c = i < full ? fullColor : i === full && half ? halfColor : 0x5a3848;
+      this.heart(hx - beat, hy - beat, c, 1 + (beat > 0 ? 0.3 : 0));
     }
   }
 
@@ -98,10 +128,31 @@ export class QuimicaMeter {
     r(2, 4, 1, 1);
   }
 
-  private floatHeart(): void {
-    const t = makeText(this.scene, X + 38 + Math.ceil(this.value / 2) * 8, Y + 14, '+♥', { fontSize: '8px', fontStyle: '600', color: '#ff8aa8', stroke: '#2a1824', strokeThickness: 2 })
+  private floatHeart(v: number): void {
+    const t = makeText(this.scene, X + 38 + Math.ceil(v / 2) * 8, this.y + 14, '+♥', { fontSize: '8px', fontStyle: '600', color: '#ff8aa8', stroke: '#2a1824', strokeThickness: 2 })
       .setOrigin(0.5, 0)
       .setDepth(DEPTH + 2);
     this.scene.tweens.add({ targets: t, y: t.y + 10, alpha: 0, duration: 1200, onComplete: () => t.destroy() });
+  }
+}
+
+export class QuimicaMeter {
+  private readonly bars: MeterBar[];
+
+  constructor(scene: Phaser.Scene) {
+    const max = Math.max(...Object.values(BY_MISSION).map((d) => d.length));
+    this.bars = Array.from({ length: max }, (_, i) => new MeterBar(scene, Y + i * ROW));
+    this.refresh(true);
+    EventSystem.onScene(scene, 'state-changed', () => this.refresh(false));
+  }
+
+  private refresh(first: boolean): void {
+    const defs = BY_MISSION[StoryState.missionId] ?? [];
+    // Cada medidor tiene su fila fija (en la misión 10: Laura arriba, Sira abajo).
+    this.bars.forEach((bar, i) => bar.refresh(defs[i], first));
+  }
+
+  update(delta: number): void {
+    for (const b of this.bars) b.update(delta);
   }
 }

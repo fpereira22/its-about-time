@@ -31,7 +31,7 @@ export interface GameEvents {
   /** Cambió el clima de la historia (misión 4): lo dibuja la escena de mapa. */
   weather: [string];
   /** Abrir el partido de fútbol (misión 4); `done` recibe el marcador. */
-  'open-futbol': [{ tutorial?: boolean; done: (result: { us: number; them: number; myGoals: number; ownGoals: number }) => void }];
+  'open-futbol': [{ tutorial?: boolean; cinco?: boolean; done: (result: { us: number; them: number; myGoals: number; ownGoals: number }) => void }];
   /** Misión 5: el Marco Polo en la piscina (PiscinaScene); `done` dice si nadaste los 25 metros. */
   'open-piscina': [{ done: (result: { swam25: boolean; tags: number; caught: number; winner: 'you' | 'grover' | 'nadie' }) => void }];
   /** Misión 5: el Cinco en Pance Burger (CincoScene); `done` recibe quién ganó (0 = tú). */
@@ -44,12 +44,14 @@ export interface GameEvents {
   'open-salsa': [{ partner?: string; done: (result: { score: number; total: number; perfect: boolean; hits: number; notes: number }) => void }];
   /** Misión 8: pool con Danilo, el torneo de pimpón y las atracciones del Parque del Café (y el tejo). */
   'open-pool': [{ done: (result: import('../scenes/PoolScene').PoolResult) => void }];
-  'open-pinpon': [{ done: (result: import('../scenes/PinponScene').PinponResult) => void }];
+  'open-pinpon': [{ rival?: string; done: (result: import('../scenes/PinponScene').PinponResult) => void }];
   'open-atraccion': [{ mode: import('../scenes/AtraccionScene').AtraccionMode; done: (result: import('../scenes/AtraccionScene').AtraccionResult) => void }];
   /** Misión 9: los juegos de la fiesta en la casa de Tami (las curvas del taxi, beer pong, cacho y la pelea de gallinas). */
   'open-fiesta': [{ mode: import('../scenes/FiestaScene').FiestaMode; done: (result: import('../scenes/FiestaScene').FiestaResult) => void }];
   /** Misión 10: los juegos del río Pance (parquear, el chorro, el neumático, el puente colgante, las fotos y la historia). */
   'open-rio': [{ mode: import('../scenes/RioScene').RioMode; photos?: string[]; done: (result: import('../scenes/RioScene').RioResult) => void }];
+  /** Misión 10 (prefijo m11_): la trocha en campero, el salto al río, la cascada, el paso de la mano, la subida, la bajada y las hamburguesas. */
+  'open-paseo': [{ mode: import('../scenes/PaseoScene').PaseoMode; done: (result: import('../scenes/PaseoScene').PaseoResult) => void }];
   'open-cocina': [{ part: 1 | 2; done: (result: { score: number; total: number; perfect: boolean; cried: boolean; teamwork: boolean }) => void }];
   /** Abrir el mapa interactivo de la Línea 1 (escena UI). */
   'open-line-map': [];

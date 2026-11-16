@@ -1,0 +1,205 @@
+{
+  "id": "bobo_piso11",
+  "name": "Piso 11 · Depa 1104",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 22,
+  "height": 18,
+  "background": "#14121a",
+  "music": "depa",
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^^^",
+    "^PdPdPwPePPdPdPPwPPPP^",
+    "^,,,,,,,,,,,,,,,,,,,,^",
+    "^,,,,,,,,,,,,,,,,,,,,^",
+    "^^^^^^^^^^^^^1^^^^^^^^",
+    "^RkKLk_EEMMMM_M^OOVVM^",
+    "^____tt________^_BCv_^",
+    "^____aaaa______^_bc__^",
+    "^____aaaa_________p__^",
+    "^____SSS_______^__E__^",
+    "^_____________p^_____^",
+    "^XXXu^___nn____MMMMMM^",
+    "^Y,,,^___TT__________^",
+    "^U,,l^___hh__________^",
+    "^,,,,^______________p^",
+    "^MMMMMMMGGMMMMMMMMMMM^",
+    "^^^^^^yDDDDz^^^^^^^^^^",
+    "^^^^^^ggggggg^^^^^^^^^"
+  ],
+  "legend": {
+    "1": "puerta_805",
+    "^": "muro_techo",
+    "P": "pasillo_muro",
+    "d": "puerta_depa",
+    "w": "ventana_pasillo",
+    "e": "ascensor",
+    ",": "pasillo_piso",
+    "M": "depa_muro",
+    "V": "depa_ventanal",
+    "_": "depa_piso",
+    "a": "depa_alfombra",
+    "R": "depa_refri",
+    "k": "depa_meson",
+    "K": "depa_cocina",
+    "L": "depa_lavaplatos",
+    "t": "depa_tv",
+    "p": "depa_planta",
+    "n": "depa_silla_n",
+    "T": "depa_mesa",
+    "h": "depa_silla",
+    "S": "depa_sofa",
+    "B": "depa_cama_i",
+    "C": "depa_cama_d",
+    "b": "depa_cama_pies_i",
+    "c": "depa_cama_pies_d",
+    "v": "depa_velador",
+    "O": "depa_closet",
+    "E": "depa_estante",
+    "X": "depa_bano_muro",
+    "u": "depa_bano",
+    "Y": "ducha",
+    "U": "wc",
+    "l": "lavamanos",
+    "G": "terraza_puerta",
+    "D": "balcon_piso",
+    "y": "planta_terraza",
+    "z": "silla_terraza",
+    "g": "baranda_vidrio"
+  },
+  "zones": [
+    {
+      "name": "Pasillo del piso 11",
+      "subtitle": "Bobo Unic Living",
+      "x": 0,
+      "y": 0,
+      "w": 22,
+      "h": 4
+    },
+    {
+      "name": "El cuarto de Laura",
+      "subtitle": "Depa 1104",
+      "x": 16,
+      "y": 5,
+      "w": 5,
+      "h": 6
+    },
+    {
+      "name": "El balcón",
+      "subtitle": "Depa 1104 · Calle 18",
+      "x": 6,
+      "y": 16,
+      "w": 6,
+      "h": 2
+    },
+    {
+      "name": "Depa 1104",
+      "subtitle": "Bobo Unic Living · piso 11",
+      "x": 0,
+      "y": 5,
+      "w": 22,
+      "h": 13
+    }
+  ],
+  "spawns": {
+    "ascensor": {
+      "x": 8,
+      "y": 2,
+      "dir": "down"
+    },
+    "puerta_dentro": {
+      "x": 13,
+      "y": 6,
+      "dir": "down"
+    },
+    "sofa": {
+      "x": 6,
+      "y": 9,
+      "dir": "up"
+    },
+    "balcon": {
+      "x": 9,
+      "y": 16,
+      "dir": "down"
+    },
+    "cama": {
+      "x": 18,
+      "y": 6,
+      "dir": "down"
+    },
+    "living": {
+      "x": 10,
+      "y": 8,
+      "dir": "down"
+    }
+  },
+  "triggers": [
+    {
+      "id": "m11_puerta",
+      "x": 13,
+      "y": 4,
+      "w": 1,
+      "h": 1,
+      "event": "dialogo:m11_puerta_1104",
+      "once": true,
+      "if": {
+        "mission": "mission10",
+        "flag": "m11_sabado",
+        "notFlag": "m11_begona_regada"
+      }
+    },
+    {
+      "id": "m11_balcon",
+      "x": 7,
+      "y": 16,
+      "w": 4,
+      "h": 1,
+      "event": "dialogo:m11_balcon",
+      "if": {
+        "mission": "mission10",
+        "flag": "m11_peli_vista",
+        "notFlag": "m11_balcon"
+      }
+    },
+    {
+      "id": "m11_balcon_danilo",
+      "x": 7,
+      "y": 16,
+      "w": 4,
+      "h": 1,
+      "event": "dialogo:m11_balcon_danilo",
+      "if": {
+        "mission": "mission10",
+        "flag": "m11_volvieron",
+        "notFlag": "m11_decidio"
+      }
+    }
+  ],
+  "enter": [
+    {
+      "id": "m11_living",
+      "dialogue": "m11_living_llega",
+      "once": true,
+      "if": {
+        "mission": "mission10",
+        "flag": "m11_sube_11"
+      }
+    },
+    {
+      "id": "m11_espera",
+      "dialogue": "m11_espera_living",
+      "once": true,
+      "if": {
+        "mission": "mission10",
+        "flag": "m11_domingo_vuelta"
+      }
+    }
+  ],
+  "labels": [
+    {
+      "x": 13,
+      "y": 0.6,
+      "text": "1104"
+    }
+  ]
+}
