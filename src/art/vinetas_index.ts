@@ -6,6 +6,7 @@ import { AUTO_VINETAS } from './vinetas_auto';
 import { CALI_VINETAS } from './vinetas_cali';
 import { CALI_VINETAS_2 } from './vinetas_cali_2';
 import { FUTBOL_VINETAS } from './vinetas_futbol';
+import { M1_4_VINETAS } from './vinetas_m1_4';
 import { M5_VINETAS } from './vinetas_m5';
 import { M5_VINETAS_2 } from './vinetas_m5_2';
 import { M6_VINETAS } from './vinetas_m6';
@@ -28,6 +29,8 @@ import { PIEZA_VINETAS } from './vinetas_pieza';
 import { VUELO_VINETAS } from './vinetas_vuelo';
 import type { VinetaBuilder } from '../ui/Vineta';
 
+export { VINETA_CUES } from './vinetas_sonido';
+
 export const PLACE_VINETAS: Record<string, VinetaBuilder> = {
   ...CASA_VINETAS,
   ...PIEZA_VINETAS,
@@ -38,6 +41,7 @@ export const PLACE_VINETAS: Record<string, VinetaBuilder> = {
   ...CALI_VINETAS,
   ...CALI_VINETAS_2,
   ...FUTBOL_VINETAS,
+  ...M1_4_VINETAS,
   ...M5_VINETAS,
   ...M5_VINETAS_2,
   ...M6_VINETAS,

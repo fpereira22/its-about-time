@@ -3,6 +3,10 @@ import { playSfx } from '../audio/sfx';
 import { TouchControls } from './TouchControls';
 
 const ADMIN_KEY = 'santiago-laberinto:admin';
+const DEBUG_KEY = 'santiago-laberinto:admin-debug';
+
+/** Depuración (F4): 0 apagada · 1 panel con coordenadas · 2 panel + cuadrícula sobre el mapa. */
+export type DebugMode = 0 | 1 | 2;
 /** Palabra que, tecleada en el título, activa o desactiva el modo admin (sin teclas del juego: WASD, E, F, M, Q, V). */
 const ADMIN_CODE = 'colibri';
 /** En el celular (sin teclado): toques seguidos sobre el logo del título que activan o desactivan el modo. */
@@ -11,8 +15,9 @@ const LOGO_TAPS = 7;
 const LOGO_TAP_GAP_MS = 1200;
 
 /**
- * Modo admin: todas las misiones desbloqueadas, el atajo Ctrl + < (DevSkip), el selector de etapas (F2)
- * y F3, que fuerza los controles táctiles en cualquier equipo (Auto → Siempre → Nunca).
+ * Modo admin: todas las misiones desbloqueadas, el atajo Ctrl + < (DevSkip), el selector de etapas (F2,
+ * con animaciones, viñetas y sonidos para probar), F3, que fuerza los controles táctiles en cualquier equipo
+ * (Auto → Siempre → Nunca), y F4, la depuración (coordenadas del jugador y del cursor, y cuadrícula del mapa).
  * Con `npm run dev` está siempre activo. En el juego publicado se activa (y desactiva) tecleando
  * ADMIN_CODE en el título, o en el celular tocando el logo LOGO_TAPS veces seguidas; queda guardado
  * en este navegador.
@@ -26,9 +31,27 @@ class AdminImpl {
   private lastLogoTap = 0;
   private attached = false;
   private stored = readStored();
+  private debug: DebugMode = readDebug();
 
   get active(): boolean {
     return import.meta.env.DEV || this.stored;
+  }
+
+  /** Nivel de depuración (siempre 0 si no hay modo admin). */
+  get debugMode(): DebugMode {
+    return this.active ? this.debug : 0;
+  }
+
+  /** Apagada → panel → panel + cuadrícula → apagada. Se recuerda en este navegador. */
+  cycleDebug(): DebugMode {
+    this.debug = ((this.debug + 1) % 3) as DebugMode;
+    try {
+      if (this.debug) window.localStorage.setItem(DEBUG_KEY, String(this.debug));
+      else window.localStorage.removeItem(DEBUG_KEY);
+    } catch {
+      // Sin almacenamiento: dura esta sesión.
+    }
+    return this.debug;
   }
 
   attach(game: Phaser.Game): void {
@@ -45,6 +68,13 @@ class AdminImpl {
         if (!e.repeat) {
           TouchControls.cycleMode();
           playSfx('select');
+        }
+        return;
+      }
+      if (e.code === 'F4' && this.active) {
+        e.preventDefault();
+        if (!e.repeat) {
+          playSfx(this.cycleDebug() ? 'select' : 'cancel');
         }
         return;
       }
@@ -97,6 +127,15 @@ function readStored(): boolean {
     return window.localStorage.getItem(ADMIN_KEY) === '1';
   } catch {
     return false;
+  }
+}
+
+function readDebug(): DebugMode {
+  try {
+    const v = Number(window.localStorage.getItem(DEBUG_KEY));
+    return v === 1 || v === 2 ? v : 0;
+  } catch {
+    return 0;
   }
 }
 

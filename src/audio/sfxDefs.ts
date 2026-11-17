@@ -1,5 +1,24 @@
 import type { SfxName } from './sfx';
-import { noise, noteFreq, tone } from './synth';
+import {
+  babyBass,
+  bongoHigh,
+  bongoLow,
+  brass,
+  clave,
+  congaHeel,
+  congaOpen,
+  congaSlap,
+  congaTip,
+  noise,
+  noteFreq,
+  palmas,
+  piano,
+  snare,
+  timbal,
+  timbalBell,
+  tone,
+  tumba,
+} from './synth';
 
 type SfxFn = (ctx: AudioContext, t: number, out: AudioNode) => void;
 
@@ -55,6 +74,44 @@ function voice(ctx: AudioContext, out: AudioNode, t: number, syllables: Array<{ 
     osc.stop(at + s.dur + 0.02);
     at += s.dur + 0.03;
   }
+}
+
+/** Eco con realimentación (un "reverb" barato): el sonido entra por el nodo devuelto y sale seco + repetido. */
+function echo(ctx: AudioContext, out: AudioNode, delay: number, feedback: number, wet: number): AudioNode {
+  const input = ctx.createGain();
+  const d = ctx.createDelay(1);
+  d.delayTime.value = delay;
+  const fb = ctx.createGain();
+  fb.gain.value = feedback;
+  const w = ctx.createGain();
+  w.gain.value = wet;
+  input.connect(out);
+  input.connect(d);
+  d.connect(fb).connect(d);
+  d.connect(w).connect(out);
+  // El bucle de realimentación no se libera solo: se corta cuando la cola ya no se oye.
+  setTimeout(() => {
+    for (const n of [input, d, fb, w]) n.disconnect();
+  }, 5000);
+  return input;
+}
+
+/** Campanita de cristal: fundamental + parciales inarmónicos que mueren rápido. */
+function glass(ctx: AudioContext, out: AudioNode, t: number, freq: number, dur: number, vol: number): void {
+  tone(ctx, { type: 'sine', freq, start: t, dur, vol, attack: 0.002, dest: out });
+  tone(ctx, { type: 'sine', freq: freq * 2.76, start: t, dur: dur * 0.5, vol: vol * 0.28, attack: 0.002, dest: out });
+  tone(ctx, { type: 'sine', freq: freq * 5.4, start: t, dur: dur * 0.2, vol: vol * 0.1, attack: 0.002, dest: out });
+}
+
+/** El golpe grave del momento en que aparece la insignia de nivel: bombo profundo + chasquido de aire. */
+function boom(ctx: AudioContext, out: AudioNode, t: number, vol: number): void {
+  tone(ctx, { type: 'sine', freq: 110, freqEnd: 34, start: t, dur: 0.5, vol, attack: 0.002, dest: out });
+  noise(ctx, { start: t, dur: 0.35, vol: vol * 0.45, filter: 'lowpass', freq: 2400, freqEnd: 300, dest: out });
+}
+
+/** Toca una nota por cada nombre (acordes de metales y campanas). */
+function chord(names: string[], t: number, play: (freq: number, at: number) => void): void {
+  for (const n of names) play(noteFreq(n), t);
 }
 
 /** Definición sintetizada de cada efecto de sonido. Para agregar uno: suma el nombre en sfx.ts y su función aquí. */
@@ -533,6 +590,103 @@ export const SFX: Record<SfxName, SfxFn> = {
     noise(ctx, { start: t, dur: 0.7, vol: 0.08, filter: 'bandpass', freq: 3000, q: 1, dest: out });
   },
 
+  // --- Subida de nivel de los minijuegos ---
+  // Todas siguen la coreografía de la pantalla (LevelUpScreen): ~0.7 s de subida, el golpe de la
+  // insignia en t+0.7 y la cola hasta ~3 s, mientras se llenan las barras.
+  nivel_tick: (ctx, t, out) => tone(ctx, { type: 'triangle', freq: 880, freqEnd: 1480, start: t, dur: 0.06, vol: 0.09, attack: 0.002, dest: out }),
+
+  nivel_futbol: (ctx, t, out) => {
+    const hall = echo(ctx, out, 0.13, 0.32, 0.28);
+    // Redoble de tambor que acelera y la hinchada que se agranda.
+    let at = 0;
+    for (let i = 0; i < 9; i++) {
+      snare(ctx, t + at, 0.1 + i * 0.018, hall);
+      at += 0.1 - i * 0.008;
+    }
+    noise(ctx, { start: t, dur: 0.8, vol: 0.12, filter: 'bandpass', freq: 600, freqEnd: 1500, q: 0.6, swell: true, dest: out });
+    // «Ta-ta-ta... TAAAN»: tres notas de trompeta y el acorde mayor largo.
+    for (const d of [0.1, 0.28, 0.46]) brass(ctx, noteFreq('G4'), t + d, 0.14, 0.1, hall);
+    boom(ctx, out, t + 0.7, 0.5);
+    chord(['C4', 'G4', 'C5', 'E5', 'G5'], t + 0.7, (f, a) => brass(ctx, f, a, 1.05, 0.09, hall));
+    tone(ctx, { type: 'triangle', freq: noteFreq('C2'), start: t + 0.7, dur: 1.1, vol: 0.28, sustain: true, dest: out });
+    // La hinchada explota con el acorde, y la segunda frase sube.
+    noise(ctx, { start: t + 0.68, dur: 2.2, vol: 0.26, filter: 'bandpass', freq: 1100, q: 0.5, swell: true, dest: out });
+    for (const [d, n, dur] of [[1.85, 'E5', 0.13], [2.0, 'G5', 0.13], [2.15, 'C6', 0.9]] as const) brass(ctx, noteFreq(n), t + d, dur, 0.1, hall);
+    tone(ctx, { type: 'triangle', freq: noteFreq('C3'), start: t + 2.15, dur: 0.9, vol: 0.22, sustain: true, dest: out });
+    // Silbatazo final del árbitro.
+    tone(ctx, { type: 'square', freq: 2950, freqEnd: 3080, start: t + 2.2, dur: 0.38, vol: 0.035, sustain: true, dest: out });
+  },
+
+  nivel_natacion: (ctx, t, out) => {
+    const pool = echo(ctx, out, 0.21, 0.42, 0.4);
+    // Burbujas que suben cada vez más seguido y el agua que corre.
+    let at = 0;
+    for (let i = 0; i < 12; i++) {
+      const f = 380 + Math.random() * 400;
+      tone(ctx, { type: 'sine', freq: f, freqEnd: f * 2.2, start: t + at, dur: 0.07, vol: 0.09, dest: pool });
+      at += 0.11 - i * 0.006;
+    }
+    noise(ctx, { start: t, dur: 0.72, vol: 0.12, filter: 'highpass', freq: 1200, freqEnd: 6500, swell: true, dest: out });
+    // ¡Plaf! y el acorde de cristal (lidio: trae un brillo "de agua").
+    boom(ctx, out, t + 0.7, 0.4);
+    noise(ctx, { start: t + 0.7, dur: 0.7, vol: 0.22, filter: 'bandpass', freq: 2600, freqEnd: 600, q: 1.1, dest: out });
+    chord(['C6', 'E6', 'G6', 'B6'], t + 0.7, (f, a) => glass(ctx, pool, a, f, 1.6, 0.1));
+    for (const n of ['C3', 'G3', 'D4']) tone(ctx, { type: 'sine', freq: noteFreq(n), start: t + 0.7, dur: 2.0, vol: 0.12, attack: 0.25, sustain: true, dest: out });
+    // Arpegio que sube como las ondas en la superficie.
+    ['E6', 'G6', 'B6', 'D7', 'G7'].forEach((n, i) => glass(ctx, pool, t + 1.15 + i * 0.1, noteFreq(n), 1.3, 0.07));
+    glass(ctx, pool, t + 2.0, noteFreq('E7'), 1.6, 0.06);
+  },
+
+  nivel_salsa: (ctx, t, out) => {
+    const room = echo(ctx, out, 0.11, 0.25, 0.2);
+    // Clave y una caída de congas y bongós que se acelera hacia el golpe.
+    for (const d of [0, 0.21, 0.5]) clave(ctx, t + d, 0.22, out);
+    [congaHeel, congaTip, congaSlap, congaHeel, congaOpen, congaSlap, congaTip, congaSlap].forEach((hit, i) => hit(ctx, t + 0.04 + i * 0.075, 0.2 + i * 0.02, out));
+    bongoLow(ctx, t + 0.58, 0.3, out);
+    bongoHigh(ctx, t + 0.64, 0.34, out);
+    // ¡Golpe de metales en Sol mayor, timbal y bajo!
+    boom(ctx, out, t + 0.7, 0.32);
+    timbal(ctx, t + 0.7, 0.4, out);
+    chord(['G3', 'B3', 'D4', 'G4', 'B4', 'D5'], t + 0.7, (f, a) => brass(ctx, f, a, 0.4, 0.085, room));
+    babyBass(ctx, noteFreq('G2'), t + 0.7, 0.28, 0.9, out);
+    // Montuno de piano sobre Am7 – D7 – Gmaj7 con la campana marcando el tiempo.
+    const montuno = ['A4', 'C5', 'E5', 'A5', 'E5', 'C5', 'D5', 'F#5', 'A5', 'D6', 'A5', 'F#5', 'G5', 'B5', 'D6', 'G6'];
+    montuno.forEach((n, i) => piano(ctx, noteFreq(n), t + 1.1 + i * 0.1, 0.25, 0.2, room));
+    [1.1, 1.5, 1.9].forEach((d, i) => babyBass(ctx, noteFreq(['A2', 'D3', 'G2'][i]), t + d, 0.38, 0.9, out));
+    for (let i = 0; i < 6; i++) timbalBell(ctx, t + 1.1 + i * 0.2, 0.16, out);
+    // Remate: todos juntos, un metal largo y palmas.
+    chord(['G3', 'D4', 'G4', 'B4', 'D5', 'G5'], t + 2.7, (f, a) => brass(ctx, f, a, 0.7, 0.085, room));
+    tumba(ctx, t + 2.7, 0.35, out);
+    clave(ctx, t + 2.7, 0.22, out);
+    palmas(ctx, t + 2.72, 0.2, out);
+  },
+
+  nivel_pinpon: (ctx, t, out) => {
+    const hall = echo(ctx, out, 0.09, 0.3, 0.25);
+    // La pelotita rebota cada vez más rápido (toc, toc, toc-toc-tototo...) mientras sube un arpegio de arcade.
+    let at = 0;
+    let gap = 0.19;
+    for (let i = 0; i < 8; i++) {
+      tone(ctx, { type: 'sine', freq: 1500, freqEnd: 1100, start: t + at, dur: 0.04, vol: 0.2, dest: out });
+      noise(ctx, { start: t + at, dur: 0.015, vol: 0.1, filter: 'highpass', freq: 4000, dest: out });
+      at += gap;
+      gap *= 0.8;
+    }
+    ['C5', 'E5', 'G5', 'C6', 'E6', 'G6', 'C7'].forEach((n, i) => tone(ctx, { type: 'square', freq: noteFreq(n), start: t + 0.3 + i * 0.055, dur: 0.1, vol: 0.04, dest: hall }));
+    // ¡Ding!: campana grande con acorde brillante y aplausos de la barra.
+    boom(ctx, out, t + 0.7, 0.22);
+    chord(['C6', 'E6', 'G6', 'C7'], t + 0.7, (f, a) => glass(ctx, hall, a, f, 1.8, 0.11));
+    chord(['C4', 'G4', 'C5', 'E5'], t + 0.7, (f, a) => tone(ctx, { type: 'triangle', freq: f, start: a, dur: 0.9, vol: 0.07, sustain: true, dest: hall }));
+    for (let i = 0; i < 9; i++) palmas(ctx, t + 0.8 + i * 0.17 + Math.random() * 0.06, 0.12 + Math.random() * 0.06, out);
+    // Marimba que baja y sube, y un último "ding" con la pelota que se queda picando.
+    ['G6', 'E6', 'C6', 'E6', 'G6', 'C7'].forEach((n, i) => {
+      tone(ctx, { type: 'triangle', freq: noteFreq(n), start: t + 1.25 + i * 0.1, dur: 0.35, vol: 0.09, attack: 0.002, dest: hall });
+      tone(ctx, { type: 'sine', freq: noteFreq(n) * 4, start: t + 1.25 + i * 0.1, dur: 0.05, vol: 0.04, attack: 0.001, dest: hall });
+    });
+    glass(ctx, hall, t + 2.0, noteFreq('E7'), 1.6, 0.09);
+    for (const d of [2.2, 2.42, 2.6, 2.74]) tone(ctx, { type: 'sine', freq: 1500, freqEnd: 1100, start: t + d, dur: 0.04, vol: 0.15, dest: out });
+  },
+
   // --- Misión 7 ---
   toc_toc: (ctx, t, out) => {
     // Tres golpes en la puerta de madera (el segundo más suave).
@@ -578,5 +732,90 @@ export const SFX: Record<SfxName, SfxFn> = {
     tone(ctx, { type: 'sine', freq: 15000, start: t, dur: 0.4, vol: 0.02, dest: out });
     noise(ctx, { start: t, dur: 0.25, vol: 0.1, filter: 'highpass', freq: 2500, freqEnd: 800, dest: out });
     tone(ctx, { type: 'triangle', freq: 70, start: t, dur: 0.2, vol: 0.2, dest: out });
+  },
+
+  // --- Emociones de las viñetas ---
+  amor: (ctx, t, out) => {
+    // Arpegio de arpa (Cmaj9) que sube, sobre un colchón que se abre despacio.
+    notes(ctx, out, t, ['C5', 'E5', 'G5', 'B5', 'D6', 'G6'], 0.085, 'sine', 0.07);
+    tone(ctx, { type: 'triangle', freq: noteFreq('C4'), start: t, dur: 1.3, vol: 0.05, attack: 0.25, sustain: true, dest: out });
+    tone(ctx, { type: 'triangle', freq: noteFreq('G4'), start: t + 0.05, dur: 1.25, vol: 0.04, attack: 0.25, sustain: true, dest: out });
+    tone(ctx, { type: 'sine', freq: noteFreq('E6'), start: t + 0.55, dur: 0.7, vol: 0.03, dest: out });
+  },
+
+  ternura: (ctx, t, out) => {
+    // Cajita de música: una melodía chiquita que se va apagando.
+    notes(ctx, out, t, ['E6', 'C6', 'D6', 'G5', 'C6', 'E6', 'D6'], 0.17, 'triangle', 0.06);
+    tone(ctx, { type: 'sine', freq: noteFreq('C4'), start: t, dur: 1.0, vol: 0.03, attack: 0.2, sustain: true, dest: out });
+  },
+
+  chispa: (ctx, t, out) => {
+    // Un cosquilleo: tres puntitos de luz que suben y un brillo al final.
+    for (let i = 0; i < 3; i++) {
+      tone(ctx, { type: 'sine', freq: 1900 + i * 650, freqEnd: 2400 + i * 700, start: t + i * 0.06, dur: 0.1, vol: 0.06, dest: out });
+    }
+    noise(ctx, { start: t + 0.12, dur: 0.25, vol: 0.035, filter: 'highpass', freq: 6500, swell: true, dest: out });
+    tone(ctx, { type: 'sine', freq: noteFreq('B6'), start: t + 0.2, dur: 0.35, vol: 0.035, dest: out });
+  },
+
+  suspiro: (ctx, t, out) => {
+    // Aire que sale despacio, con un tonito de voz casi imperceptible.
+    noise(ctx, { start: t, dur: 1.0, vol: 0.13, filter: 'bandpass', freq: 1100, freqEnd: 500, q: 0.7, swell: true, dest: out });
+    tone(ctx, { type: 'sine', freq: 300, freqEnd: 220, start: t + 0.1, dur: 0.8, vol: 0.02, attack: 0.2, sustain: true, dest: out });
+  },
+
+  llanto: (ctx, t, out) => {
+    // Dos sollozos que se quiebran («ah-ah») y los sorbidos de la nariz.
+    voice(ctx, out, t, [
+      { f0: 360, f0End: 280, f1: 700, f2: 1150, dur: 0.2 },
+      { f0: 330, f0End: 250, f1: 680, f2: 1100, dur: 0.26 },
+    ], 0.09);
+    for (const d of [0.62, 0.78, 0.9]) {
+      noise(ctx, { start: t + d, dur: 0.06, vol: 0.1, filter: 'bandpass', freq: 2300, freqEnd: 1500, q: 4, dest: out });
+    }
+  },
+
+  triste: (ctx, t, out) => {
+    // Una tercera menor que baja y se apaga, con vibrato lento.
+    notes(ctx, out, t, ['E5', 'C5', 'A4'], 0.3, 'sine', 0.1);
+    tone(ctx, { type: 'triangle', freq: noteFreq('A3'), freqEnd: noteFreq('A3') * 0.97, start: t + 0.55, dur: 1.1, vol: 0.06, attack: 0.15, sustain: true, dest: out });
+  },
+
+  susto: (ctx, t, out) => {
+    // Golpe de cuerdas disonantes (segunda menor), un trueno seco y un chillido que sube.
+    for (const f of [880, 932, 1397]) {
+      tone(ctx, { type: 'sawtooth', freq: f, freqEnd: f * 1.18, start: t, dur: 0.55, vol: 0.07, dest: out });
+    }
+    tone(ctx, { type: 'sine', freq: 90, freqEnd: 40, start: t, dur: 0.4, vol: 0.45, dest: out });
+    noise(ctx, { start: t, dur: 0.25, vol: 0.3, filter: 'lowpass', freq: 1500, freqEnd: 200, dest: out });
+    tone(ctx, { type: 'sine', freq: 1900, freqEnd: 3200, start: t + 0.05, dur: 0.35, vol: 0.03, dest: out });
+  },
+
+  suspenso: (ctx, t, out) => {
+    // Dos graves casi iguales que laten entre sí, un silbido agudo y un rumor que crece.
+    tone(ctx, { type: 'sawtooth', freq: 55, freqEnd: 52, start: t, dur: 2.7, vol: 0.08, attack: 0.9, sustain: true, dest: out });
+    tone(ctx, { type: 'sawtooth', freq: 58.3, freqEnd: 55, start: t, dur: 2.7, vol: 0.07, attack: 0.9, sustain: true, dest: out });
+    tone(ctx, { type: 'sine', freq: 2100, freqEnd: 2300, start: t + 0.3, dur: 2.2, vol: 0.012, attack: 1.0, sustain: true, dest: out });
+    noise(ctx, { start: t, dur: 2.7, vol: 0.07, filter: 'lowpass', freq: 250, freqEnd: 600, swell: true, dest: out });
+  },
+
+  escalofrio: (ctx, t, out) => {
+    // Cristalitos que bajan en cascada, con aire frío.
+    notes(ctx, out, t, ['B6', 'A#6', 'A6', 'G#6', 'G6', 'F#6', 'F6'], 0.065, 'sine', 0.045);
+    noise(ctx, { start: t, dur: 0.6, vol: 0.05, filter: 'highpass', freq: 6000, swell: true, dest: out });
+    tone(ctx, { type: 'sine', freq: 200, freqEnd: 150, start: t + 0.1, dur: 0.6, vol: 0.05, attack: 0.2, sustain: true, dest: out });
+  },
+
+  sorpresa: (ctx, t, out) => {
+    // «¡Oh!»: un jadeo de aire y un tono que sube y cae un poquito.
+    noise(ctx, { start: t, dur: 0.16, vol: 0.1, filter: 'bandpass', freq: 1800, q: 1, swell: true, dest: out });
+    tone(ctx, { type: 'sine', freq: 380, freqEnd: 820, start: t + 0.05, dur: 0.15, vol: 0.12, dest: out });
+    tone(ctx, { type: 'triangle', freq: 820, freqEnd: 700, start: t + 0.2, dur: 0.18, vol: 0.08, dest: out });
+  },
+
+  risa: (ctx, t, out) => {
+    // «Ja-ja-ja-ja»: sílabas cortas con la altura que sube y baja.
+    const ja = (f0: number) => ({ f0, f0End: f0 * 0.9, f1: 800, f2: 1250, dur: 0.07 });
+    voice(ctx, out, t, [ja(430), ja(400), ja(450), ja(410), ja(380)], 0.11);
   },
 };

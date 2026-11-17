@@ -16,7 +16,7 @@ import { Dialogue } from '../systems/DialogueManager';
 import { EventSystem } from '../systems/EventSystem';
 import { GameMap } from '../systems/GameMap';
 import { currentMission } from '../systems/Mission';
-import { SkillStats } from '../systems/SkillStats';
+import { levelUpInfo, SkillStats } from '../systems/SkillStats';
 import { Npc } from '../systems/Npc';
 import { Records } from '../systems/Records';
 import { CloudSave } from '../systems/CloudSave';
@@ -32,7 +32,9 @@ import { seatPoseAt } from '../systems/Seats';
 import { SkylineView } from '../systems/Skyline';
 import { WeatherView } from '../systems/Weather';
 import { DarknessView } from '../systems/Darkness';
+import { DebugGrid } from '../ui/DebugGrid';
 import { makeText } from '../ui/theme';
+import { Admin } from '../systems/Admin';
 import { BaseScene } from './BaseScene';
 import { atraccionScene } from './AtraccionScene';
 import type { FutbolResult } from './FutbolScene';
@@ -176,6 +178,8 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
   private turnTimer = 0;
   private walking = false;
   private zoneName: string | undefined;
+  /** Cuadrícula de depuración del modo admin (F4); null mientras está apagada. */
+  private debugGrid: DebugGrid | null = null;
   private lastBump = 0;
   private dizzy = false;
   /** Tile desde el que el jugador se sentó (ahí vuelve al pararse). */
@@ -201,6 +205,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     this.trail = [];
     this.memoryFx = [];
     this.zoneName = undefined;
+    this.debugGrid = null;
     this.seatReturn = null;
     this.dizzy = false;
     this.umbrella = null;
@@ -325,8 +330,11 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
         const gain = SkillStats.record(key, currentMission().id, result);
         done(result);
         if (gain && gain.ups.length > 0) {
-          const title = gain.levelAfter > gain.levelBefore ? `${gain.skill.name} · ¡nivel ${gain.levelAfter}!` : `${gain.skill.name} · suben tus stats`;
-          EventSystem.emit('skill-gain', { title, subtitle: gain.ups.map((u) => `${u.name} +${u.by}`).join(' · ') });
+          const leveled = gain.levelAfter > gain.levelBefore;
+          const title = leveled ? `${gain.skill.name} · ¡nivel ${gain.levelAfter}!` : `${gain.skill.name} · suben tus stats`;
+          const subtitle = gain.ups.map((u) => `${u.name} +${u.by}`).join(' · ');
+          // Al subir de nivel sale la pantalla de festejo (LevelUpScreen) en vez del cartelito.
+          EventSystem.emit('skill-gain', { title, subtitle, levelUp: leveled ? levelUpInfo(gain) : undefined });
         }
       },
     });
@@ -334,6 +342,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
   }
 
   override update(_time: number, delta: number): void {
+    this.updateDebugGrid();
     StoryState.tick(delta);
     this.weatherView?.update(delta);
     this.skyline?.update(delta);
@@ -358,6 +367,53 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
   // -------------------------------------------------------------------------
   // API para scripts (ScriptHost)
   // -------------------------------------------------------------------------
+
+  private updateDebugGrid(): void {
+    if (Admin.debugMode === 2) {
+      this.debugGrid ??= new DebugGrid(this);
+      this.debugGrid.draw(this.map);
+    } else if (this.debugGrid) {
+      this.debugGrid.destroy();
+      this.debugGrid = null;
+    }
+  }
+
+  /** Datos para el panel de depuración del modo admin (F4). */
+  get debugInfo(): { id: string; kind: string; name: string; width: number; height: number; x: number; y: number; px: number; py: number; facing: Direction; zone: string } {
+    return {
+      id: this.map.id,
+      kind: this.map.data.kind,
+      name: this.map.data.name,
+      width: this.map.width,
+      height: this.map.height,
+      x: this.player.tileX,
+      y: this.player.tileY,
+      px: Math.round(this.player.sprite.x),
+      py: Math.round(this.player.sprite.y),
+      facing: this.player.facing,
+      zone: this.zoneName ?? '-',
+    };
+  }
+
+  /** El tile bajo un punto de la pantalla (px del canvas) y qué hay en él, para el panel de depuración. */
+  inspectAt(screenX: number, screenY: number): { x: number; y: number; text: string } {
+    const p = this.cameras.main.getWorldPoint(screenX, screenY);
+    const x = Math.floor(p.x / TILE);
+    const y = Math.floor(p.y / TILE);
+    if (!this.map.inBounds(x, y)) return { x, y, text: 'fuera del mapa' };
+    const parts = [this.map.tileKeyAt(x, y) ?? '?', this.map.isSolid(x, y) ? 'SÓLIDO' : 'libre'];
+    const warp = this.map.warpAt(x, y);
+    if (warp) parts.push(`warp > ${warp.to}/${warp.spawn}`);
+    const spawn = Object.entries(this.map.data.spawns).find(([, s]) => s.x === x && s.y === y);
+    if (spawn) parts.push(`spawn ${spawn[0]}`);
+    for (const t of this.map.triggersAt(x, y)) parts.push(`trigger ${t.id}`);
+    return { x, y, text: parts.join(' · ') };
+  }
+
+  /** Tile donde está el jugador (para el tutorial del Prólogo). */
+  get playerTile(): { x: number; y: number } {
+    return { x: this.player.tileX, y: this.player.tileY };
+  }
 
   /** El menú de pausa solo se abre con el jugador libre (sin diálogo, transición ni escena corta). */
   get canOpenMenu(): boolean {

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { applyGain, SKILLS, SkillStats, STAT_MAX } from '../src/systems/SkillStats';
+import { SFX } from '../src/audio/sfxDefs';
+import { applyGain, levelUpInfo, SKILLS, SkillStats, STAT_MAX } from '../src/systems/SkillStats';
 
 describe('applyGain', () => {
   it('sube entero desde cero y cada vez menos mientras más alto vas', () => {
@@ -35,6 +36,26 @@ describe('SkillStats.record', () => {
     SkillStats.record('Futbol', 'mission04', { us: 0, them: 4, myGoals: 0, ownGoals: 1 });
     expect(SkillStats.get('futbol').missions.mission04.line).toBe('3-1 · 2 goles tuyos');
     expect(JSON.parse(window.localStorage.getItem('santiago-laberinto:skills') ?? '{}').futbol.plays).toBe(before.plays + 2);
+  });
+
+  it('levelUpInfo arma la pantalla de nivel con el rango y las barras antes/después', () => {
+    const def = SKILLS[0];
+    const info = levelUpInfo({
+      skill: def,
+      ups: [],
+      rows: def.stats.map((st) => ({ name: st.name, before: 10, after: 25 })),
+      levelBefore: 2,
+      levelAfter: 3,
+    });
+    expect(info).toMatchObject({ skillId: def.id, name: def.name, color: def.color, level: 3, rank: def.ranks[2] });
+    expect(info.rows).toHaveLength(def.stats.length);
+  });
+
+  it('cada minijuego tiene un rango por nivel y un sonido de subida de nivel', () => {
+    for (const def of SKILLS) {
+      expect(def.ranks, def.id).toHaveLength(10);
+      expect(`nivel_${def.id}` in SFX, def.id).toBe(true);
+    }
   });
 
   it('cada definición entrega un valor para todas sus stats', () => {

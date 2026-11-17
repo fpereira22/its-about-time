@@ -4,7 +4,11 @@
     "nodes": {
       "inicio": {
         "text": "MÁQUINA DE CARGA. La pantalla está negra y alguien pegó un papel: \"ESTÁ MALA. Use la otra, la del fondo a la izquierda\".",
-        "effects": [{ "sign": "papel_maquina_mala" }]
+        "effects": [
+          {
+            "sign": "papel_maquina_mala"
+          }
+        ]
       }
     }
   },
@@ -142,7 +146,11 @@
     "nodes": {
       "inicio": {
         "text": "ANDÉN DIRECCIÓN SAN PABLO (hacia el poniente). ¿Esperar el tren?",
-        "effects": [{ "sign": "metro_san_pablo" }],
+        "effects": [
+          {
+            "sign": "metro_san_pablo"
+          }
+        ],
         "choices": [
           {
             "label": "Esperar el tren",
@@ -169,7 +177,11 @@
     "nodes": {
       "inicio": {
         "text": "ANDÉN DIRECCIÓN LOS DOMINICOS (hacia el oriente). ¿Esperar el tren?",
-        "effects": [{ "sign": "metro_los_dominicos" }],
+        "effects": [
+          {
+            "sign": "metro_los_dominicos"
+          }
+        ],
         "choices": [
           {
             "label": "Esperar el tren",
@@ -207,6 +219,11 @@
           },
           {
             "label": "Mejor no"
+          }
+        ],
+        "effects": [
+          {
+            "vineta": "m1_anden"
           }
         ]
       }
@@ -258,6 +275,11 @@
         "text": [
           "Las puertas se cierran: ¡piii, piii, piii!",
           "Para bajarte, párate frente a una puerta cuando esté abierta y presiona E. El Costanera queda en la estación Tobalaba."
+        ],
+        "effects": [
+          {
+            "vineta": "m1_vagon"
+          }
         ]
       }
     }
@@ -270,6 +292,11 @@
           "Las puertas se cierran: ¡piii, piii, piii!",
           "VOZ: Próxima estación: Universidad Católica.",
           "¿Universidad Católica? Esa queda... al poniente. Uh-oh."
+        ],
+        "effects": [
+          {
+            "vineta": "m1_vagon"
+          }
         ]
       }
     }

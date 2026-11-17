@@ -7,6 +7,7 @@ import { shade } from './palette';
 import { disc, hex } from './vinetas';
 import { addG, flat, floatHeart, floatZ, lerp, outlined, popText, sparkle, type G, type Layer } from './vinetas_kit';
 import { bust, floatNote, INK, lookOf, type BustOpts } from './vinetas_m5';
+import { cuesFromSpec, playCues } from './vinetas_sonido';
 import { sinGorro } from './vinetas_m7';
 
 /**
@@ -615,6 +616,8 @@ export function compose(spec: Spec): VinetaBuilder {
 
 function build(kit: VinetaKit, spec: Spec): Layer {
   {
+    // El sonido sale de lo que muestra (besos, lágrimas, corazones...), salvo que la viñeta tenga el suyo a medida.
+    if (!kit.cued) playCues(kit, cuesFromSpec(spec));
     const bg = BACKDROPS[spec.b] ?? BACKDROPS.calle;
     const stage = kit.framed(bg);
     const fx = spec.fx ? (Array.isArray(spec.fx) ? spec.fx : [spec.fx]) : [];

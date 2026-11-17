@@ -35,6 +35,8 @@ interface SkillDef {
   stats: Labeled[];
   counters: Labeled[];
   best: Array<Labeled & { suffix?: string }>;
+  /** Título de cada nivel (índice 0 = nivel 1), para la pantalla de subida de nivel. */
+  ranks: string[];
   play(result: unknown): Play | null;
 }
 
@@ -61,6 +63,7 @@ export const SKILLS: SkillDef[] = [
       { id: 'goles', name: 'Goles tuyos' },
     ],
     best: [{ id: 'goles', name: 'Récord de goles' }],
+    ranks: ['Hincha de sofá', 'Potrero', 'Aficionado', 'Suplente', 'Titular', 'Crack del barrio', 'Goleador', 'Capitán', 'Estrella', 'Leyenda del fútbol'],
     play: (raw) => {
       const r = raw as FutbolResult;
       const won = r.us > r.them;
@@ -95,6 +98,7 @@ export const SKILLS: SkillDef[] = [
       { id: 'perfectas', name: 'Clases perfectas' },
     ],
     best: [{ id: 'ejercicios', name: 'Mejor clase', suffix: '/5' }],
+    ranks: ['Mojado de pies', 'Flotador', 'Chapoteador', 'Nadador', 'Crol decente', 'Delfín', 'Corriente a favor', 'Tritón', 'Campeón de la piscina', 'Marco Polo legendario'],
     play: (raw) => {
       const r = raw as NatacionResult;
       return {
@@ -126,6 +130,7 @@ export const SKILLS: SkillDef[] = [
       { id: 'perfectos', name: 'Bailes perfectos' },
     ],
     best: [{ id: 'precision', name: 'Mejor precisión', suffix: '%' }],
+    ranks: ['Pie de palo', 'Cuenta hasta ocho', 'Pasito básico', 'Con el ritmo', 'Bailarín de barrio', 'Sabor caleño', 'Rumbero', 'Maestro de la pista', 'Rey del son', 'Leyenda de Cali'],
     play: (raw) => {
       const r = raw as SalsaResult;
       const acc = r.notes > 0 ? r.hits / r.notes : 0;
@@ -160,6 +165,7 @@ export const SKILLS: SkillDef[] = [
       { id: 'remates', name: 'Remates que entraron' },
     ],
     best: [{ id: 'remates', name: 'Récord de remates' }],
+    ranks: ['Novato de mesa', 'Paleta firme', 'Devuelve todas', 'Efecto y malicia', 'Remate seguro', 'Reflejos de gato', 'Terror de la mesa', 'Campeón de oficina', 'Maestro de la paleta', 'Leyenda del pimpón'],
     play: (raw) => {
       const r = raw as PinponResult;
       return {
@@ -190,8 +196,33 @@ export interface SkillRecord {
 export interface SkillGain {
   skill: SkillDef;
   ups: Array<{ name: string; by: number }>;
+  /** Todas las stats del minijuego antes y después (para las barras de la pantalla de nivel). */
+  rows: Array<{ name: string; before: number; after: number }>;
   levelBefore: number;
   levelAfter: number;
+}
+
+/** Lo que necesita la pantalla de subida de nivel (viaja por el evento 'skill-gain'). */
+export interface LevelUpInfo {
+  skillId: string;
+  name: string;
+  color: number;
+  level: number;
+  rank: string;
+  rows: SkillGain['rows'];
+}
+
+/** Arma lo de la pantalla de nivel a partir de una partida que subió de nivel. */
+export function levelUpInfo(gain: SkillGain): LevelUpInfo {
+  const { skill, levelAfter } = gain;
+  return {
+    skillId: skill.id,
+    name: skill.name,
+    color: skill.color,
+    level: levelAfter,
+    rank: skill.ranks[Math.min(levelAfter, skill.ranks.length) - 1] ?? '',
+    rows: gain.rows,
+  };
 }
 
 /** Cuánto sube de verdad un stat que está en `v` con una ganancia `gain`: menos mientras más alto vas. */
@@ -230,10 +261,12 @@ class SkillStatsImpl {
     const rec = this.get(def.id);
     const levelBefore = skillLevel(def, rec);
     const ups: SkillGain['ups'] = [];
+    const rows: SkillGain['rows'] = [];
     for (const st of def.stats) {
       const before = rec.stats[st.id] ?? 0;
       const after = applyGain(before, play.stats[st.id] ?? 0);
       rec.stats[st.id] = after;
+      rows.push({ name: st.name, before, after });
       if (after > before) ups.push({ name: st.name, by: after - before });
     }
     for (const [k, n] of Object.entries(play.counters)) rec.counters[k] = (rec.counters[k] ?? 0) + n;
@@ -242,7 +275,7 @@ class SkillStatsImpl {
     const prev = rec.missions[missionId];
     if (!prev || play.score >= prev.score) rec.missions[missionId] = { line: play.line, score: play.score };
     this.save();
-    return { skill: def, ups, levelBefore, levelAfter: skillLevel(def, rec) };
+    return { skill: def, ups, rows, levelBefore, levelAfter: skillLevel(def, rec) };
   }
 
   private load(): Record<string, SkillRecord> {

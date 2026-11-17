@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { playMusic, playSfx, setAmbient } from '../audio/sfx';
+import { playMusic, playSfx, setAmbient, type MusicTrack } from '../audio/sfx';
 import type { HumanLook } from '../art/characters';
 import { characterLook } from '../art/SpriteRegistry';
 import { drawSideArm, drawSideBody, type SideFigureOpts } from '../art/vinetas';
@@ -109,6 +109,8 @@ interface DanceStyle {
   fail: string;
   end: [perfect: string, some: string, none: string];
   street: boolean;
+  /** Pista de cada ronda (en el mismo orden que `rounds`); si falta, suena la salsa de siempre. */
+  tracks?: MusicTrack[];
   /** Misión 9: bajo la pérgola del patio de Tami, con Cali prendida abajo (en vez de la Calle Real). */
   pergola?: boolean;
   /**
@@ -124,6 +126,7 @@ const SIRA_STYLE: DanceStyle = {
   name: 'Sira',
   look: 'sira_m7_polera',
   rounds: ROUNDS,
+  tracks: ['salsa', 'salsa_son', 'barberia'],
   miss: MISS_LINES,
   hits: HIT_LINES,
   quit: 'Sira: «¿Te rendiste? Bueno, esa la bailo sola.»',
@@ -144,6 +147,7 @@ const CALLE_STYLES: Record<string, Omit<DanceStyle, 'look' | 'street'>> = {
     name: 'Laura',
     lookId: 'laura',
     scenery: 'farmadia',
+    tracks: ['salsa_suave', 'salsa', 'salsa_son'],
     rounds: [
       { title: 'En la acera', intro: 'Laura: «¿Aquí? ¿En la calle? ¿Con el helado en la mano? ...Vale. Vale. Pero si me caigo, la culpa es tuya.»\nA / D: pasos', hint: 'A / D cuando el paso llegue a la marca · Esc: saltar', beatMs: 560, build: () => repeat(BASIC) },
       { title: 'La vuelta (sin soltar el helado)', intro: 'Laura: «Ahora la vuelta. Sujétame el cono, que esto es serio.»\nA / D: pasos · E: la vuelta', hint: 'E: la vuelta en el 5 · Esc: saltar', beatMs: 520, build: () => repeat(TURN) },
@@ -165,6 +169,7 @@ const CALLE_STYLES: Record<string, Omit<DanceStyle, 'look' | 'street'>> = {
     name: 'Sira',
     lookId: 'sira_m7',
     scenery: 'salsoteca',
+    tracks: ['barberia', 'salsa_son', 'salsa_suave'],
     rounds: [
       { title: 'Salsa de la vieja guardia', intro: 'Sira: «Aquí bailan los duros, chileno. Haz como en el depa. Uno, dos, tres... y el cuatro se descansa.»\nA / D: pasos', hint: 'A / D cuando el paso llegue a la marca · Esc: saltar', beatMs: 540, build: () => repeat(BASIC) },
       { title: 'La vuelta doble', intro: 'Sira: «Ahora dos vueltas seguidas. Majo y Cata nos están grabando, así que nada de pisarme.»\nA / D: pasos · E: la vuelta', hint: 'E: la vuelta en el 5 · Esc: saltar', beatMs: 480, build: () => repeat(TURN) },
@@ -185,6 +190,7 @@ const CALLE_STYLES: Record<string, Omit<DanceStyle, 'look' | 'street'>> = {
   laura: {
     name: 'Laura',
     pergola: true,
+    tracks: ['salsa_suave', 'salsa_son', 'fiesta'],
     rounds: [
       { title: 'Salsa (como puede)', intro: 'Laura: «Vale, en Bilbao esto no se baila. Tú me guías y yo hago como que sé, ¿vale?»\nA / D: pasos', hint: 'A / D cuando el paso llegue a la marca · Esc: saltar', beatMs: 540, build: () => repeat(BASIC) },
       { title: 'La vuelta', intro: 'Laura: «Ahora la vuelta. Si me caigo a la piscina, te tiro conmigo.»\nA / D: pasos · E: la vuelta', hint: 'E: la vuelta en el 5 · Esc: saltar', beatMs: 500, build: () => repeat(TURN) },
@@ -203,6 +209,7 @@ const CALLE_STYLES: Record<string, Omit<DanceStyle, 'look' | 'street'>> = {
   },
   tami: {
     name: 'Tami',
+    tracks: ['salsa_son', 'barberia', 'salsa'],
     rounds: [
       { title: 'Salsa caleña', intro: 'Tami: «Acá se baila con los pies rápidos, chileno. Uno-dos-tres, cinco-seis-siete. Seguime.»\nA / D: pasos', hint: 'A / D cuando el paso llegue a la marca · Esc: saltar', beatMs: 520, build: () => repeat(BASIC) },
       { title: 'La vuelta', intro: 'Tami: «Ahora me das la vuelta. Suave... ¡pero no tan suave!»\nA / D: pasos · E: la vuelta', hint: 'E: la vuelta en el 5 · Esc: saltar', beatMs: 480, build: () => repeat(TURN) },
@@ -221,6 +228,7 @@ const CALLE_STYLES: Record<string, Omit<DanceStyle, 'look' | 'street'>> = {
   },
   renzo: {
     name: 'Renzo',
+    tracks: ['huaylas', 'huaylas', 'huaylas'],
     rounds: [
       { title: 'Huaylas (dice él)', intro: 'Renzo: «Esto no es salsa, causa: es un huaylas. Zapateas y ya.»\nA / D: zapateo', hint: 'A / D al ritmo · Esc: saltar', beatMs: 560, build: () => repeat(BASIC) },
       { title: 'La vuelta peruana', intro: 'Renzo: «Ahora me haces girar. Con cuidado que tengo el chicharrón en la mano.»\nA / D · E: vuelta', hint: 'E: la vuelta · Esc: saltar', beatMs: 520, build: () => repeat(TURN) },
@@ -239,6 +247,7 @@ const CALLE_STYLES: Record<string, Omit<DanceStyle, 'look' | 'street'>> = {
   },
   gladys: {
     name: 'Doña Gladys',
+    tracks: ['salento', 'salento', 'salento'],
     rounds: [
       { title: 'Pasillo', intro: 'Doña Gladys: «Esto es un pasillo, mijo. Despacito y con elegancia, como en el Quindío.»\nA / D: pasos', hint: 'A / D · Esc: saltar', beatMs: 640, build: () => repeat(BASIC) },
       { title: 'La vuelta de la abuela', intro: 'Doña Gladys: «Ahora me da la vueltica. Ojo con la cadera, que es de titanio.»\nA / D · E', hint: 'E: la vuelta · Esc: saltar', beatMs: 600, build: () => repeat(TURN) },
@@ -257,6 +266,7 @@ const CALLE_STYLES: Record<string, Omit<DanceStyle, 'look' | 'street'>> = {
   },
   danilo: {
     name: 'Danilo',
+    tracks: ['fiesta', 'salsa_suave', 'salsa_son'],
     rounds: [
       { title: 'Salsa choke', intro: 'Danilo: «Ah ve, esto es salsa choke, parce. Es más de hombros que de pies. Es terapéutico.»\nA / D', hint: 'A / D · Esc: saltar', beatMs: 500, build: () => repeat(BASIC) },
       { title: 'El paso del psicólogo', intro: 'Danilo: «Este paso lo inventé yo. Se llama «la catarsis». E para la vuelta.»\nA / D · E', hint: 'E: la vuelta · Esc: saltar', beatMs: 470, build: () => repeat(TURN) },
@@ -362,7 +372,6 @@ export class SalsaScene extends BaseScene {
     else if (this.style.street) this.drawStreet();
     else this.drawRoom();
     this.setupZoom();
-    playMusic('salsa');
     setAmbient({ rain: 'none', indoor: !this.style.street });
     this.cameras.main.fadeIn(400, 0, 0, 0);
     this.startRound(0);
@@ -376,8 +385,15 @@ export class SalsaScene extends BaseScene {
     return this.style.rounds[this.roundIdx];
   }
 
+  /** La pista de esta ronda: cada baile suena distinto. */
+  private get roundTrack(): MusicTrack {
+    return this.style.tracks?.[this.roundIdx] ?? 'salsa';
+  }
+
   private startRound(i: number): void {
     this.roundIdx = i;
+    // Mientras se lee la intro suena la pista de la ronda a su tempo natural; al empezar se reinicia al tempo del baile.
+    playMusic(this.roundTrack);
     this.phase = 'intro';
     this.phaseMs = 0;
     this.clock = -this.round.beatMs * 8;
@@ -453,7 +469,7 @@ export class SalsaScene extends BaseScene {
       this.phase = 'play';
       this.phaseMs = 0;
       // La música vuelve a empezar al tempo de la ronda: los 8 tiempos de cuenta son sus dos primeros compases.
-      playMusic('salsa', 60000 / this.round.beatMs);
+      playMusic(this.roundTrack, 60000 / this.round.beatMs);
       this.clock -= MUSIC_LEAD_MS;
     } else if (this.phase === 'play') {
       this.clock += dt;

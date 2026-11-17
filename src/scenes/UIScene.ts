@@ -4,6 +4,7 @@ import { Controls } from '../systems/Controls';
 import { Dialogue } from '../systems/DialogueManager';
 import { EventSystem } from '../systems/EventSystem';
 import { Phone } from '../systems/Phone';
+import type { LevelUpInfo } from '../systems/SkillStats';
 import { BaggageClaim } from '../ui/BaggageClaim';
 import { Banner } from '../ui/Banner';
 import { DialogueBox } from '../ui/DialogueBox';
@@ -19,6 +20,9 @@ import { PhoneToast } from '../ui/PhoneToast';
 import { RideDisplay } from '../ui/RideDisplay';
 import { BusViewPrompt } from '../ui/BusViewPrompt';
 import { SideMap } from '../ui/SideMap';
+import { DebugOverlay } from '../ui/DebugOverlay';
+import { LevelUpScreen } from '../ui/LevelUpScreen';
+import { Tutorial } from '../ui/Tutorial';
 import { Vineta } from '../ui/Vineta';
 import { WardrobeScreen } from '../ui/WardrobeScreen';
 import { QuimicaMeter } from '../ui/QuimicaMeter';
@@ -44,8 +48,11 @@ export class UIScene extends BaseScene {
   private baggage!: BaggageClaim;
   private quimica!: QuimicaMeter;
   private banner!: Banner;
+  private tutorial!: Tutorial;
+  private levelUp!: LevelUpScreen;
+  private debug!: DebugOverlay;
   /** Stats que subieron en el último minijuego, a la espera de que el jugador quede libre para avisarlo. */
-  private pendingSkill: { title: string; subtitle: string } | null = null;
+  private pendingSkill: { title: string; subtitle: string; levelUp?: LevelUpInfo } | null = null;
 
   constructor() {
     super('UI');
@@ -76,6 +83,9 @@ export class UIScene extends BaseScene {
     new FlightBoard(this);
     this.baggage = new BaggageClaim(this);
     new Vineta(this);
+    this.tutorial = new Tutorial(this);
+    this.levelUp = new LevelUpScreen(this);
+    this.debug = new DebugOverlay(this);
     new SignView(this);
     new BusViewPrompt(this);
     Phone.reset();
@@ -97,7 +107,7 @@ export class UIScene extends BaseScene {
     });
     // Recordatorio de que el modo admin está activo (misiones desbloqueadas, Ctrl + <).
     if (Admin.active) {
-      makeText(this, 3, BASE_HEIGHT - 2, 'ADMIN · F2', {
+      makeText(this, 3, BASE_HEIGHT - 2, 'ADMIN · F2 pruebas · F4 coords', {
         fontFamily: FONT_HUD,
         fontSize: '8px',
         color: '#ff8a5c',
@@ -118,6 +128,10 @@ export class UIScene extends BaseScene {
     this.quimica.update(delta);
     this.sideMap.update(delta, this.anyModalOpen() ? undefined : map);
 
+    if (this.tutorial.active) this.updateTutorial(map);
+    this.debug.update(delta, map);
+
+    if (this.levelUp.isOpen) return this.levelUp.update(delta);
     if (this.menu.isOpen) return this.menu.update();
     if (this.inventory.isOpen) return this.inventory.update(delta);
     if (this.lineMap.isOpen) return this.lineMap.update(delta);
@@ -127,8 +141,10 @@ export class UIScene extends BaseScene {
 
     if (map?.sys.isActive()) Phone.update();
     if (this.pendingSkill && map?.sys.isActive() && map.canOpenMenu) {
-      this.banner.show(this.pendingSkill.title, this.pendingSkill.subtitle);
+      const { title, subtitle, levelUp } = this.pendingSkill;
       this.pendingSkill = null;
+      if (levelUp) this.levelUp.open(map, levelUp);
+      else this.banner.show(title, subtitle);
     }
 
     const wantsMenu = Controls.consume('menu');
@@ -147,8 +163,20 @@ export class UIScene extends BaseScene {
     this.dialogueBox.update(delta);
   }
 
+  /** Le cuenta al tutorial del Prólogo qué hay abierto y si el jugador anda libre. */
+  private updateTutorial(map: MapScene | undefined): void {
+    this.tutorial.update({
+      phoneOpen: this.phone.isOpen,
+      inventoryOpen: this.inventory.isOpen,
+      menuOpen: this.menu.isOpen,
+      free: Boolean(map?.sys.isActive() && map.canOpenMenu && !this.anyModalOpen()),
+      tileX: map?.playerTile.x ?? 0,
+      tileY: map?.playerTile.y ?? 0,
+    });
+  }
+
   private anyModalOpen(): boolean {
-    return this.menu.isOpen || this.inventory.isOpen || this.lineMap.isOpen || this.phone.isOpen || this.wardrobe.isOpen || this.baggage.isOpen;
+    return this.levelUp.isOpen || this.menu.isOpen || this.inventory.isOpen || this.lineMap.isOpen || this.phone.isOpen || this.wardrobe.isOpen || this.baggage.isOpen;
   }
 
   /** La escena de mapa (Overworld o Interior) en curso, corriendo o en pausa por un panel. */

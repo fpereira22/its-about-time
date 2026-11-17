@@ -4,12 +4,18 @@
     "nodes": {
       "inicio": {
         "text": [
-          "*Bzzzt* Te vibra el celular: es un mensaje de tu mamá. (Presiona Q para abrir el celular.)",
+          "*Bzzzt* Te vibra el celular: es un mensaje de tu mamá.",
           "Estás en Plaza Baquedano. El Costanera queda al oriente, siguiendo Av. Providencia.",
           "Puedes ir en metro, en micro o a pie. Tienes {plata} en efectivo y tu Bip! tiene {bip}.",
-          "(Caminas con WASD o las flechas. Con E hablas con la gente y revisas las cosas; Tab abre el inventario y Esc pausa, donde también puedes guardar la partida.)"
+          "Antes de salir, aprendamos lo básico: te iré mostrando los controles abajo, de a uno."
         ],
         "effects": [
+          {
+            "vineta": "m1_celular"
+          },
+          {
+            "setFlag": "tutorial_pendiente"
+          },
           {
             "setFlag": "mision_iniciada"
           },
@@ -28,7 +34,11 @@
           "Un mapa del barrio: Av. Providencia, de poniente a oriente, hasta Tobalaba.",
           "Junto a Tobalaba, el Costanera Center. Y al lado del \"Usted está aquí\", alguien dibujó un monito."
         ],
-        "effects": [{ "sign": "mapa_barrio" }]
+        "effects": [
+          {
+            "sign": "mapa_barrio"
+          }
+        ]
       }
     }
   },
@@ -37,7 +47,11 @@
     "nodes": {
       "inicio": {
         "text": "Las rejas están cerradas. Un cartel dice: \"ACCESO CERRADO POR MANTENCIÓN. Use el acceso del frente, al otro lado de Providencia\".",
-        "effects": [{ "sign": "acceso_cerrado" }]
+        "effects": [
+          {
+            "sign": "acceso_cerrado"
+          }
+        ]
       }
     }
   },
@@ -230,7 +244,11 @@
     "nodes": {
       "inicio": {
         "text": "Alguien rayó el letrero del paradero: de los recorridos solo se lee \"2_0\" y \"4_1\".",
-        "effects": [{ "sign": "paradero_pa421" }],
+        "effects": [
+          {
+            "sign": "paradero_pa421"
+          }
+        ],
         "choices": [
           {
             "label": "Esperar micro",
@@ -296,6 +314,11 @@
             "label": "Esperar la siguiente",
             "goto": "espera"
           }
+        ],
+        "effects": [
+          {
+            "vineta": "m1_micro"
+          }
         ]
       },
       "sube": {
@@ -355,7 +378,11 @@
     "nodes": {
       "inicio": {
         "text": "Paradero de micros. Desde aquí ya conviene seguir caminando: el Costanera queda al oriente.",
-        "effects": [{ "sign": "paradero_providencia" }]
+        "effects": [
+          {
+            "sign": "paradero_providencia"
+          }
+        ]
       }
     }
   },
@@ -423,7 +450,11 @@
       "gracias": {
         "speaker": "Tía de las sopaipillas",
         "text": "¿Con pebre o mostaza? ...Ay, se me acabó la mostaza. Con pebre nomás. ¡Que le aproveche!",
-        "effects": [{ "vineta": "compra_sopaipilla" }]
+        "effects": [
+          {
+            "vineta": "compra_sopaipilla"
+          }
+        ]
       },
       "ya_compro": {
         "speaker": "Tía de las sopaipillas",
@@ -587,7 +618,11 @@
       "gracias": {
         "speaker": "Don Lucho",
         "text": "¡Ojo con la mayo, que se chorrea! Le quedan {plata}.",
-        "effects": [{ "vineta": "compra_completo" }]
+        "effects": [
+          {
+            "vineta": "compra_completo"
+          }
+        ]
       },
       "fiado": {
         "speaker": "Don Lucho",
@@ -652,7 +687,11 @@
       "gracias": {
         "speaker": "Doña Juana",
         "text": "Cuidado con el cuesco de la aceituna, ¿ah?",
-        "effects": [{ "vineta": "compra_empanada" }]
+        "effects": [
+          {
+            "vineta": "compra_empanada"
+          }
+        ]
       },
       "pierde": {
         "speaker": "Doña Juana",
@@ -730,7 +769,11 @@
     "nodes": {
       "inicio": {
         "text": "Es la puerta de una galería comercial. Un letrero dice \"Solo personal autorizado\". Mejor no entrar sin saber adónde lleva.",
-        "effects": [{ "sign": "solo_personal" }]
+        "effects": [
+          {
+            "sign": "solo_personal"
+          }
+        ]
       }
     }
   },
@@ -781,7 +824,11 @@
       "gracias": {
         "speaker": "Vendedor",
         "text": "¡Salud! Ojo con el cuesco del huesillo.",
-        "effects": [{ "vineta": "compra_mote" }]
+        "effects": [
+          {
+            "vineta": "compra_mote"
+          }
+        ]
       },
       "caro": {
         "speaker": "Vendedor",

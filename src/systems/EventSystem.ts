@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import type { AmbientState, MusicTrack, SfxName, SkylineAmbient } from '../audio/sfx';
 import type { MapZone } from '../types/map';
+import type { LevelUpInfo } from './SkillStats';
 import type { RideProgress } from '../types/mission';
 
 /** Eventos globales del juego y sus argumentos. */
@@ -21,7 +22,7 @@ export interface GameEvents {
   /** Cartel grande arriba (nombre de calle, próxima estación). */
   banner: [{ title: string; subtitle?: string }];
   /** Subieron las stats de un minijuego: el cartel sale cuando el jugador quede libre (sin diálogo ni viñeta). */
-  'skill-gain': [{ title: string; subtitle: string }];
+  'skill-gain': [{ title: string; subtitle: string; levelUp?: LevelUpInfo }];
   /** Efecto de sonido (lo reproduce AudioManager). Usa playSfx() de src/audio/sfx.ts. */
   sfx: [SfxName];
   /** Cambiar la música de fondo (null = silencio). Usa playMusic(). El bpm opcional fuerza otro tempo y la reinicia. */

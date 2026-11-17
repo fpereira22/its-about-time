@@ -94,7 +94,24 @@ export type SfxName =
   | 'chupito' // el vasito de tequila en la mesa
   | 'mecha' // ¡pum! la mecha del tejo
   | 'chocon' // carros chocones: ¡bonk!
-  | 'rebobinar'; // el «¿y si...?» que se rebobina como un VHS
+  | 'rebobinar' // el «¿y si...?» que se rebobina como un VHS
+  | 'nivel_tick' // una barra de stat que se llena (pantalla de subida de nivel)
+  | 'nivel_futbol' // subida de nivel: trompetas de estadio y hinchada
+  | 'nivel_natacion' // subida de nivel: burbujas y campanitas de cristal
+  | 'nivel_salsa' // subida de nivel: clave, congas y metales
+  | 'nivel_pinpon' // subida de nivel: pelotazos que aceleran y campana final
+  // --- Emociones de las viñetas (ver src/art/vinetas_sonido.ts) ---
+  | 'amor' // arpegio de arpa que sube, con un colchón suave (besos, miradas, el 14)
+  | 'ternura' // cajita de música (abrazos, dormirse juntos, recuerdos)
+  | 'chispa' // el cosquilleo de rozarse las manos o casi besarse
+  | 'suspiro' // aire que sale despacio (alivio, sueño, amanecer)
+  | 'llanto' // sollozo con sorbidos
+  | 'triste' // tercera menor que baja (despedidas, derrotas)
+  | 'susto' // golpe disonante de terror
+  | 'suspenso' // zumbido grave que crece (algo no está bien)
+  | 'escalofrio' // cristalitos que bajan por la espalda
+  | 'sorpresa' // «¡oh!» que sube
+  | 'risa'; // risita sintetizada (ja-ja-ja)
 
 /** Pistas de música de fondo. */
 export type MusicTrack =
@@ -135,6 +152,9 @@ export type MusicTrack =
   | 'fiesta' // la fiesta en la casa de Tami (salsa choke y reggaetón, a todo volumen)
   | 'rio' // misión 10: el río Pance un domingo (marimba tranquila)
   | 'carro_danilo' // la radio del carro de Danilo (salsa caleña de domingo)
+  | 'salsa_son' // baile: son montuno en sol mayor, con campana
+  | 'salsa_suave' // baile: salsa romántica en sol menor, más lenta
+  | 'huaylas' // baile: huaylas andino (zampoña, charango y bombo)
   ;
 
 /** Sonido ambiente en loop: la lluvia (más fuerte en la tormenta). `indoor` la apaga como detrás de una ventana. */

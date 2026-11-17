@@ -57,17 +57,32 @@
       },
       "platos": {
         "speaker": "Mamá",
-        "text": "Los platos, hijo. Están ahí en la mesa, no se van a ir solitos al lavaplatos."
+        "text": "Los platos, hijo. Están ahí en la mesa, no se van a ir solitos al lavaplatos.",
+        "effects": [
+          {
+            "vineta": "m2_cena"
+          }
+        ]
       },
       "lava": {
         "speaker": "Mamá",
-        "text": "¿Y? La loza no se lava sola. El lavaplatos está en la cocina."
+        "text": "¿Y? La loza no se lava sola. El lavaplatos está en la cocina.",
+        "effects": [
+          {
+            "vineta": "m2_cena"
+          }
+        ]
       },
       "gracias": {
         "speaker": "Mamá",
         "text": [
           "Gracias, hijo. Quedó impeque. Ahora a la ducha, en el segundo piso.",
           "¿Y qué es eso del «problema de la mochila» que vai a dar mañana? ¿Les enseñan a ordenar la mochila? Ya era hora."
+        ],
+        "effects": [
+          {
+            "vineta": "m2_cena"
+          }
         ]
       },
       "dormir": {
@@ -339,11 +354,19 @@
       },
       "noche": {
         "text": "Resumen del fútbol del domingo. Tu mamá le grita al árbitro desde la mesa.",
-        "effects": [{ "sign": "tele_futbol" }]
+        "effects": [
+          {
+            "sign": "tele_futbol"
+          }
+        ]
       },
       "manana": {
         "text": "Las noticias de la mañana: un frío que cala, pero trenes y metro funcionan normal. Menos mal.",
-        "effects": [{ "sign": "tele_noticias" }]
+        "effects": [
+          {
+            "sign": "tele_noticias"
+          }
+        ]
       }
     }
   },

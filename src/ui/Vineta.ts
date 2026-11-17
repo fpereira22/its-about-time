@@ -14,6 +14,8 @@ import {
   TEAR_COLOR,
   type SideFigureOpts,
 } from '../art/vinetas';
+import type { Cues } from '../art/vinetas_sonido';
+import { playSfx } from '../audio/sfx';
 import { BASE_HEIGHT, BASE_WIDTH } from '../config/display';
 import { EventSystem } from '../systems/EventSystem';
 import { playerLook } from '../systems/PlayerLook';
@@ -52,6 +54,8 @@ export interface VinetaKit {
   every(ms: number, fn: () => void): void;
   /** Tween normal de Phaser (se detiene al cerrar). */
   tween(config: Phaser.Types.Tweens.TweenBuilderConfig): Phaser.Tweens.Tween;
+  /** La viñeta ya tiene sus sonidos en la tabla de src/art/vinetas_sonido.ts: no hace falta sacarlos de otro lado. */
+  readonly cued?: boolean;
   /** Avanza `t` de 0 a 1 en `ms` (para trayectorias a mano: arcos, vaivenes). */
   progress(ms: number, onUpdate: (t: number) => void, onComplete?: () => void, ease?: string): Phaser.Tweens.Tween;
 }
@@ -124,11 +128,15 @@ const VINETAS: Record<string, VinetaBuilder> = {
 /** Viñetas "en vivo" (el chat): si ya están abiertas no se rearman al volver a pedirlas. */
 const LIVE_VINETAS = new Set(['m6_chat', 'm7_chat']);
 
+/** Sonidos de las emociones por viñeta (src/art/vinetas_sonido.ts); llegan con el chunk de loadVinetas(). */
+let CUES: Readonly<Record<string, Cues>> = {};
+
 let vinetasLoad: Promise<void> | null = null;
 
 /** Carga el chunk con las viñetas de cada lugar (una sola vez). */
 export function loadVinetas(): Promise<void> {
-  vinetasLoad ??= import('../art/vinetas_index').then(({ PLACE_VINETAS }) => {
+  vinetasLoad ??= import('../art/vinetas_index').then(({ PLACE_VINETAS, VINETA_CUES }) => {
+    CUES = VINETA_CUES;
     for (const [id, build] of Object.entries(PLACE_VINETAS)) {
       if (id in VINETAS) console.error(`Viñeta "${id}" duplicada`);
       VINETAS[id] = build;
@@ -191,7 +199,10 @@ export class Vineta {
     const root = this.scene.add.container(0, 0).setDepth(DEPTH).setAlpha(0);
     this.root = root;
     root.add(this.scene.add.rectangle(0, 0, BASE_WIDTH, BASE_HEIGHT, 0x000000, 0.35).setOrigin(0));
-    build(this.kit(root));
+    const cues = CUES[id];
+    const kit = this.kit(root, cues !== undefined);
+    build(kit);
+    for (const [ms, sfx] of cues ?? []) kit.after(ms, () => playSfx(sfx));
     this.opts.onShow?.(root);
     this.scene.tweens.add({ targets: root, alpha: 1, duration: FADE_MS });
   }
@@ -217,7 +228,7 @@ export class Vineta {
     this.tweens = [];
   }
 
-  private kit(root: Phaser.GameObjects.Container): VinetaKit {
+  private kit(root: Phaser.GameObjects.Container, cued: boolean): VinetaKit {
     const scene = this.scene;
     const track = (t: Phaser.Tweens.Tween): Phaser.Tweens.Tween => {
       this.tweens.push(t);
@@ -227,6 +238,7 @@ export class Vineta {
       scene,
       panel: PANEL,
       root,
+      cued,
       framed: (backdrop) => {
         const frame = scene.add.graphics();
         drawPanel(frame, PANEL.x - 3, PANEL.y - 3, PANEL.w + 6, PANEL.h + 6, { radius: 6 });

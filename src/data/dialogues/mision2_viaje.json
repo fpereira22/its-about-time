@@ -344,6 +344,9 @@
         ],
         "effects": [
           {
+            "vineta": "m2_tren"
+          },
+          {
             "giveItem": "apuntes"
           },
           {
@@ -358,7 +361,12 @@
       },
       "ya": {
         "speaker": "Benja",
-        "text": "Repasa wn. Valor por kilo... y ojo, que lo goloso no siempre es óptimo."
+        "text": "Repasa wn. Valor por kilo... y ojo, que lo goloso no siempre es óptimo.",
+        "effects": [
+          {
+            "vineta": "m2_tren"
+          }
+        ]
       }
     }
   },

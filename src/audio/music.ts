@@ -177,6 +177,9 @@ const TAXI_CHORDS = ['Am', 'Dm', 'G', 'C', 'F', 'Dm', 'E', 'Am'];
 const FIESTA_CHORDS = ['Gm', 'Gm', 'D#', 'F', 'Gm', 'Gm', 'D#', 'F'];
 const RIO_CHORDS = ['D', 'G', 'A', 'D', 'D', 'G', 'A', 'D'];
 const CARRO_CHORDS = ['C', 'F', 'G', 'C', 'Am', 'Dm', 'G', 'C'];
+const SON_CHORDS = ['G', 'C', 'D', 'G', 'G', 'C', 'D', 'G'];
+const SUAVE_CHORDS = ['Gm', 'Cm', 'D', 'Gm', 'D#', 'Cm', 'D', 'Gm'];
+const HUAYLAS_CHORDS = ['Am', 'G', 'Am', 'E', 'Am', 'G', 'Am', 'E'];
 
 /** Bajo de cumbia: la fundamental en el 1 y la quinta en el 3, con un repique al final. */
 function cumbiaBass(chords: string[]): string[] {
@@ -1004,6 +1007,119 @@ export const TRACKS: Record<MusicTrack, TrackDef> = {
       perc(0.05, ...rest(8), ...loopBars(8, ...BONGO_BELL)),
       perc(0.07, ...loopBars(7, ...CASCARA), TIMBAL_FILL, ...loopBars(7, ...MAMBO_BELL), TIMBAL_FILL),
       perc(0.05, ...loopBars(8, ...GUIRO), ...rest(8)),
+    ],
+  },
+
+  /** Baile: son montuno en sol mayor, con la campana del bongó desde el principio (otra melodía, para no repetir). */
+  salsa_son: {
+    bpm: 108,
+    loop: true,
+    channels: [
+      {
+        wave: 'brass',
+        vol: 0.05,
+        tokens: [
+          ...bars(
+            'D6 - . B5 . D6 . G6 - - . . . . . .',
+            'E6 - . C6 . E6 . G6 - - . E6 . . . .',
+            'F#6 - . D6 . A5 . D6 - - . A5 . . . .',
+            'B5 - - - . . . . D6 - G6 - B5 - . .',
+            'B5 . D6 . G6 . F#6 . . . E6 . D6 . B5 .',
+            'C6 . E6 . G6 . E6 - . . C6 . . . . .',
+            'A5 . D6 . F#6 . A6 . . . F#6 . E6 . D6 .',
+            'G6 - - - . . . . . . . . . . . .',
+          ),
+          ...thirds(
+            bars(
+              'G5 . . B5 . . D6 . . . G6 . . . D6 .',
+              'E6 . . G6 . . E6 . . . C6 . . . . .',
+              'A5 . . D6 . . F#6 . . . A6 . . F#6 . .',
+              'G6 - . . B5 . . D6 . . . . . . . .',
+              'D6 . . D6 . . G6 . . . F#6 . E6 . D6 .',
+              'C6 . . E6 . . G6 . . . E6 . C6 . . .',
+              'D6 . . F#6 . . A6 . . . G6 . F#6 . E6 .',
+              'G6 - - - - - - - . . . . . . . .',
+            ),
+            'G',
+          ),
+        ],
+      },
+      { wave: 'piano', vol: 0.08, tokens: montuno(SON_CHORDS) },
+      { wave: 'babybass', vol: 0.24, tokens: tumbao(SON_CHORDS) },
+      perc(0.06, ...loopBars(16, ...CLAVE)),
+      perc(0.12, ...loopBars(16, ...MARCHA)),
+      perc(0.07, ...loopBars(8, ...CASCARA), ...loopBars(7, ...BONGO_BELL), TIMBAL_FILL),
+      perc(0.07, ...rest(8), ...loopBars(8, ...MARTILLO)),
+      perc(0.05, ...loopBars(8, ...GUIRO), ...rest(8)),
+    ],
+  },
+
+  /** Baile: salsa romántica en sol menor, más lenta y suave (maracas parejitas, sin martillo). Inventada. */
+  salsa_suave: {
+    bpm: 96,
+    loop: true,
+    channels: [
+      {
+        wave: 'brass',
+        vol: 0.045,
+        tokens: [
+          ...bars(
+            'D6 - - - A#5 - . . G5 - A#5 - D6 - . .',
+            'D#6 - - - C6 - . . G5 - C6 - D#6 - . .',
+            'F#6 - - - D6 - . . A5 - D6 - F#6 - . .',
+            'G6 - - - - - - - D6 - - - . . . .',
+            'A#5 - - - D#6 - . . G6 - D#6 - A#5 - . .',
+            'G5 - - - C6 - . . D#6 - G6 - D#6 - . .',
+            'A5 - - - D6 - . . F#6 - A6 - F#6 - . .',
+            'G6 - - - D6 - - - G5 - - - . . . .',
+          ),
+          ...thirds(
+            bars(
+              'D6 . . A#5 . . G5 . . . A#5 . . . D6 .',
+              'D#6 . . C6 . . G5 . . . C6 . . . D#6 .',
+              'F#6 . . D6 . . A5 . . . D6 . F#6 . A6 .',
+              'G6 - - - . . . . . . . . . . . .',
+              'A#5 . . D#6 . . G6 . . . D#6 . . . A#5 .',
+              'C6 . . D#6 . . G6 . . . D#6 . C6 . . .',
+              'D6 . . F#6 . . A6 . . . F#6 . D6 . A5 .',
+              'G5 - - - - - - - . . . . . . . .',
+            ),
+            'Gm',
+          ),
+        ],
+      },
+      { wave: 'piano', vol: 0.07, tokens: montuno(SUAVE_CHORDS) },
+      { wave: 'babybass', vol: 0.22, tokens: tumbao(SUAVE_CHORDS) },
+      perc(0.05, ...loopBars(16, ...CLAVE)),
+      perc(0.09, ...loopBars(16, ...MARCHA)),
+      perc(0.05, ...loopBars(16, ...MARACAS)),
+      perc(0.05, ...rest(8), ...loopBars(8, ...BONGO_BELL)),
+    ],
+  },
+
+  /** Baile: huaylas andino (zampoña, charango y bombo), en la menor pentatónica. Inventado. */
+  huaylas: {
+    bpm: 112,
+    loop: true,
+    channels: [
+      {
+        wave: 'triangle',
+        vol: 0.1,
+        tokens: bars(
+          'A5 . C6 . E6 - E6 . D6 . C6 . A5 - . .',
+          'G5 . B5 . D6 - D6 . C6 . B5 . G5 - . .',
+          'A5 . C6 . E6 - E6 . G6 . E6 . C6 - . .',
+          'B5 . E6 . G#6 - G#6 . E6 . B5 . . . . .',
+          'E6 . E6 . D6 . C6 . A5 . C6 . D6 . E6 .',
+          'D6 . D6 . C6 . B5 . G5 . B5 . C6 . D6 .',
+          'C6 . D6 . E6 . G6 . E6 . D6 . C6 . A5 .',
+          'B5 . G#5 . E5 . G#5 . A5 - - - . . . .',
+        ),
+      },
+      { wave: 'square', vol: 0.02, tokens: arp(HUAYLAS_CHORDS, 2, 4) },
+      { wave: 'triangle', vol: 0.17, tokens: bass(HUAYLAS_CHORDS, 'pulse') },
+      { wave: 'drums', vol: 0.08, tokens: repeat('k . h . s . h . k . h . s . h h', 8) },
+      perc(0.04, ...loopBars(8, ...MARACAS)),
     ],
   },
 

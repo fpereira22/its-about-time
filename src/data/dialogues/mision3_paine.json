@@ -22,7 +22,11 @@
       },
       "tip": {
         "text": "Estás sentado a la mesa. Presiona E frente a tu plato para conversar, pedir y comer. Para pararte, muévete.",
-        "effects": [{ "objective": "Cena con tu familia: conversa y pide (E en la mesa)" }]
+        "effects": [
+          {
+            "objective": "Cena con tu familia: conversa y pide (E en la mesa)"
+          }
+        ]
       }
     }
   },
@@ -31,30 +35,110 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "flag": "cena_terminada" }, "goto": "listo" },
-          { "if": { "flag": "comio" }, "goto": "sobremesa" },
-          { "if": { "flag": "pidio" }, "goto": "llega" },
-          { "goto": "menu" }
+          {
+            "if": {
+              "flag": "cena_terminada"
+            },
+            "goto": "listo"
+          },
+          {
+            "if": {
+              "flag": "comio"
+            },
+            "goto": "sobremesa"
+          },
+          {
+            "if": {
+              "flag": "pidio"
+            },
+            "goto": "llega"
+          },
+          {
+            "goto": "menu"
+          }
+        ],
+        "effects": [
+          {
+            "vineta": "m3_cena"
+          }
         ]
       },
       "menu": {
         "text": "La mesa: mantel cuadrillé, pebre, marraquetas tibias y tu familia mirándote como si te fueras a la Luna.",
         "choices": [
-          { "label": "Llamar al garzón", "goto": "garzon" },
-          { "label": "Conversar con tu papá", "goto": "papa" },
-          { "label": "Conversar con tu mamá", "goto": "mama" },
-          { "label": "Molestar a tu hermano", "goto": "hermano" },
-          { "label": "Nada por ahora" }
+          {
+            "label": "Llamar al garzón",
+            "goto": "garzon"
+          },
+          {
+            "label": "Conversar con tu papá",
+            "goto": "papa"
+          },
+          {
+            "label": "Conversar con tu mamá",
+            "goto": "mama"
+          },
+          {
+            "label": "Molestar a tu hermano",
+            "goto": "hermano"
+          },
+          {
+            "label": "Nada por ahora"
+          }
         ]
       },
       "garzon": {
         "speaker": "Garzón",
         "text": "Buenas noches, familia. ¿Qué se van a servir?",
         "choices": [
-          { "label": "Pastel de choclo", "effects": [{ "setFlag": ["pidio", "pidio_pastel"] }], "goto": "pedido" },
-          { "label": "Cazuela de vacuno", "effects": [{ "setFlag": ["pidio", "pidio_cazuela"] }], "goto": "pedido" },
-          { "label": "Lomo a lo pobre", "effects": [{ "setFlag": ["pidio", "pidio_lomo"] }], "goto": "pedido" },
-          { "label": "Lo más óptimo de la carta", "effects": [{ "setFlag": ["pidio", "pidio_optimo"] }], "goto": "optimo" }
+          {
+            "label": "Pastel de choclo",
+            "effects": [
+              {
+                "setFlag": [
+                  "pidio",
+                  "pidio_pastel"
+                ]
+              }
+            ],
+            "goto": "pedido"
+          },
+          {
+            "label": "Cazuela de vacuno",
+            "effects": [
+              {
+                "setFlag": [
+                  "pidio",
+                  "pidio_cazuela"
+                ]
+              }
+            ],
+            "goto": "pedido"
+          },
+          {
+            "label": "Lomo a lo pobre",
+            "effects": [
+              {
+                "setFlag": [
+                  "pidio",
+                  "pidio_lomo"
+                ]
+              }
+            ],
+            "goto": "pedido"
+          },
+          {
+            "label": "Lo más óptimo de la carta",
+            "effects": [
+              {
+                "setFlag": [
+                  "pidio",
+                  "pidio_optimo"
+                ]
+              }
+            ],
+            "goto": "optimo"
+          }
         ]
       },
       "optimo": {
@@ -65,23 +149,55 @@
       "pedido": {
         "speaker": "Garzón",
         "text": "Altiro. Y de postre tenemos sandía. Estamos en Paine, ¿qué otra cosa iba a haber?",
-        "effects": [{ "clock": "vie 20:40", "max": "vie 20:50" }, { "objective": "Espera la comida y conversa con tu familia" }]
+        "effects": [
+          {
+            "clock": "vie 20:40",
+            "max": "vie 20:50"
+          },
+          {
+            "objective": "Espera la comida y conversa con tu familia"
+          }
+        ]
       },
       "llega": {
         "text": "Llega la comida humeando. Tu hermano ya se robó una papa frita de tu plato.",
         "choices": [
-          { "label": "Comer", "goto": "comer" },
-          { "label": "Conversar con tu papá", "goto": "papa" },
-          { "label": "Conversar con tu mamá", "goto": "mama" },
-          { "label": "Molestar a tu hermano", "goto": "hermano" }
+          {
+            "label": "Comer",
+            "goto": "comer"
+          },
+          {
+            "label": "Conversar con tu papá",
+            "goto": "papa"
+          },
+          {
+            "label": "Conversar con tu mamá",
+            "goto": "mama"
+          },
+          {
+            "label": "Molestar a tu hermano",
+            "goto": "hermano"
+          }
         ]
       },
       "comer": {
         "effects": [
-          { "setFlag": "comio" },
-          { "clock": "vie 21:05", "max": "vie 21:10" },
-          { "objective": "Conversa con todos y pide la cuenta (E en la mesa)" },
-          { "event": "fundido", "data": { "dialogue": "cena_comiendo" } }
+          {
+            "setFlag": "comio"
+          },
+          {
+            "clock": "vie 21:05",
+            "max": "vie 21:10"
+          },
+          {
+            "objective": "Conversa con todos y pide la cuenta (E en la mesa)"
+          },
+          {
+            "event": "fundido",
+            "data": {
+              "dialogue": "cena_comiendo"
+            }
+          }
         ]
       },
       "sobremesa": {
@@ -89,13 +205,40 @@
         "choices": [
           {
             "label": "Pedir la cuenta",
-            "if": { "flag": ["hablo_papa", "hablo_mama", "hablo_hermano"] },
+            "if": {
+              "flag": [
+                "hablo_papa",
+                "hablo_mama",
+                "hablo_hermano"
+              ]
+            },
             "goto": "cuenta"
           },
-          { "label": "Conversar con tu papá", "goto": "papa" },
-          { "label": "Conversar con tu mamá", "goto": "mama" },
-          { "label": "Molestar a tu hermano", "goto": "hermano" },
-          { "label": "Pedir la cuenta", "if": { "not": { "flag": ["hablo_papa", "hablo_mama", "hablo_hermano"] } }, "goto": "todavia" }
+          {
+            "label": "Conversar con tu papá",
+            "goto": "papa"
+          },
+          {
+            "label": "Conversar con tu mamá",
+            "goto": "mama"
+          },
+          {
+            "label": "Molestar a tu hermano",
+            "goto": "hermano"
+          },
+          {
+            "label": "Pedir la cuenta",
+            "if": {
+              "not": {
+                "flag": [
+                  "hablo_papa",
+                  "hablo_mama",
+                  "hablo_hermano"
+                ]
+              }
+            },
+            "goto": "todavia"
+          }
         ]
       },
       "todavia": {
@@ -109,10 +252,19 @@
           "Ya, vamos a la casa, que hay que terminar esa maleta. ¡Y a las diez partimos al aeropuerto!"
         ],
         "effects": [
-          { "setFlag": "cena_terminada" },
-          { "sfx": "coin" },
-          { "clock": "vie 21:20", "max": "vie 21:30" },
-          { "objective": "Vuelve a la casa (Inés de Suárez 122, al poniente)" }
+          {
+            "setFlag": "cena_terminada"
+          },
+          {
+            "sfx": "coin"
+          },
+          {
+            "clock": "vie 21:20",
+            "max": "vie 21:30"
+          },
+          {
+            "objective": "Vuelve a la casa (Inés de Suárez 122, al poniente)"
+          }
         ]
       },
       "listo": {
@@ -120,38 +272,66 @@
       },
       "papa": {
         "speaker": "Papá",
-        "effects": [{ "setFlag": "hablo_papa" }],
+        "effects": [
+          {
+            "setFlag": "hablo_papa"
+          }
+        ],
         "text": [
           "¿Sabí qué, hijo? Cuando yo tenía tu edad, lo más lejos que fui fue a Rancagua. Y me perdí.",
           "Y tú te vai a Colombia. Solo. A estudiar. Estoy... bueno, estoy orgulloso, ya, lo dije."
         ],
         "choices": [
-          { "label": "Gracias, papá", "goto": "papa_gracias" },
-          { "label": "¿Te vas a poner a llorar?", "goto": "papa_llorar" }
+          {
+            "label": "Gracias, papá",
+            "goto": "papa_gracias"
+          },
+          {
+            "label": "¿Te vas a poner a llorar?",
+            "goto": "papa_llorar"
+          }
         ]
       },
       "papa_gracias": {
         "speaker": "Papá",
         "text": "Toma, pa'l aeropuerto. Dicen que allá un café cuesta lo mismo que un riñón.",
-        "effects": [{ "giveMoney": 10000 }],
+        "effects": [
+          {
+            "giveMoney": 10000
+          }
+        ],
         "next": "volver"
       },
       "papa_llorar": {
         "speaker": "Papá",
         "text": "¿Yo? ¿Llorar? Es el pebre, que está picante. Toma, pa'l aeropuerto, y no le digai a tu mamá.",
-        "effects": [{ "giveMoney": 10000 }],
+        "effects": [
+          {
+            "giveMoney": 10000
+          }
+        ],
         "next": "volver"
       },
       "mama": {
         "speaker": "Mamá",
-        "effects": [{ "setFlag": "hablo_mama" }],
+        "effects": [
+          {
+            "setFlag": "hablo_mama"
+          }
+        ],
         "text": [
           "¿Echaste todo? ¿Los calcetines? ¿El cargador? ¿El carnet? ¿Calzoncillos? ¿CUÁNTOS calzoncillos?",
           "Perdón. Es que... no sé qué voy a hacer sin ti en la casa. ¿Me vai a llamar?"
         ],
         "choices": [
-          { "label": "Todos los días", "goto": "mama_todos" },
-          { "label": "Día por medio", "goto": "mama_medio" }
+          {
+            "label": "Todos los días",
+            "goto": "mama_todos"
+          },
+          {
+            "label": "Día por medio",
+            "goto": "mama_medio"
+          }
         ]
       },
       "mama_todos": {
@@ -166,11 +346,21 @@
       },
       "hermano": {
         "speaker": "Hermano",
-        "effects": [{ "setFlag": "hablo_hermano" }],
+        "effects": [
+          {
+            "setFlag": "hablo_hermano"
+          }
+        ],
         "text": "Oye... ¿en Colombia hay dinosaurios? ¿Y monos? ¿Me vai a traer un mono?",
         "choices": [
-          { "label": "Te traigo un mono de peluche", "goto": "hermano_peluche" },
-          { "label": "¿Me cuidas la pieza?", "goto": "hermano_pieza" }
+          {
+            "label": "Te traigo un mono de peluche",
+            "goto": "hermano_peluche"
+          },
+          {
+            "label": "¿Me cuidas la pieza?",
+            "goto": "hermano_pieza"
+          }
         ]
       },
       "hermano_peluche": {
@@ -185,9 +375,21 @@
       },
       "volver": {
         "branches": [
-          { "if": { "flag": "comio" }, "goto": "sobremesa" },
-          { "if": { "flag": "pidio" }, "goto": "llega" },
-          { "goto": "menu" }
+          {
+            "if": {
+              "flag": "comio"
+            },
+            "goto": "sobremesa"
+          },
+          {
+            "if": {
+              "flag": "pidio"
+            },
+            "goto": "llega"
+          },
+          {
+            "goto": "menu"
+          }
         ]
       }
     }
@@ -197,14 +399,35 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "flag": "pidio_lomo" }, "goto": "lomo" },
-          { "if": { "flag": "pidio_cazuela" }, "goto": "cazuela" },
-          { "goto": "pastel" }
+          {
+            "if": {
+              "flag": "pidio_lomo"
+            },
+            "goto": "lomo"
+          },
+          {
+            "if": {
+              "flag": "pidio_cazuela"
+            },
+            "goto": "cazuela"
+          },
+          {
+            "goto": "pastel"
+          }
         ]
       },
-      "pastel": { "text": "Pastel de choclo con azúcar arriba, quemadita. Sabe a casa. Sabe a Chile.", "next": "fin" },
-      "cazuela": { "text": "Cazuela con zapallo, choclo y papa. Tu mamá te pasa el ají sin que se lo pidas.", "next": "fin" },
-      "lomo": { "text": "Lomo a lo pobre: dos huevos, cebolla y una montaña de papas fritas. Tu hermano ataca la montaña.", "next": "fin" },
+      "pastel": {
+        "text": "Pastel de choclo con azúcar arriba, quemadita. Sabe a casa. Sabe a Chile.",
+        "next": "fin"
+      },
+      "cazuela": {
+        "text": "Cazuela con zapallo, choclo y papa. Tu mamá te pasa el ají sin que se lo pidas.",
+        "next": "fin"
+      },
+      "lomo": {
+        "text": "Lomo a lo pobre: dos huevos, cebolla y una montaña de papas fritas. Tu hermano ataca la montaña.",
+        "next": "fin"
+      },
       "fin": {
         "text": "Tu papá cuenta el mismo chiste de siempre. Por primera vez, te ríes de verdad. Lo vas a extrañar."
       }
@@ -242,8 +465,15 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "flag": "cena_terminada" }, "goto": "chao" },
-          { "goto": "hola" }
+          {
+            "if": {
+              "flag": "cena_terminada"
+            },
+            "goto": "chao"
+          },
+          {
+            "goto": "hola"
+          }
         ]
       },
       "hola": {
@@ -261,7 +491,11 @@
     "nodes": {
       "inicio": {
         "text": "El mesón: un frasco de pebre gigante, la caja registradora y un cartel: «PAINE, CAPITAL DE LA SANDÍA».",
-        "effects": [{ "sign": "capital_sandia" }]
+        "effects": [
+          {
+            "sign": "capital_sandia"
+          }
+        ]
       }
     }
   },
@@ -317,8 +551,12 @@
           "Junta tus cosas por la casa: ropero, escritorio, velador, cama, baño... y lo que te pase tu mamá."
         ],
         "effects": [
-          { "setFlag": "en_casa" },
-          { "objective": "Junta tus cosas y arma la maleta (máx. 23 kg)" }
+          {
+            "setFlag": "en_casa"
+          },
+          {
+            "objective": "Junta tus cosas y arma la maleta (máx. 23 kg)"
+          }
         ]
       }
     }
@@ -328,9 +566,28 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "notFlag": "dio_manjar" }, "goto": "regalos" },
-          { "if": { "all": [{ "flag": "maleta_cerrada" }, { "hasItem": "carnet" }] }, "goto": "listo" },
-          { "goto": "pendiente" }
+          {
+            "if": {
+              "notFlag": "dio_manjar"
+            },
+            "goto": "regalos"
+          },
+          {
+            "if": {
+              "all": [
+                {
+                  "flag": "maleta_cerrada"
+                },
+                {
+                  "hasItem": "carnet"
+                }
+              ]
+            },
+            "goto": "listo"
+          },
+          {
+            "goto": "pendiente"
+          }
         ]
       },
       "regalos": {
@@ -340,9 +597,15 @@
           "Y te eché una marraqueta con palta en la mochila, pa'l viaje. No te la comai antes, ¿ah?"
         ],
         "effects": [
-          { "setFlag": "dio_manjar" },
-          { "giveItem": "manjar" },
-          { "giveItem": "marraqueta" }
+          {
+            "setFlag": "dio_manjar"
+          },
+          {
+            "giveItem": "manjar"
+          },
+          {
+            "giveItem": "marraqueta"
+          }
         ]
       },
       "pendiente": {
@@ -360,9 +623,28 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "all": [{ "flag": "maleta_cerrada" }, { "hasItem": "carnet" }] }, "goto": "listo" },
-          { "if": { "flag": "maleta_cerrada" }, "goto": "carnet" },
-          { "goto": "vuelo" }
+          {
+            "if": {
+              "all": [
+                {
+                  "flag": "maleta_cerrada"
+                },
+                {
+                  "hasItem": "carnet"
+                }
+              ]
+            },
+            "goto": "listo"
+          },
+          {
+            "if": {
+              "flag": "maleta_cerrada"
+            },
+            "goto": "carnet"
+          },
+          {
+            "goto": "vuelo"
+          }
         ]
       },
       "vuelo": {
@@ -380,8 +662,13 @@
         "speaker": "Papá",
         "text": "¡Eso! Voy a sacar el auto. Sal cuando estés listo. ¡Aeropuerto, allá vamos!",
         "effects": [
-          { "clock": "vie 21:55", "max": "vie 22:00" },
-          { "objective": "Sal de la casa: tu papá trae el auto" }
+          {
+            "clock": "vie 21:55",
+            "max": "vie 22:00"
+          },
+          {
+            "objective": "Sal de la casa: tu papá trae el auto"
+          }
         ]
       }
     }
@@ -403,7 +690,11 @@
     "nodes": {
       "inicio": {
         "text": "El pronóstico del tiempo. Tu mamá desde la cocina: «¿VEINTINUEVE? ¡Llévate bloqueador!»",
-        "effects": [{ "sign": "tele_clima_cali" }]
+        "effects": [
+          {
+            "sign": "tele_clima_cali"
+          }
+        ]
       }
     }
   },
@@ -420,7 +711,11 @@
     "nodes": {
       "inicio": {
         "text": "El refri. Pegado con un imán, el papel del vuelo: «CA 742 · 01:50 · ¡NO OLVIDAR EL CARNET!» (letra de tu mamá).",
-        "effects": [{ "sign": "papel_vuelo" }]
+        "effects": [
+          {
+            "sign": "papel_vuelo"
+          }
+        ]
       }
     }
   },
@@ -446,19 +741,54 @@
       "inicio": {
         "text": "Tu ropero, medio vacío.",
         "choices": [
-          { "label": "Sacar ropa para la maleta", "if": { "notFlag": "junto_ropa" }, "goto": "ropa" },
-          { "label": "Sacar las zapatillas extra", "if": { "notFlag": "junto_zapatillas" }, "goto": "zapatillas" },
-          { "label": "Cambiarte para el viaje", "effects": [{ "event": "ropero" }] },
-          { "label": "Nada" }
+          {
+            "label": "Sacar ropa para la maleta",
+            "if": {
+              "notFlag": "junto_ropa"
+            },
+            "goto": "ropa"
+          },
+          {
+            "label": "Sacar las zapatillas extra",
+            "if": {
+              "notFlag": "junto_zapatillas"
+            },
+            "goto": "zapatillas"
+          },
+          {
+            "label": "Cambiarte para el viaje",
+            "effects": [
+              {
+                "event": "ropero"
+              }
+            ]
+          },
+          {
+            "label": "Nada"
+          }
         ]
       },
       "ropa": {
         "text": "Poleras, pantalones, el polerón de la U, calcetines, el traje de baño... Pesa 9 kilos. ¿Cómo pesa 9 kilos?",
-        "effects": [{ "setFlag": "junto_ropa" }, { "sfx": "item" }]
+        "effects": [
+          {
+            "setFlag": "junto_ropa"
+          },
+          {
+            "sfx": "item"
+          }
+        ]
       },
       "zapatillas": {
         "text": "Las zapatillas de salir y las de correr (que nunca usas, pero igual). 3 kilos.",
-        "effects": [{ "setFlag": "junto_zapatillas" }, { "sfx": "item" }]
+        "effects": [
+          {
+            "setFlag": "junto_zapatillas"
+          },
+          {
+            "sfx": "item"
+          }
+        ]
       }
     }
   },
@@ -467,11 +797,29 @@
     "nodes": {
       "inicio": {
         "text": "Tu escritorio. Encima, los apuntes del semestre y un post-it: «¡¡CARNET!!».",
-        "effects": [{ "sign": "postit_carnet" }],
+        "effects": [
+          {
+            "sign": "postit_carnet"
+          }
+        ],
         "choices": [
-          { "label": "Tomar el carnet", "if": { "notItem": "carnet" }, "goto": "carnet" },
-          { "label": "Sacar los libros de Optimización", "if": { "notFlag": "junto_libros" }, "goto": "libros" },
-          { "label": "Nada" }
+          {
+            "label": "Tomar el carnet",
+            "if": {
+              "notItem": "carnet"
+            },
+            "goto": "carnet"
+          },
+          {
+            "label": "Sacar los libros de Optimización",
+            "if": {
+              "notFlag": "junto_libros"
+            },
+            "goto": "libros"
+          },
+          {
+            "label": "Nada"
+          }
         ]
       },
       "carnet": {
@@ -479,11 +827,22 @@
           "Tu carnet: Feli P., 23 años, chileno. Sin esto no sales del país.",
           "Esto va contigo, en la mochila. Nunca en la maleta."
         ],
-        "effects": [{ "giveItem": "carnet" }]
+        "effects": [
+          {
+            "giveItem": "carnet"
+          }
+        ]
       },
       "libros": {
         "text": "«Investigación de Operaciones» y «Programación Lineal, tomo II». 6 kilos de puro conocimiento. Y de peso.",
-        "effects": [{ "setFlag": "junto_libros" }, { "sfx": "item" }]
+        "effects": [
+          {
+            "setFlag": "junto_libros"
+          },
+          {
+            "sfx": "item"
+          }
+        ]
       }
     }
   },
@@ -492,13 +851,27 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "notFlag": "junto_cargador" }, "goto": "cargador" },
-          { "goto": "despertador" }
+          {
+            "if": {
+              "notFlag": "junto_cargador"
+            },
+            "goto": "cargador"
+          },
+          {
+            "goto": "despertador"
+          }
         ]
       },
       "cargador": {
         "text": "El cargador del celular y un adaptador de enchufe (en Colombia los enchufes son de patitas planas). 1 kilo con todo.",
-        "effects": [{ "setFlag": "junto_cargador" }, { "sfx": "item" }]
+        "effects": [
+          {
+            "setFlag": "junto_cargador"
+          },
+          {
+            "sfx": "item"
+          }
+        ]
       },
       "despertador": {
         "text": "El despertador. Hoy no lo vas a necesitar: con suerte vas a dormir en el avión."
@@ -510,15 +883,34 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "notFlag": "junto_almohada" }, "goto": "almohada" },
-          { "goto": "dormir" }
+          {
+            "if": {
+              "notFlag": "junto_almohada"
+            },
+            "goto": "almohada"
+          },
+          {
+            "goto": "dormir"
+          }
         ]
       },
       "almohada": {
         "text": "Tu almohada regalona, la que tiene la forma exacta de tu cabeza. ¿Se va contigo? (2 kilos)",
         "choices": [
-          { "label": "Tomarla", "effects": [{ "setFlag": "junto_almohada" }, { "sfx": "item" }] },
-          { "label": "Dejarla" }
+          {
+            "label": "Tomarla",
+            "effects": [
+              {
+                "setFlag": "junto_almohada"
+              },
+              {
+                "sfx": "item"
+              }
+            ]
+          },
+          {
+            "label": "Dejarla"
+          }
         ]
       },
       "dormir": {
@@ -531,13 +923,27 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "notFlag": "junto_neceser" }, "goto": "neceser" },
-          { "goto": "espejo" }
+          {
+            "if": {
+              "notFlag": "junto_neceser"
+            },
+            "goto": "neceser"
+          },
+          {
+            "goto": "espejo"
+          }
         ]
       },
       "neceser": {
         "text": "Armas el neceser: cepillo, pasta, desodorante, el gel y un bloqueador que te dejó tu mamá con nota: «ÚSALO». 1 kilo.",
-        "effects": [{ "setFlag": "junto_neceser" }, { "sfx": "item" }]
+        "effects": [
+          {
+            "setFlag": "junto_neceser"
+          },
+          {
+            "sfx": "item"
+          }
+        ]
       },
       "espejo": {
         "text": "Te miras al espejo. La próxima vez que te mires en este espejo vas a saber bailar salsa. O eso esperas."
@@ -557,7 +963,11 @@
     "nodes": {
       "inicio": {
         "text": "Tu maleta, abierta en el suelo. Límite de la aerolínea: 23 kilos. Ni uno más.",
-        "effects": [{ "event": "maleta" }]
+        "effects": [
+          {
+            "event": "maleta"
+          }
+        ]
       }
     }
   },
@@ -570,19 +980,35 @@
             "if": {
               "not": {
                 "any": [
-                  { "flag": "junto_ropa" },
-                  { "flag": "junto_zapatillas" },
-                  { "flag": "junto_libros" },
-                  { "flag": "junto_almohada" },
-                  { "flag": "junto_neceser" },
-                  { "flag": "junto_cargador" },
-                  { "hasItem": "manjar" }
+                  {
+                    "flag": "junto_ropa"
+                  },
+                  {
+                    "flag": "junto_zapatillas"
+                  },
+                  {
+                    "flag": "junto_libros"
+                  },
+                  {
+                    "flag": "junto_almohada"
+                  },
+                  {
+                    "flag": "junto_neceser"
+                  },
+                  {
+                    "flag": "junto_cargador"
+                  },
+                  {
+                    "hasItem": "manjar"
+                  }
                 ]
               }
             },
             "goto": "vacia"
           },
-          { "goto": "menu" }
+          {
+            "goto": "menu"
+          }
         ]
       },
       "vacia": {
@@ -591,44 +1017,161 @@
       "menu": {
         "text": "Maleta: {peso} de 23 kg. ¿Qué haces?",
         "choices": [
-          { "label": "Meter algo", "goto": "meter" },
+          {
+            "label": "Meter algo",
+            "goto": "meter"
+          },
           {
             "label": "Sacar todo",
             "if": {
               "any": [
-                { "flag": "maleta_ropa" },
-                { "flag": "maleta_zapatillas" },
-                { "flag": "maleta_libros" },
-                { "flag": "maleta_almohada" },
-                { "flag": "maleta_manjar" },
-                { "flag": "maleta_neceser" },
-                { "flag": "maleta_cargador" }
+                {
+                  "flag": "maleta_ropa"
+                },
+                {
+                  "flag": "maleta_zapatillas"
+                },
+                {
+                  "flag": "maleta_libros"
+                },
+                {
+                  "flag": "maleta_almohada"
+                },
+                {
+                  "flag": "maleta_manjar"
+                },
+                {
+                  "flag": "maleta_neceser"
+                },
+                {
+                  "flag": "maleta_cargador"
+                }
               ]
             },
-            "effects": [{ "setFlag": "_vaciar_maleta" }]
+            "effects": [
+              {
+                "setFlag": "_vaciar_maleta"
+              }
+            ]
           },
-          { "label": "Cerrar la maleta", "if": { "flag": "maleta_ropa" }, "goto": "cerrar" },
-          { "label": "Dejarla abierta por ahora" }
+          {
+            "label": "Cerrar la maleta",
+            "if": {
+              "flag": "maleta_ropa"
+            },
+            "goto": "cerrar"
+          },
+          {
+            "label": "Dejarla abierta por ahora"
+          }
         ]
       },
       "meter": {
         "text": "Maleta: {peso} de 23 kg. ¿Qué metes? (Solo lo que ya juntaste.)",
         "choices": [
-          { "label": "Ropa (9 kg)", "if": { "flag": "junto_ropa", "notFlag": "maleta_ropa" }, "effects": [{ "setFlag": "_meter_ropa" }] },
-          { "label": "Zapatillas (3 kg)", "if": { "flag": "junto_zapatillas", "notFlag": "maleta_zapatillas" }, "effects": [{ "setFlag": "_meter_zapatillas" }] },
-          { "label": "Libros de Optimización (6 kg)", "if": { "flag": "junto_libros", "notFlag": "maleta_libros" }, "effects": [{ "setFlag": "_meter_libros" }] },
-          { "label": "Almohada (2 kg)", "if": { "flag": "junto_almohada", "notFlag": "maleta_almohada" }, "effects": [{ "setFlag": "_meter_almohada" }] },
-          { "label": "Manjar, 2 tarros (2 kg)", "if": { "hasItem": "manjar" }, "effects": [{ "setFlag": "_meter_manjar" }] },
-          { "label": "Neceser (1 kg)", "if": { "flag": "junto_neceser", "notFlag": "maleta_neceser" }, "effects": [{ "setFlag": "_meter_neceser" }] },
-          { "label": "Cargador (1 kg)", "if": { "flag": "junto_cargador", "notFlag": "maleta_cargador" }, "effects": [{ "setFlag": "_meter_cargador" }] },
-          { "label": "Nada más" }
+          {
+            "label": "Ropa (9 kg)",
+            "if": {
+              "flag": "junto_ropa",
+              "notFlag": "maleta_ropa"
+            },
+            "effects": [
+              {
+                "setFlag": "_meter_ropa"
+              }
+            ]
+          },
+          {
+            "label": "Zapatillas (3 kg)",
+            "if": {
+              "flag": "junto_zapatillas",
+              "notFlag": "maleta_zapatillas"
+            },
+            "effects": [
+              {
+                "setFlag": "_meter_zapatillas"
+              }
+            ]
+          },
+          {
+            "label": "Libros de Optimización (6 kg)",
+            "if": {
+              "flag": "junto_libros",
+              "notFlag": "maleta_libros"
+            },
+            "effects": [
+              {
+                "setFlag": "_meter_libros"
+              }
+            ]
+          },
+          {
+            "label": "Almohada (2 kg)",
+            "if": {
+              "flag": "junto_almohada",
+              "notFlag": "maleta_almohada"
+            },
+            "effects": [
+              {
+                "setFlag": "_meter_almohada"
+              }
+            ]
+          },
+          {
+            "label": "Manjar, 2 tarros (2 kg)",
+            "if": {
+              "hasItem": "manjar"
+            },
+            "effects": [
+              {
+                "setFlag": "_meter_manjar"
+              }
+            ]
+          },
+          {
+            "label": "Neceser (1 kg)",
+            "if": {
+              "flag": "junto_neceser",
+              "notFlag": "maleta_neceser"
+            },
+            "effects": [
+              {
+                "setFlag": "_meter_neceser"
+              }
+            ]
+          },
+          {
+            "label": "Cargador (1 kg)",
+            "if": {
+              "flag": "junto_cargador",
+              "notFlag": "maleta_cargador"
+            },
+            "effects": [
+              {
+                "setFlag": "_meter_cargador"
+              }
+            ]
+          },
+          {
+            "label": "Nada más"
+          }
         ]
       },
       "cerrar": {
         "text": "¿Cierras la maleta con {peso} kilos? Después no se abre hasta Cali.",
         "choices": [
-          { "label": "Sí, cerrarla", "effects": [{ "setFlag": "_cerrar_maleta" }] },
-          { "label": "Todavía no", "goto": "menu" }
+          {
+            "label": "Sí, cerrarla",
+            "effects": [
+              {
+                "setFlag": "_cerrar_maleta"
+              }
+            ]
+          },
+          {
+            "label": "Todavía no",
+            "goto": "menu"
+          }
         ]
       }
     }
@@ -649,8 +1192,15 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "flag": "maleta_optima" }, "goto": "optima" },
-          { "goto": "normal" }
+          {
+            "if": {
+              "flag": "maleta_optima"
+            },
+            "goto": "optima"
+          },
+          {
+            "goto": "normal"
+          }
         ]
       },
       "optima": {
@@ -658,18 +1208,37 @@
           "Te sientas encima, tiras el cierre y... ¡click! La pesas en la balanza del baño: 23,0 kilos EXACTOS.",
           "Solución óptima. En algún lugar de Santiago, un profesor calvo sonríe sin saber por qué."
         ],
-        "effects": [{ "vineta": "maleta_optima" }, { "sfx": "secret" }],
+        "effects": [
+          {
+            "vineta": "maleta_optima"
+          },
+          {
+            "sfx": "secret"
+          }
+        ],
         "next": "cargador"
       },
       "normal": {
         "text": "Te sientas encima, tiras el cierre y... ¡click! Maleta cerrada: {peso} kilos.",
-        "effects": [{ "vineta": "maleta" }],
+        "effects": [
+          {
+            "vineta": "maleta"
+          }
+        ],
         "next": "cargador"
       },
       "cargador": {
         "branches": [
-          { "if": { "flag": "junto_cargador", "notFlag": "maleta_cargador" }, "goto": "mochila" },
-          { "goto": "siguiente" }
+          {
+            "if": {
+              "flag": "junto_cargador",
+              "notFlag": "maleta_cargador"
+            },
+            "goto": "mochila"
+          },
+          {
+            "goto": "siguiente"
+          }
         ]
       },
       "mochila": {
@@ -678,17 +1247,32 @@
       },
       "siguiente": {
         "branches": [
-          { "if": { "hasItem": "carnet" }, "goto": "listo" },
-          { "goto": "falta_carnet" }
+          {
+            "if": {
+              "hasItem": "carnet"
+            },
+            "goto": "listo"
+          },
+          {
+            "goto": "falta_carnet"
+          }
         ]
       },
       "listo": {
         "text": "Maleta lista y carnet en la mochila. Baja a avisarle a tu papá.",
-        "effects": [{ "objective": "Avísale a tu papá que estás listo (primer piso)" }]
+        "effects": [
+          {
+            "objective": "Avísale a tu papá que estás listo (primer piso)"
+          }
+        ]
       },
       "falta_carnet": {
         "text": "Maleta lista. Falta lo más importante: el carnet. Está en tu escritorio.",
-        "effects": [{ "objective": "Toma tu carnet (escritorio de tu pieza)" }]
+        "effects": [
+          {
+            "objective": "Toma tu carnet (escritorio de tu pieza)"
+          }
+        ]
       }
     }
   },
@@ -697,7 +1281,11 @@
     "nodes": {
       "inicio": {
         "text": "Tu mamá cierra la casa con tres vueltas de llave. Se escucha el motor: tu papá sacó el auto.",
-        "effects": [{ "event": "auto_familia" }]
+        "effects": [
+          {
+            "event": "auto_familia"
+          }
+        ]
       }
     }
   },
@@ -720,7 +1308,14 @@
     "nodes": {
       "inicio": {
         "text": "Tu papá prende la radio. Tu hermano se abrocha el cinturón solo, por primera vez sin que nadie le diga.",
-        "effects": [{ "event": "trayecto", "data": { "id": "auto_aeropuerto" } }]
+        "effects": [
+          {
+            "event": "trayecto",
+            "data": {
+              "id": "auto_aeropuerto"
+            }
+          }
+        ]
       }
     }
   },
@@ -746,7 +1341,11 @@
           "En la radio suena una canción de amor viejita. Tu mamá la tararea despacito, mirando por la ventana.",
           "Tu hermano se quedó dormido con la cabeza en tu hombro. Babea un poquito. Lo dejas."
         ],
-        "effects": [{ "vineta": "auto_dormido" }]
+        "effects": [
+          {
+            "vineta": "auto_dormido"
+          }
+        ]
       }
     }
   },
@@ -760,8 +1359,13 @@
           "Y prueba todo. Bueno, casi todo. Si algo se mueve en el plato, no."
         ],
         "choices": [
-          { "label": "Lo voy a hacer, papá" },
-          { "label": "¿Eso te pasó en Rancagua?", "goto": "rancagua" }
+          {
+            "label": "Lo voy a hacer, papá"
+          },
+          {
+            "label": "¿Eso te pasó en Rancagua?",
+            "goto": "rancagua"
+          }
         ]
       },
       "rancagua": {
@@ -775,18 +1379,57 @@
     "nodes": {
       "inicio": {
         "text": "Por el parabrisas se ve un avión bajando, con las luces encendidas, como una estrella lenta.",
-        "effects": [{ "vineta": "auto_avion" }],
+        "effects": [
+          {
+            "vineta": "auto_avion"
+          }
+        ],
         "next": "hermano"
       },
       "hermano": {
         "speaker": "Hermano",
         "text": "(despertando de golpe) ¡UN AVIÓN! ¿Ese es el tuyo? ¿Te vai en ese? ¡No te vayai todavía!",
-        "effects": [{ "vineta": "auto_despierta" }]
+        "effects": [
+          {
+            "vineta": "auto_despierta"
+          }
+        ]
       }
     }
   },
-  "papa_auto": { "start": "inicio", "nodes": { "inicio": { "speaker": "Papá", "text": "Voy manejando, hijo. Conversamos en el semáforo." } } },
-  "mama_auto": { "start": "inicio", "nodes": { "inicio": { "speaker": "Mamá", "text": "¿Tení frío? ¿Hambre? ¿Sueño? ¿Pena? Yo tengo de todo." } } },
-  "hermano_auto": { "start": "inicio", "nodes": { "inicio": { "speaker": "Hermano", "text": "Zzz... mono de peluche... zzz..." } } },
-  "maleta_auto": { "start": "inicio", "nodes": { "inicio": { "text": "Tu maleta. Viaja más tranquila que tú." } } }
+  "papa_auto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Papá",
+        "text": "Voy manejando, hijo. Conversamos en el semáforo."
+      }
+    }
+  },
+  "mama_auto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Mamá",
+        "text": "¿Tení frío? ¿Hambre? ¿Sueño? ¿Pena? Yo tengo de todo."
+      }
+    }
+  },
+  "hermano_auto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "speaker": "Hermano",
+        "text": "Zzz... mono de peluche... zzz..."
+      }
+    }
+  },
+  "maleta_auto": {
+    "start": "inicio",
+    "nodes": {
+      "inicio": {
+        "text": "Tu maleta. Viaja más tranquila que tú."
+      }
+    }
+  }
 }

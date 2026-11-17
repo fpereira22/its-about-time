@@ -57,28 +57,64 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "flag": "secreto_bano" }, "goto": "despues" },
-          { "if": { "flag": "bano_2" }, "goto": "tercera" },
-          { "if": { "flag": "bano_1" }, "goto": "segunda" },
-          { "goto": "primera" }
+          {
+            "if": {
+              "flag": "secreto_bano"
+            },
+            "goto": "despues"
+          },
+          {
+            "if": {
+              "flag": "bano_2"
+            },
+            "goto": "tercera"
+          },
+          {
+            "if": {
+              "flag": "bano_1"
+            },
+            "goto": "segunda"
+          },
+          {
+            "goto": "primera"
+          }
         ]
       },
       "primera": {
         "text": "Baño: OCUPADO. La lucecita roja no deja lugar a dudas.",
-        "effects": [{ "setFlag": "bano_1" }]
+        "effects": [
+          {
+            "setFlag": "bano_1"
+          }
+        ]
       },
       "segunda": {
         "text": "Sigue OCUPADO. Desde adentro se escucha a alguien tarareando un tema de metal gótico.",
-        "effects": [{ "setFlag": "bano_2" }]
+        "effects": [
+          {
+            "setFlag": "bano_2"
+          }
+        ]
       },
       "tercera": {
         "text": "La luz cambia a LIBRE. La puerta se abre sola... y no hay nadie adentro.",
-        "effects": [{ "setFlag": "secreto_bano" }],
+        "effects": [
+          {
+            "setFlag": "secreto_bano"
+          }
+        ],
         "next": "espejo"
       },
       "espejo": {
         "text": "En el espejo, alguien escribió con lápiz rojo: «lo más óptimo no existe».",
-        "effects": [{ "sign": "espejo_bano" }, { "sfx": "secret" }]
+        "effects": [
+          {
+            "sign": "espejo_bano"
+          },
+          {
+            "sfx": "secret"
+          }
+        ]
       },
       "despues": {
         "text": "El baño del avión. Ya no tienes ganas de entrar. Nunca más."
@@ -96,8 +132,14 @@
         "speaker": "Luz Dary",
         "text": "¡Hola, vecino! Me llamo Luz Dary. Soy caleña, de Cali, ¿sabés? Vengo de visitar a mi hija en Santiago. ¿Primera vez a Cali?",
         "choices": [
-          { "label": "Sí, me voy de intercambio", "goto": "intercambio" },
-          { "label": "¿Cómo supo?", "goto": "cara" }
+          {
+            "label": "Sí, me voy de intercambio",
+            "goto": "intercambio"
+          },
+          {
+            "label": "¿Cómo supo?",
+            "goto": "cara"
+          }
         ]
       },
       "intercambio": {
@@ -134,18 +176,33 @@
           "Las turbinas rugen. El avión acelera, acelera... y despega. Se te aprieta el estómago.",
           "Por la ventana, Santiago se ve como un mar de lucecitas naranjas. En algún lugar, al sur, está Paine."
         ],
-        "effects": [{ "vineta": "vuelo_despegue" }],
+        "effects": [
+          {
+            "vineta": "vuelo_despegue"
+          }
+        ],
         "next": "dibujo"
       },
       "dibujo": {
         "branches": [
-          { "if": { "hasItem": "dibujo" }, "goto": "con_dibujo" },
-          { "goto": "sin_dibujo" }
+          {
+            "if": {
+              "hasItem": "dibujo"
+            },
+            "goto": "con_dibujo"
+          },
+          {
+            "goto": "sin_dibujo"
+          }
         ]
       },
       "con_dibujo": {
         "text": "Sacas el dibujo de tu hermano: «VUELVE PRONTO», con la N al revés. Lo miras un rato largo y lo guardas con cuidado en la mochila.",
-        "effects": [{ "vineta": "dibujo" }]
+        "effects": [
+          {
+            "vineta": "dibujo"
+          }
+        ]
       },
       "sin_dibujo": {
         "text": "Piensas en tu mamá secándose las lágrimas con la manga. Apoyas la frente en la ventana fría."
@@ -157,7 +214,11 @@
     "nodes": {
       "inicio": {
         "text": "Afuera, a la luz de la luna, la cordillera de los Andes: picos nevados que brillan como azúcar flor sobre una torta gigante.",
-        "effects": [{ "vineta": "vuelo_cordillera" }],
+        "effects": [
+          {
+            "vineta": "vuelo_cordillera"
+          }
+        ],
         "next": "luz"
       },
       "luz": {
@@ -173,13 +234,33 @@
         "speaker": "Auxiliar",
         "text": "Buenas noches. ¿Pollo o pasta?",
         "choices": [
-          { "label": "Pollo", "goto": "pollo" },
-          { "label": "Pasta", "goto": "pasta" },
-          { "label": "¿Cuál es la solución óptima?", "goto": "optima" }
+          {
+            "label": "Pollo",
+            "goto": "pollo"
+          },
+          {
+            "label": "Pasta",
+            "goto": "pasta"
+          },
+          {
+            "label": "¿Cuál es la solución óptima?",
+            "goto": "optima"
+          }
+        ],
+        "effects": [
+          {
+            "vineta": "m3_bandeja"
+          }
         ]
       },
-      "pollo": { "text": "Pollo con arroz. Tibio. Sabe a avión, que es un sabor en sí mismo.", "next": "postre" },
-      "pasta": { "text": "Pasta con salsa de tomate. Sorprendentemente rica. O tienes mucha hambre.", "next": "postre" },
+      "pollo": {
+        "text": "Pollo con arroz. Tibio. Sabe a avión, que es un sabor en sí mismo.",
+        "next": "postre"
+      },
+      "pasta": {
+        "text": "Pasta con salsa de tomate. Sorprendentemente rica. O tienes mucha hambre.",
+        "next": "postre"
+      },
       "optima": {
         "speaker": "Auxiliar",
         "text": "¿La... óptima? Le doy los dos, pero no le diga a nadie.",
@@ -187,19 +268,41 @@
       },
       "postre": {
         "text": "De postre, un alfajor envuelto en papel dorado.",
-        "effects": [{ "giveItem": "alfajor" }],
+        "effects": [
+          {
+            "giveItem": "alfajor"
+          }
+        ],
         "next": "marraqueta"
       },
       "marraqueta": {
         "branches": [
-          { "if": { "hasItem": "marraqueta" }, "goto": "recuerdo" }
+          {
+            "if": {
+              "hasItem": "marraqueta"
+            },
+            "goto": "recuerdo"
+          }
         ]
       },
       "recuerdo": {
         "text": "Te acuerdas de la marraqueta con palta que te echó tu mamá en la mochila.",
         "choices": [
-          { "label": "Comértela ahora", "effects": [{ "takeItem": "marraqueta" }, { "sfx": "eat" }], "goto": "comer" },
-          { "label": "Guardarla para después" }
+          {
+            "label": "Comértela ahora",
+            "effects": [
+              {
+                "takeItem": "marraqueta"
+              },
+              {
+                "sfx": "eat"
+              }
+            ],
+            "goto": "comer"
+          },
+          {
+            "label": "Guardarla para después"
+          }
         ]
       },
       "comer": {
@@ -214,8 +317,14 @@
         "speaker": "Luz Dary",
         "text": "Bueno, mijo, si vas a vivir en Cali tenés que hablar como caleño. Te enseño. ¿Listo?",
         "choices": [
-          { "label": "¡Listo!", "goto": "clase" },
-          { "label": "¿Hay prueba al final?", "goto": "prueba" }
+          {
+            "label": "¡Listo!",
+            "goto": "clase"
+          },
+          {
+            "label": "¿Hay prueba al final?",
+            "goto": "prueba"
+          }
         ]
       },
       "prueba": {
@@ -236,8 +345,14 @@
         "speaker": "Luz Dary",
         "text": "¿Y vos qué estudiás?",
         "choices": [
-          { "label": "Ingeniería. Lo mío es optimizar", "goto": "optimizar" },
-          { "label": "El problema de la mochila", "goto": "mochila" }
+          {
+            "label": "Ingeniería. Lo mío es optimizar",
+            "goto": "optimizar"
+          },
+          {
+            "label": "El problema de la mochila",
+            "goto": "mochila"
+          }
         ]
       },
       "optimizar": {
@@ -253,7 +368,11 @@
       "pandebono": {
         "speaker": "Luz Dary",
         "text": "Tomá, un pandebono. Lo traje de Cali pa' mi hija y me sobró. Ya está duro, pero sigue rico.",
-        "effects": [{ "giveItem": "pandebono" }]
+        "effects": [
+          {
+            "giveItem": "pandebono"
+          }
+        ]
       }
     }
   },
@@ -268,8 +387,14 @@
         "speaker": "Capitán",
         "text": "Señores pasajeros, estamos atravesando una zona de turbulencia. Permanezcan sentados con el cinturón abrochado.",
         "choices": [
-          { "label": "Es como el tren pasando Buin", "goto": "buin" },
-          { "label": "Agarrarle la mano a Luz Dary", "goto": "mano" }
+          {
+            "label": "Es como el tren pasando Buin",
+            "goto": "buin"
+          },
+          {
+            "label": "Agarrarle la mano a Luz Dary",
+            "goto": "mano"
+          }
         ]
       },
       "buin": {
@@ -303,19 +428,42 @@
       },
       "hora": {
         "text": "¿5:20? En Colombia son dos horas menos que en Chile. Atrasas el reloj del celular: ganaste dos horas de vida.",
-        "effects": [{ "clock": "sáb 05:20", "max": "sáb 05:25" }],
+        "effects": [
+          {
+            "clock": "sáb 05:20",
+            "max": "sáb 05:25"
+          }
+        ],
         "next": "marraqueta"
       },
       "marraqueta": {
         "branches": [
-          { "if": { "hasItem": "marraqueta" }, "goto": "aviso" }
+          {
+            "if": {
+              "hasItem": "marraqueta"
+            },
+            "goto": "aviso"
+          }
         ]
       },
       "aviso": {
         "text": "Te acuerdas de la marraqueta en la mochila. ¿No era que en Colombia no entra?",
         "choices": [
-          { "label": "Comértela, rapidito", "effects": [{ "takeItem": "marraqueta" }, { "sfx": "eat" }], "goto": "comer" },
-          { "label": "Arriesgarse" }
+          {
+            "label": "Comértela, rapidito",
+            "effects": [
+              {
+                "takeItem": "marraqueta"
+              },
+              {
+                "sfx": "eat"
+              }
+            ],
+            "goto": "comer"
+          },
+          {
+            "label": "Arriesgarse"
+          }
         ]
       },
       "comer": {
@@ -331,15 +479,24 @@
           "Las ruedas tocan la pista. ¡Pum! Frenazo.",
           "Y como en todo vuelo con chilenos a bordo... ¡aplausos!"
         ],
-        "effects": [{ "vineta": "vuelo_aterrizaje" }],
+        "effects": [
+          {
+            "vineta": "vuelo_aterrizaje"
+          }
+        ],
         "next": "luz"
       },
       "luz": {
         "speaker": "Luz Dary",
         "text": "¡Bienvenido a Cali, mijo! Que te vaya bonito. Y acordate: «¿sí o qué?».",
         "effects": [
-          { "clock": "sáb 05:35", "max": "sáb 05:50" },
-          { "objective": "Pasa Migración Colombia" }
+          {
+            "clock": "sáb 05:35",
+            "max": "sáb 05:50"
+          },
+          {
+            "objective": "Pasa Migración Colombia"
+          }
         ]
       }
     }
@@ -370,17 +527,36 @@
         "speaker": "Migración",
         "text": "Buenos días, ¡bienvenido a Colombia! Documento, por favor.",
         "choices": [
-          { "label": "Pasarle el carnet", "if": { "hasItem": "carnet" }, "goto": "carnet" }
+          {
+            "label": "Pasarle el carnet",
+            "if": {
+              "hasItem": "carnet"
+            },
+            "goto": "carnet"
+          }
         ]
       },
       "carnet": {
         "speaker": "Migración",
         "text": "Cédula chilena... perfecto, con esto entrás. Feli P., 23 años. ¿Motivo del viaje?",
-        "effects": [{ "doc": "show" }],
+        "effects": [
+          {
+            "doc": "show"
+          }
+        ],
         "choices": [
-          { "label": "Intercambio estudiantil", "goto": "estudio" },
-          { "label": "Vengo a aprender salsa", "goto": "salsa" },
-          { "label": "Turismo y pandebono", "goto": "pandebono" }
+          {
+            "label": "Intercambio estudiantil",
+            "goto": "estudio"
+          },
+          {
+            "label": "Vengo a aprender salsa",
+            "goto": "salsa"
+          },
+          {
+            "label": "Turismo y pandebono",
+            "goto": "pandebono"
+          }
         ]
       },
       "estudio": {
@@ -401,10 +577,19 @@
       "sello": {
         "text": "Clac. Te dan la bienvenida oficial a Colombia.",
         "effects": [
-          { "sfx": "sello" },
-          { "doc": "stamp", "id": "clo" },
-          { "setFlag": "migracion_ok" },
-          { "objective": "Retira tu maleta (Cinta 2 · Santiago)" }
+          {
+            "sfx": "sello"
+          },
+          {
+            "doc": "stamp",
+            "id": "clo"
+          },
+          {
+            "setFlag": "migracion_ok"
+          },
+          {
+            "objective": "Retira tu maleta (Cinta 2 · Santiago)"
+          }
         ]
       }
     }
@@ -422,7 +607,11 @@
     "nodes": {
       "inicio": {
         "text": "CA 742 desde Santiago: aterrizó. Las maletas salen por la cinta 2.",
-        "effects": [{ "board": "llegadas_clo" }]
+        "effects": [
+          {
+            "board": "llegadas_clo"
+          }
+        ]
       }
     }
   },
@@ -439,9 +628,21 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "flag": "maleta_recogida" }, "goto": "ya" },
-          { "if": { "notFlag": "migracion_ok" }, "goto": "antes" },
-          { "goto": "esperar" }
+          {
+            "if": {
+              "flag": "maleta_recogida"
+            },
+            "goto": "ya"
+          },
+          {
+            "if": {
+              "notFlag": "migracion_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "goto": "esperar"
+          }
         ]
       },
       "antes": {
@@ -452,7 +653,11 @@
           "Cinta 2: CA 742 desde Santiago. Las maletas empiezan a dar vueltas: una roja, otra roja, una caja de vino...",
           "La tuya es azul, con la franja del medio y la cinta amarilla que te amarró tu mamá «para que la reconozcas». Hay como cinco azules."
         ],
-        "effects": [{ "event": "cinta_maletas" }]
+        "effects": [
+          {
+            "event": "cinta_maletas"
+          }
+        ]
       },
       "ya": {
         "text": "Ya tienes tu maleta. La cinta sigue dando vueltas, vacía."
@@ -465,10 +670,19 @@
       "inicio": {
         "text": "La bajas de la cinta de un tirón. Azul, franja, cinta amarilla. Es la tuya, con olor a bodega de avión.",
         "effects": [
-          { "giveItem": "maleta" },
-          { "setFlag": "maleta_recogida" },
-          { "clock": "sáb 06:05", "max": "sáb 06:15" },
-          { "objective": "Pasa la aduana y el control del ICA" }
+          {
+            "giveItem": "maleta"
+          },
+          {
+            "setFlag": "maleta_recogida"
+          },
+          {
+            "clock": "sáb 06:05",
+            "max": "sáb 06:15"
+          },
+          {
+            "objective": "Pasa la aduana y el control del ICA"
+          }
         ]
       }
     }
@@ -494,8 +708,15 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "notFlag": "maleta_recogida" }, "goto": "sin_maleta" },
-          { "goto": "control" }
+          {
+            "if": {
+              "notFlag": "maleta_recogida"
+            },
+            "goto": "sin_maleta"
+          },
+          {
+            "goto": "control"
+          }
         ]
       },
       "sin_maleta": {
@@ -509,8 +730,15 @@
       },
       "perro": {
         "branches": [
-          { "if": { "hasItem": "marraqueta" }, "goto": "marraqueta" },
-          { "goto": "limpio" }
+          {
+            "if": {
+              "hasItem": "marraqueta"
+            },
+            "goto": "marraqueta"
+          },
+          {
+            "goto": "limpio"
+          }
         ]
       },
       "marraqueta": {
@@ -523,7 +751,17 @@
           "¿Pan con... aguacate? Productos vegetales frescos no pueden ingresar a Colombia. Se lo tengo que decomisar.",
           "¿No le avisaron en Chile? Ah, sí le avisaron. Bueno, la próxima vez."
         ],
-        "effects": [{ "takeItem": "marraqueta" }, { "setFlag": "decomiso_ica" }, { "sfx": "error" }],
+        "effects": [
+          {
+            "takeItem": "marraqueta"
+          },
+          {
+            "setFlag": "decomiso_ica"
+          },
+          {
+            "sfx": "error"
+          }
+        ],
         "next": "manjar"
       },
       "limpio": {
@@ -532,8 +770,15 @@
       },
       "manjar": {
         "branches": [
-          { "if": { "flag": "maleta_manjar" }, "goto": "arequipe" },
-          { "goto": "fin" }
+          {
+            "if": {
+              "flag": "maleta_manjar"
+            },
+            "goto": "arequipe"
+          },
+          {
+            "goto": "fin"
+          }
         ]
       },
       "arequipe": {
@@ -545,8 +790,12 @@
         "speaker": "Agente ICA",
         "text": "Siga, bienvenido a Cali. Su transporte lo espera en el hall de llegadas.",
         "effects": [
-          { "setFlag": "aduana_ok" },
-          { "objective": "Busca al chofer de la universidad (hall de llegadas)" }
+          {
+            "setFlag": "aduana_ok"
+          },
+          {
+            "objective": "Busca al chofer de la universidad (hall de llegadas)"
+          }
         ]
       }
     }
@@ -573,8 +822,15 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "notFlag": "aduana_ok" }, "goto": "antes" },
-          { "goto": "hola" }
+          {
+            "if": {
+              "notFlag": "aduana_ok"
+            },
+            "goto": "antes"
+          },
+          {
+            "goto": "hola"
+          }
         ]
       },
       "antes": {
@@ -588,8 +844,14 @@
           "¿Cómo estuvo ese vuelo? ¿Bien o qué? Vamos, que hasta Pance hay un buen trecho: el aeropuerto queda en Palmira, al otro lado del río Cauca."
         ],
         "choices": [
-          { "label": "¡Vamos!", "goto": "vamos" },
-          { "label": "Un segundo", "goto": "espera" }
+          {
+            "label": "¡Vamos!",
+            "goto": "vamos"
+          },
+          {
+            "label": "Un segundo",
+            "goto": "espera"
+          }
         ]
       },
       "espera": {
@@ -600,9 +862,19 @@
         "speaker": "Don Jairo",
         "text": "¡Listo! Pasame esa maleta. Uy, ¿qué traés acá, piedras?",
         "effects": [
-          { "clock": "sáb 06:35", "max": "sáb 06:40" },
-          { "objective": "Viaja en el furgón hasta Pance" },
-          { "warp": { "map": "furgon", "spawn": "asiento" } }
+          {
+            "clock": "sáb 06:35",
+            "max": "sáb 06:40"
+          },
+          {
+            "objective": "Viaja en el furgón hasta Pance"
+          },
+          {
+            "warp": {
+              "map": "furgon",
+              "spawn": "asiento"
+            }
+          }
         ]
       }
     }
@@ -612,7 +884,11 @@
     "nodes": {
       "inicio": {
         "text": "Un cartel escrito a mano con tu nombre. Tu apellido está mal escrito, pero con cariño.",
-        "effects": [{ "sign": "cartel_chofer" }]
+        "effects": [
+          {
+            "sign": "cartel_chofer"
+          }
+        ]
       }
     }
   },
@@ -630,7 +906,11 @@
     "nodes": {
       "inicio": {
         "text": "No eres de la familia Gómez. Por ahora.",
-        "effects": [{ "sign": "cartel_gomez" }]
+        "effects": [
+          {
+            "sign": "cartel_gomez"
+          }
+        ]
       }
     }
   },
@@ -639,8 +919,15 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "notFlag": "aduana_ok" }, "goto": "aduana" },
-          { "goto": "chofer" }
+          {
+            "if": {
+              "notFlag": "aduana_ok"
+            },
+            "goto": "aduana"
+          },
+          {
+            "goto": "chofer"
+          }
         ]
       },
       "aduana": {
@@ -661,7 +948,14 @@
       "jairo": {
         "speaker": "Don Jairo",
         "text": "¡Agarrate, que arrancamos!",
-        "effects": [{ "event": "trayecto", "data": { "id": "furgon_pance" } }]
+        "effects": [
+          {
+            "event": "trayecto",
+            "data": {
+              "id": "furgon_pance"
+            }
+          }
+        ]
       }
     }
   },
@@ -679,14 +973,25 @@
     "nodes": {
       "inicio": {
         "text": "A los dos lados de la recta: caña de azúcar, kilómetros y kilómetros. Por eso el Valle huele dulce.",
-        "next": "jairo"
+        "next": "jairo",
+        "effects": [
+          {
+            "vineta": "m3_furgon"
+          }
+        ]
       },
       "jairo": {
         "speaker": "Don Jairo",
         "text": "Esa es la caña. De ahí sale el azúcar, la panela... y el guarapo, que te lo tenés que tomar. ¿Sí o qué?",
         "choices": [
-          { "label": "¿Sí o qué?", "goto": "si" },
-          { "label": "¿Cachai?", "goto": "cachai" }
+          {
+            "label": "¿Sí o qué?",
+            "goto": "si"
+          },
+          {
+            "label": "¿Cachai?",
+            "goto": "cachai"
+          }
         ]
       },
       "si": {
@@ -762,7 +1067,11 @@
       "jairo": {
         "speaker": "Don Jairo",
         "text": "Llegamos, parcero. Esa es tu casa: la Casa Pance, la de la puerta café, al medio. ¡Que te vaya bien! ¡Nos vemos en la U!",
-        "effects": [{ "objective": "Toca la puerta de la Casa Pance" }]
+        "effects": [
+          {
+            "objective": "Toca la puerta de la Casa Pance"
+          }
+        ]
       }
     }
   },
@@ -771,13 +1080,24 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "flag": "toco_puerta" }, "goto": "llamar" },
-          { "goto": "tocar" }
+          {
+            "if": {
+              "flag": "toco_puerta"
+            },
+            "goto": "llamar"
+          },
+          {
+            "goto": "tocar"
+          }
         ]
       },
       "tocar": {
         "text": "Tocas la puerta: toc, toc, toc. Adentro se escucha un «¡ya voy, ya voy!» y una radio con salsa.",
-        "effects": [{ "setFlag": "toco_puerta" }],
+        "effects": [
+          {
+            "setFlag": "toco_puerta"
+          }
+        ],
         "next": "mery"
       },
       "mery": {
@@ -790,8 +1110,15 @@
       },
       "manjar": {
         "branches": [
-          { "if": { "flag": "maleta_manjar" }, "goto": "regalo" },
-          { "goto": "fin" }
+          {
+            "if": {
+              "flag": "maleta_manjar"
+            },
+            "goto": "regalo"
+          },
+          {
+            "goto": "fin"
+          }
         ]
       },
       "regalo": {
@@ -804,7 +1131,11 @@
         "next": "fin"
       },
       "fin": {
-        "effects": [{ "objective": "Llama a tu mamá: llegaste bien (Q → Teléfono)" }]
+        "effects": [
+          {
+            "objective": "Llama a tu mamá: llegaste bien (Q → Teléfono)"
+          }
+        ]
       },
       "llamar": {
         "speaker": "Doña Mery",
@@ -817,8 +1148,15 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "flag": "toco_puerta" }, "goto": "llamar" },
-          { "goto": "antes" }
+          {
+            "if": {
+              "flag": "toco_puerta"
+            },
+            "goto": "llamar"
+          },
+          {
+            "goto": "antes"
+          }
         ]
       },
       "antes": {
@@ -836,16 +1174,29 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "flag": "probo_chontaduro" }, "goto": "otra" },
-          { "goto": "oferta" }
+          {
+            "if": {
+              "flag": "probo_chontaduro"
+            },
+            "goto": "otra"
+          },
+          {
+            "goto": "oferta"
+          }
         ]
       },
       "oferta": {
         "speaker": "Vendedor",
         "text": "¡Chontaduro, chontaduro! Con sal y miel, pa' la energía. ¿Quiere uno, joven?",
         "choices": [
-          { "label": "Sí, uno", "goto": "pesos" },
-          { "label": "¿Qué es eso?", "goto": "que" }
+          {
+            "label": "Sí, uno",
+            "goto": "pesos"
+          },
+          {
+            "label": "¿Qué es eso?",
+            "goto": "que"
+          }
         ]
       },
       "que": {
@@ -859,7 +1210,14 @@
         "next": "regalo"
       },
       "regalo": {
-        "effects": [{ "giveItem": "chontaduro" }, { "setFlag": "probo_chontaduro" }]
+        "effects": [
+          {
+            "giveItem": "chontaduro"
+          },
+          {
+            "setFlag": "probo_chontaduro"
+          }
+        ]
       },
       "otra": {
         "speaker": "Vendedor",
@@ -882,7 +1240,15 @@
         "speaker": "Mamá (llamada)",
         "text": "¿ALÓ? ¿Hijo? ¿Llegaste? ¡Dime que llegaste!",
         "choices": [
-          { "label": "Llegué, mamá. Estoy en Pance", "goto": "llego" }
+          {
+            "label": "Llegué, mamá. Estoy en Pance",
+            "goto": "llego"
+          }
+        ],
+        "effects": [
+          {
+            "vineta": "llamada_mama"
+          }
         ]
       },
       "llego": {
@@ -895,8 +1261,15 @@
       },
       "hermano": {
         "branches": [
-          { "if": { "flag": "maleta_almohada" }, "goto": "peluche" },
-          { "goto": "almohada" }
+          {
+            "if": {
+              "flag": "maleta_almohada"
+            },
+            "goto": "peluche"
+          },
+          {
+            "goto": "almohada"
+          }
         ]
       },
       "almohada": {
@@ -915,7 +1288,11 @@
           "Disfruta mucho, hijo. Estudia, conoce, baila... y llámame mañana. Y pasado. Y...",
           "Ya, ya, te dejo. Te quiero mucho, mi niño. Bienvenido a Cali."
         ],
-        "effects": [{ "event": "mision3_final" }]
+        "effects": [
+          {
+            "event": "mision3_final"
+          }
+        ]
       }
     }
   },
@@ -951,8 +1328,15 @@
     "nodes": {
       "inicio": {
         "branches": [
-          { "if": { "flag": "despedida" }, "goto": "despues" },
-          { "goto": "antes" }
+          {
+            "if": {
+              "flag": "despedida"
+            },
+            "goto": "despues"
+          },
+          {
+            "goto": "antes"
+          }
         ]
       },
       "antes": {
@@ -979,7 +1363,11 @@
     "nodes": {
       "inicio": {
         "text": "En la foto sales con cara de recién despertado. Como en todas las fotos de carnet de la historia.",
-        "effects": [{ "doc": "show" }]
+        "effects": [
+          {
+            "doc": "show"
+          }
+        ]
       }
     }
   },
@@ -988,9 +1376,19 @@
     "nodes": {
       "inicio": {
         "text": "Tu tarjeta de embarque. Asiento 18A, ventana: vas a ver la cordillera desde arriba.",
-        "effects": [{ "doc": "show", "id": "pase" }],
+        "effects": [
+          {
+            "doc": "show",
+            "id": "pase"
+          }
+        ],
         "branches": [
-          { "if": { "flag": "vio_cambio" }, "goto": "cambio" }
+          {
+            "if": {
+              "flag": "vio_cambio"
+            },
+            "goto": "cambio"
+          }
         ]
       },
       "cambio": {
@@ -1011,7 +1409,11 @@
     "nodes": {
       "inicio": {
         "text": "El dibujo de tu hermano: los cuatro de la mano y un avión arriba. «VUELVE PRONTO», con la N al revés. Lo vas a pegar en tu pieza nueva.",
-        "effects": [{ "vineta": "dibujo" }]
+        "effects": [
+          {
+            "vineta": "dibujo"
+          }
+        ]
       }
     }
   },
@@ -1021,11 +1423,23 @@
       "inicio": {
         "text": "¿Te comes el alfajor del avión? Si te lo comes, ya no cuenta como coleccionable.",
         "choices": [
-          { "label": "Sí, comer", "effects": [{ "takeItem": "alfajor" }], "goto": "comer" },
-          { "label": "Mejor no" }
+          {
+            "label": "Sí, comer",
+            "effects": [
+              {
+                "takeItem": "alfajor"
+              }
+            ],
+            "goto": "comer"
+          },
+          {
+            "label": "Mejor no"
+          }
         ]
       },
-      "comer": { "text": "Manjar, chocolate y galleta. Un pedacito de Chile a 11.000 metros." }
+      "comer": {
+        "text": "Manjar, chocolate y galleta. Un pedacito de Chile a 11.000 metros."
+      }
     }
   },
   "usar_pandebono": {
@@ -1034,11 +1448,23 @@
       "inicio": {
         "text": "¿Te comes el pandebono de Luz Dary? Si te lo comes, ya no cuenta como coleccionable.",
         "choices": [
-          { "label": "Sí, comer", "effects": [{ "takeItem": "pandebono" }], "goto": "comer" },
-          { "label": "Mejor no" }
+          {
+            "label": "Sí, comer",
+            "effects": [
+              {
+                "takeItem": "pandebono"
+              }
+            ],
+            "goto": "comer"
+          },
+          {
+            "label": "Mejor no"
+          }
         ]
       },
-      "comer": { "text": "Duro por fuera, con sabor a queso por dentro. Ya te gusta Cali." }
+      "comer": {
+        "text": "Duro por fuera, con sabor a queso por dentro. Ya te gusta Cali."
+      }
     }
   },
   "usar_chontaduro": {
@@ -1047,11 +1473,23 @@
       "inicio": {
         "text": "¿Te comes el chontaduro? Si te lo comes, ya no cuenta como coleccionable.",
         "choices": [
-          { "label": "Sí, comer", "effects": [{ "takeItem": "chontaduro" }], "goto": "comer" },
-          { "label": "Mejor no" }
+          {
+            "label": "Sí, comer",
+            "effects": [
+              {
+                "takeItem": "chontaduro"
+              }
+            ],
+            "goto": "comer"
+          },
+          {
+            "label": "Mejor no"
+          }
         ]
       },
-      "comer": { "text": "Con sal y miel. Sabe a... a chontaduro. No sabes si te gusta, pero te comerías otro." }
+      "comer": {
+        "text": "Con sal y miel. Sabe a... a chontaduro. No sabes si te gusta, pero te comerías otro."
+      }
     }
   },
   "usar_manjar": {
