@@ -281,6 +281,7 @@
     "x": 64,
     "y": 19,
     "dialogue": "m11_puente_voragine",
+    "solid": false,
     "if": {
       "mission": "mission10"
     }
