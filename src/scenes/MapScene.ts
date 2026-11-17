@@ -19,6 +19,7 @@ import { currentMission } from '../systems/Mission';
 import { SkillStats } from '../systems/SkillStats';
 import { Npc } from '../systems/Npc';
 import { Records } from '../systems/Records';
+import { CloudSave } from '../systems/CloudSave';
 import { Ranking } from '../systems/Ranking';
 import { RIDES } from '../systems/RideController';
 import { playerTexture } from '../systems/PlayerLook';
@@ -525,6 +526,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     StoryState.setFlag(`${currentMission().id}_completa`);
     Records.recordCompletion();
     Ranking.syncScore();
+    CloudSave.soon();
     StoryState.clockPaused = true;
     playMusic(null);
     this.transition(() => {

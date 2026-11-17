@@ -2,8 +2,9 @@ import type { FutbolResult } from '../scenes/FutbolScene';
 import type { NatacionResult } from '../scenes/NatacionScene';
 import type { PinponResult } from '../scenes/PinponScene';
 import type { SalsaResult } from '../scenes/SalsaScene';
+import { STORAGE_KEYS } from './storageKeys';
 
-const SKILLS_KEY = 'santiago-laberinto:skills';
+const SKILLS_KEY = STORAGE_KEYS.skills;
 /** Tope de cada stat. */
 export const STAT_MAX = 100;
 

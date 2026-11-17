@@ -1,6 +1,7 @@
 import { EventSystem } from './EventSystem';
+import { STORAGE_KEYS } from './storageKeys';
 
-const SETTINGS_KEY = 'santiago-laberinto:settings';
+const SETTINGS_KEY = STORAGE_KEYS.settings;
 /** Clave antigua de la tecla M (antes de los ajustes): se lee una vez para no perder la preferencia. */
 const LEGACY_MUTE_KEY = 'santiago-laberinto:mute';
 
@@ -24,9 +25,11 @@ export interface SettingsData {
   textSpeed: TextSpeed;
   /** Reseñas de los jugadores apareciendo en el título. */
   titleReviews: boolean;
+  /** Mandar datos de uso anónimos (país, ciudad, tiempo de juego): ver src/systems/UsageStats.ts. */
+  usageStats: boolean;
 }
 
-export const DEFAULT_SETTINGS: Readonly<SettingsData> = { music: VOLUME_STEPS, sfx: VOLUME_STEPS, muted: false, textSpeed: 'normal', titleReviews: true };
+export const DEFAULT_SETTINGS: Readonly<SettingsData> = { music: VOLUME_STEPS, sfx: VOLUME_STEPS, muted: false, textSpeed: 'normal', titleReviews: true, usageStats: true };
 
 /** Ajustes guardados → valores válidos (lo que falte o venga roto queda por defecto). */
 export function parseSettings(raw: unknown, legacyMuted = false): SettingsData {
@@ -37,6 +40,7 @@ export function parseSettings(raw: unknown, legacyMuted = false): SettingsData {
     muted: typeof d.muted === 'boolean' ? d.muted : legacyMuted,
     textSpeed: TEXT_SPEEDS.includes(d.textSpeed as TextSpeed) ? (d.textSpeed as TextSpeed) : DEFAULT_SETTINGS.textSpeed,
     titleReviews: typeof d.titleReviews === 'boolean' ? d.titleReviews : DEFAULT_SETTINGS.titleReviews,
+    usageStats: typeof d.usageStats === 'boolean' ? d.usageStats : DEFAULT_SETTINGS.usageStats,
   };
 }
 

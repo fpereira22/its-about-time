@@ -2,10 +2,11 @@ import itemsData from '../data/items.json';
 import type { ItemDef, Outfit } from '../types/story';
 import { EventSystem } from './EventSystem';
 import { migrateSave, SAVE_VERSION, type PhoneEntry, type SaveData, type Weather } from './SaveData';
+import { STORAGE_KEYS } from './storageKeys';
 
 export const ITEMS = itemsData as Record<string, ItemDef>;
 
-const SAVE_KEY = 'santiago-laberinto:save';
+const SAVE_KEY = STORAGE_KEYS.save;
 
 export { WEATHERS, type PhoneEntry, type SaveData, type Weather } from './SaveData';
 

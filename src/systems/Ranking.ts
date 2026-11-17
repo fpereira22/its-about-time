@@ -2,8 +2,9 @@ import { RANKING_SCRIPT_URL, rankingCsvUrl } from '../config/ranking';
 import { Admin } from './Admin';
 import { MISSIONS } from './Mission';
 import { Records } from './Records';
+import { STORAGE_KEYS } from './storageKeys';
 
-const PLAYER_KEY = 'santiago-laberinto:ranking-player';
+const PLAYER_KEY = STORAGE_KEYS.rankingPlayer;
 const CACHE_KEY = 'santiago-laberinto:ranking-cache';
 /** Cada cuánto se vuelve a pedir la planilla (al volver al título, por ejemplo). */
 const REFRESH_MS = 60_000;
@@ -228,6 +229,38 @@ class RankingImpl {
 
   get playerId(): string | undefined {
     return this.store.id;
+  }
+
+  /** La llave secreta de este navegador (identifica al jugador ante el Apps Script; ver CloudSave). */
+  get secretKey(): string {
+    return this.store.key;
+  }
+
+  /** Todo lo del jugador menos la llave, como texto: la parte "jugador" del respaldo en la nube. */
+  profileForCloud(): string {
+    const { key: _key, ...profile } = this.store;
+    return JSON.stringify(profile);
+  }
+
+  /**
+   * Pasa a ser el jugador de otra llave (código de jugador de otro dispositivo) con su perfil del
+   * respaldo. Después hay que recargar la página.
+   */
+  adoptIdentity(key: string, profileJson: string | null): void {
+    let profile: Partial<PlayerStore> = {};
+    try {
+      const data = profileJson ? (JSON.parse(profileJson) as Partial<PlayerStore>) : null;
+      if (data && typeof data === 'object') profile = data;
+    } catch {
+      // Perfil roto: queda solo la llave.
+    }
+    this.store = { ...profile, key };
+    writeStore(this.store);
+  }
+
+  /** Reemplaza el perfil (sin tocar la llave) con el que bajó de la nube. */
+  restoreProfile(profileJson: string | null): void {
+    this.adoptIdentity(this.store.key, profileJson);
   }
 
   /** El nombre con que rellenar el formulario: el publicado o, si no, el que dio en el saludo. */

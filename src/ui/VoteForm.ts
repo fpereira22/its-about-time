@@ -1,4 +1,6 @@
 import { playSfx } from '../audio/sfx';
+import { Admin } from '../systems/Admin';
+import { CloudSave } from '../systems/CloudSave';
 import { Controls } from '../systems/Controls';
 import { COMMENT_MAX, NAME_MAX, Ranking } from '../systems/Ranking';
 
@@ -43,6 +45,14 @@ const CSS = `
 #vote .row.wide button { flex: 1 1 0; white-space: nowrap; }
 #vote .link { display: block; margin: 12px auto 0; background: none; border: none; font: inherit; font-size: 13px;
   color: #7a7488; text-decoration: underline; cursor: pointer; }
+#vote .codebox { display: flex; gap: 6px; }
+#vote #code-in { text-transform: uppercase; font-family: ui-monospace, Consolas, monospace; font-size: 15px; }
+#vote #code-in::placeholder { text-transform: none; }
+#vote .codebox input[type=text] { font-family: ui-monospace, Consolas, monospace; font-size: 15px; letter-spacing: .5px; }
+#vote .codebox button { font-family: "Silkscreen", monospace; font-size: 12px; padding: 0 10px; border-radius: 6px;
+  border: 2px solid #2a2433; cursor: pointer; background: #e9e2d2; color: #2a2433; }
+#vote .note { margin: 6px 0 0; font-size: 13px; color: #7a7488; }
+#vote .fine { margin: 12px 0 0; font-size: 12px; line-height: 1.35; color: #7a7488; }
 @keyframes vote-in { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
 
 /* Salida: la tarjeta se encoge y la capa se desvanece. */
@@ -361,8 +371,15 @@ export function openVoteForm(onClose: (sent: boolean) => void, opts: VoteFormOpt
   return finish;
 }
 
-/** Saludo de la primera vez: pide el nombre. Solo se guarda en este navegador; rellena el voto. */
+/**
+ * Saludo de la primera vez: pide el nombre. Solo se guarda en este navegador; rellena el voto.
+ * Abajo, "¿Ya jugaste en otro dispositivo?" lleva al código de jugador (y Cerrar vuelve al saludo).
+ */
 export function openNameForm(onClose: () => void): () => void {
+  let closeCode: (() => void) | null = null;
+  let closeAgain: (() => void) | null = null;
+  /** Lo cerró quien lo abrió (salir del título): no reabrir el saludo. */
+  let disposed = false;
   const finish = (): void => {
     if (overlay.closed) return;
     overlay.close();
@@ -385,6 +402,7 @@ export function openNameForm(onClose: () => void): () => void {
         <button type="button" class="cancel">Ahora no</button>
         <button type="submit">¡Listo!</button>
       </div>
+      <button type="button" class="link code">¿Ya jugaste en otro dispositivo? Usa tu código</button>
     </form>`,
     skip,
   );
@@ -403,6 +421,16 @@ export function openNameForm(onClose: () => void): () => void {
     playSfx('cancel');
     skip();
   });
+  (root.querySelector('.code') as HTMLButtonElement).addEventListener('click', () => {
+    if (overlay.busy) return;
+    playSfx('select');
+    overlay.close(true);
+    // Si cierra sin usar un código, vuelve el saludo.
+    closeCode = openCodeForm(() => {
+      closeCode = null;
+      if (!disposed) closeAgain = openNameForm(onClose);
+    });
+  });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (overlay.busy) return;
@@ -420,7 +448,12 @@ export function openNameForm(onClose: () => void): () => void {
     });
   });
   name.focus();
-  return finish;
+  return () => {
+    disposed = true;
+    if (closeCode) closeCode();
+    else if (closeAgain) closeAgain();
+    else finish();
+  };
 }
 
 /**
@@ -478,4 +511,134 @@ export function openEnjoyPrompt(onClose: () => void): () => void {
   });
   (root.querySelector('.yes') as HTMLButtonElement).focus();
   return () => (closeVote ? closeVote() : finish());
+}
+
+/** "hace 3 min", "hace 2 h"... */
+function ago(ms: number): string {
+  const min = Math.max(0, Math.round((Date.now() - ms) / 60_000));
+  if (min < 1) return 'recién';
+  if (min < 60) return `hace ${min} min`;
+  const h = Math.round(min / 60);
+  if (h < 48) return `hace ${h} h`;
+  return `hace ${Math.round(h / 24)} días`;
+}
+
+/**
+ * Código de jugador (Ajustes): muestra el de este dispositivo para copiarlo y deja escribir el de
+ * otro para traer ese progreso (reemplaza el de acá y recarga la página). Ver CloudSave.
+ */
+export function openCodeForm(onClose: () => void): () => void {
+  const finish = (): void => {
+    if (overlay.closed) return;
+    overlay.close();
+    onClose();
+  };
+  const backup = !CloudSave.enabled
+    ? Admin.active
+      ? 'En modo admin no se respalda.'
+      : 'El respaldo no está activo en este navegador.'
+    : CloudSave.lastBackupAt > 0
+      ? `Último respaldo: ${ago(CloudSave.lastBackupAt)}.`
+      : 'Todavía sin respaldo: se hace solo cuando hay internet.';
+  const overlay = mountOverlay(
+    `
+    <form novalidate>
+      <h2>Código de jugador</h2>
+      <p class="sub">Tu progreso se respalda solo en la nube. Con este código lo recuperas en otro celular o computador.</p>
+      <div class="codebox">
+        <input id="code-mine" type="text" readonly value="${escapeHtml(CloudSave.code)}" aria-label="Tu código" />
+        <button type="button" class="copy">Copiar</button>
+      </div>
+      <p class="note">${escapeHtml(backup)}</p>
+      <label for="code-in">¿Vienes de otro dispositivo?</label>
+      <input id="code-in" type="text" placeholder="XXXXX-XXXXX-XXXXX-XXXXX-XXXXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+      <div class="bar"></div>
+      <p class="status"></p>
+      <div class="row">
+        <button type="button" class="cancel">Cerrar</button>
+        <button type="submit">Usar código</button>
+      </div>
+      <p class="fine">Guárdalo en privado: con él se juega con tu progreso. El juego también manda datos de uso anónimos
+        (país y ciudad aproximados, equipo y tiempo de juego); se apagan en Ajustes → Datos de uso.</p>
+    </form>`,
+    () => finish(),
+  );
+  const root = overlay.root;
+  const form = root.querySelector('form') as HTMLFormElement;
+  const mine = root.querySelector('#code-mine') as HTMLInputElement;
+  const input = root.querySelector('#code-in') as HTMLInputElement;
+  const status = root.querySelector('.status') as HTMLParagraphElement;
+  const send = root.querySelector('button[type=submit]') as HTMLButtonElement;
+  const showStatus = (text: string, kind: '' | 'err' | 'ok'): void => {
+    status.textContent = text;
+    status.className = `status ${kind}`;
+  };
+  let confirming = false;
+  input.addEventListener('input', () => {
+    if (!confirming) return;
+    confirming = false;
+    send.textContent = 'Usar código';
+    showStatus('', '');
+  });
+
+  (root.querySelector('.copy') as HTMLButtonElement).addEventListener('click', () => {
+    const done = (): void => {
+      playSfx('select');
+      showStatus('Código copiado.', 'ok');
+    };
+    mine.select();
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(mine.value).then(done, () => {
+        if (document.execCommand('copy')) done();
+      });
+    } else if (document.execCommand('copy')) done();
+  });
+  mine.addEventListener('focus', () => mine.select());
+  (root.querySelector('.cancel') as HTMLButtonElement).addEventListener('click', () => {
+    playSfx('cancel');
+    finish();
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (overlay.busy) return;
+    if (input.value.trim() === '') {
+      showStatus('Escribe el código del otro dispositivo.', 'err');
+      shake(form);
+      playSfx('error');
+      return;
+    }
+    // Primero avisa: el progreso de acá se reemplaza.
+    if (!confirming) {
+      confirming = true;
+      send.textContent = 'Sí, reemplazar';
+      showStatus('Esto reemplaza el progreso de este dispositivo por el del código.', 'err');
+      playSfx('cursor');
+      return;
+    }
+    overlay.busy = true;
+    setBusy(form, send, true);
+    showStatus('Buscando tu progreso...', '');
+    void Promise.all([CloudSave.restoreFromCode(input.value), wait(MIN_LOADING_MS)]).then(([r]) => {
+      if (overlay.closed) return;
+      if (!r.ok) {
+        overlay.busy = false;
+        confirming = false;
+        send.textContent = 'Usar código';
+        setBusy(form, send, false);
+        showStatus(r.error, 'err');
+        shake(form);
+        playSfx('error');
+        return;
+      }
+      playSfx('select');
+      showStatus('', 'ok');
+      celebrate(form, ['★'], '¡Progreso recuperado!', 'Recargando el juego...');
+      // Todo el juego lee lo guardado al arrancar: lo más simple y seguro es recargar.
+      setTimeout(() => window.location.reload(), CELEBRATE_MS);
+    });
+  });
+
+  input.focus();
+  return finish;
 }

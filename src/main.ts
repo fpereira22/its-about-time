@@ -31,6 +31,7 @@ import { UIScene } from './scenes/UIScene';
 import { Controls } from './systems/Controls';
 import { attachFullscreenKey } from './systems/Fullscreen';
 import { Admin } from './systems/Admin';
+import { CloudSave } from './systems/CloudSave';
 import { Content } from './systems/Content';
 import { DevSkip } from './systems/DevSkip';
 import { Records } from './systems/Records';
@@ -39,6 +40,7 @@ import { Dialogue } from './systems/DialogueManager';
 import { EventSystem } from './systems/EventSystem';
 import { StoryState } from './systems/StoryState';
 import { TouchControls } from './systems/TouchControls';
+import { UsageStats } from './systems/UsageStats';
 
 // Diálogos y viñetas vienen en chunks aparte: se piden ya, para que lleguen mientras carga el título.
 // Si fallan (sin red), el título lo vuelve a intentar al elegir una opción.
@@ -75,6 +77,13 @@ Records.attach();
 Admin.attach(game);
 DevSkip.attach(game);
 attachFullscreenKey();
+
+// Respaldo en la nube y datos de uso (docs/ranking.md). Ninguno corre en modo admin.
+/** Escenas de menú: fuera de ellas el jugador está jugando (un mapa o un minijuego). */
+const MENU_SCENES = new Set(['Boot', 'Preload', 'Title', 'Progress', 'Stats', 'Ranking', 'Credits', 'AdminWarp', 'UI']);
+const activeScenes = (): string[] => game.scene.getScenes(true).map((s) => s.scene.key);
+CloudSave.start({ canReload: () => activeScenes().every((k) => ['Boot', 'Preload', 'Title'].includes(k)) });
+UsageStats.start({ inGame: () => activeScenes().some((k) => !MENU_SCENES.has(k)) });
 
 if (import.meta.env.DEV) {
   // Acceso de depuración desde la consola del navegador: __dev.state.allFlags(), etc.

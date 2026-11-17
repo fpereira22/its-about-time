@@ -4,8 +4,9 @@ import { check } from './Conditions';
 import { EventSystem } from './EventSystem';
 import { currentMission, MISSIONS } from './Mission';
 import { ITEMS, StoryState } from './StoryState';
+import { STORAGE_KEYS } from './storageKeys';
 
-const RECORDS_KEY = 'santiago-laberinto:records';
+const RECORDS_KEY = STORAGE_KEYS.records;
 
 /** Lo conseguido alguna vez en una misión, sumando todas las partidas. */
 interface MissionRecord {

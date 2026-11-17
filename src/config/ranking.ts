@@ -20,3 +20,9 @@ export const RANKING_SCRIPT_URL: string =
 export function rankingCsvUrl(sheet: keyof typeof RANKING_GIDS): string {
   return `${RANKING_SHEET_PUB}?gid=${RANKING_GIDS[sheet]}&single=true&output=csv`;
 }
+
+/**
+ * Geolocalización aproximada para los datos de uso (ciudad, región y país de la conexión). Gratis,
+ * sin llave y con CORS abierto. El Apps Script guarda solo un hash de la IP, nunca la IP.
+ */
+export const GEO_URL = 'https://get.geojs.io/v1/ip/geo.json';

@@ -2,9 +2,10 @@ import { playSfx } from '../audio/sfx';
 import { EventSystem } from './EventSystem';
 import { currentMission } from './Mission';
 import { StoryState } from './StoryState';
+import { STORAGE_KEYS } from './storageKeys';
 
 const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
-const KONAMI_KEY = 'santiago-laberinto:konami';
+const KONAMI_KEY = STORAGE_KEYS.konami;
 export const FLAG_KONAMI = 'secreto_konami';
 
 /**

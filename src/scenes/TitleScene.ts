@@ -22,7 +22,7 @@ import { MenuList, type MenuItem } from '../ui/MenuList';
 import { SettingsPanel } from '../ui/SettingsPanel';
 import { TitleBackdrop } from '../ui/TitleBackdrop';
 import { TitleReviews } from '../ui/TitleReviews';
-import { autoPromptsAllowed, openNameForm } from '../ui/VoteForm';
+import { autoPromptsAllowed, openCodeForm, openNameForm } from '../ui/VoteForm';
 
 const CONTROLS_HINT = 'WASD/Flechas: mover  ·  E: interactuar  ·  Esc: menú';
 /** Cuánto se ve el nombre del lugar en el pie antes de volver a los controles (ms). */
@@ -189,6 +189,9 @@ export class TitleScene extends BaseScene {
       ...(this.canContinue ? [{ label: `Continuar (${missionLabel(currentMission())})`, action: () => this.continueGame() }] : []),
       { label: 'Nueva partida', action: () => this.chooseMission() },
       ...(SaveSlots.any ? [{ label: 'Cargar partida', action: () => this.chooseSlot() }] : []),
+      // En un dispositivo sin partidas (recién llegado) lo primero que puede buscar es traer su
+      // progreso de otro lado. Con partidas el código sigue en Ajustes (el menú no tiene más espacio).
+      ...(!this.canContinue && !SaveSlots.any ? [{ label: 'Tengo un código', action: () => this.openPlayerCode() }] : []),
       { label: 'Progreso', action: () => this.go(() => this.scene.start('Progress')) },
       { label: 'Estadísticas', action: () => this.go(() => this.scene.start('Stats')) },
       { label: 'Top 10', badge: '★', action: () => this.openRanking(0) },
@@ -227,6 +230,14 @@ export class TitleScene extends BaseScene {
       this.closeForm = openNameForm(() => {
         this.closeForm = null;
       });
+    });
+  }
+
+  /** Código de jugador: ver el de acá o traer el progreso de otro dispositivo. */
+  private openPlayerCode(): void {
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.closeForm?.());
+    this.closeForm = openCodeForm(() => {
+      this.closeForm = null;
     });
   }
 

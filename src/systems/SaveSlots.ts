@@ -1,14 +1,16 @@
 import type { MapSceneData } from '../scenes/MapScene';
 import type { Direction } from '../types/map';
 import { BusRideManager } from './BusRideManager';
+import { CloudSave } from './CloudSave';
 import { GameMap } from './GameMap';
 import { formatDayClock, getMission, hasStoryClock, missionLabel, MISSIONS } from './Mission';
 import { Phone } from './Phone';
 import { Secrets } from './Secrets';
 import { migrateSave } from './SaveData';
 import { formatTime, StoryState, type SaveData } from './StoryState';
+import { STORAGE_KEYS } from './storageKeys';
 
-const SLOTS_KEY = 'santiago-laberinto:slots';
+const SLOTS_KEY = STORAGE_KEYS.slots;
 export const SLOT_COUNT = 3;
 
 const SCENE_FOR_KIND = { overworld: 'Overworld', interior: 'Interior' } as const;
@@ -62,7 +64,9 @@ class SaveSlotsImpl {
     const state = StoryState.snapshot();
     state.location = { map: spot.map, spawn: spot.spawn };
     this.slots[i] = { state, pos: spot.pos, place: spot.place, savedAt: Date.now() };
-    return this.write();
+    const ok = this.write();
+    if (ok) CloudSave.soon();
+    return ok;
   }
 
   /**

@@ -4,6 +4,7 @@ import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD } from '../config/display';
 import { Controls } from '../systems/Controls';
 import { Settings, TEXT_SPEEDS, VOLUME_STEPS } from '../systems/Settings';
 import { TouchControls } from '../systems/TouchControls';
+import { openCodeForm } from './VoteForm';
 import { drawPanel, drawTriangle, makeText, THEME } from './theme';
 
 /** Una fila del menú: volumen (barra), opción (texto que se cambia con A/D) o acción (Volver). */
@@ -14,6 +15,8 @@ interface Row {
   value?: () => number | string;
   /** A/D (-1 / +1) y E (+1). */
   change: (dir: 1 | -1) => void;
+  /** Acción que no cierra el menú (abre algo encima). Sin esto, una acción es "Volver". */
+  run?: () => void;
 }
 
 const W = 216;
@@ -35,6 +38,8 @@ export class SettingsPanel {
   private readonly rows: Row[];
   private selected = 0;
   private closed = false;
+  /** Formulario HTML abierto encima (código de jugador): el menú no recibe teclas. */
+  private closeForm: (() => void) | null = null;
 
   constructor(
     private readonly scene: Phaser.Scene,
@@ -48,7 +53,7 @@ export class SettingsPanel {
   }
 
   update(): void {
-    if (this.closed) return;
+    if (this.closed || this.closeForm) return;
     if (Controls.consume('menu')) return this.close();
     const n = this.rows.length;
     if (Controls.consume('up')) this.move((this.selected + n - 1) % n);
@@ -58,13 +63,14 @@ export class SettingsPanel {
     const right = Controls.consume('right');
     if (row.kind !== 'action' && (left || right)) this.apply(row, right ? 1 : -1);
     if (Controls.consume('interact')) {
-      if (row.kind === 'action') return this.close();
+      if (row.kind === 'action') return row.run ? row.run() : this.close();
       this.apply(row, 1);
     }
   }
 
   destroy(): void {
     this.closed = true;
+    this.closeForm?.();
     this.root.destroy();
   }
 
@@ -122,6 +128,23 @@ export class SettingsPanel {
         kind: 'choice',
         value: () => (Settings.get('titleReviews') ? 'Visibles' : 'Ocultas'),
         change: () => Settings.set('titleReviews', !Settings.get('titleReviews')),
+      },
+      {
+        label: 'Datos de uso',
+        kind: 'choice',
+        value: () => (Settings.get('usageStats') ? 'Enviar' : 'No enviar'),
+        change: () => Settings.set('usageStats', !Settings.get('usageStats')),
+      },
+      {
+        label: 'Código de jugador',
+        kind: 'action',
+        change: () => undefined,
+        run: () => {
+          playSfx('select');
+          this.closeForm = openCodeForm(() => {
+            this.closeForm = null;
+          });
+        },
       },
       { label: 'Volver', kind: 'action', change: () => undefined },
     ];

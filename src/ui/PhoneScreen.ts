@@ -12,6 +12,7 @@ import { PHONE, Phone } from '../systems/Phone';
 import { playerTexture } from '../systems/PlayerLook';
 import { formatMoney, StoryState } from '../systems/StoryState';
 import { fitText, makeText, THEME } from './theme';
+import { STORAGE_KEYS } from '../systems/storageKeys';
 
 type View = 'home' | 'messages' | 'thread' | 'bip' | 'mission' | 'camera' | 'snake' | 'call' | 'contacts' | 'mail' | 'mailRead';
 
@@ -37,7 +38,7 @@ const BIP_OPTIONS = [1000, 2000];
 
 // Culebrita (pantalla LCD verde)
 const SNAKE = { cols: 14, rows: 16, cell: 6 };
-const SNAKE_BEST_KEY = 'santiago-laberinto:culebrita';
+const SNAKE_BEST_KEY = STORAGE_KEYS.snakeBest;
 const SNAKE_SECRET_SCORE = 10;
 const LCD_BG = 0x9bbc0f;
 const LCD_INK = 0x0f380f;
