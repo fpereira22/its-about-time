@@ -532,5 +532,183 @@
     "if": {
       "mission": "mission10"
     }
+  },
+  {
+    "id": "m11_v_mango",
+    "map": "voragine",
+    "x": 60,
+    "y": 23,
+    "sprite": "vendedor_mango",
+    "dir": "left",
+    "dialogue": "m11_v_mango",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_v_carreta",
+    "map": "voragine",
+    "x": 59,
+    "y": 23,
+    "object": "carreta_mango",
+    "dialogue": "m11_v_mango",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_v_cholero",
+    "map": "voragine",
+    "x": 66,
+    "y": 25,
+    "sprite": "cholero",
+    "dir": "left",
+    "dialogue": "m11_v_cholado",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_v_carro_cholados",
+    "map": "voragine",
+    "x": 65,
+    "y": 25,
+    "object": "carro_cholados",
+    "dialogue": "m11_v_cholado",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_v_abuelo",
+    "map": "voragine",
+    "x": 36,
+    "y": 16,
+    "sprite": "abuelo",
+    "dir": "down",
+    "dialogue": "m11_v_abuelo",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_v_nino",
+    "map": "voragine",
+    "x": 51,
+    "y": 21,
+    "sprite": "nino_piscina",
+    "dir": "right",
+    "dialogue": "m11_v_nino",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_v_canela",
+    "map": "voragine",
+    "x": 57,
+    "y": 26,
+    "sprite": "quiltro",
+    "dir": "left",
+    "dialogue": "m11_v_canela",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_v_tinto",
+    "map": "voragine",
+    "x": 5,
+    "y": 31,
+    "sprite": "senora_tinto",
+    "dir": "down",
+    "dialogue": "m11_v_tinto",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_v_ciclista",
+    "map": "voragine",
+    "x": 47,
+    "y": 20,
+    "sprite": "ciclista",
+    "dir": "down",
+    "dialogue": "m11_v_ciclista",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_c_efren",
+    "map": "chorrera",
+    "x": 48,
+    "y": 44,
+    "sprite": "efren",
+    "dir": "left",
+    "dialogue": "m11_efren",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_c_guia",
+    "map": "chorrera",
+    "x": 40,
+    "y": 42,
+    "sprite": "guia_cafe",
+    "dir": "up",
+    "dialogue": "m11_c_guia",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_c_lulada",
+    "map": "chorrera",
+    "x": 43,
+    "y": 39,
+    "sprite": "salpiconera",
+    "dir": "down",
+    "dialogue": "m11_c_lulada",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_c_pajarera",
+    "map": "chorrera",
+    "x": 55,
+    "y": 41,
+    "sprite": "mochilera",
+    "dir": "left",
+    "dialogue": "m11_c_pajarera",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_c_nino",
+    "map": "chorrera",
+    "x": 66,
+    "y": 43,
+    "sprite": "nino_piscina",
+    "dir": "up",
+    "dialogue": "m11_c_nino",
+    "if": {
+      "mission": "mission10"
+    }
+  },
+  {
+    "id": "m11_c_arepera",
+    "map": "chorrera",
+    "x": 78,
+    "y": 34,
+    "sprite": "arepera",
+    "dir": "left",
+    "dialogue": "m11_c_arepera",
+    "if": {
+      "mission": "mission10"
+    }
   }
 ]

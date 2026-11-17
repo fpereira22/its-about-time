@@ -38,7 +38,9 @@
     "M": "mirador_piso",
     "_": "mirador_baranda",
     "Y": "willys_verde_a",
-    "y": "willys_verde_b"
+    "y": "willys_verde_b",
+    "e": "estanque",
+    "o": "estanque_b"
   },
   "rows": [
     "\"bbB\"bBbbB\"\"B\"\"\"\"bB\"bB\"bB\"b\"\"\"B\"bB\"\"BbbBb\"Bb\"\"\"\"\"bbBb\"Bb\"B\"b\"\"bB\"\"\"bbBb\"B\"b\"bbBbbBbb",
@@ -84,8 +86,8 @@
     "\"bBb\"\"b\"\"\"\"\"bbBb\"B\"bB\"b\"\"blllqwwwwwwwqqqWlnnnn\"\"\"\"n\"bB\"\"\"blllwwwwWlttzlBb\"B\"\"\"\"\"BbbB",
     "bB\"\"Bbb\"\"\"\"b\"B\"bBb\"\"\"bB\"bB\"\"llwwwwwwwlnnnnnnm\"\"m\"\"n\"\"\"\"\"\"llwwWwwlllt\"\"BbbB\"bBbb\"\"b\"b",
     "\"b\"Bb\"\"bbB\"\"\"\"b\"\"b\"\"\"\"b\"Bb\"\"\"lllllllll\"llql\"\"\"\"\"\"\"\"n\"\"\"\"llwwwwWll\"t\"\"\"bbBb\"B\"\"Bbb\"\"\"",
-    "bbBbbBbb\"\"\"B\"b\"bbBbbB\"bBbbB\"\"\"\"\"\"\"\"\"\"\"\"llql\"\"\"\"\"\"\"\"nn\"\"llwWwwlll\"\"t\"\"\"\"\"\"b\"\"b\"\"bB\"b\"",
-    "\"Bb\"\"\"\"\"\"\"B\"bBbb\"\"b\"\"\"\"\"\"B\"\"\"\"\"\"\"\"\"\"\"\"\"lqqlB\"bBb\"\"\"\"nnllwwwWllb\"\"t\"\"b\"\"b\"B\"\"\"\"\"Bbb\"b",
+    "bbBbbBbb\"\"\"B\"b\"bbBbbB\"bBbbB\"\"\"\"\"\"\"\"\"\"\"\"llqleeeee\"kknn\"\"llwWwwlll\"\"t\"\"\"\"\"\"b\"\"b\"\"bB\"b\"",
+    "\"Bb\"\"\"\"\"\"\"B\"bBbb\"\"b\"\"\"\"\"\"B\"\"\"\"\"\"\"\"\"\"\"\"\"lqqlooooo\"\"\"\"nnllwwwWllb\"\"t\"\"b\"\"b\"B\"\"\"\"\"Bbb\"b",
     "\"b\"\"bb\"bbBbb\"b\"\"\"\"B\"b\"b\"Bb\"\"\"\"\"\"\"\"\"\"\"\"\"lWll\"blllllllnnwWwwlll\"\"\"tt\"b\"Bb\"\"\"\"B\"\"Bb\"\"\"\"",
     "\"\"\"\"b\"\"b\"b\"\"b\"B\"bB\"b\"b\"\"\"bB\"\"B\"bB\"b\"b\"BlqWllllWwwwwWwpwwWllB\"\"\"tt\"\"bB\"\"\"\"b\"\"\"\"\"bBbb\"",
     "b\"\"\"Bb\"BbbB\"bB\"b\"\"b\"\"bBb\"B\"bB\"b\"b\"B\"\"\"\"llqllwwwWwwwwWpwwll\"\"\"tt\"\"\"b\"b\"Bb\"B\"bBbb\"b\"Bb",
@@ -133,6 +135,14 @@
     "\"\"b\"\"blwwWltt\"\"b\"b\"Bb\"\"\"\"B\"\"\"bbB\"bB\"b\"\"b\"\"b\"bb\"\"bB\"bBbbB\"\"\"\"\"B\"b\"\"\"\"b\"\"\"bBb\"Bbb\"bbB\""
   ],
   "zones": [
+    {
+      "name": "La truchera",
+      "subtitle": "Don Efraín · truchas arcoíris",
+      "x": 42,
+      "y": 41,
+      "w": 10,
+      "h": 5
+    },
     {
       "name": "Chorrera del Indio",
       "subtitle": "Pance · San Francisco",
@@ -198,6 +208,11 @@
       "x": 52,
       "y": 37,
       "dir": "up"
+    },
+    "truchera": {
+      "x": 46,
+      "y": 42,
+      "dir": "down"
     }
   },
   "triggers": [
@@ -276,6 +291,38 @@
       "y": 37.6,
       "text": "DOÑA OFELIA",
       "color": "#f8dc68"
+    },
+    {
+      "x": 45.5,
+      "y": 42.4,
+      "text": "TRUCHERA DON EFRAÍN",
+      "color": "#9cd0f0"
     }
-  ]
+  ],
+  "crowd": {
+    "lines": "pance",
+    "areas": [
+      {
+        "x": 62,
+        "y": 41,
+        "w": 9,
+        "h": 3,
+        "count": 4
+      },
+      {
+        "x": 36,
+        "y": 40,
+        "w": 6,
+        "h": 3,
+        "count": 3
+      },
+      {
+        "x": 74,
+        "y": 30,
+        "w": 6,
+        "h": 5,
+        "count": 2
+      }
+    ]
+  }
 }

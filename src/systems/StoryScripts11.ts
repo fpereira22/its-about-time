@@ -392,7 +392,7 @@ export const M11_SCRIPTS: Record<string, Script> = {
     host.goTo('chorrera', 'llegada');
   },
 
-  /** Los juegos de la Chorrera (el pozo, las piedras, la cascada, la subida, la bajada). */
+  /** Los juegos del paseo: los patitos en La Vorágine y, en la Chorrera, el pozo, las piedras, la cascada, la truchera, la subida y la bajada. */
   async paseo_m11(host, data) {
     const mode = String(data.mode ?? 'salto') as PaseoMode;
     while (Dialogue.active) await host.wait(100);
@@ -401,9 +401,18 @@ export const M11_SCRIPTS: Record<string, Script> = {
     playMusic('rio');
     const flag = { salto: 'm11_salto', mano: 'm11_mano', cascada: 'm11_cascada', subida: 'm11_subida_hecha', bajada: 'm11_bajada' }[mode as 'salto'] ?? `m11_${mode}`;
     set(flag);
+    if (r.good) set(`m11_${mode}_bien`);
     if (r.perfect) set(`m11_${mode}_perfecta`);
     if (r.together && r.good) set(`m11_${mode}_juntos`);
-    if (mode === 'salto') {
+    if (mode === 'patitos') {
+      // Mientras se llena el campero, en la playa de piedras de La Vorágine.
+      clockSet('lun++ 09:40', 'lun++ 10:00');
+      await host.say('m11_patitos_despues');
+    } else if (mode === 'trucha') {
+      // La truchera de don Efraín, antes del almuerzo donde doña Ofelia.
+      clockSet('lun++ 12:50', 'lun++ 13:20');
+      await host.say('m11_truchas_despues');
+    } else if (mode === 'salto') {
       clockSet('lun++ 11:00', 'lun++ 11:40');
       await host.say('m11_pozo_despues');
     } else if (mode === 'mano') {

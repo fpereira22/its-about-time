@@ -20,6 +20,7 @@ import { M8_VINETAS } from './vinetas_m8';
 import { M9_VINETAS } from './vinetas_m9';
 import { M10_VINETAS } from './vinetas_m10';
 import { M11_VINETAS } from './vinetas_m11';
+import { M11_PASEO_VINETAS } from './vinetas_m11_paseo';
 import { CALLE_VINETAS } from './vinetas_calle';
 import { CASA_VINETAS } from './vinetas_casa';
 import { COMIDA_VINETAS } from './vinetas_comida';
@@ -51,4 +52,5 @@ export const PLACE_VINETAS: Record<string, VinetaBuilder> = {
   ...M9_VINETAS,
   ...M10_VINETAS,
   ...M11_VINETAS,
+  ...M11_PASEO_VINETAS,
 };

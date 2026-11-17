@@ -1,0 +1,1297 @@
+{
+ "m11_patitos": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "text": "La playa de piedras redondas al lado del río. El agua baja rápida y clarita. Laura ya tiene tres piedras planas en la mano y una cara de competencia que no le habías visto.",
+    "effects": [
+     {
+      "vineta": "m11_p_playa"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "En Bakio, con aita, los domingos. Mi récord es siete. SIETE. Aita dice que fueron seis y medio, pero aita es un mentiroso y un mal perdedor.",
+    "effects": [
+     {
+      "vineta": "m11_p_record"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Siete no es nada.»",
+      "effects": [
+       {
+        "setFlag": "m11_patitos_reto"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "«¿Me enseñas?»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_ensena"
+       }
+      ],
+      "goto": "n3"
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "¿Ah, sí? Vale. Apuesta: el que pierda carga la mochila del otro en la subida. Y no se vale llorar.",
+    "effects": [
+     {
+      "vineta": "m11_p_reto"
+     },
+     {
+      "event": "paseo_m11",
+      "data": {
+       "mode": "patitos"
+      }
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Te enseño. Muñeca floja, piedra plana, bajito. Pero después no llores cuando te gane.",
+    "effects": [
+     {
+      "vineta": "m11_p_ensena"
+     },
+     {
+      "event": "paseo_m11",
+      "data": {
+       "mode": "patitos"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "m11_patitos_despues": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_patitos_perfecta"
+      },
+      "goto": "n1"
+     },
+     {
+      "if": {
+       "flag": "m11_patitos_bien"
+      },
+      "goto": "n2"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Laura se queda mirando el agua un rato largo. «Vale. Me has ganado. A mí. En tirar piedras. ...No se lo cuentes a aita. Ni a Ane. Ni a nadie de Bizkaia.»",
+    "effects": [
+     {
+      "vineta": "m11_p_gana"
+     },
+     {
+      "setFlag": "m11_ql_patitos"
+     }
+    ],
+    "next": "n1b"
+   },
+   "n1b": {
+    "speaker": "Laura",
+    "text": "Y si era apuesta... la mochila la cargo yo. Pero que conste que me dejé.",
+    "effects": [
+     {
+      "vineta": "m11_p_mochila"
+     }
+    ],
+    "next": "n4"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "No está mal, chileno. Para alguien de un país sin ríos de verdad.",
+    "effects": [
+     {
+      "vineta": "m11_p_rios"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«¡Tenemos ríos! El Maipo, el Biobío...»",
+      "goto": "n2b"
+     },
+     {
+      "label": "«Tenemos el Mapocho.»",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_mapocho"
+       }
+      ],
+      "goto": "n2c"
+     }
+    ]
+   },
+   "n2b": {
+    "speaker": "Laura",
+    "text": "Ya. Y yo tengo un récord de siete. Cada uno con lo suyo.",
+    "effects": [
+     {
+      "vineta": "m11_p_rios"
+     }
+    ],
+    "next": "n4"
+   },
+   "n2c": {
+    "speaker": "Laura",
+    "text": "¿El... Mapocho? ¿Eso es un río o un postre? Suena a postre. Me lo vas a tener que enseñar un día.",
+    "effects": [
+     {
+      "vineta": "m11_p_mapocho"
+     }
+    ],
+    "next": "n4"
+   },
+   "n3": {
+    "text": "Laura te acomoda la piedra entre los dedos. «Así. El índice aquí. Y la muñeca... floja.» Te suelta la mano un segundo después de lo necesario. Ninguno de los dos dice nada.",
+    "effects": [
+     {
+      "vineta": "m11_p_ensena_mano"
+     },
+     {
+      "setFlag": "m11_ql_ensena_mano"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Conductor (pitando desde la vía)",
+    "text": "¡Los de la Chorrera! ¡Ya nos vamos, que se llenó! ¡Pa' arriba!",
+    "effects": [
+     {
+      "vineta": "m11_p_pito"
+     },
+     {
+      "setFlag": "m11_patitos"
+     },
+     {
+      "objective": "El campero ya se llenó: vuelvan a la vía (al oeste del pueblo)"
+     }
+    ]
+   }
+  }
+ },
+ "m11_v_mango": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_mango_biche"
+      },
+      "goto": "r0"
+     },
+     {
+      "goto": "n1"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Vendedor",
+    "text": "¡Mango biche, mango biche! Con sal, limón y pimienta. ¡El que no lo prueba no ha venido a Pance!",
+    "effects": [
+     {
+      "vineta": "m11_p_mango"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Dos mangos biches, para Laura y para ti (4.000)",
+      "if": {
+       "minMoney": 4000
+      },
+      "effects": [
+       {
+        "pay": 4000
+       },
+       {
+        "setFlag": "m11_mango_biche"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "No, gracias."
+     }
+    ]
+   },
+   "n2": {
+    "text": "Laura le da un mordisco. Cierra los ojos. Arruga TODA la cara: la nariz, la frente, hasta las orejas. Abre un ojo.",
+    "effects": [
+     {
+      "vineta": "m11_p_mango_cara"
+     },
+     {
+      "setFlag": "secreto_m11_mango"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "...Está ácido. Está ácido y salado y picante y... dame el tuyo también.",
+    "effects": [
+     {
+      "vineta": "m11_p_mango_laura"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Le das tu mango.",
+      "effects": [
+       {
+        "setFlag": "m11_ql_mango"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "«Ni loco. Este es mío.»",
+      "goto": "n5"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Gracias. Te debo un mango. Y un helado. Y... bueno, te debo muchas cosas ya. Llevo la cuenta.",
+    "effects": [
+     {
+      "vineta": "m11_p_mango_laura"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "Vale, vale. Egoísta. Te lo voy a robar en el campero, que lo sepas.",
+    "effects": [
+     {
+      "vineta": "m11_p_mango_laura"
+     }
+    ]
+   },
+   "r0": {
+    "speaker": "Vendedor",
+    "text": "¿Otro, mona? Pa'l camino. ¡Llévelo, que arriba no hay!",
+    "effects": [
+     {
+      "vineta": "m11_p_mango"
+     }
+    ]
+   }
+  }
+ },
+ "m11_v_cholado": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_cholado"
+      },
+      "goto": "r0"
+     },
+     {
+      "goto": "n1"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Cholero",
+    "text": "¡Cholados, cholados! Hielo raspado, fruta picada, lechera, arequipe y galleta. ¡El original de Jamundí, aquí a la vuelta!",
+    "effects": [
+     {
+      "vineta": "m11_p_cholado"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Ariana",
+    "text": "¿Esto es un raspadito? En Lima tenemos raspadilla.",
+    "effects": [
+     {
+      "vineta": "m11_p_ariana_chol"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Fiorella",
+    "text": "No es lo mismo, causa. Míralo bien. Tiene fruta. Tiene LECHERA.",
+    "effects": [
+     {
+      "vineta": "m11_p_fio_chol"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Un cholado para compartir con Laura (5.000)",
+      "if": {
+       "minMoney": 5000
+      },
+      "effects": [
+       {
+        "pay": 5000
+       },
+       {
+        "setFlag": "m11_cholado"
+       },
+       {
+        "setFlag": "m11_ql_cholado"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "Cholados para todos (20.000)",
+      "if": {
+       "minMoney": 20000
+      },
+      "effects": [
+       {
+        "pay": 20000
+       },
+       {
+        "setFlag": "m11_cholado"
+       },
+       {
+        "setFlag": "m11_cholados_todos"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "Ahora no."
+     }
+    ]
+   },
+   "n4": {
+    "text": "Un vaso, dos cucharas. Laura se come todas las uvas y te deja la papaya. «Es que la papaya no me gusta. Esto es un acto de amor, ¿vale? Te dejo lo que no me gusta.»",
+    "effects": [
+     {
+      "vineta": "m11_p_cholado_dos"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Danilo",
+    "text": "¡Invita el chileno! ¡Que viva Chile, carajo!",
+    "effects": [
+     {
+      "vineta": "m11_p_cholado_todos"
+     }
+    ],
+    "next": "n6"
+   },
+   "n6": {
+    "speaker": "Mila",
+    "text": "Ahora sí te queremos. Antes te tolerábamos.",
+    "effects": [
+     {
+      "vineta": "m11_p_cholado_todos"
+     }
+    ]
+   },
+   "r0": {
+    "speaker": "Cholero",
+    "text": "¿Otro? Mire que el hielo se acaba a las once, mijo.",
+    "effects": [
+     {
+      "vineta": "m11_p_cholado"
+     }
+    ]
+   }
+  }
+ },
+ "m11_v_abuelo": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_abuelo_libro"
+      },
+      "goto": "r0"
+     },
+     {
+      "goto": "n1"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Caballero",
+    "text": "¿Saben por qué esto se llama La Vorágine? Por el remolino del río, allá abajo. Se traga lo que le tiren. Dicen que una vez se tragó un caballo. Con silla y todo.",
+    "effects": [
+     {
+      "vineta": "m11_p_abuelo"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "¡Como el libro! «Antes que me hubiera apasionado por mujer alguna, jugué mi corazón al azar y me lo ganó la Violencia.»",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_cita"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Caballero",
+    "text": "Ah, ¿usted lo leyó, mona? Rivera. José Eustasio. Mi papá se lo sabía de memoria. Lo recitaba en las fiestas, que era cuando más bonito le salía.",
+    "effects": [
+     {
+      "vineta": "m11_p_abuelo_rie"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Lo devolví la semana pasada a la biblioteca. Y ahora lo echo de menos. Es raro echar de menos un libro, ¿no?",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_libro"
+     },
+     {
+      "setFlag": "m11_abuelo_libro"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Te lo regalo. Uno tuyo, para que no lo devuelvas.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_regalo"
+       }
+      ],
+      "goto": "n5"
+     },
+     {
+      "label": "«Léemelo un día. En voz alta.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_lectura"
+       }
+      ],
+      "goto": "n6"
+     },
+     {
+      "label": "«A mí me pasa con las series.»",
+      "goto": "n7"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Laura",
+    "text": "No me hagas eso, chileno. Que me lo creo. ...Y luego le escribo tu nombre en la primera página.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_libro"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "¿En voz alta? ...Vale. Pero los capítulos tristes los lees tú. Y con acento chileno, que quiero oírlo.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_libro"
+     }
+    ]
+   },
+   "n7": {
+    "speaker": "Laura",
+    "text": "No es lo mismo. ...Bueno, un poco sí.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_libro"
+     }
+    ]
+   },
+   "r0": {
+    "speaker": "Caballero",
+    "text": "Cuídense del remolino, mijos. Y de las vorágines del corazón, que esas no salen en los mapas.",
+    "effects": [
+     {
+      "vineta": "m11_p_abuelo"
+     }
+    ]
+   }
+  }
+ },
+ "m11_v_nino": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Niño",
+    "text": "¿Ustedes se van a tirar del puente? Mi primo se tiró y salió con una sardina en la boca. Es verdad. Bueno... casi.",
+    "effects": [
+     {
+      "vineta": "m11_p_nino"
+     }
+    ]
+   }
+  }
+ },
+ "m11_v_canela": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_canela"
+      },
+      "goto": "r0"
+     },
+     {
+      "goto": "n1"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Una perrita criolla color canela se acerca moviendo la cola. Tiene una oreja parada y la otra no, como si estuviera dudando de algo.",
+    "effects": [
+     {
+      "vineta": "m11_p_canela"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Hola, guapa. Hola, hola. Tú no lo sabes, pero en Bakio tienes una prima. Se llama Txinparta y es igual de pesada que tú.",
+    "effects": [
+     {
+      "vineta": "m11_p_canela_laura"
+     },
+     {
+      "setFlag": "m11_canela"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Walle la perseguiría todo el día.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_perros"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "«Llevémosla en la maleta.»",
+      "goto": "n4"
+     }
+    ]
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "Txinparta y Walle. Un día los juntamos. En la playa de Bakio. Prométemelo.",
+    "effects": [
+     {
+      "vineta": "m11_p_canela_laura"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Te lo prometo.»",
+      "goto": "n5"
+     },
+     {
+      "label": "«Walle se va a enamorar.»",
+      "goto": "n6"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "En la de mano no cabe. En la grande sí. ¿La llamamos Vorágine? Vori. Vori de Pance.",
+    "effects": [
+     {
+      "vineta": "m11_p_canela_laura"
+     }
+    ]
+   },
+   "n5": {
+    "text": "Laura te mira un segundo de más. «Vale. Apuntado.»",
+    "effects": [
+     {
+      "vineta": "m11_p_promesa"
+     }
+    ]
+   },
+   "n6": {
+    "speaker": "Laura",
+    "text": "Pues que se ponga a la cola. Txinparta tiene muchos pretendientes en Bakio.",
+    "effects": [
+     {
+      "vineta": "m11_p_canela_laura"
+     }
+    ]
+   },
+   "r0": {
+    "text": "La perrita canela se echó a la sombra. Te mira con la oreja parada. La otra sigue dudando.",
+    "effects": [
+     {
+      "vineta": "m11_p_canela"
+     }
+    ]
+   }
+  }
+ },
+ "m11_v_tinto": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_tinto_chofer"
+      },
+      "goto": "r0"
+     },
+     {
+      "goto": "n1"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Señora",
+    "text": "¡Tintico, aromática, agua de panela! ¿Uno pa'l frío, mijo? Llévele uno al conductor del campero, que así arranca más rápido. Se lo digo yo, que es mi marido.",
+    "effects": [
+     {
+      "vineta": "m11_p_tinto"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Dos tintos, uno para el conductor (2.000)",
+      "if": {
+       "minMoney": 2000
+      },
+      "effects": [
+       {
+        "pay": 2000
+       },
+       {
+        "setFlag": "m11_tinto_chofer"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "No, gracias."
+     }
+    ]
+   },
+   "n2": {
+    "text": "La señora se ríe y le grita al conductor: «¡Mijo, el chileno le mandó tinto! ¡Arranque rapidito!» El conductor levanta el pulgar sin sacarse el cigarrillo.",
+    "effects": [
+     {
+      "vineta": "m11_p_tinto_chofer"
+     }
+    ]
+   },
+   "r0": {
+    "speaker": "Señora",
+    "text": "Ya le dije a mi marido que usted es buena gente. Va a manejar suavecito. Bueno... más o menos.",
+    "effects": [
+     {
+      "vineta": "m11_p_tinto"
+     }
+    ]
+   }
+  }
+ },
+ "m11_v_ciclista": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Ciclista",
+    "text": "Subí desde Cali en cuarenta minutos. El récord del grupo es treinta y dos. El récord del grupo es mío.",
+    "effects": [
+     {
+      "vineta": "m11_p_ciclista"
+     }
+    ],
+    "next": "n1"
+   },
+   "n1": {
+    "speaker": "Laura",
+    "text": "En Bizkaia subimos el Txorierri en bici. Bueno. Aita sube. Yo me bajo y empujo, y luego le digo que subí.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_bici"
+     }
+    ]
+   }
+  }
+ },
+ "m11_efren": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_trucha"
+      },
+      "goto": "r0"
+     },
+     {
+      "if": {
+       "flag": "m11_truchera_go"
+      },
+      "goto": "n1"
+     },
+     {
+      "goto": "x0"
+     }
+    ]
+   },
+   "x0": {
+    "speaker": "Don Efraín",
+    "text": "Buenas, mijo. La truchera es pa' los que almuerzan donde mi comadre Ofelia. Hable primero con ella y vuelve.",
+    "effects": [
+     {
+      "vineta": "m11_p_efren"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Don Efraín",
+    "text": "Ajá, los de Ofelia. Tengan la caña. La carnada es masa con queso: a la trucha le gusta el queso, como a todo el mundo.",
+    "effects": [
+     {
+      "vineta": "m11_p_efren"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "¿Y si no pica?",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_cana"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Don Efraín",
+    "text": "Pica, mona. Todo pica en esta vida. Hay que tener paciencia y no jalar antes de tiempo. Eso vale pa' la trucha y pa' todo.",
+    "effects": [
+     {
+      "vineta": "m11_p_efren_consejo"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Laura te mira. Tú miras el agua. Don Efraín se ríe solo.",
+    "effects": [
+     {
+      "vineta": "m11_p_truchera"
+     },
+     {
+      "event": "paseo_m11",
+      "data": {
+       "mode": "trucha"
+      }
+     }
+    ]
+   },
+   "r0": {
+    "speaker": "Don Efraín",
+    "text": "Buen provecho, mijos. Y vuelvan, que las truchas no se pescan solas.",
+    "effects": [
+     {
+      "vineta": "m11_p_efren"
+     }
+    ]
+   }
+  }
+ },
+ "m11_truchas_despues": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_trucha_perfecta"
+      },
+      "goto": "n1"
+     },
+     {
+      "if": {
+       "flag": "m11_trucha_bien"
+      },
+      "goto": "n2"
+     },
+     {
+      "goto": "n3"
+     }
+    ]
+   },
+   "n1": {
+    "text": "Don Efraín pesa las truchas en una balanza vieja. «Libra y media la grande. Esa es de la mona.» Laura levanta el balde como si fuera la Copa del Rey.",
+    "effects": [
+     {
+      "vineta": "m11_p_balde"
+     },
+     {
+      "setFlag": "m11_ql_truchas"
+     }
+    ],
+    "next": "n1b"
+   },
+   "n1b": {
+    "speaker": "Laura",
+    "text": "¡Aupa! ¡Como en el 84, chileno! ...Bueno, la Copa no. Pero esto casi.",
+    "effects": [
+     {
+      "vineta": "m11_p_balde_laura"
+     }
+    ],
+    "next": "n4"
+   },
+   "n2": {
+    "text": "Dos truchas arcoíris en el balde. Laura les pone nombre: Ane y Txinparta. «No, espera. No se le pone nombre a lo que te vas a comer.» Demasiado tarde.",
+    "effects": [
+     {
+      "vineta": "m11_p_balde"
+     }
+    ],
+    "next": "n4"
+   },
+   "n3": {
+    "text": "Don Efraín mete la nasa y saca las que faltan de un solo golpe. «Aquí nadie se queda sin almuerzo, mijos.» Laura: «Las tuyas saben mejor. Aunque sean de él.»",
+    "effects": [
+     {
+      "vineta": "m11_p_nasa"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "text": "Con el balde en la mano, de vuelta donde doña Ofelia. El aceite ya está sonando.",
+    "effects": [
+     {
+      "vineta": "m11_p_balde"
+     },
+     {
+      "setFlag": "m11_truchas"
+     },
+     {
+      "objective": "Lleven las truchas donde doña Ofelia"
+     }
+    ]
+   }
+  }
+ },
+ "m11_c_guia": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_leyenda"
+      },
+      "goto": "r0"
+     },
+     {
+      "goto": "n1"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Don Aurelio",
+    "text": "¿Primera vez en la Chorrera? Les cuento lo que contaban los viejos: que aquí arriba venía un indio a hablar con el río. Y que el río le contestaba.",
+    "effects": [
+     {
+      "vineta": "m11_p_guia"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Don Aurelio",
+    "text": "Y que el que se mete debajo del chorro con alguien de la mano... vuelve. Siempre vuelve a Pance. Con la misma persona.",
+    "effects": [
+     {
+      "vineta": "m11_p_guia_cuento"
+     },
+     {
+      "setFlag": "m11_leyenda"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Laura",
+    "text": "(bajito) ...¿Has oído eso?",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_leyenda"
+     }
+    ],
+    "choices": [
+     {
+      "label": "«Pues habrá que volver.»",
+      "effects": [
+       {
+        "setFlag": "m11_ql_volver"
+       }
+      ],
+      "goto": "n4"
+     },
+     {
+      "label": "«Son cuentos de viejo.»",
+      "goto": "n5"
+     },
+     {
+      "label": "No dices nada. Le aprietas la mano.",
+      "effects": [
+       {
+        "setFlag": "m11_ql_aprieta"
+       }
+      ],
+      "goto": "n6"
+     }
+    ]
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Habrá que volver.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_volver"
+     }
+    ]
+   },
+   "n5": {
+    "speaker": "Don Aurelio",
+    "text": "Cuentos de viejo, dice el muchacho. Ya me contará usted en diez años, mijo. Ya me contará.",
+    "effects": [
+     {
+      "vineta": "m11_p_guia"
+     }
+    ]
+   },
+   "n6": {
+    "text": "Laura te aprieta la mano de vuelta. Don Aurelio mira para otro lado, silbando bajito.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_volver"
+     }
+    ]
+   },
+   "r0": {
+    "speaker": "Don Aurelio",
+    "text": "Debajo del chorro, de la mano. No se le olvide, mijo.",
+    "effects": [
+     {
+      "vineta": "m11_p_guia"
+     }
+    ]
+   }
+  }
+ },
+ "m11_c_lulada": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_lulada"
+      },
+      "goto": "r0"
+     },
+     {
+      "goto": "n1"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Señora",
+    "text": "¡Luladas, luladas bien frías! Lulo machacado, hielo, azúcar y limón. ¡Pa' después del agua helada!",
+    "effects": [
+     {
+      "vineta": "m11_p_lulada"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Dos luladas (6.000)",
+      "if": {
+       "minMoney": 6000
+      },
+      "effects": [
+       {
+        "pay": 6000
+       },
+       {
+        "setFlag": "m11_lulada"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "No, gracias."
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Esto es lo más rico que he probado en Colombia. Después de... nada. Después de nada.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_lulada"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Fiorella",
+    "text": "¿Después de qué, Laura?",
+    "effects": [
+     {
+      "vineta": "m11_p_fio_pregunta"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "¡De NADA, Fiorella!",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_roja"
+     }
+    ]
+   },
+   "r0": {
+    "speaker": "Señora",
+    "text": "¿Otra lulada, mona? Que el lulo es bueno pa'l corazón. Eso dicen.",
+    "effects": [
+     {
+      "vineta": "m11_p_lulada"
+     }
+    ]
+   }
+  }
+ },
+ "m11_c_pajarera": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "secreto_m11_barranquero"
+      },
+      "goto": "r0"
+     },
+     {
+      "goto": "n1"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Pajarera",
+    "text": "Shhh. Allá, en la guadua. Un barranquero. ¿Ven la cola? Se mueve como un péndulo. Tic, tac.",
+    "effects": [
+     {
+      "vineta": "m11_p_barranquero"
+     }
+    ],
+    "next": "n2"
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "Parece un pájaro inventado. Como si alguien lo hubiera pintado con todos los colores que le sobraron.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_pajaro"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Sacarle una foto con el celular",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_barranquero"
+       },
+       {
+        "sfx": "camera"
+       }
+      ],
+      "goto": "n3"
+     },
+     {
+      "label": "Mirarlo sin hacer ruido",
+      "effects": [
+       {
+        "setFlag": "secreto_m11_barranquero"
+       }
+      ],
+      "goto": "n4"
+     }
+    ]
+   },
+   "n3": {
+    "text": "Clic. En la foto sale el barranquero, borroso. Y Laura, enfocada, mirándolo con la boca abierta. Te quedas con la foto.",
+    "effects": [
+     {
+      "vineta": "m11_p_foto_pajaro"
+     }
+    ]
+   },
+   "n4": {
+    "text": "Se quedan los dos callados mirando la cola ir y venir. Tic, tac. Laura apoya la barbilla en tu hombro sin darse cuenta.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_pajaro"
+     }
+    ]
+   },
+   "r0": {
+    "speaker": "Pajarera",
+    "text": "Se fue pa' la otra orilla. Vuelve a las cinco, siempre a las cinco. Es más puntual que el campero.",
+    "effects": [
+     {
+      "vineta": "m11_p_barranquero"
+     }
+    ]
+   }
+  }
+ },
+ "m11_c_nino": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "speaker": "Niño",
+    "text": "¡Detrás de la Chorrera hay una cueva! Bueno, no es una cueva. Es un hueco. Pero suena como cueva. ¡UUUUH!",
+    "effects": [
+     {
+      "vineta": "m11_p_nino"
+     }
+    ]
+   }
+  }
+ },
+ "m11_c_arepera": {
+  "start": "n0",
+  "nodes": {
+   "n0": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_arepa"
+      },
+      "goto": "r0"
+     },
+     {
+      "goto": "n1"
+     }
+    ]
+   },
+   "n1": {
+    "speaker": "Arepera",
+    "text": "¡Arepa de choclo con quesito, mijos! Recién hecha en el fogón de leña.",
+    "effects": [
+     {
+      "vineta": "m11_p_arepa"
+     }
+    ],
+    "choices": [
+     {
+      "label": "Arepas para el grupo (9.000)",
+      "if": {
+       "minMoney": 9000
+      },
+      "effects": [
+       {
+        "pay": 9000
+       },
+       {
+        "setFlag": "m11_arepa"
+       }
+      ],
+      "goto": "n2"
+     },
+     {
+      "label": "No, gracias."
+     }
+    ]
+   },
+   "n2": {
+    "speaker": "Laura",
+    "text": "En Euskadi tenemos talo. Es parecido. Bueno, no. Pero es redondo y se come con la mano. Así que es primo.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_arepa"
+     }
+    ],
+    "next": "n3"
+   },
+   "n3": {
+    "speaker": "Mila",
+    "text": "Todo es primo de algo para ti, Laura. La perra, la arepa...",
+    "effects": [
+     {
+      "vineta": "m11_p_mila_arepa"
+     }
+    ],
+    "next": "n4"
+   },
+   "n4": {
+    "speaker": "Laura",
+    "text": "Y el chileno es primo de... no. El chileno no es primo de nada. Ese es aparte.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_arepa"
+     }
+    ]
+   },
+   "r0": {
+    "speaker": "Arepera",
+    "text": "Vuelvan a la bajada, que a esa hora salen las de maíz peto.",
+    "effects": [
+     {
+      "vineta": "m11_p_arepa"
+     }
+    ]
+   }
+  }
+ }
+}

@@ -136,6 +136,11 @@
       "x": 1,
       "y": 35,
       "dir": "up"
+    },
+    "playa": {
+      "x": 48,
+      "y": 21,
+      "dir": "down"
     }
   },
   "enter": [
@@ -154,6 +159,60 @@
       "y": 19.6,
       "text": "LA FONDA DEL RÍO",
       "color": "#f8dc68"
+    },
+    {
+      "x": 48,
+      "y": 20.6,
+      "text": "PLAYA DE PIEDRAS",
+      "color": "#f8f4e0"
+    }
+  ],
+  "crowd": {
+    "lines": "pance",
+    "areas": [
+      {
+        "x": 75,
+        "y": 20,
+        "w": 11,
+        "h": 2,
+        "count": 5
+      },
+      {
+        "x": 73,
+        "y": 27,
+        "w": 9,
+        "h": 5,
+        "count": 6
+      },
+      {
+        "x": 59,
+        "y": 22,
+        "w": 8,
+        "h": 4,
+        "count": 3
+      },
+      {
+        "x": 50,
+        "y": 24,
+        "w": 4,
+        "h": 3,
+        "count": 2
+      }
+    ]
+  },
+  "triggers": [
+    {
+      "id": "m11_patitos",
+      "x": 46,
+      "y": 21,
+      "w": 4,
+      "h": 3,
+      "event": "dialogo:m11_patitos",
+      "if": {
+        "mission": "mission10",
+        "flag": "m11_campero_espera",
+        "notFlag": "m11_patitos"
+      }
     }
   ]
 }

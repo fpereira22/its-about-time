@@ -333,7 +333,7 @@
       ]
      },
      {
-      "objective": "Busquen el carro que sube a San Francisco (en la vía, al oeste del puente)"
+      "objective": "Busquen el campero que sube a San Francisco (en la vía, al oeste del pueblo)"
      }
     ]
    }
@@ -406,7 +406,7 @@
   }
  },
  "m11_campero": {
-  "start": "n0",
+  "start": "s",
   "nodes": {
    "n0": {
     "text": "Un campero viejo, de los que suben a San Francisco. El conductor fuma recostado en la puerta.",
@@ -436,6 +436,78 @@
      },
      {
       "event": "trocha_m11"
+     }
+    ]
+   },
+   "e0": {
+    "text": "Un campero Willys verde, viejo y glorioso, de los que suben a San Francisco. El conductor fuma recostado en la puerta. Adentro no hay nadie todavía.",
+    "effects": [
+     {
+      "vineta": "m11_campero"
+     }
+    ],
+    "next": "e1"
+   },
+   "e1": {
+    "speaker": "Conductor",
+    "text": "¿Pa' la Chorrera? Ahorita salimos, mijo. Cuando se llene. Faltan cuatro... o cinco. Media horita, más o menos.",
+    "effects": [
+     {
+      "vineta": "m11_conductor"
+     }
+    ],
+    "next": "e2"
+   },
+   "e2": {
+    "speaker": "Danilo",
+    "text": "¿Media hora colombiana? Eso es hora y media. Bueno, gente: libres. Pero no se me pierdan, que el señor no espera.",
+    "effects": [
+     {
+      "vineta": "m11_p_libres"
+     }
+    ],
+    "next": "e3"
+   },
+   "e3": {
+    "speaker": "Laura",
+    "text": "¡Chileno! ¿Has visto las piedras planas de la orilla, al lado del puente? Ven. Te voy a dar una clase. Gratis.",
+    "effects": [
+     {
+      "vineta": "m11_p_clase"
+     },
+     {
+      "setFlag": "m11_campero_espera"
+     },
+     {
+      "objective": "Mientras se llena el campero: Laura te espera en la playa de piedras (al lado del río)"
+     }
+    ]
+   },
+   "w0": {
+    "speaker": "Conductor",
+    "text": "Todavía falta gente, mijo. Vaya, vaya, que yo les pito cuando estemos.",
+    "effects": [
+     {
+      "vineta": "m11_conductor"
+     }
+    ]
+   },
+   "s": {
+    "branches": [
+     {
+      "if": {
+       "flag": "m11_patitos"
+      },
+      "goto": "n0"
+     },
+     {
+      "if": {
+       "flag": "m11_campero_espera"
+      },
+      "goto": "w0"
+     },
+     {
+      "goto": "e0"
      }
     ]
    }
@@ -770,7 +842,7 @@
       "setFlag": "m11_foto_chorrera"
      },
      {
-      "objective": "Almuercen en el restaurante de San Francisco"
+      "objective": "Almuercen donde doña Ofelia (el restaurante de San Francisco)"
      }
     ]
    }
@@ -788,7 +860,19 @@
       "goto": "n1"
      },
      {
+      "if": {
+       "flag": "m11_truchas"
+      },
       "goto": "n2"
+     },
+     {
+      "if": {
+       "flag": "m11_truchera_go"
+      },
+      "goto": "t3"
+     },
+     {
+      "goto": "t0"
      }
     ]
    },
@@ -812,7 +896,7 @@
    },
    "n3": {
     "speaker": "Doña Ofelia",
-    "text": "Hoy hay trucha frita, sancocho de gallina y arroz con todo. Y limonada de panela, la mejor de Pance.",
+    "text": "Las truchas de ustedes, fritas, con patacón y arroz con todo. O sancocho de gallina, pa'l que no confía en su pesca. Y limonada de panela, la mejor de Pance.",
     "effects": [
      {
       "vineta": "m11_menu_ofelia"
@@ -915,6 +999,50 @@
      },
      {
       "pay": 25000
+     }
+    ]
+   },
+   "t0": {
+    "speaker": "Doña Ofelia",
+    "text": "¡Bienvenidos, mijos! Siéntense, siéntense. ¿Trucha? Sí hay. Pero aquí la trucha se la pescan ustedes, en la truchera de mi compadre Efraín, ahí al ladito. Yo se las frío.",
+    "effects": [
+     {
+      "vineta": "m11_p_ofelia_trucha"
+     }
+    ],
+    "next": "t1"
+   },
+   "t1": {
+    "speaker": "Danilo",
+    "text": "Chileno, vos pescás. Yo cuido la mesa. Es un trabajo muy importante.",
+    "effects": [
+     {
+      "vineta": "m11_p_danilo_mesa"
+     }
+    ],
+    "next": "t2"
+   },
+   "t2": {
+    "speaker": "Laura",
+    "text": "Y yo cuido al chileno. Que también es un trabajo muy importante.",
+    "effects": [
+     {
+      "vineta": "m11_p_laura_cuida"
+     },
+     {
+      "setFlag": "m11_truchera_go"
+     },
+     {
+      "objective": "Pesquen el almuerzo en la truchera de don Efraín (al lado del restaurante)"
+     }
+    ]
+   },
+   "t3": {
+    "speaker": "Doña Ofelia",
+    "text": "Vaya donde Efraín, mijo, que el aceite ya está caliente y Danilo ya se comió el pan.",
+    "effects": [
+     {
+      "vineta": "m11_ofelia"
      }
     ]
    }

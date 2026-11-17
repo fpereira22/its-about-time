@@ -53,6 +53,16 @@ function barro(p: Painter, seed: number): void {
   p.rect(4, 4, 2, 3, '#5a3e24').rect(9, 9, 2, 3, '#5a3e24');
 }
 
+/** El estanque de truchas de don Efraín: agua verde oscura con sombras de truchas y un borde de cemento. */
+function estanque(p: Painter, seed: number, rim: boolean): void {
+  p.fill('#2a6a6c');
+  p.speckle(seed, 8, '#3c8c8c').speckle(seed + 2, 4, '#1c4c50');
+  p.rect(3, 6, 6, 2, '#183c3c').px(9, 7, '#183c3c').px(10, 6, '#183c3c').px(10, 8, '#183c3c');
+  p.rect(9, 11, 3, 1, '#a8d4d4');
+  if (rim) p.rect(0, 0, 16, 2, '#b8b4a8').rect(0, 2, 16, 1, '#8c887c');
+  else p.rect(0, 15, 16, 1, '#b8b4a8');
+}
+
 /** Baldosa del balcón del 1104 (terracota). */
 function balcon(p: Painter): void {
   p.fill('#b86a44');
@@ -84,6 +94,8 @@ export function m11Tiles(): TileDef[] {
     { key: 'paso_piedras', solid: false, draw: (p) => pasoPiedras(p, 7) },
     { key: 'barro', solid: false, draw: (p) => barro(p, 11) },
     { key: 'balcon_piso', solid: false, draw: balcon },
+    { key: 'estanque', solid: true, draw: (p) => estanque(p, 13, true) },
+    { key: 'estanque_b', solid: true, draw: (p) => estanque(p, 17, false) },
     { key: 'bandera_chile', solid: true, draw: banderaChile },
     { key: 'menu_pato', solid: true, draw: menuPato },
   ];

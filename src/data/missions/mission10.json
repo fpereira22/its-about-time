@@ -246,6 +246,31 @@
       "if": {
         "map": "voragine",
         "flag": "m11_en_voragine",
+        "notFlag": [
+          "m11_trocha",
+          "m11_campero_espera"
+        ]
+      }
+    },
+    {
+      "map": "voragine",
+      "x": 48,
+      "y": 22,
+      "name": "La playa de piedras (Laura y los patitos)",
+      "if": {
+        "map": "voragine",
+        "flag": "m11_campero_espera",
+        "notFlag": "m11_patitos"
+      }
+    },
+    {
+      "map": "voragine",
+      "x": 1,
+      "y": 35,
+      "name": "El campero ya se llenó",
+      "if": {
+        "map": "voragine",
+        "flag": "m11_patitos",
         "notFlag": "m11_trocha"
       }
     },
@@ -290,6 +315,31 @@
       "if": {
         "map": "chorrera",
         "flag": "m11_cascada",
+        "notFlag": [
+          "m11_truchera_go",
+          "m11_almorzo"
+        ]
+      }
+    },
+    {
+      "map": "chorrera",
+      "x": 48,
+      "y": 44,
+      "name": "La truchera de don Efraín",
+      "if": {
+        "map": "chorrera",
+        "flag": "m11_truchera_go",
+        "notFlag": "m11_trucha"
+      }
+    },
+    {
+      "map": "chorrera",
+      "x": 46,
+      "y": 41,
+      "name": "Las truchas, donde doña Ofelia",
+      "if": {
+        "map": "chorrera",
+        "flag": "m11_truchas",
         "notFlag": "m11_almorzo"
       }
     },
@@ -345,6 +395,12 @@
   ],
   "bonuses": [
     {
+      "text": "Le ganaste a Laura en los patitos",
+      "if": {
+        "flag": "m11_patitos_perfecta"
+      }
+    },
+    {
       "text": "Le ganaste a Laura en el pimpón",
       "if": {
         "flag": "m11_pinpon_gano"
@@ -393,6 +449,12 @@
       }
     },
     {
+      "text": "Dos truchas sin cortar el nylon",
+      "if": {
+        "flag": "m11_trucha_perfecta"
+      }
+    },
+    {
       "text": "Las piedras sin mojarse",
       "if": {
         "flag": "m11_mano_perfecta"
@@ -425,6 +487,10 @@
     {
       "flag": "secreto_m11_chontaduro",
       "name": "Helado de chontaduro"
+    },
+    {
+      "flag": "secreto_m11_mango",
+      "name": "La cara del mango biche"
     },
     {
       "flag": "secreto_m11_chulo",
@@ -473,6 +539,14 @@
     {
       "flag": "secreto_m11_piedra",
       "name": "Una piedra para Bakio"
+    },
+    {
+      "flag": "secreto_m11_mapocho",
+      "name": "¿El Mapocho es un postre?"
+    },
+    {
+      "flag": "secreto_m11_barranquero",
+      "name": "El barranquero de la Chorrera"
     }
   ],
   "endings": [
