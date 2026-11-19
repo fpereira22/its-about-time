@@ -26,3 +26,6 @@ desktop.ini
 
 # Claude Code
 .claude/
+
+# WASM de MediaPipe: lo copia vite.config.ts desde node_modules
+public/mediapipe/wasm/

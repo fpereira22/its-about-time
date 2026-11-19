@@ -2,6 +2,8 @@ import Phaser from 'phaser';
 import { playMusic, playSfx } from '../audio/sfx';
 import { BASE_HEIGHT, BASE_WIDTH } from '../config/display';
 import { Controls } from '../systems/Controls';
+import { FaceCam } from '../systems/FaceCam';
+import { headToPaddle, rebaseCenter, smashEdge } from '../systems/faceChallenges';
 import { MiniScene } from './MiniScene';
 
 /**
@@ -27,6 +29,8 @@ export interface PinponSceneData {
   done: (r: PinponResult) => void;
   /** Misión 10 (prefijo m11_): un solo partido, a 7, contra este rival (`laura`), en la mesa del lobby del Bobo. */
   rival?: string;
+  /** Prueba de admin: arranca directo con la cámara (sin preguntar). Normalmente se elige en el cartel de inicio. */
+  camera?: boolean;
 }
 
 interface Rival {
@@ -153,6 +157,25 @@ export class PinponScene extends MiniScene<PinponResult> {
   private g!: Phaser.GameObjects.Graphics;
   private hud!: Phaser.GameObjects.Graphics;
   private scoreText!: Phaser.GameObjects.Text;
+  /**
+   * Control con la cámara (opcional): en el cartel de inicio se elige teclado (E) o cámara (F). Con la cámara la
+   * cabeza mueve la paleta y la boca abierta remata, pero A/D y E siguen valiendo (el último en moverse manda).
+   * `camTest`: la prueba de admin, que arranca directo con la cámara.
+   */
+  private camChoice: 'ask' | 'keys' | 'cam' = 'keys';
+  private camTest = false;
+  private camRun = 0;
+  private camLostMs = 0;
+  private keyIdleMs = 0;
+  private camOn = false;
+  private camLoading = false;
+  private camCenter = 0.5;
+  private camTarget: number | null = null;
+  private camAim = 0;
+  private camSmash = false;
+  private jawWasOpen = false;
+  private camTex: Phaser.Textures.CanvasTexture | null = null;
+  private camLabel: Phaser.GameObjects.Text | null = null;
 
   constructor() {
     super('Pinpon');
@@ -169,6 +192,20 @@ export class PinponScene extends MiniScene<PinponResult> {
     this.smashes = 0;
     this.beatRichi = false;
     this.phase = 'intro';
+    this.camTest = data.camera === true;
+    this.camOn = this.camTest;
+    // Se ofrece la cámara solo si el navegador puede (HTTPS + getUserMedia).
+    this.camChoice = this.camTest ? 'cam' : FaceCam.supported ? 'ask' : 'keys';
+    this.camLostMs = 0;
+    this.keyIdleMs = 0;
+    this.camLoading = false;
+    this.camCenter = 0.5;
+    this.camTarget = null;
+    this.camAim = 0;
+    this.camSmash = false;
+    this.jawWasOpen = false;
+    this.camTex = null;
+    this.camLabel = null;
   }
 
   create(): void {
@@ -178,7 +215,56 @@ export class PinponScene extends MiniScene<PinponResult> {
     this.scoreText = this.addText(BASE_WIDTH - 6, 4, '', { fontSize: '8px', fontStyle: '600', color: '#fbf6ee' }).setOrigin(1, 0).setDepth(50);
     this.hintText.setText('A/D: mover la paleta · E justo antes: ¡remate! · Esc: entregar el partido');
     playMusic(this.solo ? 'depa' : 'casita');
-    this.startMatch();
+    if (this.camOn) this.startCamera();
+    else this.startMatch();
+  }
+
+  /** Prende la cámara y, cuando está lista (o falla), arranca el partido. Esc mientras carga la cancela (queda el teclado). */
+  private startCamera(): void {
+    const run = ++this.camRun;
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => FaceCam.stop());
+    this.camLoading = true;
+    this.camOn = true;
+    this.camChoice = 'cam';
+    if (this.camTest) this.titleText.setText('Pimpón con cámara');
+    this.banner('Prendiendo la cámara...\n(acepta el permiso; la primera vez descarga ~18 MB)\nSolo se usa para jugar: no se guarda ni se envía.\n(Esc: usar el teclado)');
+    void FaceCam.start().then(() => {
+      if (run !== this.camRun || this.leaving || !this.sys.isActive()) return;
+      this.camLoading = false;
+      if (FaceCam.status === 'ready') {
+        this.buildCamPreview();
+      } else {
+        this.useKeyboard();
+      }
+      this.startMatch();
+      if (!this.camOn) this.banner('No se pudo prender la cámara.\nSe juega con el teclado: A/D y E.\n(E para sacar)');
+    });
+  }
+
+  /** Sin cámara (falló, o el jugador desistió): todo vuelve al teclado y se apaga lo que se haya prendido. */
+  private useKeyboard(): void {
+    this.camRun++;
+    this.camOn = false;
+    this.camChoice = 'keys';
+    this.camLoading = false;
+    FaceCam.stop();
+  }
+
+  /** Mini espejo de la cámara a la izquierda de la mesa, con su etiqueta. */
+  private buildCamPreview(): void {
+    if (this.textures.exists('pinponCam')) this.textures.remove('pinponCam');
+    this.camTex = this.textures.createCanvas('pinponCam', 64, 48);
+    if (this.camTex) {
+      this.add.rectangle(6, 22, 68, 52, 0x14182a).setOrigin(0, 0).setDepth(44);
+      this.add.image(8, 24, 'pinponCam').setOrigin(0, 0).setDepth(45);
+    }
+    this.camLabel = this.addText(8, 78, '', { fontSize: '8px', fontStyle: '600', color: '#fbf6ee', stroke: '#14182a', strokeThickness: 3 }).setDepth(46);
+    this.hintText.setText('Cabeza: paleta · Boca abierta o E: remate · A/D también · F: centrar');
+  }
+
+  /** Ancho de tu paleta: con la cámara es más ancha (la cabeza es menos precisa que el teclado). */
+  private get myPad(): number {
+    return this.camOn ? PAD_W * 1.3 : PAD_W;
   }
 
   private get rival(): Rival {
@@ -191,7 +277,13 @@ export class PinponScene extends MiniScene<PinponResult> {
     this.server = 'me';
     this.phase = 'intro';
     this.titleText.setText(this.solo ? `Lobby del Bobo · contra ${this.rival.name}` : `Torneo · Partido ${this.match + 1}/3`);
-    this.banner(`${this.rival.intro}\nA ${this.points} puntos. (E para sacar)`);
+    const how =
+      this.camChoice === 'ask'
+        ? '\nE: sacar con el teclado · F: jugar con la cámara\nLa cámara solo se usa para jugar: no guardamos ni enviamos tu imagen.'
+        : this.camOn
+          ? '\nMira al frente (E te centra). Cabeza: mover · Boca abierta: remate · F: centrar\n(E para sacar)'
+          : ' (E para sacar)';
+    this.banner(`${this.rival.intro}\nA ${this.points} puntos.${how}`);
   }
 
   private serve(): void {
@@ -216,7 +308,7 @@ export class PinponScene extends MiniScene<PinponResult> {
     let fault: Ball['fault'] = null;
     let speed: number;
     if (by === 'me') {
-      const aim = (Controls.isHeld('left') ? -1 : 0) + (Controls.isHeld('right') ? 1 : 0);
+      const aim = (Controls.isHeld('left') ? -1 : 0) + (Controls.isHeld('right') ? 1 : 0) + this.camAim;
       lx = cx + off * half * 0.9 + aim * 18 + (Math.random() - 0.5) * 8;
       // Con el borde de la paleta la pelota sale muy cruzada: a veces se va afuera.
       if (Math.abs(off) > 0.85 && Math.random() < 0.35) lx += Math.sign(off) * (10 + Math.random() * 10);
@@ -263,8 +355,28 @@ export class PinponScene extends MiniScene<PinponResult> {
     if (this.leaving) return;
     const dt = Math.min(delta, 40) / 1000;
     this.phaseMs += delta;
+    // En la prueba de admin se puede salir con Esc antes de empezar (mientras carga o en el cartel).
+    if (this.camTest && this.phase === 'intro' && Controls.consume('menu')) {
+      FaceCam.stop();
+      this.phase = 'end';
+      this.finish({ wins: 0, champion: false, beatRichi: false, smashes: 0 });
+      return;
+    }
+    if (this.camLoading && !this.camTest && Controls.consume('menu')) {
+      this.useKeyboard();
+      this.startMatch();
+      return;
+    }
+    if (this.camOn && !this.camLoading) this.readCamera(delta);
     if (this.phase === 'intro') {
-      if (Controls.consume('interact')) {
+      if (!this.camLoading && this.camChoice === 'ask' && Controls.consume('trick')) {
+        playSfx('select');
+        this.hideBanner();
+        this.startCamera();
+      } else if (!this.camLoading && Controls.consume('interact')) {
+        if (this.camChoice === 'ask') this.camChoice = 'keys';
+        // Con la cámara, sacar es también «estoy aquí, mirando al frente»: ahí queda el centro.
+        if (this.camOn && FaceCam.head) this.camCenter = FaceCam.head.x;
         this.hideBanner();
         this.serve();
       }
@@ -299,6 +411,28 @@ export class PinponScene extends MiniScene<PinponResult> {
     this.draw();
   }
 
+  /** Lee la cara: dónde está la cabeza (paleta), si abriste la boca (remate), F centra, y pinta el mini espejo. */
+  private readCamera(delta: number): void {
+    const shapes = FaceCam.read();
+    const head = FaceCam.head;
+    this.camLostMs = head ? 0 : this.camLostMs + delta;
+    this.keyIdleMs = Controls.isHeld('left') || Controls.isHeld('right') || Controls.isHeld('interact') ? 0 : this.keyIdleMs + delta;
+    if (Controls.consume('trick') && head) {
+      this.camCenter = head.x;
+      playSfx('select');
+    }
+    this.camTarget = head ? headToPaddle(head.x, this.camCenter, REACH.min, REACH.max) : null;
+    const edge = smashEdge(shapes?.jawOpen ?? 0, this.jawWasOpen);
+    this.jawWasOpen = edge.open;
+    this.camSmash = edge.fired;
+    const tex = this.camTex;
+    if (tex) {
+      if (!FaceCam.drawMirrored(tex.context, 64, 48)) tex.context.clearRect(0, 0, 64, 48);
+      tex.refresh();
+    }
+    this.camLabel?.setText(head ? (this.jawWasOpen ? '¡REMATE!' : 'cabeza OK') : 'NO TE VEO').setColor(head ? '#a8e0a0' : '#ff9c9c');
+  }
+
   private play(dt: number): void {
     if (Controls.consume('menu')) {
       this.them = this.points;
@@ -306,10 +440,25 @@ export class PinponScene extends MiniScene<PinponResult> {
       return;
     }
     const sp = 150;
-    if (Controls.isHeld('left')) this.px -= sp * dt;
-    if (Controls.isHeld('right')) this.px += sp * dt;
+    // Si se pierde la cara y no estás usando el teclado, la pelota espera a que vuelvas al cuadro.
+    if (this.camOn && this.camLostMs > 1000 && this.keyIdleMs > 1500) {
+      this.say('¡No te veo! Vuelve al cuadro', BASE_WIDTH / 2, 44, 400);
+      return;
+    }
+    const keyDir = (Controls.isHeld('left') ? -1 : 0) + (Controls.isHeld('right') ? 1 : 0);
+    this.camAim = 0;
+    if (keyDir !== 0) {
+      this.px += keyDir * sp * dt;
+    } else if (this.camOn && this.camTarget !== null) {
+      // Con la cámara la paleta persigue a la cabeza (un poco más rápido que el teclado, para que no se sienta pesada).
+      const d = this.camTarget - this.px;
+      this.px += Phaser.Math.Clamp(d, -sp * 1.6 * dt, sp * 1.6 * dt);
+      this.camAim = Math.abs(d) > 10 ? Math.sign(d) : 0;
+    }
     this.px = Phaser.Math.Clamp(this.px, REACH.min, REACH.max);
-    if (Controls.consume('interact')) this.smashWindow = 0.22;
+    // Mientras usas el teclado, la cabeza queda «enganchada» a la paleta: al soltarlo no pega un salto.
+    if (keyDir !== 0 && this.camOn && FaceCam.head) this.camCenter = rebaseCenter(FaceCam.head.x, this.px, REACH.min, REACH.max);
+    if (Controls.consume('interact') || this.camSmash) this.smashWindow = this.camOn ? 0.32 : 0.22;
     this.smashWindow = Math.max(0, this.smashWindow - dt);
 
     const b = this.ball;
@@ -358,8 +507,8 @@ export class PinponScene extends MiniScene<PinponResult> {
     }
     if (b.by === 'them') {
       // Me toca: solo después del bote.
-      if (b.y >= MY_Y - 3 && b.y <= MY_Y + 6 && Math.abs(b.x - this.px) <= PAD_W / 2 + 2) {
-        const off = Phaser.Math.Clamp((b.x - this.px) / (PAD_W / 2), -1, 1);
+      if (b.y >= MY_Y - 3 && b.y <= MY_Y + 6 && Math.abs(b.x - this.px) <= this.myPad / 2 + 2) {
+        const off = Phaser.Math.Clamp((b.x - this.px) / (this.myPad / 2), -1, 1);
         const smash = this.smashWindow > 0;
         if (smash) {
           this.smashWindow = 0;
@@ -446,7 +595,7 @@ export class PinponScene extends MiniScene<PinponResult> {
     player(this.ox, T.y - 12, this.rival.shirt, true);
     player(this.px, T.y + T.h + 12, 0x2c64c0, false);
     g.fillStyle(0xc8303c, 1).fillRoundedRect(this.ox - PAD_W / 2, T.y - 6, PAD_W, 4, 2);
-    g.fillStyle(this.smashWindow > 0 ? 0xf8e070 : 0xc8303c, 1).fillRoundedRect(this.px - PAD_W / 2, T.y + T.h + 2, PAD_W, 4, 2);
+    g.fillStyle(this.smashWindow > 0 ? 0xf8e070 : 0xc8303c, 1).fillRoundedRect(this.px - this.myPad / 2, T.y + T.h + 2, this.myPad, 4, 2);
     // La pelota y su sombra.
     if (this.phase === 'play' || (this.phase === 'point' && this.mark)) {
       const b = this.ball;

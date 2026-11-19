@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { readdirSync, readFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 
@@ -28,7 +28,9 @@ function serviceWorker(): Plugin {
     name: 'service-worker',
     apply: 'build',
     generateBundle(_options, bundle) {
-      const publicFiles = listFiles('public');
+      // El WASM y el modelo de la cámara (~18 MB) son solo para una prueba de admin: no se precargan,
+      // el service worker los guarda la primera vez que se piden.
+      const publicFiles = listFiles('public').filter((f) => !f.startsWith('mediapipe/'));
       const files = ['./', ...[...Object.keys(bundle), ...publicFiles].filter((f) => f !== 'sw.js').sort()];
       const hash = createHash('sha256');
       for (const name of Object.keys(bundle).sort()) {
@@ -45,6 +47,27 @@ function serviceWorker(): Plugin {
   };
 }
 
+/**
+ * Copia el WASM de MediaPipe (la cámara de las pruebas de admin) de node_modules a public/mediapipe/wasm,
+ * para servirlo desde el mismo sitio. La carpeta está en .gitignore: se regenera en cada dev/build.
+ */
+function mediapipeWasm(): Plugin {
+  return {
+    name: 'mediapipe-wasm',
+    buildStart() {
+      const from = 'node_modules/@mediapipe/tasks-vision/wasm';
+      const to = 'public/mediapipe/wasm';
+      if (!existsSync(from)) return;
+      mkdirSync(to, { recursive: true });
+      // Solo la versión con SIMD (la que usan todos los navegadores actuales).
+      for (const name of ['vision_wasm_internal.js', 'vision_wasm_internal.wasm']) {
+        const dest = join(to, name);
+        if (!existsSync(dest) || statSync(dest).size !== statSync(join(from, name)).size) copyFileSync(join(from, name), dest);
+      }
+    },
+  };
+}
+
 /** Archivos de `dir` (recursivo), relativos a él y con "/". */
 function listFiles(dir: string): string[] {
   return readdirSync(dir, { recursive: true, withFileTypes: true })
@@ -54,7 +77,7 @@ function listFiles(dir: string): string[] {
 
 export default defineConfig({
   base: './',
-  plugins: [serviceWorker()],
+  plugins: [mediapipeWasm(), serviceWorker()],
   server: {
     open: true,
   },

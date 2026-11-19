@@ -34,8 +34,9 @@ const pageTools = (): number => MISSIONS.length + 1;
 const pageAnims = (): number => MISSIONS.length + 2;
 const pageVinetas = (): number => MISSIONS.length + 3;
 const pageSounds = (): number => MISSIONS.length + 4;
-/** Páginas en total: misiones, mapas, herramientas, animaciones, viñetas y sonidos. */
-const pageCount = (): number => MISSIONS.length + 5;
+const pageCamera = (): number => MISSIONS.length + 5;
+/** Páginas en total: misiones, mapas, herramientas, animaciones, viñetas, sonidos y cámara. */
+const pageCount = (): number => MISSIONS.length + 6;
 /** Nivel con que se prueban las pantallas de subida de nivel (2..10). */
 let previewLevel = 3;
 const SCENE_FOR_KIND = { overworld: 'Overworld', interior: 'Interior' } as const;
@@ -158,6 +159,7 @@ export class AdminWarpScene extends BaseScene {
     if (this.page === pageAnims()) return this.animRows();
     if (this.page === pageVinetas()) return this.vinetaRows();
     if (this.page === pageSounds()) return this.soundRows();
+    if (this.page === pageCamera()) return this.cameraRows();
     const m = MISSIONS[this.page];
     return m ? this.stageRows(m) : mapRows((id) => this.openMap(id));
   }
@@ -239,6 +241,40 @@ export class AdminWarpScene extends BaseScene {
           go: () => playSfx(name as SfxName),
         }),
       ),
+    ];
+  }
+
+  /** Pruebas con la cámara (MediaPipe en el navegador; el video no sale del equipo). */
+  private cameraRows(): Row[] {
+    const run = (mode: 'game' | 'lab'): void => this.leave(() => this.scene.start('Caras', { mode }));
+    return [
+      {
+        label: 'Concurso de caras (minijuego)',
+        detail: 'E: pide permiso de cámara · 7 caras que imitar (sonrisa, cejas, guiño...) · Esc sale · vuelve al título',
+        go: () => run('game'),
+      },
+      {
+        label: 'Pimpón con la cabeza (juego que ya existe)',
+        detail: 'E: un partido a 7 contra Laura · cabeza mueve la paleta · boca abierta = remate · F centra · Esc sale',
+        go: () => {
+          const game = this.game;
+          this.leave(() =>
+            this.scene.start('Pinpon', {
+              rival: 'laura',
+              camera: true,
+              done: () => {
+                game.scene.stop('Pinpon');
+                game.scene.start('Title');
+              },
+            }),
+          );
+        },
+      },
+      {
+        label: 'Probador de gestos (sin juego)',
+        detail: 'E: ve en vivo el puntaje de cada gesto y los números de MediaPipe, para ajustar umbrales',
+        go: () => run('lab'),
+      },
     ];
   }
 
@@ -360,7 +396,7 @@ export class AdminWarpScene extends BaseScene {
   }
 }
 
-const PAGE_TITLES = ['Herramientas', 'Animaciones', 'Viñetas', 'Sonidos y música'];
+const PAGE_TITLES = ['Herramientas', 'Animaciones', 'Viñetas', 'Sonidos y música', 'Cámara (experimental)'];
 const DEBUG_LABELS = ['APAGADA', 'PANEL', 'PANEL + CUADRÍCULA'];
 
 /** Datos inventados para ver la pantalla de nivel `level` de un minijuego (no toca las stats guardadas). */

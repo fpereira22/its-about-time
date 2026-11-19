@@ -3,6 +3,7 @@ import { AudioManager } from './audio/AudioManager';
 import { BASE_HEIGHT, BASE_WIDTH, computeDisplay, getZoom, setZoom, ZOOM_CHANGED } from './config/display';
 import { AdminWarpScene } from './scenes/AdminWarpScene';
 import { BootScene } from './scenes/BootScene';
+import { CarasScene } from './scenes/CarasScene';
 import { CreditsScene } from './scenes/CreditsScene';
 import { FutbolScene } from './scenes/FutbolScene';
 import { PiscinaScene } from './scenes/PiscinaScene';
@@ -67,7 +68,7 @@ const game = new Phaser.Game({
     autoCenter: Phaser.Scale.NO_CENTER,
   },
   input: { keyboard: false, gamepad: false },
-  scene: [BootScene, PreloadScene, TitleScene, OverworldScene, InteriorScene, UIScene, FutbolScene, PiscinaScene, CincoScene, NatacionScene, PersecucionScene, CocinaScene, SalsaScene, PoolScene, PinponScene, AtraccionScene, ParqueScene, CafeScene, FiestaScene, RioScene, PaseoScene, MissionCompleteScene, ProgressScene, StatsScene, RankingScene, CreditsScene, AdminWarpScene],
+  scene: [BootScene, PreloadScene, TitleScene, OverworldScene, InteriorScene, UIScene, FutbolScene, PiscinaScene, CincoScene, NatacionScene, PersecucionScene, CocinaScene, SalsaScene, PoolScene, PinponScene, AtraccionScene, ParqueScene, CafeScene, FiestaScene, RioScene, PaseoScene, MissionCompleteScene, ProgressScene, StatsScene, RankingScene, CreditsScene, AdminWarpScene, CarasScene],
 });
 
 Controls.attach(game);
