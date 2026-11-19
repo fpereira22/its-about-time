@@ -27,8 +27,18 @@ export const TILESET_KEY = 'tiles';
 /** Columnas de la grilla del tileset (los mapas usan el índice de TILE_DEFS; Phaser lo ubica en la grilla). */
 export const TILESET_COLS = 32;
 
+/** Gestor de texturas del juego (lo fija generateTextures); sirve para armar personajes bajo demanda. */
+let gameTextures: Phaser.Textures.TextureManager | null = null;
+
+/**
+ * Clave de la hoja de un personaje. Las hojas generadas por código (176 personajes, más de un segundo
+ * de pintura) no se arman al arrancar: se pintan la primera vez que alguien pide la clave.
+ */
 export function charKey(id: string): string {
-  return `char:${id}`;
+  const key = `char:${id}`;
+  const entry = manifest.characters[id];
+  if (gameTextures && entry && !gameTextures.exists(key)) ensureCharacterTexture(gameTextures, key, entry.look);
+  return key;
 }
 
 export function objKey(id: string): string {
@@ -78,6 +88,7 @@ export function ensureCharacterTexture(textures: Phaser.Textures.TextureManager,
 /** Genera todas las texturas que no fueron cargadas desde archivos. */
 export function generateTextures(scene: Phaser.Scene): void {
   const textures = scene.textures;
+  gameTextures = textures;
 
   if (!textures.exists(TILESET_KEY)) {
     // Grilla de TILESET_COLS columnas: una sola fila superaría el ancho máximo de textura de algunas GPU.
@@ -89,9 +100,7 @@ export function generateTextures(scene: Phaser.Scene): void {
     tex.refresh();
   }
 
-  for (const [id, entry] of Object.entries(manifest.characters)) {
-    ensureCharacterTexture(textures, charKey(id), entry.look);
-  }
+  // Los personajes se pintan bajo demanda (ver charKey).
 
   for (const [id, art] of Object.entries(VEHICLE_ART)) {
     const key = vehicleKey(id);

@@ -32,6 +32,9 @@ const RAIN_DROPS: Record<Weather, number> = { despejado: 0, nublado: 0, lluvia: 
 const RAIN_SPEED = 260;
 const RAIN_SLANT = 0.28;
 
+/** Lo único que CullTiles lee de la cámara: el rectángulo del mundo que se ve. */
+const SCREEN_VIEW = { worldView: new Phaser.Geom.Rectangle(0, 0, BASE_WIDTH, BASE_HEIGHT) };
+
 const DEPTH_MAP = 0;
 const DEPTH_VEHICLES = 1;
 const DEPTH_TINT = 1.4;
@@ -196,8 +199,11 @@ export class TitleBackdrop {
     this.shownMs = 0;
     const map = GameMap.get(def.map);
     const layer = map.createLayer(this.scene).setDepth(DEPTH_MAP);
-    // Con la cámara fija (origen 0,0 + zoom) Phaser calcula mal qué tiles están a la vista.
-    layer.skipCull = true;
+    // Con la cámara fija (origen 0,0 + zoom) Phaser calcula mal qué tiles están a la vista. En vez de
+    // apagar el culling (dibujaría el mapa entero en cada frame: hasta ~10.000 tiles), se le da a la capa
+    // la vista real del título: la pantalla lógica, (0,0)-(BASE_WIDTH,BASE_HEIGHT).
+    layer.cullCallback = (l: Phaser.Tilemaps.LayerData, _cam: unknown, out: Phaser.Tilemaps.Tile[], order: number) =>
+      Phaser.Tilemaps.Components.CullTiles(l, SCREEN_VIEW as unknown as Phaser.Cameras.Scene2D.Camera, out, order);
     this.layer = layer;
 
     const maxX = Math.max(0, map.width * TILE - BASE_WIDTH);
