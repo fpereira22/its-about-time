@@ -46,7 +46,7 @@ function storagePart(name: string, keys: string[]): Part {
 const PARTS: Part[] = [
   storagePart('partida', [STORAGE_KEYS.save]),
   storagePart('espacios', [STORAGE_KEYS.slots]),
-  storagePart('progreso', [STORAGE_KEYS.records, STORAGE_KEYS.konami, STORAGE_KEYS.snakeBest]),
+  storagePart('progreso', [STORAGE_KEYS.records, STORAGE_KEYS.konami, STORAGE_KEYS.snakeBest, STORAGE_KEYS.chemistry, STORAGE_KEYS.chatlog, STORAGE_KEYS.gallery]),
   storagePart('stats', [STORAGE_KEYS.skills]),
   storagePart('ajustes', [STORAGE_KEYS.settings]),
   {

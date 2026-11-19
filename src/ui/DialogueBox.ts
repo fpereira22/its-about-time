@@ -10,6 +10,9 @@ const BOX = { x: 8, y: 124, w: 304, h: 50 };
 const PAD_X = 11;
 const PAD_Y = 7;
 const LINES_PER_PAGE = 3;
+/** Texto grande (Ajustes → Accesibilidad): letra más alta y una línea menos por página. */
+const BIG_FONT = '13px';
+const BIG_LINES_PER_PAGE = 2;
 const LINE_SPACING = 2;
 const CHOICE_ROW = 13;
 
@@ -53,6 +56,7 @@ export class DialogueBox implements DialoguePresenter {
     this.measurer = makeText(scene, 0, 0, '', {
       wordWrap: { width: BOX.w - PAD_X * 2, useAdvancedWrap: true },
     }).setVisible(false);
+    this.applyTextSize();
 
     this.nameBg = scene.add.graphics();
     this.nameText = makeText(scene, 0, 0, '', {
@@ -175,13 +179,23 @@ export class DialogueBox implements DialoguePresenter {
     this.arrow.setVisible(false);
   }
 
+  /** Letra del cuadro según Ajustes → Texto grande (se revisa en cada diálogo). */
+  private applyTextSize(): void {
+    const big = Settings.get('bigText');
+    const size = big ? BIG_FONT : '10px';
+    this.body.setFontSize(size);
+    this.measurer.setFontSize(size);
+  }
+
   /** Corta el texto en páginas de LINES_PER_PAGE líneas según el ancho real de la fuente. */
   private paginate(text: string): string[] {
+    this.applyTextSize();
     if (text === '') return [''];
     const lines = this.measurer.getWrappedText(text);
     const pages: string[] = [];
-    for (let i = 0; i < lines.length; i += LINES_PER_PAGE) {
-      pages.push(lines.slice(i, i + LINES_PER_PAGE).join('\n'));
+    const perPage = Settings.get('bigText') ? BIG_LINES_PER_PAGE : LINES_PER_PAGE;
+    for (let i = 0; i < lines.length; i += perPage) {
+      pages.push(lines.slice(i, i + perPage).join('\n'));
     }
     return pages;
   }

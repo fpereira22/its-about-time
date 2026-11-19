@@ -8,6 +8,12 @@ export const STORAGE_KEYS = {
   records: 'santiago-laberinto:records',
   skills: 'santiago-laberinto:skills',
   settings: 'santiago-laberinto:settings',
+  /** Nivel de química con Sira y Laura (ver Chemistry): sigue entre partidas. */
+  chemistry: 'santiago-laberinto:chemistry',
+  /** Mensajes del celular de misiones anteriores (ver ChatLog): sigue entre partidas. */
+  chatlog: 'santiago-laberinto:chatlog',
+  /** Viñetas vistas y minijuegos jugados para la Galería (ver Gallery): sigue entre partidas. */
+  gallery: 'santiago-laberinto:gallery',
   konami: 'santiago-laberinto:konami',
   snakeBest: 'santiago-laberinto:culebrita',
   rankingPlayer: 'santiago-laberinto:ranking-player',

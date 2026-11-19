@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { playSfx } from '../audio/sfx';
+import { Chemistry, type Person } from '../systems/Chemistry';
 import { EventSystem } from '../systems/EventSystem';
 import { StoryState } from '../systems/StoryState';
 import { makeText } from './theme';
@@ -22,6 +23,10 @@ export const QUIMICA_MAX = 14;
 interface MeterDef {
   prefix: string;
   visible: string;
+  /** Con quién es: al llenarse sube su nivel de química (ver systems/Chemistry.ts). */
+  who: Person;
+  /** Puntos con los que "se cubren todos los corazones" en esta misión (por defecto QUIMICA_MAX). */
+  fullAt?: number;
   /** Texto del medidor (por defecto «Química»). */
   label?: string;
   /** Color del borde y de los corazones llenos. */
@@ -30,13 +35,14 @@ interface MeterDef {
 
 /** Prefijo de las flags de química y flag que muestra el medidor, por misión (en orden de arriba abajo). */
 const BY_MISSION: Record<string, MeterDef[]> = {
-  mission06: [{ prefix: QUIMICA_PREFIX, visible: 'm6_quimica_visible' }],
-  mission07: [{ prefix: 'm7_q_', visible: 'm7_quimica_visible' }],
-  mission08: [{ prefix: 'm8_q_', visible: 'm8_quimica_visible' }],
-  mission09: [{ prefix: 'm9_q_', visible: 'm9_quimica_visible' }],
+  mission06: [{ prefix: QUIMICA_PREFIX, visible: 'm6_quimica_visible', who: 'sira' }],
+  mission07: [{ prefix: 'm7_q_', visible: 'm7_quimica_visible', who: 'sira' }],
+  // En las misiones 8 y 9 hay menos jugadas que suman (13 y 17 en total, y algunas se excluyen): el tope baja.
+  mission08: [{ prefix: 'm8_q_', visible: 'm8_quimica_visible', who: 'laura', fullAt: 10 }],
+  mission09: [{ prefix: 'm9_q_', visible: 'm9_quimica_visible', who: 'laura', fullAt: 12 }],
   mission10: [
-    { prefix: 'm11_ql_', visible: 'm11_quimica_laura', label: 'Laura', color: 0xe8607a },
-    { prefix: 'm11_qs_', visible: 'm11_quimica_sira', label: 'Sira', color: 0x58b8c8 },
+    { prefix: 'm11_ql_', visible: 'm11_quimica_laura', who: 'laura', label: 'Laura', color: 0xe8607a },
+    { prefix: 'm11_qs_', visible: 'm11_quimica_sira', who: 'sira', label: 'Sira', color: 0x58b8c8 },
   ],
 };
 const HEARTS = QUIMICA_MAX / 2;
@@ -60,6 +66,8 @@ class MeterBar {
   private value = -1;
   private pulse = 0;
   private def: MeterDef | null = null;
+  /** "Nv 2": el nivel de química, a la derecha de los corazones (solo desde el nivel 2). */
+  private readonly badge: Phaser.GameObjects.Text;
 
   constructor(
     private readonly scene: Phaser.Scene,
@@ -67,6 +75,7 @@ class MeterBar {
   ) {
     this.g = scene.add.graphics().setDepth(DEPTH);
     this.label = makeText(scene, X + 4, y + 2, 'Química', { fontSize: '7px', color: '#ffd6e2' }).setDepth(DEPTH + 1);
+    this.badge = makeText(scene, X + 40 + HEARTS * 8 + 3, y + 2, '', { fontSize: '7px', fontStyle: '600', color: '#ffe38a', stroke: '#2a1824', strokeThickness: 2 }).setDepth(DEPTH + 1);
   }
 
   refresh(def: MeterDef | undefined, first: boolean): void {
@@ -78,7 +87,12 @@ class MeterBar {
     const visible = def !== undefined && StoryState.hasFlag(def.visible);
     this.g.setVisible(visible);
     this.label.setVisible(visible);
+    this.badge.setVisible(false);
     if (!visible || !def) return;
+    // Llenar los corazones sube el nivel de química con esa persona (una vez por misión).
+    if (quimica(def.prefix) >= (def.fullAt ?? QUIMICA_MAX)) Chemistry.reachFull(def.who, StoryState.missionId, !first);
+    const level = Chemistry.level(def.who);
+    this.badge.setText(`Nv ${level}`).setVisible(level > 1);
     const v = Math.min(QUIMICA_MAX, quimica(def.prefix));
     if (v === this.value) return;
     if (!first && this.value >= 0 && v > this.value) {
@@ -142,6 +156,7 @@ export class QuimicaMeter {
   constructor(scene: Phaser.Scene) {
     const max = Math.max(...Object.values(BY_MISSION).map((d) => d.length));
     this.bars = Array.from({ length: max }, (_, i) => new MeterBar(scene, Y + i * ROW));
+    Chemistry.syncFlags();
     this.refresh(true);
     EventSystem.onScene(scene, 'state-changed', () => this.refresh(false));
   }

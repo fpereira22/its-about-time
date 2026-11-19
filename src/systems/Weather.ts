@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { playSfx, setAmbient } from '../audio/sfx';
 import { BASE_HEIGHT, BASE_WIDTH, TILE } from '../config/display';
+import { rainScale, reduceEffects } from './Accessibility';
 import { EventSystem } from './EventSystem';
 import type { GameMap } from './GameMap';
 import { clockMinutes, hasStoryClock } from './Mission';
@@ -225,7 +226,7 @@ export class WeatherView {
     this.nextLightning = this.weather === 'tormenta' ? Phaser.Math.Between(1500, 4000) : 0;
     this.tintColor = -1;
     if (rain === 'none') return;
-    if (this.outdoor) this.createRain(RAIN_DROPS[this.weather]);
+    if (this.outdoor) this.createRain(Math.round(RAIN_DROPS[this.weather] * rainScale()));
     else this.createWindowDrops(this.weather === 'tormenta' ? 3 : 2);
   }
 
@@ -289,6 +290,11 @@ export class WeatherView {
     this.nextLightning -= delta;
     if (this.nextLightning > 0) return;
     this.nextLightning = Phaser.Math.Between(...LIGHTNING_MS);
+    // Con "Reducir efectos" queda el trueno, sin el destello de pantalla.
+    if (reduceEffects()) {
+      this.scene.time.delayedCall(Phaser.Math.Between(250, 900), () => playSfx('trueno'));
+      return;
+    }
     const view = this.scene.cameras.main.worldView;
     this.flash?.destroy();
     const flash = this.scene.add

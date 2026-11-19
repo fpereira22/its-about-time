@@ -9,6 +9,7 @@ import { canFullscreen } from '../systems/Fullscreen';
 import { TouchControls } from '../systems/TouchControls';
 import { EventSystem } from '../systems/EventSystem';
 import { missionSummary } from '../systems/Mission';
+import { isSandbox, openTravel } from '../systems/Sandbox';
 import { SaveSlots, SLOT_COUNT } from '../systems/SaveSlots';
 import { StoryState } from '../systems/StoryState';
 import { InventoryScreen } from './InventoryScreen';
@@ -19,6 +20,7 @@ type View = 'main' | 'mission' | 'confirm' | 'slots' | 'settings';
 
 const MAIN_OPTIONS = ['Misión actual', 'Inventario', 'Ropa', 'Guardar', 'Cargar', 'Ajustes', 'Volver', 'Salir'];
 const OPT_ADMIN = 'Ir a etapa';
+const OPT_TRAVEL = 'Viajar';
 const OPT_SAVE = MAIN_OPTIONS.indexOf('Guardar');
 const OPT_LOAD = MAIN_OPTIONS.indexOf('Cargar');
 const OPT_QUIT = MAIN_OPTIONS.indexOf('Salir');
@@ -26,7 +28,9 @@ const OPT_SETTINGS = MAIN_OPTIONS.indexOf('Ajustes');
 
 /** El modo admin se puede activar con el juego abierto: por eso no es una constante. */
 function mainOptions(): string[] {
-  return Admin.active ? [...MAIN_OPTIONS, OPT_ADMIN] : MAIN_OPTIONS;
+  // En el modo libre (sandbox) no hay misión que mirar: esa opción pasa a ser "Viajar" (mismo lugar, así los índices no cambian).
+  const base = isSandbox() ? MAIN_OPTIONS.map((o) => (o === 'Misión actual' ? OPT_TRAVEL : o)) : MAIN_OPTIONS;
+  return Admin.active ? [...base, OPT_ADMIN] : base;
 }
 /** Alto de cada espacio en la lista de guardar/cargar. */
 const SLOT_ROW = 38;
@@ -189,6 +193,12 @@ export class PauseMenu {
         return this.close();
       case OPT_ADMIN:
         return Admin.toggleWarp(this.scene.game);
+      case OPT_TRAVEL:
+        // Cierra la pausa (el mapa vuelve a correr) y abre el menú de viaje como una conversación.
+        playSfx('select');
+        this.close();
+        void openTravel();
+        return;
       case 'Salir':
         return this.ask(
           '¿Volver al título? Tu partida queda guardada.',

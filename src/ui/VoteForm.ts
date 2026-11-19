@@ -109,14 +109,14 @@ const CSS = `
 const CONFETTI = ['#e0a020', '#2f6fd0', '#d8483a', '#3a9a4a', '#f08a2c', '#8a5cc8'];
 
 /** Cambia el botón por los cuadritos que saltan, apaga los campos y muestra la barra. */
-function setBusy(form: HTMLElement, button: HTMLButtonElement, busy: boolean): void {
+export function setBusy(form: HTMLElement, button: HTMLButtonElement, busy: boolean): void {
   form.classList.toggle('busy', busy);
   button.classList.toggle('loading', busy);
   button.disabled = busy;
 }
 
 /** Hace temblar la tarjeta (error). */
-function shake(el: HTMLElement): void {
+export function shake(el: HTMLElement): void {
   el.classList.remove('shake');
   void el.offsetWidth; // reinicia la animación
   el.classList.add('shake');
@@ -126,7 +126,7 @@ function shake(el: HTMLElement): void {
  * Tapa la tarjeta con la celebración: `icons` aparecen de a uno (estrellas), el título letra por
  * letra, un anillo se expande y cae confeti de píxeles.
  */
-function celebrate(card: HTMLElement, icons: string[], title: string, sub: string): void {
+export function celebrate(card: HTMLElement, icons: string[], title: string, sub: string): void {
   const done = document.createElement('div');
   done.className = 'done';
   const ring = document.createElement('div');
@@ -167,11 +167,11 @@ function celebrate(card: HTMLElement, icons: string[], title: string, sub: strin
 }
 
 /** Lo que dura la celebración antes de cerrar sola. */
-const CELEBRATE_MS = 2100;
+export const CELEBRATE_MS = 2100;
 /** Lo mínimo que se ve la carga. */
-const MIN_LOADING_MS = 650;
+export const MIN_LOADING_MS = 650;
 
-const wait = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
+export const wait = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
 
 let styled = false;
 
@@ -200,7 +200,7 @@ interface Overlay {
  * la fase de captura, antes que cualquier otro listener (escribir igual funciona, no se cancela la
  * acción por defecto). Esc o tocar fuera llaman a `onDismiss`.
  */
-function mountOverlay(html: string, onDismiss: () => void): Overlay {
+export function mountOverlay(html: string, onDismiss: () => void): Overlay {
   if (!styled) {
     const style = document.createElement('style');
     style.textContent = CSS;
@@ -247,10 +247,10 @@ function mountOverlay(html: string, onDismiss: () => void): Overlay {
   return overlay;
 }
 
-const escapeHtml = (s: string): string =>
+export const escapeHtml = (s: string): string =>
   s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] ?? c);
 
-const OPTIONAL = '<span style="text-transform:none;font-family:inherit;color:#7a7488">(opcional)</span>';
+export const OPTIONAL = '<span style="text-transform:none;font-family:inherit;color:#7a7488">(opcional)</span>';
 
 export interface VoteFormOptions {
   title?: string;

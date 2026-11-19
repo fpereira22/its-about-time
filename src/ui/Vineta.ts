@@ -18,7 +18,9 @@ import type { Cues } from '../art/vinetas_sonido';
 import { playSfx } from '../audio/sfx';
 import { BASE_HEIGHT, BASE_WIDTH } from '../config/display';
 import { EventSystem } from '../systems/EventSystem';
+import { Gallery } from '../systems/Gallery';
 import { playerLook } from '../systems/PlayerLook';
+import { StoryState } from '../systems/StoryState';
 import { drawPanel, makeText } from './theme';
 
 /** Encima del HUD (40) y debajo de la caja de diálogo (100). */
@@ -191,6 +193,8 @@ export class Vineta {
     if (this.root && id === this.currentId && (LIVE_VINETAS.has(id) || id.startsWith('m11_'))) return;
     this.destroy();
     this.currentId = id;
+    // Las que salen en la historia quedan en la Galería (las vistas previas de otra escena no).
+    if (!this.opts.standalone) Gallery.seeVineta(id, StoryState.missionId);
     const build = VINETAS[id];
     if (!build) {
       console.error(`Viñeta "${id}" no existe (hay: ${vinetaIds().join(', ')})`);

@@ -64,3 +64,31 @@ describe('Settings', () => {
     expect(Settings.textSpeedName()).toBe('Instantánea');
   });
 });
+
+describe('accesibilidad y teclas', () => {
+  it('por defecto: texto normal, efectos completos, tutoriales y teclas de fábrica', () => {
+    const d = parseSettings(null);
+    expect(d).toMatchObject({ bigText: false, reduceEffects: false, tutorials: true, keys: {} });
+  });
+
+  it('descarta teclas inválidas, reservadas, repetidas o iguales a la de fábrica', () => {
+    const d = parseSettings({ keys: { up: 'KeyI', down: 'Escape', left: 'KeyI', right: 'KeyD', interact: 'F5', phone: 'KeyP', bogus: 'KeyZ' } });
+    expect(d.keys).toEqual({ up: 'KeyI' });
+  });
+
+  it('asignar una tecla usada por otra acción las intercambia', () => {
+    Settings.reload();
+    Settings.resetKeys();
+    expect(Settings.setKey('interact', 'KeyQ')).toBe(true);
+    expect(Settings.keyFor('interact')).toBe('KeyQ');
+    expect(Settings.keyFor('phone')).toBe('KeyE');
+    Settings.resetKeys();
+    expect(Settings.keyFor('phone')).toBe('KeyQ');
+  });
+
+  it('no deja asignar teclas reservadas (Esc, M, P, Enter...)', () => {
+    Settings.resetKeys();
+    for (const code of ['Escape', 'KeyM', 'KeyP', 'Enter', 'Space', 'F2', 'ArrowUp']) expect(Settings.setKey('up', code)).toBe(false);
+    expect(Settings.keyFor('up')).toBe('KeyW');
+  });
+});

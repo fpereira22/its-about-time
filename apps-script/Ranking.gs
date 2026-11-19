@@ -19,6 +19,7 @@ var COMMENTS = 'comments';
 var DATA = 'player_data';
 var SESSIONS = 'metadata_local';
 var SUMMARY = 'resumen';
+var BUGS = 'bug_reports';
 /**
  * Si quieres los datos privados en OTRA planilla (más seguro: esa nunca se publica), pega acá su id
  * (lo que va entre /d/ y /edit en la URL). Vacío = esta misma planilla.
@@ -30,6 +31,7 @@ var COMMENT_HEAD = ['fecha', 'id', 'nombre', 'estrellas', 'comentario', 'puntaje
 /** Partes del respaldo (una columna cada una, comprimidas). Mismos nombres que en src/systems/CloudSave.ts. */
 var PARTS = ['partida', 'espacios', 'progreso', 'stats', 'ajustes', 'jugador'];
 var DATA_HEAD = ['id', 'nombre', 'creado', 'actualizado', 'rev', 'dispositivo', 'mision', 'misiones', 'puntaje', 'minutos_juego', 'bytes', 'hashes'].concat(PARTS);
+var BUG_HEAD = ['fecha', 'jugador', 'nombre', 'texto', 'version', 'equipo', 'pantalla', 'mision', 'lugar', 'minutos', 'errores', 'partida'];
 var SESSION_HEAD = [
   'sesion', 'jugador', 'inicio', 'ultimo', 'minutos', 'jugando',
   'fecha_local', 'hora_local', 'dia', 'visita', 'nuevo',
@@ -46,7 +48,7 @@ var MAX_MISSIONS = 100;
 /** Una celda de Sheets admite 50.000 caracteres. */
 var MAX_PART = 48000;
 /** Segundos mínimos entre envíos del mismo jugador (o de la misma sesión). */
-var COOLDOWN = { score: 5, vote: 30, save: 10, load: 2, session: 10 };
+var COOLDOWN = { score: 5, vote: 30, save: 10, load: 2, session: 10, bug: 60 };
 
 function doGet() {
   return json({ ok: true, service: 'its-about-time-ranking', version: 2 });
@@ -71,6 +73,8 @@ function doPost(e) {
       return json(saveSession(id, body));
     case 'vote':
       return json(scoreOrVote(id, 'vote', body));
+    case 'bug':
+      return json(saveBug(id, body));
     default:
       return json(scoreOrVote(id, 'score', body));
   }
@@ -218,6 +222,29 @@ function loadData(id, body) {
     if (PARTS.indexOf(p) >= 0) parts[p] = String(prev[col[p]] || '');
   }
   return { ok: true, found: true, rev: Number(prev[col.rev]) || 0, hashes: parseJson(prev[col.hashes]), parts: parts };
+}
+
+// ---------------------------------------------------------------- reportes de problemas (bug_reports)
+
+/** Guarda un reporte del botón "Reportar un problema" (hoja privada). La partida adjunta va comprimida. */
+function saveBug(id, body) {
+  if (!cooled('bug', id)) return { ok: false, error: 'too_fast' };
+  var text = String(body.text || '').replace(/\s+/g, ' ').trim().slice(0, 600);
+  if (text.length < 5) return { ok: false, error: 'bad_request' };
+  var ctx = body.context && typeof body.context === 'object' ? body.context : {};
+  var save = typeof body.save === 'string' && body.save.length <= MAX_PART && /^(gz1:[A-Za-z0-9+\/=]*|raw:[\s\S]*)$/.test(body.save) ? body.save : '';
+  return locked(function () {
+    var sheet = sheetWithHead(privateBook(), BUGS, BUG_HEAD);
+    var players = privateBook().getSheetByName(DATA);
+    var row = players ? findRow(players, id) : -1;
+    var name = row > 0 ? String(players.getRange(row, 2).getValue()) : '';
+    writeRow(sheet, sheet.getLastRow() + 1, [
+      new Date().toISOString(), id, name, safe(text),
+      cleanText(ctx.version, 20), cleanText(ctx.equipo, 60), cleanText(ctx.pantalla, 12), cleanText(ctx.mision, 12),
+      cleanText(ctx.lugar, 60), cleanText(ctx.minutos, 8), safe(String(ctx.errores || '').slice(0, 600)), save,
+    ]);
+    return { ok: true };
+  });
 }
 
 // ---------------------------------------------------------------- datos de uso (metadata_local)

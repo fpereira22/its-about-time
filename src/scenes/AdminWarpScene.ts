@@ -5,6 +5,7 @@ import { TRACKS } from '../audio/music';
 import { SFX } from '../audio/sfxDefs';
 import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD } from '../config/display';
 import { Admin } from '../systems/Admin';
+import { SANDBOX_PLACES } from '../data/sandboxCast';
 import { ADMIN_STAGES, type AdminStage } from '../systems/AdminStages';
 import { BusRideManager } from '../systems/BusRideManager';
 import { Controls } from '../systems/Controls';
@@ -14,6 +15,7 @@ import { GameMap } from '../systems/GameMap';
 import { currentMission, formatDayClock, missionFullLabel, MISSIONS, parseClock } from '../systems/Mission';
 import { News } from '../systems/News';
 import { Phone } from '../systems/Phone';
+import { beginSandbox, sandboxPerson } from '../systems/Sandbox';
 import { currentOutfit } from '../systems/PlayerLook';
 import { SKILLS, type LevelUpInfo } from '../systems/SkillStats';
 import { StoryState } from '../systems/StoryState';
@@ -36,8 +38,9 @@ const pageAnims = (): number => MISSIONS.length + 2;
 const pageVinetas = (): number => MISSIONS.length + 3;
 const pageSounds = (): number => MISSIONS.length + 4;
 const pageCamera = (): number => MISSIONS.length + 5;
-/** Páginas en total: misiones, mapas, herramientas, animaciones, viñetas, sonidos y cámara. */
-const pageCount = (): number => MISSIONS.length + 6;
+const pageSandbox = (): number => MISSIONS.length + 6;
+/** Páginas en total: misiones, mapas, herramientas, animaciones, viñetas, sonidos, cámara y sandbox. */
+const pageCount = (): number => MISSIONS.length + 7;
 /** Nivel con que se prueban las pantallas de subida de nivel (2..10). */
 let previewLevel = 3;
 const SCENE_FOR_KIND = { overworld: 'Overworld', interior: 'Interior' } as const;
@@ -161,6 +164,7 @@ export class AdminWarpScene extends BaseScene {
     if (this.page === pageVinetas()) return this.vinetaRows();
     if (this.page === pageSounds()) return this.soundRows();
     if (this.page === pageCamera()) return this.cameraRows();
+    if (this.page === pageSandbox()) return this.sandboxRows();
     const m = MISSIONS[this.page];
     return m ? this.stageRows(m) : mapRows((id) => this.openMap(id));
   }
@@ -195,6 +199,21 @@ export class AdminWarpScene extends BaseScene {
         },
       },
     ];
+  }
+
+  /** Modo libre: una partida sin historia en el sitio elegido, con el reparto para charlar y regalarles cosas. */
+  private sandboxRows(): Row[] {
+    return SANDBOX_PLACES.map(
+      (place): Row => ({
+        label: place.label,
+        detail: `E: empieza el sandbox aquí · con ${place.cast.map((id) => sandboxPerson(id)?.name ?? id).join(', ')} · no toca tu partida`,
+        go: () =>
+          this.leave(() => {
+            beginSandbox(place);
+            this.startMap(place.map, place.spawn);
+          }),
+      }),
+    );
   }
 
   /** Vista previa de la pantalla de subida de nivel de cada minijuego. */
@@ -406,7 +425,7 @@ export class AdminWarpScene extends BaseScene {
   }
 }
 
-const PAGE_TITLES = ['Herramientas', 'Animaciones', 'Viñetas', 'Sonidos y música', 'Cámara (experimental)'];
+const PAGE_TITLES = ['Herramientas', 'Animaciones', 'Viñetas', 'Sonidos y música', 'Cámara (experimental)', 'Sandbox (modo libre)'];
 const DEBUG_LABELS = ['APAGADA', 'PANEL', 'PANEL + CUADRÍCULA'];
 
 /** Datos inventados para ver la pantalla de nivel `level` de un minijuego (no toca las stats guardadas). */

@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { playSfx } from '../audio/sfx';
 import { objKey } from '../art/SpriteRegistry';
 import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD } from '../config/display';
+import { Chemistry, MAX_LEVEL, PEOPLE, PERSON_NAME } from '../systems/Chemistry';
 import { Controls } from '../systems/Controls';
 import { missionFullLabel, MISSIONS } from '../systems/Mission';
 import { Records, type ProgressEntry } from '../systems/Records';
@@ -39,7 +40,7 @@ export class ProgressScene extends BaseScene {
 
     const { found, total } = Records.totals();
     const pct = total > 0 ? Math.round((found / total) * 100) : 0;
-    this.addText(BASE_WIDTH / 2, BASE_HEIGHT - 4, `TOTAL ${found}/${total} (${pct}%)  ·  A/D: MISIÓN  ·  ESC: VOLVER`, {
+    this.addText(BASE_WIDTH / 2, BASE_HEIGHT - 4, `TOTAL ${found}/${total} (${pct}%)  ·  A/D: MISIÓN  ·  E: GALERÍA  ·  ESC: VOLVER`, {
       fontFamily: FONT_HUD,
       fontSize: '8px',
       color: '#8c98b8',
@@ -52,11 +53,13 @@ export class ProgressScene extends BaseScene {
 
   override update(): void {
     if (this.leaving) return;
-    if (Controls.consume('menu') || Controls.consume('interact')) {
-      playSfx('cancel');
+    // E abre la Galería (diario, viñetas y minijuegos); Esc vuelve al título.
+    const gallery = Controls.consume('interact');
+    if (gallery || Controls.consume('menu')) {
+      playSfx(gallery ? 'select' : 'cancel');
       this.leaving = true;
       this.cameras.main.fadeOut(250, 0, 0, 0);
-      this.cameras.main.once('camerafadeoutcomplete', () => this.scene.start('Title'));
+      this.cameras.main.once('camerafadeoutcomplete', () => this.scene.start(gallery ? 'Gallery' : 'Title'));
       return;
     }
     const step = Controls.consume('left') ? -1 : Controls.consume('right') ? 1 : 0;
@@ -98,6 +101,10 @@ export class ProgressScene extends BaseScene {
       color: p.completed ? THEME.accentCss : THEME.inkMuted,
     }).setOrigin(1, 1);
 
+    // Química con Sira y Laura: sigue entre misiones (ver Chemistry).
+    const chem = PEOPLE.map((who) => `${PERSON_NAME[who]} Nv ${Chemistry.level(who)}${Chemistry.level(who) >= MAX_LEVEL ? ' ★' : ''}`).join('  ·  ');
+    text(LEFT, PANEL.y + PANEL.h - 6, `♥ ${chem}`, { fontSize: '9px', fontStyle: '600', color: '#d8506e' }).setOrigin(0, 1);
+
     const line = this.add.graphics();
     line.fillStyle(THEME.panelInner, 1).fillRect(LEFT, PANEL.y + 20, PANEL.w - 20, 1);
     objs.push(line);
@@ -114,7 +121,7 @@ export class ProgressScene extends BaseScene {
     y = this.list(text, LEFT, this.header(text, LEFT, y, 'Finales', p.endings), p.endings, true) + SECTION_GAP;
     const bonusY = this.header(text, LEFT, y, 'Logros', p.bonuses);
     // Los logros que no caben a la izquierda siguen en la columna derecha, debajo de los secretos.
-    const leftRows = Math.max(1, Math.floor((PANEL.y + PANEL.h - 4 - bonusY) / ROW));
+    const leftRows = Math.max(1, Math.floor((PANEL.y + PANEL.h - 16 - bonusY) / ROW));
     this.list(text, LEFT, bonusY, p.bonuses.slice(0, leftRows), false);
 
     // Columna derecha: secretos (y el resto de los logros, si hay).

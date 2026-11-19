@@ -1,7 +1,9 @@
 import Phaser from 'phaser';
 import { playSfx } from '../audio/sfx';
 import { BASE_HEIGHT, BASE_WIDTH, FONT_HUD } from '../config/display';
+import { keyLabel } from '../systems/Controls';
 import { EventSystem } from '../systems/EventSystem';
+import { Settings } from '../systems/Settings';
 import { StoryState } from '../systems/StoryState';
 import { TouchControls } from '../systems/TouchControls';
 import { drawPanel, makeText, THEME } from './theme';
@@ -72,6 +74,16 @@ const STEPS: Step[] = [
   },
 ];
 
+/** Teclas del paso según Ajustes (si el jugador las cambió, la guía muestra las suyas). */
+function keysFor(step: number, fallback: string): string {
+  const k = (a: Parameters<typeof Settings.keyFor>[0]): string => keyLabel(Settings.keyFor(a));
+  if (step === 0) return [k('up'), k('left'), k('down'), k('right')].join(' ');
+  if (step === 1) return k('interact');
+  if (step === 2) return k('inventory');
+  if (step === 3) return k('phone');
+  return fallback;
+}
+
 const FLAG_ON = 'tutorial_pendiente';
 const FLAG_DONE = 'tutorial_hecho';
 const stepFlag = (i: number): string => `tut_${i}`;
@@ -95,7 +107,13 @@ export class Tutorial {
 
   /** ¿Sigue el tutorial en curso? */
   get active(): boolean {
-    return StoryState.hasFlag(FLAG_ON) && !StoryState.hasFlag(FLAG_DONE);
+    // Ajustes → Accesibilidad → Tutoriales: apagado, la guía no sale (y si se vuelve a prender, retoma donde iba).
+    return Settings.get('tutorials') && StoryState.hasFlag(FLAG_ON) && !StoryState.hasFlag(FLAG_DONE);
+  }
+
+  /** Esconde la guía si está a la vista (se apagó en Ajustes). */
+  dismiss(): void {
+    this.hide();
   }
 
   /** Índice del paso actual (el primero sin flag), o STEPS.length si ya hizo todos. */
@@ -153,7 +171,7 @@ export class Tutorial {
     const touch = TouchControls.enabled;
     const scene = this.scene;
 
-    const keys = makeText(scene, 0, 0, touch ? s.touchKeys : s.keys, {
+    const keys = makeText(scene, 0, 0, touch ? s.touchKeys : keysFor(step, s.keys), {
       fontFamily: FONT_HUD,
       fontSize: '8px',
       color: THEME.ink,

@@ -11,6 +11,7 @@ import {
   topPlayers,
 } from '../systems/Ranking';
 import { drawPanel, drawTriangle, fitText, makeText, MEDAL_CSS, THEME } from '../ui/theme';
+import { openShareForm } from '../ui/ShareForm';
 import { openVoteForm } from '../ui/VoteForm';
 import { BaseScene } from './BaseScene';
 
@@ -54,7 +55,7 @@ export class RankingScene extends BaseScene {
 
     const panel = this.add.graphics();
     drawPanel(panel, PANEL.x, PANEL.y, PANEL.w, PANEL.h, { radius: 8 });
-    const help = Ranking.canSubmit ? 'A/D: PÁGINA  ·  E: VOTAR  ·  ESC: VOLVER' : 'A/D: PÁGINA  ·  ESC: VOLVER';
+    const help = Ranking.canSubmit ? 'A/D: PÁGINA  ·  E: VOTAR  ·  V: COMPARTIR  ·  ESC: VOLVER' : 'A/D: PÁGINA  ·  V: COMPARTIR  ·  ESC: VOLVER';
     this.addText(BASE_WIDTH / 2, BASE_HEIGHT - 4, help, { fontFamily: FONT_HUD, fontSize: '8px', color: '#8c98b8' }).setOrigin(0.5, 1);
 
     // Lo guardado al tiro; la planilla actualizada cuando llegue.
@@ -85,6 +86,10 @@ export class RankingScene extends BaseScene {
       this.openVote();
       return;
     }
+    if (Controls.consume('toggleView')) {
+      this.openShare();
+      return;
+    }
     const step = Controls.consume('left') ? -1 : Controls.consume('right') ? 1 : 0;
     if (step !== 0) this.turnPage(step);
     const scroll = Controls.consume('up') ? -1 : Controls.consume('down') ? 1 : 0;
@@ -104,6 +109,13 @@ export class RankingScene extends BaseScene {
     this.page = (this.page + step + PAGES.length) % PAGES.length;
     this.scroll = 0;
     this.showPage();
+  }
+
+  private openShare(): void {
+    playSfx('select');
+    this.closeForm = openShareForm(() => {
+      this.closeForm = null;
+    });
   }
 
   private openVote(): void {

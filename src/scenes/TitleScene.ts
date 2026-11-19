@@ -11,6 +11,7 @@ import { TouchControls } from '../systems/TouchControls';
 import { clockMinutes, currentMission, missionFullLabel, missionLabel, MISSIONS, parseClock } from '../systems/Mission';
 import type { MissionDef } from '../types/mission';
 import { News } from '../systems/News';
+import { Chemistry } from '../systems/Chemistry';
 import { Ranking } from '../systems/Ranking';
 import { Records } from '../systems/Records';
 import { RIDES } from '../systems/RideController';
@@ -58,6 +59,7 @@ export function resetForMission(m: MissionDef): void {
     weather: m.weather,
   });
   Secrets.syncNewGame();
+  Chemistry.syncFlags();
   StoryState.setObjective(m.objective);
 }
 

@@ -7,7 +7,30 @@ const missionModules = import.meta.glob<MissionDef>('../data/missions/*.json', {
 /** Todas las misiones (src/data/missions/*.json), ordenadas por número. */
 export const MISSIONS: MissionDef[] = Object.values(missionModules).sort((a, b) => a.number - b.number);
 
-const byId = new Map(MISSIONS.map((m) => [m.id, m]));
+/**
+ * Modo libre (src/systems/Sandbox.ts): una misión de mentira, sin historia, para que `currentMission()` tenga algo
+ * que devolver. No está en MISSIONS (no aparece en el título ni en Progreso). Las condiciones `mission` de los
+ * mapas no la reconocen: el contenido sin misión se ve como siempre, y el de cada misión, no.
+ */
+export const SANDBOX_ID = 'sandbox';
+const SANDBOX: MissionDef = {
+  id: SANDBOX_ID,
+  number: 99,
+  title: 'Modo libre',
+  start: { map: 'centro_cali', spawn: 'atrio' },
+  objective: '',
+  // Con reloj de la historia (día y hora) en vez del cronómetro: los trámites del aeropuerto lo usan. Corre solo.
+  clock: 'sáb 12:00',
+  victoryEvent: '__sandbox__',
+  routes: [],
+  defaultRoute: '',
+  walkedSuffix: { if: {}, text: '' },
+  collectibles: [],
+  bonuses: [],
+  secrets: [],
+};
+
+const byId = new Map<string, MissionDef>([...MISSIONS.map((m): [string, MissionDef] => [m.id, m]), [SANDBOX_ID, SANDBOX]]);
 
 export function getMission(id: string): MissionDef {
   const m = byId.get(id);

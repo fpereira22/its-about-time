@@ -26,6 +26,15 @@ export const NEWS_MAX_ITEM_CHARS = 46;
 
 export const CHANGELOG: readonly NewsEntry[] = [
   {
+    id: '2026-11-19b',
+    date: '2026-11-19',
+    items: [
+      'Nueva Galería: diario, viñetas y minijuegos.',
+      'Comparte tu progreso y reporta fallos.',
+      'Accesibilidad, y la química sube de nivel.',
+    ],
+  },
+  {
     id: '2026-11-19',
     date: '2026-11-19',
     items: [

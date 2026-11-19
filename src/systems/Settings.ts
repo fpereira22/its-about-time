@@ -15,6 +15,29 @@ export const TEXT_SPEEDS: readonly TextSpeed[] = ['lenta', 'normal', 'rapida', '
 const CHARS_PER_SECOND: Record<TextSpeed, number> = { lenta: 30, normal: 55, rapida: 110, instantanea: Infinity };
 const TEXT_SPEED_NAME: Record<TextSpeed, string> = { lenta: 'Lenta', normal: 'Normal', rapida: 'Rápida', instantanea: 'Instantánea' };
 
+/** Acciones cuya tecla principal se puede cambiar (Ajustes → Accesibilidad → Teclas). */
+export const REBINDABLE = ['up', 'down', 'left', 'right', 'interact', 'inventory', 'phone', 'toggleView', 'trick'] as const;
+export type RebindableAction = (typeof REBINDABLE)[number];
+/** Tecla (KeyboardEvent.code) de fábrica de cada acción: lo que vale mientras no se cambie. */
+export const DEFAULT_KEYS: Readonly<Record<RebindableAction, string>> = {
+  up: 'KeyW',
+  down: 'KeyS',
+  left: 'KeyA',
+  right: 'KeyD',
+  interact: 'KeyE',
+  inventory: 'Tab',
+  phone: 'KeyQ',
+  toggleView: 'KeyV',
+  trick: 'KeyF',
+};
+/** Teclas que no se pueden asignar: ya tienen otro uso fijo (menú, silencio, pantalla completa, flechas, Enter y Espacio). */
+const RESERVED_KEY = /^(Escape|F\d{1,2}|KeyM|KeyP|Arrow(Up|Down|Left|Right)|Enter|NumpadEnter|Space|Backspace|Meta.*|OS.*|Context.*)$/;
+const KEY_CODE = /^[A-Za-z][A-Za-z0-9]{1,15}$/;
+
+export function isAssignableKey(code: string): boolean {
+  return KEY_CODE.test(code) && !RESERVED_KEY.test(code);
+}
+
 export interface SettingsData {
   /** Volumen de la música, 0 a VOLUME_STEPS. */
   music: number;
@@ -27,9 +50,17 @@ export interface SettingsData {
   titleReviews: boolean;
   /** Mandar datos de uso anónimos (país, ciudad, tiempo de juego): ver src/systems/UsageStats.ts. */
   usageStats: boolean;
+  /** Texto de los diálogos más grande (menos líneas por página). */
+  bigText: boolean;
+  /** Sin sacudidas de cámara ni destellos de relámpago, y menos lluvia. */
+  reduceEffects: boolean;
+  /** Tutoriales y "Cómo se juega" de los minijuegos (el Prólogo y cada minijuego la primera vez). */
+  tutorials: boolean;
+  /** Teclas cambiadas por el jugador; lo que falte usa DEFAULT_KEYS. */
+  keys: Partial<Record<RebindableAction, string>>;
 }
 
-export const DEFAULT_SETTINGS: Readonly<SettingsData> = { music: VOLUME_STEPS, sfx: VOLUME_STEPS, muted: false, textSpeed: 'normal', titleReviews: true, usageStats: true };
+export const DEFAULT_SETTINGS: Readonly<SettingsData> = { music: VOLUME_STEPS, sfx: VOLUME_STEPS, muted: false, textSpeed: 'normal', titleReviews: true, usageStats: true, bigText: false, reduceEffects: false, tutorials: true, keys: {} };
 
 /** Ajustes guardados → valores válidos (lo que falte o venga roto queda por defecto). */
 export function parseSettings(raw: unknown, legacyMuted = false): SettingsData {
@@ -41,7 +72,25 @@ export function parseSettings(raw: unknown, legacyMuted = false): SettingsData {
     textSpeed: TEXT_SPEEDS.includes(d.textSpeed as TextSpeed) ? (d.textSpeed as TextSpeed) : DEFAULT_SETTINGS.textSpeed,
     titleReviews: typeof d.titleReviews === 'boolean' ? d.titleReviews : DEFAULT_SETTINGS.titleReviews,
     usageStats: typeof d.usageStats === 'boolean' ? d.usageStats : DEFAULT_SETTINGS.usageStats,
+    bigText: typeof d.bigText === 'boolean' ? d.bigText : DEFAULT_SETTINGS.bigText,
+    reduceEffects: typeof d.reduceEffects === 'boolean' ? d.reduceEffects : DEFAULT_SETTINGS.reduceEffects,
+    tutorials: typeof d.tutorials === 'boolean' ? d.tutorials : DEFAULT_SETTINGS.tutorials,
+    keys: parseKeys(d.keys),
   };
+}
+
+/** Teclas guardadas → solo las válidas y sin repetir (dos acciones no comparten tecla). */
+function parseKeys(raw: unknown): Partial<Record<RebindableAction, string>> {
+  const out: Partial<Record<RebindableAction, string>> = {};
+  if (typeof raw !== 'object' || raw === null) return out;
+  const used = new Set<string>();
+  for (const action of REBINDABLE) {
+    const code = (raw as Record<string, unknown>)[action];
+    if (typeof code !== 'string' || !isAssignableKey(code) || code === DEFAULT_KEYS[action] || used.has(code)) continue;
+    used.add(code);
+    out[action] = code;
+  }
+  return out;
 }
 
 function volume(v: unknown, fallback: number): number {
@@ -62,7 +111,7 @@ class SettingsImpl {
 
   set<K extends keyof SettingsData>(key: K, value: SettingsData[K]): void {
     const next = parseSettings({ ...this.data, [key]: value });
-    if (next[key] === this.data[key]) return;
+    if (key === 'keys' ? JSON.stringify(next.keys) === JSON.stringify(this.data.keys) : next[key] === this.data[key]) return;
     this.data = next;
     this.save();
     EventSystem.emit('settings-changed');
@@ -75,6 +124,30 @@ class SettingsImpl {
 
   sfxGain(): number {
     return this.data.sfx / VOLUME_STEPS;
+  }
+
+  /** Tecla (code) que dispara `action` ahora mismo. */
+  keyFor(action: RebindableAction): string {
+    return this.data.keys[action] ?? DEFAULT_KEYS[action];
+  }
+
+  /**
+   * Asigna `code` a `action`. Si otra acción ya la usaba, se queda con la que tenía esta (intercambio).
+   * Devuelve false si la tecla no se puede usar.
+   */
+  setKey(action: RebindableAction, code: string): boolean {
+    if (!isAssignableKey(code)) return false;
+    const before = this.keyFor(action);
+    const keys: Partial<Record<RebindableAction, string>> = {};
+    for (const a of REBINDABLE) keys[a] = this.keyFor(a);
+    for (const other of REBINDABLE) if (other !== action && keys[other] === code) keys[other] = before;
+    keys[action] = code;
+    this.set('keys', keys);
+    return true;
+  }
+
+  resetKeys(): void {
+    this.set('keys', {});
   }
 
   charsPerSecond(): number {

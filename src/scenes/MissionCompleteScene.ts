@@ -12,6 +12,7 @@ import { BaseScene } from './BaseScene';
 import { MenuList } from '../ui/MenuList';
 import { Ranking } from '../systems/Ranking';
 import { autoPromptsAllowed, openEnjoyPrompt } from '../ui/VoteForm';
+import { openShareForm } from '../ui/ShareForm';
 
 const PANEL = { x: 24, y: 24, w: BASE_WIDTH - 48, h: 128 };
 const STAGGER_MS = 160;
@@ -119,7 +120,8 @@ export class MissionCompleteScene extends BaseScene {
         this,
         [
           ...(next ? [{ label: 'Siguiente misión', action: () => this.goNext(next) }] : []),
-          { label: 'Volver al título', action: () => this.go('Title') },
+          { label: 'Título', action: () => this.go('Title') },
+          { label: 'Compartir', action: () => this.openShare(s.title) },
           { label: 'Créditos', action: () => this.go('Credits') },
         ],
         { x: cx, y: PANEL.y + PANEL.h + 4, horizontal: true },
@@ -147,6 +149,15 @@ export class MissionCompleteScene extends BaseScene {
 
   override update(): void {
     if (!this.leaving && !this.closeForm) this.menu?.update();
+  }
+
+  /** Tarjeta para compartir con la misión recién completada. */
+  private openShare(mission: string): void {
+    if (this.leaving || this.closeForm) return;
+    playSfx('select');
+    this.closeForm = openShareForm(() => {
+      this.closeForm = null;
+    }, { mission });
   }
 
   private go(scene: string): void {

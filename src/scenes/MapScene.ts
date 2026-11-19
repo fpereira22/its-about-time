@@ -17,7 +17,10 @@ import { EventSystem } from '../systems/EventSystem';
 import { GameMap } from '../systems/GameMap';
 import { currentMission } from '../systems/Mission';
 import { levelUpInfo, SkillStats } from '../systems/SkillStats';
+import { minigameId } from '../data/gallery';
+import { Gallery } from '../systems/Gallery';
 import { Npc } from '../systems/Npc';
+import { airportRunActive, checkAirportRun, hidesStoryNpc, isSandbox, offerSkip, sandboxNpcs, talkTo, TALK_PREFIX } from '../systems/Sandbox';
 import { Records } from '../systems/Records';
 import { CloudSave } from '../systems/CloudSave';
 import { Ranking } from '../systems/Ranking';
@@ -233,7 +236,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     // Aparecer sobre un asiento (ej. la silla del comedor) es aparecer sentado.
     const spawnSeat = seatPoseAt(this.map, spawn.x, spawn.y);
     if (spawnSeat) this.player.sitAt(spawn.x, spawn.y, spawnSeat);
-    this.npcs = NPCS.filter((n) => n.map === mapId).map(
+    this.npcs = [...NPCS.filter((n) => n.map === mapId && !hidesStoryNpc(n)), ...sandboxNpcs(mapId)].map(
       (def) => new Npc(this, def, blocked, def.sprite ? seatPoseAt(this.map, def.x, def.y) : undefined),
     );
     this.spawnFauna(blocked);
@@ -328,6 +331,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
         this.cameras.main.fadeIn(FADE_MS, 0, 0, 0);
         // Los minijuegos que se repiten (fútbol, natación, salsa, pimpón) suben sus stats y se guardan.
         const gain = SkillStats.record(key, currentMission().id, result);
+        Gallery.markPlayed(minigameId(key, data), currentMission().id);
         done(result);
         if (gain && gain.ups.length > 0) {
           const leveled = gain.levelAfter > gain.levelBefore;
@@ -343,6 +347,11 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
 
   override update(_time: number, delta: number): void {
     this.updateDebugGrid();
+    // Modo libre: trámites del aeropuerto. F los salta (pregunta antes); al terminar la aduana se cierran solos.
+    if (isSandbox()) {
+      checkAirportRun();
+      if (airportRunActive() && Controls.consume('trick') && !Dialogue.active && !this.locked && !this.transitioning) void offerSkip();
+    }
     StoryState.tick(delta);
     this.weatherView?.update(delta);
     this.skyline?.update(delta);
@@ -720,6 +729,8 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
 
   /** Al aparecer: el diálogo de entrada (llamado del celular al empezar) y luego los `enter` del mapa. */
   private async runArrival(): Promise<void> {
+    // Modo libre: sin escenas de llegada de la historia, salvo en los trámites del aeropuerto (anuncios, bienvenida...).
+    if (isSandbox() && !airportRunActive()) return;
     if (this.sceneData.intro) {
       playSfx('phone');
       await Dialogue.run(this.sceneData.intro);
@@ -759,7 +770,9 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     if (npc) {
       npc.faceToward(this.player.facing);
       if (npc.def.sprite === 'quiltro') playSfx('dog');
-      void Dialogue.run(npc.def.dialogue);
+      // Modo libre: el reparto tiene su propia conversación (temas y regalos).
+      if (npc.def.dialogue.startsWith(TALK_PREFIX)) void talkTo(npc.def.dialogue.slice(TALK_PREFIX.length));
+      else void Dialogue.run(npc.def.dialogue);
       return;
     }
     if (this.crowd?.talkAt(t.x, t.y, this.player.facing)) return;

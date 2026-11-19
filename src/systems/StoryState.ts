@@ -1,5 +1,6 @@
 import itemsData from '../data/items.json';
 import type { ItemDef, Outfit } from '../types/story';
+import { ChatLog } from './ChatLog';
 import { EventSystem } from './EventSystem';
 import { migrateSave, SAVE_VERSION, type PhoneEntry, type SaveData, type Weather } from './SaveData';
 import { STORAGE_KEYS } from './storageKeys';
@@ -140,7 +141,9 @@ class StoryStateImpl {
 
   // --- Celular ---
   receiveMessage(id: string, min?: number): void {
-    this.phone.push({ id, read: false, at: Math.round(this.playTimeMs), min });
+    const entry: PhoneEntry = { id, read: false, at: Math.round(this.playTimeMs), min };
+    this.phone.push(entry);
+    ChatLog.record(this.missionId, entry);
     this.changed();
   }
 
@@ -221,7 +224,15 @@ class StoryStateImpl {
     };
   }
 
+  /**
+   * Mientras es true nada se guarda: la Galería lo prende al jugar un minijuego suelto (los hay que mueven el reloj
+   * o ponen flags) y lo apaga al volver, restaurando lo que había.
+   */
+  noSave = false;
+
   save(): void {
+    // El modo libre (sandbox) y los minijuegos sueltos no pisan la partida de la historia.
+    if (this.missionId === 'sandbox' || this.noSave) return;
     try {
       window.localStorage.setItem(SAVE_KEY, JSON.stringify(this.snapshot()));
     } catch {
@@ -250,6 +261,8 @@ class StoryStateImpl {
     this.location = data.location;
     this.phone = data.phone.map((p) => ({ ...p }));
     this.missionId = data.mission;
+    // Una partida guardada antes del historial trae mensajes que todavía no están anotados.
+    ChatLog.recordAll(this.missionId, this.phone);
     this.clock = data.clock;
     this.clockMax = data.clockMax;
     this.outfit = data.outfit;

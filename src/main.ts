@@ -25,10 +25,13 @@ import { MissionCompleteScene } from './scenes/MissionCompleteScene';
 import { OverworldScene } from './scenes/OverworldScene';
 import { PreloadScene } from './scenes/PreloadScene';
 import { ProgressScene } from './scenes/ProgressScene';
+import { GalleryScene } from './scenes/GalleryScene';
 import { StatsScene } from './scenes/StatsScene';
 import { RankingScene } from './scenes/RankingScene';
 import { TitleScene } from './scenes/TitleScene';
 import { UIScene } from './scenes/UIScene';
+import { attachAccessibility } from './systems/Accessibility';
+import { attachErrorLog } from './systems/BugReport';
 import { Controls } from './systems/Controls';
 import { attachFullscreenKey } from './systems/Fullscreen';
 import { Admin } from './systems/Admin';
@@ -68,10 +71,12 @@ const game = new Phaser.Game({
     autoCenter: Phaser.Scale.NO_CENTER,
   },
   input: { keyboard: false, gamepad: false },
-  scene: [BootScene, PreloadScene, TitleScene, OverworldScene, InteriorScene, UIScene, FutbolScene, PiscinaScene, CincoScene, NatacionScene, PersecucionScene, CocinaScene, SalsaScene, PoolScene, PinponScene, AtraccionScene, ParqueScene, CafeScene, FiestaScene, RioScene, PaseoScene, MissionCompleteScene, ProgressScene, StatsScene, RankingScene, CreditsScene, AdminWarpScene, CarasScene],
+  scene: [BootScene, PreloadScene, TitleScene, OverworldScene, InteriorScene, UIScene, FutbolScene, PiscinaScene, CincoScene, NatacionScene, PersecucionScene, CocinaScene, SalsaScene, PoolScene, PinponScene, AtraccionScene, ParqueScene, CafeScene, FiestaScene, RioScene, PaseoScene, MissionCompleteScene, ProgressScene, GalleryScene, StatsScene, RankingScene, CreditsScene, AdminWarpScene, CarasScene],
 });
 
 Controls.attach(game);
+attachAccessibility();
+attachErrorLog();
 AudioManager.attach(game);
 Secrets.attach();
 Records.attach();
@@ -81,7 +86,7 @@ attachFullscreenKey();
 
 // Respaldo en la nube y datos de uso (docs/ranking.md). Ninguno corre en modo admin.
 /** Escenas de menú: fuera de ellas el jugador está jugando (un mapa o un minijuego). */
-const MENU_SCENES = new Set(['Boot', 'Preload', 'Title', 'Progress', 'Stats', 'Ranking', 'Credits', 'AdminWarp', 'UI']);
+const MENU_SCENES = new Set(['Boot', 'Preload', 'Title', 'Progress', 'Gallery', 'Stats', 'Ranking', 'Credits', 'AdminWarp', 'UI']);
 const activeScenes = (): string[] => game.scene.getScenes(true).map((s) => s.scene.key);
 CloudSave.start({ canReload: () => activeScenes().every((k) => ['Boot', 'Preload', 'Title'].includes(k)) });
 UsageStats.start({ inGame: () => activeScenes().some((k) => !MENU_SCENES.has(k)) });

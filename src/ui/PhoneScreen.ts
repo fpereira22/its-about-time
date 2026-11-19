@@ -3,11 +3,13 @@ import { playSfx } from '../audio/sfx';
 import { charKey, objKey } from '../art/SpriteRegistry';
 import { FONT_HUD } from '../config/display';
 import type { MapScene } from '../scenes/MapScene';
+import type { PhoneEntry } from '../systems/SaveData';
 import { Controls } from '../systems/Controls';
 import { check } from '../systems/Conditions';
 import { Dialogue } from '../systems/DialogueManager';
 import { EventSystem } from '../systems/EventSystem';
-import { missionSummary } from '../systems/Mission';
+import { ChatLog } from '../systems/ChatLog';
+import { getMission, missionLabel, MISSIONS, missionSummary } from '../systems/Mission';
 import { PHONE, Phone } from '../systems/Phone';
 import { playerTexture } from '../systems/PlayerLook';
 import { formatMoney, StoryState } from '../systems/StoryState';
@@ -312,20 +314,32 @@ export class PhoneScreen {
   // Mensajes
   // ---------------------------------------------------------------------------
 
-  /** Conversaciones: un contacto por fila, la más reciente primero. */
+  /**
+   * Todos los mensajes en orden: primero los de misiones anteriores (ChatLog, ya leídos) y después los de la
+   * misión en curso. Cada uno trae su misión, para separarlas en el hilo.
+   */
+  private allMessages(): Array<{ entry: PhoneEntry; mission: string; past: boolean }> {
+    const past = ChatLog.before(StoryState.missionId, MISSIONS.map((m) => m.id));
+    return [
+      ...past.flatMap((p) => p.entries.map((entry) => ({ entry, mission: p.mission, past: true }))),
+      ...StoryState.phone.map((entry) => ({ entry, mission: StoryState.missionId, past: false })),
+    ];
+  }
+
+  /** Conversaciones: un contacto por fila, la más reciente primero (incluye lo de misiones anteriores). */
   private conversations(): Array<{ from: string; last: string; unread: number }> {
     const byFrom = new Map<string, { from: string; last: string; unread: number; at: number }>();
-    for (const entry of StoryState.phone) {
+    this.allMessages().forEach(({ entry, past }, order) => {
       const msg = PHONE.messages[entry.id];
-      if (!msg) continue;
+      if (!msg) return;
       const hideIf = PHONE.contacts[msg.from]?.hideIf;
-      if (hideIf && check(hideIf)) continue;
+      if (hideIf && check(hideIf)) return;
       const c = byFrom.get(msg.from) ?? { from: msg.from, last: '', unread: 0, at: 0 };
       c.last = msg.mine ? `Tú: ${msg.text}` : msg.text;
-      c.at = entry.at;
-      if (!entry.read) c.unread++;
+      c.at = order;
+      if (!past && !entry.read) c.unread++;
       byFrom.set(msg.from, c);
-    }
+    });
     return [...byFrom.values()].sort((a, b) => b.at - a.at);
   }
 
@@ -700,9 +714,18 @@ export class PhoneScreen {
     const bottom = SCREEN.y + SCREEN.h - 12;
     const content = this.scene.add.container(0, 0);
     let y = 0;
-    for (const entry of StoryState.phone) {
+    const all = this.allMessages().filter(({ entry }) => PHONE.messages[entry.id]?.from === this.threadFrom);
+    // Con mensajes de misiones anteriores, una línea separa cada misión.
+    const separate = all.some((m) => m.past);
+    let lastMission = '';
+    for (const { entry, mission } of all) {
       const msg = PHONE.messages[entry.id];
-      if (msg?.from !== this.threadFrom) continue;
+      if (separate && mission !== lastMission) {
+        lastMission = mission;
+        const label = this.text(SCREEN.x + SCREEN.w / 2, y, `— ${missionLabel(getMission(mission))} —`, { fontSize: '7px', color: '#8a96b8' }).setOrigin(0.5, 0);
+        content.add(label);
+        y += 11;
+      }
       // Tus mensajes van a la derecha, en verde; los del contacto, a la izquierda con su color.
       const mine = msg.mine === true;
       const bx = mine ? SCREEN.x + 14 : SCREEN.x + 4;

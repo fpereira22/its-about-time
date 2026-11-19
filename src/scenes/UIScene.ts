@@ -129,6 +129,7 @@ export class UIScene extends BaseScene {
     this.sideMap.update(delta, this.anyModalOpen() ? undefined : map);
 
     if (this.tutorial.active) this.updateTutorial(map);
+    else this.tutorial.dismiss();
     this.debug.update(delta, map);
 
     if (this.levelUp.isOpen) return this.levelUp.update(delta);

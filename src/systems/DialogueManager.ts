@@ -105,6 +105,11 @@ class DialogueManagerImpl {
       console.error(`Diálogo "${id}" no existe`);
       return Promise.resolve();
     }
+    return this.runTree(tree, id);
+  }
+
+  /** Abre un árbol armado en código (el modo libre los genera). `id` solo sirve para los mensajes de error. */
+  runTree(tree: DialogueTree, id: string): Promise<void> {
     if (this.active || !this.presenter) return Promise.resolve();
     this.tree = tree;
     this.treeId = id;
