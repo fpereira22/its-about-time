@@ -15,4 +15,6 @@ export const STORAGE_KEYS = {
   cloud: 'santiago-laberinto:cloud',
   /** Contador de visitas para los datos de uso. No se respalda. */
   usage: 'santiago-laberinto:usage',
+  /** Última novedad que se le mostró al jugador (ver News). No se respalda: cada dispositivo la ve una vez. */
+  news: 'santiago-laberinto:news',
 } as const;

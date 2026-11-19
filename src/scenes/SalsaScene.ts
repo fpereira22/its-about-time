@@ -805,11 +805,6 @@ export class SalsaScene extends BaseScene {
     h.lineStyle(1, 0xf8e070, 1).strokeRect(TARGET_X - 9, LANE_Y - 11, 18, 22);
 
     if (this.phase !== 'play') return;
-    // Rayita al empezar cada figura (cada compás), para ver dónde cambia el baile.
-    for (const fig of this.danceFigs) {
-      const fx = TARGET_X + ((fig.beat * beatMs - this.clock) / beatMs) * PX_PER_BEAT - PX_PER_BEAT * 0.5;
-      if (fx > 12 && fx < BASE_WIDTH - 12) h.fillStyle(0xf8e070, 0.35).fillRect(Math.round(fx), LANE_Y - 9, 1, 18);
-    }
     this.notes.forEach((note, i) => {
       const x = TARGET_X + ((note.beat * beatMs - this.clock) / beatMs) * PX_PER_BEAT;
       const label = this.noteLabels[i];

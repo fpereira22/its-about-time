@@ -61,6 +61,18 @@ Mientras hay un diálogo abierto el jugador no se mueve.
 
 Desde el título o la pausa (**Ajustes**), con W/S para elegir la fila y A/D (o E) para cambiarla: volumen de **Música** y de **Efectos** (0 a 10; los efectos incluyen la lluvia y el viento), **Sonido** (silencio total, igual que la tecla M), velocidad del **Texto** (lenta, normal, rápida o instantánea) y **Controles táctiles** (Auto o Siempre; "Nunca" queda solo en el modo admin para que nadie en un celular se quede sin controles). Se aplican al instante y se guardan en este navegador, aparte de la partida (`santiago-laberinto:settings`, `src/systems/Settings.ts`; el silencio de antes, `santiago-laberinto:mute`, se lee una vez).
 
+## Novedades de cada actualización
+
+Al abrir el juego tras una actualización, el título muestra una tarjeta discreta al costado del menú con lo nuevo (hasta 3 líneas cortas, fecha arriba). Se queda unos segundos con una raya fina que cuenta el tiempo, se va sola o al tocarla, y **no vuelve a salir** en ese dispositivo (`santiago-laberinto:news` guarda el id de la última vista; no se respalda en la nube). Reglas:
+
+- **Quien abre el juego por primera vez** (sin partida, espacios ni nombre preguntado) no la ve: no hay "novedades" para quien todo es nuevo. Queda al día en silencio.
+- Si se salteó varias actualizaciones, ve las líneas de todas juntas (hasta el tope de 3).
+- Mientras está el saludo del nombre, la tarjeta espera a la próxima vez; las reseñas del título se apartan mientras dura.
+- **Al hacer un commit con cambios que el jugador note**, agrega arriba en `src/data/changelog.ts` una entrada con `id` nuevo (la fecha, con letra si hay más de una el mismo día), `date` y `items`. Se escribe solo con mejoras, en lenguaje humano, a grandes rasgos y **sin spoilers**: una misión nueva es una línea ("Nueva misión 12: Laura vuelve a Cali"), no el detalle de lo que pasa ni de cómo se hizo. `npm test` (`tests/news.test.ts`) revisa ids únicos, orden, y que las líneas sean pocas y cortas para que la tarjeta quepa.
+- **Probarla (modo admin / `npm run dev`):** F2 → página **Herramientas** → "Novedades: ver la tarjeta del título". Vuelve al título y muestra la última entrada aunque ya la hayas visto, sin registrarla (sirve también en el celular, donde no hay teclado). Para probar el caso real, borra `santiago-laberinto:news` en localStorage y recarga.
+
+La lógica está en `src/systems/News.ts`, la tarjeta en `src/ui/NewsCard.ts` y el enganche en `TitleScene.showNews`.
+
 ## Guardado
 
 - **Partida automática** (`santiago-laberinto:save`): se guarda sola con cada cambio; es la de *Continuar* en el título. Guarda el mapa y el último spawn, no el tile exacto.

@@ -12,6 +12,7 @@ import { Content } from '../systems/Content';
 import { Dialogue } from '../systems/DialogueManager';
 import { GameMap } from '../systems/GameMap';
 import { currentMission, formatDayClock, missionFullLabel, MISSIONS, parseClock } from '../systems/Mission';
+import { News } from '../systems/News';
 import { Phone } from '../systems/Phone';
 import { currentOutfit } from '../systems/PlayerLook';
 import { SKILLS, type LevelUpInfo } from '../systems/SkillStats';
@@ -167,6 +168,15 @@ export class AdminWarpScene extends BaseScene {
   /** Ajustes de prueba: cambian algo y se quedan en el selector. */
   private toolRows(): Row[] {
     return [
+      {
+        label: 'Novedades: ver la tarjeta del título',
+        detail: 'E: vuelve al título y muestra la última entrada de changelog.ts (no la marca como vista · dura unos segundos)',
+        go: () =>
+          this.leave(() => {
+            News.preview();
+            this.scene.start('Title');
+          }),
+      },
       {
         label: `Controles táctiles: ${TouchControls.modeLabel()}`,
         detail: 'E cambia: AUTO (solo celulares) · SIEMPRE (también PC) · NUNCA · atajo F3',

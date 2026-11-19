@@ -10,6 +10,7 @@ import { canFullscreen, isFullscreen, toggleFullscreen } from '../systems/Fullsc
 import { TouchControls } from '../systems/TouchControls';
 import { clockMinutes, currentMission, missionFullLabel, missionLabel, MISSIONS, parseClock } from '../systems/Mission';
 import type { MissionDef } from '../types/mission';
+import { News } from '../systems/News';
 import { Ranking } from '../systems/Ranking';
 import { Records } from '../systems/Records';
 import { RIDES } from '../systems/RideController';
@@ -19,6 +20,7 @@ import { StoryState } from '../systems/StoryState';
 import { drawPanel, makeText, THEME } from '../ui/theme';
 import { BaseScene } from './BaseScene';
 import { MenuList, type MenuItem } from '../ui/MenuList';
+import { NewsCard } from '../ui/NewsCard';
 import { SettingsPanel } from '../ui/SettingsPanel';
 import { TitleBackdrop } from '../ui/TitleBackdrop';
 import { TitleReviews } from '../ui/TitleReviews';
@@ -90,6 +92,8 @@ export class TitleScene extends BaseScene {
   private reviews: TitleReviews | null = null;
   /** Formulario HTML abierto encima (el saludo): cierra lo que haya. */
   private closeForm: (() => void) | null = null;
+  /** Aviso de novedades de la actualización, mientras está en pantalla (las reseñas le dejan el lugar). */
+  private news: NewsCard | null = null;
 
   constructor() {
     super('Title');
@@ -104,6 +108,7 @@ export class TitleScene extends BaseScene {
     this.settings = null;
     this.reviews = null;
     this.closeForm = null;
+    this.news = null;
     if (this.scene.isActive('UI')) this.scene.stop('UI');
     this.cameras.main.setBackgroundColor('#1c2a48');
     this.footerText = null;
@@ -116,6 +121,7 @@ export class TitleScene extends BaseScene {
     this.buildMenu();
     this.buildReviews();
     this.greetFirstTime();
+    this.showNews();
 
     const footer = this.add.graphics().setDepth(5);
     footer.fillStyle(0x0d1424, 0.75).fillRect(0, BASE_HEIGHT - 13, BASE_WIDTH, 13);
@@ -231,6 +237,35 @@ export class TitleScene extends BaseScene {
         this.closeForm = null;
       });
     });
+  }
+
+  /**
+   * Novedades de la actualización (src/data/changelog.ts): una tarjeta discreta al costado del menú,
+   * una sola vez por actualización. Espera un poco para no pelear con el saludo del nombre, y no sale
+   * a quien abre el juego por primera vez (ver News).
+   */
+  private showNews(): void {
+    this.time.delayedCall(1600, () => {
+      const menu = this.menu;
+      if (this.leaving || this.closeForm || !menu) return;
+      const hasProgress = StoryState.hasSave() || SaveSlots.any || !Ranking.needsName;
+      const view = News.take(hasProgress);
+      if (!view) return;
+      // La columna más ancha a los lados del menú.
+      const left = { x: 0, width: menu.container.x - 6 };
+      const rightX = menu.container.x + menu.width + 6;
+      const right = { x: rightX, width: BASE_WIDTH - rightX };
+      this.news = new NewsCard(this, view, right.width >= left.width ? right : left, () => {
+        this.news = null;
+        this.reviews?.setVisible(!this.menuHidden());
+      });
+      this.reviews?.setVisible(false);
+    });
+  }
+
+  /** El menú principal está tapado por un submenú (misiones, ajustes...). */
+  private menuHidden(): boolean {
+    return this.menu !== null && !this.menu.container.visible;
   }
 
   /** Código de jugador: ver el de acá o traer el progreso de otro dispositivo. */
@@ -398,7 +433,7 @@ export class TitleScene extends BaseScene {
       this.menu.enabled = true;
       this.menu.container.setVisible(true);
     }
-    this.reviews?.setVisible(true);
+    this.reviews?.setVisible(!this.news);
   }
 
   private requestNewGame(mission: MissionDef): void {
