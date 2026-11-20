@@ -116,6 +116,9 @@ interface ActivePedestrian {
   step: 0 | 1 | 2;
   stepTimer: number;
   quote: string;
+  /** Personaje y número (0–2): en el modo libre, quién es (siempre la misma persona en la misma ciudad). */
+  spriteId: string;
+  seed: number;
   isCrossing: boolean;
   pausedTimer: number;
 }
@@ -422,6 +425,8 @@ export class CityLife {
       step: 0,
       stepTimer: 0,
       quote: Phaser.Math.RND.pick(this.map.data.region === 'cali' ? CALI_QUOTES : SANTIAGO_QUOTES),
+      spriteId,
+      seed: Phaser.Math.Between(0, 2),
       isCrossing: false,
       pausedTimer: 0,
     });
@@ -430,7 +435,7 @@ export class CityLife {
   /**
    * Si el jugador interactúa (E) mirando al tile enfrente, interactúa con el peatón.
    */
-  interactAt(x: number, y: number, playerFacing: Direction): boolean {
+  interactAt(x: number, y: number, playerFacing: Direction, stranger?: (key: string, sprite: string) => void): boolean {
     const ped = this.pedestrians.find((p) => p.tileX === x && p.tileY === y);
     if (!ped) return false;
 
@@ -445,7 +450,8 @@ export class CityLife {
     ped.sprite.setFrame(frameIndex(ped.dir, 0));
     ped.pausedTimer = 5000;
 
-    void Dialogue.sayText(ped.quote, 'Transeúnte');
+    if (stranger) stranger(`${this.map.data.region ?? this.map.id}:${ped.spriteId}:${ped.seed}`, ped.spriteId);
+    else void Dialogue.sayText(ped.quote, 'Transeúnte');
     return true;
   }
 

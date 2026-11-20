@@ -1,3 +1,5 @@
+import type { Style } from './sandboxTalk';
+
 /**
  * Reparto del modo libre (sandbox, solo dev por ahora): con quién se puede charlar y a quién se le puede regalar qué.
  *
@@ -16,6 +18,14 @@ export interface SandboxTopic {
 
 export interface SandboxPerson {
   id: string;
+  /** Cómo reacciona a cumplidos, bromas y besos (src/data/sandboxTalk.ts). */
+  style: Style;
+  /** ¿Se puede coquetear y besar? Si no, las bromas y el abrazo ocupan su lugar. */
+  romance: boolean;
+  /** Corazones que hacen falta para un beso en los labios («la química»). */
+  needHearts: number;
+  /** Temas más personales: se abren cuando ya hay confianza (nivel 1). */
+  deep: SandboxTopic[];
   /** Nombre que sale en el cuadro de diálogo. */
   name: string;
   /** Personaje de sprites.json. */
@@ -31,7 +41,7 @@ export interface SandboxPerson {
 }
 
 /** Cuánto suma a la confianza cada cosa que se hace por primera vez con alguien. */
-export const POINTS = { topic: 1, love: 3, like: 2, meh: 1 } as const;
+export const POINTS = { topic: 1, love: 3, like: 2, meh: 1, chat: 1, lips: 2 } as const;
 /** Puntos para llegar a cada nivel de confianza (0 = recién conocidos). */
 export const BAND_AT: readonly [number, number] = [4, 10];
 /** Corazones que se muestran: uno cada dos puntos, hasta este tope. */
@@ -46,6 +56,9 @@ export const SANDBOX_BAG: readonly string[] = [
 export const SANDBOX_CAST: readonly SandboxPerson[] = [
   {
     id: 'sira',
+    style: 'timida',
+    romance: true,
+    needHearts: 4,
     name: 'Sira',
     sprite: 'sira',
     greet: ['Ey, hola. ¿Qué hacemos?', '¡Hola! Qué bueno verte. Ven, siéntate un rato.', 'Justo estaba pensando en ti. ¿Cómo vas?'],
@@ -54,6 +67,10 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
       { id: 'cali', label: 'Cali', lines: ['Cali no se explica, se camina.', 'Con algo frío en la mano y el sol cayendo. Ahí entiendes todo.'] },
       { id: 'helados', label: 'Helados', lines: ['Maracuyá. Sin discusión.', 'Si me traes de otro sabor, igual lo recibo. Pero me sé quién eres.'] },
       { id: 'planes', label: 'Planes para el fin de semana', lines: ['Quiero un plan sin plan: caminar y ver qué sale.', 'Los mejores días de mi vida no estaban en la agenda.'] },
+    ],
+    deep: [
+      { id: 'miedo', label: 'Lo que más te da miedo', lines: ['Quedarme quieta mucho rato. Cuando paro, pienso.', 'Por eso nado: el agua no deja pensar.'] },
+      { id: 'sueno', label: 'Lo que sueñas', lines: ['Un día entero sin reloj ni mensajes.', 'Y alguien con quien no haga falta llenar los silencios.'] },
     ],
     loves: ['helado_carrito', 'cholado', 'girasol', 'libro_maria'],
     likes: ['lulada', 'chocolatina', 'cafe_salento', 'pulsera_neon'],
@@ -65,6 +82,9 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
   },
   {
     id: 'laura',
+    style: 'directa',
+    romance: true,
+    needHearts: 4,
     name: 'Laura',
     sprite: 'laura',
     greet: ['Hola. Eres el chileno, ¿no? Vale.', '¡Ey, tú! Justo a tiempo.', 'Ven, que te cuento algo y no te rías.'],
@@ -73,6 +93,10 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
       { id: 'pimpon', label: 'El pimpón', lines: ['En el frontón hay una mesa y ahí he perdido muchos veranos.', 'Pero cada derrota me enseñó algo. Mentira, solo me dio rabia.'] },
       { id: 'comida', label: 'La comida de allá', lines: ['Pintxos y un txakoli bien frío. Lo demás es relleno.', 'Aquí echo de menos el pan, no te voy a mentir.'] },
       { id: 'extraño', label: 'Lo que extrañas de casa', lines: ['El ruido del mar de madrugada, y a mi gente.', 'Pero también me encanta estar aquí. Las dos cosas a la vez.'] },
+    ],
+    deep: [
+      { id: 'familia', label: 'Tu familia', lines: ['Mi gente es ruidosa, cariñosa y muy de opinar.', 'Si los conocieras, te caerían bien en cinco minutos.'] },
+      { id: 'futuro', label: 'Lo que quieres hacer después', lines: ['Ver mundo sin perder el hogar. Difícil, pero ahí voy.', 'Y tener una playa cerca, siempre.'] },
     ],
     loves: ['cafe_salento', 'chocolatina', 'libro_maria', 'llavero_palma'],
     likes: ['manjar', 'alfajor', 'oblea', 'pandebono'],
@@ -84,6 +108,9 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
   },
   {
     id: 'danilo',
+    style: 'calida',
+    romance: false,
+    needHearts: 4,
     name: 'Danilo',
     sprite: 'danilo',
     greet: ['Qué más, parce. Todo bien por aquí.', '¡Ey! Vení, que hay buen parche.', 'Parce, qué bueno que viniste. De verdad.'],
@@ -92,6 +119,10 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
       { id: 'comida', label: 'Lo que más te gusta comer', lines: ['Un buen sancocho con aguacate, y no me pregunten más.', 'Y de postre lo que haya. No soy exigente.'] },
       { id: 'musica', label: 'La música', lines: ['Salsa pa bailar, rock pa pensar.', 'Y de todo un poquito pa que la gente no se aburra.'] },
       { id: 'futuro', label: 'Qué quieres hacer más adelante', lines: ['Estar tranquilo y que los míos estén bien.', 'Lo demás se va dando. Yo confío.'] },
+    ],
+    deep: [
+      { id: 'barrio', label: 'Tu barrio', lines: ['En mi barrio todos se saludan, aunque no se caigan bien.', 'Eso no lo cambio por nada.'] },
+      { id: 'miedo', label: 'Lo que te asusta', lines: ['Quedarme sin gente. Lo demás se arregla.', 'Por eso cuido a los míos como oro.'] },
     ],
     loves: ['chontaduro', 'bunuelo', 'lulada', 'pandebono'],
     likes: ['sopaipilla', 'empanada', 'cholado', 'cafe_salento'],
@@ -103,6 +134,9 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
   },
   {
     id: 'tami',
+    style: 'bromista',
+    romance: true,
+    needHearts: 5,
     name: 'Tami',
     sprite: 'tami',
     greet: ['¡Hola! ¿Qué más, qué hubo?', '¡Ey, mi vida! Cuéntame todo.', 'Ay, qué rico verte. Ven, ven, ven.'],
@@ -111,6 +145,10 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
       { id: 'fiesta', label: 'La fiesta', lines: ['Mi regla es llegar tarde y quedarme hasta que prendan las luces.', 'Pero cuando la música es buena, me quedo igual.'] },
       { id: 'estudio', label: 'La universidad', lines: ['Estudiar y vivir al mismo tiempo, ese es el truco.', 'Y si no, café. Mucho café.'] },
       { id: 'chisme', label: 'Chismes', lines: ['Mmm, no te los digo todos hoy. Un poquito.', 'Es que si te los cuento todos, me quedo sin plan.'] },
+    ],
+    deep: [
+      { id: 'casa', label: 'Tu casa', lines: ['Mi casa es chiquita pero siempre hay alguien. Y siempre sobra comida.', 'Es el mejor lugar del mundo, no te voy a mentir.'] },
+      { id: 'sueno', label: 'Lo que te gustaría ser', lines: ['Alguien que organice fiestas que la gente recuerde años después.', 'O dueña de un lugar con buena música. Todavía no decido.'] },
     ],
     loves: ['pulsera_neon', 'helado_carrito', 'chocolatina', 'girasol'],
     likes: ['lulada', 'cholado', 'oblea', 'bunuelo'],
@@ -122,6 +160,9 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
   },
   {
     id: 'richi',
+    style: 'timida',
+    romance: false,
+    needHearts: 4,
     name: 'Richi',
     sprite: 'richi',
     greet: ['Hola, ve. ¿Cómo andás?', '¡Qué más, ve! Pasá, pasá.', 'Ve, qué bueno que estés por acá.'],
@@ -130,6 +171,10 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
       { id: 'cuy', label: 'La comida de allá', lines: ['Allá el cuy es de fiesta. Los primeros días me daba cosa.', 'Ahora lo extraño, ve. Qué cosa.'] },
       { id: 'futbol', label: 'El fútbol', lines: ['Para mí el fútbol es de barrio: piedra, arco y a correr.', 'Lo importante es jugar. Ganar es un bonus.'] },
       { id: 'frio', label: 'El frío', lines: ['Aquí me creen exagerado. Allá esto es calor.', 'Pero igual me gusta el solcito, no creas.'] },
+    ],
+    deep: [
+      { id: 'familia', label: 'Tu familia', lines: ['Mi familia es de pocas palabras y mucho abrazo.', 'Los extraño más de lo que aparento.'] },
+      { id: 'sueno', label: 'Lo que sueñas', lines: ['Tener un lugar con fogón, algo caliente para tomar y gente que llegue sin avisar.', 'Con eso, ve, ya estaría.'] },
     ],
     loves: ['empanada', 'sopaipilla', 'manjar', 'cafe_salento'],
     likes: ['pandebono', 'alfajor', 'bunuelo', 'mote'],
@@ -141,6 +186,9 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
   },
   {
     id: 'juanpa',
+    style: 'bromista',
+    romance: false,
+    needHearts: 4,
     name: 'Juanpa',
     sprite: 'juanpa',
     greet: ['Parce, ¿qué más?', '¡Hola, hermano! Qué bueno verte por acá.', 'Hermano, qué bueno que viniste. Ya sabía.'],
@@ -149,6 +197,10 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
       { id: 'musica', label: 'La música', lines: ['Un poquito de todo. Reggaetón para el parche, salsa para el alma.', 'Pero en el carro, rock. Siempre rock.'] },
       { id: 'comida', label: 'La comida', lines: ['Todo lo que tenga queso. En serio, todo.', 'Y si tiene arepa, mejor.'] },
       { id: 'parche', label: 'El parche', lines: ['El parche es lo que hace que cualquier ciudad se sienta casa.', 'Sin parche, no hay ciudad.'] },
+    ],
+    deep: [
+      { id: 'futuro', label: 'Lo que quieres hacer después', lines: ['Vivir de algo que me guste, aunque gane menos.', 'Lo importante es no mirar el reloj con rabia.'] },
+      { id: 'amigos', label: 'Qué es un buen amigo', lines: ['Un buen amigo es el que te avisa cuando la estás regando.', 'Y el que no te lo recuerda después.'] },
     ],
     loves: ['pandebono', 'bunuelo', 'chocolatina', 'sopaipilla'],
     likes: ['empanada', 'completo', 'lulada', 'cholado'],
@@ -160,6 +212,9 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
   },
   {
     id: 'renzo',
+    style: 'directa',
+    romance: false,
+    needHearts: 4,
     name: 'Renzo',
     sprite: 'renzo',
     greet: ['¿Qué tal, causa?', '¡Causa! Qué bueno que viniste.', 'Causa, justo a ti te quería ver.'],
@@ -168,6 +223,10 @@ export const SANDBOX_CAST: readonly SandboxPerson[] = [
       { id: 'picanteria', label: 'La picantería', lines: ['Rocoto relleno y chupe. Ahí se acaban los problemas.', 'Aquí cuesta encontrar algo así de bueno.'] },
       { id: 'pimpon', label: 'El pimpón', lines: ['En Arequipa yo era campeón del barrio, causa. Del barrio. Del pasaje, más bien.', 'Pero siempre me gustó competir, aunque pierda.'] },
       { id: 'parche', label: 'El parche', lines: ['Con buena compañía, hasta lo malo se hace gracioso.', 'Eso lo aprendí aquí.'] },
+    ],
+    deep: [
+      { id: 'lejos', label: 'Estar lejos de casa', lines: ['Al principio duele. Después se vuelve una forma de crecer.', 'Pero el rocoto se huele de lejos, causa.'] },
+      { id: 'sueno', label: 'Lo que sueñas', lines: ['Volver a mi ciudad con algo bueno que contar.', 'Y que mi viejo se ría escuchándome.'] },
     ],
     loves: ['empanada', 'sopaipilla', 'manjar', 'chocolatina'],
     likes: ['pandebono', 'alfajor', 'mote', 'cafe_salento'],
@@ -228,6 +287,7 @@ export const SANDBOX_PLACES: readonly SandboxPlace[] = [
   place('antonio_varas', 'santiago', 'Antonio Varas (la U)', 'antonio_varas', 'metro', ['renzo', 'richi', 'juanpa']),
   place('sanguchería', 'santiago', 'Sanguchería Al Toque', 'resto_chileno', 'entrada', ['renzo', 'juanpa']),
   place('scl', 'santiago', 'Aeropuerto (salidas)', 'scl_salidas', 'auto', ['renzo', 'juanpa'], 'clo'),
+  place('scl_llegadas', 'santiago', 'Aeropuerto (llegadas)', 'scl_llegadas', 'avion', ['renzo', 'juanpa']),
   // Paine
   place('paine', 'paine', 'El pueblo', 'paine', 'casa', ['richi', 'renzo']),
   place('casa_paine', 'paine', 'La casa (primer piso)', 'casa_piso1', 'comedor', ['juanpa']),
@@ -255,7 +315,8 @@ export const SANDBOX_PLACES: readonly SandboxPlace[] = [
   place('rooftop', 'cali', 'Rooftop de Antoine', 'rooftop_cali', 'llegada', ['tami', 'laura']),
   place('chorrera', 'cali', 'Chorrera del Indio', 'chorrera', 'llegada', ['laura', 'danilo']),
   place('voragine', 'cali', 'La Vorágine', 'voragine', 'llegada', ['laura', 'sira']),
-  place('clo', 'cali', 'Aeropuerto (llegadas)', 'clo_llegadas', 'avion', ['danilo', 'tami'], 'scl'),
+  place('clo', 'cali', 'Aeropuerto (llegadas)', 'clo_llegadas', 'avion', ['danilo', 'tami']),
+  place('clo_salidas', 'cali', 'Aeropuerto (salidas)', 'clo_salidas', 'puerta', ['danilo', 'tami'], 'scl_llegadas'),
   // Pance
   place('pance', 'pance', 'Casa', 'pance', 'casa', ['danilo', 'tami', 'renzo', 'sira']),
   place('pance_casa', 'pance', 'Casa de doña Mery', 'pance_casa', 'puerta', ['danilo']),

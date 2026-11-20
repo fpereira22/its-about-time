@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { playMusic, playSfx } from '../audio/sfx';
 import { BASE_HEIGHT, BASE_WIDTH } from '../config/display';
 import { Controls } from '../systems/Controls';
-import { FaceCam } from '../systems/FaceCam';
+import { percentCaption, FaceCam } from '../systems/FaceCam';
 import { headToPaddle, rebaseCenter, smashEdge } from '../systems/faceChallenges';
 import { MiniScene } from './MiniScene';
 
@@ -227,8 +227,25 @@ export class PinponScene extends MiniScene<PinponResult> {
     this.camOn = true;
     this.camChoice = 'cam';
     if (this.camTest) this.titleText.setText('Pimpón con cámara');
-    this.banner('Prendiendo la cámara...\n(acepta el permiso; la primera vez descarga ~18 MB)\nSolo se usa para jugar: no se guarda ni se envía.\n(Esc: usar el teclado)');
-    void FaceCam.start().then(() => {
+    const tail = 'Solo se usa para jugar: no se guarda ni se envía.\n(Esc: usar el teclado)';
+    // Un solo porcentaje para todo el arranque; el jugador no necesita saber qué se está cargando.
+    let head = 'Prendiendo la cámara...\n(acepta el permiso)';
+    let fraction = 0;
+    const show = (): void => this.progressBanner(`${head}\n${tail}`, fraction, percentCaption({ fraction }));
+    show();
+    void FaceCam.start(
+      (step) => {
+        if (run !== this.camRun || !this.camLoading) return;
+        if (step === 'download') head = 'Preparando la cámara...\n(la primera vez tarda un poco más)';
+        else if (step === 'library') head = 'Preparando la cámara...';
+        show();
+      },
+      (p) => {
+        if (run !== this.camRun || !this.camLoading) return;
+        fraction = p.fraction;
+        show();
+      },
+    ).then(() => {
       if (run !== this.camRun || this.leaving || !this.sys.isActive()) return;
       this.camLoading = false;
       if (FaceCam.status === 'ready') {

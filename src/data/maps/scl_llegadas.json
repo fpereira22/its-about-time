@@ -1,0 +1,197 @@
+{
+  "id": "scl_llegadas",
+  "name": "Aeropuerto de Santiago · Llegadas",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 34,
+  "height": 22,
+  "background": "#101422",
+  "music": "aeropuerto",
+  "legend": {
+    "^": "muro_techo",
+    "W": "aero_muro",
+    "S": "aero_pantalla",
+    "P": "puerta",
+    ".": "aero_piso",
+    "v": "aero_valla",
+    "K": "aero_caseta",
+    "B": "cinta_maletas",
+    "M": "aero_meson",
+    "G": "aero_ventanal",
+    "p": "aero_planta"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "^WWPWWWWWWSWWWWWWWWWWWSWWWWWWWWWW^",
+    "^p..............................p^",
+    "^................................^",
+    "^................................^",
+    "^................................^",
+    "^vvvvvK.vvK.vvK.vvK.vvvvvvvvvvvvv^",
+    "^................................^",
+    "^................................^",
+    "^................................^",
+    "^................................^",
+    "^...BBBBBBBBBB.....BBBBBBBBBB....^",
+    "^...BBBBBBBBBB.....BBBBBBBBBB....^",
+    "^................................^",
+    "^................................^",
+    "^................................^",
+    "^MMMMMMMMMMMMMMM.MMMMMMMMMMMMMMMM^",
+    "^p..............................p^",
+    "^................................^",
+    "^................................^",
+    "GGGGGGGGGGGGGGGPPPPGGGGGGGGGGGGGGG",
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {
+      "name": "Control migratorio PDI",
+      "subtitle": "Aeropuerto de Santiago · Terminal 2",
+      "x": 0,
+      "y": 0,
+      "w": 34,
+      "h": 7
+    },
+    {
+      "name": "Retiro de equipaje",
+      "subtitle": "Cintas 1 y 2",
+      "x": 0,
+      "y": 7,
+      "w": 34,
+      "h": 9
+    },
+    {
+      "name": "Aduana · SAG",
+      "subtitle": "Control agropecuario",
+      "x": 0,
+      "y": 16,
+      "w": 34,
+      "h": 1
+    },
+    {
+      "name": "Hall de llegadas",
+      "subtitle": "Pudahuel, Región Metropolitana",
+      "x": 0,
+      "y": 17,
+      "w": 34,
+      "h": 5
+    }
+  ],
+  "spawns": {
+    "avion": {
+      "x": 3,
+      "y": 2,
+      "dir": "down"
+    },
+    "hall": {
+      "x": 16,
+      "y": 18,
+      "dir": "up"
+    }
+  },
+  "warps": [
+    {
+      "x": 15,
+      "y": 20,
+      "to": "scl_llegadas",
+      "spawn": "avion",
+      "if": {
+        "flag": "nunca"
+      },
+      "blockedDialogue": "sbxa_salir"
+    },
+    {
+      "x": 16,
+      "y": 20,
+      "to": "scl_llegadas",
+      "spawn": "avion",
+      "if": {
+        "flag": "nunca"
+      },
+      "blockedDialogue": "sbxa_salir"
+    },
+    {
+      "x": 17,
+      "y": 20,
+      "to": "scl_llegadas",
+      "spawn": "avion",
+      "if": {
+        "flag": "nunca"
+      },
+      "blockedDialogue": "sbxa_salir"
+    },
+    {
+      "x": 18,
+      "y": 20,
+      "to": "scl_llegadas",
+      "spawn": "avion",
+      "if": {
+        "flag": "nunca"
+      },
+      "blockedDialogue": "sbxa_salir"
+    }
+  ],
+  "labels": [
+    {
+      "x": 17,
+      "y": 0.5,
+      "text": "BIENVENIDOS A CHILE",
+      "color": "#f0d048"
+    },
+    {
+      "x": 12.5,
+      "y": 5.5,
+      "text": "CONTROL PDI"
+    },
+    {
+      "x": 9,
+      "y": 10.5,
+      "text": "CINTA 1 · LIMA"
+    },
+    {
+      "x": 24,
+      "y": 10.5,
+      "text": "CINTA 2 · CALI"
+    },
+    {
+      "x": 8,
+      "y": 16.5,
+      "text": "ADUANA · SAG"
+    },
+    {
+      "x": 17,
+      "y": 20.5,
+      "text": "SALIDA"
+    }
+  ],
+  "crowd": {
+    "lines": "aeropuerto",
+    "areas": [
+      {
+        "x": 1,
+        "y": 3,
+        "w": 32,
+        "h": 2,
+        "count": 4,
+        "dir": "down"
+      },
+      {
+        "x": 1,
+        "y": 13,
+        "w": 32,
+        "h": 2,
+        "count": 6,
+        "dir": "up"
+      },
+      {
+        "x": 1,
+        "y": 18,
+        "w": 32,
+        "h": 1,
+        "count": 4
+      }
+    ]
+  },
+  "enter": []
+}

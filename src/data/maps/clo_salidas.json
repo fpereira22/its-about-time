@@ -1,0 +1,190 @@
+{
+  "id": "clo_salidas",
+  "name": "Aeropuerto de Cali · Salidas",
+  "kind": "interior",
+  "tileSize": 16,
+  "width": 34,
+  "height": 22,
+  "background": "#101422",
+  "music": "salsa",
+  "legend": {
+    "^": "muro_techo",
+    "W": "aero_muro",
+    "S": "aero_pantalla",
+    "P": "puerta",
+    ".": "aero_piso",
+    "v": "aero_valla",
+    "K": "aero_caseta",
+    "M": "aero_meson",
+    "G": "aero_ventanal",
+    "p": "aero_planta",
+    "b": "banca"
+  },
+  "rows": [
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "^WWWWWWWWSWWWWWWWWWWWWWSWWWWWWWWW^",
+    "^p..............................p^",
+    "^................................^",
+    "^..bbb......................bbb..^",
+    "^vvvvvvvvvvvvvvK.Kvvvvvvvvvvvvvvv^",
+    "^................................^",
+    "^vvvvvvvvvvvvvvK.Kvvvvvvvvvvvvvvv^",
+    "^................................^",
+    "^..MMMMMMM...MMMMMMMM...MMMMMMM..^",
+    "^p..............................p^",
+    "^................................^",
+    "^................................^",
+    "^................................^",
+    "^................................^",
+    "^................................^",
+    "^................................^",
+    "^................................^",
+    "^................................^",
+    "^p..............................p^",
+    "GGGGGGGGGGGGGGGPPPPGGGGGGGGGGGGGGG",
+    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  ],
+  "zones": [
+    {
+      "name": "Sala de embarque",
+      "subtitle": "Puertas nacionales e internacionales",
+      "x": 0,
+      "y": 1,
+      "w": 34,
+      "h": 4
+    },
+    {
+      "name": "Control de seguridad",
+      "subtitle": "Solo pasajeros con pase de abordar",
+      "x": 0,
+      "y": 5,
+      "w": 34,
+      "h": 1
+    },
+    {
+      "name": "Migración Colombia",
+      "subtitle": "Salida del país",
+      "x": 0,
+      "y": 6,
+      "w": 34,
+      "h": 2
+    },
+    {
+      "name": "Check-in · Cordillera Air",
+      "subtitle": "Aeropuerto Alfonso Bonilla Aragón · Salidas",
+      "x": 0,
+      "y": 8,
+      "w": 34,
+      "h": 13
+    }
+  ],
+  "spawns": {
+    "puerta": {
+      "x": 16,
+      "y": 18,
+      "dir": "up"
+    },
+    "sala": {
+      "x": 10,
+      "y": 3,
+      "dir": "down"
+    }
+  },
+  "warps": [
+    {
+      "x": 15,
+      "y": 20,
+      "to": "clo_salidas",
+      "spawn": "puerta",
+      "if": {
+        "flag": "nunca"
+      },
+      "blockedDialogue": "sbxa_salir"
+    },
+    {
+      "x": 16,
+      "y": 20,
+      "to": "clo_salidas",
+      "spawn": "puerta",
+      "if": {
+        "flag": "nunca"
+      },
+      "blockedDialogue": "sbxa_salir"
+    },
+    {
+      "x": 17,
+      "y": 20,
+      "to": "clo_salidas",
+      "spawn": "puerta",
+      "if": {
+        "flag": "nunca"
+      },
+      "blockedDialogue": "sbxa_salir"
+    },
+    {
+      "x": 18,
+      "y": 20,
+      "to": "clo_salidas",
+      "spawn": "puerta",
+      "if": {
+        "flag": "nunca"
+      },
+      "blockedDialogue": "sbxa_salir"
+    }
+  ],
+  "triggers": [],
+  "labels": [
+    {
+      "x": 17,
+      "y": 0.5,
+      "text": "SALA DE EMBARQUE",
+      "color": "#f0d048"
+    },
+    {
+      "x": 17,
+      "y": 4.6,
+      "text": "CONTROL DE SEGURIDAD"
+    },
+    {
+      "x": 17,
+      "y": 6.6,
+      "text": "MIGRACIÓN COLOMBIA"
+    },
+    {
+      "x": 17,
+      "y": 8.0,
+      "text": "CHECK-IN · CORDILLERA AIR"
+    },
+    {
+      "x": 17,
+      "y": 20.5,
+      "text": "SALIDA"
+    }
+  ],
+  "crowd": {
+    "lines": "aeropuerto",
+    "areas": [
+      {
+        "x": 1,
+        "y": 11,
+        "w": 32,
+        "h": 3,
+        "count": 8
+      },
+      {
+        "x": 1,
+        "y": 16,
+        "w": 32,
+        "h": 2,
+        "count": 5
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "w": 32,
+        "h": 2,
+        "count": 3
+      }
+    ]
+  }
+}

@@ -129,7 +129,7 @@
     "sprite": "orientadora",
     "dialogue": "m6_orientadora",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -140,7 +140,7 @@
     "object": "tablero_rutas",
     "dialogue": "m6_tablero_rutas",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -162,7 +162,7 @@
     "y": 35,
     "dialogue": "m6_recargadora",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -172,7 +172,7 @@
     "y": 36,
     "dialogue": "m6_taquilla",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -182,7 +182,7 @@
     "y": 35,
     "dialogue": "m6_torniquete",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -192,7 +192,7 @@
     "y": 36,
     "dialogue": "m6_torniquete",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -202,7 +202,7 @@
     "y": 37,
     "dialogue": "m6_torniquete",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -212,7 +212,7 @@
     "y": 38,
     "dialogue": "m6_torniquete",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -222,7 +222,7 @@
     "y": 34,
     "dialogue": "m6_puerta_t31",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -232,7 +232,7 @@
     "y": 34,
     "dialogue": "m6_puerta_e31",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -242,7 +242,7 @@
     "y": 34,
     "dialogue": "m6_puerta_t42",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -252,7 +252,7 @@
     "y": 34,
     "dialogue": "m6_puerta_t47",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -262,7 +262,7 @@
     "y": 34,
     "dialogue": "m6_puerta_e27",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -272,7 +272,7 @@
     "y": 39,
     "dialogue": "m6_puerta_alimentadores",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -282,7 +282,7 @@
     "y": 39,
     "dialogue": "m6_puerta_alimentadores",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {
@@ -292,7 +292,7 @@
     "y": 39,
     "dialogue": "m6_puerta_alimentadores",
     "if": {
-      "mission": "mission06"
+      "mission": ["mission06", "sandbox"]
     }
   },
   {

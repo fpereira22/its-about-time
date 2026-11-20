@@ -11,6 +11,8 @@ const VERSION = '__VERSION__';
 const PRECACHE = __PRECACHE__;
 const CACHE = `its-about-time-${VERSION}`;
 const FONTS = 'its-about-time-fuentes';
+// Caché de la cámara (~18 MB): sobrevive a las actualizaciones del juego para no volver a descargarlo.
+const CAMERA = 'its-about-time-camara-v1';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -25,7 +27,7 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches
       .keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE && k !== FONTS).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE && k !== FONTS && k !== CAMERA).map((k) => caches.delete(k))))
       .then(() => self.clients.claim()),
   );
 });
@@ -40,6 +42,9 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   if (url.origin !== self.location.origin) return;
+  // El WASM y el modelo de la cámara los baja y guarda el propio juego (src/systems/FaceCam.ts, con barra
+  // de avance) en su caché aparte: aquí no se duplican.
+  if (url.pathname.includes('/mediapipe/')) return;
 
   if (req.mode === 'navigate') {
     event.respondWith(networkFirst(req));

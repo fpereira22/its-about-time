@@ -23,6 +23,10 @@ const FADE_MS = 350;
 
 interface Person {
   actor: Actor;
+  /** Personaje de sprites.json (el modo libre lo usa para saber quién es). */
+  sprite: string;
+  /** Clave estable de quién es (mapa + personaje + número): en el modo libre, siempre la misma persona. */
+  personaKey: string;
   name: string;
   line: string;
   /** Hacia dónde mira casi siempre (null = a cualquier lado). Los sentados no miran a los lados. */
@@ -45,6 +49,8 @@ export class Crowd {
   private readonly seats: Array<{ x: number; y: number }> = [];
   /** Frases por repartir: cada persona recibe una distinta hasta que se acaban (así no se repiten). */
   private deck: string[] = [];
+  /** Cuántas personas de cada personaje se han creado: se reparten en pocas identidades por mapa. */
+  private readonly seen = new Map<string, number>();
 
   /**
    * @param blocked tiles que nunca se ocupan (NPCs, spawns, warps, triggers).
@@ -76,12 +82,14 @@ export class Crowd {
   }
 
   /** El jugador le habla a quien está en (x, y). Devuelve false si no hay nadie. */
-  talkAt(x: number, y: number, playerFacing: Direction): boolean {
+  talkAt(x: number, y: number, playerFacing: Direction, stranger?: (key: string, sprite: string) => void): boolean {
     const p = this.people.find((q) => q.actor.occupies(x, y));
     if (!p) return false;
     if (!p.seated) p.actor.face(OPPOSITE[playerFacing]);
     p.glance = 5000;
-    void Dialogue.sayText(p.line, p.name);
+    // Modo libre: cada figurante es alguien con quien se puede conversar de verdad.
+    if (stranger) stranger(p.personaKey, p.sprite);
+    else void Dialogue.sayText(p.line, p.name);
     return true;
   }
 
@@ -177,8 +185,12 @@ export class Crowd {
     const sprites = Object.keys(DATA.people).filter(hasCharacter);
     const sprite = Phaser.Utils.Array.GetRandom(sprites);
     const actor = new Actor(this.scene, `crowd_${sprite}`, charKey(sprite), x, y, facing, () => true);
+    const n = this.seen.get(sprite) ?? 0;
+    this.seen.set(sprite, n + 1);
     const p: Person = {
       actor,
+      sprite,
+      personaKey: `${this.map.id}:${sprite}:${n % 3}`,
       name: DATA.people[sprite],
       line: this.nextLine(),
       dir,

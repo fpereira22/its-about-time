@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { playMusic, playSfx } from '../audio/sfx';
 import { BASE_HEIGHT, BASE_WIDTH } from '../config/display';
 import { Controls } from '../systems/Controls';
-import { FaceCam } from '../systems/FaceCam';
+import { percentCaption, FaceCam } from '../systems/FaceCam';
 import {
   advanceHold,
   FACE_CHALLENGES,
@@ -205,11 +205,25 @@ export class CarasScene extends MiniScene<CarasResult> {
     this.hideBanner();
     playSfx('select');
     this.setPhase('loading');
-    this.banner('Prendiendo la cámara...\n(la primera vez descarga ~18 MB)');
-    void FaceCam.start((step) => {
-      if (this.phase !== 'loading') return;
-      this.banner(step === 'camera' ? 'Acepta el permiso de la cámara...' : step === 'library' ? 'Descargando el detector de caras...' : 'Cargando el modelo...\n(la primera vez son ~18 MB)');
-    }).then(() => {
+    // Un solo porcentaje para todo el arranque; el jugador no necesita saber qué se está cargando.
+    let text = 'Prendiendo la cámara...';
+    let fraction = 0;
+    const show = (): void => this.progressBanner(text, fraction, percentCaption({ fraction }));
+    show();
+    void FaceCam.start(
+      (step) => {
+        if (this.phase !== 'loading') return;
+        if (step === 'camera') text = 'Acepta el permiso de la cámara...';
+        else if (step === 'download') text = 'Preparando la cámara...\n(la primera vez tarda un poco más)';
+        else if (step === 'library') text = 'Preparando la cámara...';
+        show();
+      },
+      (p) => {
+        if (this.phase !== 'loading') return;
+        fraction = p.fraction;
+        show();
+      },
+    ).then(() => {
       if (this.leaving || this.phase !== 'loading') return;
       if (FaceCam.status === 'ready') {
         this.hideBanner();

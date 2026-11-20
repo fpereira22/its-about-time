@@ -12,6 +12,8 @@ import { ChatLog } from '../systems/ChatLog';
 import { getMission, missionLabel, MISSIONS, missionSummary } from '../systems/Mission';
 import { PHONE, Phone } from '../systems/Phone';
 import { playerTexture } from '../systems/PlayerLook';
+import { isSandbox, phoneContact, sandboxContacts } from '../systems/Sandbox';
+import { hash32 } from '../systems/SandboxSocial';
 import { formatMoney, StoryState } from '../systems/StoryState';
 import { fitText, makeText, THEME } from './theme';
 import { STORAGE_KEYS } from '../systems/storageKeys';
@@ -251,7 +253,16 @@ export class PhoneScreen {
   // ---------------------------------------------------------------------------
 
   private callableContacts(): string[] {
+    // Modo libre: los contactos son el reparto y la gente cuyo número conseguiste.
+    if (isSandbox()) return sandboxContacts().map((c) => c.id);
     return Object.keys(PHONE.contacts).filter((id) => PHONE.contacts[id].callable && check(PHONE.contacts[id].if));
+  }
+
+  /** Nombre y color de un contacto (el color de los de la calle sale de su nombre). */
+  private contactInfo(id: string): { name: string; color: string } {
+    if (!isSandbox()) return PHONE.contacts[id];
+    const name = sandboxContacts().find((c) => c.id === id)?.name ?? id;
+    return { name, color: `#${(hash32(id) & 0x7f7f7f | 0x303030).toString(16).padStart(6, '0')}` };
   }
 
   private updateContacts(i: Input): void {
@@ -266,10 +277,16 @@ export class PhoneScreen {
     }
     if (!i.ok) return;
     const contact = list[this.listIndex];
+    if (isSandbox()) {
+      playSfx('select');
+      this.close();
+      void phoneContact(contact);
+      return;
+    }
     const dialogue = Phone.dial(contact);
     if (!dialogue) {
       playSfx('error');
-      this.dialNote = `${PHONE.contacts[contact].name} no contesta.`;
+      this.dialNote = `${this.contactInfo(contact).name} no contesta.`;
       this.render();
       return;
     }
@@ -864,9 +881,12 @@ export class PhoneScreen {
   private renderContacts(): void {
     this.header('Teléfono');
     const list = this.callableContacts();
-    list.slice(0, 5).forEach((id, i) => {
-      const contact = PHONE.contacts[id];
-      const y = SCREEN.y + STATUS_H + 16 + i * 18;
+    // Con más de cinco contactos la lista se desplaza siguiendo el cursor.
+    const first = Math.max(0, Math.min(this.listIndex - 4, list.length - 5));
+    list.slice(first, first + 5).forEach((id, k) => {
+      const i = first + k;
+      const contact = this.contactInfo(id);
+      const y = SCREEN.y + STATUS_H + 16 + k * 18;
       const g = this.scene.add.graphics();
       if (i === this.listIndex) g.fillStyle(0xffffff, 0.12).fillRect(SCREEN.x + 1, y - 1, SCREEN.w - 2, 17);
       g.fillStyle(hex(contact.color), 1).fillCircle(SCREEN.x + 10, y + 7, 6);
@@ -884,7 +904,7 @@ export class PhoneScreen {
         }).setOrigin(0.5, 0),
       );
     }
-    this.footer('E: llamar · Q: volver');
+    this.footer(isSandbox() ? 'E: llamar o escribir · Q: volver' : 'E: llamar · Q: volver');
   }
 
   private renderMail(): void {

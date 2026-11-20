@@ -20,7 +20,7 @@ import { levelUpInfo, SkillStats } from '../systems/SkillStats';
 import { minigameId } from '../data/gallery';
 import { Gallery } from '../systems/Gallery';
 import { Npc } from '../systems/Npc';
-import { airportRunActive, checkAirportRun, hidesStoryNpc, isSandbox, offerSkip, sandboxNpcs, talkTo, TALK_PREFIX } from '../systems/Sandbox';
+import { airportRunActive, checkAirportRun, enterSandboxMap, hidesStoryNpc, isSandbox, offerSkip, sandboxNpcs, talkTo, talkToStranger, TALK_PREFIX } from '../systems/Sandbox';
 import { Records } from '../systems/Records';
 import { CloudSave } from '../systems/CloudSave';
 import { Ranking } from '../systems/Ranking';
@@ -236,6 +236,7 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
     // Aparecer sobre un asiento (ej. la silla del comedor) es aparecer sentado.
     const spawnSeat = seatPoseAt(this.map, spawn.x, spawn.y);
     if (spawnSeat) this.player.sitAt(spawn.x, spawn.y, spawnSeat);
+    enterSandboxMap(mapId);
     this.npcs = [...NPCS.filter((n) => n.map === mapId && !hidesStoryNpc(n)), ...sandboxNpcs(mapId)].map(
       (def) => new Npc(this, def, blocked, def.sprite ? seatPoseAt(this.map, def.x, def.y) : undefined),
     );
@@ -775,8 +776,10 @@ export abstract class MapScene extends BaseScene implements ScriptHost {
       else void Dialogue.run(npc.def.dialogue);
       return;
     }
-    if (this.crowd?.talkAt(t.x, t.y, this.player.facing)) return;
-    if (this.cityLife?.interactAt(t.x, t.y, this.player.facing)) {
+    // Modo libre: la gente de la calle también conversa (categorías, regalos, besos si hay química).
+    const stranger = isSandbox() ? (key: string, sprite: string): void => void talkToStranger(key, sprite) : undefined;
+    if (this.crowd?.talkAt(t.x, t.y, this.player.facing, stranger)) return;
+    if (this.cityLife?.interactAt(t.x, t.y, this.player.facing, stranger)) {
       return;
     }
     this.trySit(t.x, t.y);

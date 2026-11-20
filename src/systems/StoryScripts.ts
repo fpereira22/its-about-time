@@ -355,6 +355,16 @@ export const SCRIPTS: Record<string, Script> = {
     host.setLocked(false);
   },
 
+  /** Cinta de equipaje del modo libre (llegadas a Santiago): el mismo minijuego, con diálogos propios. */
+  async sbx_cinta(host) {
+    host.setLocked(true);
+    const result = await new Promise<{ found: boolean; mistakes: number }>((done) =>
+      EventSystem.emit('open-baggage-claim', { done }),
+    );
+    await host.say(result.found ? 'sbxa_cinta_ok' : 'sbxa_cinta_no');
+    host.setLocked(false);
+  },
+
   /** La despedida en el acceso a embarque internacional: abrazos, lágrimas y música triste. */
   async despedida(host) {
     host.setLocked(true);

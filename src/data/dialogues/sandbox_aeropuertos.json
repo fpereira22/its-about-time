@@ -1,0 +1,533 @@
+{
+ "sbxa_salir": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La salida es hacia la calle. Para ir a otro lugar abre el menú (Esc → Viajar)."
+   }
+  }
+ },
+ "sbxa_caseta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "El funcionario atiende a otro pasajero. Pasa por el carril del centro."
+   }
+  }
+ },
+ "sbxa_pantalla": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": [
+     "SALIDAS · CA 743 · CALI → SANTIAGO",
+     "Puerta 7 · Embarque abierto. Tiempo estimado de vuelo: 5 h 10 min."
+    ]
+   }
+  }
+ },
+ "sbxa_pantalla_llegadas": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": [
+     "LLEGADAS · CA 742 · CALI → SANTIAGO",
+     "Aterrizado. Equipaje en cinta 2."
+    ]
+   }
+  }
+ },
+ "sbxa_checkin": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "co_checkin"
+      },
+      "goto": "ya"
+     },
+     {
+      "if": {
+       "notItem": "maleta"
+      },
+      "goto": "sin_maleta"
+     },
+     {
+      "goto": "hola"
+     }
+    ]
+   },
+   "ya": {
+    "speaker": "Agente",
+    "text": "Su maleta ya va camino al avión. Pase por Migración y Seguridad, y sigue la sala de embarque."
+   },
+   "sin_maleta": {
+    "speaker": "Agente",
+    "text": "¿Y su maleta? Sin maleta no hay check-in. (Revisa la mochila: debería estar ahí.)"
+   },
+   "hola": {
+    "speaker": "Agente",
+    "text": "Buen día, bienvenido a Cordillera Air. ¿Su destino?",
+    "choices": [
+     {
+      "label": "Santiago de Chile",
+      "goto": "documento"
+     },
+     {
+      "label": "Solo miraba",
+      "goto": "miraba"
+     }
+    ]
+   },
+   "miraba": {
+    "speaker": "Agente",
+    "text": "Cuando guste. El vuelo sale a tiempo."
+   },
+   "documento": {
+    "speaker": "Agente",
+    "text": "Su documento, por favor.",
+    "choices": [
+     {
+      "label": "Pasarle el carnet",
+      "if": {
+       "hasItem": "carnet"
+      },
+      "goto": "ok"
+     },
+     {
+      "label": "No lo encuentro",
+      "if": {
+       "notItem": "carnet"
+      },
+      "goto": "sin_carnet"
+     }
+    ]
+   },
+   "sin_carnet": {
+    "speaker": "Agente",
+    "text": "Sin documento no puedo seguir, lo siento."
+   },
+   "ok": {
+    "speaker": "Agente",
+    "text": [
+     "Perfecto. Ponga la maleta en la balanza... 21 kilos, justo.",
+     "Aquí está su pase de abordar: Puerta 7, Asiento 12C. Siga a Migración."
+    ],
+    "effects": [
+     {
+      "takeItem": "maleta"
+     },
+     {
+      "giveItem": "pase"
+     },
+     {
+      "setFlag": "co_checkin"
+     },
+     {
+      "sfx": "select"
+     },
+     {
+      "objective": "Pasa Migración, Seguridad y la sala de embarque"
+     }
+    ]
+   }
+  }
+ },
+ "sbxa_migra": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "notFlag": "co_checkin"
+      },
+      "goto": "antes"
+     },
+     {
+      "if": {
+       "notItem": "pase"
+      },
+      "goto": "sin_pase"
+     },
+     {
+      "goto": "control"
+     }
+    ]
+   },
+   "antes": {
+    "speaker": "Funcionario",
+    "text": "Primero el check-in, por favor. Los mostradores están atrás."
+   },
+   "sin_pase": {
+    "speaker": "Funcionario",
+    "text": "Necesito su pase de abordar."
+   },
+   "control": {
+    "speaker": "Funcionario",
+    "text": "Documento y pase. ¿Qué lo trajo a Colombia?",
+    "choices": [
+     {
+      "label": "Vine a ver amigos",
+      "goto": "amigos"
+     },
+     {
+      "label": "Turismo, a conocer",
+      "goto": "turismo"
+     },
+     {
+      "label": "A bailar salsa",
+      "goto": "salsa"
+     },
+     {
+      "label": "Visitaba a alguien especial",
+      "goto": "especial"
+     }
+    ]
+   },
+   "ok": {
+    "speaker": "Funcionario",
+    "text": "Todo en orden. Que tenga buen viaje.",
+    "effects": [
+     {
+      "setFlag": "co_migra"
+     },
+     {
+      "sfx": "select"
+     }
+    ]
+   },
+   "amigos": {
+    "speaker": "Funcionario",
+    "text": "Los amigos son lo mejor de un viaje. ¿Y los va a extrañar?",
+    "next": "ok"
+   },
+   "turismo": {
+    "speaker": "Funcionario",
+    "text": "¿Alcanzó a ir al Pacífico o se quedó en Cali? Yo le recomiendo el Pacífico.",
+    "next": "ok"
+   },
+   "salsa": {
+    "speaker": "Funcionario",
+    "text": "Entonces cumplió con lo principal. Aquí se baila hasta en la fila de migración.",
+    "next": "ok"
+   },
+   "especial": {
+    "speaker": "Funcionario",
+    "text": "Ah, ya veo esa sonrisa. No pregunto más. Que le vaya bien.",
+    "next": "ok"
+   }
+  }
+ },
+ "sbxa_seg": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "notFlag": "co_migra"
+      },
+      "goto": "antes"
+     },
+     {
+      "goto": "control"
+     }
+    ]
+   },
+   "antes": {
+    "speaker": "Agente AVSEC",
+    "text": "Primero Migración, por favor."
+   },
+   "control": {
+    "speaker": "Agente AVSEC",
+    "text": "Bandeja, cinturón, y el computador fuera. Los líquidos de más de 100 ml se quedan.",
+    "next": "rayos"
+   },
+   "rayos": {
+    "text": "Pasas por el arco sin que suene. Tu mochila sale por los rayos sin drama.",
+    "effects": [
+     {
+      "setFlag": "co_seg"
+     },
+     {
+      "sfx": "select"
+     }
+    ]
+   }
+  }
+ },
+ "sbxa_puerta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "notFlag": "co_seg"
+      },
+      "goto": "antes"
+     },
+     {
+      "goto": "llamado"
+     }
+    ]
+   },
+   "antes": {
+    "speaker": "Agente de puerta",
+    "text": "Todavía no puede pasar: falta el control de seguridad."
+   },
+   "llamado": {
+    "speaker": "Agente de puerta",
+    "text": "Vuelo CA 743 a Santiago. Es su turno de abordar. ¿Listo?",
+    "choices": [
+     {
+      "label": "Abordar",
+      "goto": "abordar"
+     },
+     {
+      "label": "Todavía no",
+      "goto": "espera"
+     }
+    ]
+   },
+   "espera": {
+    "speaker": "Agente de puerta",
+    "text": "Tranquilo, el embarque cierra en un rato."
+   },
+   "abordar": {
+    "speaker": "Agente de puerta",
+    "text": "Bienvenido a bordo. Buen viaje.",
+    "effects": [
+     {
+      "setFlag": "_sbx_board"
+     }
+    ]
+   }
+  }
+ },
+ "sbxa_pdi": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "migracion_ok"
+      },
+      "goto": "ya"
+     },
+     {
+      "if": {
+       "notItem": "carnet"
+      },
+      "goto": "sin_carnet"
+     },
+     {
+      "goto": "control"
+     }
+    ]
+   },
+   "ya": {
+    "speaker": "PDI",
+    "text": "Ya pasó el control. Siga a retirar su equipaje."
+   },
+   "sin_carnet": {
+    "speaker": "PDI",
+    "text": "Necesito su cédula de identidad para el ingreso."
+   },
+   "control": {
+    "speaker": "PDI",
+    "text": "Cédula chilena... bienvenido a casa. ¿Qué tal el viaje?",
+    "choices": [
+     {
+      "label": "Estuve con amigos",
+      "goto": "amigos"
+     },
+     {
+      "label": "Harto calor y salsa",
+      "goto": "salsa"
+     },
+     {
+      "label": "Vengo cansado, nada más",
+      "goto": "cansado"
+     }
+    ]
+   },
+   "salsa": {
+    "speaker": "PDI",
+    "text": "Jaja, eso se nota. Siga, siga.",
+    "next": "ok"
+   },
+   "ok": {
+    "speaker": "PDI",
+    "text": "Todo en regla. Retire su equipaje en la cinta 2.",
+    "effects": [
+     {
+      "setFlag": "migracion_ok"
+     },
+     {
+      "sfx": "select"
+     },
+     {
+      "objective": "Retira tu maleta (cinta 2)"
+     }
+    ]
+   },
+   "amigos": {
+    "speaker": "PDI",
+    "text": "Buenas compañías hacen buenos viajes. Se nota.",
+    "next": "ok"
+   },
+   "cansado": {
+    "speaker": "PDI",
+    "text": "Normal. Después del avión, todos. Descanse harto.",
+    "next": "ok"
+   }
+  }
+ },
+ "sbxa_cinta_otra": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Cinta 1: vuelo desde Lima. No es el tuyo."
+   }
+  }
+ },
+ "sbxa_cinta": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "flag": "maleta_recogida"
+      },
+      "goto": "ya"
+     },
+     {
+      "if": {
+       "notFlag": "migracion_ok"
+      },
+      "goto": "antes"
+     },
+     {
+      "goto": "esperar"
+     }
+    ]
+   },
+   "ya": {
+    "text": "Ya tienes tu maleta. La cinta sigue dando vueltas, vacía."
+   },
+   "antes": {
+    "text": "Primero tienes que pasar el control de la PDI."
+   },
+   "esperar": {
+    "text": "Cinta 2: CA 742 desde Cali. Las maletas empiezan a dar vueltas. Busca la tuya con calma.",
+    "effects": [
+     {
+      "event": "sbx_cinta"
+     }
+    ]
+   }
+  }
+ },
+ "sbxa_cinta_ok": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "La bajas de la cinta de un tirón. Es la tuya, con olor a bodega de avión.",
+    "effects": [
+     {
+      "giveItem": "maleta"
+     },
+     {
+      "setFlag": "maleta_recogida"
+     },
+     {
+      "objective": "Pasa la aduana del SAG"
+     }
+    ]
+   }
+  }
+ },
+ "sbxa_cinta_no": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "Te alejas un poco de la cinta. Tu maleta anda por ahí dando vueltas. Vuelve a mirar cuando quieras."
+   }
+  }
+ },
+ "sbxa_sag": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "branches": [
+     {
+      "if": {
+       "notFlag": "maleta_recogida"
+      },
+      "goto": "sin_maleta"
+     },
+     {
+      "goto": "control"
+     }
+    ]
+   },
+   "sin_maleta": {
+    "speaker": "Agente SAG",
+    "text": "¿Y su equipaje? Retírelo primero en la cinta."
+   },
+   "control": {
+    "speaker": "Agente SAG",
+    "text": "Control agropecuario del SAG. Pase la maleta por los rayos X. El beagle va a olfatearla.",
+    "next": "perro"
+   },
+   "perro": {
+    "branches": [
+     {
+      "if": {
+       "hasItem": "manjar"
+      },
+      "goto": "manjar"
+     },
+     {
+      "goto": "limpio"
+     }
+    ]
+   },
+   "manjar": {
+    "speaker": "Agente SAG",
+    "text": "Manjar sellado, de ese sí se puede. Que lo disfrute.",
+    "next": "fin"
+   },
+   "limpio": {
+    "text": "El beagle te huele, mueve la cola y pierde el interés. Nada que declarar.",
+    "next": "fin"
+   },
+   "fin": {
+    "speaker": "Agente SAG",
+    "text": "Siga, bienvenido a Chile.",
+    "effects": [
+     {
+      "setFlag": "aduana_ok"
+     },
+     {
+      "sfx": "select"
+     }
+    ]
+   }
+  }
+ },
+ "sbxa_beagle": {
+  "start": "inicio",
+  "nodes": {
+   "inicio": {
+    "text": "El beagle te mira, mueve la cola y vuelve a su trabajo."
+   }
+  }
+ }
+}
