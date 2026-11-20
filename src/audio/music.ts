@@ -180,6 +180,20 @@ const CARRO_CHORDS = ['C', 'F', 'G', 'C', 'Am', 'Dm', 'G', 'C'];
 const SON_CHORDS = ['G', 'C', 'D', 'G', 'G', 'C', 'D', 'G'];
 const SUAVE_CHORDS = ['Gm', 'Cm', 'D', 'Gm', 'D#', 'Cm', 'D', 'Gm'];
 const HUAYLAS_CHORDS = ['Am', 'G', 'Am', 'E', 'Am', 'G', 'Am', 'E'];
+const FINALE_CHORDS = ['G', 'D', 'Em', 'C', 'G', 'D', 'C', 'D', 'Em', 'C', 'G', 'D', 'C', 'D', 'G', 'G'];
+
+/** Acordes picados a contratiempo (el "ta-ka" de un pop alegre): sobre el "y" de cada tiempo. */
+function offbeatStabs(chords: string[], octave = 4): string[] {
+  return chords.flatMap((c) => {
+    const stab = chordMidi(c, octave).map(midiName).join('+');
+    return bars(`. . ${stab} . . . ${stab} . . . ${stab} . . . ${stab} .`);
+  });
+}
+
+/** Colchón de cuerdas: el acorde entero, un compás por nota. */
+function padChords(chords: string[], octave = 4): string[] {
+  return chords.flatMap((c) => bars(`${chordMidi(c, octave).map(midiName).join('+')} - - - - - - - - - - - - - - -`));
+}
 
 /** Bajo de cumbia: la fundamental en el 1 y la quinta en el 3, con un repique al final. */
 function cumbiaBass(chords: string[]): string[] {
@@ -820,6 +834,43 @@ export const TRACKS: Record<MusicTrack, TrackDef> = {
       { wave: 'square', vol: 0.02, tokens: arp(CREDITS_CHORDS, 2, 4) },
       { wave: 'triangle', vol: 0.15, sustain: true, tokens: bass(CREDITS_CHORDS, 'drone') },
       { wave: 'drums', vol: 0.07, tokens: repeat('k . . . h . . . k . . . h . . .', 8) },
+    ],
+  },
+
+  /** Créditos del final del juego: alegre y luminosa, en sol mayor. Campanitas, piano y un bajo que rebota. */
+  credits_final: {
+    bpm: 124,
+    loop: true,
+    echo: 0.22,
+    channels: [
+      {
+        wave: 'piano',
+        vol: 0.1,
+        tokens: bars(
+          'D6 - G6 - B6 - - - A6 - G6 - D6 - - -',
+          'A5 - D6 - F#6 - - - E6 - D6 - A5 - - -',
+          'G5 - B5 - E6 - - - D6 - B5 - G5 - B5 -',
+          'E6 - - - D6 - C6 - G5 - C6 - E6 - - -',
+          'D6 - G6 - B6 - D7 - C7 - B6 - G6 - - -',
+          'A6 - F#6 - D6 - F#6 - A6 - - - . . . .',
+          'G6 - E6 - C6 - E6 - G6 - C7 - B6 - A6 -',
+          'B6 - - - A6 - - - F#6 - - - A6 - D7 -',
+          'E6 - G6 - B6 - - - A6 - G6 - E6 - - -',
+          'G6 - E6 - C6 - - - D6 - E6 - G6 - - -',
+          'B5 - D6 - G6 - - - B6 - A6 - G6 - D6 -',
+          'F#6 - - - A6 - - - D7 - - - C#7 - A6 -',
+          'E6 - G6 - C7 - - - B6 - G6 - E6 - - -',
+          'F#6 - A6 - D7 - - - C7 - A6 - F#6 - - -',
+          'G6 - B6 - D7 - - - B6 - G6 - D6 - - -',
+          'G6 - - - - - - - . . . . . . . .',
+        ),
+      },
+      // Campanitas que brillan por encima, en corcheas.
+      { wave: 'sine', vol: 0.032, tokens: arp(FINALE_CHORDS, 2, 5) },
+      { wave: 'piano', vol: 0.035, tokens: offbeatStabs(FINALE_CHORDS) },
+      { wave: 'triangle', vol: 0.04, sustain: true, tokens: padChords(FINALE_CHORDS, 3) },
+      { wave: 'triangle', vol: 0.19, tokens: bass(FINALE_CHORDS, 'octave') },
+      { wave: 'drums', vol: 0.13, tokens: repeat('k . h . s . h . k . h . s . h h', 16) },
     ],
   },
 

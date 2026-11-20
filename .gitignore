@@ -29,3 +29,7 @@ desktop.ini
 
 # WASM de MediaPipe: lo copia vite.config.ts desde node_modules
 public/mediapipe/wasm/
+
+# Documentación Clave
+
+docs/i18n-plan.md

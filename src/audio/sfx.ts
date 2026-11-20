@@ -122,6 +122,7 @@ export type MusicTrack =
   | 'bus'
   | 'complete'
   | 'credits'
+  | 'credits_final' // los créditos del final del juego: pop alegre y luminoso, en sol mayor
   | 'despedida'
   | 'aeropuerto'
   | 'salsa'

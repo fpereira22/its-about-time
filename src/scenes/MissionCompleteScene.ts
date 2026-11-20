@@ -26,13 +26,26 @@ export class MissionCompleteScene extends BaseScene {
   private leaving = false;
   /** "¿Estás disfrutando el juego?" abierto encima: cierra lo que haya. */
   private closeForm: (() => void) | null = null;
+  private afterCredits = false;
 
   constructor() {
     super('MissionComplete');
     this.fixedCamera = true;
   }
 
+  init(data?: { afterCredits?: boolean }): void {
+    this.afterCredits = data?.afterCredits === true;
+    // Phaser conserva los datos del último start() si el siguiente no trae: no deben quedar para la próxima vez.
+    this.sys.settings.data = {};
+  }
+
   create(): void {
+    // La última misión no muestra el resumen de golpe: primero los créditos (solos, con opción de saltar) y
+    // al terminar vuelven aquí con `afterCredits`.
+    if (currentMission() === MISSIONS[MISSIONS.length - 1] && !this.afterCredits) {
+      this.scene.start('Credits', { finale: true });
+      return;
+    }
     this.menu = null;
     this.leaving = false;
     this.closeForm = null;
@@ -48,7 +61,9 @@ export class MissionCompleteScene extends BaseScene {
     const panel = this.add.graphics().setDepth(1);
     drawPanel(panel, PANEL.x, PANEL.y, PANEL.w, PANEL.h, { radius: 8 });
 
-    const header = this.addText(cx, 8, '¡MISIÓN COMPLETADA!', { fontFamily: FONT_HUD, fontSize: '8px', color: '#f0d048' })
+    // La última misión cierra el juego: ya pasaron los créditos, así que el menú ofrece compartir el final.
+    const finale = currentMission() === MISSIONS[MISSIONS.length - 1];
+    const header = this.addText(cx, 8, finale ? '¡JUEGO COMPLETADO!' : '¡MISIÓN COMPLETADA!', { fontFamily: FONT_HUD, fontSize: '8px', color: '#f0d048' })
       .setOrigin(0.5, 0)
       .setDepth(2);
     this.tweens.add({ targets: header, scale: 1.08, duration: 700, yoyo: true, repeat: -1, ease: 'Sine.InOut' });
@@ -120,9 +135,9 @@ export class MissionCompleteScene extends BaseScene {
         this,
         [
           ...(next ? [{ label: 'Siguiente misión', action: () => this.goNext(next) }] : []),
+          ...(finale ? [{ label: 'Compartir mi final', badge: '★', action: () => this.openShare(s.title, true) }] : []),
           { label: 'Título', action: () => this.go('Title') },
-          { label: 'Compartir', action: () => this.openShare(s.title) },
-          { label: 'Créditos', action: () => this.go('Credits') },
+          ...(finale ? [{ label: 'Ver créditos', action: () => this.go('Credits') }] : [{ label: 'Compartir', action: () => this.openShare(s.title) }, { label: 'Créditos', action: () => this.go('Credits') }]),
         ],
         { x: cx, y: PANEL.y + PANEL.h + 4, horizontal: true },
       );
@@ -152,12 +167,12 @@ export class MissionCompleteScene extends BaseScene {
   }
 
   /** Tarjeta para compartir con la misión recién completada. */
-  private openShare(mission: string): void {
+  private openShare(mission: string, finale = false): void {
     if (this.leaving || this.closeForm) return;
     playSfx('select');
     this.closeForm = openShareForm(() => {
       this.closeForm = null;
-    }, { mission });
+    }, { mission, finale });
   }
 
   private go(scene: string): void {

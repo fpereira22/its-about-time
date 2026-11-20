@@ -18,6 +18,8 @@ export interface ShareStats {
   hours: string;
   /** Misión recién completada (al compartir desde el resumen), o null. */
   mission: string | null;
+  /** Terminó el juego entero (créditos): la tarjeta y el texto celebran el final. */
+  finale: boolean;
 }
 
 export const SHARE_W = 1200;
@@ -32,7 +34,7 @@ export function formatPlayTime(ms: number): string {
   return m === 0 ? `${h} h` : `${h} h ${m} min`;
 }
 
-export function buildShareStats(mission: string | null = null): ShareStats {
+export function buildShareStats(mission: string | null = null, finale = false): ShareStats {
   const mine = Ranking.myScore();
   const id = Ranking.playerId;
   let rank: number | null = null;
@@ -50,6 +52,7 @@ export function buildShareStats(mission: string | null = null): ShareStats {
     rank,
     hours: formatPlayTime(StoryState.playTimeMs),
     mission,
+    finale,
   };
 }
 
@@ -60,6 +63,12 @@ export function gameUrl(): string {
 
 /** Texto para pegar junto a la imagen. */
 export function shareText(s: ShareStats): string {
+  if (s.finale) {
+    return [
+      `¡Terminé It's About Time, un juego de aventura en pixel art ambientado en Chile y Colombia! ${s.hours} jugadas, ${s.missions} de ${s.missionTotal} misiones${s.rank ? ` y puesto #${s.rank} en el ranking` : ''}.`,
+      'Lo hizo Felipe Pereira. Pruébalo y cuéntame cuánto sacas:',
+    ].join('\n');
+  }
   const lines = [s.mission ? `Terminé «${s.mission}» en It's About Time, un juego de aventura en pixel art ambientado en Chile y Colombia.` : `Estoy jugando It's About Time, un juego de aventura en pixel art ambientado en Chile y Colombia.`];
   lines.push(`${s.score}/${s.total} en mi progreso, ${s.missions} de ${s.missionTotal} misiones${s.rank ? ` y puesto #${s.rank} en el ranking` : ''}.`);
   lines.push('Pruébalo y cuéntame cuánto sacas:');
@@ -128,7 +137,7 @@ export async function renderShareImage(s: ShareStats): Promise<Blob> {
   c.textBaseline = 'top';
   c.fillStyle = ACCENT;
   c.font = '32px "Silkscreen", monospace';
-  c.fillText(s.mission ? 'MISIÓN COMPLETADA' : 'MI PROGRESO', px + 40, py + 36);
+  c.fillText(s.finale ? '¡JUEGO COMPLETADO!' : s.mission ? 'MISIÓN COMPLETADA' : 'MI PROGRESO', px + 40, py + 36);
   c.fillStyle = INK;
   c.font = '600 76px "Pixelify Sans", monospace';
   c.fillText("It's About Time", px + 40, py + 80);
